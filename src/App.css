@@ -1,0 +1,76 @@
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body{
+  margin:0;
+  padding:0;
+  font-family:monospace;
+}
+input[type=text]{
+  height:25px;
+  padding:10px;
+  font-family:monospace;
+  width:90%;
+  
+}
+label{
+  display:block;
+}
+form{
+  text-align:left;
+  width:100%;
+}
+h1{
+  font-family:monospace;
+  font-size:2rem;
+  margin:0 0 5px 0;
+}
+#welcome-message{
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:typewriter 3s steps(40,end) ,
+  cursor-blink .75s step-end infinite;
+  border-right:2px solid black;
+  font-size:1rem;
+  margin-bottom:10px;
+}
+#typing-container{
+  width:270px;
+}
+
+#main-content{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex:1;
+  width:100%;
+}
+#login{
+  margin:10px;
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@keyframes typewriter {
+  0%{
+    width:0;
+  }
+  100%{
+    width:100%;
+  }
+}
+@keyframes cursor-blink {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(0, 0, 0); }
+}
