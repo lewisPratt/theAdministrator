@@ -121,6 +121,10 @@ h1 {
 .commands-container:last-child{
   border-bottom:1px solid black;
 }
+#leave-req-p{
+  margin:20px;
+  color:red;
+}
 
 @keyframes typewriter {
   0% {
