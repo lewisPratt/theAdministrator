@@ -33,7 +33,7 @@ function App() {
         {adminName === null ?
         <AdminLogin doLogin={doLogin} typedNameSetter={setTypedName}/> 
         :
-       <ComSec adminName={adminName}/>}
+       <ComSec adminName={adminName} adminNameSetter={setAdminName}/>}
       </div>
       }
 

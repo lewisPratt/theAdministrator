@@ -1,20 +1,23 @@
-import { useState } from "react"
+import { useState, type Dispatch, type SetStateAction } from "react"
 import LeaveReq from "./LeaveReq"
 interface comSecProps{
     adminName: string
+    adminNameSetter: Dispatch<SetStateAction<string | null>>
 
 }
 
-function ComSec({adminName}: comSecProps){
+function ComSec({adminName,adminNameSetter}: comSecProps){
 
     const [typedCommand, setTypedCommand] = useState<string>("")
     const [workDes, setWorkDes] = useState<boolean>(false)
      const [transcriptRev, setTranscriptRev] = useState<boolean>(false)
       const [leaveReq, setLeaveReq] = useState<boolean>(false)
        const [exit, setExit] = useState<boolean>(false)
+       const [errorState, setErrorState] = useState<boolean>(false)
 
     function handleCommand(e : React.SubmitEvent<HTMLFormElement>){
         e.preventDefault()
+        e.currentTarget.reset()
         switch (typedCommand) {
             case '[DesStart]':
                 setWorkDes(true)
@@ -24,11 +27,14 @@ function ComSec({adminName}: comSecProps){
                 break;
             case '[LeaveReq]':
                 setLeaveReq(true)
+                setErrorState(false)
                 break;
             case '[Exit]':
-                setExit(true)
+                adminNameSetter(null)
                 break;
             default:
+                setErrorState(true)
+                setLeaveReq(false)
                 break;
         }
     }
@@ -41,12 +47,13 @@ function ComSec({adminName}: comSecProps){
                   <div id='command-input-container'><input type='text' placeholder='[Command]' id='command' name='command' autoComplete='off' onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setTypedCommand(e.currentTarget.value)}}  ></input><button id='login-submit-button'>@</button></div>
                 </form>
                 {leaveReq && <LeaveReq />}
+                {errorState && <p>Command Not recognized.</p>}
                 <p>Available commands:</p>
                 <div className='commands-container'>
                 <div className='command-container'><p>Start work designation.</p> <p>[DesStart]</p></div>
                 <div className='command-container'><p>Review interview transcripts.</p> <p>[TranscriptRev]</p></div>
                 <div className='command-container'><p>Request leave.</p> <p>[LeaveReq]</p></div>
-                <div className='command-container'><p>Logout.</p> <p>[Exit]</p></div>
+                <div className='command-container'><p>Exit.</p> <p>[Exit]</p></div>
                 </div>
         
                 </section>
