@@ -20,6 +20,8 @@ input[type=text]{
   padding:10px;
   font-family:monospace;
   width:90%;
+  border-right:0;
+  border-style:solid;
   
 }
 label{
@@ -61,6 +63,24 @@ h1{
   display:flex;
   flex-direction: column;
   gap: 10px;
+}
+#login-submit-button{
+      height: 49px;
+    width: 15%;
+    border: 0;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-radius: 0 10px 10px 0;
+    padding: 0;
+    background-color:rgb(207, 207, 207);
+    color:white;
+}
+#login-input-container{
+      display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 @keyframes typewriter {
   0%{

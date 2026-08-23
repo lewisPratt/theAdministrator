@@ -7,7 +7,7 @@ function App() {
   const [adminName, setAdminName] = useState<string | null>(null)
   const [loadingState, setLoadingState] = useState<boolean>(false)
 
-  function setAdmin(name){
+  function setAdmin(name :string){
     setLoadingState(false)
     setAdminName(name)
   }
@@ -33,11 +33,11 @@ function App() {
         <h1>Welcome Administrator</h1>
         <form onSubmit={doLogin}>
           <div id='typing-container'><label htmlFor='admin-name' id='welcome-message'>Please enter your name</label></div>
-          <input type='text' placeholder='Name' id='admin-name' name='admin-name' autoComplete='off' onChange={(e : React.ChangeEvent<HTMLInputElement>) => setTypedName(capitalizeFirstLetter(e.currentTarget.value))} ></input>
+          <div id='login-input-container'><input type='text' placeholder='Name' id='admin-name' name='admin-name' autoComplete='off' onChange={(e : React.ChangeEvent<HTMLInputElement>) => setTypedName(capitalizeFirstLetter(e.currentTarget.value))} ></input><button id='login-submit-button'>@</button></div>
         </form>
         </section>:
         <section id='welcome-section'>        
-        <h1>Welcome Administrator {adminName}</h1>
+        <h1>Welcome Administrator {adminName}.</h1>
         <h2>What would you like to do today?</h2>
         </section>}
       </div>}
