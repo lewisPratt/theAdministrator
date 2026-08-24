@@ -1,7 +1,12 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
-import type { carryableItemsShape, reviewShape, locationsShape , occupationsShape} from "./interfaces";
+import type {
+  carryableItemsShape,
+  reviewShape,
+  locationsShape,
+  occupationsShape,
+} from "./interfaces";
 import { createName } from "./NameArrays";
 import { createItems } from "./CarryableItems";
 import { CreateOccupation } from "./OccupationGenerator";
@@ -20,39 +25,49 @@ class person {
   locationIdent: number[];
   occupation: occupationsShape;
   overallWeighting: number;
-  weightingArray: string[]
+  weightingArray: string[];
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
     this.age = 20;
-    this.location = createLocation()
-    this.recreationPass = true;
+    this.location = createLocation();
+    this.recreationPass = this.generateRecreationPass();
     this.locationIdent = [1, 23, 4];
     this.occupation = CreateOccupation();
-    this.weightingArray = []
+    this.weightingArray = [];
     this.overallWeighting = this.workOutWeighting();
-    
   }
-  
+  generateRecreationPass(): boolean {
+    const grantPass: number = Math.round(Math.random() * 1);
+    return grantPass === 1 ? true : false;
+  }
   workOutWeighting(): number {
     let weighting = 0;
-    let weightingArray :string[]=[]
+    let weightingArray: string[] = [];
     this.items.forEach((item) => {
       if (!item.legal) {
         weighting -= 1;
-        weightingArray.push("NEGATIVE ITEM")
+        weightingArray.push("NEGATIVE ITEM");
       } else if (item.legal) {
         weighting += 1;
-         weightingArray.push("POSITIVE ITEM")
+        weightingArray.push("POSITIVE ITEM");
       }
     });
     //the person is in a higher (actually lower number) district than their job role allows (meaning a street vendor shouldn't be in the communications district)
-    if(this.location.district < this.occupation.district && this.location.district != 5){
-      weighting -=1
-       weightingArray.push("Out of district")
+    if (
+      this.location.district < this.occupation.district &&
+      this.location.district != 5
+    ) {
+      weighting -= 1;
+      weightingArray.push("Out of district");
     }
-    console.log("weightingArray: ", weightingArray)
-    this.weightingArray = [...weightingArray]
+    //if person has no recreation pass and is in the recreation zone (zone 8) they get negative weight
+    if (!this.recreationPass && this.location.district === 8) {
+      weighting -= 1;
+      weightingArray.push("no Rec pass in Rec zone");
+    }
+
+    this.weightingArray = [...weightingArray];
     return weighting;
   }
 }
@@ -66,7 +81,8 @@ export default function TranscriptRev({
   const [availableTranscripts, setAvailableTranscripts] = useState<
     reviewShape[] | null
   >(null);
-  const [currentTranscript, setCurrentTranscript] = useState<reviewShape | null>(null);
+  const [currentTranscript, setCurrentTranscript] =
+    useState<reviewShape | null>(null);
 
   let transcriptsArray: reviewShape[] = [];
 
@@ -75,8 +91,8 @@ export default function TranscriptRev({
       const newPerson = new person();
       transcriptsArray.push(newPerson);
     }
-    setAvailableTranscripts(transcriptsArray)
-  },[]);
+    setAvailableTranscripts(transcriptsArray);
+  }, []);
 
   //need to set state review transcripts so they reset when exiting
 
@@ -86,7 +102,7 @@ export default function TranscriptRev({
     switch (typedCommand) {
       case "[Exit]":
         setAvailableTranscripts(null);
-        setCurrentTranscript(null)
+        setCurrentTranscript(null);
         transcriptRevSetter(false);
         setErrorState(false);
         break;
