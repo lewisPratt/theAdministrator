@@ -18,6 +18,7 @@ class person {
   recreationPass: boolean;
   locationIdent: number[];
   occupation: string;
+  overallWeighting: number;
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -26,6 +27,18 @@ class person {
     this.recreationPass = true;
     this.locationIdent = [1, 23, 4];
     this.occupation = CreateOccupation();
+    this.overallWeighting = this.workOutWeighting()
+  }
+  workOutWeighting(): number{
+    let weighting = 0;
+    this.items.forEach(item => {
+     if(!item.legal){
+      weighting -= 1
+     } else if(item.legal){
+      weighting += 1
+     }
+    });
+    return weighting
   }
 }
 
@@ -46,11 +59,17 @@ export default function TranscriptRev({
     null,
   );
 
+
+
+  //need to set state review transcripts so they reset when exiting
+
+
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     e.currentTarget.reset();
     switch (typedCommand) {
       case "[Exit]":
+        setReviewTranscript(null)
         adminNameSetter(null);
         transcriptRevSetter(false);
         setErrorState(false);

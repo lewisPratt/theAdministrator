@@ -1,6 +1,8 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
 import { Map, DoorOpen, Backpack,CircleCheck, CircleX} from "lucide-react";
+import { Tooltip } from 'react-tooltip'
+
 
 interface transcriptReviewBoxProps {
   transcript: reviewShape;
@@ -16,7 +18,7 @@ export default function TranscriptReviewBox({
     <div className="transcript-container">
       <h3>{transcript.interviewee}</h3>
       <div className="interviewee-details">
-        <p>Occupation: {transcript.occupation}</p>
+        <p>Occupation: {transcript.occupation} Weighting: {transcript.overallWeighting}</p>
         <p>Age: {transcript.age}</p>
         <p>Interview Location: {transcript.location}</p>
       </div>
@@ -28,7 +30,7 @@ export default function TranscriptReviewBox({
       </div>
       <div className="passes-container">
         <div>
-          <DoorOpen />
+          <DoorOpen /> 
           <div className="recreation-pass-container">
             <div className="recreation-pass badge">
               {transcript.recreationPass ? <p><CircleCheck /></p> : <p><CircleX /></p>}
@@ -38,8 +40,8 @@ export default function TranscriptReviewBox({
         <div>
           <Map />
           <div className="location-pass-container ">
-            {transcript.locationIdent.map((loc) => {
-              return <div className="badge">{loc}</div>;
+            {transcript.locationIdent.map((loc) => { 
+              return <div className="badge">{loc}</div>; 
             })}
           </div>
         </div>
@@ -48,9 +50,10 @@ export default function TranscriptReviewBox({
           <div className="location-pass-container ">
             {transcript.items.map((item) => {
 
-              return <div className="badge">{item.itemComponent}</div>;
+              return <div className="badge" data-tooltip-id="item-desc" data-tooltip-content={item.description}>{item.itemComponent}</div>;
             })}
           </div>
+          <Tooltip id="item-desc"></Tooltip>
         </div>
       </div>
       <div

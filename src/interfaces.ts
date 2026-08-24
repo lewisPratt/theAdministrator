@@ -6,18 +6,12 @@ export interface reviewShape {
   recreationPass: boolean
   locationIdent: number[]
   items: carryableItemsShape[]
+  overallWeighting: number
 }
-export interface newReviewShape {
-  interviewee: string;
-  age: number;
-  occupation: string;
-  location: string
-  recreationPass: boolean
-  locationIdent: number[]
-  items: carryableItemsShape[]
-}
+
 
 export interface carryableItemsShape{
     itemComponent: React.ReactElement
-    legalStatus: number
+    legal: boolean
+    description: string
 }
