@@ -53,7 +53,7 @@ class person {
         weightingArray.push("POSITIVE ITEM");
       }
     });
-    //the person is in a higher (actually lower number) district than their job role allows (meaning a street vendor shouldn't be in the communications district)
+    //the person is in a lower district than their job role allows (meaning a street vendor shouldn't be in the communications district)
     if (
       this.location.district < this.occupation.district &&
       this.location.district != 5
