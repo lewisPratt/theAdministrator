@@ -1,15 +1,13 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
+import type { reviewShape } from "./interfaces";
+
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
 }
-interface reviewShape {
-  interviewee: string;
-  age: number;
-  occupation: string;
-}
+
 
 export default function TranscriptRev({
   adminNameSetter,
@@ -20,13 +18,16 @@ export default function TranscriptRev({
   const [reviewTranscript, setReviewTranscript] = useState<reviewShape | null>(
     null,
   );
-  const transcripts = [
+  const transcripts : reviewShape[]= [
     {
       interviewee: "Damian Ouster",
       age: 20,
       occupation: "Fabricator",
+      location: "Banking District",
+      recreationPass: false,
+      locationIdent: [1,2,3]
     },
-    { interviewee: "Tamara Johnson", age: 18, occupation: "Talk show host" },
+    { interviewee: "Tamara Johnson", age: 18, occupation: "Talk show host", location: "Dive Bar 'The Smoking Barrel'",recreationPass: true, locationIdent: [5,6]},
   ];
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {

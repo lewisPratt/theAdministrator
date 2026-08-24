@@ -1,14 +1,11 @@
 import type { Dispatch, SetStateAction } from "react";
+import type { reviewShape } from "./interfaces";
 
 interface transcriptListItemProps {
   transcript: reviewShape;
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
 }
-interface reviewShape {
-  interviewee: string;
-  age: number;
-  occupation: string;
-}
+
 
 
 

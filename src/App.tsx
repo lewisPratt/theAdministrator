@@ -1,6 +1,6 @@
 import React, { useState, type InputHTMLAttributes } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import WorkDes from './workDes';
+import WorkDes from './WorkDes';
 import ComSec from './ComSec';
 import AdminLogin from './AdminLogin';
 import TranscriptRev from './TranscriptRev';
