@@ -3,27 +3,38 @@ import LeaveReq from "./LeaveReq"
 interface comSecProps{
     adminName: string
     adminNameSetter: Dispatch<SetStateAction<string | null>>
+    workDesSetter: Dispatch<SetStateAction<boolean>>
+    transcriptRevSetter: Dispatch<SetStateAction<boolean>>
+    loadingStateSetter: Dispatch<SetStateAction<boolean>>
 
 }
 
-function ComSec({adminName,adminNameSetter}: comSecProps){
+function ComSec({adminName,adminNameSetter, workDesSetter,transcriptRevSetter, loadingStateSetter}: comSecProps){
 
     const [typedCommand, setTypedCommand] = useState<string>("")
-    const [workDes, setWorkDes] = useState<boolean>(false)
-     const [transcriptRev, setTranscriptRev] = useState<boolean>(false)
+    // const [workDes, setWorkDes] = useState<boolean>(false)
       const [leaveReq, setLeaveReq] = useState<boolean>(false)
        const [exit, setExit] = useState<boolean>(false)
        const [errorState, setErrorState] = useState<boolean>(false)
+
+function loadCommand(setter : Dispatch<SetStateAction<boolean>>){
+
+    setter(true)
+    loadingStateSetter(false)
+}
 
     function handleCommand(e : React.SubmitEvent<HTMLFormElement>){
         e.preventDefault()
         e.currentTarget.reset()
         switch (typedCommand) {
             case '[DesStart]':
-                setWorkDes(true)
+                workDesSetter(true)
+                loadingStateSetter(true)
+                setTimeout(loadCommand, 3000,workDesSetter)
                 break;
             case '[TranscriptRev]':
-                setTranscriptRev(true)
+                    loadingStateSetter(true)
+                    setTimeout(loadCommand, 3000,transcriptRevSetter)
                 break;
             case '[LeaveReq]':
                 setLeaveReq(true)
@@ -54,6 +65,8 @@ function ComSec({adminName,adminNameSetter}: comSecProps){
                 <div className='command-container'><p>Review interview transcripts.</p> <p>[TranscriptRev]</p></div>
                 <div className='command-container'><p>Request leave.</p> <p>[LeaveReq]</p></div>
                 <div className='command-container'><p>Exit.</p> <p>[Exit]</p></div>
+                <div className='command-container'><p>Available Commands.</p> <p>[Help]</p></div>
+
                 </div>
         
                 </section>

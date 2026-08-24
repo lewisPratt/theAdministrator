@@ -1,15 +1,17 @@
 import React, { useState, type InputHTMLAttributes } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import WorkDesParent from './workDes';
+import WorkDes from './workDes';
 import ComSec from './ComSec';
 import AdminLogin from './AdminLogin';
-
+import TranscriptRev from './TranscriptRev';
 import './App.css'
 
 function App() {
   const [typedName, setTypedName] = useState<string>("")
   const [adminName, setAdminName] = useState<string | null>(null)
   const [loadingState, setLoadingState] = useState<boolean>(false)
+  const [workDes, setWorkDes] = useState<boolean>(false)
+     const [transcriptRev, setTranscriptRev] = useState<boolean>(false)
 
   function setAdmin(name :string){
     setLoadingState(false)
@@ -21,7 +23,6 @@ function App() {
     e.preventDefault()
     setLoadingState(true)
     setTimeout(setAdmin, 3000, typedName)
-
   }
 
   return (
@@ -33,13 +34,22 @@ function App() {
         {adminName === null ?
         <AdminLogin doLogin={doLogin} typedNameSetter={setTypedName}/> 
         :
-       <ComSec adminName={adminName} adminNameSetter={setAdminName}/>}
+        <>
+        {workDes &&
+        <WorkDes /> }
+
+        {transcriptRev && 
+        <TranscriptRev adminNameSetter={setAdminName} transcriptRevSetter={setTranscriptRev}/> }
+
+        {!workDes && !transcriptRev &&
+       <ComSec adminName={adminName} adminNameSetter={setAdminName} workDesSetter={setWorkDes} transcriptRevSetter={setTranscriptRev} loadingStateSetter={setLoadingState}/>}
+       </>}
       </div>
       }
 
 
        <Routes>
-        <Route path="/workDes" element={<WorkDesParent />} />
+        <Route path="/workDes" element={<WorkDes />} />
       </Routes>
       </BrowserRouter>
     </div>

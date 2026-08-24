@@ -128,7 +128,9 @@ h1 {
   margin:20px;
   color:red;
 }
-
+#transcript-review p {
+  margin:20px;
+}
 @keyframes typewriter {
   0% {
     width: 0;

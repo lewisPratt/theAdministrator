@@ -1,12 +1,12 @@
 
 
 
-function WorkDesParent(){
+function WorkDes(){
 
 
     return (
-        <p>test</p>
+        <p>Work Des test</p>
     )
 }
 
-export default WorkDesParent
+export default WorkDes
