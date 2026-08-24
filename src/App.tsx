@@ -22,7 +22,7 @@ function App() {
   function doLogin(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoadingState(true)
-    setTimeout(setAdmin, 3000, typedName)
+    setTimeout(setAdmin, 1000, typedName)
   }
 
   return (

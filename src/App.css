@@ -16,9 +16,11 @@ p {
   padding: 0;
   font-family: monospace;
 }
-button{
-  cursor:pointer;
+
+button {
+  cursor: pointer;
 }
+
 input[type=text] {
   height: 25px;
   padding: 10px;
@@ -31,7 +33,7 @@ input[type=text] {
 
 input[type=text]:focus {
   outline: none;
-  
+
 }
 
 label {
@@ -48,8 +50,9 @@ h1 {
   font-size: 2rem;
   margin: 0 0 5px 0;
 }
-h5{
-  margin:0;
+
+h5 {
+  margin: 0;
 }
 
 #welcome-message {
@@ -69,6 +72,7 @@ h5{
 #login-typing-container {
   width: 270px;
 }
+
 #command-typing-container {
   width: 390px;
 }
@@ -80,8 +84,8 @@ h5{
   align-items: center;
   flex: 1;
   width: 100%;
-  max-width:900px;
-  margin:auto
+  max-width: 900px;
+  margin: auto
 }
 
 #login {
@@ -126,104 +130,123 @@ h5{
   padding: 5px;
   border-bottom: none;
 }
-.commands-container:last-child{
-  border-bottom:1px solid black;
-}
-#leave-req-p{
-  margin:20px;
-  color:red;
-}
-#transcript-review>p {
-  margin:20px;
-}
-#reminder-p{
-  font-size:.6rem;
-}
-.transcript-list-item{
-  border:1px solid black;
-  display:flex;
-  list-style: none;
-  padding:10px;
-  justify-content: space-between;
-  transition: .2s;
-  margin-bottom:2px;
+
+.commands-container:last-child {
+  border-bottom: 1px solid black;
 }
 
-.transcript-list-item span{
-display: block;
+#leave-req-p {
+  margin: 20px;
+  color: red;
 }
-.transcript-list-item:hover{
-  scale:1.01;
-  background-color:rgb(231, 248, 254);
+
+#transcript-review>p {
+  margin: 20px;
+}
+
+#reminder-p {
+  font-size: .6rem;
+}
+
+.transcript-list-item {
+  border: 1px solid black;
+  display: flex;
+  list-style: none;
+  padding: 10px;
+  justify-content: space-between;
+  transition: .2s;
+  margin-bottom: 2px;
+}
+
+.transcript-list-item span {
+  display: block;
+}
+
+.transcript-list-item:hover {
+  scale: 1.01;
+  background-color: rgb(231, 248, 254);
   cursor: pointer;
 
 }
-.transcript-container{
-  height:500px;
+
+.transcript-container {
+  height: 500px;
   border: 2px dashed black;
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  animation: open-transcript .6s  1  forwards;
+  animation: open-transcript .6s 1 forwards;
 }
-#transcript-close-button{
+
+#transcript-close-button {
   cursor: pointer;
-  margin:10px;
-  border-top:2px solid black;
-  width:100%;
-  padding:5px 0;
+  margin: 10px;
+  border-top: 2px solid black;
+  width: 100%;
+  padding: 5px 0;
 }
-.interviewee-details{
-  display:flex;
-  flex-direction:column;
+
+.interviewee-details {
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
-  width:80%;
+  width: 80%;
 }
-.interviewee-details>p{
-  border:1px solid black;
-  margin:2px 0;
+
+.interviewee-details>p {
+  border: 1px solid black;
+  margin: 2px 0;
   text-align: left;
   width: 100%;
-  padding:10px;
+  padding: 10px;
 }
-.badge{
-  width:50px;
-  height:50px;
-  border:1px solid black;
-  margin:10px 5px 0 5px;
-  display:flex;
+
+.badge {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  margin: 5px 5px 0 5px;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  transition:.3s;
+  transition: .3s;
 }
-.passes-container{
-  display:flex;
+
+.passes-container {
+  display: flex;
   align-items: center;
 
 }
-.location-pass-container{
-  display:flex;
-  border-top:2px solid black;
-    border-right:2px solid black;
-  border-left:2px solid black;
+
+.location-pass-container,
+.recreation-pass-container {
+  display: flex;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  margin: 0 10px;
 
 }
-.badge:hover{
-  scale:1.1;
-  
+
+.badge:hover {
+  scale: 1.1;
+
 }
+
 @keyframes open-transcript {
-  0%{
-    height:0;
+  0% {
+    height: 0;
   }
-  100%{
-    height:500px;
+
+  100% {
+    height: 500px;
   }
 }
+
 @keyframes typewriter {
   0% {
     width: 0;

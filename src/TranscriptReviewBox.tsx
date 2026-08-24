@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
+import { Map, DoorOpen, Backpack,CircleCheck, CircleX} from "lucide-react";
 
 interface transcriptReviewBoxProps {
   transcript: reviewShape;
@@ -26,14 +27,28 @@ export default function TranscriptReviewBox({
         consequat proident mollit laboris esse velit.
       </div>
       <div className="passes-container">
-        <div className="recreation-pass badge">
-          {transcript.recreationPass ? <p>@</p> : <p>X</p>}
+        <div>
+          <DoorOpen />
+          <div className="recreation-pass-container">
+            <div className="recreation-pass badge">
+              {transcript.recreationPass ? <p><CircleCheck /></p> : <p><CircleX /></p>}
+            </div>
+          </div>
         </div>
         <div>
-
+          <Map />
           <div className="location-pass-container ">
             {transcript.locationIdent.map((loc) => {
               return <div className="badge">{loc}</div>;
+            })}
+          </div>
+        </div>
+        <div>
+          <Backpack />
+          <div className="location-pass-container ">
+            {transcript.items.map((item) => {
+
+              return <div className="badge">{item}</div>;
             })}
           </div>
         </div>

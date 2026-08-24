@@ -2,6 +2,7 @@ import { useState, type Dispatch, type SetStateAction } from "react";
 import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
 import type { reviewShape } from "./interfaces";
+import { Smartphone, Tablets, PillBottle } from "lucide-react";
 
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
@@ -25,9 +26,10 @@ export default function TranscriptRev({
       occupation: "Fabricator",
       location: "Banking District",
       recreationPass: false,
-      locationIdent: [1,2,3]
+      locationIdent: [1,2,3],
+      items: [<PillBottle/>, <Smartphone />]
     },
-    { interviewee: "Tamara Johnson", age: 18, occupation: "Talk show host", location: "Dive Bar 'The Smoking Barrel'",recreationPass: true, locationIdent: [5,6]},
+    { interviewee: "Tamara Johnson", age: 18, occupation: "Talk show host", location: "Dive Bar 'The Smoking Barrel'",recreationPass: true, locationIdent: [5,6], items: [<Tablets />,<Smartphone />]},
   ];
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {

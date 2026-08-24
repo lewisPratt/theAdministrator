@@ -5,4 +5,10 @@ export interface reviewShape {
   location: string
   recreationPass: boolean
   locationIdent: number[]
+  items: React.ReactElement[]
+}
+
+export interface carryableItemsShape{
+    itemComponent: React.ReactElement
+    legalStatus: number
 }

@@ -1,0 +1,63 @@
+
+import type { carryableItemsShape } from "./interfaces";
+import {
+  Smartphone,
+  Wallet,
+  Key,
+  Watch,
+  Glasses,
+  Camera,
+  Umbrella,
+  Flashlight,
+  Banknote,
+  CreditCard,
+  BookOpen,
+  Newspaper,
+  Compass,
+  Map,
+  Backpack,
+  Briefcase,
+  Coins,
+  Radio,
+  IdCard,
+  Pill,
+  PillBottle,
+  Syringe,
+  Cigarette,
+  PocketKnife,
+  FlaskConical,
+  Scissors,
+} from "lucide-react";
+
+
+export const carryableItems : carryableItemsShape[] = [
+  { itemComponent: <Smartphone />, legalStatus: 1 },
+  { itemComponent: <Wallet />, legalStatus: 1 },
+  { itemComponent: <Key />, legalStatus: 1 },
+  { itemComponent: <Watch />, legalStatus: 1 },
+  { itemComponent: <Glasses />, legalStatus: 1 },
+  { itemComponent: <Camera />, legalStatus: 1 },
+  { itemComponent: <Umbrella />, legalStatus: 1 },
+  { itemComponent: <Banknote />, legalStatus: 1 },
+  { itemComponent: <CreditCard />, legalStatus: 1 },
+  { itemComponent: <BookOpen />, legalStatus: 1 },
+  { itemComponent: <Compass />, legalStatus: 1 },
+  { itemComponent: <Map />, legalStatus: 1 },
+  { itemComponent: <Backpack />, legalStatus: 1 },
+  { itemComponent: <Briefcase />, legalStatus: 1 },
+  { itemComponent: <Coins />, legalStatus: 1 },
+  { itemComponent: <IdCard />, legalStatus: 1 },
+
+  { itemComponent: <Newspaper />, legalStatus: -1 }, 
+  { itemComponent: <Radio />, legalStatus: -1 },     
+  { itemComponent: <Flashlight />, legalStatus: -1 }, 
+  { itemComponent: <Pill />, legalStatus: -1 },
+  { itemComponent: <PillBottle />, legalStatus: -1 },
+  { itemComponent: <Syringe />, legalStatus: -1 },
+  { itemComponent: <Cigarette />, legalStatus: -1 },
+  { itemComponent: <PocketKnife />, legalStatus: -1 },
+  { itemComponent: <FlaskConical />, legalStatus: -1 }, 
+  { itemComponent: <Scissors />, legalStatus: -1 },     
+];
+
+ 
