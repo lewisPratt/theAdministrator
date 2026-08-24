@@ -6,12 +6,11 @@ interface transcriptReviewBoxProps {
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
 }
 
-
 export default function TranscriptReviewBox({
   transcript,
   reviewTranscriptSetter,
 }: transcriptReviewBoxProps) {
-    console.log(transcript)
+  console.log(transcript);
   return (
     <div className="transcript-container">
       <h3>{transcript.interviewee}</h3>
@@ -26,16 +25,17 @@ export default function TranscriptReviewBox({
         Lorem veniam excepteur cupidatat proident fugiat ea dolore. Eiusmod
         consequat proident mollit laboris esse velit.
       </div>
-      <div className='passes-container'>
-        <div className='recreation-pass badge'>
-            {transcript.recreationPass ? <p>@</p> : <p>X</p>}
+      <div className="passes-container">
+        <div className="recreation-pass badge">
+          {transcript.recreationPass ? <p>@</p> : <p>X</p>}
         </div>
-         <div className='location-pass-container '>
-            
-            {transcript.locationIdent.map((loc)=>{
-                return (<div className='badge'>{loc}</div>)
+        <div>
+
+          <div className="location-pass-container ">
+            {transcript.locationIdent.map((loc) => {
+              return <div className="badge">{loc}</div>;
             })}
-          
+          </div>
         </div>
       </div>
       <div
