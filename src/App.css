@@ -77,6 +77,8 @@ h1 {
   align-items: center;
   flex: 1;
   width: 100%;
+  max-width:900px;
+  margin:auto
 }
 
 #login {
@@ -128,8 +130,67 @@ h1 {
   margin:20px;
   color:red;
 }
-#transcript-review p {
+#transcript-review>p {
   margin:20px;
+}
+#reminder-p{
+  font-size:.6rem;
+}
+.transcript-list-item{
+  border:1px solid black;
+  display:flex;
+  list-style: none;
+  padding:10px;
+  justify-content: space-between;
+  transition: .2s;
+  margin-bottom:2px;
+}
+
+.transcript-list-item span{
+display: block;
+}
+.transcript-list-item:hover{
+  scale:1.01;
+  background-color:rgb(231, 248, 254);
+  cursor: pointer;
+
+}
+.transcript-container{
+  height:500px;
+  border: 2px dashed black;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  animation: open-transcript .6s  1  forwards;
+}
+#transcript-close-button{
+  cursor: pointer;
+  margin:10px;
+}
+.interviewee-details{
+  display:flex;
+  flex-direction:column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width:80%;
+}
+.interviewee-details>p{
+  border:1px solid black;
+  margin:2px 0;
+  text-align: left;
+  width: 100%;
+  padding:10px;
+}
+
+@keyframes open-transcript {
+  0%{
+    height:0;
+  }
+  100%{
+    height:500px;
+  }
 }
 @keyframes typewriter {
   0% {
