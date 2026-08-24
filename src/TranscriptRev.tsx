@@ -1,11 +1,12 @@
-import { useState, type Dispatch, type SetStateAction } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
-import type { carryableItemsShape, reviewShape } from "./interfaces";
+import type { carryableItemsShape, reviewShape, locationsShape , occupationsShape} from "./interfaces";
 import { createName } from "./NameArrays";
 import { createItems } from "./CarryableItems";
 import { CreateOccupation } from "./OccupationGenerator";
- 
+import createLocation from "./LocationGenerator";
+
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
@@ -14,39 +15,46 @@ class person {
   interviewee: string;
   items: carryableItemsShape[];
   age: number;
-  location: string;
+  location: locationsShape;
   recreationPass: boolean;
   locationIdent: number[];
-  occupation: string;
+  occupation: occupationsShape;
   overallWeighting: number;
+  weightingArray: string[]
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
     this.age = 20;
-    this.location = "here";
+    this.location = createLocation()
     this.recreationPass = true;
     this.locationIdent = [1, 23, 4];
     this.occupation = CreateOccupation();
-    this.overallWeighting = this.workOutWeighting()
+    this.weightingArray = []
+    this.overallWeighting = this.workOutWeighting();
+    
   }
-  workOutWeighting(): number{
+  
+  workOutWeighting(): number {
     let weighting = 0;
-    this.items.forEach(item => {
-     if(!item.legal){
-      weighting -= 1
-     } else if(item.legal){
-      weighting += 1
-     }
+    let weightingArray :string[]=[]
+    this.items.forEach((item) => {
+      if (!item.legal) {
+        weighting -= 1;
+        weightingArray.push("NEGATIVE ITEM")
+      } else if (item.legal) {
+        weighting += 1;
+         weightingArray.push("POSITIVE ITEM")
+      }
     });
-    return weighting
+    //the person is in a higher (actually lower number) district than their job role allows (meaning a street vendor shouldn't be in the communications district)
+    if(this.location.district < this.occupation.district && this.location.district != 5){
+      weighting -=1
+       weightingArray.push("Out of district")
+    }
+    console.log("weightingArray: ", weightingArray)
+    this.weightingArray = [...weightingArray]
+    return weighting;
   }
-}
-
-let transcriptsArray: reviewShape[] = [];
- 
-for (let index = 0; index < Math.random() * 10; index++) {
-  const newPerson = new person();
-  transcriptsArray.push(newPerson);
 }
 
 export default function TranscriptRev({
@@ -55,22 +63,30 @@ export default function TranscriptRev({
 }: transcriptRevProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
   const [errorState, setErrorState] = useState<boolean>(false);
-  const [reviewTranscript, setReviewTranscript] = useState<reviewShape | null>(
-    null,
-  );
+  const [availableTranscripts, setAvailableTranscripts] = useState<
+    reviewShape[] | null
+  >(null);
+  const [currentTranscript, setCurrentTranscript] = useState<reviewShape | null>(null);
 
+  let transcriptsArray: reviewShape[] = [];
 
+  useEffect(() => {
+    for (let index = 0; index < Math.random() * 10; index++) {
+      const newPerson = new person();
+      transcriptsArray.push(newPerson);
+    }
+    setAvailableTranscripts(transcriptsArray)
+  },[]);
 
   //need to set state review transcripts so they reset when exiting
-
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     e.currentTarget.reset();
     switch (typedCommand) {
       case "[Exit]":
-        setReviewTranscript(null)
-        adminNameSetter(null);
+        setAvailableTranscripts(null);
+        setCurrentTranscript(null)
         transcriptRevSetter(false);
         setErrorState(false);
         break;
@@ -89,22 +105,24 @@ export default function TranscriptRev({
           'Recreational Time'.
         </p>
 
-        {reviewTranscript && (
+        {availableTranscripts && (
           <TranscriptReviewBox
-            reviewTranscriptSetter={setReviewTranscript}
-            transcript={reviewTranscript}
+            reviewTranscriptSetter={setCurrentTranscript}
+            transcript={currentTranscript}
           />
         )}
 
         <p>Select a transcript from the list below</p>
-        <ol id="transcript-list">
-          {transcriptsArray.map((listItem) => (
-            <TranscriptListItem
-              reviewTranscriptSetter={setReviewTranscript}
-              transcript={listItem}
-            />
-          ))}
-        </ol>
+        {availableTranscripts && (
+          <ol id="transcript-list">
+            {availableTranscripts.map((listItem) => (
+              <TranscriptListItem
+                reviewTranscriptSetter={setCurrentTranscript}
+                currentTranscript={listItem}
+              />
+            ))}
+          </ol>
+        )}
       </section>
 
       <form onSubmit={handleCommand}>

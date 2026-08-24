@@ -2,29 +2,31 @@ import type { Dispatch, SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
 
 interface transcriptListItemProps {
-  transcript: reviewShape;
+  currentTranscript: reviewShape | null;
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
 }
 
-
-
-
 export default function TranscriptListItem({
-  transcript,reviewTranscriptSetter
+  currentTranscript,
+  reviewTranscriptSetter,
 }: transcriptListItemProps) {
-
-function openTranscript(transcript: reviewShape) {
-  reviewTranscriptSetter(transcript);
-}
-
+    
+  function openTranscript(transcript: reviewShape) {
+    
+    reviewTranscriptSetter(transcript);
+  }
+ 
   return (
+    <>
+    {currentTranscript &&
     <li
       className="transcript-list-item"
-      key={transcript.interviewee + transcript.age}
-      onClick={() => openTranscript(transcript)}
+      key={currentTranscript.interviewee + currentTranscript.age}
+      onClick={() => openTranscript(currentTranscript)}
     >
-      <span>{transcript.interviewee}</span>
-      <span>{transcript.occupation}</span>
-    </li>
+      <span>{currentTranscript.interviewee}</span>
+      <span>{currentTranscript.occupation.name}</span>
+    </li>}
+    </>
   );
 }

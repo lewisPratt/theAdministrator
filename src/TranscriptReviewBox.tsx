@@ -5,7 +5,7 @@ import { Tooltip } from 'react-tooltip'
 
 
 interface transcriptReviewBoxProps {
-  transcript: reviewShape;
+  transcript: reviewShape | null;
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
 }
 
@@ -15,12 +15,18 @@ export default function TranscriptReviewBox({
 }: transcriptReviewBoxProps) {
   console.log(transcript);
   return (
+    <>
+    {transcript &&
     <div className="transcript-container">
       <h3>{transcript.interviewee}</h3>
       <div className="interviewee-details">
-        <p>Occupation: {transcript.occupation} Weighting: {transcript.overallWeighting}</p>
+        <p>Occupation: {transcript.occupation.name} </p>
         <p>Age: {transcript.age}</p>
-        <p>Interview Location: {transcript.location}</p>
+        <p>Interview Location: {transcript.location.name}</p>
+        <p>Interview District: {transcript.location.district} - Occupation District: {transcript.occupation.district} Weighting: {transcript.overallWeighting}</p>
+        <p>{transcript.weightingArray.map((item)=>{
+            return <> {item} |</>
+        })}</p>
       </div>
       <div className="transcrip[t-text">
         Aute enim voluptate cillum excepteur culpa. Qui proident velit sint
@@ -63,5 +69,7 @@ export default function TranscriptReviewBox({
         Close
       </div>
     </div>
+}
+</>
   );
 }
