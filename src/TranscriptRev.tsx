@@ -1,14 +1,39 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
-import type { reviewShape } from "./interfaces";
-import { Smartphone, Tablets, PillBottle } from "lucide-react";
-
+import type { carryableItemsShape, reviewShape } from "./interfaces";
+import { createName } from "./NameArrays";
+import { createItems } from "./CarryableItems";
+ 
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
 }
+class person {
+  interviewee: string;
+  items: carryableItemsShape[];
+  age: number;
+  location: string;
+  recreationPass: boolean;
+  locationIdent: number[];
+  occupation: string;
+  constructor() {
+    this.interviewee = createName();
+    this.items = createItems();
+    this.age = 20;
+    this.location = "here";
+    this.recreationPass = true;
+    this.locationIdent = [1, 23, 4];
+    this.occupation = "unemployed";
+  }
+}
 
+let transcriptsArray: reviewShape[] = [];
+
+for (let index = 0; index < Math.random() * 10; index++) {
+  const newPerson = new person();
+  transcriptsArray.push(newPerson);
+}
 
 export default function TranscriptRev({
   adminNameSetter,
@@ -19,18 +44,6 @@ export default function TranscriptRev({
   const [reviewTranscript, setReviewTranscript] = useState<reviewShape | null>(
     null,
   );
-  const transcripts : reviewShape[]= [
-    {
-      interviewee: "Damian Ouster",
-      age: 20,
-      occupation: "Fabricator",
-      location: "Banking District",
-      recreationPass: false,
-      locationIdent: [1,2,3],
-      items: [<PillBottle/>, <Smartphone />]
-    },
-    { interviewee: "Tamara Johnson", age: 18, occupation: "Talk show host", location: "Dive Bar 'The Smoking Barrel'",recreationPass: true, locationIdent: [5,6], items: [<Tablets />,<Smartphone />]},
-  ];
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -57,13 +70,19 @@ export default function TranscriptRev({
         </p>
 
         {reviewTranscript && (
-          <TranscriptReviewBox reviewTranscriptSetter={setReviewTranscript} transcript={reviewTranscript}/>
+          <TranscriptReviewBox
+            reviewTranscriptSetter={setReviewTranscript}
+            transcript={reviewTranscript}
+          />
         )}
 
         <p>Select a transcript from the list below</p>
         <ol id="transcript-list">
-          {transcripts.map((listItem) => (
-            <TranscriptListItem reviewTranscriptSetter={setReviewTranscript} transcript={listItem}/>
+          {transcriptsArray.map((listItem) => (
+            <TranscriptListItem
+              reviewTranscriptSetter={setReviewTranscript}
+              transcript={listItem}
+            />
           ))}
         </ol>
       </section>

@@ -48,7 +48,7 @@ export default function TranscriptReviewBox({
           <div className="location-pass-container ">
             {transcript.items.map((item) => {
 
-              return <div className="badge">{item}</div>;
+              return <div className="badge">{item.itemComponent}</div>;
             })}
           </div>
         </div>

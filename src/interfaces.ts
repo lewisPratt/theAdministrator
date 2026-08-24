@@ -5,7 +5,16 @@ export interface reviewShape {
   location: string
   recreationPass: boolean
   locationIdent: number[]
-  items: React.ReactElement[]
+  items: carryableItemsShape[]
+}
+export interface newReviewShape {
+  interviewee: string;
+  age: number;
+  occupation: string;
+  location: string
+  recreationPass: boolean
+  locationIdent: number[]
+  items: carryableItemsShape[]
 }
 
 export interface carryableItemsShape{
