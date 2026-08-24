@@ -4,6 +4,7 @@ import TranscriptListItem from "./TranscriptListItem";
 import type { carryableItemsShape, reviewShape } from "./interfaces";
 import { createName } from "./NameArrays";
 import { createItems } from "./CarryableItems";
+import { CreateOccupation } from "./OccupationGenerator";
  
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
@@ -24,12 +25,12 @@ class person {
     this.location = "here";
     this.recreationPass = true;
     this.locationIdent = [1, 23, 4];
-    this.occupation = "unemployed";
+    this.occupation = CreateOccupation();
   }
 }
 
 let transcriptsArray: reviewShape[] = [];
-
+ 
 for (let index = 0; index < Math.random() * 10; index++) {
   const newPerson = new person();
   transcriptsArray.push(newPerson);
