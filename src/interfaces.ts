@@ -8,6 +8,7 @@ export interface reviewShape {
   items: carryableItemsShape[];
   overallWeighting: number;
   weightingArray: string[]
+  weather: weatherShape
 }
 
 export interface carryableItemsShape {
@@ -23,4 +24,9 @@ export interface locationsShape {
 export interface occupationsShape {
   name: string;
   district: number;
+}
+
+export interface weatherShape{
+    weather: string
+    icon: React.ReactElement
 }

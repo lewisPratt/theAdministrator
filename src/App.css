@@ -177,6 +177,7 @@ h5 {
   align-items: center;
   flex-direction: column;
   animation: open-transcript .6s 1 forwards;
+  position:relative;
 }
 
 #transcript-close-button {
@@ -235,6 +236,13 @@ h5 {
 .badge:hover {
   scale: 1.1;
 
+}
+
+#weather-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 10px;
 }
 
 @keyframes open-transcript {

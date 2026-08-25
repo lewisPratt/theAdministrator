@@ -6,11 +6,13 @@ import type {
   reviewShape,
   locationsShape,
   occupationsShape,
+  weatherShape,
 } from "./interfaces";
 import { createName } from "./NameArrays";
 import { createItems } from "./CarryableItems";
 import { CreateOccupation } from "./OccupationGenerator";
 import createLocation from "./LocationGenerator";
+import generateWeather from "./WeatherGenerator";
 
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
@@ -26,6 +28,7 @@ class person {
   occupation: occupationsShape;
   overallWeighting: number;
   weightingArray: string[];
+  weather: weatherShape
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -36,6 +39,7 @@ class person {
     this.occupation = CreateOccupation();
     this.weightingArray = [];
     this.overallWeighting = this.workOutWeighting();
+    this.weather = generateWeather()
   }
   generateRecreationPass(): boolean {
     const grantPass: number = Math.round(Math.random() * 1);

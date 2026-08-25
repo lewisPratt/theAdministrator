@@ -13,11 +13,19 @@ export default function TranscriptReviewBox({
   transcript,
   reviewTranscriptSetter,
 }: transcriptReviewBoxProps) {
-  console.log(transcript);
+    let recPassDesc :string =""
+    if(transcript?.recreationPass){
+        recPassDesc = 'Valid RecPass'
+    }else{
+        recPassDesc = 'No RecPass'
+    }
   return (
     <>
     {transcript &&
     <div className="transcript-container">
+        <div id='weather-container' data-tooltip-id="item-desc" data-tooltip-content={transcript.weather.weather}>
+            {transcript.weather.icon}
+        </div>
       <h3>{transcript.interviewee}</h3>
       <div className="interviewee-details">
         <p>Occupation: {transcript.occupation.name} </p>
@@ -38,8 +46,9 @@ export default function TranscriptReviewBox({
         <div>
           <DoorOpen /> 
           <div className="recreation-pass-container">
-            <div className="recreation-pass badge">
-              {transcript.recreationPass ? <p><CircleCheck /></p> : <p><CircleX /></p>}
+            
+            <div data-tooltip-id='item-desc' data-tooltip-content={recPassDesc} className="recreation-pass badge">
+              {transcript.recreationPass ? <p ><CircleCheck /></p> : <p ><CircleX /></p>}
             </div>
           </div>
         </div>

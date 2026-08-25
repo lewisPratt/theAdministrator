@@ -26,6 +26,9 @@ import {
   PocketKnife,
   FlaskConical,
   Scissors,
+  Shovel,
+  Ticket,
+  Drone,
 } from "lucide-react";
 
 function shuffleItems(a: carryableItemsShape[]) {
@@ -52,6 +55,8 @@ const carryableItems: carryableItemsShape[] = [
   { itemComponent: <Briefcase />, legal: true , description: 'Briefcase'},
   { itemComponent: <Coins />, legal: true , description: 'Change'},
   { itemComponent: <IdCard />, legal: true , description: 'ID papers'},
+  { itemComponent: <Ticket />, legal: true , description: 'GravRail ticket'},
+
 
   { itemComponent: <Newspaper />, legal: false , description: 'Contraband newspaper clipping'},
   { itemComponent: <Radio />, legal: false , description: 'Unauthorized radio device'},
@@ -63,6 +68,8 @@ const carryableItems: carryableItemsShape[] = [
   { itemComponent: <PocketKnife />, legal: false , description: 'A pocketknife'},
   { itemComponent: <FlaskConical />, legal: false , description: 'Flask of strong smelling alcohol'},
   { itemComponent: <Scissors />, legal: false , description: 'Surgical scissors'},
+   { itemComponent: <Shovel />, legal: false , description: 'A dirty shovel'},
+     { itemComponent: <Drone />, legal: false , description: 'An unregistered drone'},
 ];
 export function createItems() {
   const numberOfItems = Math.random() * 4;
