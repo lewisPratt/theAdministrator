@@ -4,7 +4,7 @@ export interface reviewShape {
   occupation: occupationsShape;
   location: locationsShape;
   recreationPass: boolean;
-  locationIdent: number[];
+  authorizedLocations: number[];
   items: carryableItemsShape[];
   overallWeighting: number;
   weightingArray: string[]

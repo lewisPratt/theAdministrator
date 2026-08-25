@@ -13,6 +13,7 @@ import { createItems } from "./CarryableItems";
 import { CreateOccupation } from "./OccupationGenerator";
 import createLocation from "./LocationGenerator";
 import generateWeather from "./WeatherGenerator";
+import { generateAuthorizedLocations } from "./AuthorizedLocationGenerator";
 
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
@@ -24,27 +25,28 @@ class person {
   age: number;
   location: locationsShape;
   recreationPass: boolean;
-  locationIdent: number[];
+  authorizedLocations: number[];
   occupation: occupationsShape;
   overallWeighting: number;
   weightingArray: string[];
-  weather: weatherShape
+  weather: weatherShape;
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
     this.age = 20;
     this.location = createLocation();
     this.recreationPass = this.generateRecreationPass();
-    this.locationIdent = [1, 23, 4];
+    this.authorizedLocations = generateAuthorizedLocations();
     this.occupation = CreateOccupation();
     this.weightingArray = [];
     this.overallWeighting = this.workOutWeighting();
-    this.weather = generateWeather()
+    this.weather = generateWeather();
   }
   generateRecreationPass(): boolean {
     const grantPass: number = Math.round(Math.random() * 1);
     return grantPass === 1 ? true : false;
   }
+
   workOutWeighting(): number {
     let weighting = 0;
     let weightingArray: string[] = [];
@@ -53,14 +55,15 @@ class person {
         weighting -= 1;
         weightingArray.push("NEGATIVE ITEM");
       } else if (item.legal) {
-        weighting += 1;
-        weightingArray.push("POSITIVE ITEM");
+        // weighting += 1;
+        // weightingArray.push("POSITIVE ITEM");
       }
     });
     //the person is in a lower district than their job role allows (meaning a street vendor shouldn't be in the communications district)
     if (
       this.location.district < this.occupation.district &&
-      this.location.district != 5
+      this.location.district != 5 &&
+      !this.authorizedLocations.includes(this.location.district)
     ) {
       weighting -= 1;
       weightingArray.push("Out of district");
@@ -136,7 +139,7 @@ export default function TranscriptRev({
         {availableTranscripts && (
           <ol id="transcript-list">
             {availableTranscripts.map((listItem) => (
-              <TranscriptListItem
+              <TranscriptListItem key={listItem.interviewee+listItem.authorizedLocations}
                 reviewTranscriptSetter={setCurrentTranscript}
                 currentTranscript={listItem}
               />

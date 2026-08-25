@@ -54,9 +54,10 @@ export default function TranscriptReviewBox({
         </div>
         <div>
           <Map />
-          <div className="location-pass-container ">
-            {transcript.locationIdent.map((loc) => { 
-              return <div className="badge">{loc}</div>; 
+          <div className="location-pass-container " >
+            {transcript.authorizedLocations.map((loc) => { 
+                const tooltipText = 'District '+loc
+              return <div key={loc} className="badge" data-tooltip-id="item-desc" data-tooltip-content={tooltipText} >{loc}</div>; 
             })}
           </div>
         </div>
