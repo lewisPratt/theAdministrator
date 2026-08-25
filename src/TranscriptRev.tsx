@@ -59,6 +59,10 @@ class person {
         // weightingArray.push("POSITIVE ITEM");
       }
     });
+    if(this.recreationPass){
+      weighting += 1
+      weightingArray.push("+ rec pass present")
+    }
     //the person is in a lower district than their job role allows (meaning a street vendor shouldn't be in the communications district)
     if (
       this.location.district < this.occupation.district &&
@@ -66,14 +70,21 @@ class person {
       !this.authorizedLocations.includes(this.location.district)
     ) {
       weighting -= 1;
-      weightingArray.push("Out of district");
+      weightingArray.push("- Out of district");
     }
     //if person has no recreation pass and is in the recreation zone (zone 8) they get negative weight
-    if (!this.recreationPass && this.location.district === 8) {
+    if (!this.recreationPass && this.location.district === 8 && this.occupation.district != 8) {
       weighting -= 1;
-      weightingArray.push("no Rec pass in Rec zone");
+      weightingArray.push("- no Rec pass in Rec zone");
     }
-
+    if(this.location.district === this.occupation.district){
+      weighting += 1
+      weightingArray.push("+ interviewed at work")
+    }
+    if(this.authorizedLocations.includes(this.location.district)){
+      weighting +=1
+      weightingArray.push("+ interviewed in auth loc")
+    }
     this.weightingArray = [...weightingArray];
     return weighting;
   }

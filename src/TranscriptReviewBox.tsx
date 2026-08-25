@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
 import { Map, DoorOpen, Backpack,CircleCheck, CircleX} from "lucide-react";
 import { Tooltip } from 'react-tooltip'
-
+import { v4 as uuidv4 } from 'uuid';
 
 interface transcriptReviewBoxProps {
   transcript: reviewShape | null;
@@ -33,7 +33,7 @@ export default function TranscriptReviewBox({
         <p>Interview Location: {transcript.location.name}</p>
         <p>Interview District: {transcript.location.district} - Occupation District: {transcript.occupation.district} Weighting: {transcript.overallWeighting}</p>
         <p>{transcript.weightingArray.map((item)=>{
-            return <> {item} |</>
+            return <span key={uuidv4()}> {item} |</span>
         })}</p>
       </div>
       <div className="transcrip[t-text">
@@ -66,7 +66,7 @@ export default function TranscriptReviewBox({
           <div className="location-pass-container ">
             {transcript.items.map((item) => {
 
-              return <div className="badge" data-tooltip-id="item-desc" data-tooltip-content={item.description}>{item.itemComponent}</div>;
+              return <div className="badge" key={uuidv4()} data-tooltip-id="item-desc" data-tooltip-content={item.description}>{item.itemComponent}</div>;
             })}
           </div>
           <Tooltip id="item-desc"></Tooltip>
