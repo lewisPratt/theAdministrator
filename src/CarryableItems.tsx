@@ -54,7 +54,8 @@ const carryableItems: carryableItemsShape[] = [
   { itemComponent: <Backpack />, legal: true , description: 'Backpack'},
   { itemComponent: <Briefcase />, legal: true , description: 'Briefcase'},
   { itemComponent: <Coins />, legal: true , description: 'Change'},
-  { itemComponent: <IdCard />, legal: true , description: 'ID papers'},
+  { itemComponent: <IdCard />, legal: true , description: 'ID card'},
+  { itemComponent: <IdCard />, legal: true , description: 'ID card'},
   { itemComponent: <Ticket />, legal: true , description: 'GravRail ticket'},
 
 

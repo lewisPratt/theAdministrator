@@ -30,7 +30,11 @@ input[type=text] {
   border-style: solid;
 
 }
-
+nav{
+  display: flex;
+  justify-content: flex-end;
+  margin-top:25px;
+}
 input[type=text]:focus {
   outline: none;
 
@@ -176,8 +180,9 @@ h5 {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  animation: open-transcript .6s 1 forwards;
+  animation: open-transcript .6s steps(3,end) 1 forwards;
   position:relative;
+  overflow: hidden;
 }
 
 #transcript-close-button {
@@ -244,7 +249,22 @@ h5 {
   top: 0;
   margin: 10px;
 }
+.decision-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+}
+.decision-container>div{
+  margin:10px;
+  border:1px solid black;
+  padding:5px;
+
+}
+.decision-container>div:hover{
+  cursor: pointer;
+  background-color: rgb(231, 248, 254);
+}
 @keyframes open-transcript {
   0% {
     height: 0;

@@ -14,10 +14,13 @@ import { CreateOccupation } from "./OccupationGenerator";
 import createLocation from "./LocationGenerator";
 import generateWeather from "./WeatherGenerator";
 import { generateAuthorizedLocations } from "./AuthorizedLocationGenerator";
+import { generateBehaviour } from "./behaviourGenerator";
 
+import { IdCard } from "lucide-react";
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
+  scoreSetter: Dispatch<SetStateAction<number>>
 }
 class person {
   interviewee: string;
@@ -30,6 +33,7 @@ class person {
   overallWeighting: number;
   weightingArray: string[];
   weather: weatherShape;
+  behaviour: string;
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -39,8 +43,9 @@ class person {
     this.authorizedLocations = generateAuthorizedLocations();
     this.occupation = CreateOccupation();
     this.weightingArray = [];
-    this.overallWeighting = this.workOutWeighting();
     this.weather = generateWeather();
+    this.behaviour = generateBehaviour();
+    this.overallWeighting = this.workOutWeighting();
   }
   generateRecreationPass(): boolean {
     const grantPass: number = Math.round(Math.random() * 1);
@@ -59,9 +64,9 @@ class person {
         // weightingArray.push("POSITIVE ITEM");
       }
     });
-    if(this.recreationPass){
-      weighting += 1
-      weightingArray.push("+ rec pass present")
+    if (this.recreationPass) {
+      weighting += 1;
+      weightingArray.push("+ rec pass present");
     }
     //the person is in a lower district than their job role allows (meaning a street vendor shouldn't be in the communications district)
     if (
@@ -73,25 +78,46 @@ class person {
       weightingArray.push("- Out of district");
     }
     //if person has no recreation pass and is in the recreation zone (zone 8) they get negative weight
-    if (!this.recreationPass && this.location.district === 8 && this.occupation.district != 8) {
+    if (
+      !this.recreationPass &&
+      this.location.district === 8 &&
+      this.occupation.district != 8 &&
+      !this.authorizedLocations.includes(8)
+    ) {
       weighting -= 1;
       weightingArray.push("- no Rec pass in Rec zone");
     }
-    if(this.location.district === this.occupation.district){
-      weighting += 1
-      weightingArray.push("+ interviewed at work")
+    if (this.location.district === this.occupation.district) {
+      weighting += 1;
+      weightingArray.push("+ interviewed at work");
     }
-    if(this.authorizedLocations.includes(this.location.district)){
-      weighting +=1
-      weightingArray.push("+ interviewed in auth loc")
+    if (this.authorizedLocations.includes(this.location.district)) {
+      weighting += 1;
+      weightingArray.push("+ interviewed in auth loc");
     }
+    if (this.behaviour == "Non-compliant") {
+      weighting -= 1;
+      weightingArray.push("- behaviour");
+    } else if (this.behaviour == "Compliant") {
+      weighting += 1;
+      weightingArray.push("+ behaviour");
+    }
+    //specific items
+    const idCard = this.items.find((thisItem) => {
+      return thisItem.itemComponent === <IdCard />;
+    });
+    if (idCard) {
+      weighting += 1;
+      weightingArray.push("Id card present");
+    }
+
     this.weightingArray = [...weightingArray];
     return weighting;
   }
 }
 
 export default function TranscriptRev({
-  adminNameSetter,
+  scoreSetter,
   transcriptRevSetter,
 }: transcriptRevProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
@@ -102,16 +128,17 @@ export default function TranscriptRev({
   const [currentTranscript, setCurrentTranscript] =
     useState<reviewShape | null>(null);
 
-  let transcriptsArray: reviewShape[] = [];
-
   useEffect(() => {
-    for (let index = 0; index < Math.random() * 10; index++) {
+    let transcriptsArray: reviewShape[] = [];
+    const transcriptCount = Math.floor(Math.random() * 10) + 1;
+    for (let index = 0; index < transcriptCount; index++) {
       const newPerson = new person();
       transcriptsArray.push(newPerson);
     }
+    console.log("generated number of transcripts: ", transcriptCount);
     setAvailableTranscripts(transcriptsArray);
   }, []);
-
+  console.log(availableTranscripts);
   //need to set state review transcripts so they reset when exiting
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
@@ -143,6 +170,7 @@ export default function TranscriptRev({
           <TranscriptReviewBox
             reviewTranscriptSetter={setCurrentTranscript}
             transcript={currentTranscript}
+            scoreSetter={scoreSetter}
           />
         )}
 
@@ -150,7 +178,8 @@ export default function TranscriptRev({
         {availableTranscripts && (
           <ol id="transcript-list">
             {availableTranscripts.map((listItem) => (
-              <TranscriptListItem key={listItem.interviewee+listItem.authorizedLocations}
+              <TranscriptListItem
+                key={listItem.interviewee + listItem.authorizedLocations}
                 reviewTranscriptSetter={setCurrentTranscript}
                 currentTranscript={listItem}
               />

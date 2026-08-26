@@ -32,7 +32,7 @@ function loadCommand(setter : Dispatch<SetStateAction<boolean>>){
                 loadingStateSetter(true)
                 setTimeout(loadCommand, 3000,workDesSetter)
                 break;
-            case '[TranscriptRev]':
+            case '[Review]':
                     loadingStateSetter(true)
                     setTimeout(loadCommand, 3000,transcriptRevSetter)
                 break;
@@ -62,7 +62,7 @@ function loadCommand(setter : Dispatch<SetStateAction<boolean>>){
                 <p>Available commands:</p>
                 <div className='commands-container'>
                 <div className='command-container'><p>Start work designation.</p> <p>[DesStart]</p></div>
-                <div className='command-container'><p>Review interview transcripts.</p> <p>[TranscriptRev]</p></div>
+                <div className='command-container'><p>Review interview transcripts.</p> <p>[Review]</p></div>
                 <div className='command-container'><p>Request leave.</p> <p>[LeaveReq]</p></div>
                 <div className='command-container'><p>Exit.</p> <p>[Exit]</p></div>
                 <div className='command-container'><p>Available Commands.</p> <p>[Help]</p></div>

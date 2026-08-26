@@ -9,6 +9,7 @@ export interface reviewShape {
   overallWeighting: number;
   weightingArray: string[]
   weather: weatherShape
+  behaviour: string
 }
 
 export interface carryableItemsShape {

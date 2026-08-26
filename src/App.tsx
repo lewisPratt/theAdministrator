@@ -5,13 +5,15 @@ import ComSec from './ComSec';
 import AdminLogin from './AdminLogin';
 import TranscriptRev from './TranscriptRev';
 import './App.css'
+import ScoreTracker from './ScoreTracker';
 
 function App() {
   const [typedName, setTypedName] = useState<string>("")
   const [adminName, setAdminName] = useState<string | null>(null)
   const [loadingState, setLoadingState] = useState<boolean>(false)
   const [workDes, setWorkDes] = useState<boolean>(false)
-     const [transcriptRev, setTranscriptRev] = useState<boolean>(false)
+  const [transcriptRev, setTranscriptRev] = useState<boolean>(false)
+  const [scoreState, setScoreState] = useState<number>(0)
 
   function setAdmin(name :string){
     setLoadingState(false)
@@ -26,7 +28,10 @@ function App() {
   }
 
   return (
+    <>
+    <nav> <ScoreTracker scoreState={scoreState} /></nav>
     <div id='main-content'>
+     
       <BrowserRouter>
       {loadingState ? <h1>Loading</h1> : 
       <div id='content-container'>
@@ -39,7 +44,7 @@ function App() {
         <WorkDes /> }
 
         {transcriptRev && 
-        <TranscriptRev adminNameSetter={setAdminName} transcriptRevSetter={setTranscriptRev}/> }
+        <TranscriptRev adminNameSetter={setAdminName} transcriptRevSetter={setTranscriptRev} scoreSetter={setScoreState}/> }
 
         {!workDes && !transcriptRev &&
        <ComSec adminName={adminName} adminNameSetter={setAdminName} workDesSetter={setWorkDes} transcriptRevSetter={setTranscriptRev} loadingStateSetter={setLoadingState}/>}
@@ -53,6 +58,7 @@ function App() {
       </Routes>
       </BrowserRouter>
     </div>
+    </>
   )
 
 }
