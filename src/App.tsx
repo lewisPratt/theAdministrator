@@ -44,7 +44,7 @@ function App() {
         <WorkDes /> }
 
         {transcriptRev && 
-        <TranscriptRev adminNameSetter={setAdminName} transcriptRevSetter={setTranscriptRev} scoreSetter={setScoreState}/> }
+        <TranscriptRev adminNameSetter={setAdminName} transcriptRevSetter={setTranscriptRev} scoreSetter={setScoreState} scoreState={scoreState}/> }
 
         {!workDes && !transcriptRev &&
        <ComSec adminName={adminName} adminNameSetter={setAdminName} workDesSetter={setWorkDes} transcriptRevSetter={setTranscriptRev} loadingStateSetter={setLoadingState}/>}

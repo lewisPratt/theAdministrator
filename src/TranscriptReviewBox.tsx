@@ -8,6 +8,7 @@ interface transcriptReviewBoxProps {
   transcript: reviewShape | null;
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
   scoreSetter: Dispatch<SetStateAction<number>>;
+  scoreState: number;
 }
 //set to 1 to show debug info on weighting
 const debug: number = 0;
@@ -15,6 +16,7 @@ const debug: number = 0;
 export default function TranscriptReviewBox({
   transcript,
   scoreSetter,
+  scoreState,
   reviewTranscriptSetter,
 }: transcriptReviewBoxProps) {
   let recPassDesc: string = "";
@@ -30,24 +32,48 @@ export default function TranscriptReviewBox({
       const personWeighting = transcript.overallWeighting;
 
       switch (decision) {
-        case 'nfa':
-            if(personWeighting < 0){
-                //person is bad, negative consequence for wrong decision.
-            }else if(personWeighting > 0){
-                //person is good, positive consequences for right deision
-                
-            }else{
-                //person is neutral (0) so no negative or positive consequences
+        case "nfa":
+          if (personWeighting < 0) {
+            //person is bad, negative consequence for wrong decision.
+            const wrongAnswer = 170;
+            const newScore = scoreState - wrongAnswer;
+            if (newScore <= 0) {
+              scoreSetter(0);
+            } else {
+              scoreSetter(newScore);
             }
+          } else if (personWeighting > 0) {
+            //person is good, positive consequences for right deision
+            const rightAnswer = 150;
+            scoreSetter(scoreState + rightAnswer);
+          } else {
+            //person is neutral (0) so no negative or positive consequences
+          }
           break;
-        case 'reeducate':
-              if(personWeighting < 0){
-                //person is bad, positive consequence for right decision.
-            }else if(personWeighting > 0){
-                //person is bad, negative consequences for wrong deision
-            }else{
-                //person is neutral (0) so negative consequence for bad decision 
+        case "reeducate":
+          if (personWeighting < 0) {
+            //person is bad, positive consequence for right decision.
+            const rightAnswer = 150;
+            scoreSetter(scoreState + rightAnswer);
+          } else if (personWeighting > 0) {
+            //person is good, negative consequences for wrong deision
+            const wrongAnswer = 170;
+            const newScore = scoreState - wrongAnswer;
+            if (newScore <= 0) {
+              scoreSetter(0);
+            } else {
+              scoreSetter(newScore);
             }
+          } else {
+            //person is neutral (0) so negative consequence for bad decision
+            const wrongAnswer = 170;
+            const newScore = scoreState - wrongAnswer;
+            if (newScore <= 0) {
+              scoreSetter(0);
+            } else {
+              scoreSetter(newScore);
+            }
+          }
           break;
 
         default:

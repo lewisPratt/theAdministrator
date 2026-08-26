@@ -15,12 +15,14 @@ import createLocation from "./LocationGenerator";
 import generateWeather from "./WeatherGenerator";
 import { generateAuthorizedLocations } from "./AuthorizedLocationGenerator";
 import { generateBehaviour } from "./behaviourGenerator";
+import SearchConsole from "./SearchInfo";
 
 import { IdCard } from "lucide-react";
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
   scoreSetter: Dispatch<SetStateAction<number>>
+  scoreState: number
 }
 class person {
   interviewee: string;
@@ -117,7 +119,7 @@ class person {
 }
 
 export default function TranscriptRev({
-  scoreSetter,
+  scoreSetter,scoreState,
   transcriptRevSetter,
 }: transcriptRevProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
@@ -130,7 +132,7 @@ export default function TranscriptRev({
 
   useEffect(() => {
     let transcriptsArray: reviewShape[] = [];
-    const transcriptCount = Math.floor(Math.random() * 10) + 1;
+    const transcriptCount = Math.floor(Math.random() * 10) + 5;
     for (let index = 0; index < transcriptCount; index++) {
       const newPerson = new person();
       transcriptsArray.push(newPerson);
@@ -171,9 +173,10 @@ export default function TranscriptRev({
             reviewTranscriptSetter={setCurrentTranscript}
             transcript={currentTranscript}
             scoreSetter={scoreSetter}
+            scoreState={scoreState}
           />
         )}
-
+        <SearchConsole />
         <p>Select a transcript from the list below</p>
         {availableTranscripts && (
           <ol id="transcript-list">
