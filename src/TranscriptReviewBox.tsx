@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
-import { Map, DoorOpen, Backpack, CircleCheck, CircleX } from "lucide-react";
+import { Map, DoorOpen, Backpack, CircleCheck, CircleX, X } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 
@@ -166,7 +166,7 @@ export default function TranscriptReviewBox({
             id="transcript-close-button"
             onClick={() => reviewTranscriptSetter(null)}
           >
-            Close
+            <X />
           </div>
         </div>
       )}

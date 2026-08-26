@@ -30,11 +30,13 @@ input[type=text] {
   border-style: solid;
 
 }
-nav{
+
+nav {
   display: flex;
   justify-content: flex-end;
-  margin-top:25px;
+  margin-top: 25px;
 }
+
 input[type=text]:focus {
   outline: none;
 
@@ -180,18 +182,21 @@ h5 {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  animation: open-transcript .6s steps(3,end) 1 forwards;
-  position:relative;
+  animation: open-transcript .6s steps(3, end) 1 forwards;
+  position: relative;
   overflow: hidden;
 }
 
 #transcript-close-button {
   cursor: pointer;
   margin: 10px;
-  border-top: 2px solid black;
-  width: 100%;
-  padding: 5px 0;
+  border: 1px solid black;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
+
 
 .interviewee-details {
   display: flex;
@@ -249,22 +254,31 @@ h5 {
   top: 0;
   margin: 10px;
 }
-.decision-container{
+
+.decision-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 
 }
-.decision-container>div{
-  margin:10px;
-  border:1px solid black;
-  padding:5px;
 
+.decision-container>div {
+  margin-top: 10px;
+  border: 1px solid black;
+  border-bottom:0;
+  padding: 20px;
+  width: 50%;
 }
-.decision-container>div:hover{
+.decision-container>div:last-child{
+  border-left: 0;
+}
+
+.decision-container>div:hover {
   cursor: pointer;
   background-color: rgb(231, 248, 254);
 }
+
 @keyframes open-transcript {
   0% {
     height: 0;

@@ -17,7 +17,7 @@ return(
             <h1>Welcome Administrator</h1>
             <form onSubmit={doLogin}>
               <div id='login-typing-container'><label htmlFor='admin-name' id='welcome-message'>Please enter your name</label></div>
-              <div id='login-input-container'><input type='text' placeholder='Name' id='admin-name' name='admin-name' autoComplete='off' onChange={(e : React.ChangeEvent<HTMLInputElement>) => typedNameSetter(capitalizeFirstLetter(e.currentTarget.value))} ></input><button id='login-submit-button'>@</button></div>
+              <div id='login-input-container'><input autoFocus type='text' placeholder='Name' id='admin-name' name='admin-name' autoComplete='off' onChange={(e : React.ChangeEvent<HTMLInputElement>) => typedNameSetter(capitalizeFirstLetter(e.currentTarget.value))} ></input><button id='login-submit-button'>@</button></div>
             </form>
             </section>
 )
