@@ -198,7 +198,7 @@ export default function TranscriptRev({
           <input
             type="text"
             placeholder="[Command]"
-            id="command"
+            id="transcript-rev-command"
             name="command"
             autoComplete="off"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

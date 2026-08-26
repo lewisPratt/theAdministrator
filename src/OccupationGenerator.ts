@@ -1,6 +1,6 @@
 import type { occupationsShape } from "./interfaces";
 
- const occupations = [
+ export const occupations = [
   { name: "Data Courier", district: 12 },
   { name: "Ration Clerk", district: 1 },
   { name: "Grid Technician", district: 3 },

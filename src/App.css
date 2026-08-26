@@ -21,16 +21,23 @@ button {
   cursor: pointer;
 }
 
-input[type=text] {
+#transcript-rev-command,
+#comsec-command,
+#admin-name {
   height: 25px;
   padding: 10px;
   font-family: monospace;
   width: 90%;
   border-right: 0;
   border-style: solid;
+}
+.search-input{
+  height:25px;
+  padding:10px;
+  font-family: monospace;
+  margin:10px;
 
 }
-
 nav {
   display: flex;
   justify-content: flex-end;
@@ -266,17 +273,30 @@ h5 {
 .decision-container>div {
   margin-top: 10px;
   border: 1px solid black;
-  border-bottom:0;
+  border-bottom: 0;
   padding: 20px;
   width: 50%;
 }
-.decision-container>div:last-child{
+
+.decision-container>div:last-child {
   border-left: 0;
 }
 
 .decision-container>div:hover {
   cursor: pointer;
   background-color: rgb(231, 248, 254);
+}
+
+.loader {
+  animation: rotate-loader;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotate-loader {
+  to {
+    rotate: 360deg;
+  }
 }
 
 @keyframes open-transcript {

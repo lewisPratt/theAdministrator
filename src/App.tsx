@@ -6,6 +6,7 @@ import AdminLogin from './AdminLogin';
 import TranscriptRev from './TranscriptRev';
 import './App.css'
 import ScoreTracker from './ScoreTracker';
+import { LoaderCircle } from 'lucide-react';
 
 function App() {
   const [typedName, setTypedName] = useState<string>("")
@@ -14,6 +15,7 @@ function App() {
   const [workDes, setWorkDes] = useState<boolean>(false)
   const [transcriptRev, setTranscriptRev] = useState<boolean>(false)
   const [scoreState, setScoreState] = useState<number>(0)
+
 
   function setAdmin(name :string){
     setLoadingState(false)
@@ -33,7 +35,7 @@ function App() {
     <div id='main-content'>
      
       <BrowserRouter>
-      {loadingState ? <h1>Loading</h1> : 
+      {loadingState ? <p><LoaderCircle className="loader"/></p> : 
       <div id='content-container'>
       
         {adminName === null ?

@@ -48,6 +48,8 @@ export default function TranscriptReviewBox({
             scoreSetter(scoreState + rightAnswer);
           } else {
             //person is neutral (0) so no negative or positive consequences
+            const neutralAnswer = 50;
+            scoreSetter(scoreState + neutralAnswer);
           }
           break;
         case "reeducate":

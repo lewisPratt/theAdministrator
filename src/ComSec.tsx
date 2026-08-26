@@ -55,7 +55,7 @@ function loadCommand(setter : Dispatch<SetStateAction<boolean>>){
                 <h1>Welcome Administrator {adminName}.</h1>
                 <form onSubmit={handleCommand}>
                   <div id='command-typing-container'><label htmlFor='admin-name' id='welcome-message'>What would you like to do today?</label></div>
-                  <div id='command-input-container'><input autoFocus type='text' placeholder='[Command]' id='command' name='command' autoComplete='off' onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setTypedCommand(e.currentTarget.value)}}  ></input><button id='login-submit-button'>@</button></div>
+                  <div id='command-input-container'><input autoFocus type='text' placeholder='[Command]' id='comsec-command' name='command' autoComplete='off' onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setTypedCommand(e.currentTarget.value)}}  ></input><button id='login-submit-button'>@</button></div>
                 </form>
                 {leaveReq && <LeaveReq />}
                 {errorState && <p>Command Not recognized.</p>}
