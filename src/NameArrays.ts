@@ -35,5 +35,5 @@ export const lastNames = [
 shuffleWords(firstNames)
 shuffleWords(lastNames)
  
-    return firstNames[0] +' '+ lastNames[0]
+    return {firstName: firstNames[0] , lastName: lastNames[0]}
   }

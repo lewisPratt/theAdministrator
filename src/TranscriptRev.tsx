@@ -7,6 +7,7 @@ import type {
   locationsShape,
   occupationsShape,
   weatherShape,
+  nameShape
 } from "./interfaces";
 import { createName } from "./NameArrays";
 import { createItems } from "./CarryableItems";
@@ -16,6 +17,7 @@ import generateWeather from "./WeatherGenerator";
 import { generateAuthorizedLocations } from "./AuthorizedLocationGenerator";
 import { generateBehaviour } from "./behaviourGenerator";
 import SearchConsole from "./SearchInfo";
+import { PersonFlavourGenerator } from "./PersonFlavourGenerator";
 
 import { IdCard } from "lucide-react";
 interface transcriptRevProps {
@@ -25,7 +27,7 @@ interface transcriptRevProps {
   scoreState: number
 }
 class person {
-  interviewee: string;
+  interviewee: nameShape;
   items: carryableItemsShape[];
   age: number;
   location: locationsShape;
@@ -39,10 +41,12 @@ class person {
   processed: boolean
   decision:string
   decisionOutcome: boolean | null
+  personFlavour: string
+  gender: string
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
-    this.age = 20;
+    this.age = Math.round(Math.random() * 80) + 15;
     this.location = createLocation();
     this.recreationPass = this.generateRecreationPass();
     this.authorizedLocations = generateAuthorizedLocations();
@@ -54,6 +58,13 @@ class person {
     this.processed = false
     this.decision = ""
     this.decisionOutcome = null
+    this.gender = this.generateGender()
+    this.personFlavour = PersonFlavourGenerator(this.behaviour, this.weather,this.occupation, this.recreationPass,this.interviewee,this.age, this.location, this.items, this.gender)
+  }
+
+  generateGender(){
+    const genders = ["male", "female", "male", "female","male", "female","synth","synth" ]
+    return genders[Math.floor(Math.random()* genders.length)]
   }
   generateRecreationPass(): boolean {
     const grantPass: number = Math.round(Math.random() * 1);
@@ -188,7 +199,7 @@ export default function TranscriptRev({
           <ol id="transcript-list">
             {availableTranscripts.map((listItem) => (
               <TranscriptListItem
-                key={listItem.interviewee + listItem.authorizedLocations}
+                key={listItem.interviewee.firstName + listItem.authorizedLocations}
                 reviewTranscriptSetter={setCurrentTranscript}
                 currentTranscript={listItem}
               />

@@ -16,7 +16,7 @@ const debug: number = 0;
 export default function TranscriptReviewBox({
   transcript,
   scoreSetter,
-  scoreState,
+  scoreState, 
   reviewTranscriptSetter,
 }: transcriptReviewBoxProps) {
   let recPassDesc: string = "";
@@ -112,7 +112,7 @@ export default function TranscriptReviewBox({
           >
             {transcript.weather.icon}
           </div>
-          <h3>{transcript.interviewee}</h3>
+          <h3>{transcript.interviewee.firstName} {transcript.interviewee.lastName}</h3>
           <div className="interviewee-details">
             <p>Occupation: {transcript.occupation.name} </p>
             <p>Age: {transcript.age}</p>
@@ -136,11 +136,8 @@ export default function TranscriptReviewBox({
             )}
           </div>
 
-          <div className="transcrip[t-text">
-            Aute enim voluptate cillum excepteur culpa. Qui proident velit sint
-            cillum enim fugiat velit culpa dolor consectetur anim et ea. Lorem
-            id Lorem veniam excepteur cupidatat proident fugiat ea dolore.
-            Eiusmod consequat proident mollit laboris esse velit.
+          <div className="transcript-text">
+           {transcript.personFlavour}
           </div>
           <div className="passes-container">
             <div>

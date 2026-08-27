@@ -1,5 +1,5 @@
 export interface reviewShape {
-  interviewee: string;
+  interviewee: nameShape;
   age: number;
   occupation: occupationsShape;
   location: locationsShape;
@@ -13,6 +13,8 @@ export interface reviewShape {
   processed: boolean
   decision: string
   decisionOutcome: boolean |null
+  personFlavour: string
+  gender: string
 }
 
 export interface carryableItemsShape {
@@ -33,4 +35,8 @@ export interface occupationsShape {
 export interface weatherShape{
     weather: string
     icon: React.ReactElement
+}
+export interface nameShape{
+    firstName: string
+    lastName: string
 }

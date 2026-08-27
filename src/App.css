@@ -191,7 +191,7 @@ h5 {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  animation: open-transcript .6s steps(3, end) 1 forwards;
+  animation: open-transcript .6s 1 forwards;
   position: relative;
   overflow: hidden;
 }
