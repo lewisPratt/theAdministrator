@@ -20,7 +20,7 @@ export default function TranscriptListItem({
     <>
     {currentTranscript &&
     <li
-      className="transcript-list-item"
+      className={(currentTranscript.processed && !currentTranscript.decisionOutcome && "negative-processed-item" )+" transcript-list-item "+ (currentTranscript.processed && currentTranscript.decisionOutcome && "positive-processed-item" ) }
       key={currentTranscript.interviewee + currentTranscript.age}
       onClick={() => openTranscript(currentTranscript)}
     >

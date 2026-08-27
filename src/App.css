@@ -31,13 +31,15 @@ button {
   border-right: 0;
   border-style: solid;
 }
-.search-input{
-  height:25px;
-  padding:10px;
+
+.search-input {
+  height: 25px;
+  padding: 10px;
   font-family: monospace;
-  margin:10px;
+  margin: 10px;
 
 }
+
 nav {
   display: flex;
   justify-content: flex-end;
@@ -293,6 +295,69 @@ h5 {
   animation-iteration-count: infinite;
 }
 
+#search-console-container {
+  display: flex;
+  padding: 10px;
+  border: 1px solid black;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+  padding-top:40px;
+
+}
+
+#search-console-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+#search-console-header>p {
+  margin: 5px;
+}
+
+#search-input-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  height: 170px;
+
+}
+
+#search-result-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+
+}
+
+#search-result-container>p {
+  border: 1px solid black;
+  margin: 5px 0;
+  padding: 5px;
+  font-size: .7rem;
+}
+#processed-text{
+  margin:20px;
+  font-weight: bolder;
+}
+.negative-text{
+  color:red;
+}
+.positive-processed-item{
+  background-color:lightgreen;
+}
+.negative-processed-item{
+  background-color:lightcoral;
+}
 @keyframes rotate-loader {
   to {
     rotate: 360deg;

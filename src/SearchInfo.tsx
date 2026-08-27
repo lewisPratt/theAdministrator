@@ -2,7 +2,7 @@ import { useState } from "react";
 import { locations } from "./LocationGenerator";
 import { occupations } from "./OccupationGenerator";
 import type { locationsShape, occupationsShape } from "./interfaces";
-import { LoaderCircle } from "lucide-react";
+import { ChevronDown, ChevronUp, LoaderCircle, X } from "lucide-react";
 import { useRef } from "react";
 interface searchResultShape {
   resultName: string;
@@ -14,10 +14,13 @@ export default function SearchConsole() {
     null,
   );
   const [searchLoadState, setSearchLoadState] = useState<boolean>(false);
-
+  const [searchConsoleState, setSearchConsoleState] = useState<boolean>(false)
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  async function debounceSearch(e: React.ChangeEvent<HTMLInputElement>) {
+
+
+
+   function debounceSearch(e: React.ChangeEvent<HTMLInputElement>) {
     if (searchDebounceRef.current) {
       clearTimeout(searchDebounceRef.current);
     }
@@ -40,11 +43,12 @@ export default function SearchConsole() {
     }
   }
 
+
   function performSearch(searchTerm: string, searchType: string) {
     const lowerSearchTerm = searchTerm.toLowerCase();
     let results: searchResultShape[] = [];
     //search for location
-    if (searchType === 'district') {
+    if (searchType === "district") {
       const locationResult: locationsShape[] = locations.filter((item) => {
         let re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
         return item.name.match(re);
@@ -61,11 +65,13 @@ export default function SearchConsole() {
       }
     }
     //search for occupation
-    else if(searchType === 'occupation'){
-        const occupationResult: occupationsShape[] = occupations.filter((item) => {
-        let re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
-        return item.name.match(re);
-      });
+    else if (searchType === "occupation") {
+      const occupationResult: occupationsShape[] = occupations.filter(
+        (item) => {
+          let re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
+          return item.name.match(re);
+        },
+      );
 
       if (occupationResult) {
         occupationResult.forEach((occupation) => {
@@ -77,28 +83,40 @@ export default function SearchConsole() {
         });
       }
     }
-      setSearchLoadState(false);
-      setSearchResult(results);
-    
+    setSearchLoadState(false);
+    setSearchResult(results);
+  }
+
+  function toggleSearchConsole(){
+    setSearchConsoleState(prev =>!prev)
   }
 
   return (
-    <>
-      <input
-        className="search-input"
-        type="text"
-        onChange={debounceSearch}
-        placeholder="District Lookup"
-        data-search-type="district"
-      ></input>
-      <input
-        className="search-input"
-        type="text"
-        onChange={debounceSearch}
-        placeholder="Occupation Lookup"
-        data-search-type="occupation"
-      ></input>
-
+    <div id="search-console-container">
+        <div id='search-console-header'>
+            <p>Search Console</p>
+            <div onClick={toggleSearchConsole}>{!searchConsoleState ? <ChevronDown/> : <ChevronUp />}</div>
+         
+        </div>
+        {searchConsoleState &&
+        <>
+      <div id="search-input-container">
+        <input
+          className="search-input"
+          type="text"
+          onChange={debounceSearch}
+          placeholder="Location Lookup"
+          data-search-type="district"
+        ></input>
+        <input
+          className="search-input"
+          type="text"
+          onChange={debounceSearch}
+          placeholder="Occupation Lookup"
+          data-search-type="occupation"
+        ></input>
+      </div>
+      <div id='search-result-container'>
       {searchLoadState && (
         <p>
           <LoaderCircle className="loader" />
@@ -112,6 +130,7 @@ export default function SearchConsole() {
             </p>
           );
         })}
-    </>
+        </div> </>}
+    </div>
   );
 }

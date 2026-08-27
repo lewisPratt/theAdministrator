@@ -36,6 +36,9 @@ class person {
   weightingArray: string[];
   weather: weatherShape;
   behaviour: string;
+  processed: boolean
+  decision:string
+  decisionOutcome: boolean | null
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -48,6 +51,9 @@ class person {
     this.weather = generateWeather();
     this.behaviour = generateBehaviour();
     this.overallWeighting = this.workOutWeighting();
+    this.processed = false
+    this.decision = ""
+    this.decisionOutcome = null
   }
   generateRecreationPass(): boolean {
     const grantPass: number = Math.round(Math.random() * 1);
@@ -167,7 +173,7 @@ export default function TranscriptRev({
           Reminder: You must complete your designated tasks to qualify for
           'Recreational Time'.
         </p>
-
+         <SearchConsole />
         {availableTranscripts && (
           <TranscriptReviewBox
             reviewTranscriptSetter={setCurrentTranscript}
@@ -176,7 +182,7 @@ export default function TranscriptRev({
             scoreState={scoreState}
           />
         )}
-        <SearchConsole />
+       
         <p>Select a transcript from the list below</p>
         {availableTranscripts && (
           <ol id="transcript-list">

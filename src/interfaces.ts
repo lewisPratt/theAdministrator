@@ -10,6 +10,9 @@ export interface reviewShape {
   weightingArray: string[]
   weather: weatherShape
   behaviour: string
+  processed: boolean
+  decision: string
+  decisionOutcome: boolean |null
 }
 
 export interface carryableItemsShape {

@@ -29,14 +29,18 @@ export default function TranscriptReviewBox({
   function handleDecision(e: React.MouseEvent<HTMLDivElement>) {
     if (transcript) {
       const decision = e.currentTarget.dataset.decision;
-      const personWeighting = transcript.overallWeighting;
-
+      const personWeighting: number = transcript.overallWeighting;
+      let decisionText = "";
+      let decisionOutcome = null;
       switch (decision) {
         case "nfa":
           if (personWeighting < 0) {
             //person is bad, negative consequence for wrong decision.
             const wrongAnswer = 170;
             const newScore = scoreState - wrongAnswer;
+            decisionText =
+              "ERROR: Non-compliant Citizen incorrectly processed.";
+            decisionOutcome = false;
             if (newScore <= 0) {
               scoreSetter(0);
             } else {
@@ -46,10 +50,15 @@ export default function TranscriptReviewBox({
             //person is good, positive consequences for right deision
             const rightAnswer = 150;
             scoreSetter(scoreState + rightAnswer);
+            decisionText =
+              "Productive Citizen identified & processed accurately.";
+            decisionOutcome = true;
           } else {
             //person is neutral (0) so no negative or positive consequences
             const neutralAnswer = 50;
             scoreSetter(scoreState + neutralAnswer);
+            decisionText = "Average Citizen processed.";
+            decisionOutcome = true;
           }
           break;
         case "reeducate":
@@ -57,10 +66,14 @@ export default function TranscriptReviewBox({
             //person is bad, positive consequence for right decision.
             const rightAnswer = 150;
             scoreSetter(scoreState + rightAnswer);
+            decisionText = "Non-compliant Citizen correctly processed.";
+            decisionOutcome = true;
           } else if (personWeighting > 0) {
             //person is good, negative consequences for wrong deision
             const wrongAnswer = 170;
             const newScore = scoreState - wrongAnswer;
+            decisionText = "ERROR: Productive Citizen incorrectly processed.";
+            decisionOutcome = false;
             if (newScore <= 0) {
               scoreSetter(0);
             } else {
@@ -70,6 +83,8 @@ export default function TranscriptReviewBox({
             //person is neutral (0) so negative consequence for bad decision
             const wrongAnswer = 170;
             const newScore = scoreState - wrongAnswer;
+            decisionText = "ERROR: Average Citizen incorrectly processed.";
+            decisionOutcome = false;
             if (newScore <= 0) {
               scoreSetter(0);
             } else {
@@ -81,6 +96,9 @@ export default function TranscriptReviewBox({
         default:
           break;
       }
+      transcript.processed = true;
+      transcript.decision = decisionText;
+      transcript.decisionOutcome = decisionOutcome;
     }
   }
   return (
@@ -182,13 +200,26 @@ export default function TranscriptReviewBox({
               <Tooltip id="item-desc"></Tooltip>
             </div>
           </div>
+
           <div className="decision-container">
-            <div data-decision="nfa" onClick={handleDecision}>
-              <p>No further action</p>
-            </div>
-            <div data-decision="reeducate" onClick={handleDecision}>
-              <p>Send for re-education</p>
-            </div>
+            {!transcript.processed ? (
+              <>
+                <div data-decision="nfa" onClick={handleDecision}>
+                  <p>No further action</p>
+                </div>
+                <div data-decision="reeducate" onClick={handleDecision}>
+                  <p>Send for re-education</p>
+                </div>{" "}
+              </>
+            ) : (
+              <p id="processed-text">
+                {transcript.decisionOutcome ? (
+                  <span className="positive-text">{transcript.decision} </span>
+                ) : (
+                  <span className="negative-text">{transcript.decision} </span>
+                )}
+              </p>
+            )}
           </div>
           <div
             id="transcript-close-button"
