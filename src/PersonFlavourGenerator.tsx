@@ -85,8 +85,39 @@ const occupationContextByDistrict: Record<number, string[]> = {
   ],
 };
 
+const recreationPassContext: Record<"true" | "false", string[]> = {
+  "true": [
+    "produced a valid RecPass without being asked twice.",
+    "mentioned {pronoun} RecPass casually, as though visiting District 8 were nothing unusual.",
+    "seemed at ease when the topic of leisure time came up, pass already in hand.",
+    "had {pronoun} RecPass in order, well-worn from frequent use.",
+    "took out {pronoun} RecPass and handed it over before even being asked to do so.",
+    "searched for {pronoun} RecPass for several seconds but eventually produced it with an embarrassed half smile.",
+    "initially looked puzzled at the request to produce {pronoun} RecPass, but then appeared to understand and pulled it from an inside pocket.",
+    "confidently unfastened {pronoun} outer layer and showed a worn RecPass hanging on a piece of cord around {pronoun} neck.",
+    "opened {pronoun} CredPac and showed a valid RecPass with little fuss.",
+    "took {pronoun} time extracting {pronoun} RecPass from some hidden pocket deep within {pronoun} jacket.",
+    "appeared happy to oblige and produced {pronoun} RecPass when asked."
+  ],
+  "false": [
+    "had no RecPass on file, and grew quiet when the topic came up",
+    "claimed no interest in District 8, though the question seemed to cause {pronoun} demeanor to change.",
+    "lacked a RecPass entirely — official leisure time isn't something they're permitted.",
+    "answered vaguely when asked about recreation, clearly aware they have no pass to show.",
+    "began to search {pronoun} pockets looking for the pass, that was clearly not there.",
+    "tried to give a series of excuses before admitting that {pronoun} RecPass had expired weeks ago.",
+    "seemed to have a sudden realization, then stated that {pronoun} RecPass was on {pronoun} bedside terminal at home.",
+    "started stuttering and appeared to be stalling for time, before admitting that {pronoun} RecPass had expired weeks ago."
+  ],
+};
 
 
+
+function getRecreationPassContext(recreationPass: boolean): string {
+  const key = recreationPass ? "true" : "false";
+  const pool = recreationPassContext[key];
+  return pool[Math.floor(Math.random() * pool.length)];
+}
 
 function getOccupationContext(occupation: occupationsShape): string {
   const pool = occupationContextByDistrict[occupation.district];
@@ -132,5 +163,5 @@ export function PersonFlavourGenerator(
      const possessivePronoun = pronoun[2]
     const capitalizedPossessivePronoun = possessivePronoun.charAt(0).toUpperCase() + possessivePronoun.slice(1)
 
-  return personName.lastName+' ' + getBehaviourReaction(behaviour)+ '. '+ capitalizedSubjectPronoun+' ' + getOccupationContext(occupation).replace("{pronoun}", possessivePronoun) +'.'
+  return personName.lastName+' ' + getBehaviourReaction(behaviour)+ '. '+ capitalizedSubjectPronoun+' ' + getOccupationContext(occupation).replaceAll("{pronoun}", possessivePronoun) +'. ' + capitalizedSubjectPronoun + ' '+getRecreationPassContext(recreationPass).replaceAll("{pronoun}", possessivePronoun)
 }

@@ -1,12 +1,14 @@
-import type { Dispatch, SetStateAction } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
 import { Map, DoorOpen, Backpack, CircleCheck, CircleX, X } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
+import SearchConsole from "./SearchInfo";
 
 interface transcriptReviewBoxProps {
   transcript: reviewShape | null;
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
+  decisionSetter: Dispatch<SetStateAction<boolean>>
   scoreSetter: Dispatch<SetStateAction<number>>;
   scoreState: number;
 }
@@ -18,7 +20,11 @@ export default function TranscriptReviewBox({
   scoreSetter,
   scoreState, 
   reviewTranscriptSetter,
+  decisionSetter
 }: transcriptReviewBoxProps) {
+const [decisionMade, setDecisionMade] = useState<boolean>(false)
+
+    console.log("decision made,",decisionMade)
   let recPassDesc: string = "";
   if (transcript?.recreationPass) {
     recPassDesc = "Valid RecPass";
@@ -28,6 +34,7 @@ export default function TranscriptReviewBox({
 
   function handleDecision(e: React.MouseEvent<HTMLDivElement>) {
     if (transcript) {
+       
       const decision = e.currentTarget.dataset.decision;
       const personWeighting: number = transcript.overallWeighting;
       let decisionText = "";
@@ -47,7 +54,7 @@ export default function TranscriptReviewBox({
               scoreSetter(newScore);
             }
           } else if (personWeighting > 0) {
-            //person is good, positive consequences for right deision
+            //person is good, positive consequences for right decision
             const rightAnswer = 150;
             scoreSetter(scoreState + rightAnswer);
             decisionText =
@@ -66,9 +73,10 @@ export default function TranscriptReviewBox({
             //person is bad, positive consequence for right decision.
             const rightAnswer = 150;
             scoreSetter(scoreState + rightAnswer);
-            decisionText = "Non-compliant Citizen correctly processed.";
+            decisionText = "Non-compliant Citizen sent to Re-education";
             decisionOutcome = true;
           } else if (personWeighting > 0) {
+            console.log("reeducate good person")
             //person is good, negative consequences for wrong deision
             const wrongAnswer = 170;
             const newScore = scoreState - wrongAnswer;
@@ -96,6 +104,7 @@ export default function TranscriptReviewBox({
         default:
           break;
       }
+      decisionSetter(prev =>!prev)
       transcript.processed = true;
       transcript.decision = decisionText;
       transcript.decisionOutcome = decisionOutcome;

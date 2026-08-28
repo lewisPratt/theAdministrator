@@ -1,6 +1,8 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
+import { v4 as uuidv4 } from "uuid";
+
 import type {
   carryableItemsShape,
   reviewShape,
@@ -146,6 +148,8 @@ export default function TranscriptRev({
   >(null);
   const [currentTranscript, setCurrentTranscript] =
     useState<reviewShape | null>(null);
+    //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
+  const [decisionMade, setDecisionMade] = useState<boolean>(false)
 
   useEffect(() => {
     let transcriptsArray: reviewShape[] = [];
@@ -184,19 +188,15 @@ export default function TranscriptRev({
           Reminder: You must complete your designated tasks to qualify for
           'Recreational Time'.
         </p>
-         <SearchConsole />
-        {availableTranscripts && (
-          <TranscriptReviewBox
-            reviewTranscriptSetter={setCurrentTranscript}
-            transcript={currentTranscript}
-            scoreSetter={scoreSetter}
-            scoreState={scoreState}
-          />
-        )}
+         
        
-        <p>Select a transcript from the list below</p>
+       
+       
+        <SearchConsole />
+        <div id='top-container'>
         {availableTranscripts && (
           <ol id="transcript-list">
+            <li id='interviews-list-header'>Available Interviews</li>
             {availableTranscripts.map((listItem) => (
               <TranscriptListItem
                 key={listItem.interviewee.firstName + listItem.authorizedLocations}
@@ -206,6 +206,17 @@ export default function TranscriptRev({
             ))}
           </ol>
         )}
+            {currentTranscript && (
+          <TranscriptReviewBox 
+            reviewTranscriptSetter={setCurrentTranscript}
+            transcript={currentTranscript}
+            scoreSetter={scoreSetter}
+            scoreState={scoreState}
+            decisionSetter={setDecisionMade}
+          />
+        )}
+        </div>
+     
       </section>
 
       <form onSubmit={handleCommand}>

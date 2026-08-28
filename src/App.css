@@ -99,8 +99,12 @@ h5 {
   align-items: center;
   flex: 1;
   width: 100%;
-  max-width: 900px;
+
   margin: auto
+}
+
+#content-container {
+  width: 100%;
 }
 
 #login {
@@ -184,9 +188,14 @@ h5 {
 
 }
 
+#transcript-list {
+  flex-basis: 300px;
+  margin: 0;
+  padding: 0;
+}
+
 .transcript-container {
-  height: 500px;
-  border: 2px dashed black;
+  border: 2px solid black;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -194,6 +203,8 @@ h5 {
   animation: open-transcript .6s 1 forwards;
   position: relative;
   overflow: hidden;
+  flex-basis: 800px;
+  margin: 0 0 10px 10px;
 }
 
 #transcript-close-button {
@@ -205,10 +216,11 @@ h5 {
   top: 0;
   right: 0;
 }
-.transcript-text{
-  width:50%;
-  padding:10px;
-  border:1px solid black;
+
+.transcript-text {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid black;
 
 }
 
@@ -309,7 +321,7 @@ h5 {
   margin: 20px 0;
   position: relative;
   overflow: hidden;
-  padding-top:40px;
+  padding-top: 40px;
 
 }
 
@@ -341,7 +353,7 @@ h5 {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-
+  height:150px;
 }
 
 #search-result-container>p {
@@ -350,19 +362,35 @@ h5 {
   padding: 5px;
   font-size: .7rem;
 }
-#processed-text{
-  margin:20px;
+
+#processed-text {
+  margin: 20px;
   font-weight: bolder;
 }
-.negative-text{
-  color:red;
+
+.negative-text {
+  color: red;
 }
-.positive-processed-item{
-  background-color:lightgreen;
+
+.positive-processed-item {
+  background-color: lightgreen;
 }
-.negative-processed-item{
-  background-color:lightcoral;
+
+.negative-processed-item {
+  background-color: lightcoral;
 }
+
+#top-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#interviews-list-header {
+  list-style: none;
+  padding: 10px 0;
+  border: 2px solid black;
+}
+
 @keyframes rotate-loader {
   to {
     rotate: 360deg;
@@ -375,7 +403,7 @@ h5 {
   }
 
   100% {
-    height: 500px;
+    height: 600px;
   }
 }
 
