@@ -115,7 +115,7 @@ export default function TranscriptReviewBox({
           <h3>{transcript.interviewee.firstName} {transcript.interviewee.lastName}</h3>
           <div className="interviewee-details">
             <p>Occupation: {transcript.occupation.name} </p>
-            <p>Age: {transcript.age}</p>
+            <p>Age: {transcript.age} | Gender: {transcript.gender.charAt(0).toUpperCase()+transcript.gender.slice(1)}</p>
 
             <p>Interview Location: {transcript.location.name}</p>
             <p>Behaviour: {transcript.behaviour}</p>
