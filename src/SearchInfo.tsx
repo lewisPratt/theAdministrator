@@ -8,19 +8,17 @@ interface searchResultShape {
   resultName: string;
   resultDistrict: number;
   resultLegality: boolean;
+  resultType: string
 }
 export default function SearchConsole() {
   const [searchResult, setSearchResult] = useState<searchResultShape[] | null>(
     null,
   );
   const [searchLoadState, setSearchLoadState] = useState<boolean>(false);
-  const [searchConsoleState, setSearchConsoleState] = useState<boolean>(false)
+  const [searchConsoleState, setSearchConsoleState] = useState<boolean>(false);
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-
-
-
-   function debounceSearch(e: React.ChangeEvent<HTMLInputElement>) {
+  function debounceSearch(e: React.ChangeEvent<HTMLInputElement>) {
     if (searchDebounceRef.current) {
       clearTimeout(searchDebounceRef.current);
     }
@@ -43,7 +41,6 @@ export default function SearchConsole() {
     }
   }
 
-
   function performSearch(searchTerm: string, searchType: string) {
     const lowerSearchTerm = searchTerm.toLowerCase();
     let results: searchResultShape[] = [];
@@ -60,6 +57,7 @@ export default function SearchConsole() {
             resultName: location.name,
             resultDistrict: location.district,
             resultLegality: true,
+            resultType: 'location'
           });
         });
       }
@@ -79,6 +77,7 @@ export default function SearchConsole() {
             resultName: occupation.name,
             resultDistrict: occupation.district,
             resultLegality: true,
+            resultType: 'occupation'
           });
         });
       }
@@ -87,50 +86,58 @@ export default function SearchConsole() {
     setSearchResult(results);
   }
 
-  function toggleSearchConsole(){
-    setSearchConsoleState(prev =>!prev)
+  function toggleSearchConsole() {
+    setSearchResult(null)
+    setSearchConsoleState((prev) => !prev);
   }
 
   return (
     <div id="search-console-container">
-        <div id='search-console-header'>
-            <p>Search Console</p>
-            <div onClick={toggleSearchConsole}>{!searchConsoleState ? <ChevronDown/> : <ChevronUp />}</div>
-         
+      <div id="search-console-header">
+        <p>Search Console</p>
+        <div onClick={toggleSearchConsole}>
+          {!searchConsoleState ? <ChevronDown /> : <ChevronUp />}
         </div>
-        {searchConsoleState &&
-        <>
-      <div id="search-input-container">
-        <input
-          className="search-input"
-          type="text"
-          onChange={debounceSearch}
-          placeholder="Location Lookup"
-          data-search-type="district"
-        ></input>
-        <input
-          className="search-input"
-          type="text"
-          onChange={debounceSearch}
-          placeholder="Occupation Lookup"
-          data-search-type="occupation"
-        ></input>
       </div>
-      <div id='search-result-container'>
-      {searchLoadState && (
-        <p>
-          <LoaderCircle className="loader" />
-        </p>
+      {searchConsoleState && (
+        <>
+          <div id="search-input-container">
+            <input
+              className="search-input"
+              type="text"
+              onChange={debounceSearch}
+              placeholder="Location Lookup"
+              data-search-type="district"
+            ></input>
+            <input
+              className="search-input"
+              type="text"
+              onChange={debounceSearch}
+              placeholder="Occupation Lookup"
+              data-search-type="occupation"
+            ></input>
+          </div>
+          <div id="search-result-container">
+            {searchLoadState && (
+              <p>
+                <LoaderCircle className="loader" />
+              </p>
+            )}
+            {searchResult && <li id='search-results-header'>Returned {searchResult.length} {searchResult.length > 0 ? searchResult[0].resultType : ""} result{searchResult.length > 1 && ('s')}</li>}
+            <ul>
+            {searchResult &&
+            
+              searchResult.map((item) => {
+                return (
+                  <li className='search-result-item' key={item.resultName + item.resultDistrict}>
+                    {item.resultName} - District {item.resultDistrict}
+                  </li>
+                );
+              })}
+              </ul>
+          </div>
+        </>
       )}
-      {searchResult &&
-        searchResult.map((item) => {
-          return (
-            <p key={item.resultName + item.resultDistrict}>
-              {item.resultName} - District {item.resultDistrict}
-            </p>
-          );
-        })}
-        </div> </>}
     </div>
   );
 }

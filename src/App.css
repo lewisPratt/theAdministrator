@@ -31,7 +31,12 @@ button {
   border-right: 0;
   border-style: solid;
 }
-
+.centered-content{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex:1;
+}
 .search-input {
   height: 25px;
   padding: 10px;
@@ -182,7 +187,7 @@ h5 {
 }
 
 .transcript-list-item:hover {
-  scale: 1.01;
+  translate:5px 0;
   background-color: rgb(231, 248, 254);
   cursor: pointer;
 
@@ -344,7 +349,6 @@ h5 {
   width: 50%;
   display: flex;
   flex-direction: column;
-  height: 170px;
 
 }
 
@@ -356,13 +360,24 @@ h5 {
   height:150px;
 }
 
-#search-result-container>p {
+.search-result-item, #id {
   border: 1px solid black;
   margin: 5px 0;
   padding: 5px;
   font-size: .7rem;
+  list-style: none;
+  transition:.3s
+}
+.search-result-item:hover{
+  padding:8px;
+    background-color: rgb(231, 248, 254);
+
 }
 
+#search-result-container>ul{
+  padding:0;
+  margin:0;
+}
 #processed-text {
   margin: 20px;
   font-weight: bolder;
@@ -383,14 +398,23 @@ h5 {
 #top-container {
   display: flex;
   flex-wrap: wrap;
+  height:600px;
+  overflow:hidden;
 }
 
 #interviews-list-header {
   list-style: none;
   padding: 10px 0;
-  border: 2px solid black;
+  border: 1px solid black;
+  margin-bottom:10px;
+  background-color:rgb(236, 234, 234);
 }
+#search-results-header{
+    background-color:rgb(236, 234, 234);
+    padding: 10px 0;
+  border: 1px solid black;
 
+}
 @keyframes rotate-loader {
   to {
     rotate: 360deg;
@@ -399,11 +423,11 @@ h5 {
 
 @keyframes open-transcript {
   0% {
-    height: 0;
+    translate: 100% 0;
   }
 
   100% {
-    height: 600px;
+    translate: 0;
   }
 }
 

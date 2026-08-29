@@ -22,6 +22,7 @@ import SearchConsole from "./SearchInfo";
 import { PersonFlavourGenerator } from "./PersonFlavourGenerator";
 
 import { IdCard } from "lucide-react";
+import NoCurrentTranscript from "./NoCurrentTranscript";
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
@@ -206,7 +207,7 @@ export default function TranscriptRev({
             ))}
           </ol>
         )}
-            {currentTranscript && (
+            {currentTranscript ? (
           <TranscriptReviewBox 
             reviewTranscriptSetter={setCurrentTranscript}
             transcript={currentTranscript}
@@ -214,6 +215,8 @@ export default function TranscriptRev({
             scoreState={scoreState}
             decisionSetter={setDecisionMade}
           />
+        ) : (
+          <NoCurrentTranscript />
         )}
         </div>
      
