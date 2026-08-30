@@ -125,7 +125,7 @@ export default function SearchConsole() {
             )}
             {searchResult && <li id='search-results-header'>Returned {searchResult.length} {searchResult.length > 0 ? searchResult[0].resultType : ""} result{searchResult.length > 1 && ('s')}</li>}
             <ul>
-            {searchResult &&
+            {searchResult ?
             
               searchResult.map((item) => {
                 return (
@@ -133,7 +133,8 @@ export default function SearchConsole() {
                     {item.resultName} - District {item.resultDistrict}
                   </li>
                 );
-              })}
+              }):
+              <li>Waiting for input...</li>}
               </ul>
           </div>
         </>

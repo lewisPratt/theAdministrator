@@ -3,13 +3,15 @@ import type { reviewShape } from "./interfaces";
 import { Map, DoorOpen, Backpack, CircleCheck, CircleX, X } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
-import SearchConsole from "./SearchInfo";
+import { NIL as NIL_UUID } from 'uuid';
+
 
 interface transcriptReviewBoxProps {
   transcript: reviewShape | null;
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
   decisionSetter: Dispatch<SetStateAction<boolean>>
   scoreSetter: Dispatch<SetStateAction<number>>;
+  selectedSetter: Dispatch<SetStateAction<string>>
   scoreState: number;
 }
 //set to 1 to show debug info on weighting
@@ -19,7 +21,7 @@ export default function TranscriptReviewBox({
   transcript,
   scoreSetter,
   scoreState, 
-  reviewTranscriptSetter,
+  reviewTranscriptSetter,selectedSetter,
   decisionSetter
 }: transcriptReviewBoxProps) {
 const [decisionMade, setDecisionMade] = useState<boolean>(false)
@@ -32,13 +34,16 @@ const [closing, setClosing] = useState<boolean>(false)
     recPassDesc = "No RecPass";
   }
 
+  //trigger adding of animation class to animate transcript leaving page.
   function closeTranscript(){
     setClosing(true)
   }
-  
+
+  //reset the state and show the 'no transcript selected' message
   function handleAnimationEnd(e : React.AnimationEvent<HTMLDivElement>){
     if(e.animationName === "transcript-slide-out"){
         reviewTranscriptSetter(null)
+        selectedSetter(NIL_UUID)
     }
   }
   function handleDecision(e: React.MouseEvent<HTMLDivElement>) {

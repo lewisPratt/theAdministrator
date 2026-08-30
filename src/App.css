@@ -434,6 +434,9 @@ h5 {
   animation: open-transcript .6s 1 forwards;
 }
 
+.current-selected-item{
+  border-right:3px solid #2c3e50
+}
 @keyframes rotate-loader {
   to {
     rotate: 360deg;

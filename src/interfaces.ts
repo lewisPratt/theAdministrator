@@ -1,3 +1,4 @@
+
 export interface reviewShape {
   interviewee: nameShape;
   age: number;
@@ -15,6 +16,7 @@ export interface reviewShape {
   decisionOutcome: boolean |null
   personFlavour: string
   gender: string
+  identifier:string
 }
 
 export interface carryableItemsShape {

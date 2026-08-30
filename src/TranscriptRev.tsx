@@ -1,7 +1,9 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4, type UUIDTypes } from "uuid";
+import { NIL as NIL_UUID } from 'uuid';
+
 
 import type {
   carryableItemsShape,
@@ -50,6 +52,7 @@ class person {
   decisionOutcome: boolean | null;
   personFlavour: string;
   gender: string;
+  identifier:string
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -77,6 +80,7 @@ class person {
       this.items,
       this.gender,
     );
+    this.identifier = uuidv4()
   }
 
   generateGender() {
@@ -176,6 +180,8 @@ export default function TranscriptRev({
   //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
   const [decisionMade, setDecisionMade] = useState<boolean>(false);
   const [reviewsComplete, setReviewsComplete] = useState<reviewsCompleteShape | null>(null)
+  const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID)
+
 
   if (availableTranscripts != null && !reviewsComplete) {
     let reviewObj = {count:0, negative:0,positive:0}
@@ -239,6 +245,7 @@ export default function TranscriptRev({
             <ol id="transcript-list">
               <li id="interviews-list-header">Available Interviews</li>
               {availableTranscripts.map((listItem) => (
+                
                 <TranscriptListItem
                   key={
                     listItem.interviewee.firstName +
@@ -246,6 +253,8 @@ export default function TranscriptRev({
                   }
                   reviewTranscriptSetter={setCurrentTranscript}
                   currentTranscript={listItem}
+                  identifier={selectedListItem}
+                  selectedSetter={setSelectedListItem}
                 />
               ))}
             </ol>
@@ -257,6 +266,7 @@ export default function TranscriptRev({
               scoreSetter={scoreSetter}
               scoreState={scoreState}
               decisionSetter={setDecisionMade}
+              selectedSetter={setSelectedListItem}
             />
           ) : (
             <NoCurrentTranscript />
