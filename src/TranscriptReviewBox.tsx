@@ -1,4 +1,4 @@
-import { useState, type Dispatch, type SetStateAction } from "react";
+import React, { useState, type Dispatch, type SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
 import { Map, DoorOpen, Backpack, CircleCheck, CircleX, X } from "lucide-react";
 import { Tooltip } from "react-tooltip";
@@ -23,8 +23,8 @@ export default function TranscriptReviewBox({
   decisionSetter
 }: transcriptReviewBoxProps) {
 const [decisionMade, setDecisionMade] = useState<boolean>(false)
+const [closing, setClosing] = useState<boolean>(false)
 
-    console.log("decision made,",decisionMade)
   let recPassDesc: string = "";
   if (transcript?.recreationPass) {
     recPassDesc = "Valid RecPass";
@@ -32,6 +32,15 @@ const [decisionMade, setDecisionMade] = useState<boolean>(false)
     recPassDesc = "No RecPass";
   }
 
+  function closeTranscript(){
+    setClosing(true)
+  }
+  
+  function handleAnimationEnd(e : React.AnimationEvent<HTMLDivElement>){
+    if(e.animationName === "transcript-slide-out"){
+        reviewTranscriptSetter(null)
+    }
+  }
   function handleDecision(e: React.MouseEvent<HTMLDivElement>) {
     if (transcript) {
        
@@ -113,7 +122,7 @@ const [decisionMade, setDecisionMade] = useState<boolean>(false)
   return (
     <>
       {transcript && (
-        <div className="transcript-container">
+        <div className={("transcript-container ") + (!closing ? 'open-transcript-class' : 'slide-out-class')} onAnimationEnd={handleAnimationEnd}>
           <div
             id="weather-container"
             data-tooltip-id="item-desc"
@@ -229,7 +238,7 @@ const [decisionMade, setDecisionMade] = useState<boolean>(false)
           </div>
           <div
             id="transcript-close-button"
-            onClick={() => reviewTranscriptSetter(null)}
+            onClick={closeTranscript}
           >
             <X />
           </div>

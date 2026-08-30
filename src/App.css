@@ -31,12 +31,14 @@ button {
   border-right: 0;
   border-style: solid;
 }
-.centered-content{
-  display:flex;
+
+.centered-content {
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex:1;
+  flex: 1;
 }
+
 .search-input {
   height: 25px;
   padding: 10px;
@@ -173,7 +175,7 @@ h5 {
 }
 
 .transcript-list-item {
-  border: 1px solid black;
+  border: 1px solid #c4c4c0;
   display: flex;
   list-style: none;
   padding: 10px;
@@ -187,8 +189,8 @@ h5 {
 }
 
 .transcript-list-item:hover {
-  translate:5px 0;
-  background-color: rgb(231, 248, 254);
+  translate: 5px 0;
+  filter: grayscale(80%);
   cursor: pointer;
 
 }
@@ -200,12 +202,11 @@ h5 {
 }
 
 .transcript-container {
-  border: 2px solid black;
+  border: 2px solid #c4c4c0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  animation: open-transcript .6s 1 forwards;
   position: relative;
   overflow: hidden;
   flex-basis: 800px;
@@ -215,7 +216,7 @@ h5 {
 #transcript-close-button {
   cursor: pointer;
   margin: 10px;
-  border: 1px solid black;
+  border: 1px solid #c4c4c0;
   padding: 5px;
   position: absolute;
   top: 0;
@@ -225,7 +226,7 @@ h5 {
 .transcript-text {
   width: 50%;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid #c4c4c0;
 
 }
 
@@ -239,7 +240,7 @@ h5 {
 }
 
 .interviewee-details>p {
-  border: 1px solid black;
+  border: 1px solid #c4c4c0;
   margin: 2px 0;
   text-align: left;
   width: 100%;
@@ -249,7 +250,7 @@ h5 {
 .badge {
   width: 50px;
   height: 50px;
-  border: 1px solid black;
+  border: 1px solid #c4c4c0;
   margin: 5px 5px 0 5px;
   display: flex;
   justify-content: center;
@@ -267,9 +268,9 @@ h5 {
 .location-pass-container,
 .recreation-pass-container {
   display: flex;
-  border-top: 2px solid black;
-  border-right: 2px solid black;
-  border-left: 2px solid black;
+  border-top: 2px solid #c4c4c0;
+  border-right: 2px solid #c4c4c0;
+  border-left: 2px solid #c4c4c0;
   margin: 0 10px;
 
 }
@@ -296,14 +297,17 @@ h5 {
 
 .decision-container>div {
   margin-top: 10px;
-  border: 1px solid black;
+  border: 1px solid #c4c4c0;
   border-bottom: 0;
+  border-left: 0;
   padding: 20px;
   width: 50%;
+
 }
 
 .decision-container>div:last-child {
-  border-left: 0;
+
+  border-right: 0;
 }
 
 .decision-container>div:hover {
@@ -320,7 +324,7 @@ h5 {
 #search-console-container {
   display: flex;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid #c4c4c0;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
@@ -335,7 +339,7 @@ h5 {
   top: 0;
   left: 0;
   width: 100%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #c4c4c0;
   display: flex;
   justify-content: space-between;
 
@@ -357,27 +361,30 @@ h5 {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  height:150px;
+  height: 150px;
 }
 
-.search-result-item, #id {
+.search-result-item,
+#id {
   border: 1px solid black;
   margin: 5px 0;
   padding: 5px;
   font-size: .7rem;
   list-style: none;
-  transition:.3s
+  transition: .3s
 }
-.search-result-item:hover{
-  padding:8px;
-    background-color: rgb(231, 248, 254);
+
+.search-result-item:hover {
+  padding: 8px;
+  background-color: rgb(231, 248, 254);
 
 }
 
-#search-result-container>ul{
-  padding:0;
-  margin:0;
+#search-result-container>ul {
+  padding: 0;
+  margin: 0;
 }
+
 #processed-text {
   margin: 20px;
   font-weight: bolder;
@@ -388,33 +395,45 @@ h5 {
 }
 
 .positive-processed-item {
-  background-color: lightgreen;
+  background-color: #2c3e50;
+  color: #eeeeec;
 }
 
 .negative-processed-item {
-  background-color: lightcoral;
+  background-color: #b02e2e;
+  color: #eeeeec;
 }
 
 #top-container {
   display: flex;
   flex-wrap: wrap;
-  height:600px;
-  overflow:hidden;
+  height: 600px;
+  overflow: hidden;
 }
 
 #interviews-list-header {
   list-style: none;
   padding: 10px 0;
   border: 1px solid black;
-  margin-bottom:10px;
-  background-color:rgb(236, 234, 234);
+  margin-bottom: 10px;
+  background-color: rgb(236, 234, 234);
 }
-#search-results-header{
-    background-color:rgb(236, 234, 234);
-    padding: 10px 0;
+
+#search-results-header {
+  background-color: rgb(236, 234, 234);
+  padding: 10px 0;
   border: 1px solid black;
 
 }
+
+.slide-out-class {
+  animation: transcript-slide-out .6s ease-out 1 forwards;
+}
+
+.open-transcript-class {
+  animation: open-transcript .6s 1 forwards;
+}
+
 @keyframes rotate-loader {
   to {
     rotate: 360deg;
@@ -450,5 +469,15 @@ h5 {
 
   50% {
     border-color: rgb(0, 0, 0);
+  }
+}
+
+@keyframes transcript-slide-out {
+  0% {
+    translate: 0;
+  }
+
+  100% {
+    translate: 0 110%;
   }
 }

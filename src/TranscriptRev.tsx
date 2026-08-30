@@ -9,7 +9,7 @@ import type {
   locationsShape,
   occupationsShape,
   weatherShape,
-  nameShape
+  nameShape,
 } from "./interfaces";
 import { createName } from "./NameArrays";
 import { createItems } from "./CarryableItems";
@@ -26,8 +26,12 @@ import NoCurrentTranscript from "./NoCurrentTranscript";
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
-  scoreSetter: Dispatch<SetStateAction<number>>
-  scoreState: number
+  scoreSetter: Dispatch<SetStateAction<number>>;
+  scoreState: number;
+}
+interface reviewsCompleteShape{
+  numberComplete:number
+  effectivenessRating: number
 }
 class person {
   interviewee: nameShape;
@@ -41,11 +45,11 @@ class person {
   weightingArray: string[];
   weather: weatherShape;
   behaviour: string;
-  processed: boolean
-  decision:string
-  decisionOutcome: boolean | null
-  personFlavour: string
-  gender: string
+  processed: boolean;
+  decision: string;
+  decisionOutcome: boolean | null;
+  personFlavour: string;
+  gender: string;
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -58,16 +62,35 @@ class person {
     this.weather = generateWeather();
     this.behaviour = generateBehaviour();
     this.overallWeighting = this.workOutWeighting();
-    this.processed = false
-    this.decision = ""
-    this.decisionOutcome = null
-    this.gender = this.generateGender()
-    this.personFlavour = PersonFlavourGenerator(this.behaviour, this.weather,this.occupation, this.recreationPass,this.interviewee,this.age, this.location, this.items, this.gender)
+    this.processed = false;
+    this.decision = "";
+    this.decisionOutcome = null;
+    this.gender = this.generateGender();
+    this.personFlavour = PersonFlavourGenerator(
+      this.behaviour,
+      this.weather,
+      this.occupation,
+      this.recreationPass,
+      this.interviewee,
+      this.age,
+      this.location,
+      this.items,
+      this.gender,
+    );
   }
 
-  generateGender(){
-    const genders = ["male", "female", "male", "female","male", "female","synth","synth" ]
-    return genders[Math.floor(Math.random()* genders.length)]
+  generateGender() {
+    const genders = [
+      "male",
+      "female",
+      "male",
+      "female",
+      "male",
+      "female",
+      "synth",
+      "synth",
+    ];
+    return genders[Math.floor(Math.random() * genders.length)];
   }
   generateRecreationPass(): boolean {
     const grantPass: number = Math.round(Math.random() * 1);
@@ -139,7 +162,8 @@ class person {
 }
 
 export default function TranscriptRev({
-  scoreSetter,scoreState,
+  scoreSetter,
+  scoreState,
   transcriptRevSetter,
 }: transcriptRevProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
@@ -149,8 +173,30 @@ export default function TranscriptRev({
   >(null);
   const [currentTranscript, setCurrentTranscript] =
     useState<reviewShape | null>(null);
-    //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
-  const [decisionMade, setDecisionMade] = useState<boolean>(false)
+  //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
+  const [decisionMade, setDecisionMade] = useState<boolean>(false);
+  const [reviewsComplete, setReviewsComplete] = useState<reviewsCompleteShape | null>(null)
+
+  if (availableTranscripts != null && !reviewsComplete) {
+    let reviewObj = {count:0, negative:0,positive:0}
+      availableTranscripts.forEach((transcript) => {
+        if (transcript.processed) {
+          reviewObj.count += 1;
+          if(transcript.decisionOutcome){
+            reviewObj.positive += 1
+          }else{
+            reviewObj.negative += 1
+          }
+        }
+      });
+      if(reviewObj.count === availableTranscripts.length){
+        const effectiveness = Math.round((reviewObj.positive / reviewObj.count) * 100)
+        console.log(effectiveness,"%")
+        setReviewsComplete({numberComplete: reviewObj.count,effectivenessRating:effectiveness})
+      }
+  }
+ 
+  
 
   useEffect(() => {
     let transcriptsArray: reviewShape[] = [];
@@ -159,11 +205,8 @@ export default function TranscriptRev({
       const newPerson = new person();
       transcriptsArray.push(newPerson);
     }
-    console.log("generated number of transcripts: ", transcriptCount);
     setAvailableTranscripts(transcriptsArray);
   }, []);
-  console.log(availableTranscripts);
-  //need to set state review transcripts so they reset when exiting
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -189,37 +232,36 @@ export default function TranscriptRev({
           Reminder: You must complete your designated tasks to qualify for
           'Recreational Time'.
         </p>
-         
-       
-       
-       
+
         <SearchConsole />
-        <div id='top-container'>
-        {availableTranscripts && (
-          <ol id="transcript-list">
-            <li id='interviews-list-header'>Available Interviews</li>
-            {availableTranscripts.map((listItem) => (
-              <TranscriptListItem
-                key={listItem.interviewee.firstName + listItem.authorizedLocations}
-                reviewTranscriptSetter={setCurrentTranscript}
-                currentTranscript={listItem}
-              />
-            ))}
-          </ol>
-        )}
-            {currentTranscript ? (
-          <TranscriptReviewBox 
-            reviewTranscriptSetter={setCurrentTranscript}
-            transcript={currentTranscript}
-            scoreSetter={scoreSetter}
-            scoreState={scoreState}
-            decisionSetter={setDecisionMade}
-          />
-        ) : (
-          <NoCurrentTranscript />
-        )}
+        <div id="top-container">
+          {availableTranscripts && (
+            <ol id="transcript-list">
+              <li id="interviews-list-header">Available Interviews</li>
+              {availableTranscripts.map((listItem) => (
+                <TranscriptListItem
+                  key={
+                    listItem.interviewee.firstName +
+                    listItem.authorizedLocations
+                  }
+                  reviewTranscriptSetter={setCurrentTranscript}
+                  currentTranscript={listItem}
+                />
+              ))}
+            </ol>
+          )}
+          {currentTranscript ? (
+            <TranscriptReviewBox
+              reviewTranscriptSetter={setCurrentTranscript}
+              transcript={currentTranscript}
+              scoreSetter={scoreSetter}
+              scoreState={scoreState}
+              decisionSetter={setDecisionMade}
+            />
+          ) : (
+            <NoCurrentTranscript />
+          )}
         </div>
-     
       </section>
 
       <form onSubmit={handleCommand}>
