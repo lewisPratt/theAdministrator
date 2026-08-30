@@ -437,6 +437,36 @@ h5 {
 .current-selected-item{
   border-right:3px solid #2c3e50
 }
+
+
+/* 
+REVIEW OVERLAY
+*/
+.review-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:rgba(255, 255, 255,.75);
+  z-index:100;
+  animation:open-transcript 1s 1 forwards;
+}
+#summary-container{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding:20px;
+  border:2px solid #c4c4c0;
+}
+#summary-container>p{
+  margin:20px;
+}
+
+
 @keyframes rotate-loader {
   to {
     rotate: 360deg;

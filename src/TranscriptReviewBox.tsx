@@ -27,6 +27,7 @@ export default function TranscriptReviewBox({
 const [decisionMade, setDecisionMade] = useState<boolean>(false)
 const [closing, setClosing] = useState<boolean>(false)
 
+
   let recPassDesc: string = "";
   if (transcript?.recreationPass) {
     recPassDesc = "Valid RecPass";

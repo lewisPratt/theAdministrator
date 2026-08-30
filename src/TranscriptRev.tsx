@@ -1,9 +1,9 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
+import TranscriptReviewSummary from "./TranscriptReviewSummary";
 import { v4 as uuidv4, type UUIDTypes } from "uuid";
-import { NIL as NIL_UUID } from 'uuid';
-
+import { NIL as NIL_UUID } from "uuid";
 
 import type {
   carryableItemsShape,
@@ -31,9 +31,9 @@ interface transcriptRevProps {
   scoreSetter: Dispatch<SetStateAction<number>>;
   scoreState: number;
 }
-interface reviewsCompleteShape{
-  numberComplete:number
-  effectivenessRating: number
+interface reviewsCompleteShape {
+  numberComplete: number;
+  effectivenessRating: number;
 }
 class person {
   interviewee: nameShape;
@@ -52,7 +52,7 @@ class person {
   decisionOutcome: boolean | null;
   personFlavour: string;
   gender: string;
-  identifier:string
+  identifier: string;
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -80,7 +80,7 @@ class person {
       this.items,
       this.gender,
     );
-    this.identifier = uuidv4()
+    this.identifier = uuidv4();
   }
 
   generateGender() {
@@ -179,30 +179,33 @@ export default function TranscriptRev({
     useState<reviewShape | null>(null);
   //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
   const [decisionMade, setDecisionMade] = useState<boolean>(false);
-  const [reviewsComplete, setReviewsComplete] = useState<reviewsCompleteShape | null>(null)
-  const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID)
-
+  const [reviewsComplete, setReviewsComplete] =
+    useState<reviewsCompleteShape | null>(null);
+  const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID);
 
   if (availableTranscripts != null && !reviewsComplete) {
-    let reviewObj = {count:0, negative:0,positive:0}
-      availableTranscripts.forEach((transcript) => {
-        if (transcript.processed) {
-          reviewObj.count += 1;
-          if(transcript.decisionOutcome){
-            reviewObj.positive += 1
-          }else{
-            reviewObj.negative += 1
-          }
+    let effectiveness: number = 0;
+    let reviewObj = { count: 0, negative: 0, positive: 0 };
+    availableTranscripts.forEach((transcript) => {
+      if (transcript.processed) {
+        reviewObj.count += 1;
+        if (transcript.decisionOutcome) {
+          reviewObj.positive += 1;
+        } else {
+          reviewObj.negative += 1;
         }
-      });
-      if(reviewObj.count === availableTranscripts.length){
-        const effectiveness = Math.round((reviewObj.positive / reviewObj.count) * 100)
-        console.log(effectiveness,"%")
-        setReviewsComplete({numberComplete: reviewObj.count,effectivenessRating:effectiveness})
       }
+    });
+    if (reviewObj.count === availableTranscripts.length) {
+      effectiveness = Math.round((reviewObj.positive / reviewObj.count) * 100);
+      console.log(effectiveness, "%");
+
+      setReviewsComplete({
+        numberComplete: reviewObj.count,
+        effectivenessRating: effectiveness,
+      });
+    }
   }
- 
-  
 
   useEffect(() => {
     let transcriptsArray: reviewShape[] = [];
@@ -232,6 +235,12 @@ export default function TranscriptRev({
 
   return (
     <>
+      {reviewsComplete && (
+        <TranscriptReviewSummary
+          efficiency={reviewsComplete.effectivenessRating}
+          interviewCount={reviewsComplete.numberComplete}
+        />
+      )}
       <section id="transcript-review">
         <h2>Transcript Review</h2>
         <p id="reminder-p">
@@ -245,7 +254,6 @@ export default function TranscriptRev({
             <ol id="transcript-list">
               <li id="interviews-list-header">Available Interviews</li>
               {availableTranscripts.map((listItem) => (
-                
                 <TranscriptListItem
                   key={
                     listItem.interviewee.firstName +
