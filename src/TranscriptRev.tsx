@@ -4,11 +4,7 @@ import TranscriptListItem from "./TranscriptListItem";
 import TranscriptReviewSummary from "./TranscriptReviewSummary";
 import { NIL as NIL_UUID } from "uuid";
 import { person } from "./classes";
-import type {
-  reviewShape,
-
-  reviewsCompleteShape,
-} from "./interfaces";
+import type { reviewShape, reviewsCompleteShape } from "./interfaces";
 
 import SearchConsole from "./SearchInfo";
 
@@ -25,7 +21,8 @@ interface transcriptRevProps {
 export default function TranscriptRev({
   scoreSetter,
   scoreState,
-  transcriptRevSetter,loadingStateSetter,
+  transcriptRevSetter,
+  loadingStateSetter,
 }: transcriptRevProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
   const [errorState, setErrorState] = useState<boolean>(false);
@@ -35,14 +32,16 @@ export default function TranscriptRev({
   const [currentTranscript, setCurrentTranscript] =
     useState<reviewShape | null>(null);
   //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
-  const [decisionMade, setDecisionMade] = useState<boolean>(false);
+  const [_decisionMade, setDecisionMade] = useState<boolean>(false);
   const [reviewsComplete, setReviewsComplete] =
     useState<reviewsCompleteShape | null>(null);
   const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID);
   const [generatePeople, setGeneratePeople] = useState<boolean>(false);
 
-// set debug to 1 to see debug tools
-const debug = 0;
+  //////////////////////
+  // set debug to 1 to see debug tools
+  const debug = 0;
+  ///////////////////////////
 
   if (availableTranscripts != null && !reviewsComplete) {
     let effectiveness: number = 0;
@@ -77,12 +76,12 @@ const debug = 0;
     setAvailableTranscripts(transcriptsArray);
   }, [generatePeople]);
 
-  function loadNewShift(){
+  function loadNewShift() {
     loadingStateSetter(true);
     setTimeout(startNewShift, 1000);
   }
   function startNewShift() {
-    loadingStateSetter(false)
+    loadingStateSetter(false);
     setAvailableTranscripts(null);
     setReviewsComplete(null);
     setGeneratePeople((prev) => !prev);
@@ -120,7 +119,7 @@ const debug = 0;
         </p>
 
         <SearchConsole />
-        {debug ? (<DebugTools generatePeople={setGeneratePeople} />) : null}
+        {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
         <div id="top-container">
           {availableTranscripts && (
             <ol id="transcript-list">

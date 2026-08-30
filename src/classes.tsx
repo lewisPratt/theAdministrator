@@ -64,7 +64,7 @@ export class person {
     this.identifier = uuidv4();
   }
 
-  generateGender() {
+  private generateGender() {
     const genders = [
       "male",
       "female",
@@ -77,12 +77,14 @@ export class person {
     ];
     return genders[Math.floor(Math.random() * genders.length)];
   }
-  generateRecreationPass(): boolean {
+
+
+  private generateRecreationPass(): boolean {
     const grantPass: number = Math.round(Math.random() * 1);
     return grantPass === 1 ? true : false;
   }
-
-  workOutWeighting(): number {
+  //Determines the persons overall weighting (good / normal / bad) determined by the factors generated within this class
+  private workOutWeighting(): number {
     let weighting = 0;
     let weightingArray: string[] = [];
     this.items.forEach((item) => {
