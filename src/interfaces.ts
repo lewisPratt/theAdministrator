@@ -42,3 +42,8 @@ export interface nameShape{
     firstName: string
     lastName: string
 }
+
+export interface reviewsCompleteShape {
+  numberComplete: number;
+  effectivenessRating: number;
+}

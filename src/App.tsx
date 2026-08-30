@@ -58,6 +58,7 @@ function App() {
                       transcriptRevSetter={setTranscriptRev}
                       scoreSetter={setScoreState}
                       scoreState={scoreState}
+                      loadingStateSetter={setLoadingState}
                     />
                   )}
 

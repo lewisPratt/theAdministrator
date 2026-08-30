@@ -12,6 +12,7 @@ import type {
   occupationsShape,
   weatherShape,
   nameShape,
+  reviewsCompleteShape,
 } from "./interfaces";
 import { createName } from "./NameArrays";
 import { createItems } from "./CarryableItems";
@@ -25,16 +26,15 @@ import { PersonFlavourGenerator } from "./PersonFlavourGenerator";
 
 import { IdCard } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
+import DebugTools from "./DebugTools";
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
   scoreSetter: Dispatch<SetStateAction<number>>;
   scoreState: number;
+  loadingStateSetter: Dispatch<SetStateAction<boolean>>;
 }
-interface reviewsCompleteShape {
-  numberComplete: number;
-  effectivenessRating: number;
-}
+
 class person {
   interviewee: nameShape;
   items: carryableItemsShape[];
@@ -168,7 +168,7 @@ class person {
 export default function TranscriptRev({
   scoreSetter,
   scoreState,
-  transcriptRevSetter,
+  transcriptRevSetter,loadingStateSetter,
 }: transcriptRevProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
   const [errorState, setErrorState] = useState<boolean>(false);
@@ -182,6 +182,7 @@ export default function TranscriptRev({
   const [reviewsComplete, setReviewsComplete] =
     useState<reviewsCompleteShape | null>(null);
   const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID);
+  const [generatePeople, setGeneratePeople] = useState<boolean>(false);
 
   if (availableTranscripts != null && !reviewsComplete) {
     let effectiveness: number = 0;
@@ -198,7 +199,6 @@ export default function TranscriptRev({
     });
     if (reviewObj.count === availableTranscripts.length) {
       effectiveness = Math.round((reviewObj.positive / reviewObj.count) * 100);
-      console.log(effectiveness, "%");
 
       setReviewsComplete({
         numberComplete: reviewObj.count,
@@ -215,7 +215,18 @@ export default function TranscriptRev({
       transcriptsArray.push(newPerson);
     }
     setAvailableTranscripts(transcriptsArray);
-  }, []);
+  }, [generatePeople]);
+
+  function loadNewShift(){
+    loadingStateSetter(true);
+    setTimeout(startNewShift, 1000);
+  }
+  function startNewShift() {
+    loadingStateSetter(false)
+    setAvailableTranscripts(null);
+    setReviewsComplete(null);
+    setGeneratePeople((prev) => !prev);
+  }
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -232,13 +243,14 @@ export default function TranscriptRev({
         break;
     }
   }
-
+  console.log(reviewsComplete);
   return (
     <>
       {reviewsComplete && (
         <TranscriptReviewSummary
           efficiency={reviewsComplete.effectivenessRating}
           interviewCount={reviewsComplete.numberComplete}
+          startNewShift={loadNewShift}
         />
       )}
       <section id="transcript-review">
@@ -249,6 +261,7 @@ export default function TranscriptRev({
         </p>
 
         <SearchConsole />
+        <DebugTools generatePeople={setGeneratePeople} />
         <div id="top-container">
           {availableTranscripts && (
             <ol id="transcript-list">
