@@ -102,18 +102,22 @@ export default function SearchConsole() {
       {searchConsoleState && (
         <>
           <div id="search-input-container">
+            <label htmlFor='location-search'>Location Search</label>
             <input
+            id='location-search'
               className="search-input"
               type="text"
               onChange={debounceSearch}
-              placeholder="Location Lookup"
+              placeholder="Location name"
               data-search-type="district"
             ></input>
+            <label htmlFor='occupation-search'>Occupation Search</label>
             <input
+            id='occupation-search'
               className="search-input"
               type="text"
               onChange={debounceSearch}
-              placeholder="Occupation Lookup"
+              placeholder="Occupation name"
               data-search-type="occupation"
             ></input>
           </div>

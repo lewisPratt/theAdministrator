@@ -4,14 +4,14 @@ import type { reviewsCompleteShape, reviewShape } from "./interfaces";
 interface summaryProps {
   efficiency: number;
   interviewCount: number;
-
-  startNewShift:()=> void
+  targetState:boolean
+  startNewShift:(reason:string)=> void
 }
 export default function TranscriptReviewSummary({
   efficiency,
   interviewCount,
-
-  startNewShift
+  targetState,
+  startNewShift,
 }: summaryProps) {
   let efficiencyText: string = "";
   if (efficiency < 20)
@@ -30,11 +30,6 @@ export default function TranscriptReviewSummary({
       Math.floor(Math.random() * 400) +
       1;
 
-//   function startNewShift() {
-//     availableTranscriptsSetter(null)
-//     overlaySetter(null);
-//     generatePeople(prev=>!prev)
-//   }
 
   return (
     <div className="review-overlay">
@@ -45,7 +40,8 @@ export default function TranscriptReviewSummary({
           efficiency.
         </p>
         <p>{efficiencyText}</p>
-        <button onClick={startNewShift}>Start next shift designation</button>
+        <button onClick={()=>{startNewShift('new')}}>Start next shift designation</button>
+        {targetState && <button onClick={()=>{startNewShift('end')}}>Visit recreation voucher shop</button>}
       </div>
     </div>
   );

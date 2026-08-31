@@ -10,7 +10,6 @@ import SearchConsole from "./SearchInfo";
 
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "./DebugTools";
-import RegulationsCodex from "./RegulationsCodex";
 import CodexSidePanel from "./CodexSidePanel";
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
@@ -40,12 +39,14 @@ export default function TranscriptRev({
   const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID);
   const [generatePeople, setGeneratePeople] = useState<boolean>(false);
   const [codexState, setCodexState] = useState<boolean>(false)
+  const [targetState, setTargetState] = useState<boolean>(false)
   //////////////////////
   // set debug to 1 to see debug tools
-  const debug = 1;
+  const debug = 0;
   ///////////////////////////
 
   if (availableTranscripts != null && !reviewsComplete) {
+   
     let effectiveness: number = 0;
     let reviewObj = { count: 0, negative: 0, positive: 0 };
     availableTranscripts.forEach((transcript) => {
@@ -58,8 +59,10 @@ export default function TranscriptRev({
         }
       }
     });
+    //all avaialble transcripts have been processed
     if (reviewObj.count === availableTranscripts.length) {
       effectiveness = Math.round((reviewObj.positive / reviewObj.count) * 100);
+       if(scoreState >= 200){setTargetState(true)}
 
       setReviewsComplete({
         numberComplete: reviewObj.count,
@@ -78,9 +81,14 @@ export default function TranscriptRev({
     setAvailableTranscripts(transcriptsArray);
   }, [generatePeople]);
 
-  function loadNewShift() {
+  function loadNewShift(reason:string) {
     loadingStateSetter(true);
+    if(reason === 'new'){
     setTimeout(startNewShift, 1000);
+    }
+    else if(reason === 'end'){
+    setTimeout(endShift, 1000);
+    }
   }
   function startNewShift() {
     loadingStateSetter(false);
@@ -88,7 +96,10 @@ export default function TranscriptRev({
     setReviewsComplete(null);
     setGeneratePeople((prev) => !prev);
   }
-
+  function endShift(){
+    //need to workout loop for end of shift
+    window.location.href = "";
+  }
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     e.currentTarget.reset();
@@ -112,6 +123,7 @@ export default function TranscriptRev({
           efficiency={reviewsComplete.effectivenessRating}
           interviewCount={reviewsComplete.numberComplete}
           startNewShift={loadNewShift}
+          targetState={targetState}
         />
       )}
       <section id="transcript-review">
