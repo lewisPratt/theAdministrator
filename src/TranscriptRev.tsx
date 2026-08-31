@@ -10,6 +10,7 @@ import SearchConsole from "./SearchInfo";
 
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "./DebugTools";
+import RegulationsCodex from "./RegulationsCodex";
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
@@ -119,6 +120,7 @@ export default function TranscriptRev({
         </p>
 
         <SearchConsole />
+        <RegulationsCodex />
         {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
         <div id="top-container">
           {availableTranscripts && (

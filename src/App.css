@@ -466,7 +466,23 @@ REVIEW OVERLAY
   margin:20px;
 }
 
+#codex-list{
+  padding:0;
+  list-style: none;
+  margin: 0;
+  text-align: left;
 
+
+}
+#codex-list>li{
+  margin:20px;
+  border:1px solid black;
+  text-align: left;
+  padding:10px;
+}
+#codex-list ul{
+  list-style: none;
+}
 @keyframes rotate-loader {
   to {
     rotate: 360deg;
