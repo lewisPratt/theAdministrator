@@ -19,6 +19,16 @@ p {
 
 button {
   cursor: pointer;
+  width:200px;
+  height:50px;
+  background:white;
+  color:black;
+  border: 2px solid #c4c4c0;
+  font-family: monospace;
+}
+button:hover{
+  background-color: #2c3e50;
+  color:white;
 }
 
 #transcript-rev-command,
@@ -312,7 +322,8 @@ h5 {
 
 .decision-container>div:hover {
   cursor: pointer;
-  background-color: rgb(231, 248, 254);
+  background-color: #2c3e50;
+  color: white;
 }
 
 .loader {
@@ -407,8 +418,8 @@ h5 {
 #top-container {
   display: flex;
   flex-wrap: wrap;
-  height: 600px;
   overflow: hidden;
+  padding-bottom: 50px;
 }
 
 #interviews-list-header {
@@ -434,55 +445,104 @@ h5 {
   animation: open-transcript .6s 1 forwards;
 }
 
-.current-selected-item{
-  border-right:3px solid #2c3e50
+.current-selected-item {
+  border-right: 3px solid #2c3e50
 }
 
 
 /* 
 REVIEW OVERLAY
 */
-.review-overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+.review-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:rgba(255, 255, 255,.75);
-  z-index:100;
-  animation:open-transcript 1s 1 forwards;
+  background-color: rgba(255, 255, 255, .75);
+  z-index: 100;
+  animation: open-transcript 1s 1 forwards;
 }
-#summary-container{
+
+#summary-container {
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding:20px;
-  border:2px solid #c4c4c0;
-}
-#summary-container>p{
-  margin:20px;
+  padding: 20px;
+  border: 2px solid #c4c4c0;
 }
 
-#codex-list{
-  padding:0;
+#summary-container>p {
+  margin: 20px;
+}
+#codex{
+  width:70%;
+}
+#codex-list {
+  padding: 0;
   list-style: none;
   margin: 0;
   text-align: left;
-
-
 }
-#codex-list>li{
-  margin:20px;
-  border:1px solid black;
+
+#codex-list>li {
+  margin: 20px;
+  border: 1px solid black;
   text-align: left;
-  padding:10px;
+  padding: 10px;
 }
-#codex-list ul{
+#codex-list ul>li{
+  margin:10px 0;
+}
+
+#codex-list ul {
   list-style: none;
 }
+.codex-section-title{
+  font-weight:bolder;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+#side-panel {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 50%;
+  background-color: white;
+  z-index: 99;
+  border-right: 3px solid black;
+  padding-top: 50px;
+  text-align: center;
+  transition: 1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#side-panel.codex-enter {
+  left: 0;
+}
+
+#side-panel.codex-exit {
+  left: -100%;
+}
+
+#codex-button {
+  padding: 10px;
+  border: 1px solid black;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+#codex-button:hover {
+  background-color: #2c3e50;
+  color: white;
+}
+
 @keyframes rotate-loader {
   to {
     rotate: 360deg;

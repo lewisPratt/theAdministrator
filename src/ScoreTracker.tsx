@@ -8,7 +8,7 @@ export default function ScoreTracker({scoreState}: ScoreTrackerProps) {
     
   return (
     <>
-     <p data-tooltip-id='score-tooltip' data-tooltip-content='WPs (Work Points) can be exchanged for recreation time.'>{scoreState} WPs earned.</p>
+     <p data-tooltip-id='score-tooltip' data-tooltip-content='Credits can be exchanged for recreation time.'>{scoreState} Credits earned.</p>
               <Tooltip id="score-tooltip"></Tooltip>
 </>
   )

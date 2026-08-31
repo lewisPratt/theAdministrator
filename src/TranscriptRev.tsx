@@ -11,6 +11,7 @@ import SearchConsole from "./SearchInfo";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "./DebugTools";
 import RegulationsCodex from "./RegulationsCodex";
+import CodexSidePanel from "./CodexSidePanel";
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
@@ -38,10 +39,10 @@ export default function TranscriptRev({
     useState<reviewsCompleteShape | null>(null);
   const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID);
   const [generatePeople, setGeneratePeople] = useState<boolean>(false);
-
+  const [codexState, setCodexState] = useState<boolean>(false)
   //////////////////////
   // set debug to 1 to see debug tools
-  const debug = 0;
+  const debug = 1;
   ///////////////////////////
 
   if (availableTranscripts != null && !reviewsComplete) {
@@ -105,6 +106,7 @@ export default function TranscriptRev({
   }
   return (
     <>
+      <CodexSidePanel codexState={codexState} codexStateSetter={setCodexState} />
       {reviewsComplete && (
         <TranscriptReviewSummary
           efficiency={reviewsComplete.effectivenessRating}
@@ -120,7 +122,7 @@ export default function TranscriptRev({
         </p>
 
         <SearchConsole />
-        <RegulationsCodex />
+
         {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
         <div id="top-container">
           {availableTranscripts && (
@@ -138,6 +140,7 @@ export default function TranscriptRev({
                   selectedSetter={setSelectedListItem}
                 />
               ))}
+              <li id='codex-button' onClick={()=>{setCodexState(true)}}>Regulatory Codex</li>
             </ol>
           )}
           {currentTranscript ? (
