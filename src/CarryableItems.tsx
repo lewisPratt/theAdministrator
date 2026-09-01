@@ -100,9 +100,12 @@ export const carryableItems: carryableItemsShape[] = [
   { itemComponent: <Puzzle />, legal: true , description: 'A single jigsaw piece'},
   { itemComponent: <Container />, legal: true , description: 'An empty cardboard box'},
   { itemComponent: <Paperclip />, legal: true , description: 'A paperclip'},
+  { itemComponent: <PillBottle />, legal: true , description: 'Prescription Pills in interviewee\'s name'},
+  { itemComponent: <PillBottle />, legal: true , description: 'Empty prescription pill bottle'},
 
 
 
+  { itemComponent: <PillBottle />, legal: false , description: 'Prescription Pills with label ripped off'},
   { itemComponent: <Disc3 />, legal: false , description: 'A disc containing pirated media'},
   { itemComponent: <Dices />, legal: false , description: 'Some loose dice'},
   { itemComponent: <SprayCan />, legal: false , description: 'A half empty spray can'},

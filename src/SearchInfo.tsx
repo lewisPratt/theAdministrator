@@ -1,8 +1,20 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { locations } from "./LocationGenerator";
 import { occupations } from "./OccupationGenerator";
-import type { carryableItemsShape, locationsShape, occupationsShape } from "./interfaces";
-import { ChevronDown, ChevronUp, LoaderCircle, X, MapPinned, HandCoins } from "lucide-react";
+import type {
+  carryableItemsShape,
+  locationsShape,
+  occupationsShape,
+} from "./interfaces";
+import {
+  ChevronDown,
+  ChevronUp,
+  LoaderCircle,
+  X,
+  MapPinned,
+  HandCoins,
+  Backpack,
+} from "lucide-react";
 import { useRef } from "react";
 import { carryableItems } from "./CarryableItems";
 interface searchResultShape {
@@ -10,11 +22,12 @@ interface searchResultShape {
   resultDistrict: number;
   resultLegality: boolean;
   resultType: string;
+  itemComponent: React.ReactElement | null
 }
 interface normalizedResultsShape {
-  name: string
-  district: number
-  category: string
+  name: string;
+  district: number;
+  category: string;
 }
 export default function SearchConsole() {
   const [searchResult, setSearchResult] = useState<searchResultShape[] | null>(
@@ -23,6 +36,13 @@ export default function SearchConsole() {
   const [searchLoadState, setSearchLoadState] = useState<boolean>(false);
   const [searchConsoleState, setSearchConsoleState] = useState<boolean>(false);
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
+  function shuffleResults(a: normalizedResultsShape[]) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+  }
 
   function debounceSearch(e: React.ChangeEvent<HTMLInputElement>) {
     if (searchDebounceRef.current) {
@@ -56,24 +76,32 @@ export default function SearchConsole() {
         let re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
         return item.name.match(re);
       });
-        const occupationResult: occupationsShape[] = occupations.filter(
+      const occupationResult: occupationsShape[] = occupations.filter(
         (item) => {
           let re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
           return item.name.match(re);
         },
       );
-      let locationSearchResults :normalizedResultsShape[] = []
-      let occupationSearchResults :normalizedResultsShape[] = []
+      let locationSearchResults: normalizedResultsShape[] = [];
+      let occupationSearchResults: normalizedResultsShape[] = [];
 
-      locationResult.forEach(location => {
-        locationSearchResults.push({name: location.name, district: location.district, category: 'location'})
+      locationResult.forEach((location) => {
+        locationSearchResults.push({
+          name: location.name,
+          district: location.district,
+          category: "location",
+        });
       });
-      occupationResult.forEach(location => {
-        occupationSearchResults.push({name: location.name, district: location.district, category: 'occupation'})
+      occupationResult.forEach((location) => {
+        occupationSearchResults.push({
+          name: location.name,
+          district: location.district,
+          category: "occupation",
+        });
       });
 
-      const allResults = [...locationSearchResults, ...occupationSearchResults]
-      
+      const allResults = [...locationSearchResults, ...occupationSearchResults];
+      shuffleResults(allResults)
 
       if (allResults) {
         allResults.forEach((result) => {
@@ -82,26 +110,28 @@ export default function SearchConsole() {
             resultDistrict: result.district,
             resultLegality: true,
             resultType: result.category,
+            itemComponent: null
           });
         });
       }
     }
-    //search for occupation
+    //search for items
     else if (searchType === "item") {
-      const occupationResult: carryableItemsShape[] = carryableItems.filter(
+      const itemResult: carryableItemsShape[] = carryableItems.filter(
         (item) => {
           let re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
           return item.description.match(re);
         },
       );
-      console.log(occupationResult)
-      if (occupationResult) {
-        occupationResult.forEach((occupation) => {
+      console.log(itemResult);
+      if (itemResult) {
+        itemResult.forEach((item) => {
           results.push({
-            resultName: occupation.description,
+            resultName: item.description,
             resultDistrict: 0,
-            resultLegality: occupation.legal,
+            resultLegality: item.legal,
             resultType: "item",
+            itemComponent: item.itemComponent
           });
         });
       }
@@ -135,7 +165,9 @@ export default function SearchConsole() {
               placeholder="Item name"
               data-search-type="item"
             ></input>
-            <label htmlFor="location-search">Location / Occupation Search</label>
+            <label htmlFor="location-search">
+              Location / Occupation Search
+            </label>
             <input
               id="location-search"
               className="search-input"
@@ -144,7 +176,11 @@ export default function SearchConsole() {
               placeholder="Location name"
               data-search-type="district"
             ></input>
-            <div id='search-key'> Search Key: <HandCoins size={18}/> = Occuaption <MapPinned size={18}/> = Location</div>
+            <div id="search-key">
+              {" "}
+              Search Key: <HandCoins size={18} /> = Occuaption{" "}
+              <MapPinned size={18} /> = Location 
+            </div>
           </div>
           <div id="search-result-container">
             {searchLoadState && (
@@ -154,9 +190,8 @@ export default function SearchConsole() {
             )}
             {searchResult && (
               <li id="search-results-header">
-                Returned {searchResult.length}{" "}
-                
-                result{searchResult.length > 1 && "s"}
+                Returned {searchResult.length} result
+                {searchResult.length > 1 && "s"}
               </li>
             )}
             <ul>
@@ -167,7 +202,14 @@ export default function SearchConsole() {
                       className="search-result-item"
                       key={item.resultName + item.resultDistrict}
                     >
-                      {(item.resultType === 'location' ? <MapPinned/> : <HandCoins /> )}{item.resultName} - District {item.resultDistrict}
+                      {item.resultType === "location" && <MapPinned />}{" "}
+                      {item.resultType === "occupation" && <HandCoins />}{" "}
+                      {item.resultType === "item" && item.itemComponent}
+                      {item.resultName} -{" "}
+                      {item.resultType === "item"
+                        ? "Status: " +
+                          (item.resultLegality ? "Legal" : "Illegal")
+                        : "District: " + item.resultDistrict}
                     </li>
                   );
                 })
