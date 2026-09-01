@@ -199,12 +199,12 @@ export default function SearchConsole() {
                 searchResult.map((item) => {
                   return (
                     <li
-                      className="search-result-item"
+                      className={"search-result-item "+(item.resultLegality && item.resultType === 'item' ? 'legal-item-result' :'')+ (!item.resultLegality && item.resultType === 'item' ? ' illegal-item-result' : '')}
                       key={item.resultName + item.resultDistrict}
                     >
                       {item.resultType === "location" && <MapPinned />}{" "}
                       {item.resultType === "occupation" && <HandCoins />}{" "}
-                      {item.resultType === "item" && item.itemComponent}
+                      {item.resultType === "item" && <span className='item-search-icon'>{item.itemComponent}</span>}
                       {item.resultName} -{" "}
                       {item.resultType === "item"
                         ? "Status: " +

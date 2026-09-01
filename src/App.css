@@ -397,16 +397,24 @@ h5 {
   display: flex;
   justify-content: space-between;
 }
+.legal-item-result{
+  background-color: lightgreen;
+}
+.illegal-item-result{
+  background-color: coral;
+}
 #search-key{
   font-size: .6rem;
     text-align: left;
 }
 .search-result-item:hover {
   padding: 8px;
-  background-color: rgb(231, 248, 254);
+  filter:hue-rotate(20deg)
 
 }
-
+.item-search-icon{
+  color:white;
+}
 #search-result-container>ul {
   padding: 0;
   margin: 0;
