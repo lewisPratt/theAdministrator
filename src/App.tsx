@@ -7,6 +7,7 @@ import TranscriptRev from "./TranscriptRev";
 import "./App.css";
 import ScoreTracker from "./ScoreTracker";
 import { LoaderCircle } from "lucide-react";
+import VoucherShop from "./VoucherShop";
 
 function App() {
   const [typedName, setTypedName] = useState<string>("");
@@ -78,6 +79,7 @@ function App() {
 
           <Routes>
             <Route path="/workDes" element={<WorkDes />} />
+            <Route path="/voucher-shop" element={<VoucherShop />} />
           </Routes>
         </BrowserRouter>
       </div>

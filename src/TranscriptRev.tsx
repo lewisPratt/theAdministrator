@@ -11,6 +11,7 @@ import SearchConsole from "./SearchInfo";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "./DebugTools";
 import CodexSidePanel from "./CodexSidePanel";
+import ItemGrid from "./ItemGrid";
 interface transcriptRevProps {
   adminNameSetter: Dispatch<SetStateAction<string | null>>;
   transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
@@ -98,7 +99,7 @@ export default function TranscriptRev({
   }
   function endShift(){
     //need to workout loop for end of shift
-    window.location.href = "";
+    window.location.href = "/voucher-shop";
   }
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -195,6 +196,7 @@ export default function TranscriptRev({
           </div>
         </div>
       </form>
+      <ItemGrid />
     </>
   );
 }

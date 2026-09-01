@@ -1,17 +1,16 @@
 import React, { useState, type Dispatch, type SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
-import { Map, DoorOpen, Backpack, CircleCheck, CircleX, X } from "lucide-react";
+import { Map, DoorOpen, Backpack, CircleCheck, CircleX, X, MapPinned } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
-import { NIL as NIL_UUID } from 'uuid';
-
+import { NIL as NIL_UUID } from "uuid";
 
 interface transcriptReviewBoxProps {
   transcript: reviewShape | null;
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
-  decisionSetter: Dispatch<SetStateAction<boolean>>
+  decisionSetter: Dispatch<SetStateAction<boolean>>;
   scoreSetter: Dispatch<SetStateAction<number>>;
-  selectedSetter: Dispatch<SetStateAction<string>>
+  selectedSetter: Dispatch<SetStateAction<string>>;
   scoreState: number;
 }
 //set to 1 to show debug info on weighting
@@ -20,13 +19,13 @@ const debug: number = 0;
 export default function TranscriptReviewBox({
   transcript,
   scoreSetter,
-  scoreState, 
-  reviewTranscriptSetter,selectedSetter,
-  decisionSetter
+  scoreState,
+  reviewTranscriptSetter,
+  selectedSetter,
+  decisionSetter,
 }: transcriptReviewBoxProps) {
-const [decisionMade, setDecisionMade] = useState<boolean>(false)
-const [closing, setClosing] = useState<boolean>(false)
-
+  const [decisionMade, setDecisionMade] = useState<boolean>(false);
+  const [closing, setClosing] = useState<boolean>(false);
 
   let recPassDesc: string = "";
   if (transcript?.recreationPass) {
@@ -36,20 +35,19 @@ const [closing, setClosing] = useState<boolean>(false)
   }
 
   //trigger adding of animation class to animate transcript leaving page.
-  function closeTranscript(){
-    setClosing(true)
+  function closeTranscript() {
+    setClosing(true);
   }
 
   //reset the state and show the 'no transcript selected' message
-  function handleAnimationEnd(e : React.AnimationEvent<HTMLDivElement>){
-    if(e.animationName === "transcript-slide-out"){
-        reviewTranscriptSetter(null)
-        selectedSetter(NIL_UUID)
+  function handleAnimationEnd(e: React.AnimationEvent<HTMLDivElement>) {
+    if (e.animationName === "transcript-slide-out") {
+      reviewTranscriptSetter(null);
+      selectedSetter(NIL_UUID);
     }
   }
   function handleDecision(e: React.MouseEvent<HTMLDivElement>) {
     if (transcript) {
-       
       const decision = e.currentTarget.dataset.decision;
       const personWeighting: number = transcript.overallWeighting;
       let decisionText = "";
@@ -91,7 +89,7 @@ const [closing, setClosing] = useState<boolean>(false)
             decisionText = "Non-compliant Citizen sent to Re-education";
             decisionOutcome = true;
           } else if (personWeighting > 0) {
-            console.log("reeducate good person")
+            console.log("reeducate good person");
             //person is good, negative consequences for wrong deision
             const wrongAnswer = 170;
             const newScore = scoreState - wrongAnswer;
@@ -119,7 +117,7 @@ const [closing, setClosing] = useState<boolean>(false)
         default:
           break;
       }
-      decisionSetter(prev =>!prev)
+      decisionSetter((prev) => !prev);
       transcript.processed = true;
       transcript.decision = decisionText;
       transcript.decisionOutcome = decisionOutcome;
@@ -128,7 +126,13 @@ const [closing, setClosing] = useState<boolean>(false)
   return (
     <>
       {transcript && (
-        <div className={("transcript-container ") + (!closing ? 'open-transcript-class' : 'slide-out-class')} onAnimationEnd={handleAnimationEnd}>
+        <div
+          className={
+            "transcript-container " +
+            (!closing ? "open-transcript-class" : "slide-out-class")
+          }
+          onAnimationEnd={handleAnimationEnd}
+        >
           <div
             id="weather-container"
             data-tooltip-id="item-desc"
@@ -136,13 +140,20 @@ const [closing, setClosing] = useState<boolean>(false)
           >
             {transcript.weather.icon}
           </div>
-          <h3>{transcript.interviewee.firstName} {transcript.interviewee.lastName}</h3>
+          <h3>
+            {transcript.interviewee.firstName} {transcript.interviewee.lastName}
+          </h3>
           <div className="interviewee-details">
-            <p>Occupation: {transcript.occupation.name} </p>
-            <p>Age: {transcript.age} | Gender: {transcript.gender.charAt(0).toUpperCase()+transcript.gender.slice(1)}</p>
+            <p>
+              <span className='review-box-section-header'>Age:</span> {transcript.age} | <span className='review-box-section-header'>Gender:</span>{" "}
+              {transcript.gender.charAt(0).toUpperCase() +
+                transcript.gender.slice(1)}
+            </p>
 
-            <p>Interview Location: {transcript.location.name}</p>
-            <p>Behaviour: {transcript.behaviour}</p>
+            <p><span className='review-box-section-header'>Occupation:</span> {transcript.occupation.name} </p>
+
+            <p><span className='review-box-section-header'>Interview Location:</span> {transcript.location.name}</p>
+            <p><span className='review-box-section-header'>Response to interview:</span> {transcript.behaviour}</p>
 
             {debug === 1 && (
               <>
@@ -160,9 +171,7 @@ const [closing, setClosing] = useState<boolean>(false)
             )}
           </div>
 
-          <div className="transcript-text">
-           {transcript.personFlavour}
-          </div>
+          <div className="transcript-text">{transcript.personFlavour}</div>
           <div className="passes-container">
             <div>
               <DoorOpen />
@@ -185,7 +194,7 @@ const [closing, setClosing] = useState<boolean>(false)
               </div>
             </div>
             <div>
-              <Map />
+              <MapPinned />
               <div className="location-pass-container ">
                 {transcript.authorizedLocations.map((loc) => {
                   const tooltipText = "District " + loc;
@@ -242,10 +251,7 @@ const [closing, setClosing] = useState<boolean>(false)
               </p>
             )}
           </div>
-          <div
-            id="transcript-close-button"
-            onClick={closeTranscript}
-          >
+          <div id="transcript-close-button" onClick={closeTranscript}>
             <X />
           </div>
         </div>
