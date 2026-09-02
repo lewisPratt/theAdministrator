@@ -98,7 +98,7 @@ export default function TranscriptRev() {
   }
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    e.currentTarget.reset();
+   
     switch (typedCommand) {
       case "[Exit]":
         setAvailableTranscripts(null);
@@ -108,6 +108,7 @@ export default function TranscriptRev() {
         setErrorState(false);
         break;
       default:
+         e.currentTarget.reset();
         setErrorState(true);
         break;
     }

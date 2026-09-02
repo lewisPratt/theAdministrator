@@ -54,7 +54,7 @@ function App() {
                   <Route path="/CommandCentre" element={<CommandCentre />} />
                   <Route path="/TranscriptReview" element={<TranscriptRev />} />
                   <Route path="/workDes" element={<WorkDes />} />
-                  <Route path="/voucher-shop" element={<VoucherShop />} />
+                  <Route path="/VoucherShop" element={<VoucherShop />} />
                 </Routes>
               </div>
             </ScoreContext>

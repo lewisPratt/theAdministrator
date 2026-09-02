@@ -25,6 +25,9 @@ useEffect(() => {
       case "[DesStart]":
         navigate("/workDes")
         break;
+      case "[Voucher]":
+        navigate("/VoucherShop")
+        break;
       case "[Review]":
         navigate("/TranscriptReview")
         break;

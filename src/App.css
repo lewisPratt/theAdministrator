@@ -590,6 +590,30 @@ REVIEW OVERLAY
   padding: 10px;
 }
 
+
+/*//////////////////////////////
+Voucher shop
+///////////////////////////*/
+#voucher-items-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+.voucher-box{
+  border:1px solid black;
+  height:100px;
+  width:100px;
+  margin:20px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
 @keyframes rotate-loader {
   to {
     rotate: 360deg;
