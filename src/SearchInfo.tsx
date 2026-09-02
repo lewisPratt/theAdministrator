@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { locations } from "./LocationGenerator";
-import { occupations } from "./OccupationGenerator";
+import { locations } from "./generator_modules/LocationGenerator";
+import { occupations } from "./generator_modules/OccupationGenerator";
 import type {
   carryableItemsShape,
   locationsShape,
@@ -14,7 +14,7 @@ import {
   HandCoins,
 } from "lucide-react";
 import { useRef } from "react";
-import { carryableItems } from "./CarryableItems";
+import { carryableItems } from "./generator_modules/CarryableItems";
 interface searchResultShape {
   resultName: string;
   resultDistrict: number;

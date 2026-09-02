@@ -1,7 +1,7 @@
 import { useState,useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "./AdminContext";
-import { ScoreContext } from "./ScoreContext";
+import { AdminContext } from "./context_providers/AdminContext";
+import { ScoreContext } from "./context_providers/ScoreContext";
 
 export default function Login() {
   const [typedName, setTypedName] = useState<string>("");

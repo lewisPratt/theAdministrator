@@ -1,5 +1,5 @@
 import { CloudFog, CloudHail, CloudRain, CloudSun, Sun, ThermometerSnowflake, Tornado, WavesVertical } from "lucide-react";
-import type { weatherShape } from "./interfaces";
+import type { weatherShape } from "../interfaces";
 
 const weatherConditions = [
   {weather : "Clear Skies", icon: <Sun />},

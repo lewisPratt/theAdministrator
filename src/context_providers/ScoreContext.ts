@@ -1,5 +1,5 @@
 import { createContext} from "react";
-import type { scoreContextShape } from "./interfaces";
+import type { scoreContextShape } from "../interfaces";
 
 
 

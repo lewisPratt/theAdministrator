@@ -8,8 +8,8 @@ import { LoaderCircle } from "lucide-react";
 import VoucherShop from "./VoucherShop";
 import CommandCentre from "./CommandCentre"
 import Login from "./Login"; 
-import { ScoreContext } from "./ScoreContext";
-import { AdminContext } from "./AdminContext";
+import { ScoreContext } from "./context_providers/ScoreContext";
+import { AdminContext } from "./context_providers/AdminContext";
 
 import type { Dispatch, SetStateAction } from "react";
 

@@ -2,7 +2,7 @@ import { useEffect, useState , useContext} from "react";
 import { LoaderCircle } from "lucide-react";
 import LeaveReq from "./LeaveReq";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "./AdminContext";
+import { AdminContext } from "./context_providers/AdminContext";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);

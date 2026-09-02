@@ -1,4 +1,4 @@
-import type { occupationsShape } from "./interfaces";
+import type { occupationsShape } from "../interfaces";
 
  export const occupations = [
   { name: "Data Courier", district: 12 },

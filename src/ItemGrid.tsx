@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { carryableItems, shuffleItems } from "./CarryableItems";
+import { carryableItems, shuffleItems } from "./generator_modules/CarryableItems";
 import { Tooltip } from "react-tooltip";
 import type { carryableItemsShape } from "./interfaces";
 

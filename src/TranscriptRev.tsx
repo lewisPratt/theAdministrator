@@ -11,7 +11,7 @@ import { LoaderCircle } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "./DebugTools";
 import CodexSidePanel from "./CodexSidePanel";
-import { ScoreContext } from "./ScoreContext";
+import { ScoreContext } from "./context_providers/ScoreContext";
 
 
 export default function TranscriptRev() {
@@ -104,7 +104,7 @@ export default function TranscriptRev() {
         setAvailableTranscripts(null);
         setCurrentTranscript(null);
         // transcriptRevSetter(false);
-        navigate('/comSec')
+        navigate('/CommandCentre')
         setErrorState(false);
         break;
       default:
