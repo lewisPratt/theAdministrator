@@ -1,5 +1,4 @@
 import type { Dispatch, SetStateAction } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
 interface CodexSidePanelProps {
   codexState: boolean;
   codexStateSetter: Dispatch<SetStateAction<boolean>>;

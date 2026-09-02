@@ -1,4 +1,4 @@
-import { useState,useContext, type SetStateAction, useEffect } from "react";
+import { useState,useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./AdminContext";
 import { ScoreContext } from "./ScoreContext";
@@ -6,7 +6,6 @@ import { ScoreContext } from "./ScoreContext";
 export default function Login() {
   const [typedName, setTypedName] = useState<string>("");
 //   const [adminName, setAdminName] = useState<string | null>(null);
-  const [loadingState, setLoadingState] = useState<boolean>(false);
 
   const {adminName, setAdminName} = useContext(AdminContext)
   const {scoreState, setScoreState} = useContext(ScoreContext)

@@ -1,6 +1,6 @@
 import React, { useState, type Dispatch, type SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
-import { Map, DoorOpen, Backpack, CircleCheck, CircleX, X, MapPinned } from "lucide-react";
+import { DoorOpen, Backpack, CircleCheck, CircleX, X, MapPinned } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 import { NIL as NIL_UUID } from "uuid";
@@ -24,7 +24,6 @@ export default function TranscriptReviewBox({
   selectedSetter,
   decisionSetter,
 }: transcriptReviewBoxProps) {
-  const [decisionMade, setDecisionMade] = useState<boolean>(false);
   const [closing, setClosing] = useState<boolean>(false);
 
   let recPassDesc: string = "";

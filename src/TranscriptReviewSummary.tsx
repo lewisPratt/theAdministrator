@@ -1,5 +1,3 @@
-import type { Dispatch, SetStateAction } from "react";
-import type { reviewsCompleteShape, reviewShape } from "./interfaces";
 
 interface summaryProps {
   efficiency: number;

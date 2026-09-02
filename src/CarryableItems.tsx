@@ -2,7 +2,6 @@ import type { carryableItemsShape } from "./interfaces";
 import {
   Smartphone,
   Wallet,
-  Key,
   Watch,
   Glasses,
   Camera,

@@ -1,15 +1,13 @@
-import React, { useState, type InputHTMLAttributes } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import  { useState } from "react";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import WorkDes from "./WorkDes";
 import TranscriptRev from "./TranscriptRev";
 import "./App.css";
 import ScoreTracker from "./ScoreTracker";
 import { LoaderCircle } from "lucide-react";
 import VoucherShop from "./VoucherShop";
-import { Outlet } from "react-router-dom";
 import CommandCentre from "./CommandCentre"
 import Login from "./Login"; 
-import { createContext } from "react";
 import { ScoreContext } from "./ScoreContext";
 import { AdminContext } from "./AdminContext";
 
@@ -34,27 +32,7 @@ function App() {
   
   const adminContextValue : adminContextShape = {adminName, setAdminName}
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
-  // function setAdmin(name: string) {
-  //   setLoadingState(false);
-  //   setAdminName(name);
-  // }
 
-  //   function setAdmin(name: string) {
-  //   setLoadingState(false);
-
-  //   window.location.href = '/comSec/'+name
-  // }
-  // //sets app to logged in state and sets admin name
-  // function doLogin(e: React.SubmitEvent<HTMLFormElement>) {
-  //   e.preventDefault();
-  //   if (typedName) {
-  //     setAdminName(typedName);
-  //     setLoadingState(true);
-  //     setTimeout(setAdmin, 1000, typedName);
-  //   } else {
-  //     //no name entered so do nothing or show error
-  //   }
-  // }
   return (
     <>
       <nav>

@@ -10,10 +10,8 @@ import {
   ChevronDown,
   ChevronUp,
   LoaderCircle,
-  X,
   MapPinned,
   HandCoins,
-  Backpack,
 } from "lucide-react";
 import { useRef } from "react";
 import { carryableItems } from "./CarryableItems";
