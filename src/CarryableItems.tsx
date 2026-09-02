@@ -86,7 +86,7 @@ export const carryableItems: carryableItemsShape[] = [
   { itemComponent: <Origami />, legal: true , description: 'An origami swan'},
   { itemComponent: <ChessPawn />, legal: true , description: 'A loose chess pawn.'},
   { itemComponent: <Candy />, legal: true , description: 'Loose candies'},
-  { itemComponent: <Hamburger />, legal: true , description: 'A cold Hamburger'},
+  { itemComponent: <Hamburger />, legal: true , description: 'A stale, slightly mouldy hamburger'},
   { itemComponent: <PaperBag />, legal: true , description: 'An empty lunch bag'},
   { itemComponent: <Pizza />, legal: true , description: 'A cold slice of pizza'},
   { itemComponent: <Sandwich />, legal: true , description: 'A gross looking sandwich'},

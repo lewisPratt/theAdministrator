@@ -1,36 +1,24 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useContext, useEffect, useState } from "react";
 import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
 import TranscriptReviewSummary from "./TranscriptReviewSummary";
 import { NIL as NIL_UUID } from "uuid";
 import { person } from "./classes";
-import type { reviewShape, reviewsCompleteShape } from "./interfaces";
-
+import type { reviewShape, reviewsCompleteShape,scoreContextShape } from "./interfaces";
+import {useNavigate } from "react-router-dom";
 import SearchConsole from "./SearchInfo";
-
+import { LoaderCircle } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "./DebugTools";
 import CodexSidePanel from "./CodexSidePanel";
-import ItemGrid from "./ItemGrid";
-interface transcriptRevProps {
-  adminNameSetter: Dispatch<SetStateAction<string | null>>;
-  transcriptRevSetter: Dispatch<SetStateAction<boolean>>;
-  scoreSetter: Dispatch<SetStateAction<number>>;
-  scoreState: number;
-  loadingStateSetter: Dispatch<SetStateAction<boolean>>;
-}
+import { ScoreContext } from "./ScoreContext";
 
-export default function TranscriptRev({
-  scoreSetter,
-  scoreState,
-  transcriptRevSetter,
-  loadingStateSetter,
-}: transcriptRevProps) {
+
+export default function TranscriptRev() {
   const [typedCommand, setTypedCommand] = useState<string>("");
   const [errorState, setErrorState] = useState<boolean>(false);
   const [availableTranscripts, setAvailableTranscripts] = useState<
-    reviewShape[] | null
-  >(null);
+    reviewShape[] | null>(null);
   const [currentTranscript, setCurrentTranscript] =
     useState<reviewShape | null>(null);
   //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
@@ -41,6 +29,9 @@ export default function TranscriptRev({
   const [generatePeople, setGeneratePeople] = useState<boolean>(false);
   const [codexState, setCodexState] = useState<boolean>(false)
   const [targetState, setTargetState] = useState<boolean>(false)
+  const [loadingState, setLoadingState] = useState<boolean>(true)
+  const {scoreState, setScoreState} :scoreContextShape = useContext(ScoreContext)
+  const navigate = useNavigate()
   //////////////////////
   // set debug to 1 to see debug tools
   const debug = 0;
@@ -80,11 +71,14 @@ export default function TranscriptRev({
       transcriptsArray.push(newPerson);
     }
     setAvailableTranscripts(transcriptsArray);
+        setTimeout(setLoadingState, 2000, false);
+
   }, [generatePeople]);
 
   function loadNewShift(reason:string) {
-    loadingStateSetter(true);
+    // loadingStateSetter(true);
     if(reason === 'new'){
+        setLoadingState(true)
     setTimeout(startNewShift, 1000);
     }
     else if(reason === 'end'){
@@ -92,14 +86,15 @@ export default function TranscriptRev({
     }
   }
   function startNewShift() {
-    loadingStateSetter(false);
+    setLoadingState(false);
     setAvailableTranscripts(null);
     setReviewsComplete(null);
+    setCurrentTranscript(null)
     setGeneratePeople((prev) => !prev);
   }
   function endShift(){
     //need to workout loop for end of shift
-    window.location.href = "/voucher-shop";
+    navigate("/voucher-shop")
   }
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -108,7 +103,8 @@ export default function TranscriptRev({
       case "[Exit]":
         setAvailableTranscripts(null);
         setCurrentTranscript(null);
-        transcriptRevSetter(false);
+        // transcriptRevSetter(false);
+        navigate('/comSec')
         setErrorState(false);
         break;
       default:
@@ -117,8 +113,15 @@ export default function TranscriptRev({
     }
   }
   return (
-    <>
+     <>
+      {loadingState ? (
+        <p>
+          <LoaderCircle className="loader" />
+        </p>
+      ) : (
+        <>
       <CodexSidePanel codexState={codexState} codexStateSetter={setCodexState} />
+      
       {reviewsComplete && (
         <TranscriptReviewSummary
           efficiency={reviewsComplete.effectivenessRating}
@@ -127,6 +130,7 @@ export default function TranscriptRev({
           targetState={targetState}
         />
       )}
+      
       <section id="transcript-review">
         <h2>Transcript Review</h2>
         <p id="reminder-p">
@@ -160,7 +164,7 @@ export default function TranscriptRev({
             <TranscriptReviewBox
               reviewTranscriptSetter={setCurrentTranscript}
               transcript={currentTranscript}
-              scoreSetter={scoreSetter}
+              scoreSetter={setScoreState}
               scoreState={scoreState}
               decisionSetter={setDecisionMade}
               selectedSetter={setSelectedListItem}
@@ -196,7 +200,8 @@ export default function TranscriptRev({
           </div>
         </div>
       </form>
-      <ItemGrid />
-    </>
-  );
-}
+      
+      </>)}
+    
+</>
+)}

@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from "react";
 
 export interface reviewShape {
   interviewee: nameShape;
@@ -46,4 +47,9 @@ export interface nameShape{
 export interface reviewsCompleteShape {
   numberComplete: number;
   effectivenessRating: number;
+}
+
+export interface scoreContextShape{
+    scoreState: number
+    setScoreState: Dispatch<SetStateAction<number>> 
 }

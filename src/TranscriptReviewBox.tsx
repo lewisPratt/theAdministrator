@@ -48,6 +48,7 @@ export default function TranscriptReviewBox({
   }
   function handleDecision(e: React.MouseEvent<HTMLDivElement>) {
     if (transcript) {
+      console.log(scoreState)
       const decision = e.currentTarget.dataset.decision;
       const personWeighting: number = transcript.overallWeighting;
       let decisionText = "";

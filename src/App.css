@@ -181,7 +181,9 @@ h5 {
   margin: 20px;
   color: red;
 }
-
+#transcript-review{
+  width:100%;
+}
 #transcript-review>p {
   margin: 20px;
 }
