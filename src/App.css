@@ -63,6 +63,20 @@ label {
 
 }
 
+.grid-bg {
+  --color: #E1E1E1;
+  background-color: #FFFFFF;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+  background-size: 25px 25px;
+}
+
+.striped-bg {
+ 
+  background: repeating-linear-gradient(45deg, #eeeeee, #eeeeee 10px, #f4f5f5 10px, #f4f5f5 20px);
+
+}
+
 nav {
   display: flex;
   justify-content: flex-end;
@@ -642,6 +656,7 @@ Inbox
 #inbox-header {
   padding: 3px 10px;
   border-bottom: 1px solid black;
+  overflow:hidden;
 }
 
 #inbox-content {
@@ -655,6 +670,8 @@ Inbox
   flex-direction: column;
   flex-basis: 200px;
   border-right: 2px solid black;
+  overflow-y:scroll;
+  max-height:600px;
 }
 
 #inbox-sidebar ul {
@@ -669,22 +686,53 @@ Inbox
   display: block;
   border-bottom: 1px solid black;
   height: 50px;
+  background-color: #FFFFFF;
 }
-#inbox-sidebar li:hover{
-background-color: #e8e8e4;
-cursor: pointer;
+#inbox-sidebar #message-check-button{
+  height:fit-content;
+  background-color: lightblue;
+  text-align: center;
+  margin:10px;
+  border:2px solid black;
 }
-#inbox-message-viewer{
-  padding:20px;
-  flex-basis:700px;
+#inbox-sidebar #message-check-button:hover{
+  background-color: rgb(144, 179, 191);
 }
-.sender-name{
-  margin-top:50px;
+#inbox-sidebar li:hover {
+  background-color: #e8e8e4;
+  cursor: pointer;
+}
+
+#inbox-message-viewer {
+  padding: 20px;
+  flex-basis: 700px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#inbox-message-viewer>h3>span {
+  font-weight: 100;
+}
+
+.sender-name {
+  margin-top: 50px;
   font-weight: bolder;
   font-size: .8rem;
 }
 
+.email-para {
+  margin-top: 30px;
+}
 
+.email-body-p {
+  margin-top: 15px;
+  line-height: 1.2rem;
+}
+
+.bold {
+  font-weight: bolder;
+  text-decoration: underline;
+}
 
 @keyframes rotate-loader {
   to {
