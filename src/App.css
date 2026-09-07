@@ -181,9 +181,11 @@ h5 {
   margin: 20px;
   color: red;
 }
-#transcript-review{
-  width:100%;
+
+#transcript-review {
+  width: 100%;
 }
+
 #transcript-review>p {
   margin: 20px;
 }
@@ -399,24 +401,29 @@ h5 {
   display: flex;
   justify-content: space-between;
 }
-.legal-item-result{
+
+.legal-item-result {
   background-color: lightgreen;
 }
-.illegal-item-result{
+
+.illegal-item-result {
   background-color: coral;
 }
-#search-key{
+
+#search-key {
   font-size: .6rem;
-    text-align: left;
+  text-align: left;
 }
+
 .search-result-item:hover {
   padding: 8px;
-  filter:hue-rotate(20deg)
+  filter: hue-rotate(20deg)
+}
 
+.item-search-icon {
+  color: white;
 }
-.item-search-icon{
-  color:white;
-}
+
 #search-result-container>ul {
   padding: 0;
   margin: 0;
@@ -594,24 +601,89 @@ REVIEW OVERLAY
 /*//////////////////////////////
 Voucher shop
 ///////////////////////////*/
-#voucher-items-container{
-  display:flex;
+#voucher-items-container {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
 
 }
-.voucher-box{
-  border:1px solid black;
-  height:100px;
-  width:100px;
-  margin:20px;
-  display:flex;
+
+.voucher-box {
+  border: 1px solid black;
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+
+
+/*//////////////////////////////
+Inbox
+////////////////////////*/
+
+#inbox-parent {
+  min-height: 600px;
+  border: 2px solid black;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+#inbox-parent h2 {
+  margin: 0;
+}
+
+#inbox-header {
+  padding: 3px 10px;
+  border-bottom: 1px solid black;
+}
+
+#inbox-content {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+#inbox-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 200px;
+  border-right: 2px solid black;
+}
+
+#inbox-sidebar ul {
+  margin: 0;
+  padding: 0;
+}
+
+#inbox-sidebar li {
+  padding: 20px;
+  margin: 0;
+  list-style: none;
+  display: block;
+  border-bottom: 1px solid black;
+  height: 50px;
+}
+#inbox-sidebar li:hover{
+background-color: #e8e8e4;
+cursor: pointer;
+}
+#inbox-message-viewer{
+  padding:20px;
+  flex-basis:700px;
+}
+.sender-name{
+  margin-top:50px;
+  font-weight: bolder;
+  font-size: .8rem;
+}
+
 
 
 @keyframes rotate-loader {

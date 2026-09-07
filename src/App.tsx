@@ -12,6 +12,7 @@ import { ScoreContext } from "./context_providers/ScoreContext";
 import { AdminContext } from "./context_providers/AdminContext";
 
 import type { Dispatch, SetStateAction } from "react";
+import Inbox from "./Inbox";
 
 interface scoreContextShape {
   scoreState: number;
@@ -55,6 +56,7 @@ function App() {
                   <Route path="/TranscriptReview" element={<TranscriptRev />} />
                   <Route path="/workDes" element={<WorkDes />} />
                   <Route path="/VoucherShop" element={<VoucherShop />} />
+                  <Route path="/Inbox" element={<Inbox />}/>
                 </Routes>
               </div>
             </ScoreContext>

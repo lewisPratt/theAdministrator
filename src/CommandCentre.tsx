@@ -1,4 +1,4 @@
-import { useEffect, useState , useContext} from "react";
+import { useEffect, useState, useContext } from "react";
 import { LoaderCircle } from "lucide-react";
 import LeaveReq from "./LeaveReq";
 import { useNavigate } from "react-router-dom";
@@ -9,27 +9,29 @@ export default function CommandCentre() {
   const [typedCommand, setTypedCommand] = useState<string>("");
   const [leaveReq, setLeaveReq] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<boolean>(false);
-  const {adminName, setAdminName} = useContext(AdminContext)
- 
-const navigate = useNavigate();
+  const { adminName, setAdminName } = useContext(AdminContext);
 
-//turn off loading indicator after set interval
-useEffect(() => {
-  setTimeout(setLoadingState, 2000, false);
-}, []);
+  const navigate = useNavigate();
 
+  //turn off loading indicator after set interval
+  useEffect(() => {
+    setTimeout(setLoadingState, 2000, false);
+  }, []);
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     switch (typedCommand) {
       case "[DesStart]":
-        navigate("/workDes")
+        navigate("/workDes");
         break;
       case "[Voucher]":
-        navigate("/VoucherShop")
+        navigate("/VoucherShop");
         break;
       case "[Review]":
-        navigate("/TranscriptReview")
+        navigate("/TranscriptReview");
+        break;
+      case "[Inbox]":
+        navigate("/Inbox");
         break;
       case "[LeaveReq]":
         setLeaveReq(true);
@@ -37,7 +39,7 @@ useEffect(() => {
         e.currentTarget.reset();
         break;
       case "[Exit]":
-        navigate('/')
+        navigate("/");
         break;
       default:
         setErrorState(true);
@@ -86,6 +88,12 @@ useEffect(() => {
             </div>
             <div className="command-container">
               <p>Review interview transcripts.</p> <p>[Review]</p>
+            </div>
+            <div className="command-container">
+              <p>Voucher Terminal</p> <p>[Voucher]</p>
+            </div>
+            <div className="command-container">
+              <p>Inbox</p> <p>[Inbox]</p>
             </div>
             <div className="command-container">
               <p>Request leave.</p> <p>[LeaveReq]</p>
