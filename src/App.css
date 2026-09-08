@@ -81,6 +81,7 @@ nav {
   display: flex;
   justify-content: flex-end;
   margin-top: 25px;
+  align-items: center;
 }
 
 input[type=text]:focus {
@@ -95,7 +96,10 @@ label {
 form {
   text-align: left;
   width: 100%;
+  margin:0;
+
 }
+
 
 h1 {
   font-family: monospace;
@@ -132,8 +136,8 @@ h5 {
 #main-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-end;
   flex: 1;
   width: 100%;
 
@@ -142,6 +146,10 @@ h5 {
 
 #content-container {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex:1;
 }
 
 #login {
@@ -176,7 +184,7 @@ h5 {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 20px;
+  margin-right:50px;
 }
 
 .command-container {
@@ -733,7 +741,20 @@ Inbox
   font-weight: bolder;
   text-decoration: underline;
 }
-
+#nav-text-input{
+  height:25px;
+  border:1px solid #C4C4C0;
+}
+#nav-submit-button{
+  height:29px;
+  width:70px;
+  border:1px solid #C4C4C0;
+  border-left:none;
+  line-height:2.3rem;
+}
+#nav-form{
+    display:flex;
+}
 @keyframes rotate-loader {
   to {
     rotate: 360deg;
