@@ -761,6 +761,13 @@ Inbox
 /*
 NAV styling
 */
+#slug-p{
+  margin-right:20px;
+  font-size:.7rem;
+}
+#slug-p>span{
+  font-style: italic;
+}
 #nav-text-input {
   height: 25px;
   border: 1px solid #C4C4C0;

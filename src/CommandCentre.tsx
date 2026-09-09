@@ -3,7 +3,7 @@ import { ChevronRightCircle, LoaderCircle } from "lucide-react";
 import LeaveReq from "./LeaveReq";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
-import NewMessage from "./NewMessage";
+import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -11,7 +11,7 @@ export default function CommandCentre() {
   const [leaveReq, setLeaveReq] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<boolean>(false);
   const { adminName, setAdminName } = useContext(AdminContext);
-
+  const {currentSlug, setCurrentSlug} = useContext(CurrentSlugContext)
   const navigate = useNavigate();
 
   //turn off loading indicator after set interval
@@ -24,15 +24,19 @@ export default function CommandCentre() {
     switch (typedCommand) {
       case "nav.work":
         navigate("/workDes");
+        setCurrentSlug("nav.work")
         break;
       case "nav.voucher":
         navigate("/VoucherShop");
+        setCurrentSlug("nav.voucher")
         break;
       case "nav.review":
         navigate("/TranscriptReview");
+        setCurrentSlug("nav.review")
         break;
       case "nav.inbox":
         navigate("/Inbox");
+        setCurrentSlug("nav.inbox")
         break;
       case "request.leave":
         setLeaveReq(true);

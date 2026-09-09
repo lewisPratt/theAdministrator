@@ -1,4 +1,4 @@
-import { useState, type JSX , useEffect} from "react";
+import { useState, type JSX, useEffect } from "react";
 import spamEmails from "./generator_modules/emailsGenerator";
 import { LoaderCircle } from "lucide-react";
 
@@ -33,7 +33,6 @@ const emails = [
           this decision.
         </p>
         <p className="email-body-p bold">
-          {" "}
           Correctly aligning with the System's appraisal of the Citizen will
           earn you credits, which can be exchanged in the Voucher Terminal.
         </p>
@@ -51,7 +50,7 @@ const emails = [
     message: (
       <>Select a message in the sidebar to read recently received messages</>
     ),
-    sender: "central Admin",
+    sender: "Central Admin",
   },
 ];
 
@@ -67,10 +66,10 @@ export default function Inbox() {
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(true);
 
-   //turn off loading indicator after set interval
-    useEffect(() => {
-      setTimeout(setLoadingState, 2000, false);
-    }, []);
+  //turn off loading indicator after set interval
+  useEffect(() => {
+    setTimeout(setLoadingState, 2000, false);
+  }, []);
 
   function startRefresh() {
     if (!refreshing) {
@@ -98,73 +97,74 @@ export default function Inbox() {
   }
 
   return (
-     <>
+    <>
       {loadingState ? (
         <p>
           <LoaderCircle className="loader" />
         </p>
       ) : (
-    <section id="inbox-parent">
-      <div id="inbox-header" className="striped-bg">
-        <h2>Worker inbox</h2>
-      </div>
-      <div id="inbox-content">
-        <div id="inbox-sidebar" className="grid-bg">
-          <ul>
-            <li
-              onClick={() => {
-                setActiveEmail(emails[0]);
-              }}
-            >
-              Welcome to yo...
-            </li>
-            <li
-              onClick={() => {
-                setActiveEmail(emails[1]);
-              }}
-            >
-              Do not igno...
-            </li>
-            {extraMail &&
-              extraMail.map((mail) => {
-                return (
-                  <li
-                    onClick={() => {
-                      setActiveEmail(mail);
-                    }}
-                  >
-                    {mail.title}
-                  </li>
-                );
-              })}
-            {refreshing && <LoaderCircle className="loader" />}
-            <li onClick={startRefresh} id="message-check-button">
-              Refresh Inbox
-            </li>
-          </ul>
-        </div>
-        <div id="inbox-message-viewer">
-          {activeEmail && (
-            <>
-              <h3>
-                Subject: <span>{activeEmail.title}</span>
-              </h3>
-              <div className="email-para">
-                <span className="sender-name">
-                  Message: <br />
-                  <br />
-                </span>
-                {activeEmail.message}
-              </div>
-              <p className="email-para">
-                <span className="sender-name">Sender: </span>
-                {activeEmail.sender}
-              </p>
-            </>
-          )}
-        </div>
-      </div>
-    </section>
-      )}</>
+        <section id="inbox-parent">
+          <div id="inbox-header" className="striped-bg">
+            <h2>Worker inbox</h2>
+          </div>
+          <div id="inbox-content">
+            <div id="inbox-sidebar" className="grid-bg">
+              <ul>
+                <li
+                  onClick={() => {
+                    setActiveEmail(emails[0]);
+                  }}
+                >
+                  Welcome to yo...
+                </li>
+                <li
+                  onClick={() => {
+                    setActiveEmail(emails[1]);
+                  }}
+                >
+                  Do not igno...
+                </li>
+                {extraMail &&
+                  extraMail.map((mail) => {
+                    return (
+                      <li
+                        onClick={() => {
+                          setActiveEmail(mail);
+                        }}
+                      >
+                        {mail.title}
+                      </li>
+                    );
+                  })}
+                {refreshing && <LoaderCircle className="loader" />}
+                <li onClick={startRefresh} id="message-check-button">
+                  Refresh Inbox
+                </li>
+              </ul>
+            </div>
+            <div id="inbox-message-viewer">
+              {activeEmail && (
+                <>
+                  <h3>
+                    Subject: <span>{activeEmail.title}</span>
+                  </h3>
+                  <div className="email-para">
+                    <span className="sender-name">
+                      Message: <br />
+                      <br />
+                    </span>
+                    {activeEmail.message}
+                  </div>
+                  <p className="email-para">
+                    <span className="sender-name">Sender: </span>
+                    {activeEmail.sender}
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }

@@ -176,31 +176,7 @@ export default function TranscriptRev() {
         </div>
       </section>
 
-      <form onSubmit={handleCommand}>
-        {errorState && <p>Command Not recognized.</p>}
-
-        <div id="command-input-container">
-          <input
-            type="text"
-            placeholder="[Command]"
-            id="transcript-rev-command"
-            name="command"
-            autoComplete="off"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setTypedCommand(e.currentTarget.value);
-            }}
-          ></input>
-          <button id="login-submit-button">@</button>
-        </div>
-        <div className="commands-container">
-          <div className="command-container">
-            <p>Exit.</p> <p>[Exit]</p>
-          </div>
-          <div className="command-container">
-            <p>Available Commands.</p> <p>[Help]</p>
-          </div>
-        </div>
-      </form>
+      
       
       </>)}
     

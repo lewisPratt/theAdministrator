@@ -1,10 +1,18 @@
 import { ChevronRightCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction, useContext } from "react";
+import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 
-export default function CommandInput() {
+interface CommandInputProps{
+    adminNameSetter: Dispatch<SetStateAction<string>>
+  
+}
+
+export default function CommandInput({adminNameSetter} : CommandInputProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
     const [errorState, setErrorState] = useState<string | null>(null)
+    const {currentSlug, setCurrentSlug} = useContext(CurrentSlugContext)
+
   const navigate = useNavigate();
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
@@ -13,23 +21,32 @@ export default function CommandInput() {
     switch (typedCommand) {
       case "nav.work":
         navigate("/workDes");
+        setCurrentSlug("nav.work")
          resetInput(e)
         break;
       case "nav.voucher":
         navigate("/VoucherShop");
+        setCurrentSlug("nav.voucher")
         resetInput(e)
         break;
       case "nav.review":
         navigate("/TranscriptReview");
+        setCurrentSlug("nav.review")
          resetInput(e)
         break;
       case "nav.inbox":
         navigate("/Inbox");
+        setCurrentSlug("nav.inbox")
          resetInput(e)
         break;
-      case "nav.exit":
+      case "nav.terminal":
         navigate("/CommandCentre");
+        setCurrentSlug("nav.terminal")
          resetInput(e)
+        break;
+        case "nav.logout":
+        adminNameSetter("")
+        navigate("/");
         break;
       default:
         resetInput(e)

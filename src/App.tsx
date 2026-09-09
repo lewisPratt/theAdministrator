@@ -14,6 +14,8 @@ import type { Dispatch, SetStateAction } from "react";
 import Inbox from "./Inbox";
 import CommandInput from "./CommandInput";
 import NewMessage from "./NewMessage";
+import CurrentSlug from "./CurrentSlug";
+import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 interface scoreContextShape {
   scoreState: number;
   setScoreState: Dispatch<SetStateAction<number>>;
@@ -22,6 +24,11 @@ interface adminContextShape {
   adminName: string;
   setAdminName: Dispatch<SetStateAction<string>>;
 }
+interface currentSlugShape {
+  currentSlug: string;
+  setCurrentSlug: Dispatch<SetStateAction<string>>;
+}
+
 
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
@@ -31,9 +38,11 @@ function App() {
   // const [transcriptRev, setTranscriptRev] = useState<boolean>(false);
   const [scoreState, setScoreState] = useState<number>(0);
   const [instructionsPrompt, setInstructionsPrompt] = useState<boolean>(true);
+  const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal")
 
   const adminContextValue: adminContextShape = { adminName, setAdminName };
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
+  const currentSlugContextValue: currentSlugShape = { currentSlug, setCurrentSlug };
 
   //if user dismissed the message notification then logged out and logged back in, show the message notification again
   //ensures a consistent approach if user logs out and back in with the same or different username.
@@ -53,12 +62,14 @@ function App() {
               <LoaderCircle className="loader" />
             </p>
           ) : (
+            <CurrentSlugContext value={currentSlugContextValue}>
             <AdminContext value={adminContextValue}>
               <ScoreContext value={scoreContextValue}>
                 <nav>
                   {adminName != "" && (
                     <>
-                      <CommandInput />
+                      <CurrentSlug pageName={currentSlug} />
+                      <CommandInput adminNameSetter={setAdminName} />
                       <ScoreTracker scoreState={scoreState} />
                     </>
                   )}
@@ -81,6 +92,7 @@ function App() {
                 </div>
               </ScoreContext>
             </AdminContext>
+            </CurrentSlugContext>
           )}
         </BrowserRouter>
       </div>
