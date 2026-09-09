@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { LoaderCircle } from "lucide-react";
+import { ChevronRightCircle, LoaderCircle } from "lucide-react";
 import LeaveReq from "./LeaveReq";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
@@ -22,24 +22,24 @@ export default function CommandCentre() {
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     switch (typedCommand) {
-      case "[DesStart]":
+      case "nav.work":
         navigate("/workDes");
         break;
-      case "[Voucher]":
+      case "nav.voucher":
         navigate("/VoucherShop");
         break;
-      case "[Review]":
+      case "nav.review":
         navigate("/TranscriptReview");
         break;
-      case "[Inbox]":
+      case "nav.inbox":
         navigate("/Inbox");
         break;
-      case "[LeaveReq]":
+      case "request.leave":
         setLeaveReq(true);
         setErrorState(false);
         e.currentTarget.reset();
         break;
-      case "[Exit]":
+      case "nav.logout":
         setAdminName("")
         navigate("/");
         break;
@@ -67,19 +67,19 @@ export default function CommandCentre() {
                 What would you like to do today?
               </label>
             </div>
-            <div id="command-input-container">
+            <div id="command-centre-input-container">
               <input
                 autoFocus
                 type="text"
                 placeholder="[Command]"
-                id="comsec-command"
+                id="command-centre-input"
                 name="command"
                 autoComplete="off"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setTypedCommand(e.currentTarget.value);
                 }}
               ></input>
-              <button id="login-submit-button">@</button>
+              <button id="command-centre-submit-button"><ChevronRightCircle size={28}/></button>
             </div>
           </form>
           {leaveReq && <LeaveReq />}
@@ -87,25 +87,25 @@ export default function CommandCentre() {
           <p>Available commands:</p>
           <div className="commands-container">
             <div className="command-container">
-              <p>Start work designation.</p> <p>[DesStart]</p>
+              <p>Start work designation.</p> <p>nav.work</p>
             </div>
             <div className="command-container">
-              <p>Review interview transcripts.</p> <p>[Review]</p>
+              <p>Review interview transcripts.</p> <p>nav.review</p>
             </div>
             <div className="command-container">
-              <p>Voucher Terminal</p> <p>[Voucher]</p>
+              <p>Voucher Terminal</p> <p>nav.voucher</p>
             </div>
             <div className="command-container">
-              <p>Inbox</p> <p>[Inbox]</p>
+              <p>Inbox</p> <p>nav.inbox</p>
             </div>
             <div className="command-container">
-              <p>Request leave.</p> <p>[LeaveReq]</p>
+              <p>Request leave.</p> <p>request.leave</p>
             </div>
             <div className="command-container">
-              <p>Exit.</p> <p>[Exit]</p>
+              <p>Logout.</p> <p>nav.logout</p>
             </div>
             <div className="command-container">
-              <p>Available Commands.</p> <p>[Help]</p>
+              <p>Available Commands.</p> <p>request.help</p>
             </div>
           </div>
         </section>

@@ -756,9 +756,16 @@ Inbox
   text-decoration: underline;
 }
 
+
+
+/*
+NAV styling
+*/
 #nav-text-input {
   height: 25px;
   border: 1px solid #C4C4C0;
+  padding: 1px 10px;
+  font-family: monospace;
 }
 
 #nav-submit-button {
@@ -772,7 +779,6 @@ Inbox
 #nav-form {
   display: flex;
 }
-
 #new-message-container {
   border: 1px solid black;
   width: fit-content;
@@ -781,8 +787,8 @@ Inbox
   translate: -50% 100px;
   left: 50%;
   top: 0;
+  background-color: #FFFFFF;
 }
-
 .new-message-entrance {
   animation: opacity-slide-in;
   animation-duration: 2s;
@@ -804,9 +810,44 @@ Inbox
   right: 0;
   cursor: pointer;
 }
-#notification-text-container{
+
+#notification-text-container {
   cursor: pointer;
 }
+
+
+/*
+Command centre input
+*/
+#command-centre-input {
+  height: 40px;
+  border: 1px solid #C4C4C0;
+  width:80%;
+  padding:10px;
+  font-size:1.2rem;
+  font-family: monospace;
+}
+
+#command-centre-submit-button {
+  height: 62px;
+  width: 70px;
+  border: 1px solid #C4C4C0;
+  border-left: none;
+  line-height: 4.5rem;
+}
+
+#command-centre-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin:50px 0;
+}
+
+
+
+
+
 @keyframes opacity-slide-in {
   0% {
     opacity: 0;
@@ -815,7 +856,7 @@ Inbox
 
   100% {
     opacity: 1;
-    translate:-50% 100px
+    translate: -50% 100px
   }
 }
 

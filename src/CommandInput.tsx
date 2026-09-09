@@ -11,28 +11,23 @@ export default function CommandInput() {
     e.preventDefault();
 
     switch (typedCommand) {
-      case "[DesStart]":
+      case "nav.work":
         navigate("/workDes");
          resetInput(e)
         break;
-      case "[Voucher]":
+      case "nav.voucher":
         navigate("/VoucherShop");
         resetInput(e)
         break;
-      case "[Review]":
+      case "nav.review":
         navigate("/TranscriptReview");
          resetInput(e)
         break;
-      case "[Inbox]":
+      case "nav.inbox":
         navigate("/Inbox");
          resetInput(e)
         break;
-      case "[LeaveReq]":
-        // setLeaveReq(true);
-        // setErrorState(false);
-         resetInput(e)
-        break;
-      case "[Exit]":
+      case "nav.exit":
         navigate("/CommandCentre");
          resetInput(e)
         break;
