@@ -3,6 +3,7 @@ import { LoaderCircle } from "lucide-react";
 import LeaveReq from "./LeaveReq";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
+import NewMessage from "./NewMessage";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -57,6 +58,7 @@ export default function CommandCentre() {
         </p>
       ) : (
         <section id="welcome-section">
+        
           <h1>Welcome Administrator {adminName}.</h1>
           <form onSubmit={handleCommand}>
             <div id="command-typing-container">

@@ -13,7 +13,7 @@ import { AdminContext } from "./context_providers/AdminContext";
 import type { Dispatch, SetStateAction } from "react";
 import Inbox from "./Inbox";
 import CommandInput from "./CommandInput";
-
+import NewMessage from "./NewMessage";
 interface scoreContextShape {
   scoreState: number;
   setScoreState: Dispatch<SetStateAction<number>>;
@@ -30,6 +30,7 @@ function App() {
   // const [workDes, setWorkDes] = useState<boolean>(false);
   // const [transcriptRev, setTranscriptRev] = useState<boolean>(false);
   const [scoreState, setScoreState] = useState<number>(0);
+  const [instructionsPrompt, setInstructionsPrompt] = useState<boolean>(true);
 
   const adminContextValue: adminContextShape = { adminName, setAdminName };
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
@@ -48,8 +49,12 @@ function App() {
                 <nav>
                   <CommandInput />
                   <ScoreTracker scoreState={scoreState} />
+                    {instructionsPrompt && adminName != "" &&(
+                    <NewMessage messageStateSetter={setInstructionsPrompt} />
+                  )}
                 </nav>
                 <div id="content-container">
+                
                   <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/CommandCentre" element={<CommandCentre />} />
