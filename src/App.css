@@ -204,6 +204,7 @@ h5 {
 
 .commands-container {
   width: 90%;
+  margin-top:50px;
 }
 
 .commands-container:last-child {
@@ -211,7 +212,6 @@ h5 {
 }
 
 #leave-req-p {
-  margin: 20px;
   color: red;
 }
 
@@ -761,18 +761,24 @@ Inbox
 /*
 NAV styling
 */
-#slug-p{
-  margin-right:20px;
-  font-size:.7rem;
+.error-text{
+  color:lightcoral; 
 }
-#slug-p>span{
+#slug-p {
+  margin-right: 20px;
+  font-size: .7rem;
+}
+
+#slug-p>span {
   font-style: italic;
 }
+
 #nav-text-input {
   height: 25px;
   border: 1px solid #C4C4C0;
   padding: 1px 10px;
   font-family: monospace;
+  margin-left:20px;
 }
 
 #nav-submit-button {
@@ -783,9 +789,20 @@ NAV styling
   line-height: 2.3rem;
 }
 
+#available-commands-button {
+  height: 29px;
+  width: 40px;
+  border: 1px solid #C4C4C0;
+  border-left: none;
+  line-height: 2.3rem;
+}
+
 #nav-form {
   display: flex;
+  position: relative;
+  align-items: center;
 }
+
 #new-message-container {
   border: 1px solid black;
   width: fit-content;
@@ -796,6 +813,7 @@ NAV styling
   top: 0;
   background-color: #FFFFFF;
 }
+
 .new-message-entrance {
   animation: opacity-slide-in;
   animation-duration: 2s;
@@ -822,6 +840,13 @@ NAV styling
   cursor: pointer;
 }
 
+#commands-list-container {
+  position: absolute;
+  top: 100%;
+}
+#commands-list-container li {
+list-style: none;
+}
 
 /*
 Command centre input
@@ -829,9 +854,9 @@ Command centre input
 #command-centre-input {
   height: 40px;
   border: 1px solid #C4C4C0;
-  width:80%;
-  padding:10px;
-  font-size:1.2rem;
+  width: 80%;
+  padding: 10px;
+  font-size: 1.2rem;
   font-family: monospace;
 }
 
@@ -848,7 +873,7 @@ Command centre input
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin:50px 0;
+  margin: 50px 0 10px 0;
 }
 
 

@@ -14,6 +14,10 @@ export default function CommandCentre() {
   const {currentSlug, setCurrentSlug} = useContext(CurrentSlugContext)
   const navigate = useNavigate();
 
+  // const currentDate = Date.now()
+  // const leaveDate = new Date(2047,1)
+  // const difference = (leaveDate - currentDate)
+
   //turn off loading indicator after set interval
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
@@ -84,15 +88,15 @@ export default function CommandCentre() {
                 }}
               ></input>
               <button id="command-centre-submit-button"><ChevronRightCircle size={28}/></button>
+              
             </div>
+            
           </form>
           {leaveReq && <LeaveReq />}
           {errorState && <p>Command Not recognized.</p>}
-          <p>Available commands:</p>
+          
           <div className="commands-container">
-            <div className="command-container">
-              <p>Start work designation.</p> <p>nav.work</p>
-            </div>
+            <p>Nav Commands:</p>
             <div className="command-container">
               <p>Review interview transcripts.</p> <p>nav.review</p>
             </div>
@@ -107,9 +111,6 @@ export default function CommandCentre() {
             </div>
             <div className="command-container">
               <p>Logout.</p> <p>nav.logout</p>
-            </div>
-            <div className="command-container">
-              <p>Available Commands.</p> <p>request.help</p>
             </div>
           </div>
         </section>

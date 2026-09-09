@@ -1,17 +1,24 @@
-import { ChevronRightCircle } from "lucide-react";
+import {  ChevronRightCircle,  CircleQuestionMark } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState, type Dispatch, type SetStateAction, useContext } from "react";
+import React, {
+  useState,
+  type Dispatch,
+  type SetStateAction,
+  useContext,
+} from "react";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
+import AvailableCommandsList from "./AvailableCommandsList";
+import { Tooltip } from "react-tooltip";
 
-interface CommandInputProps{
-    adminNameSetter: Dispatch<SetStateAction<string>>
-  
+interface CommandInputProps {
+  adminNameSetter: Dispatch<SetStateAction<string>>;
 }
 
-export default function CommandInput({adminNameSetter} : CommandInputProps) {
+export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
-    const [errorState, setErrorState] = useState<string | null>(null)
-    const {currentSlug, setCurrentSlug} = useContext(CurrentSlugContext)
+  const [errorState, setErrorState] = useState<string | null>(null);
+  const [showCommands, setShowCommands] = useState<boolean>(false);
+  const { currentSlug, setCurrentSlug } = useContext(CurrentSlugContext);
 
   const navigate = useNavigate();
 
@@ -21,35 +28,35 @@ export default function CommandInput({adminNameSetter} : CommandInputProps) {
     switch (typedCommand) {
       case "nav.work":
         navigate("/workDes");
-        setCurrentSlug("nav.work")
-         resetInput(e)
+        setCurrentSlug("nav.work");
+        resetInput(e);
         break;
       case "nav.voucher":
         navigate("/VoucherShop");
-        setCurrentSlug("nav.voucher")
-        resetInput(e)
+        setCurrentSlug("nav.voucher");
+        resetInput(e);
         break;
       case "nav.review":
         navigate("/TranscriptReview");
-        setCurrentSlug("nav.review")
-         resetInput(e)
+        setCurrentSlug("nav.review");
+        resetInput(e);
         break;
       case "nav.inbox":
         navigate("/Inbox");
-        setCurrentSlug("nav.inbox")
-         resetInput(e)
+        setCurrentSlug("nav.inbox");
+        resetInput(e);
         break;
       case "nav.terminal":
         navigate("/CommandCentre");
-        setCurrentSlug("nav.terminal")
-         resetInput(e)
+        setCurrentSlug("nav.terminal");
+        resetInput(e);
         break;
-        case "nav.logout":
-        adminNameSetter("")
+      case "nav.logout":
+        adminNameSetter("");
         navigate("/");
         break;
       default:
-        resetInput(e)
+        resetInput(e);
         setErrorState("Command not recognized");
         break;
     }
@@ -57,15 +64,17 @@ export default function CommandInput({adminNameSetter} : CommandInputProps) {
 
   function resetInput(e: React.SubmitEvent<HTMLFormElement>) {
     e.currentTarget.reset();
-    setErrorState(null)
+    setErrorState(null);
   }
+  function toggleCommands(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    setShowCommands((prev) => !prev);
+  }
+
   return (
     <div id="command-input-container">
-        
       <form id="nav-form" onSubmit={handleCommand}>
-        {errorState !=  null &&
-            <p>{errorState}</p>
-        }
+        {errorState != null && <p className='error-text'>{errorState}</p>}
         <input
           type="text"
           placeholder="nav.command"
@@ -76,9 +85,12 @@ export default function CommandInput({adminNameSetter} : CommandInputProps) {
             setTypedCommand(e.currentTarget.value);
           }}
         ></input>
-        <button id="nav-submit-button">
+        <button id="nav-submit-button" type="submit" data-tooltip-id='nav-terminal-tooltip' data-tooltip-content='Submit Nav Command'>
           <ChevronRightCircle size={20} />
         </button>
+        <button id='available-commands-button' onClick={toggleCommands} data-tooltip-id='nav-terminal-tooltip' data-tooltip-content='Nav Commands'><CircleQuestionMark size={20}  /></button>
+        {showCommands && <AvailableCommandsList />}
+        < Tooltip id='nav-terminal-tooltip'></Tooltip>
       </form>
     </div>
   );

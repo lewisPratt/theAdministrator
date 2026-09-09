@@ -73,7 +73,7 @@ const occupationContextByDistrict: Record<number, string[]> = {
   ],
   11: [ // Transport & Freight
     "answered with the clipped efficiency of a {occupation} on a tight schedule",
-    "kept glancing toward the platform, restless, while discussing {pronoun} role as {occupation}",
+    "kept glancing {pronoun}'s watch, restless, while discussing {pronoun} role as {occupation}",
   ],
   12: [ // Communications
     "chose {pronoun} words carefully when asked about {pronoun} work as {occupation}, aware of who might be listening",
