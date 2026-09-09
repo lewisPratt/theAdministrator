@@ -4,7 +4,7 @@ import WorkDes from "./WorkDes";
 import TranscriptRev from "./TranscriptRev";
 import "./App.css";
 import ScoreTracker from "./ScoreTracker";
-import { LoaderCircle, ChevronRightCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import VoucherShop from "./VoucherShop";
 import CommandCentre from "./CommandCentre";
 import Login from "./Login";
@@ -49,6 +49,8 @@ function App() {
   //may adjust when moving to localstorage for game progress (record if its been dismissed locally and conditionally render)
   useEffect(() => {
     if (adminName === "") {
+      
+  
       setInstructionsPrompt(true);
     }
   }, [adminName]);

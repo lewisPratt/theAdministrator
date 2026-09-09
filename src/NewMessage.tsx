@@ -1,13 +1,16 @@
 import { X } from "lucide-react";
 import type { Dispatch, SetStateAction } from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 interface newMessageProps {
   messageStateSetter: Dispatch<SetStateAction<boolean>>;
 }
 export default function NewMessage({ messageStateSetter }: newMessageProps) {
   const [entered, setEntered] = useState<boolean>(false);
   const [closing, setClosing] = useState<boolean>(false);
+    const {currentSlug, setCurrentSlug} = useContext(CurrentSlugContext)
+  
   const navigate = useNavigate();
 
   //handle the notification state dependant on which animation has just ended
@@ -26,6 +29,7 @@ export default function NewMessage({ messageStateSetter }: newMessageProps) {
 
   function visitInbox(){
     setClosing(true)
+    setCurrentSlug("nav.inbox")
      navigate("/Inbox")
   }
 
@@ -44,7 +48,8 @@ export default function NewMessage({ messageStateSetter }: newMessageProps) {
         <X size={15} />
       </div>
       <div onClick={visitInbox}id="notification-text-container">
-        <p>New Message: Welcome to your new role!</p>
+        <h3>New Message!</h3>
+        <p>Welcome to your new role!</p>
         <p>Your duties have been upgraded and now include the rev....</p>
       </div>
     </div>
