@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WorkDes from "./WorkDes";
 import TranscriptRev from "./TranscriptRev";
@@ -35,6 +35,15 @@ function App() {
   const adminContextValue: adminContextShape = { adminName, setAdminName };
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
 
+  //if user dismissed the message notification then logged out and logged back in, show the message notification again
+  //ensures a consistent approach if user logs out and back in with the same or different username.
+  //may adjust when moving to localstorage for game progress (record if its been dismissed locally and conditionally render)
+  useEffect(() => {
+    if (adminName === "") {
+      setInstructionsPrompt(true);
+    }
+  }, [adminName]);
+
   return (
     <>
       <div id="main-content">
@@ -47,14 +56,17 @@ function App() {
             <AdminContext value={adminContextValue}>
               <ScoreContext value={scoreContextValue}>
                 <nav>
-                  <CommandInput />
-                  <ScoreTracker scoreState={scoreState} />
-                    {instructionsPrompt && adminName != "" &&(
+                  {adminName != "" && (
+                    <>
+                      <CommandInput />
+                      <ScoreTracker scoreState={scoreState} />
+                    </>
+                  )}
+                  {instructionsPrompt && adminName != "" && (
                     <NewMessage messageStateSetter={setInstructionsPrompt} />
                   )}
                 </nav>
                 <div id="content-container">
-                
                   <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/CommandCentre" element={<CommandCentre />} />

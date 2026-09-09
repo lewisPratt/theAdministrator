@@ -1,4 +1,4 @@
-import { useState, type JSX } from "react";
+import { useState, type JSX , useEffect} from "react";
 import spamEmails from "./generator_modules/emailsGenerator";
 import { LoaderCircle } from "lucide-react";
 
@@ -65,6 +65,12 @@ export default function Inbox() {
   const [activeEmail, setActiveEmail] = useState<emailShape | null>(emails[2]);
   const [extraMail, setExtraMail] = useState<emailShape[] | null>(null);
   const [refreshing, setRefreshing] = useState<boolean>(false);
+  const [loadingState, setLoadingState] = useState<boolean>(true);
+
+   //turn off loading indicator after set interval
+    useEffect(() => {
+      setTimeout(setLoadingState, 2000, false);
+    }, []);
 
   function startRefresh() {
     if (!refreshing) {
@@ -92,6 +98,12 @@ export default function Inbox() {
   }
 
   return (
+     <>
+      {loadingState ? (
+        <p>
+          <LoaderCircle className="loader" />
+        </p>
+      ) : (
     <section id="inbox-parent">
       <div id="inbox-header" className="striped-bg">
         <h2>Worker inbox</h2>
@@ -153,5 +165,6 @@ export default function Inbox() {
         </div>
       </div>
     </section>
+      )}</>
   );
 }

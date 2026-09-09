@@ -40,6 +40,7 @@ export default function CommandCentre() {
         e.currentTarget.reset();
         break;
       case "[Exit]":
+        setAdminName("")
         navigate("/");
         break;
       default:
