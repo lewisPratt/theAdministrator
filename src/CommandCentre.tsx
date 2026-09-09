@@ -71,7 +71,7 @@ export default function CommandCentre() {
               <input
                 autoFocus
                 type="text"
-                placeholder="[Command]"
+                placeholder="nav.command"
                 id="command-centre-input"
                 name="command"
                 autoComplete="off"

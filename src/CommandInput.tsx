@@ -51,7 +51,7 @@ export default function CommandInput() {
         }
         <input
           type="text"
-          placeholder="[Command]"
+          placeholder="nav.command"
           id="nav-text-input"
           name="command"
           autoComplete="off"
