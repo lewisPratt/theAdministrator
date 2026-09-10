@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
+import { v4 as uuidv4 } from "uuid";
 
 interface VoucherShape {
-  voucherName: string;
+  name: string;
+  cost: number;
+  desc: string;
+  ident: string;
 }
 
 export default function VoucherShop() {
@@ -18,91 +22,107 @@ export default function VoucherShop() {
       name: "10 minutes break",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "30 minutes break",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Extra Cases",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "High acheiver badge",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Low Achiever badge",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Call to a family member",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Cal lto a stranger",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Upgrade meal package: basic",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Upgrade meal package: basic-premium",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Comitted Employee badge",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Compliant Citizen badge",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Increase in sunlight allowance (10 minutes)",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
     {
       name: "Increase in sleep allowance (10 minutes)",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
+      ident: uuidv4(),
     },
   ];
-  function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
-    e.preventDefault();
 
-    switch (typedCommand) {
-      case "[Exit]":
-        navigate("/CommandCentre");
-        setErrorState(false);
-        break;
-      default:
-        e.currentTarget.reset();
-        setErrorState(true);
-        break;
-    }
-  }
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
   });
+
   function confirmChoice(e: React.MouseEvent<HTMLButtonElement>) {
-    alert(
-      "are you sure you want to buy the " +
-        e.currentTarget.dataset.voucherName +
-        " voucher?",
-    );
+    if (
+      e.currentTarget.dataset.voucherName &&
+      e.currentTarget.dataset.voucherIdent
+    ) {
+      const chosenVoucherIdent: string = e.currentTarget.dataset.voucherIdent;
+      const chosenVoucherName: string = e.currentTarget.dataset.voucherName;
+
+      const chosenVoucher: VoucherShape | undefined = vouchers.find(
+        (voucher) => {
+          return voucher.ident === chosenVoucherIdent;
+        },
+      );
+      if (chosenVoucher != undefined) {
+        setConfirming(chosenVoucher);
+        alert(
+          "are you sure you want to buy the " + chosenVoucherName + " voucher?",
+        );
+        //impliment modal to confirm voucher selection and trigger logic to buy voucher
+      }
+    }
   }
 
   return (
@@ -120,8 +140,10 @@ export default function VoucherShop() {
             {vouchers.map((voucher) => {
               return (
                 <button
+                  key={voucher.ident}
                   className="voucher-box"
-                  data-voucher-name={voucher}
+                  data-voucher-name={voucher.name}
+                  data-voucher-ident={voucher.ident}
                   onClick={(e) => {
                     confirmChoice(e);
                   }}
