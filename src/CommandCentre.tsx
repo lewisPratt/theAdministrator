@@ -10,6 +10,9 @@ export default function CommandCentre() {
   const [typedCommand, setTypedCommand] = useState<string>("");
   const [leaveReq, setLeaveReq] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<boolean>(false);
+    const startNumber = Math.floor(Math.random() * 20000) + 1;
+const [citizenCount, setCitizenCount] = useState<number>(startNumber)
+
   const { adminName, setAdminName } = useContext(AdminContext);
   const {currentSlug, setCurrentSlug} = useContext(CurrentSlugContext)
   const navigate = useNavigate();
@@ -66,6 +69,7 @@ export default function CommandCentre() {
           <LoaderCircle className="loader" />
         </p>
       ) : (
+        <>
         <section id="welcome-section">
         
           <h1>Welcome Administrator {adminName}.</h1>
@@ -114,6 +118,9 @@ export default function CommandCentre() {
             </div>
           </div>
         </section>
+        <section id='city-stats-section'>
+        </section>
+        </>
       )}
     </>
   );

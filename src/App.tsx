@@ -16,6 +16,8 @@ import CommandInput from "./CommandInput";
 import NewMessage from "./NewMessage";
 import CurrentSlug from "./CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
+import { useNavigate } from "react-router-dom";
+import NotLoggedIn from "./NotLoggedIn";
 interface scoreContextShape {
   scoreState: number;
   setScoreState: Dispatch<SetStateAction<number>>;
@@ -68,13 +70,14 @@ function App() {
             <AdminContext value={adminContextValue}>
               <ScoreContext value={scoreContextValue}>
                 <nav>
-                  {adminName != "" && (
+                  {adminName != "" ? (
                     <>
                       <CurrentSlug pageName={currentSlug} />
                       <CommandInput adminNameSetter={setAdminName} />
                       <ScoreTracker scoreState={scoreState} />
                     </>
-                  )}
+                  ) : 
+                  <NotLoggedIn />}
                   {instructionsPrompt && adminName != "" && (
                     <NewMessage messageStateSetter={setInstructionsPrompt} />
                   )}
