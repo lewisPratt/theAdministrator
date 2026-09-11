@@ -1,102 +1,91 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
-import { v4 as uuidv4 } from "uuid";
+
+interface VoucherListShape {
+  [key: string]: {
+    name: string;
+    cost: number;
+    desc: string;
+  };
+}
 
 interface VoucherShape {
   name: string;
   cost: number;
   desc: string;
-  ident: string;
 }
 
 export default function VoucherShop() {
-  const [typedCommand, setTypedCommand] = useState<string>("");
-  const [errorState, setErrorState] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<VoucherShape | null>(null);
 
-  const navigate = useNavigate();
-  const vouchers = [
-    {
+  const vouchers :VoucherListShape = {
+    ["voucher1"]: {
       name: "10 minutes break",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher2"]: {
       name: "30 minutes break",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher3"]: {
       name: "Extra Cases",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher4"]: {
       name: "High acheiver badge",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher5"]: {
       name: "Low Achiever badge",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher6"]: {
       name: "Call to a family member",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher7"]: {
       name: "Cal lto a stranger",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher8"]: {
       name: "Upgrade meal package: basic",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher9"]: {
       name: "Upgrade meal package: basic-premium",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher10"]: {
       name: "Comitted Employee badge",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher11"]: {
       name: "Compliant Citizen badge",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher12"]: {
       name: "Increase in sunlight allowance (10 minutes)",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-    {
+    ["voucher13"]: {
       name: "Increase in sleep allowance (10 minutes)",
       cost: 100,
       desc: "Deserunt nostrud est ex dolore ad ex officia elit.",
-      ident: uuidv4(),
     },
-  ];
+  };
 
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
@@ -110,11 +99,9 @@ export default function VoucherShop() {
       const chosenVoucherIdent: string = e.currentTarget.dataset.voucherIdent;
       const chosenVoucherName: string = e.currentTarget.dataset.voucherName;
 
-      const chosenVoucher: VoucherShape | undefined = vouchers.find(
-        (voucher) => {
-          return voucher.ident === chosenVoucherIdent;
-        },
-      );
+      const chosenVoucher: VoucherShape = vouchers[`${chosenVoucherIdent}`]
+      console.log(chosenVoucher)
+        
       if (chosenVoucher != undefined) {
         setConfirming(chosenVoucher);
         alert(
@@ -137,18 +124,18 @@ export default function VoucherShop() {
             <h2>Voucher Shop</h2>
           </div>
           <section id="voucher-items-container">
-            {vouchers.map((voucher) => {
+            {Object.entries(vouchers).map((voucher) => {
               return (
                 <button
-                  key={voucher.ident}
+                  key={voucher[0]}
                   className="voucher-box"
-                  data-voucher-name={voucher.name}
-                  data-voucher-ident={voucher.ident}
+                  data-voucher-name={voucher[1].name}
+                  data-voucher-ident={voucher[0]}
                   onClick={(e) => {
                     confirmChoice(e);
                   }}
                 >
-                  {voucher.name}
+                  {voucher[1].name}
                 </button>
               );
             })}
