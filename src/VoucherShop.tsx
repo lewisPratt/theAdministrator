@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
+import { ScoreContext } from "./context_providers/ScoreContext";
 
 interface VoucherListShape {
   [key: string]: {
@@ -18,6 +19,8 @@ interface VoucherShape {
 export default function VoucherShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<VoucherShape | null>(null);
+  const {scoreState,setScoreState} = useContext(ScoreContext)
+  const [errorState, setErrorState] = useState<string>("")
 
   const vouchers :VoucherListShape = {
     ["voucher1"]: {
@@ -96,6 +99,7 @@ export default function VoucherShop() {
       e.currentTarget.dataset.voucherName &&
       e.currentTarget.dataset.voucherIdent
     ) {
+        
       const chosenVoucherIdent: string = e.currentTarget.dataset.voucherIdent;
       const chosenVoucherName: string = e.currentTarget.dataset.voucherName;
 
@@ -103,6 +107,9 @@ export default function VoucherShop() {
       console.log(chosenVoucher)
         
       if (chosenVoucher != undefined) {
+        if(scoreState < chosenVoucher.cost){
+            setErrorState("You do not have enough credits")
+        }
         setConfirming(chosenVoucher);
         alert(
           "are you sure you want to buy the " + chosenVoucherName + " voucher?",
@@ -123,7 +130,9 @@ export default function VoucherShop() {
           <div id="voucher-shop-header">
             <h2>Voucher Shop</h2>
           </div>
+          {errorState != "" && <p>{errorState}</p>}
           <section id="voucher-items-container">
+            
             {Object.entries(vouchers).map((voucher) => {
               return (
                 <button

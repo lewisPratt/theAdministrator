@@ -4,7 +4,7 @@ import LeaveReq from "./LeaveReq";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
-
+import NotLoggedIn from "./NotLoggedIn";
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [typedCommand, setTypedCommand] = useState<string>("");
@@ -71,7 +71,8 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
       ) : (
         <>
         <section id="welcome-section">
-        
+        {adminName ? 
+        <>
           <h1>Welcome Administrator {adminName}.</h1>
           <form onSubmit={handleCommand}>
             <div id="command-typing-container">
@@ -96,6 +97,8 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
             </div>
             
           </form>
+        
+          
           {leaveReq && <LeaveReq />}
           {errorState && <p>Command Not recognized.</p>}
           
@@ -117,6 +120,10 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
               <p>Logout.</p> <p>nav.logout</p>
             </div>
           </div>
+          </>: 
+          <>
+           <NotLoggedIn />
+          </>}
         </section>
         <section id='city-stats-section'>
         </section>
