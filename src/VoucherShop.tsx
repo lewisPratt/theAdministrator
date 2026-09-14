@@ -132,9 +132,10 @@ export default function VoucherShop() {
           </div>
           {errorState != "" && <p>{errorState}</p>}
           <section id="voucher-items-container">
-            
+            <ol>
             {Object.entries(vouchers).map((voucher) => {
               return (
+                <li>
                 <button
                   key={voucher[0]}
                   className="voucher-box"
@@ -144,10 +145,12 @@ export default function VoucherShop() {
                     confirmChoice(e);
                   }}
                 >
-                  {voucher[1].name}
+                  <p>{voucher[1].name}</p>  <p>C{voucher[1].cost}</p>
                 </button>
+                </li>
               );
             })}
+            </ol>
           </section>
           <section>
             <p>Vouchers refresh every : 295 days</p>
