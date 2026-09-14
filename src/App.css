@@ -864,11 +864,15 @@ NAV styling
 #commands-list-container {
   position: absolute;
   top: 100%;
+  right:0;
+  border:1px dashed black;
 }
 
 #commands-list-container li {
   list-style: none;
 }
+#commands-list-container ol{
+padding:10px;}
 
 /*
 Command centre input

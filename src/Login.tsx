@@ -1,18 +1,17 @@
-import { useState,useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
 import { ScoreContext } from "./context_providers/ScoreContext";
 
 export default function Login() {
   const [typedName, setTypedName] = useState<string>("");
-//   const [adminName, setAdminName] = useState<string | null>(null);
-
-  const {adminName, setAdminName} = useContext(AdminContext)
-  const {scoreState, setScoreState} = useContext(ScoreContext)
- const navigate = useNavigate()
-useEffect(()=>{
-    setScoreState(0)
-})
+  const [aboutState, setAboutState] = useState<boolean>(false);
+  const { adminName, setAdminName } = useContext(AdminContext);
+  const { scoreState, setScoreState } = useContext(ScoreContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    setScoreState(0);
+  });
 
   function capitalizeFirstLetter(val: string) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -22,10 +21,16 @@ useEffect(()=>{
     e.preventDefault();
     if (typedName) {
       setAdminName(typedName);
-      navigate("/CommandCentre")
+      navigate("/CommandCentre");
     } else {
       //no name entered so do nothing or show error
     }
+  }
+  function toggleAbout() {
+
+    setAboutState(prev=>!prev)
+
+
   }
 
   return (
@@ -52,6 +57,27 @@ useEffect(()=>{
           <button id="login-submit-button">@</button>
         </div>
       </form>
+      <div id="about-header" onClick={toggleAbout}>
+        <h2>What is this?</h2>
+      </div>
+      {aboutState && (
+        <div id="about-container">
+          <p>
+            The Administrator is a roleplaying logic game that requires you to
+            examine the details of Citizen interviews in order to determine each
+            Citizens positive or negative impact on The City.
+          </p>
+          <p>
+            By correctly identifying positive/negative
+            Citizen behaviour, you will earn credits that can be spent in the
+            Voucher Terminal.
+          </p>
+          <p>
+            Navigation between pages is achieved via commands written by the
+            user.
+          </p>
+        </div>
+      )}
     </section>
   );
 }
