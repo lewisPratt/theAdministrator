@@ -18,6 +18,7 @@ export default function TranscriptReviewBox({
   decisionSetter,
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
+  const [showEvidence, setShowEvidence] = useState<Boolean>(false)
 
   let recPassDesc: string = "";
   if (transcript?.recreationPass) {
@@ -235,6 +236,17 @@ export default function TranscriptReviewBox({
                 </div>{" "}
               </>
             ) : (
+              <>
+              <div id='evidence-box'>
+              <button onClick={()=>{setShowEvidence(prev=>!prev)}}> See Evidence </button>
+              {showEvidence && 
+                <ol>
+                  {transcript.weightingArray.map((item) => {
+                    return <li key={uuidv4()}> {item} </li>;
+                  })}
+                </ol>
+              }
+              </div>
               <p id="processed-text">
                 {transcript.decisionOutcome ? (
                   <span className="positive-text">{transcript.decision} </span>
@@ -242,6 +254,7 @@ export default function TranscriptReviewBox({
                   <span className="negative-text">{transcript.decision} </span>
                 )}
               </p>
+              </>
             )}
           </div>
           <div id="transcript-close-button" onClick={closeTranscript}>

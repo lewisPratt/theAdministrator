@@ -13,7 +13,7 @@ export default function VoucherShop() {
 
   const [errorState, setErrorState] = useState<string | null>(null);
 
-  const debug = true;
+  const debug = false;
   const vouchers: VoucherListShape = {
     ["voucher1"]: {
       name: "10 minutes break",
@@ -52,9 +52,9 @@ export default function VoucherShop() {
       icon: <PhoneOutgoing />
     },
     ["voucher7"]: {
-      name: "Cal lto a stranger",
+      name: "Call from a stranger",
       cost: 300,
-      desc: "A NetCall to a stranger who has entered the Re-Education programme. An opportunity to see the good you are doing with your work. This call will be monitored for your safety.",
+      desc: "A NetCall from a stranger who has entered the Re-Education programme. An opportunity to see the good you are doing with your work. This call will be monitored for your safety.",
       icon: <PhoneIncoming /> 
     },
     ["voucher8"]: {
@@ -156,7 +156,6 @@ export default function VoucherShop() {
             <h2>Voucher Shop</h2>
             {debug && <button onClick={giveCredits}>Give credits</button>}
           </div>
-          {errorState != null && <p id='voucher-error'>{errorState}</p>}
           <section id="voucher-items-container">
             <ol>
               {Object.entries(vouchers).map((voucher) => {
@@ -176,12 +175,15 @@ export default function VoucherShop() {
                         confirmChoice(e);
                       }}
                     >
-                      {voucher[1].icon}<p> {voucher[1].name}</p> <p>C{voucher[1].cost}</p>
+                      {voucher[1].icon}<p> {voucher[1].name}</p> <p>{playerUnlocks?.includes(voucher[0]) && "[Purchased]"  }  C{voucher[1].cost}</p>
                     </button>
                     {confirming != null && confirming === voucher[0] && (
                       <div >
                         <p className="voucher-desc">{voucher[1].desc}</p>
+                                  {errorState != null && <p id='voucher-error'>{errorState}</p>}
+
                         {!playerUnlocks?.includes(voucher[0]) && (
+                            
                           <p className='purchase-button'>
                             <button onClick={purchaseVoucher} >Purchase</button>
                           </p>
