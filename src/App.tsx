@@ -17,7 +17,9 @@ import NewMessage from "./NewMessage";
 import CurrentSlug from "./CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import { useNavigate } from "react-router-dom";
+import { UnlocksContext } from "./context_providers/unlocksContext";
 import NotLoggedIn from "./NotLoggedIn";
+import { type VoucherShape, type unlockContextShape } from "./interfaces";
 interface scoreContextShape {
   scoreState: number;
   setScoreState: Dispatch<SetStateAction<number>>;
@@ -35,6 +37,7 @@ interface currentSlugShape {
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
+  const [playerUnlocks, setPlayerUnlocks] = useState<string[] | null>(null)
   const [loadingState, setLoadingState] = useState<boolean>(false);
   // const [workDes, setWorkDes] = useState<boolean>(false);
   // const [transcriptRev, setTranscriptRev] = useState<boolean>(false);
@@ -43,6 +46,8 @@ function App() {
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal")
 
   const adminContextValue: adminContextShape = { adminName, setAdminName };
+  const unlocksContextValue: unlockContextShape = { playerUnlocks, setPlayerUnlocks };
+
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
   const currentSlugContextValue: currentSlugShape = { currentSlug, setCurrentSlug };
 
@@ -69,6 +74,7 @@ function App() {
             <CurrentSlugContext value={currentSlugContextValue}>
             <AdminContext value={adminContextValue}>
               <ScoreContext value={scoreContextValue}>
+                <UnlocksContext value={unlocksContextValue}>
                 <nav>
                   {adminName != "" ? (
                     <>
@@ -95,6 +101,7 @@ function App() {
                     <Route path="/Inbox" element={<Inbox />} />
                   </Routes>
                 </div>
+                </UnlocksContext>
               </ScoreContext>
             </AdminContext>
             </CurrentSlugContext>

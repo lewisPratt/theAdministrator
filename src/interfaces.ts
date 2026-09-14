@@ -43,6 +43,18 @@ export interface nameShape{
     firstName: string
     lastName: string
 }
+export interface VoucherShape {
+  name: string;
+  cost: number;
+  desc: string;
+}
+export interface VoucherListShape {
+  [key: string]: {
+    name: string;
+    cost: number;
+    desc: string;
+  };
+}
 
 export interface reviewsCompleteShape {
   numberComplete: number;
@@ -52,4 +64,8 @@ export interface reviewsCompleteShape {
 export interface scoreContextShape{
     scoreState: number
     setScoreState: Dispatch<SetStateAction<number>> 
+}
+export interface unlockContextShape {
+  playerUnlocks: string[] | null;
+  setPlayerUnlocks: Dispatch<SetStateAction<string[] | null>>;
 }

@@ -1,27 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { ScoreContext } from "./context_providers/ScoreContext";
+import { UnlocksContext } from "./context_providers/unlocksContext";
+import type { VoucherShape, VoucherListShape } from "./interfaces";
 
-interface VoucherListShape {
-  [key: string]: {
-    name: string;
-    cost: number;
-    desc: string;
-  };
-}
 
-interface VoucherShape {
-  name: string;
-  cost: number;
-  desc: string;
-}
+
 
 export default function VoucherShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
-  const [confirming, setConfirming] = useState<VoucherShape | null>(null);
+  const [confirming, setConfirming] = useState<string | null>(null);
   const {scoreState,setScoreState} = useContext(ScoreContext)
+    const {playerUnlocks,setPlayerUnlocks} = useContext(UnlocksContext)
+        console.log(playerUnlocks)
+
   const [errorState, setErrorState] = useState<string>("")
 
+    const debug = true
   const vouchers :VoucherListShape = {
     ["voucher1"]: {
       name: "10 minutes break",
@@ -94,6 +89,9 @@ export default function VoucherShop() {
     setTimeout(setLoadingState, 2000, false);
   });
 
+  function giveCredits(){
+    setScoreState(scoreState+1000)
+  }
   function confirmChoice(e: React.MouseEvent<HTMLButtonElement>) {
     if (
       e.currentTarget.dataset.voucherName &&
@@ -105,19 +103,35 @@ export default function VoucherShop() {
 
       const chosenVoucher: VoucherShape = vouchers[`${chosenVoucherIdent}`]
       console.log(chosenVoucher)
+      console.log(chosenVoucherIdent)
         
       if (chosenVoucher != undefined) {
         if(scoreState < chosenVoucher.cost){
             setErrorState("You do not have enough credits")
         }
-        setConfirming(chosenVoucher);
-        alert(
-          "are you sure you want to buy the " + chosenVoucherName + " voucher?",
-        );
-        //impliment modal to confirm voucher selection and trigger logic to buy voucher
+        setConfirming(chosenVoucherIdent);
       }
     }
   }
+
+  function purchaseVoucher(){
+
+    if(confirming != null){
+        const selectedVoucher = vouchers[`${confirming}`]
+        if(scoreState < selectedVoucher.cost){
+            setErrorState("You do not have enough credits")
+    }
+    else{
+        setScoreState(scoreState - selectedVoucher.cost)
+        let updatedUnlocks : string[]= []
+        if(playerUnlocks != null){
+            updatedUnlocks = [...playerUnlocks]
+        }
+        updatedUnlocks.push(confirming)
+        setPlayerUnlocks(updatedUnlocks)
+    }
+  }
+}
 
   return (
     <>
@@ -129,16 +143,18 @@ export default function VoucherShop() {
         <section id="voucher-shop">
           <div id="voucher-shop-header">
             <h2>Voucher Shop</h2>
+            {debug && <button onClick={giveCredits}>Give credits</button>}
           </div>
           {errorState != "" && <p>{errorState}</p>}
           <section id="voucher-items-container">
             <ol>
             {Object.entries(vouchers).map((voucher) => {
+                
               return (
-                <li>
+                <li >
                 <button
                   key={voucher[0]}
-                  className="voucher-box"
+                  className={"voucher-box " +(playerUnlocks?.includes(voucher[0]) ? "purchased-unlock-class" : "unpurchased-unlock-class")}
                   data-voucher-name={voucher[1].name}
                   data-voucher-ident={voucher[0]}
                   onClick={(e) => {
@@ -147,6 +163,11 @@ export default function VoucherShop() {
                 >
                   <p>{voucher[1].name}</p>  <p>C{voucher[1].cost}</p>
                 </button>
+                {confirming != null && confirming === voucher[0] &&
+                <div className='voucher-desc'>
+                    <p>This voucher entitles you to....{voucher[1].desc}</p>
+                    <p><button onClick={purchaseVoucher}>Purchase</button></p>
+                </div>}
                 </li>
               );
             })}
