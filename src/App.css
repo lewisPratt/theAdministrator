@@ -639,18 +639,26 @@ REVIEW OVERLAY
 /*//////////////////////////////
 Voucher shop
 ///////////////////////////*/
+#voucher-shop{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 #voucher-items-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+  
+  width:80%;
 
 }
 #voucher-items-container ol{
 list-style: none;
 padding: 0;
+width:100%;
 }
 #voucher-items-container li{
 transition: .6s;
@@ -677,13 +685,23 @@ margin:20px 0;
   color: white;
 
 }
+.purchase-button{
+  text-align:right;
+  margin:20px;
+}
 .purchased-unlock-class{
   background-color:lightgreen;
 
 }
 
-
-
+.voucher-desc{
+  margin:20px 0;
+}
+#voucher-error{
+  color:red;
+  font-size:1.1rem;
+  animation: bulge 1s ;
+}
 /*//////////////////////////////
 Inbox
 ////////////////////////*/
@@ -984,5 +1002,10 @@ Command centre input
 
   100% {
     translate: 0 110%;
+  }
+}
+@keyframes bulge {
+  50%{
+    scale:1.2;
   }
 }

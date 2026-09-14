@@ -1,18 +1,11 @@
 import React, { useState, type Dispatch, type SetStateAction } from "react";
-import type { reviewShape } from "./interfaces";
+import type { transcriptReviewBoxProps } from "./interfaces";
 import { DoorOpen, Backpack, CircleCheck, CircleX, X, MapPinned } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 import { NIL as NIL_UUID } from "uuid";
 
-interface transcriptReviewBoxProps {
-  transcript: reviewShape | null;
-  reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
-  decisionSetter: Dispatch<SetStateAction<boolean>>;
-  scoreSetter: Dispatch<SetStateAction<number>>;
-  selectedSetter: Dispatch<SetStateAction<string>>;
-  scoreState: number;
-}
+
 //set to 1 to show debug info on weighting
 const debug: number = 0;
 

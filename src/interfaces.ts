@@ -53,6 +53,7 @@ export interface VoucherListShape {
     name: string;
     cost: number;
     desc: string;
+    icon: React.ReactElement
   };
 }
 
@@ -68,4 +69,13 @@ export interface scoreContextShape{
 export interface unlockContextShape {
   playerUnlocks: string[] | null;
   setPlayerUnlocks: Dispatch<SetStateAction<string[] | null>>;
+}
+
+export interface transcriptReviewBoxProps {
+  transcript: reviewShape | null;
+  reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
+  decisionSetter: Dispatch<SetStateAction<boolean>>;
+  scoreSetter: Dispatch<SetStateAction<number>>;
+  selectedSetter: Dispatch<SetStateAction<string>>;
+  scoreState: number;
 }
