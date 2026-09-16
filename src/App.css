@@ -189,8 +189,27 @@ h5 {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  
 }
-
+#about-header{
+  border:1px solid black;
+  margin-bottom:20px;
+  padding:5px;
+  width:fit-content;
+  height: fit-content;
+}
+#about-parent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#about-container{
+  padding:0 20px;
+}
+#about-container p {
+  margin:10px 0 ;
+}
 #command-input-container {
   display: flex;
   flex-direction: row;
@@ -198,7 +217,12 @@ h5 {
   align-items: center;
   margin-right: 50px;
 }
-
+.visible-class{
+  visibility: visible;
+}
+.non-visible-class{
+  visibility: hidden;
+}
 .command-container {
   border: 1px solid black;
   display: flex;

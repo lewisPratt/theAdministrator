@@ -57,27 +57,29 @@ export default function Login() {
           <button id="login-submit-button">@</button>
         </div>
       </form>
-      <div id="about-header" onClick={toggleAbout}>
-        <h2>What is this?</h2>
-      </div>
-      {aboutState && (
-        <div id="about-container">
+      <div id='about-parent'>
+      <button id="about-header" onClick={toggleAbout}>
+        What is this?
+      </button>
+     
+        <div id="about-container" className={(aboutState ? "visible-class" : "non-visible-class")}>
           <p>
-            The Administrator is a roleplaying logic game that requires you to
-            examine the details of Citizen interviews in order to determine each
+            The Administrator is a roleplaying logic game where you
+            examine the details of Citizen interviews to determine each
             Citizens positive or negative impact on The City.
           </p>
           <p>
-            By correctly identifying positive/negative
-            Citizen behaviour, you will earn credits that can be spent in the
+            Correctly identifying positive/negative
+            Citizen behaviour earns credits that can be spent in the
             Voucher Terminal.
           </p>
           <p>
-            Navigation between pages is achieved via commands written by the
+            Navigation between pages via commands written by the
             user.
           </p>
         </div>
-      )}
+  
+      </div>
     </section>
   );
 }
