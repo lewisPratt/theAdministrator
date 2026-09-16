@@ -4,7 +4,7 @@ import WorkDes from "./WorkDes";
 import TranscriptRev from "./TranscriptRev";
 import "./App.css";
 import ScoreTracker from "./ScoreTracker";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Volume2, VolumeOff } from "lucide-react";
 import VoucherShop from "./VoucherShop";
 import CommandCentre from "./CommandCentre";
 import Login from "./Login";
@@ -20,6 +20,11 @@ import { useNavigate } from "react-router-dom";
 import { UnlocksContext } from "./context_providers/unlocksContext";
 import NotLoggedIn from "./NotLoggedIn";
 import { type VoucherShape, type unlockContextShape } from "./interfaces";
+import { SoundProvider ,useSoundEnabled} from "react-sounds";
+import SoundControl from "./SoundControl";
+import WelcomeScreen from "./WelcomeScreen";
+import GoodbyeScreen from "./GoodbyeScreen";
+
 interface scoreContextShape {
   scoreState: number;
   setScoreState: Dispatch<SetStateAction<number>>;
@@ -51,6 +56,7 @@ function App() {
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
   const currentSlugContextValue: currentSlugShape = { currentSlug, setCurrentSlug };
 
+  
   //if user dismissed the message notification then logged out and logged back in, show the message notification again
   //ensures a consistent approach if user logs out and back in with the same or different username.
   //may adjust when moving to localstorage for game progress (record if its been dismissed locally and conditionally render)
@@ -71,6 +77,7 @@ function App() {
               <LoaderCircle className="loader" />
             </p>
           ) : (
+            <SoundProvider>
             <CurrentSlugContext value={currentSlugContextValue}>
             <AdminContext value={adminContextValue}>
               <ScoreContext value={scoreContextValue}>
@@ -78,6 +85,7 @@ function App() {
                 <nav>
                   {adminName != "" ? (
                     <>
+                    <SoundControl />
                       <CurrentSlug pageName={currentSlug} />
                       <CommandInput adminNameSetter={setAdminName} />
                       <ScoreTracker scoreState={scoreState} />
@@ -90,6 +98,9 @@ function App() {
                 </nav>
                 <div id="content-container">
                   <Routes>
+                    <Route path="/Welcome" element={<WelcomeScreen />} />
+                    <Route path="/Goodbye" element={<GoodbyeScreen />} />
+
                     <Route path="/" element={<Login />} />
                     <Route path="/CommandCentre" element={<CommandCentre />} />
                     <Route
@@ -105,6 +116,7 @@ function App() {
               </ScoreContext>
             </AdminContext>
             </CurrentSlugContext>
+            </SoundProvider>
           )}
         </BrowserRouter>
       </div>

@@ -691,7 +691,7 @@ width:100%;
 transition: .6s;
 }
 #voucher-items-container li:hover{
-margin:20px 0;
+margin:10px 0;
 }
 .voucher-box {
   border: 1px solid black;
@@ -876,7 +876,10 @@ NAV styling
   position: relative;
   align-items: center;
 }
-
+#sound-control{
+  margin-right:20px;
+  cursor: pointer;
+}
 #new-message-container {
   border: 1px solid black;
   width: fit-content;
@@ -892,7 +895,11 @@ NAV styling
 #notification-text-container:hover {
   outline: 1px solid;
 }
-
+.new-message-float{
+  animation: newMessageFloat;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
 .new-message-entrance {
   animation: opacity-slide-in;
   animation-duration: 2s;
@@ -963,9 +970,54 @@ Command centre input
 }
 
 
+/*
+WELCOME SCREEN
+*/
 
+#welcome-screen h1{
+  font-size:3rem;
+  animation: welcomeHeaderAnimation;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  font-family:monospace;
+}
+#welcome-screen p{
+  animation: welcomeMessageAnimation;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+    font-family:monospace;
 
+}
 
+@keyframes newMessageFloat {
+  50%{
+    top:5px;
+  }
+  
+}
+@keyframes welcomeMessageAnimation {
+  0%{
+    translate:0 30px ;
+    opacity:0;
+  }
+  100%{
+    translate: 0;
+    opacity:1;
+  }
+}
+
+@keyframes welcomeHeaderAnimation {
+  0%{
+    translate:0 -30px ;
+    opacity:0;
+  }
+  100%{
+    translate: 0;
+    opacity:1;
+  }
+}
 @keyframes opacity-slide-in {
   0% {
     opacity: 0;

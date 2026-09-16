@@ -21,7 +21,7 @@ export default function Login() {
     e.preventDefault();
     if (typedName) {
       setAdminName(typedName);
-      navigate("/CommandCentre");
+      navigate("/Welcome");
     } else {
       //no name entered so do nothing or show error
     }

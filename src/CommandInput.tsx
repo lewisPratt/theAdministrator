@@ -53,7 +53,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
         break;
       case "nav.logout":
         adminNameSetter("");
-        navigate("/");
+        navigate("/Goodbye");
         break;
       default:
         resetInput(e);

@@ -3,6 +3,7 @@ import { BriefcaseBusiness, ClockArrowUp, ClockPlus, Cookie, FolderTree, LoaderC
 import { ScoreContext } from "./context_providers/ScoreContext";
 import { UnlocksContext } from "./context_providers/unlocksContext";
 import type { VoucherShape, VoucherListShape } from "./interfaces";
+import { playSound } from "react-sounds";
 
 export default function VoucherShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -12,6 +13,9 @@ export default function VoucherShop() {
   console.log(playerUnlocks);
 
   const [errorState, setErrorState] = useState<string | null>(null);
+    const hoverClick = () => playSound('ui/button_soft')
+    const cantAfford = () => playSound('notification/error')
+
 
   const debug = false;
   const vouchers: VoucherListShape = {
@@ -132,6 +136,7 @@ export default function VoucherShop() {
       const selectedVoucher = vouchers[`${confirming}`];
       if (scoreState < selectedVoucher.cost) {
         setErrorState("You do not have enough credits");
+        cantAfford()
       } else {
         setScoreState(scoreState - selectedVoucher.cost);
         let updatedUnlocks: string[] = [];
@@ -171,8 +176,10 @@ export default function VoucherShop() {
                       }
                       data-voucher-name={voucher[1].name}
                       data-voucher-ident={voucher[0]}
+                      
                       onClick={(e) => {
-                        confirmChoice(e);
+                        confirmChoice(e)
+                        hoverClick();
                       }}
                     >
                       {voucher[1].icon}<p> {voucher[1].name}</p> <p>{playerUnlocks?.includes(voucher[0]) && "[Purchased]"  }  C{voucher[1].cost}</p>

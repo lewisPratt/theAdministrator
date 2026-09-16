@@ -1,7 +1,7 @@
 import { useState, type JSX, useEffect } from "react";
 import spamEmails from "./generator_modules/emailsGenerator";
 import { LoaderCircle } from "lucide-react";
-
+import { playSound } from "react-sounds";
 const emails = [
   {
     title: "Welcome to your new role",
@@ -65,7 +65,7 @@ export default function Inbox() {
   const [extraMail, setExtraMail] = useState<emailShape[] | null>(null);
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(true);
-
+    const newEmail = () => playSound('ui/success_chime');
   //turn off loading indicator after set interval
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
@@ -81,7 +81,7 @@ export default function Inbox() {
   function refreshInbox() {
     setRefreshing(false);
     const chance = Math.floor(Math.random() * 10) + 1;
-    if (chance < 3) {
+    if (chance < 5) {
       console.log("hit");
       //grab email to add to list
       const newMail =
@@ -91,8 +91,8 @@ export default function Inbox() {
         updatedMails = [...extraMail];
       }
       const finalMails = updatedMails.concat(newMail);
-      console.log(finalMails);
       setExtraMail(finalMails);
+      newEmail()
     }
   }
 

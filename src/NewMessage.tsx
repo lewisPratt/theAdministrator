@@ -3,6 +3,8 @@ import type { Dispatch, SetStateAction } from "react";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
+import { useSound } from "react-sounds";
+
 interface newMessageProps {
   messageStateSetter: Dispatch<SetStateAction<boolean>>;
 }
@@ -12,11 +14,14 @@ export default function NewMessage({ messageStateSetter }: newMessageProps) {
     const {currentSlug, setCurrentSlug} = useContext(CurrentSlugContext)
   
   const navigate = useNavigate();
+  const { play } = useSound('ui/success_chime');
 
   //handle the notification state dependant on which animation has just ended
   function handleAnimationEnd(e: React.AnimationEvent<HTMLDivElement>) {
     if (e.animationName == "opacity-slide-in") {
       setEntered(true);
+  
+
     } else if (e.animationName == "slide-out") {
       messageStateSetter(false);
     }
@@ -28,6 +33,7 @@ export default function NewMessage({ messageStateSetter }: newMessageProps) {
   }
 
   function visitInbox(){
+    setEntered(true);
     setClosing(true)
     setCurrentSlug("nav.inbox")
      navigate("/Inbox")
@@ -41,7 +47,8 @@ export default function NewMessage({ messageStateSetter }: newMessageProps) {
       }}
       className={
         (!entered ? "new-message-entrance" : "") +
-        (closing ? "new-message-exit" : "")
+        (closing ? "new-message-exit" : "") +
+        (entered && !closing ? " new-message-float" : "")
       }
     >
       <div id="close-new-message" onClick={closeMessageNotification}>

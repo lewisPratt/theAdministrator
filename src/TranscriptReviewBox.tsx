@@ -4,7 +4,7 @@ import { DoorOpen, Backpack, CircleCheck, CircleX, X, MapPinned } from "lucide-r
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 import { NIL as NIL_UUID } from "uuid";
-
+import { playSound } from "react-sounds";
 
 //set to 1 to show debug info on weighting
 const debug: number = 0;
@@ -19,6 +19,9 @@ export default function TranscriptReviewBox({
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<Boolean>(false)
+  
+  const successSound = ()=>playSound('ui/success_bling')
+  const failSound = ()=>playSound('ui/blocked')
 
   let recPassDesc: string = "";
   if (transcript?.recreationPass) {
@@ -55,6 +58,7 @@ export default function TranscriptReviewBox({
             decisionText =
               "ERROR: Non-compliant Citizen incorrectly processed.";
             decisionOutcome = false;
+            failSound()
             if (newScore <= 0) {
               scoreSetter(0);
             } else {
@@ -67,12 +71,14 @@ export default function TranscriptReviewBox({
             decisionText =
               "Productive Citizen identified & processed accurately.";
             decisionOutcome = true;
+            successSound()
           } else {
             //person is neutral (0) so no negative or positive consequences
             const neutralAnswer = 50;
             scoreSetter(scoreState + neutralAnswer);
             decisionText = "Average Citizen processed.";
             decisionOutcome = true;
+            successSound()
           }
           break;
         case "reeducate":
@@ -82,6 +88,7 @@ export default function TranscriptReviewBox({
             scoreSetter(scoreState + rightAnswer);
             decisionText = "Non-compliant Citizen sent to Re-education";
             decisionOutcome = true;
+            successSound()
           } else if (personWeighting > 0) {
             console.log("reeducate good person");
             //person is good, negative consequences for wrong deision
@@ -89,6 +96,7 @@ export default function TranscriptReviewBox({
             const newScore = scoreState - wrongAnswer;
             decisionText = "ERROR: Productive Citizen incorrectly processed.";
             decisionOutcome = false;
+            failSound()
             if (newScore <= 0) {
               scoreSetter(0);
             } else {
@@ -100,6 +108,7 @@ export default function TranscriptReviewBox({
             const newScore = scoreState - wrongAnswer;
             decisionText = "ERROR: Average Citizen incorrectly processed.";
             decisionOutcome = false;
+            failSound()
             if (newScore <= 0) {
               scoreSetter(0);
             } else {

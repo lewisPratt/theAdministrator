@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import NotLoggedIn from "./NotLoggedIn";
+import { Sound } from "react-sounds";
+
+
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [typedCommand, setTypedCommand] = useState<string>("");
@@ -28,7 +31,10 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    switch (typedCommand) {
+    const formValues = new FormData(e.target)
+    const command = formValues.get('command')
+    console.log(command)
+    switch (command) {
       case "nav.work":
         navigate("/workDes");
         setCurrentSlug("nav.work")
@@ -52,7 +58,7 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
         break;
       case "nav.logout":
         setAdminName("")
-        navigate("/");
+        navigate("/Goodbye");
         break;
       default:
         setErrorState(true);
@@ -73,8 +79,9 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
         <section id="welcome-section">
         {adminName ? 
         <>
+       
           <h1>Welcome Administrator {adminName}.</h1>
-          <form onSubmit={handleCommand}>
+          <form onSubmit={handleCommand} method="post">
             <div id="command-typing-container">
               <label htmlFor="admin-name" id="welcome-message">
                 What would you like to do today?
@@ -88,9 +95,9 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
                 id="command-centre-input"
                 name="command"
                 autoComplete="off"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setTypedCommand(e.currentTarget.value);
-                }}
+                // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                //   setTypedCommand(e.currentTarget.value);
+                // }}
               ></input>
               <button id="command-centre-submit-button"><ChevronRightCircle size={28}/></button>
               
