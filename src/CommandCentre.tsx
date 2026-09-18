@@ -43,6 +43,10 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
         navigate("/VoucherShop");
         setCurrentSlug("nav.voucher")
         break;
+      case "nav.hr":
+        navigate("/HR");
+        setCurrentSlug("nav.hr")
+        break;
       case "nav.review":
         navigate("/TranscriptReview");
         setCurrentSlug("nav.review")

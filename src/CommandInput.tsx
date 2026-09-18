@@ -9,7 +9,7 @@ import React, {
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import AvailableCommandsList from "./AvailableCommandsList";
 import { Tooltip } from "react-tooltip";
-
+import { playSound } from "react-sounds";
 interface CommandInputProps {
   adminNameSetter: Dispatch<SetStateAction<string>>;
 }
@@ -19,7 +19,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   const [errorState, setErrorState] = useState<string | null>(null);
   const [showCommands, setShowCommands] = useState<boolean>(false);
   const { currentSlug, setCurrentSlug } = useContext(CurrentSlugContext);
-
+    
   const navigate = useNavigate();
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
@@ -62,6 +62,14 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
     }
   }
 
+  function playKeyStroke(){
+    const keystrokes = ['ui/keystroke_soft', 'ui/keystroke_medium', 'ui/keystroke_hard']
+    const strokeSound = Math.floor(Math.random() * keystrokes.length) 
+    console.log(strokeSound)
+    const playStroke = playSound(keystrokes[strokeSound])
+    playStroke
+  }
+
   function resetInput(e: React.SubmitEvent<HTMLFormElement>) {
     e.currentTarget.reset();
     setErrorState(null);
@@ -83,6 +91,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
           autoComplete="off"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setTypedCommand(e.currentTarget.value);
+            playKeyStroke()
           }}
         ></input>
         <button id="nav-submit-button" type="submit" data-tooltip-id='nav-terminal-tooltip' data-tooltip-content='Submit Nav Command'>

@@ -17,7 +17,7 @@ const welcomeMessages: string[] = [
 
 export default function WelcomeScreen() {
   const navigate = useNavigate();
-  const welcomeMessage =welcomeMessages[Math.floor(Math.random()* welcomeMessages.length) + 1]
+  const welcomeMessage =welcomeMessages[Math.floor(Math.random()* welcomeMessages.length) ]
   function loginPause() {
     setTimeout(() => navigate("/CommandCentre"), 5000);
   }

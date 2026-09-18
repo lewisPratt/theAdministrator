@@ -94,7 +94,7 @@ export default function TranscriptRev() {
   }
   function endShift(){
     //need to workout loop for end of shift
-    navigate("/voucher")
+    navigate("/VoucherShop")
   }
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();

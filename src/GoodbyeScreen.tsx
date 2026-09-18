@@ -20,7 +20,7 @@ const goodbyeMessages: string[] = [
 
 export default function GoodbyeScreen() {
   const navigate = useNavigate();
-  const goodbyeMessage =goodbyeMessages[Math.floor(Math.random()* goodbyeMessages.length) + 1]
+  const goodbyeMessage =goodbyeMessages[Math.floor(Math.random()* goodbyeMessages.length) ]
   function loginPause() {
     setTimeout(() => navigate("/"), 5000);
   }

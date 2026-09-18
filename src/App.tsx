@@ -24,6 +24,7 @@ import { SoundProvider ,useSoundEnabled} from "react-sounds";
 import SoundControl from "./SoundControl";
 import WelcomeScreen from "./WelcomeScreen";
 import GoodbyeScreen from "./GoodbyeScreen";
+import HumanResources from "./HumanResources";
 
 interface scoreContextShape {
   scoreState: number;
@@ -100,6 +101,7 @@ function App() {
                   <Routes>
                     <Route path="/Welcome" element={<WelcomeScreen />} />
                     <Route path="/Goodbye" element={<GoodbyeScreen />} />
+                    <Route path="/HR" element={<HumanResources />} />
 
                     <Route path="/" element={<Login />} />
                     <Route path="/CommandCentre" element={<CommandCentre />} />
