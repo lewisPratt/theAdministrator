@@ -160,6 +160,7 @@ export default function SearchConsole() {
               className="search-input"
               type="text"
               onChange={debounceSearch}
+              autoComplete="off"
               placeholder="Item name"
               data-search-type="item"
             ></input>
@@ -171,6 +172,7 @@ export default function SearchConsole() {
               className="search-input"
               type="text"
               onChange={debounceSearch}
+              autoComplete="off"
               placeholder="Location name"
               data-search-type="district"
             ></input>

@@ -313,7 +313,14 @@ h5 {
 
 #commands-header #header-div {
   flex: 1;
+  font-family:'Sixtyfour', monospace;
 }
+#commands-header #header-div p {
+  font-family:'Sixtyfour', monospace;
+  text-transform: uppercase;
+  font-size: .8rem;;
+}
+
 
 #commands-header div {
   background-color: #a2eaa2;
@@ -330,7 +337,8 @@ h5 {
 }
 
 #leave-req-p {
-  color: red;
+  color: #a2eaa2;
+  text-decoration: underline;
 }
 
 #transcript-review {
@@ -361,7 +369,6 @@ h5 {
 
 .transcript-list-item:hover {
   translate: 5px 0;
-  filter: grayscale(80%);
   cursor: pointer;
 
 }
@@ -490,8 +497,8 @@ h5 {
 
 .decision-container>div:hover {
   cursor: pointer;
-  background-color: #2c3e50;
-  color: white;
+  background-color: #a2eaa2;
+  color: black;
 }
 
 #evidence-box {
@@ -593,7 +600,8 @@ h5 {
 }
 
 .negative-text {
-  color: red;
+  color: #a2eaa2;
+  text-decoration: underline;
 }
 
 .positive-processed-item {
@@ -625,9 +633,10 @@ h5 {
 }
 
 #search-results-header {
-  background-color: rgb(236, 234, 234);
+  background-color: #a2eaa2;
   padding: 10px 0;
-  border: 1px solid black;
+  color:black;
+  border: 1px solid #a2eaa2;
 
 }
 
@@ -738,8 +747,8 @@ REVIEW OVERLAY
 }
 
 #codex-button:hover {
-  background-color: #2c3e50;
-  color: white;
+  background-color: #a2eaa2;
+  color: black;
 }
 
 #item-grid {
@@ -808,8 +817,8 @@ Voucher shop
 
 .voucher-box:focus-visible,
 .voucher-box:hover {
-  background-color: #2c3e50;
-  color: white;
+  background-color: black;
+  color: #a2eaa2;
 
 }
 
@@ -828,7 +837,8 @@ Voucher shop
 }
 
 #voucher-error {
-  color: red;
+  color: #a2eaa2;
+  text-decoration: underline;
   font-size: 1rem;
   animation: bulge .8s;
 }
@@ -944,7 +954,9 @@ Inbox
 NAV styling
 */
 .error-text {
-  color: lightcoral;
+  color: #a2eaa2;
+  text-decoration: underline;
+  margin-right:10px;
 }
 
 #slug-p {
@@ -989,14 +1001,14 @@ NAV styling
 }
 
 #new-message-container {
-  border: 1px solid black;
+  border: 1px solid #a2eaa2;
   width: fit-content;
   position: absolute;
   padding: 20px;
   translate: -50% 100px;
   left: 50%;
   top: 0;
-  background-color: #FFFFFF;
+  background-color: black;
   transition: .6s;
 }
 
