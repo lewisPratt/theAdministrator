@@ -104,8 +104,8 @@ export default function Inbox() {
         </p>
       ) : (
         <section id="inbox-parent">
-          <div id="inbox-header" className="striped-bg">
-            <h2>Worker inbox</h2>
+          <div id="inbox-header" >
+            <h2>Administrator inbox</h2>
           </div>
           <div id="inbox-content">
             <div id="inbox-sidebar" className="grid-bg">

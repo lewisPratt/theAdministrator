@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { ChevronRightCircle, LoaderCircle } from "lucide-react";
+import { Braces, ChevronRightCircle, Code, LoaderCircle } from "lucide-react";
 import LeaveReq from "./LeaveReq";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
@@ -114,7 +114,7 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
           {errorState && <p>Command Not recognized.</p>}
           
           <div className="commands-container">
-            <p>Nav Commands:</p>
+            <div id='commands-header'><div><Code /></div> <div id='header-div'><p>Nav Commands:</p></div><div><Braces /></div></div>
             <div className="command-container">
               <p>Review interview transcripts.</p> <p>nav.review</p>
             </div>

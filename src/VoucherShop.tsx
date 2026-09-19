@@ -182,7 +182,7 @@ export default function VoucherShop() {
                         hoverClick();
                       }}
                     >
-                      {voucher[1].icon}<p> {voucher[1].name}</p> <p>{playerUnlocks?.includes(voucher[0]) && "[Purchased]"  }  C{voucher[1].cost}</p>
+                      {voucher[1].icon}<span> {voucher[1].name}</span> <span>{playerUnlocks?.includes(voucher[0]) && "[Purchased]"  }  C{voucher[1].cost}</span>
                     </button>
                     {confirming != null && confirming === voucher[0] && (
                       <div >

@@ -42,7 +42,7 @@ export default function TranscriptReviewBox({
       selectedSetter(NIL_UUID);
     }
   }
-  function handleDecision(e: React.MouseEvent<HTMLDivElement>) {
+  function handleDecision(e: React.MouseEvent<HTMLButtonElement>) {
     if (transcript) {
       console.log(scoreState)
       const decision = e.currentTarget.dataset.decision;
@@ -174,7 +174,7 @@ export default function TranscriptReviewBox({
             )}
           </div>
 
-          <div className="transcript-text">{transcript.personFlavour}</div>
+          <div className="transcript-text"><p>{transcript.personFlavour}</p></div>
           <div className="passes-container">
             <div>
               <DoorOpen />
@@ -230,19 +230,19 @@ export default function TranscriptReviewBox({
                   );
                 })}
               </div>
-              <Tooltip id="item-desc"></Tooltip>
+              <Tooltip id="item-desc" className='custom-tooltip'></Tooltip>
             </div>
           </div>
 
           <div className="decision-container">
             {!transcript.processed ? (
               <>
-                <div data-decision="nfa" onClick={handleDecision}>
-                  <p>No further action</p>
-                </div>
-                <div data-decision="reeducate" onClick={handleDecision}>
-                  <p>Send for re-education</p>
-                </div>{" "}
+                <button data-decision="nfa" onClick={handleDecision}>
+                  No further action
+                </button>
+                <button data-decision="reeducate" onClick={handleDecision}>
+                  Send for re-education
+                </button>{" "}
               </>
             ) : (
               <>

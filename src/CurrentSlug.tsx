@@ -5,7 +5,7 @@ interface CurrentSlugProps{
 export default function CurrentSlug({pageName}: CurrentSlugProps){
 
     return (
-        <p id='slug-p'>Current: <span>{pageName}</span> </p>
+        <div id='slug-container'><p id='slug-p'>Current: <span>{pageName}</span> </p></div>
     )
 
 }

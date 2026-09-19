@@ -99,7 +99,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
         </button>
         <button id='available-commands-button' onClick={toggleCommands} data-tooltip-id='nav-terminal-tooltip' data-tooltip-content='Nav Commands'><CircleQuestionMark size={20}  /></button>
         {showCommands && <AvailableCommandsList />}
-        < Tooltip id='nav-terminal-tooltip'></Tooltip>
+        < Tooltip id='nav-terminal-tooltip' className='custom-tooltip'></Tooltip>
       </form>
     </div>
   );

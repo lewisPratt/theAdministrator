@@ -87,7 +87,7 @@ function App() {
                   {adminName != "" ? (
                     <>
                     <SoundControl />
-                      <CurrentSlug pageName={currentSlug} />
+                      
                       <CommandInput adminNameSetter={setAdminName} />
                       <ScoreTracker scoreState={scoreState} />
                     </>
@@ -113,6 +113,7 @@ function App() {
                     <Route path="/VoucherShop" element={<VoucherShop />} />
                     <Route path="/Inbox" element={<Inbox />} />
                   </Routes>
+                  <CurrentSlug pageName={currentSlug} />
                 </div>
                 </UnlocksContext>
               </ScoreContext>
