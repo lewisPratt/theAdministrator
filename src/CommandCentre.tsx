@@ -6,6 +6,7 @@ import { AdminContext } from "./context_providers/AdminContext";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import NotLoggedIn from "./NotLoggedIn";
 import { Sound } from "react-sounds";
+import ActivityGraph from "./ActivityGraph";
 
 
 export default function CommandCentre() {
@@ -137,6 +138,9 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
           </>}
         </section>
         <section id='city-stats-section'>
+        </section>
+        <section>
+          <ActivityGraph />
         </section>
         </>
       )}

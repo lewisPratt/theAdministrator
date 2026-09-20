@@ -776,7 +776,14 @@ Voucher shop
   justify-content: center;
   align-items: center;
 }
-
+#voucher-shop-header{
+  background-color: #a2eaa2;
+    width: 100%;
+    color: black;
+}
+#voucher-shop-header h2{
+color:black;
+}
 #voucher-items-container {
   display: flex;
   flex-direction: column;
@@ -784,7 +791,7 @@ Voucher shop
   flex-direction: row;
   flex-wrap: wrap;
 
-  width: 80%;
+  width: 100%;
 
 }
 
@@ -803,7 +810,7 @@ Voucher shop
 }
 
 .voucher-box {
-  border: 1px solid black;
+  border: 1px solid #a2eaa2;
   height: 50px;
   width: 100%;
   display: flex;
@@ -1128,6 +1135,45 @@ WELCOME SCREEN
 
 }
 
+/*
+ACTIVITY GRAPH
+*/
+#activity-graph-container{
+  display:flex;
+  justify-content: center;
+  margin:20px auto 0 auto;
+  flex-wrap: wrap;
+  width: 80%;
+}
+.node{
+  width:10px;
+  height:10px;
+  background-color:red;
+  margin:5px;
+  transition:.6s;
+}
+.intensity-1{
+  background-color:#507450
+}
+.intensity-2{
+  background-color: #a2eaa2;
+}
+.intensity-3{
+  background-color: #494949;
+}
+#graph-key{
+  flex:1;
+  flex-basis:100%;
+}
+
+#key-element-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:.6rem;
+  gap:10px;
+
+}
 @keyframes newMessageFloat {
   50% {
     top: 5px;
