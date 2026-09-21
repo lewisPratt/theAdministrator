@@ -42,6 +42,7 @@ export default function NewMessage({ messageStateSetter }: newMessageProps) {
   return (
     <div
       id="new-message-container"
+     
       onAnimationEnd={(e) => {
         handleAnimationEnd(e);
       }}
@@ -51,14 +52,13 @@ export default function NewMessage({ messageStateSetter }: newMessageProps) {
         (entered && !closing ? " new-message-float" : "")
       }
     >
-      <div id="close-new-message" onClick={closeMessageNotification}>
-        <X size={15} />
+      <div id="close-new-message-header" >
+        <button id='close-notification-button' onClick={closeMessageNotification}><X size={15} /></button>
       </div>
-      <div onClick={visitInbox}id="notification-text-container">
-        <h3>New Message!</h3>
-        <p>Welcome to your new role!</p>
-        <p>Your duties have been upgraded and now include the rev....</p>
-      </div>
+          <h4>New Message</h4>
+          <p>Welcome to your new role.</p>
+        <button  onClick={visitInbox}>Read Message</button>
+ 
     </div>
   );
 }

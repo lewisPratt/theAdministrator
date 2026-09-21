@@ -105,7 +105,7 @@ nav {
   justify-content: space-between;
   margin-top: 25px;
   align-items: center;
-  width:100%;
+  width: 100%;
 
 }
 
@@ -289,6 +289,7 @@ h5 {
   border-bottom: none;
   background-color: #a2eaa2;
   margin-top: 5px;
+  font-size: .8rem;
 
 }
 
@@ -313,12 +314,14 @@ h5 {
 
 #commands-header #header-div {
   flex: 1;
-  font-family:'Sixtyfour', monospace;
+  font-family: 'Sixtyfour', monospace;
 }
+
 #commands-header #header-div p {
-  font-family:'Sixtyfour', monospace;
+  font-family: 'Sixtyfour', monospace;
   text-transform: uppercase;
-  font-size: .8rem;;
+  font-size: .8rem;
+  ;
 }
 
 
@@ -635,7 +638,7 @@ h5 {
 #search-results-header {
   background-color: #a2eaa2;
   padding: 10px 0;
-  color:black;
+  color: black;
   border: 1px solid #a2eaa2;
 
 }
@@ -776,14 +779,17 @@ Voucher shop
   justify-content: center;
   align-items: center;
 }
-#voucher-shop-header{
+
+#voucher-shop-header {
   background-color: #a2eaa2;
-    width: 100%;
-    color: black;
+  width: 100%;
+  color: black;
 }
-#voucher-shop-header h2{
-color:black;
+
+#voucher-shop-header h2 {
+  color: black;
 }
+
 #voucher-items-container {
   display: flex;
   flex-direction: column;
@@ -906,19 +912,19 @@ Inbox
   height: fit-content;
   background-color: #a2eaa2;
   text-align: center;
-  color:black;
+  color: black;
   margin: 10px;
   border: 2px solid #a2eaa2;
 }
 
 #inbox-sidebar #message-check-button:hover {
   background-color: black;
-  color:#a2eaa2;
+  color: #a2eaa2;
 }
 
 #inbox-sidebar li:hover {
   background-color: #a2eaa2;
-  color:black;
+  color: black;
   cursor: pointer;
 }
 
@@ -942,7 +948,7 @@ Inbox
 
 .email-para {
   margin-top: 30px;
-    font-family: 'Silkscreen',monospace;
+  font-family: 'Silkscreen', monospace;
 }
 
 .email-body-p {
@@ -963,7 +969,7 @@ NAV styling
 .error-text {
   color: #a2eaa2;
   text-decoration: underline;
-  margin-right:10px;
+  margin-right: 10px;
 }
 
 #slug-p {
@@ -1005,18 +1011,29 @@ NAV styling
 
 #sound-control {
   cursor: pointer;
+  width: fit-content;
+  height: fit-content;
 }
 
 #new-message-container {
   border: 1px solid #a2eaa2;
   width: fit-content;
   position: absolute;
-  padding: 20px;
+  padding: 5px;
   translate: -50% 100px;
   left: 50%;
   top: 0;
   background-color: black;
   transition: .6s;
+  font-size: .8rem;
+}
+
+
+
+#new-message-container h4 {
+  margin: 25px 0 10px 0;
+
+
 }
 
 #notification-text-container:hover {
@@ -1044,13 +1061,25 @@ NAV styling
   animation-fill-mode: forwards;
 }
 
-#close-new-message {
+#close-new-message-header {
   position: absolute;
   top: 0;
   right: 0;
-  cursor: pointer;
+  left: 0;
+  text-align: right;
+  background-color: #a2eaa2;
+  color: black;
+
+
 }
 
+#close-notification-button{
+  cursor: pointer;
+  width:fit-content;
+  height: fit-content;
+  padding: 0px;
+  margin:0px;
+}
 #notification-text-container {
   cursor: pointer;
   transition: .6s;
@@ -1138,41 +1167,59 @@ WELCOME SCREEN
 /*
 ACTIVITY GRAPH
 */
-#activity-graph-container{
-  display:flex;
+#activity-graph-container {
+  display: flex;
   justify-content: center;
-  margin:20px auto 0 auto;
+  margin: 20px auto 0 auto;
   flex-wrap: wrap;
   width: 80%;
 }
-.node{
-  width:10px;
-  height:10px;
-  background-color:red;
-  margin:5px;
-  transition:.6s;
-}
-.intensity-1{
-  background-color:#507450
-}
-.intensity-2{
-  background-color: #a2eaa2;
-}
-.intensity-3{
-  background-color: #494949;
-}
-#graph-key{
-  flex:1;
-  flex-basis:100%;
+
+.node {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  margin: 5px;
+  transition: .6s;
 }
 
-#key-element-container{
+.intensity-1 {
+  background-color: #507450
+}
+
+.intensity-2 {
+  background-color: #a2eaa2;
+}
+
+.intensity-3 {
+  background-color: #494949;
+}
+
+#graph-key {
+  flex: 1;
+  flex-basis: 100%;
+}
+
+#key-element-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size:.6rem;
-  gap:10px;
+  font-size: .6rem;
+  gap: 10px;
 
+}
+
+
+
+
+
+.hotspot{
+  opacity: 0;
+  transition: .6s;
+}
+.hotspot:hover{
+fill: white;
+opacity: .5;
 }
 @keyframes newMessageFloat {
   50% {

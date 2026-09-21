@@ -10,6 +10,8 @@ export default function HumanResources() {
       sounds, icons etc, I've put together a reasonably interesting roleplaying
       dystopian text based game, that utilizes a number of the key features of
       React.js.
+      <br /><br />
+      < a href='https://github.com/lewispratt' target='_blank'><button>Check out my other projects here</button></a>
     </p>
   );
 }

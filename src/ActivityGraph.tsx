@@ -18,7 +18,8 @@ export default function ActivityGraph() {
         intensity: intensities[Math.floor(Math.random() * intensities.length) ],
       });
     }
-    setGraphNodes(nodes);
+    const firstNodes = [...nodes]
+    setGraphNodes(firstNodes);
   }, []);
 
   useEffect(() => {
@@ -30,8 +31,7 @@ export default function ActivityGraph() {
   }, []);
 
   function changeIntensity() {
-    console.log("change");
-    console.log(graphNodes[0]);
+
     const amount = Math.floor(Math.random() * 100) + 1;
     let currentNodes = [...graphNodes];
     console.log(currentNodes.length);

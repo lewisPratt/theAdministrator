@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
 import { ScoreContext } from "./context_providers/ScoreContext";
+import CityMap from "./CityMap";
 
 export default function Login() {
   const [typedName, setTypedName] = useState<string>("");
@@ -35,6 +36,8 @@ export default function Login() {
 
   return (
     <section id="login">
+           <CityMap />
+
       <h1>Welcome Administrator</h1>
       <form onSubmit={doLogin}>
         <div id="login-typing-container">
@@ -61,7 +64,6 @@ export default function Login() {
       <button id="about-header" onClick={toggleAbout}>
         What is this?
       </button>
-     
         <div id="about-container" className={(aboutState ? "visible-class" : "non-visible-class")}>
           <p>
             The Administrator is a roleplaying logic game where you

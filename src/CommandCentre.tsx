@@ -63,6 +63,7 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
         break;
       case "nav.logout":
         setAdminName("")
+
         navigate("/Goodbye");
         break;
       default:
@@ -88,9 +89,9 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
           <h1>Welcome Administrator {adminName}.</h1>
           <form onSubmit={handleCommand} method="post">
             <div id="command-typing-container">
-              <label htmlFor="admin-name" id="welcome-message">
+              {/* <label htmlFor="admin-name" id="welcome-message">
                 What would you like to do today?
-              </label>
+              </label> */}
             </div>
             <div id="command-centre-input-container">
               <input
@@ -128,13 +129,16 @@ const [citizenCount, setCitizenCount] = useState<number>(startNumber)
             <div className="command-container">
               <p>Request leave.</p> <p>request.leave</p>
             </div>
+             <div className="command-container">
+              <p>Human Resources</p> <p>nav.hr</p>
+            </div>
             <div className="command-container">
               <p>Logout.</p> <p>nav.logout</p>
             </div>
           </div>
           </>: 
           <>
-           <NotLoggedIn />
+           <NotLoggedIn soundControls={false}/>
           </>}
         </section>
         <section id='city-stats-section'>

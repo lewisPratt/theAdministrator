@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import SoundControl from "./SoundControl";
-export default function NotLoggedIn() {
+
+interface NotLoggedInShape{
+    soundControls: boolean
+}
+export default function NotLoggedIn({soundControls}:NotLoggedInShape) {
   const navigate = useNavigate();
   return (
     <>
-    <SoundControl />
+    { soundControls && <SoundControl />}
     <p>
       you don't seem to be logged in{" "}
       <button

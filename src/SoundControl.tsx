@@ -9,10 +9,13 @@ export default function SoundControl() {
  const soundStatus = enabled ? 'on' : 'off'
   return (
     <>
-    <div id='sound-control' data-tooltip-id='sound-tooltip' data-tooltip-content={'Sound is '+soundStatus}>
-    {enabled ? <Volume2 onClick={() => setEnabled(!enabled)} /> : <VolumeX onClick={() => setEnabled(!enabled)} /> }
+    <button  id='sound-control' data-tooltip-id='sound-tooltip' data-tooltip-content={'Sound is '+soundStatus} 
+     onClick={ enabled ? () => setEnabled(!enabled) : () => setEnabled(!enabled)}
+    >
+
+    {enabled ? <Volume2 /> : <VolumeX /> }
         
-   </div>
+   </button>
    <Tooltip id='sound-tooltip' className='custom-tooltip'/>
    </>
   );
