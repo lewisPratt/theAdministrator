@@ -93,21 +93,12 @@ export default function CityMap() {
 
     ),
   },
-
-    
-
-
-     
-     
-
-
-
   ];
 
   return (
     <>
     <Tooltip id='city-tooltip' className='custom-tooltip'></Tooltip>
-      <svg viewBox=" 0 0 1800 1000">
+      <svg id='city-map' viewBox=" 0 0 1800 1000">
         <image href="../public/cityMap.png" width="1800" height="1000"></image>
         {hotspots.map((spot) => {
           return  <g transform="matrix(0.753961,0,0,0.753961,-55.9154,-97.0835)">{spot.hotspot}</g>

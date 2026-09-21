@@ -1211,7 +1211,9 @@ ACTIVITY GRAPH
 
 
 
-
+#city-map{
+  margin-bottom:50px;
+}
 
 .hotspot{
   opacity: 0;
@@ -1220,9 +1222,8 @@ ACTIVITY GRAPH
 .hotspot:hover{
 fill: lightgreen;
 opacity: .5;
-filter: drop-shadow(0px -20px 10px rgb(181, 255, 181)) ;
+filter: drop-shadow(0px -20px 2px rgb(181, 255, 181)) ;
 cursor: pointer;
-
 }
 @keyframes newMessageFloat {
   50% {
