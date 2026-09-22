@@ -61,7 +61,7 @@ export default function Login() {
         </div>
       </form>
       <div id='about-parent'>
-      <button id="about-header" onClick={toggleAbout}>
+      <button id="about-header" className='secondary-button' onClick={toggleAbout}>
         What is this?
       </button>
         <div id="about-container" className={(aboutState ? "visible-class" : "non-visible-class")}>
