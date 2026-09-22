@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
 import { ScoreContext } from "./context_providers/ScoreContext";
 import CityMap from "./CityMap";
-
+import { ChevronRightCircle } from "lucide-react";
 export default function Login() {
   const [typedName, setTypedName] = useState<string>("");
   const [aboutState, setAboutState] = useState<boolean>(false);
@@ -50,14 +50,14 @@ export default function Login() {
             autoFocus
             type="text"
             placeholder="Name"
-            id="admin-name"
+            id="login-input"
             name="admin-name"
             autoComplete="off"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setTypedName(capitalizeFirstLetter(e.currentTarget.value))
             }
           ></input>
-          <button id="login-submit-button">@</button>
+           <button id="command-centre-submit-button"><ChevronRightCircle size={28}/></button>
         </div>
       </form>
       <div id='about-parent'>

@@ -242,11 +242,17 @@ h5 {
 #login-input-container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 
 }
-
+#login-input{
+  height: 40px;
+  border: 1px solid #a2eaa2;
+  width: 80%;
+  padding: 10px;
+  font-size: 1.2rem;
+}
 #about-header {
   margin-bottom: 20px;
   padding: 5px;
