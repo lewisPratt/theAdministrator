@@ -188,9 +188,9 @@ export default function CityMap() {
         <defs>
           <clipPath
             id="scan-line-overlay"
-            transform="matrix(1.1734,-0.0550354,-0.0550354,1.01747,-315.37,-293.845)"
+            transform="matrix(1.2575,-0.0280676,-0.124116,1.02139,132.175,91.4718)"
           >
-            <rect x="0" y="0" width="100%" height="50" transform="rotate(32)">
+            <rect className="scan-line" x="0" y="0" width="100%" height="50" transform="rotate(32)">
               <animateMotion
                 path="M1282.95,262.783L69.079,648.043"
                 begin="0s"
@@ -198,7 +198,7 @@ export default function CityMap() {
                 repeatCount="indefinite"
               />
             </rect>
-            <rect x="0" y="0" width="100%" height="20" transform="rotate(32)">
+            <rect className="scan-line" x="0" y="0" width="100%" height="20" transform="rotate(32)">
               <animateMotion
                 path="M1282.95,262.783L69.079,648.043"
                 begin="0s"
@@ -218,7 +218,17 @@ export default function CityMap() {
           height="1000"
           clip-path="url(#scan-line-overlay)"
         />
+              <g id="scan-path"  transform="matrix(1.2575,-0.0280676,-0.124116,1.02139,132.175,91.4718)">
+            <path className="scan-line" d="M1282.95,262.783L69.079,648.043"/>
+        </g>
       </svg>
     </>
   );
 }
+
+
+     
+ 
+
+
+     

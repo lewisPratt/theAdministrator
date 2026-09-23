@@ -1226,8 +1226,13 @@ ACTIVITY GRAPH
 .scan-line-overlay{
 pointer-events: none;
 }
+.scan-line{
+ width: 2000px;
+ translate: -50% -50%;
+}
 #scan-line-map{
   filter:contrast(2) brightness(2);
+   pointer-events: none;
 }
 .hotspot{
   opacity: 0;
