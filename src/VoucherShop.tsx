@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { BriefcaseBusiness, ClockArrowUp, ClockPlus, Cookie, FolderTree, LoaderCircle, PartyPopper, PhoneIncoming, PhoneOutgoing, Scale, Sun, SunDim, UserMinus, UtensilsCrossed } from "lucide-react";
 import { ScoreContext } from "./context_providers/ScoreContext";
 import { UnlocksContext } from "./context_providers/unlocksContext";
-import type { VoucherShape, VoucherListShape } from "./interfaces";
+import type { VoucherShape, VoucherListShape } from "./interfaces/interfaces";
 import { playSound } from "react-sounds";
 
 export default function VoucherShop() {

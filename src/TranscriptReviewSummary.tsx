@@ -1,10 +1,5 @@
+import type { summaryProps } from "./interfaces/interfaces";
 
-interface summaryProps {
-  efficiency: number;
-  interviewCount: number;
-  targetState:boolean
-  startNewShift:(reason:string)=> void
-}
 export default function TranscriptReviewSummary({
   efficiency,
   interviewCount,

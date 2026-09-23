@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { Tooltip } from "react-tooltip";
+import type { nodeShape } from "./interfaces/interfaces";
 
-interface nodeShape {
-  intensity: number;
-  identifier: string;
-}
+
 export default function ActivityGraph() {
   let nodes: nodeShape[] = [];
   const [graphNodes, setGraphNodes] = useState<nodeShape[]>(nodes);

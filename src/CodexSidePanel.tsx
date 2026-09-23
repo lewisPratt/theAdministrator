@@ -1,8 +1,4 @@
-import type { Dispatch, SetStateAction } from "react";
-interface CodexSidePanelProps {
-  codexState: boolean;
-  codexStateSetter: Dispatch<SetStateAction<boolean>>;
-}
+import type{ CodexSidePanelProps } from "./interfaces/interfaces";
 
 export default function CodexSidePanel({
   codexState,

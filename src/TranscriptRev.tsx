@@ -4,7 +4,7 @@ import TranscriptListItem from "./TranscriptListItem";
 import TranscriptReviewSummary from "./TranscriptReviewSummary";
 import { NIL as NIL_UUID } from "uuid";
 import { person } from "./models/person";
-import type { reviewShape, reviewsCompleteShape,scoreContextShape } from "./interfaces";
+import type { reviewShape, reviewsCompleteShape,scoreContextShape } from "./interfaces/interfaces";
 import {useNavigate } from "react-router-dom";
 import SearchConsole from "./SearchInfo";
 import { LoaderCircle } from "lucide-react";

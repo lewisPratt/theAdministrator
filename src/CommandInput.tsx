@@ -2,17 +2,13 @@ import {  ChevronRightCircle,  CircleQuestionMark } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import React, {
   useState,
-  type Dispatch,
-  type SetStateAction,
   useContext,
 } from "react";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import AvailableCommandsList from "./AvailableCommandsList";
 import { Tooltip } from "react-tooltip";
 import { playSound } from "react-sounds";
-interface CommandInputProps {
-  adminNameSetter: Dispatch<SetStateAction<string>>;
-}
+import type{ CommandInputProps } from "./interfaces/interfaces";
 
 export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");

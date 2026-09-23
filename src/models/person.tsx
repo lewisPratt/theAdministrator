@@ -4,7 +4,7 @@ import type {
   carryableItemsShape,
   locationsShape,
   occupationsShape,
-} from "../interfaces";
+} from "../interfaces/interfaces";
 import { v4 as uuidv4 } from "uuid";
 import { IdCard } from "lucide-react";
 import { createName } from "../NameArrays";

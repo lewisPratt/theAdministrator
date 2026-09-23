@@ -1,13 +1,7 @@
-import { type ReactElement } from "react";
 import { v4 as uuid4 } from "uuid";
 import { Tooltip } from "react-tooltip";
 import cityMap from "./assets/cityMap.png";
-
-interface HotSpotShape {
-  ident: string;
-  name: string;
-  hotspot: ReactElement;
-}
+import type { HotSpotShape } from "./interfaces/interfaces";
 
 export default function CityMap() {
   const hotspots: HotSpotShape[] = [

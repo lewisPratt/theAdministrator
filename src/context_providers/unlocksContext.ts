@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import type { unlockContextShape } from "../interfaces"; 
+import type { unlockContextShape } from "../interfaces/interfaces"; 
 
 
 export const UnlocksContext = createContext<unlockContextShape>({

@@ -1,8 +1,6 @@
 import { useContext } from "react"
 import { AdminContext } from "./context_providers/AdminContext"
-interface CurrentSlugProps{
-    pageName: string
-}
+import type { CurrentSlugProps } from "./interfaces/interfaces"
 export default function CurrentSlug({pageName}: CurrentSlugProps){
 
     const {adminName } =useContext(AdminContext)

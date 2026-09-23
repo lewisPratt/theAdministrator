@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import SoundControl from "./SoundControl";
+import type { NotLoggedInShape } from "./interfaces/interfaces";
 
-interface NotLoggedInShape{
-    soundControls: boolean
-}
 export default function NotLoggedIn({soundControls}:NotLoggedInShape) {
   const navigate = useNavigate();
   return (

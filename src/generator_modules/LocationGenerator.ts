@@ -1,4 +1,4 @@
-import type { locationsShape } from "../interfaces";
+import type { locationsShape } from "../interfaces/interfaces";
 export const locations : locationsShape[] = [
   // District 1 — Central Administration
   { name: "Central Checkpoint", district: 1 },

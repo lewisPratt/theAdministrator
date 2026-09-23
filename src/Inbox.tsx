@@ -1,7 +1,8 @@
-import { useState, type JSX, useEffect } from "react";
+import { useState,useEffect } from "react";
 import spamEmails from "./generator_modules/emailsGenerator";
 import { LoaderCircle } from "lucide-react";
 import { playSound } from "react-sounds";
+import type { emailShape } from "./interfaces/interfaces";
 const emails = [
   {
     title: "Welcome to your new role",
@@ -54,11 +55,7 @@ const emails = [
   },
 ];
 
-interface emailShape {
-  title: string;
-  message: JSX.Element;
-  sender: string;
-}
+
 
 export default function Inbox() {
   const [activeEmail, setActiveEmail] = useState<emailShape | null>(emails[2]);

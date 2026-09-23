@@ -1,8 +1,6 @@
 import { Tooltip } from "react-tooltip";
+import type { ScoreTrackerProps } from "./interfaces/interfaces";
 
-interface ScoreTrackerProps{
-scoreState: number
-}
 
 export default function ScoreTracker({scoreState}: ScoreTrackerProps) {
     

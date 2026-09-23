@@ -1,12 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { reviewShape } from "./interfaces";
+import type { reviewShape, transcriptListItemProps } from "./interfaces/interfaces";
 
-interface transcriptListItemProps {
-  currentTranscript: reviewShape | null;
-  identifier: string
-  reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
-  selectedSetter: Dispatch<SetStateAction<string>>
-}
+
 
 export default function TranscriptListItem({
   currentTranscript,

@@ -1,4 +1,4 @@
-import type { carryableItemsShape } from "../interfaces";
+import type { carryableItemsShape } from "../interfaces/interfaces";
 import {
   Smartphone,
   Wallet,

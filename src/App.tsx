@@ -10,7 +10,6 @@ import CommandCentre from "./CommandCentre";
 import Login from "./Login";
 import { ScoreContext } from "./context_providers/ScoreContext";
 import { AdminContext } from "./context_providers/AdminContext";
-import type { Dispatch, SetStateAction } from "react";
 import Inbox from "./Inbox";
 import CommandInput from "./CommandInput";
 import NewMessage from "./NewMessage";
@@ -18,25 +17,14 @@ import CurrentSlug from "./CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import { UnlocksContext } from "./context_providers/unlocksContext";
 import NotLoggedIn from "./NotLoggedIn";
-import { type unlockContextShape } from "./interfaces";
+import { type unlockContextShape, type currentSlugShape, type adminContextShape, type scoreContextShape } from "./interfaces/interfaces";
 import { SoundProvider } from "react-sounds";
 import SoundControl from "./SoundControl";
 import WelcomeScreen from "./WelcomeScreen";
 import GoodbyeScreen from "./GoodbyeScreen";
 import HumanResources from "./HumanResources";
 
-interface scoreContextShape {
-  scoreState: number;
-  setScoreState: Dispatch<SetStateAction<number>>;
-}
-interface adminContextShape {
-  adminName: string;
-  setAdminName: Dispatch<SetStateAction<string>>;
-}
-interface currentSlugShape {
-  currentSlug: string;
-  setCurrentSlug: Dispatch<SetStateAction<string>>;
-}
+
 
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
