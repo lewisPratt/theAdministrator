@@ -13,7 +13,7 @@ export default function NotLoggedIn({soundControls}:NotLoggedInShape) {
       you don't seem to be logged in{" "}
       <button
         onClick={() => {
-          navigate("/");
+          navigate("/TheAdministrator");
         }}
         id="nav-login-button"
       >

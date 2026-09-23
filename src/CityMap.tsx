@@ -256,13 +256,13 @@ export default function CityMap() {
           Scanning for violations...
         </text>
 
-          <text className="small-city-string" x="40" y="540">
+          <text className="small-city-string map-text-left" x="40" y="540">
           Terminal City 058#84849
         </text>
-        <text className="small-city-string" x="40" y="560">
+        <text className="small-city-string map-text-left" x="40" y="560">
           Districts 1-13
         </text>
-         <text className="small-city-string" x="40" y="580">
+         <text className="small-city-string map-text-right" x="1540" y="1240">
           Population 2,700,000
         </text>
       </svg>
