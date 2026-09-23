@@ -3,7 +3,7 @@ import TranscriptReviewBox from "./TranscriptReviewBox";
 import TranscriptListItem from "./TranscriptListItem";
 import TranscriptReviewSummary from "./TranscriptReviewSummary";
 import { NIL as NIL_UUID } from "uuid";
-import { person } from "./classes";
+import { person } from "./models/person";
 import type { reviewShape, reviewsCompleteShape,scoreContextShape } from "./interfaces";
 import {useNavigate } from "react-router-dom";
 import SearchConsole from "./SearchInfo";

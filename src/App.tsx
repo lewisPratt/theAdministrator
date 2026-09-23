@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WorkDes from "./WorkDes";
 import TranscriptRev from "./TranscriptRev";
-import "./App.css";
+import "./assets/css/App.css";
 import ScoreTracker from "./ScoreTracker";
 import { LoaderCircle } from "lucide-react";
 import VoucherShop from "./VoucherShop";

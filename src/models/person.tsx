@@ -4,17 +4,17 @@ import type {
   carryableItemsShape,
   locationsShape,
   occupationsShape,
-} from "./interfaces";
+} from "../interfaces";
 import { v4 as uuidv4 } from "uuid";
 import { IdCard } from "lucide-react";
-import { createName } from "./NameArrays";
-import { createItems } from "./generator_modules/CarryableItems";
-import { CreateOccupation } from "./generator_modules/OccupationGenerator";
-import createLocation from "./generator_modules/LocationGenerator";
-import generateWeather from "./generator_modules/WeatherGenerator";
-import { generateAuthorizedLocations } from "./generator_modules/AuthorizedLocationGenerator";
-import { generateBehaviour } from "./generator_modules/behaviourGenerator";
-import { PersonFlavourGenerator } from "./generator_modules/PersonFlavourGenerator";
+import { createName } from "../NameArrays";
+import { createItems } from "../generator_modules/CarryableItems";
+import { CreateOccupation } from "../generator_modules/OccupationGenerator";
+import createLocation from "../generator_modules/LocationGenerator";
+import generateWeather from "../generator_modules/WeatherGenerator";
+import { generateAuthorizedLocations } from "../generator_modules/AuthorizedLocationGenerator";
+import { generateBehaviour } from "../generator_modules/behaviourGenerator";
+import { PersonFlavourGenerator } from "../generator_modules/PersonFlavourGenerator";
 
 export class person {
   interviewee: nameShape;
