@@ -143,13 +143,13 @@ function getPronouns(gender: string) :string[]{
 }
 export function PersonFlavourGenerator(
   behaviour: string,
-  weather: weatherShape,
+  _weather: weatherShape,
   occupation: occupationsShape,
   recreationPass: boolean,
   personName: nameShape,
-  age: number,
-  location: locationsShape,
-  items: carryableItemsShape[],
+  _age: number,
+  _location: locationsShape,
+  _items: carryableItemsShape[],
   gender: string
 ) {
     const pronoun = getPronouns(gender)
@@ -157,11 +157,11 @@ export function PersonFlavourGenerator(
     const subjectPronoun = pronoun[0]
     const capitalizedSubjectPronoun = subjectPronoun.charAt(0).toUpperCase() + subjectPronoun.slice(1)
 
-    const objectPronoun = pronoun[1]
-    const capitalizedObjectPronoun = objectPronoun.charAt(0).toUpperCase() + objectPronoun.slice(1)
+    // const objectPronoun = pronoun[1]
+    // const capitalizedObjectPronoun = objectPronoun.charAt(0).toUpperCase() + objectPronoun.slice(1)
 
      const possessivePronoun = pronoun[2]
-    const capitalizedPossessivePronoun = possessivePronoun.charAt(0).toUpperCase() + possessivePronoun.slice(1)
+    // const capitalizedPossessivePronoun = possessivePronoun.charAt(0).toUpperCase() + possessivePronoun.slice(1)
 
   return personName.lastName+' ' + getBehaviourReaction(behaviour)+ '. '+ capitalizedSubjectPronoun+' ' + getOccupationContext(occupation).replaceAll("{pronoun}", possessivePronoun) +'. ' + capitalizedSubjectPronoun + ' '+getRecreationPassContext(recreationPass).replaceAll("{pronoun}", possessivePronoun)
 }
