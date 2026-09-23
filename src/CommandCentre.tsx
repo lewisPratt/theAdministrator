@@ -5,20 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./context_providers/AdminContext";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import NotLoggedIn from "./NotLoggedIn";
-import { Sound } from "react-sounds";
 import ActivityGraph from "./ActivityGraph";
 
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
-  const [typedCommand, setTypedCommand] = useState<string>("");
   const [leaveReq, setLeaveReq] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<boolean>(false);
-    const startNumber = Math.floor(Math.random() * 20000) + 1;
-const [citizenCount, setCitizenCount] = useState<number>(startNumber)
 
   const { adminName, setAdminName } = useContext(AdminContext);
-  const {currentSlug, setCurrentSlug} = useContext(CurrentSlugContext)
+  const {setCurrentSlug} = useContext(CurrentSlugContext)
   const navigate = useNavigate();
 
   // const currentDate = Date.now()

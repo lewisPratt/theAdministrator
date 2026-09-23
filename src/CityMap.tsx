@@ -1,6 +1,8 @@
 import { type ReactElement } from "react";
 import { v4 as uuid4 } from "uuid";
 import { Tooltip } from "react-tooltip";
+import cityMap from "./assets/cityMap.png";
+
 interface HotSpotShape {
   ident: string;
   name: string;
@@ -187,7 +189,7 @@ export default function CityMap() {
 
       <svg id="city-map" viewBox=" 0 0 1800 1000">
         {/* base map image */}
-        <image href="../public/cityMap.png" width="1800" height="1000"></image>
+        <image   href={cityMap} width="1800" height="1000"></image>
         {/* render district hotspots using transform from original SVG to line up all elements in the same local space */}
         {hotspots.map((spot) => {
           return (
@@ -242,7 +244,7 @@ export default function CityMap() {
           x="10"
           y="5"
           id="scan-line-map"
-          href="../public/cityMap.png"
+          href={cityMap}
           width="1800"
           height="1000"
           clipPath="url(#scan-line-overlay)"

@@ -1,4 +1,4 @@
-import React, { useState, type Dispatch, type SetStateAction } from "react";
+import React, { useState } from "react";
 import type { transcriptReviewBoxProps } from "./interfaces";
 import { DoorOpen, Backpack, CircleCheck, CircleX, X, MapPinned } from "lucide-react";
 import { Tooltip } from "react-tooltip";

@@ -4,7 +4,7 @@ import WorkDes from "./WorkDes";
 import TranscriptRev from "./TranscriptRev";
 import "./App.css";
 import ScoreTracker from "./ScoreTracker";
-import { LoaderCircle, Volume2, VolumeOff } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import VoucherShop from "./VoucherShop";
 import CommandCentre from "./CommandCentre";
 import Login from "./Login";
@@ -16,11 +16,10 @@ import CommandInput from "./CommandInput";
 import NewMessage from "./NewMessage";
 import CurrentSlug from "./CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
-import { useNavigate } from "react-router-dom";
 import { UnlocksContext } from "./context_providers/unlocksContext";
 import NotLoggedIn from "./NotLoggedIn";
-import { type VoucherShape, type unlockContextShape } from "./interfaces";
-import { SoundProvider, useSoundEnabled } from "react-sounds";
+import { type unlockContextShape } from "./interfaces";
+import { SoundProvider } from "react-sounds";
 import SoundControl from "./SoundControl";
 import WelcomeScreen from "./WelcomeScreen";
 import GoodbyeScreen from "./GoodbyeScreen";
@@ -43,7 +42,7 @@ function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
   const [playerUnlocks, setPlayerUnlocks] = useState<string[] | null>(null);
-  const [loadingState, setLoadingState] = useState<boolean>(false);
+  const [loadingState, _setLoadingState] = useState<boolean>(false);
   // const [workDes, setWorkDes] = useState<boolean>(false);
   // const [transcriptRev, setTranscriptRev] = useState<boolean>(false);
   const [scoreState, setScoreState] = useState<number>(0);
@@ -123,7 +122,7 @@ function App() {
                           <Route path="/Goodbye" element={<GoodbyeScreen />} />
                           <Route path="/HR" element={<HumanResources />} />
 
-                          <Route path="/" element={<Login />} />
+                          <Route path="/TheAdministrator" element={<Login />} />
                           <Route
                             path="/CommandCentre"
                             element={<CommandCentre />}

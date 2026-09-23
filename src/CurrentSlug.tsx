@@ -5,7 +5,7 @@ interface CurrentSlugProps{
 }
 export default function CurrentSlug({pageName}: CurrentSlugProps){
 
-    const {adminName ,setAdminName } =useContext(AdminContext)
+    const {adminName } =useContext(AdminContext)
     return (
         <>
         {adminName &&

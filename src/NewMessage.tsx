@@ -3,7 +3,6 @@ import type { Dispatch, SetStateAction } from "react";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
-import { useSound } from "react-sounds";
 
 interface newMessageProps {
   messageStateSetter: Dispatch<SetStateAction<boolean>>;
@@ -11,10 +10,9 @@ interface newMessageProps {
 export default function NewMessage({ messageStateSetter }: newMessageProps) {
   const [entered, setEntered] = useState<boolean>(false);
   const [closing, setClosing] = useState<boolean>(false);
-    const {currentSlug, setCurrentSlug} = useContext(CurrentSlugContext)
+    const {setCurrentSlug} = useContext(CurrentSlugContext)
   
   const navigate = useNavigate();
-  const { play } = useSound('ui/success_chime');
 
   //handle the notification state dependant on which animation has just ended
   function handleAnimationEnd(e: React.AnimationEvent<HTMLDivElement>) {

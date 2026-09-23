@@ -117,7 +117,7 @@ export default function VoucherShop() {
         setConfirming(null)
       }
       else{
-      const chosenVoucherName: string = e.currentTarget.dataset.voucherName;
+    //   const chosenVoucherName: string = e.currentTarget.dataset.voucherName;
 
       const chosenVoucher: VoucherShape = vouchers[`${chosenVoucherIdent}`];
   

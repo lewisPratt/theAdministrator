@@ -15,8 +15,7 @@ import { ScoreContext } from "./context_providers/ScoreContext";
 
 
 export default function TranscriptRev() {
-  const [typedCommand, setTypedCommand] = useState<string>("");
-  const [errorState, setErrorState] = useState<boolean>(false);
+ 
   const [availableTranscripts, setAvailableTranscripts] = useState<
     reviewShape[] | null>(null);
   const [currentTranscript, setCurrentTranscript] =
@@ -96,23 +95,7 @@ export default function TranscriptRev() {
     //need to workout loop for end of shift
     navigate("/VoucherShop")
   }
-  function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
-    e.preventDefault();
-   
-    switch (typedCommand) {
-      case "[Exit]":
-        setAvailableTranscripts(null);
-        setCurrentTranscript(null);
-        // transcriptRevSetter(false);
-        navigate('/CommandCentre')
-        setErrorState(false);
-        break;
-      default:
-         e.currentTarget.reset();
-        setErrorState(true);
-        break;
-    }
-  }
+
   return (
      <>
       {loadingState ? (

@@ -7,8 +7,8 @@ import { ChevronRightCircle } from "lucide-react";
 export default function Login() {
   const [typedName, setTypedName] = useState<string>("");
   const [aboutState, setAboutState] = useState<boolean>(false);
-  const { adminName, setAdminName } = useContext(AdminContext);
-  const { scoreState, setScoreState } = useContext(ScoreContext);
+  const { setAdminName } = useContext(AdminContext);
+  const { setScoreState } = useContext(ScoreContext);
   const navigate = useNavigate();
   useEffect(() => {
     setScoreState(0);

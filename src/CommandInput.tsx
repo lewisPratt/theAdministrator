@@ -18,7 +18,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
   const [errorState, setErrorState] = useState<string | null>(null);
   const [showCommands, setShowCommands] = useState<boolean>(false);
-  const { currentSlug, setCurrentSlug } = useContext(CurrentSlugContext);
+  const {setCurrentSlug } = useContext(CurrentSlugContext);
     
   const navigate = useNavigate();
 
