@@ -1,6 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { reviewShape } from "./interfaces";
-import type { UUIDTypes } from "uuid";
 
 interface transcriptListItemProps {
   currentTranscript: reviewShape | null;
