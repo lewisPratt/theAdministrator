@@ -1,7 +1,7 @@
 import { v4 as uuid4 } from "uuid";
 import { Tooltip } from "react-tooltip";
-import cityMap from "../assets/cityMap.png";
-import type { HotSpotShape } from "../interfaces/interfaces";
+import cityMap from "../../assets/cityMap.png";
+import type { HotSpotShape } from "../../interfaces/interfaces";
 import MapScanningText from "./MapScanningText";
 
 export default function CityMap() {

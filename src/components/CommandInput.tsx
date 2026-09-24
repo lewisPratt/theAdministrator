@@ -1,32 +1,26 @@
-import {  ChevronRightCircle,  CircleQuestionMark } from "lucide-react";
+import { ChevronRightCircle, CircleQuestionMark } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import React, {
-  useState,
-  useContext,
-} from "react";
+import React, { useState, useContext } from "react";
 import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
 import AvailableCommandsList from "./AvailableCommandsList";
 import { Tooltip } from "react-tooltip";
 import { playSound } from "react-sounds";
-import type{ CommandInputProps } from "../interfaces/interfaces";
+import type { CommandInputProps } from "../interfaces/interfaces";
 
 export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");
   const [errorState, setErrorState] = useState<string | null>(null);
   const [showCommands, setShowCommands] = useState<boolean>(false);
-  const {setCurrentSlug } = useContext(CurrentSlugContext);
-    
+  const { setCurrentSlug } = useContext(CurrentSlugContext);
+
   const navigate = useNavigate();
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
-    e.preventDefault();
+     e.preventDefault();
+    const formValues = new FormData(e.target)
+    const command = formValues.get('command')?.toString()
 
-    switch (typedCommand) {
-      case "nav.work":
-        navigate("/workDes");
-        setCurrentSlug("nav.work");
-        resetInput(e);
-        break;
+    switch (command?.toLowerCase()) {
       case "nav.voucher":
         navigate("/VoucherShop");
         setCurrentSlug("nav.voucher");
@@ -51,6 +45,10 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
         adminNameSetter("");
         navigate("/Goodbye");
         break;
+      case "nav.personal":
+        navigate("/PersonalRecord");
+        resetInput(e);
+        break;
       default:
         resetInput(e);
         setErrorState("Command not recognized");
@@ -58,12 +56,16 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
     }
   }
 
-  function playKeyStroke(){
-    const keystrokes = ['ui/keystroke_soft', 'ui/keystroke_medium', 'ui/keystroke_hard']
-    const strokeSound = Math.floor(Math.random() * keystrokes.length) 
-    console.log(strokeSound)
-    const playStroke = playSound(keystrokes[strokeSound])
-    playStroke
+  function playKeyStroke() {
+    const keystrokes = [
+      "ui/keystroke_soft",
+      "ui/keystroke_medium",
+      "ui/keystroke_hard",
+    ];
+    const strokeSound = Math.floor(Math.random() * keystrokes.length);
+    console.log(strokeSound);
+    const playStroke = playSound(keystrokes[strokeSound]);
+    playStroke;
   }
 
   function resetInput(e: React.SubmitEvent<HTMLFormElement>) {
@@ -78,24 +80,35 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   return (
     <div id="command-input-container">
       <form id="nav-form" onSubmit={handleCommand}>
-        {errorState != null && <p className='error-text'>{errorState}</p>}
+        {errorState != null && <p className="error-text">{errorState}</p>}
         <input
           type="text"
           placeholder="nav.command"
           id="nav-text-input"
           name="command"
           autoComplete="off"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setTypedCommand(e.currentTarget.value);
-            playKeyStroke()
+          onChange={() => {
+            playKeyStroke();
           }}
         ></input>
-        <button id="nav-submit-button" type="submit" data-tooltip-id='nav-terminal-tooltip' data-tooltip-content='Submit Nav Command'>
+        <button
+          id="nav-submit-button"
+          type="submit"
+          data-tooltip-id="nav-terminal-tooltip"
+          data-tooltip-content="Submit Nav Command"
+        >
           <ChevronRightCircle size={20} />
         </button>
-        <button id='available-commands-button' onClick={toggleCommands} data-tooltip-id='nav-terminal-tooltip' data-tooltip-content='Nav Commands'><CircleQuestionMark size={20}  /></button>
+        <button
+          id="available-commands-button"
+          onClick={toggleCommands}
+          data-tooltip-id="nav-terminal-tooltip"
+          data-tooltip-content="Nav Commands"
+        >
+          <CircleQuestionMark size={20} />
+        </button>
         {showCommands && <AvailableCommandsList />}
-        < Tooltip id='nav-terminal-tooltip' className='custom-tooltip'></Tooltip>
+        <Tooltip id="nav-terminal-tooltip" className="custom-tooltip"></Tooltip>
       </form>
     </div>
   );

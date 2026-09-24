@@ -22,7 +22,7 @@ export default function GoodbyeScreen() {
   const navigate = useNavigate();
   const goodbyeMessage =goodbyeMessages[Math.floor(Math.random()* goodbyeMessages.length) ]
   function loginPause() {
-    setTimeout(() => navigate("/TheAdministrator"), 5000);
+    setTimeout(() => navigate("/theAdministrator"), 5000);
   }
   loginPause();
   return (

@@ -29,13 +29,9 @@ export default function CommandCentre() {
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     const formValues = new FormData(e.target)
-    const command = formValues.get('command')
-    console.log(command)
-    switch (command) {
-      case "nav.work":
-        navigate("/workDes");
-        setCurrentSlug("nav.work")
-        break;
+    const command = formValues.get('command')?.toString()
+    if(command){
+    switch (command.toLowerCase()) {
       case "nav.voucher":
         navigate("/VoucherShop");
         setCurrentSlug("nav.voucher")
@@ -59,8 +55,10 @@ export default function CommandCentre() {
         break;
       case "nav.logout":
         setAdminName("")
-
         navigate("/Goodbye");
+        break;
+      case "nav.personal":
+        navigate("/PersonalRecord")
         break;
       default:
         setErrorState(true);
@@ -68,6 +66,7 @@ export default function CommandCentre() {
         e.currentTarget.reset();
         break;
     }
+  }
   }
 
   return (

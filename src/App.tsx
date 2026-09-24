@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WorkDes from "./components/WorkDes";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import TranscriptRev from "./components/TranscriptRev";
 import "./assets/css/App.css";
 import ScoreTracker from "./components/ScoreTracker";
 import { LoaderCircle } from "lucide-react";
 import VoucherShop from "./components/VoucherShop";
 import CommandCentre from "./components/CommandCentre";
-import Login from "./components/Login";
+import Login from "./components/login/Login";
 import { ScoreContext } from "./context_providers/ScoreContext";
 import { AdminContext } from "./context_providers/AdminContext";
 import Inbox from "./components/Inbox";
@@ -20,9 +19,11 @@ import NotLoggedIn from "./components/NotLoggedIn";
 import { type unlockContextShape, type currentSlugShape, type adminContextShape, type scoreContextShape } from "./interfaces/interfaces";
 import { SoundProvider } from "react-sounds";
 import SoundControl from "./components/SoundControl";
-import WelcomeScreen from "./components/WelcomeScreen";
-import GoodbyeScreen from "./components/GoodbyeScreen";
+import WelcomeScreen from "./components/login/WelcomeScreen";
+import GoodbyeScreen from "./components/login/GoodbyeScreen";
 import HumanResources from "./components/HumanResources";
+import PersonalRecord from "./components/personal_record/PersonalRecord";
+import LoginAbout from "./components/login/LoginAbout";
 
 
 
@@ -108,23 +109,14 @@ function App() {
                       <div id="content-container">
                         <Routes>
                           <Route path="/Welcome" element={<WelcomeScreen />} />
+                          <Route path="/WhatIsThis" element={<LoginAbout />} />
                           <Route path="/Goodbye" element={<GoodbyeScreen />} />
                           <Route path="/HR" element={<HumanResources />} />
-
+                          <Route path="PersonalRecord" element={<PersonalRecord />}/>
                           <Route path="/TheAdministrator" element={<Login />} />
-                          <Route
-                            path="/CommandCentre"
-                            element={<CommandCentre />}
-                          />
-                          <Route
-                            path="/TranscriptReview"
-                            element={<TranscriptRev />}
-                          />
-                          <Route path="/workDes" element={<WorkDes />} />
-                          <Route
-                            path="/VoucherShop"
-                            element={<VoucherShop />}
-                          />
+                          <Route path="/CommandCentre" element={<CommandCentre />}/>
+                          <Route path="/TranscriptReview" element={<TranscriptRev />}/>
+                          <Route path="/VoucherShop" element={<VoucherShop />}/>
                           <Route path="/Inbox" element={<Inbox />} />
                         </Routes>
                         <CurrentSlug pageName={currentSlug} />

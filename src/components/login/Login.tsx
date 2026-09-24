@@ -1,12 +1,13 @@
 //REACT IMPORTS
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "../context_providers/AdminContext";
-import { ScoreContext } from "../context_providers/ScoreContext";
-import { ChevronRightCircle } from "lucide-react";
+import { AdminContext } from "../../context_providers/AdminContext";
+import { ScoreContext } from "../../context_providers/ScoreContext";
+import { ChevronRightCircle, CircleQuestionMark } from "lucide-react";
+import { Tooltip } from "react-tooltip";
 
 //CSS IMPORTS
-import "../assets/css/login.css";
+import "../../assets/css/login.css";
 
 //IMAGE IMPORTS
 import CityMap from "./CityMap";
@@ -16,9 +17,6 @@ export default function Login() {
   //CONTEXTS
   const { setAdminName } = useContext(AdminContext);
   const { setScoreState } = useContext(ScoreContext);
-
-  //STATES
-  const [aboutState, setAboutState] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -45,13 +43,6 @@ export default function Login() {
   }
 
 
-/** 
-* Toggles the visibility of the game explanation content
-*/
-  function toggleAbout() :void {
-    setAboutState((prev) => !prev);
-  }
-
   return (
     <section id="login">
       <CityMap />
@@ -63,6 +54,7 @@ export default function Login() {
             Please enter your name
           </label>
         </div>
+
         <div id="login-input-container">
           <input
             autoFocus
@@ -71,37 +63,16 @@ export default function Login() {
             id="login-input"
             name="admin-name"
             autoComplete="off"
-            
           ></input>
           <button id="command-centre-submit-button">
             <ChevronRightCircle size={28} />
           </button>
+          <button id="command-centre-submit-button" onClick={(e)=>{ e.preventDefault(); navigate("/WhatIsThis")}} data-tooltip-id='login-tooltip' data-tooltip-content='What is this?'>
+            <CircleQuestionMark size={28} />
+          </button>
         </div>
       </form>
-      <div id="about-parent">
-        <button
-          id="about-header"
-          className="secondary-button"
-          onClick={toggleAbout}
-        >
-          What is this?
-        </button>
-        <div
-          id="about-container"
-          className={aboutState ? "visible-class" : "non-visible-class"}
-        >
-          <p>
-            The Administrator is a roleplaying logic game where you examine the
-            details of Citizen interviews to determine each Citizens positive or
-            negative impact on The City.
-          </p>
-          <p>
-            Correctly identifying positive/negative Citizen behaviour earns
-            credits that can be spent in the Voucher Terminal.
-          </p>
-          <p>Navigation between pages via commands written by the user.</p>
-        </div>
-      </div>
+      <Tooltip id='login-tooltip' className='custom-tooltip'/>
     </section>
   );
 }
