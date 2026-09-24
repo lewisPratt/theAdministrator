@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { locations } from "./generator_modules/LocationGenerator";
-import { occupations } from "./generator_modules/OccupationGenerator";
+import { locations } from "../generator_modules/LocationGenerator";
+import { occupations } from "../generator_modules/OccupationGenerator";
 import type {
   carryableItemsShape,
   locationsShape,
   occupationsShape,
-} from "./interfaces/interfaces";
+} from "../interfaces/interfaces";
 import {
   ChevronDown,
   ChevronUp,
@@ -14,9 +14,9 @@ import {
   HandCoins,
 } from "lucide-react";
 import { useRef } from "react";
-import { carryableItems } from "./generator_modules/CarryableItems";
+import { carryableItems } from "../generator_modules/CarryableItems";
 
-import type{ searchResultShape, normalizedResultsShape } from "./interfaces/interfaces";
+import type{ searchResultShape, normalizedResultsShape } from "../interfaces/interfaces";
 export default function SearchConsole() {
   const [searchResult, setSearchResult] = useState<searchResultShape[] | null>(
     null,

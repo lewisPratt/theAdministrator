@@ -1,12 +1,12 @@
 //REACT IMPORTS
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "./context_providers/AdminContext";
-import { ScoreContext } from "./context_providers/ScoreContext";
+import { AdminContext } from "../context_providers/AdminContext";
+import { ScoreContext } from "../context_providers/ScoreContext";
 import { ChevronRightCircle } from "lucide-react";
 
 //CSS IMPORTS
-import "./assets/css/login.css";
+import "../assets/css/login.css";
 
 //IMAGE IMPORTS
 import CityMap from "./CityMap";

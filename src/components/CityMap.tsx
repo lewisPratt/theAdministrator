@@ -1,7 +1,8 @@
 import { v4 as uuid4 } from "uuid";
 import { Tooltip } from "react-tooltip";
-import cityMap from "./assets/cityMap.png";
-import type { HotSpotShape } from "./interfaces/interfaces";
+import cityMap from "../assets/cityMap.png";
+import type { HotSpotShape } from "../interfaces/interfaces";
+import MapScanningText from "./MapScanningText";
 
 export default function CityMap() {
   const hotspots: HotSpotShape[] = [
@@ -249,7 +250,7 @@ export default function CityMap() {
         <text className="scanning-text" x="5" y="60">
           Scanning for violations...
         </text>
-
+        <MapScanningText />
           <text className="small-city-string map-text-left" x="40" y="540">
           Terminal City 058#84849
         </text>

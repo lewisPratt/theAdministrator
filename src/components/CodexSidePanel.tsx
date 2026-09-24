@@ -1,4 +1,4 @@
-import type{ CodexSidePanelProps } from "./interfaces/interfaces";
+import type{ CodexSidePanelProps } from "../interfaces/interfaces";
 
 export default function CodexSidePanel({
   codexState,

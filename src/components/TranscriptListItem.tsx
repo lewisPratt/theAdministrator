@@ -1,4 +1,4 @@
-import type { reviewShape, transcriptListItemProps } from "./interfaces/interfaces";
+import type { reviewShape, transcriptListItemProps } from "../interfaces/interfaces";
 
 
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { Tooltip } from "react-tooltip";
-import type { nodeShape } from "./interfaces/interfaces";
+import type { nodeShape } from "../interfaces/interfaces";
 
 
 export default function ActivityGraph() {

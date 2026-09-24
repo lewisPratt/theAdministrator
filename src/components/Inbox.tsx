@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react";
-import spamEmails from "./generator_modules/emailsGenerator";
+import spamEmails from "../generator_modules/emailsGenerator";
 import { LoaderCircle } from "lucide-react";
 import { playSound } from "react-sounds";
-import type { emailShape } from "./interfaces/interfaces";
+import type { emailShape } from "../interfaces/interfaces";
 const emails = [
   {
     title: "Welcome to your new role",

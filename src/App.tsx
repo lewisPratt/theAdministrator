@@ -1,28 +1,28 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WorkDes from "./WorkDes";
-import TranscriptRev from "./TranscriptRev";
+import WorkDes from "./components/WorkDes";
+import TranscriptRev from "./components/TranscriptRev";
 import "./assets/css/App.css";
-import ScoreTracker from "./ScoreTracker";
+import ScoreTracker from "./components/ScoreTracker";
 import { LoaderCircle } from "lucide-react";
-import VoucherShop from "./VoucherShop";
-import CommandCentre from "./CommandCentre";
-import Login from "./Login";
+import VoucherShop from "./components/VoucherShop";
+import CommandCentre from "./components/CommandCentre";
+import Login from "./components/Login";
 import { ScoreContext } from "./context_providers/ScoreContext";
 import { AdminContext } from "./context_providers/AdminContext";
-import Inbox from "./Inbox";
-import CommandInput from "./CommandInput";
-import NewMessage from "./NewMessage";
-import CurrentSlug from "./CurrentSlug";
+import Inbox from "./components/Inbox";
+import CommandInput from "./components/CommandInput";
+import NewMessage from "./components/NewMessage";
+import CurrentSlug from "./components/CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import { UnlocksContext } from "./context_providers/unlocksContext";
-import NotLoggedIn from "./NotLoggedIn";
+import NotLoggedIn from "./components/NotLoggedIn";
 import { type unlockContextShape, type currentSlugShape, type adminContextShape, type scoreContextShape } from "./interfaces/interfaces";
 import { SoundProvider } from "react-sounds";
-import SoundControl from "./SoundControl";
-import WelcomeScreen from "./WelcomeScreen";
-import GoodbyeScreen from "./GoodbyeScreen";
-import HumanResources from "./HumanResources";
+import SoundControl from "./components/SoundControl";
+import WelcomeScreen from "./components/WelcomeScreen";
+import GoodbyeScreen from "./components/GoodbyeScreen";
+import HumanResources from "./components/HumanResources";
 
 
 
@@ -77,6 +77,7 @@ function App() {
         <BrowserRouter>
           {loadingState ? (
             <p>
+              
               <LoaderCircle className="loader" />
             </p>
           ) : (

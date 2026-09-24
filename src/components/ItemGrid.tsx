@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { carryableItems, shuffleItems } from "./generator_modules/CarryableItems";
+import { carryableItems, shuffleItems } from "../generator_modules/CarryableItems";
 import { Tooltip } from "react-tooltip";
-import type { carryableItemsShape } from "./interfaces/interfaces";
+import type { carryableItemsShape } from "../interfaces/interfaces";
 
 export default function ItemGrid() {
     const [itemsForGrid, setItemsForGrid] = useState<carryableItemsShape[] | null>(null)

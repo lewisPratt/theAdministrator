@@ -1,5 +1,5 @@
 import { Tooltip } from "react-tooltip";
-import type { ScoreTrackerProps } from "./interfaces/interfaces";
+import type { ScoreTrackerProps } from "../interfaces/interfaces";
 
 
 export default function ScoreTracker({scoreState}: ScoreTrackerProps) {

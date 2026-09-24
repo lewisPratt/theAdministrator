@@ -1,8 +1,8 @@
 import { X } from "lucide-react";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
-import type{ newMessageProps } from "./interfaces/interfaces";
+import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
+import type{ newMessageProps } from "../interfaces/interfaces";
 
 export default function NewMessage({ messageStateSetter }: newMessageProps) {
   const [entered, setEntered] = useState<boolean>(false);

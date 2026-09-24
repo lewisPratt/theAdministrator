@@ -2,8 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import { Braces, ChevronRightCircle, Code, LoaderCircle } from "lucide-react";
 import LeaveReq from "./LeaveReq";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "./context_providers/AdminContext";
-import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
+import { AdminContext } from "../context_providers/AdminContext";
+import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
 import NotLoggedIn from "./NotLoggedIn";
 import ActivityGraph from "./ActivityGraph";
 

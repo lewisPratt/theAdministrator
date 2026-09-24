@@ -4,11 +4,11 @@ import React, {
   useState,
   useContext,
 } from "react";
-import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
+import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
 import AvailableCommandsList from "./AvailableCommandsList";
 import { Tooltip } from "react-tooltip";
 import { playSound } from "react-sounds";
-import type{ CommandInputProps } from "./interfaces/interfaces";
+import type{ CommandInputProps } from "../interfaces/interfaces";
 
 export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   const [typedCommand, setTypedCommand] = useState<string>("");

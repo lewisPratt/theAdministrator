@@ -1,4 +1,4 @@
-import type { summaryProps } from "./interfaces/interfaces";
+import type { summaryProps } from "../interfaces/interfaces";
 
 export default function TranscriptReviewSummary({
   efficiency,

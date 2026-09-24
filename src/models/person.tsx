@@ -7,7 +7,7 @@ import type {
 } from "../interfaces/interfaces";
 import { v4 as uuidv4 } from "uuid";
 import { IdCard } from "lucide-react";
-import { createName } from "../NameArrays";
+import { createName } from "../generator_modules/NameArrays";
 import { createItems } from "../generator_modules/CarryableItems";
 import { CreateOccupation } from "../generator_modules/OccupationGenerator";
 import createLocation from "../generator_modules/LocationGenerator";
