@@ -67,3 +67,9 @@ INTERACTIVE PSEUDO CLASSES
     cursor: pointer;
     outline: none;
 }
+
+@media (max-width:480px) {
+    #login-header {
+        font-size: 1.4rem;
+    }
+}

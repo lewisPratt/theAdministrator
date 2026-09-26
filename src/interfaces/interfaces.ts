@@ -51,6 +51,7 @@ export interface VoucherShape {
 export interface VoucherListShape {
   [key: string]: {
     name: string;
+    type: string
     cost: number;
     desc: string;
     icon: React.ReactElement

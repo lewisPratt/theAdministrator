@@ -1,5 +1,5 @@
 //REACT IMPORTS
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../../context_providers/AdminContext";
 import { ScoreContext } from "../../context_providers/ScoreContext";
@@ -47,7 +47,7 @@ export default function Login() {
     <section id="login">
       <CityMap />
 
-      <h1>Welcome Administrator</h1>
+      <h1 id='login-header'>Welcome Administrator</h1>
       <form onSubmit={doLogin}>
         <div id="login-typing-container">
           <label htmlFor="admin-name" id="welcome-message">

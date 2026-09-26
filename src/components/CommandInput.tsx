@@ -8,7 +8,6 @@ import { playSound } from "react-sounds";
 import type { CommandInputProps } from "../interfaces/interfaces";
 
 export default function CommandInput({ adminNameSetter }: CommandInputProps) {
-  const [typedCommand, setTypedCommand] = useState<string>("");
   const [errorState, setErrorState] = useState<string | null>(null);
   const [showCommands, setShowCommands] = useState<boolean>(false);
   const { setCurrentSlug } = useContext(CurrentSlugContext);

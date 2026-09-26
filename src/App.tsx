@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TranscriptRev from "./components/TranscriptRev";
 import "./assets/css/App.css";
+
 import ScoreTracker from "./components/ScoreTracker";
 import { LoaderCircle } from "lucide-react";
 import VoucherShop from "./components/VoucherShop";
@@ -16,7 +17,12 @@ import CurrentSlug from "./components/CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import { UnlocksContext } from "./context_providers/unlocksContext";
 import NotLoggedIn from "./components/NotLoggedIn";
-import { type unlockContextShape, type currentSlugShape, type adminContextShape, type scoreContextShape } from "./interfaces/interfaces";
+import {
+  type unlockContextShape,
+  type currentSlugShape,
+  type adminContextShape,
+  type scoreContextShape,
+} from "./interfaces/interfaces";
 import { SoundProvider } from "react-sounds";
 import SoundControl from "./components/SoundControl";
 import WelcomeScreen from "./components/login/WelcomeScreen";
@@ -24,8 +30,7 @@ import GoodbyeScreen from "./components/login/GoodbyeScreen";
 import HumanResources from "./components/HumanResources";
 import PersonalRecord from "./components/personal_record/PersonalRecord";
 import LoginAbout from "./components/login/LoginAbout";
-
-
+import MobileMenu from "./components/MobileMenu";
 
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
@@ -78,7 +83,6 @@ function App() {
         <BrowserRouter>
           {loadingState ? (
             <p>
-              
               <LoaderCircle className="loader" />
             </p>
           ) : (
@@ -90,10 +94,13 @@ function App() {
                       <nav>
                         {adminName != "" ? (
                           <>
-                            <SoundControl />
+                            <div id="desktop-nav">
+                              <SoundControl mobile={false}/>
 
-                            <CommandInput adminNameSetter={setAdminName} />
-                            <ScoreTracker scoreState={scoreState} />
+                              <CommandInput adminNameSetter={setAdminName} />
+                              <ScoreTracker scoreState={scoreState} />
+                            </div>
+                            <MobileMenu />
                           </>
                         ) : (
                           <NotLoggedIn soundControls />
@@ -112,11 +119,23 @@ function App() {
                           <Route path="/WhatIsThis" element={<LoginAbout />} />
                           <Route path="/Goodbye" element={<GoodbyeScreen />} />
                           <Route path="/HR" element={<HumanResources />} />
-                          <Route path="PersonalRecord" element={<PersonalRecord />}/>
+                          <Route
+                            path="PersonalRecord"
+                            element={<PersonalRecord />}
+                          />
                           <Route path="/TheAdministrator" element={<Login />} />
-                          <Route path="/CommandCentre" element={<CommandCentre />}/>
-                          <Route path="/TranscriptReview" element={<TranscriptRev />}/>
-                          <Route path="/VoucherShop" element={<VoucherShop />}/>
+                          <Route
+                            path="/CommandCentre"
+                            element={<CommandCentre />}
+                          />
+                          <Route
+                            path="/TranscriptReview"
+                            element={<TranscriptRev />}
+                          />
+                          <Route
+                            path="/VoucherShop"
+                            element={<VoucherShop />}
+                          />
                           <Route path="/Inbox" element={<Inbox />} />
                         </Routes>
                         <CurrentSlug pageName={currentSlug} />

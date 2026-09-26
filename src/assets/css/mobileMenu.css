@@ -1,0 +1,14 @@
+
+
+#mobile-menu-button {
+    width: fit-content;
+    height: fit-content;
+    display: none;
+}
+
+
+@media (max-width:480px) {
+    #mobile-menu-button {
+        display: flex;
+    }
+}
