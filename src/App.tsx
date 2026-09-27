@@ -31,6 +31,7 @@ import HumanResources from "./components/HumanResources";
 import PersonalRecord from "./components/personal_record/PersonalRecord";
 import LoginAbout from "./components/login/LoginAbout";
 import MobileMenu from "./components/MobileMenu";
+import Footer from "./components/footer/Footer";
 
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
@@ -138,14 +139,19 @@ function App() {
                           />
                           <Route path="/Inbox" element={<Inbox />} />
                         </Routes>
-                        <CurrentSlug pageName={currentSlug} />
+                        
                       </div>
+                      <Footer >
+                          <CurrentSlug pageName={currentSlug} />
+                        </Footer>
                     </UnlocksContext>
                   </ScoreContext>
                 </AdminContext>
               </CurrentSlugContext>
             </SoundProvider>
           )}
+
+          
         </BrowserRouter>
       </div>
     </>

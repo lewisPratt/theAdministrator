@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top:100px;
 }
 #badge-unlocks, #perk-unlocks{
     border-left: 1px solid #a2eaa2;

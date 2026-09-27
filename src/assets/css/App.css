@@ -73,12 +73,7 @@ label {
   margin: 0 10px;
 }
 
-#slug-container {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  translate: -50%;
-}
+
 
 #transcript-rev-command,
 #comsec-command,
@@ -234,6 +229,7 @@ h5 {
   flex-direction: column;
   justify-content: center;
   flex: 1;
+  margin-top:100px;
 }
 
 #login {
@@ -996,15 +992,6 @@ NAV styling
   color: #a2eaa2;
   text-decoration: underline;
   margin-right: 10px;
-}
-
-#slug-p {
-  margin-right: 20px;
-  font-size: .7rem;
-}
-
-#slug-p>span {
-  font-style: italic;
 }
 
 #nav-text-input {

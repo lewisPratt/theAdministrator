@@ -1,4 +1,4 @@
-import { BookKey, BriefcaseBusiness, ClockArrowUp, ClockPlus, Cookie, Cpu, FolderTree, LoaderCircle, MemoryStick, PartyPopper, PhoneIncoming, PhoneOutgoing, Scale, Sun, SunDim, Syringe, UserMinus, UtensilsCrossed } from "lucide-react";
+import { BookKey, BriefcaseBusiness, ClockArrowUp, ClockPlus, Cookie, Cpu, FolderTree, Headset, LoaderCircle, MemoryStick, PartyPopper, PhoneIncoming, PhoneOutgoing, Scale, Sun, SunDim, Syringe, UserMinus, UtensilsCrossed } from "lucide-react";
 import type { VoucherListShape } from "../interfaces/interfaces";
 export const allVouchers: VoucherListShape = {
     ["voucher1"]: {
@@ -22,7 +22,7 @@ export const allVouchers: VoucherListShape = {
          type: "perk",
       cost: 400,
       desc: "More cases to earn more credits. The wish of every Administrator.",
-      perkEffect:"Consequat magna in anim ullamco cillum eu enim commodo sunt fugiat ut.",
+      perkEffect:"Increases maximum cases per shift by 5.",
       icon: <FolderTree  size={12} x={6} y={6}/>
     },
     ["voucher4"]: {
@@ -50,20 +50,20 @@ export const allVouchers: VoucherListShape = {
       icon: <BookKey  size={12} x={6} y={6}/>
     },
     ["voucher7"]: {
-      name: "Call from a stranger",
+      name: "Call to junior colleague",
          type: "perk",
-      cost: 300,
-      desc: "A NetCall from a stranger who has entered the Re-Education programme. An opportunity to see the good you are doing with your work. This call will be monitored for your safety.",
-      perkEffect:"Voluptate officia ex deserunt aliqua nisi fugiat voluptate.",
-      icon: <PhoneIncoming  size={12} x={6} y={6}/> 
+      cost: 500,
+      desc: "A NetCall to a colleague who will assist in the judgement of a case.",
+      perkEffect:"Junior colleagues have a 60% chance of judging cases correctly. (once/shift)",
+      icon: <PhoneOutgoing  size={12} x={6} y={6}/> 
     },
     ["voucher8"]: {
-      name: "Upgrade meal package: Basic",
+    name: "Call to senior colleague",
          type: "perk",
-      cost: 100,
-      desc: "Upgrade of your currently meal package level: Sustinance Enhanced, to package level: Basic",
-      perkEffect:"Commodo eu dolore id qui officia laboris voluptate.",
-      icon:<Cookie  size={12} x={6} y={6}/>
+      cost: 1000,
+      desc: "A NetCall to a colleague who will assist in the judgement of a case.",
+      perkEffect:"Senior colleagues have a 80% chance of judging cases correctly. (once/shift)",
+      icon: <Headset  size={12} x={6} y={6}/> 
     },
     ["voucher9"]: {
       name: "Upgrade meal package: Basic-Premium",
