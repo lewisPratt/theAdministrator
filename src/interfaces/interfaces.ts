@@ -54,6 +54,7 @@ export interface VoucherListShape {
     type: string
     cost: number;
     desc: string;
+    perkEffect: string
     icon: React.ReactElement
   };
 }

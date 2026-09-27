@@ -1,95 +1,108 @@
-import { BriefcaseBusiness, ClockArrowUp, ClockPlus, Cookie, FolderTree, LoaderCircle, PartyPopper, PhoneIncoming, PhoneOutgoing, Scale, Sun, SunDim, UserMinus, UtensilsCrossed } from "lucide-react";
+import { BookKey, BriefcaseBusiness, ClockArrowUp, ClockPlus, Cookie, Cpu, FolderTree, LoaderCircle, MemoryStick, PartyPopper, PhoneIncoming, PhoneOutgoing, Scale, Sun, SunDim, Syringe, UserMinus, UtensilsCrossed } from "lucide-react";
 import type { VoucherListShape } from "../interfaces/interfaces";
 export const allVouchers: VoucherListShape = {
     ["voucher1"]: {
-      name: "10 minutes break",
+      name: "Cranial Upgrade Bot",
       type: "perk",
-      cost: 100,
-      desc: "A well deserved 10 minute break that you can enjoy with your assigned synth desk plant. (any additional time over 10 minutes will incur a negative credit balance on your record)",
-      icon: <ClockPlus />
+      cost: 800,
+      desc: "This user friendly cranial implant will helpfully crawl out of it's delivery crate and attach itself to the optimum location on your skull.",
+      perkEffect:"Identifies 2 carried item as a positive or negative factor.",
+      icon:< Cpu  size={12} x={6} y={6}/>
     },
     ["voucher2"]: {
-      name: "30 minutes break",
+      name: "Upgraded Cognition Blocker",
     type: "perk",
       cost: 200,
-      desc: "A well deserved 30 minute break that you can enjoy with your assigned synth desk plant. (any additional time over 30 minutes will incur a negative credit balance on your record)",
-      icon: <ClockArrowUp />
+      desc: "This technological leap in Administration technology will replace your Standard Issue Cognition Blocker with a Standard-Pro Edition Cognition Blocker (X1.5 free thought cognition allowance!) ",
+      perkEffect:"Identifies 3 carried item as a positive or negative factor.",
+      icon:< MemoryStick  size={12} x={6} y={6}/>
     },
     ["voucher3"]: {
       name: "Extra Cases",
          type: "perk",
       cost: 400,
       desc: "More cases to earn more credits. The wish of every Administrator.",
-      icon: <FolderTree />
+      perkEffect:"Consequat magna in anim ullamco cillum eu enim commodo sunt fugiat ut.",
+      icon: <FolderTree  size={12} x={6} y={6}/>
     },
     ["voucher4"]: {
       name: "High Achiever badge",
       type: "badge",
       cost: 500,
       desc: "A badge to wear on your assigned outerwear. You have performed to a level that some would call acceptable. The City requires more evidence to confirm this label.",
-      icon: <PartyPopper />
+      perkEffect:"Adds C500 to the total received when correctly judging a case.",
+      icon: <PartyPopper  size={12} x={6} y={6}/>
     },
     ["voucher5"]: {
       name: "Low Achiever badge",
       type: "badge",
       cost: 50,
-      desc: "A badge to wear on your assigned outerwear. You have done so little that it is not yet worth commenting on your inadequate attempt to undertake your assigned role.",
-      icon: <UserMinus />
+      desc: "A badge to wear on your assigned outerwear. You have done so little that it is not yet worth commenting on.",
+      perkEffect:"Adds C50 to the total received when correctly judging a case.",
+      icon: <UserMinus  size={12} x={6} y={6}/>
     },
     ["voucher6"]: {
-      name: "Call to a family member",
+      name: "Upgraded Access Level: Evidence Stack",
          type: "perk",
       cost: 1000,
-      desc: "A NetCall to a single family member that lasts no longer than 5 minutes. This call will be monitored for your safety.",
-      icon: <PhoneOutgoing />
+      desc: "Allows access to evidence after judgement is passed. Useful for the mandatory improvement of Administrator performance.",
+      perkEffect:"Reveals evidence held against Citizens following judgement.",
+      icon: <BookKey  size={12} x={6} y={6}/>
     },
     ["voucher7"]: {
       name: "Call from a stranger",
          type: "perk",
       cost: 300,
       desc: "A NetCall from a stranger who has entered the Re-Education programme. An opportunity to see the good you are doing with your work. This call will be monitored for your safety.",
-      icon: <PhoneIncoming /> 
+      perkEffect:"Voluptate officia ex deserunt aliqua nisi fugiat voluptate.",
+      icon: <PhoneIncoming  size={12} x={6} y={6}/> 
     },
     ["voucher8"]: {
       name: "Upgrade meal package: Basic",
          type: "perk",
       cost: 100,
       desc: "Upgrade of your currently meal package level: Sustinance Enhanced, to package level: Basic",
-      icon:<Cookie />
+      perkEffect:"Commodo eu dolore id qui officia laboris voluptate.",
+      icon:<Cookie  size={12} x={6} y={6}/>
     },
     ["voucher9"]: {
       name: "Upgrade meal package: Basic-Premium",
          type: "perk",
       cost: 400,
       desc: "Upgrade of your currently meal package level:  Basic, to package level: Basic Premium",
-      icon: <UtensilsCrossed />
+      perkEffect:"Ut mollit ipsum voluptate et proident qui laborum duis mollit ipsum Lorem ea sint.",
+      icon: <UtensilsCrossed  size={12} x={6} y={6}/>
     },
     ["voucher10"]: {
       name: "Comitted Employee badge",
       type: "badge",
       cost: 2000,
       desc: "You have done well to show The City that you care deeply about your role and the rule of law. ",
-      icon: <BriefcaseBusiness />
+      perkEffect:"Ullamco commodo excepteur tempor elit eiusmod deserunt Lorem.",
+      icon: <BriefcaseBusiness  size={12} x={6} y={6}/>
     },
     ["voucher11"]: {
       name: "Compliant Citizen badge",
-         type: "badge",
+      type: "badge",
       cost: 40,
       desc: "Wear with pride to show your fellow Citizens that you are compliant and law abiding and not in need of Re-education.",
-      icon: <Scale />
+      perkEffect:"Dolor mollit et mollit incididunt incididunt eiusmod velit fugiat adipisicing.",
+      icon: <Scale  size={12} x={6} y={6}/>
     },
     ["voucher12"]: {
-      name: "Increase in sunlight allowance (10 minutes)",
-         type: "perk",
+      name: "Frontal Lobe implant",
+      type: "perk",
       cost: 600,
-      desc: "Add 10 extra minutes to your sunlight allowance for one day only. (maximum of 90 minutes/day)",
-      icon:< SunDim />
+      desc: "By simply inserting this 3\" syringe into the centre of your left eyeball and injecting the contents, a barely noticeable permanent implant will be permanently attached to your frontal lobe.",
+      perkEffect:"Identifies 1 carried item as a positive or negative factor.",
+      icon:< Syringe  size={12} x={6} y={6}/>
     },
     ["voucher13"]: {
-      name: "Increase in sleep allowance (10 minutes)",
-         type: "perk",
-      cost: 100,
-      desc: "Add 10 extra minutes to your sleep time allowance for on eday only. (maximum of 4 hours day)",
-      icon: <Sun />
+      name: "Middling achiever Badge",
+         type: "badge",
+      cost: 250,
+      desc: "A badge to wear on your assigned outerwear. You have exceeded expectations. Continue to do so.",
+      perkEffect:"Adds C250 to the total received when correctly judging a case.",
+      icon: <Sun  size={12} x={6} y={6}/>
     },
   };
