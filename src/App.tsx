@@ -32,6 +32,7 @@ import PersonalRecord from "./components/personal_record/PersonalRecord";
 import LoginAbout from "./components/login/LoginAbout";
 import MobileMenu from "./components/MobileMenu";
 import Footer from "./components/footer/Footer";
+import ErrorPage from "./components/error_page/ErrorPage";
 
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
@@ -92,6 +93,7 @@ function App() {
                 <AdminContext value={adminContextValue}>
                   <ScoreContext value={scoreContextValue}>
                     <UnlocksContext value={unlocksContextValue}>
+                      <ErrorPage errorText={""} />
                       <nav>
                         {adminName != "" ? (
                           <>
