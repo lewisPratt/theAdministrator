@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { Euro, LoaderCircle} from "lucide-react";
-import { ScoreContext } from "../context_providers/ScoreContext";
-import { UnlocksContext } from "../context_providers/unlocksContext";
-import type { VoucherShape, VoucherListShape } from "../interfaces/interfaces";
+import { ScoreContext } from "../../context_providers/ScoreContext";
+import { UnlocksContext } from "../../context_providers/unlocksContext";
+import type { VoucherShape, VoucherListShape } from "../../interfaces/interfaces";
 import { playSound } from "react-sounds";
-import { allVouchers} from "../generator_modules/vouchers";
+import { allVouchers} from "../../generator_modules/vouchers";
 import { Badge } from "lucide-react";
-import { CreditIcon } from "../assets/custom_icons/credits";
+import { CreditIcon } from "../../assets/custom_icons/credits";
 import { useNavigate } from "react-router-dom";
-import "../assets/css/voucherShop.css"
-import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
+import "../../assets/css/voucherShop.css"
+import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 
 export default function VoucherShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -122,6 +122,7 @@ export default function VoucherShop() {
                     {confirming != null && confirming === voucher[0] && (
                       <div >
                         <p className="voucher-desc">{voucher[1].desc}</p>
+                        <p>Effect: {voucher[1].perkEffect}</p>
                                   {errorState != null && <p id='voucher-error'>{errorState}</p>}
 
                         {!playerUnlocks?.includes(voucher[0]) && (

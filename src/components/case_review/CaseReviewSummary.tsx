@@ -1,6 +1,6 @@
-import type { summaryProps } from "../interfaces/interfaces";
+import type { summaryProps } from "../../interfaces/interfaces";
 
-export default function TranscriptReviewSummary({
+export default function CaseReviewSummary({
   efficiency,
   interviewCount,
   targetState,

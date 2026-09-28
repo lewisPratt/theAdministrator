@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { transcriptReviewBoxProps } from "../interfaces/interfaces";
+import type { transcriptReviewBoxProps } from "../../interfaces/interfaces";
 import { DoorOpen, Backpack, CircleCheck, CircleX, X, MapPinned } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
@@ -9,7 +9,7 @@ import { playSound } from "react-sounds";
 //set to 1 to show debug info on weighting
 const debug: number = 0;
 
-export default function TranscriptReviewBox({
+export default function CaseReviewPanel({
   transcript,
   scoreSetter,
   scoreState,

@@ -66,19 +66,19 @@ export const allVouchers: VoucherListShape = {
       icon: <Headset  size={12} x={6} y={6}/> 
     },
     ["voucher9"]: {
-      name: "Upgrade meal package: Basic-Premium",
+      name: "Upgraded Access Level: Search Console",
          type: "perk",
-      cost: 400,
-      desc: "Upgrade of your currently meal package level:  Basic, to package level: Basic Premium",
-      perkEffect:"Ut mollit ipsum voluptate et proident qui laborum duis mollit ipsum Lorem ea sint.",
+      cost: 800,
+      desc: "Allows access to the Search Console. Useful for searching.",
+      perkEffect:"Unlocks ability to search for items and locations to determine District number and legality.",
       icon: <UtensilsCrossed  size={12} x={6} y={6}/>
     },
     ["voucher10"]: {
-      name: "Comitted Employee badge",
+      name: "Committed Employee badge",
       type: "badge",
-      cost: 2000,
+      cost: 10000,
       desc: "You have done well to show The City that you care deeply about your role and the rule of law. ",
-      perkEffect:"Ullamco commodo excepteur tempor elit eiusmod deserunt Lorem.",
+      perkEffect:"A sign that you have done all that there is to do, and more.",
       icon: <BriefcaseBusiness  size={12} x={6} y={6}/>
     },
     ["voucher11"]: {

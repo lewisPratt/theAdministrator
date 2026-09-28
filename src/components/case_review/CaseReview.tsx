@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import TranscriptReviewBox from "./TranscriptReviewBox";
-import TranscriptListItem from "./TranscriptListItem";
-import TranscriptReviewSummary from "./TranscriptReviewSummary";
+import CaseReviewPanel from "./CaseReviewPanel";
+import CaseListItem from "./CaseListItem";
+import CaseReviewSummary from "./CaseReviewSummary";
 import { NIL as NIL_UUID } from "uuid";
-import { person } from "../models/person";
-import type { reviewShape, reviewsCompleteShape,scoreContextShape } from "../interfaces/interfaces";
+import { person } from "../../models/person";
+import type { reviewShape, reviewsCompleteShape,scoreContextShape } from "../../interfaces/interfaces";
 import {useNavigate } from "react-router-dom";
 import SearchConsole from "./SearchInfo";
 import { LoaderCircle } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
-import DebugTools from "./DebugTools";
+import DebugTools from "../DebugTools";
 import CodexSidePanel from "./CodexSidePanel";
-import { ScoreContext } from "../context_providers/ScoreContext";
+import { ScoreContext } from "../../context_providers/ScoreContext";
 
 
 export default function TranscriptRev() {
@@ -107,7 +107,7 @@ export default function TranscriptRev() {
       <CodexSidePanel codexState={codexState} codexStateSetter={setCodexState} />
       
       {reviewsComplete && (
-        <TranscriptReviewSummary
+        <CaseReviewSummary
           efficiency={reviewsComplete.effectivenessRating}
           interviewCount={reviewsComplete.numberComplete}
           startNewShift={loadNewShift}
@@ -127,7 +127,7 @@ export default function TranscriptRev() {
             <ol id="transcript-list">
               <li id="interviews-list-header">Available Cases</li>
               {availableTranscripts.map((listItem) => (
-                <TranscriptListItem
+                <CaseListItem
                   key={
                     listItem.interviewee.firstName +
                     listItem.authorizedLocations
@@ -142,7 +142,7 @@ export default function TranscriptRev() {
             </ol>
           )}
           {currentTranscript ? (
-            <TranscriptReviewBox
+            <CaseReviewPanel
               reviewTranscriptSetter={setCurrentTranscript}
               transcript={currentTranscript}
               scoreSetter={setScoreState}

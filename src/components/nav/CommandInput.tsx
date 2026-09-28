@@ -1,12 +1,12 @@
 import { ChevronRightCircle, CircleQuestionMark } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useContext } from "react";
-import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
+import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import AvailableCommandsList from "./AvailableCommandsList";
 import { Tooltip } from "react-tooltip";
 import { playSound } from "react-sounds";
-import type { CommandInputProps } from "../interfaces/interfaces";
-import { ErrorContext } from "../context_providers/ErrorContext";
+import type { CommandInputProps } from "../../interfaces/interfaces";
+import { ErrorContext } from "../../context_providers/ErrorContext";
 
 export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   const [showCommands, setShowCommands] = useState<boolean>(false);
@@ -27,7 +27,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
         resetInput(e);
         break;
       case "nav.review":
-        navigate("/TranscriptReview");
+        navigate("/CaseReview");
         setCurrentSlug("nav.review");
         resetInput(e);
         break;

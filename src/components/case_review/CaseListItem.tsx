@@ -1,8 +1,8 @@
-import type { reviewShape, transcriptListItemProps } from "../interfaces/interfaces";
+import type { reviewShape, transcriptListItemProps } from "../../interfaces/interfaces";
 
 
 
-export default function TranscriptListItem({
+export default function CaseListItem({
   currentTranscript,
   reviewTranscriptSetter,selectedSetter,
   identifier

@@ -1,6 +1,6 @@
 import "../assets/css/mobileMenu.css";
-import SoundControl from "./SoundControl";
-import ScoreTracker from "./ScoreTracker";
+import SoundControl from "./nav/SoundControl";
+import ScoreTracker from "./nav/ScoreTracker";
 import { ScoreContext } from "../context_providers/ScoreContext";
 import type { scoreContextShape } from "../interfaces/interfaces";
 import { useContext } from "react";

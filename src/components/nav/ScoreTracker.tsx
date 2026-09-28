@@ -1,9 +1,9 @@
 import { Tooltip } from "react-tooltip";
-import type { ScoreTrackerProps } from "../interfaces/interfaces";
-import { CreditIcon } from "../assets/custom_icons/credits";
+import type { ScoreTrackerProps } from "../../interfaces/interfaces";
+import { CreditIcon } from "../../assets/custom_icons/credits";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
+import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 export default function ScoreTracker({scoreState}: ScoreTrackerProps) {
   const {setCurrentSlug} = useContext(CurrentSlugContext)
     const navigate = useNavigate()
