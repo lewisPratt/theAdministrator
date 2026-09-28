@@ -1,0 +1,19 @@
+.current-selected-item::after  {
+  content:"<";
+  animation: after-tick 1s infinite steps(2);
+}
+.current-selected-item::before{
+  content: ">";
+  animation: before-tick 1s  infinite steps(2);
+}
+
+@keyframes after-tick {
+    to{
+        translate:3px 0;
+    }
+}
+@keyframes before-tick {
+    to{
+        translate:-3px 0;
+    }
+}

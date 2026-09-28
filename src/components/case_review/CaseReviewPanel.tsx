@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import type { transcriptReviewBoxProps } from "../../interfaces/interfaces";
 import { DoorOpen, Backpack, CircleCheck, CircleX, X, MapPinned } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 import { NIL as NIL_UUID } from "uuid";
 import { playSound } from "react-sounds";
+import { UnlocksContext } from "../../context_providers/unlocksContext";
 
 //set to 1 to show debug info on weighting
 const debug: number = 0;
@@ -19,6 +20,7 @@ export default function CaseReviewPanel({
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<Boolean>(false)
+  const {playerUnlocks} = useContext(UnlocksContext)
   
   const successSound = ()=>playSound('ui/success_bling')
   const failSound = ()=>playSound('ui/blocked')
@@ -49,11 +51,35 @@ export default function CaseReviewPanel({
       const personWeighting: number = transcript.overallWeighting;
       let decisionText = "";
       let decisionOutcome = null;
+     
+      const wrongAnswer = 170;
+      let rightAnswer = 150;
+      const neutralAnswer = 50;
+
+      //work out additional credits to reward based on unlocked perks
+      if(playerUnlocks){
+      if (playerUnlocks.includes("voucher5")) {
+        rightAnswer += 50
+        console.log("badge 1 ",rightAnswer)
+      }
+      if (playerUnlocks.includes("voucher13")) {
+        rightAnswer += 75
+                console.log("badge 2 ",rightAnswer)
+
+      }
+      if (playerUnlocks.includes("voucher4")) {
+        rightAnswer += 100
+                console.log("badge 3 ",rightAnswer)
+
+      }
+    }
+
+
       switch (decision) {
         case "nfa":
           if (personWeighting < 0) {
             //person is bad, negative consequence for wrong decision.
-            const wrongAnswer = 170;
+            
             const newScore = scoreState - wrongAnswer;
             decisionText =
               "ERROR: Non-compliant Citizen incorrectly processed.";
@@ -66,7 +92,6 @@ export default function CaseReviewPanel({
             }
           } else if (personWeighting > 0) {
             //person is good, positive consequences for right decision
-            const rightAnswer = 150;
             scoreSetter(scoreState + rightAnswer);
             decisionText =
               "Productive Citizen identified & processed accurately.";
@@ -74,7 +99,6 @@ export default function CaseReviewPanel({
             successSound()
           } else {
             //person is neutral (0) so no negative or positive consequences
-            const neutralAnswer = 50;
             scoreSetter(scoreState + neutralAnswer);
             decisionText = "Average Citizen processed.";
             decisionOutcome = true;
@@ -84,7 +108,6 @@ export default function CaseReviewPanel({
         case "reeducate":
           if (personWeighting < 0) {
             //person is bad, positive consequence for right decision.
-            const rightAnswer = 150;
             scoreSetter(scoreState + rightAnswer);
             decisionText = "Non-compliant Citizen sent to Re-education";
             decisionOutcome = true;
@@ -92,7 +115,6 @@ export default function CaseReviewPanel({
           } else if (personWeighting > 0) {
             console.log("reeducate good person");
             //person is good, negative consequences for wrong deision
-            const wrongAnswer = 170;
             const newScore = scoreState - wrongAnswer;
             decisionText = "ERROR: Productive Citizen incorrectly processed.";
             decisionOutcome = false;
@@ -104,7 +126,6 @@ export default function CaseReviewPanel({
             }
           } else {
             //person is neutral (0) so negative consequence for bad decision
-            const wrongAnswer = 170;
             const newScore = scoreState - wrongAnswer;
             decisionText = "ERROR: Average Citizen incorrectly processed.";
             decisionOutcome = false;

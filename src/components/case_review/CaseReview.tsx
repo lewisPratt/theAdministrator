@@ -17,8 +17,9 @@ import DebugTools from "../DebugTools";
 import CodexSidePanel from "./CodexSidePanel";
 import { ScoreContext } from "../../context_providers/ScoreContext";
 import { UnlocksContext } from "../../context_providers/unlocksContext";
-import { checkUnlocks, getUnlockDetails } from "../../assets/utils/helpers";
+import {getUnlockDetails } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
+import "../../assets/css/caseReview.css"
 
 export default function TranscriptRev() {
   const [availableTranscripts, setAvailableTranscripts] = useState<
@@ -75,13 +76,14 @@ export default function TranscriptRev() {
 
   useEffect(() => {
     let transcriptsArray: reviewShape[] = [];
-    let transcriptCount = Math.floor(Math.random() * 10) + 5;
+    let transcriptCount = Math.floor(Math.random() * 10) + 3;
     let originalCount = transcriptCount
-   const checkExtraCasesVoucher : string[]= checkUnlocks(["voucher3"], playerUnlocks)
-    if (checkExtraCasesVoucher.includes("voucher3")) {
+    if(playerUnlocks){
+    if (playerUnlocks.includes("voucher3")) {
       originalCount = transcriptCount
       transcriptCount += 5
     }
+  }
     for (let index = 0; index < transcriptCount; index++) {
       const newPerson = new person();
       if(originalCount != transcriptCount && index >= originalCount){
@@ -139,8 +141,10 @@ export default function TranscriptRev() {
 
           <section id="transcript-review">
             <h1>Case Review</h1>
-
-            <SearchConsole />
+          {
+            playerUnlocks?.includes("voucher9") && <SearchConsole />
+          }
+            
 
             {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
             <div id="top-container">

@@ -1,4 +1,4 @@
-import { BookKey, BriefcaseBusiness, Cpu, FolderTree, Headset, MemoryStick, PartyPopper, PhoneOutgoing, Scale, Sun,  Syringe, UserMinus, UtensilsCrossed } from "lucide-react";
+import { BookKey, BriefcaseBusiness, Cpu, FolderSearch, FolderTree, Headset, MemoryStick, PartyPopper, PhoneOutgoing, Scale, Sun,  Syringe, UserMinus, UtensilsCrossed } from "lucide-react";
 import type { VoucherListShape } from "../interfaces/interfaces";
 export const allVouchers: VoucherListShape = {
     ["voucher1"]: {
@@ -30,7 +30,7 @@ export const allVouchers: VoucherListShape = {
       type: "badge",
       cost: 500,
       desc: "A badge to wear on your assigned outerwear. You have performed to a level that some would call acceptable. The City requires more evidence to confirm this label.",
-      perkEffect:"Adds C500 to the total received when correctly judging a case.",
+      perkEffect:"Adds C100 to the total received when correctly judging a case.",
       icon: <PartyPopper  size={12} x={6} y={6}/>
     },
     ["voucher5"]: {
@@ -71,7 +71,7 @@ export const allVouchers: VoucherListShape = {
       cost: 800,
       desc: "Allows access to the Search Console. Useful for searching.",
       perkEffect:"Unlocks ability to search for items and locations to determine District number and legality.",
-      icon: <UtensilsCrossed  size={12} x={6} y={6}/>
+      icon: <FolderSearch  size={12} x={6} y={6}/>
     },
     ["voucher10"]: {
       name: "Committed Employee badge",
@@ -102,7 +102,7 @@ export const allVouchers: VoucherListShape = {
          type: "badge",
       cost: 250,
       desc: "A badge to wear on your assigned outerwear. You have exceeded expectations. Continue to do so.",
-      perkEffect:"Adds C250 to the total received when correctly judging a case.",
+      perkEffect:"Adds C75 to the total received when correctly judging a case.",
       icon: <Sun  size={12} x={6} y={6}/>
     },
   };
