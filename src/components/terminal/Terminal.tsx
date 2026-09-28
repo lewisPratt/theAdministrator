@@ -33,8 +33,8 @@ export default function CommandCentre() {
     const command = formValues.get('command')?.toString()
     if(command){
     switch (command.toLowerCase()) {
-      case "nav.voucher":
-        navigate("/VoucherShop");
+      case "nav.upgrade":
+        navigate("/UpgradeShop");
         setCurrentSlug("nav.voucher")
         break;
       case "nav.hr":

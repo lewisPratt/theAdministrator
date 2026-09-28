@@ -95,6 +95,7 @@ label {
   justify-content: center;
   align-items: center;
   flex: 1;
+  flex-direction: column;
 }
 
 .search-input {
@@ -371,8 +372,11 @@ h5 {
   text-decoration: underline;
 }
 
-#transcript-review {
+#case-review {
   width: 100%;
+}
+#case-review h1{
+  text-align: left;
 }
 
 #transcript-review>p {

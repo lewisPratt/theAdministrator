@@ -80,11 +80,10 @@ export default function TranscriptRev() {
     let originalCount = transcriptCount
     if(playerUnlocks){
     if (playerUnlocks.includes("voucher4")) {
-      originalCount = transcriptCount
+      
       transcriptCount += 3
     }
      if (playerUnlocks.includes("voucher5")) {
-      originalCount = transcriptCount
       transcriptCount += 2
     }
   }
@@ -143,8 +142,8 @@ export default function TranscriptRev() {
             />
           )}
 
-          <section id="transcript-review">
-            <h1>Case Review</h1>
+          <section id="case-review">
+            
           {
             playerUnlocks?.includes("voucher10") && <SearchConsole />
           }

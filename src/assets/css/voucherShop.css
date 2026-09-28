@@ -43,8 +43,18 @@
   transition: .6s;
 }
 
-#voucher-items-container li:hover {
-  margin: 10px 0;
+
+
+#voucher-items-container li:hover  .voucher-name::after{
+  content: " <";
+  animation: after-tick 1s  infinite steps(2);
+  display: inline-block;
+}
+#voucher-items-container li:hover  .voucher-name::before{
+  content: "> ";
+  animation: before-tick 1s  infinite steps(2);
+    display: inline-block;
+
 }
 
 .voucher-box {
@@ -88,4 +98,15 @@
   text-decoration: underline;
   font-size: 1rem;
   animation: bulge .8s;
+}
+
+@keyframes after-tick {
+    to{
+        translate:10px 0;
+    }
+}
+@keyframes before-tick {
+    to{
+        translate:-10px 0;
+    }
 }

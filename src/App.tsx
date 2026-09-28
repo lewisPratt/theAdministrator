@@ -6,7 +6,7 @@ import "./assets/css/nav.css"
 
 import ScoreTracker from "./components/nav/ScoreTracker";
 import { LoaderCircle } from "lucide-react";
-import VoucherShop from "./components/voucher_shop/VoucherShop";
+import UpgradeShop from "./components/upgrade_shop/UpgradeShop";
 import CommandCentre from "./components/terminal/Terminal";
 import Login from "./components/login/Login";
 import { ScoreContext } from "./context_providers/ScoreContext";
@@ -142,8 +142,8 @@ function App() {
                             element={<TranscriptRev />}
                           />
                           <Route
-                            path="/VoucherShop"
-                            element={<VoucherShop />}
+                            path="/UpgradeShop"
+                            element={<UpgradeShop />}
                           />
                           <Route path="/Inbox" element={<Inbox />} />
                         </Routes>

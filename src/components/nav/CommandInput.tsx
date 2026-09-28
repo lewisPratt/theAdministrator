@@ -21,8 +21,8 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
     const command = formValues.get('command')?.toString()
 
     switch (command?.toLowerCase()) {
-      case "nav.voucher":
-        navigate("/VoucherShop");
+      case "nav.upgrade":
+        navigate("/UpgradeShop");
         setCurrentSlug("nav.voucher");
         resetInput(e);
         break;

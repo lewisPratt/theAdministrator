@@ -52,7 +52,7 @@ export const allVouchers: VoucherListShape = {
   ["voucher5"]: {
     name: "Extra Extra Cases",
     type: "perk",
-    cost: 40,
+    cost: 800,
     desc: "Because you jsut can't get enough. Here's more.",
     perkEffect: "Increases maximum cases per shift by 2.",
     icon: <Folders size={12} x={6} y={6} />,
@@ -66,6 +66,14 @@ export const allVouchers: VoucherListShape = {
     icon: <UserMinus size={12} x={6} y={6} />,
   },
   ["voucher7"]: {
+    name: "Middling achiever Badge",
+    type: "badge",
+    cost: 250,
+    desc: "A badge to wear on your assigned outerwear. You have exceeded expectations. Continue to do so.",
+    perkEffect: "Adds C75 to the total received when correctly judging a case.",
+    icon: <Sun size={12} x={6} y={6} />,
+  },
+  ["voucher8"]: {
     name: "High Achiever badge",
     type: "badge",
     cost: 500,
@@ -73,14 +81,6 @@ export const allVouchers: VoucherListShape = {
     perkEffect:
       "Adds C100 to the total received when correctly judging a case.",
     icon: <PartyPopper size={12} x={6} y={6} />,
-  },
-  ["voucher8"]: {
-    name: "Middling achiever Badge",
-    type: "badge",
-    cost: 250,
-    desc: "A badge to wear on your assigned outerwear. You have exceeded expectations. Continue to do so.",
-    perkEffect: "Adds C75 to the total received when correctly judging a case.",
-    icon: <Sun size={12} x={6} y={6} />,
   },
   ["voucher9"]: {
     name: "Upgraded Access Level: Evidence Stack",

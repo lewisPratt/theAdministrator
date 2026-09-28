@@ -24,15 +24,15 @@ export default function PersonalRecord() {
       ) : (
         <section id="personal-record">
           <p>View your mediocre personal achievements.</p>
-          <h2>Unlocks</h2>
+          <h2>Upgrades</h2>
           <button
             id="visit-vouchers"
             onClick={() => {
-              navigate("/voucherShop");
-                setCurrentSlug("nav.voucher")
+              navigate("/UpgradeShop");
+                setCurrentSlug("nav.upgrade")
             }}
           >
-            Voucher Terminal
+            Upgrade Terminal
           </button>
           {/* //badges unlocked component */}
           <UnlockedBadges />

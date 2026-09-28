@@ -9,7 +9,7 @@ export default function ScoreTracker({scoreState}: ScoreTrackerProps) {
     const navigate = useNavigate()
   return (
     <>
-     <button onClick={()=>{navigate("/VoucherShop");setCurrentSlug("nav.voucher")}} className="score-tracker-button" id='score-tracker-desktop' tabIndex={0} data-tooltip-id='score-tooltip' data-tooltip-content='Credits can be exchanged for benefits in the voucher terminal.'><CreditIcon size={18} className="custom-icon" /> {scoreState}</button>
+     <button onClick={()=>{navigate("/UpgradeShop");setCurrentSlug("nav.upgrade")}} className="score-tracker-button" id='score-tracker-desktop' tabIndex={0} data-tooltip-id='score-tooltip' data-tooltip-content='Credits can be exchanged for benefits in the voucher terminal.'><CreditIcon size={18} className="custom-icon" /> {scoreState}</button>
               <Tooltip id="score-tooltip" className='custom-tooltip'></Tooltip>
 </>
   )

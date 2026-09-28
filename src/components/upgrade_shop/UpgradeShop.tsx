@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Euro, LoaderCircle} from "lucide-react";
+import { LoaderCircle} from "lucide-react";
 import { ScoreContext } from "../../context_providers/ScoreContext";
 import { UnlocksContext } from "../../context_providers/unlocksContext";
 import type { VoucherShape, VoucherListShape } from "../../interfaces/interfaces";
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import "../../assets/css/voucherShop.css"
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 
-export default function VoucherShop() {
+export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
   const { scoreState, setScoreState } = useContext(ScoreContext);
@@ -90,7 +90,7 @@ export default function VoucherShop() {
       ) : (
         <section id="voucher-shop">
           <div id="voucher-shop-header">
-            <h2>Voucher Shop</h2>
+            <h2>Upgrade Shop</h2>
             {debug &&  <div className="debug-container"><h6>Debug- not for production</h6><button onClick={giveCredits}>Give credits</button></div>}
           </div>
           <div  id="personal-record-button">
@@ -117,7 +117,7 @@ export default function VoucherShop() {
                         hoverClick();
                       }}
                     >
-                        <Badge size={48}>{voucher[1].icon}</Badge><span> {voucher[1].name}</span> <span>{playerUnlocks?.includes(voucher[0]) && "[Purchased]"  }  <CreditIcon className="custom-icon" />{voucher[1].cost}</span>
+                        <Badge size={48}>{voucher[1].icon}</Badge><span className="voucher-name">{voucher[1].name}</span> <span>{playerUnlocks?.includes(voucher[0]) && "[Purchased]"  }  <CreditIcon className="custom-icon" />{voucher[1].cost}</span>
                     </button>
                     {confirming != null && confirming === voucher[0] && (
                       <div >
@@ -138,9 +138,7 @@ export default function VoucherShop() {
               })}
             </ol>
           </section>
-          <section>
-            <p>Vouchers refresh every : 295 days</p>
-          </section>
+      
         </section>
       )}
     </>
