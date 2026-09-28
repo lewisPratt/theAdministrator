@@ -541,6 +541,7 @@ h5 {
   animation: rotate-loader;
   animation-duration: 1s;
   animation-iteration-count: infinite;
+  animation-timing-function: steps(3);
 }
 
 #search-console-container {
@@ -672,11 +673,11 @@ h5 {
 }
 
 .slide-out-class {
-  animation: transcript-slide-out .6s ease-out 1 forwards;
+  animation: transcript-slide-out .6s  1 forwards steps(4);
 }
 
 .open-transcript-class {
-  animation: open-transcript .6s 1 forwards;
+  animation: open-transcript .6s 1 forwards steps(4);
 }
 
 .current-selected-item::after  {

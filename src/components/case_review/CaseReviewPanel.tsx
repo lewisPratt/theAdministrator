@@ -58,16 +58,16 @@ export default function CaseReviewPanel({
 
       //work out additional credits to reward based on unlocked perks
       if(playerUnlocks){
-      if (playerUnlocks.includes("voucher5")) {
+      if (playerUnlocks.includes("voucher6")) {
         rightAnswer += 50
         console.log("badge 1 ",rightAnswer)
       }
-      if (playerUnlocks.includes("voucher13")) {
+      if (playerUnlocks.includes("voucher7")) {
         rightAnswer += 75
                 console.log("badge 2 ",rightAnswer)
 
       }
-      if (playerUnlocks.includes("voucher4")) {
+      if (playerUnlocks.includes("voucher8")) {
         rightAnswer += 100
                 console.log("badge 3 ",rightAnswer)
 

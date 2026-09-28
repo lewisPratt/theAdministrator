@@ -6,7 +6,9 @@
   content: ">";
   animation: before-tick 1s  infinite steps(2);
 }
-
+#no-case-text{
+     animation: toggle-visible 2s  infinite steps(5);
+}
 @keyframes after-tick {
     to{
         translate:3px 0;
@@ -15,5 +17,11 @@
 @keyframes before-tick {
     to{
         translate:-3px 0;
+    }
+}
+@keyframes toggle-visible {
+  
+    to{
+        color: black;
     }
 }

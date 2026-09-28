@@ -79,9 +79,13 @@ export default function TranscriptRev() {
     let transcriptCount = Math.floor(Math.random() * 10) + 3;
     let originalCount = transcriptCount
     if(playerUnlocks){
-    if (playerUnlocks.includes("voucher3")) {
+    if (playerUnlocks.includes("voucher4")) {
       originalCount = transcriptCount
-      transcriptCount += 5
+      transcriptCount += 3
+    }
+     if (playerUnlocks.includes("voucher5")) {
+      originalCount = transcriptCount
+      transcriptCount += 2
     }
   }
     for (let index = 0; index < transcriptCount; index++) {
@@ -142,7 +146,7 @@ export default function TranscriptRev() {
           <section id="transcript-review">
             <h1>Case Review</h1>
           {
-            playerUnlocks?.includes("voucher9") && <SearchConsole />
+            playerUnlocks?.includes("voucher10") && <SearchConsole />
           }
             
 
