@@ -34,6 +34,7 @@ export class person {
   personFlavour: string;
   gender: string;
   identifier: string;
+  bonusCase: boolean
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -62,6 +63,7 @@ export class person {
       this.gender,
     );
     this.identifier = uuidv4();
+    this.bonusCase = false
   }
 
   private generateGender() {

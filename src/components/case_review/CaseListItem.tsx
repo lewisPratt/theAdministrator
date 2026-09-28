@@ -1,6 +1,6 @@
 import type { reviewShape, transcriptListItemProps } from "../../interfaces/interfaces";
-
-
+import {FolderTree } from "lucide-react";
+import { Tooltip } from "react-tooltip";
 
 export default function CaseListItem({
   currentTranscript,
@@ -17,12 +17,13 @@ export default function CaseListItem({
     <>
     {currentTranscript &&
     <li
-      className={(identifier === currentTranscript.identifier ? "current-selected-item": "") + " " + (currentTranscript.processed && !currentTranscript.decisionOutcome ? "negative-processed-item" :"")+" transcript-list-item "+ (currentTranscript.processed && currentTranscript.decisionOutcome ? "positive-processed-item":"" ) }
+      className={(currentTranscript.bonusCase ? "bonus-case ":"")+(identifier === currentTranscript.identifier ? "current-selected-item ": "") + (currentTranscript.processed && !currentTranscript.decisionOutcome ? "negative-processed-item" :"")+" transcript-list-item "+ (currentTranscript.processed && currentTranscript.decisionOutcome ? "positive-processed-item":"" ) }
       key={currentTranscript.interviewee.firstName + currentTranscript.age}
       onClick={() => openTranscript(currentTranscript)}
     >
       <span>{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</span>
       <span>{currentTranscript.occupation.name}</span>
+      <span>{currentTranscript.bonusCase === true ? <FolderTree data-tooltip-id="extra-case-tooltip" data-tooltip-content="Bonus case from perk." /> : ""}</span>
     </li>}
     </>
   );

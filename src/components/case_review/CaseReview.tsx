@@ -4,20 +4,26 @@ import CaseListItem from "./CaseListItem";
 import CaseReviewSummary from "./CaseReviewSummary";
 import { NIL as NIL_UUID } from "uuid";
 import { person } from "../../models/person";
-import type { reviewShape, reviewsCompleteShape,scoreContextShape } from "../../interfaces/interfaces";
-import {useNavigate } from "react-router-dom";
+import type {
+  reviewShape,
+  reviewsCompleteShape,
+  scoreContextShape,
+} from "../../interfaces/interfaces";
+import { useNavigate } from "react-router-dom";
 import SearchConsole from "./SearchInfo";
-import { LoaderCircle } from "lucide-react";
+import { Badge, LoaderCircle } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "../DebugTools";
 import CodexSidePanel from "./CodexSidePanel";
 import { ScoreContext } from "../../context_providers/ScoreContext";
-
+import { UnlocksContext } from "../../context_providers/unlocksContext";
+import { checkUnlocks, getUnlockDetails } from "../../assets/utils/helpers";
+import { Tooltip } from "react-tooltip";
 
 export default function TranscriptRev() {
- 
   const [availableTranscripts, setAvailableTranscripts] = useState<
-    reviewShape[] | null>(null);
+    reviewShape[] | null
+  >(null);
   const [currentTranscript, setCurrentTranscript] =
     useState<reviewShape | null>(null);
   //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
@@ -26,18 +32,21 @@ export default function TranscriptRev() {
     useState<reviewsCompleteShape | null>(null);
   const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID);
   const [generatePeople, setGeneratePeople] = useState<boolean>(false);
-  const [codexState, setCodexState] = useState<boolean>(false)
-  const [targetState, setTargetState] = useState<boolean>(false)
-  const [loadingState, setLoadingState] = useState<boolean>(true)
-  const {scoreState, setScoreState} :scoreContextShape = useContext(ScoreContext)
-  const navigate = useNavigate()
+  const [codexState, setCodexState] = useState<boolean>(false);
+  const [targetState, setTargetState] = useState<boolean>(false);
+  const [loadingState, setLoadingState] = useState<boolean>(true);
+  const { scoreState, setScoreState }: scoreContextShape =
+    useContext(ScoreContext);
+  const { playerUnlocks } = useContext(UnlocksContext);
+  const navigate = useNavigate();
+      const voucherDetails = getUnlockDetails(playerUnlocks)
+
   //////////////////////
   // set debug to 1 to see debug tools
   const debug = 0;
   ///////////////////////////
 
   if (availableTranscripts != null && !reviewsComplete) {
-   
     let effectiveness: number = 0;
     let reviewObj = { count: 0, negative: 0, positive: 0 };
     availableTranscripts.forEach((transcript) => {
@@ -53,7 +62,9 @@ export default function TranscriptRev() {
     //all avaialble transcripts have been processed
     if (reviewObj.count === availableTranscripts.length) {
       effectiveness = Math.round((reviewObj.positive / reviewObj.count) * 100);
-       if(scoreState >= 200){setTargetState(true)}
+      if (scoreState >= 200) {
+        setTargetState(true);
+      }
 
       setReviewsComplete({
         numberComplete: reviewObj.count,
@@ -64,101 +75,126 @@ export default function TranscriptRev() {
 
   useEffect(() => {
     let transcriptsArray: reviewShape[] = [];
-    const transcriptCount = Math.floor(Math.random() * 10) + 5;
+    let transcriptCount = Math.floor(Math.random() * 10) + 5;
+    let originalCount = transcriptCount
+   const checkExtraCasesVoucher : string[]= checkUnlocks(["voucher3"], playerUnlocks)
+    if (checkExtraCasesVoucher.includes("voucher3")) {
+      originalCount = transcriptCount
+      transcriptCount += 5
+    }
     for (let index = 0; index < transcriptCount; index++) {
       const newPerson = new person();
+      if(originalCount != transcriptCount && index >= originalCount){
+        newPerson.bonusCase = true
+      }
       transcriptsArray.push(newPerson);
     }
+    
     setAvailableTranscripts(transcriptsArray);
-        setTimeout(setLoadingState, 2000, false);
-
+    setTimeout(setLoadingState, 2000, false);
   }, [generatePeople]);
 
-  function loadNewShift(reason:string) {
+  function loadNewShift(reason: string) {
     // loadingStateSetter(true);
-    if(reason === 'new'){
-        setLoadingState(true)
-    setTimeout(startNewShift, 1000);
-    }
-    else if(reason === 'end'){
-    setTimeout(endShift, 1000);
+    if (reason === "new") {
+      setLoadingState(true);
+      setTimeout(startNewShift, 1000);
+    } else if (reason === "end") {
+      setTimeout(endShift, 1000);
     }
   }
   function startNewShift() {
     setLoadingState(false);
     setAvailableTranscripts(null);
     setReviewsComplete(null);
-    setCurrentTranscript(null)
+    setCurrentTranscript(null);
     setGeneratePeople((prev) => !prev);
   }
-  function endShift(){
+  function endShift() {
     //need to workout loop for end of shift
-    navigate("/VoucherShop")
+    navigate("/VoucherShop");
   }
 
   return (
-     <>
+    <>
       {loadingState ? (
         <p>
           <LoaderCircle className="loader" />
         </p>
       ) : (
         <>
-      <CodexSidePanel codexState={codexState} codexStateSetter={setCodexState} />
-      
-      {reviewsComplete && (
-        <CaseReviewSummary
-          efficiency={reviewsComplete.effectivenessRating}
-          interviewCount={reviewsComplete.numberComplete}
-          startNewShift={loadNewShift}
-          targetState={targetState}
-        />
-      )}
-      
-      <section id="transcript-review">
-        <h1>Case Review</h1>
-  
+          <CodexSidePanel
+            codexState={codexState}
+            codexStateSetter={setCodexState}
+          />
 
-        <SearchConsole />
+          {reviewsComplete && (
+            <CaseReviewSummary
+              efficiency={reviewsComplete.effectivenessRating}
+              interviewCount={reviewsComplete.numberComplete}
+              startNewShift={loadNewShift}
+              targetState={targetState}
+            />
+          )}
 
-        {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
-        <div id="top-container">
-          {availableTranscripts && (
-            <ol id="transcript-list">
-              <li id="interviews-list-header">Available Cases</li>
-              {availableTranscripts.map((listItem) => (
-                <CaseListItem
-                  key={
-                    listItem.interviewee.firstName +
-                    listItem.authorizedLocations
-                  }
+          <section id="transcript-review">
+            <h1>Case Review</h1>
+
+            <SearchConsole />
+
+            {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
+            <div id="top-container">
+              {availableTranscripts && (
+                <ol id="transcript-list">
+                  <li id="interviews-list-header">Available Cases</li>
+                  {availableTranscripts.map((listItem) => (
+                    
+                    <CaseListItem
+                      key={
+                        listItem.interviewee.firstName +
+                        listItem.authorizedLocations
+                      }
+                      reviewTranscriptSetter={setCurrentTranscript}
+                      currentTranscript={listItem}
+                      identifier={selectedListItem}
+                      selectedSetter={setSelectedListItem}
+                    />
+                  ))}
+                  <li>
+                    <h6>Active Perks</h6>
+                    {
+                      voucherDetails && voucherDetails.map((unlock)=>{
+                        return <Badge size="25" data-tooltip-id="extra-case-tooltip" data-tooltip-content={unlock.perkEffect}>{unlock.icon}</Badge>
+                      })
+                    }
+                  </li>
+                  <li
+                    id="codex-button"
+                    onClick={() => {
+                      setCodexState(true);
+                    }}
+                  >
+                    Regulatory Codex
+                  </li>
+                </ol>
+              )}
+              {currentTranscript ? (
+                <CaseReviewPanel
                   reviewTranscriptSetter={setCurrentTranscript}
-                  currentTranscript={listItem}
-                  identifier={selectedListItem}
+                  transcript={currentTranscript}
+                  scoreSetter={setScoreState}
+                  scoreState={scoreState}
+                  decisionSetter={setDecisionMade}
                   selectedSetter={setSelectedListItem}
                 />
-              ))}
-              <li id='codex-button' onClick={()=>{setCodexState(true)}}>Regulatory Codex</li>
-            </ol>
-          )}
-          {currentTranscript ? (
-            <CaseReviewPanel
-              reviewTranscriptSetter={setCurrentTranscript}
-              transcript={currentTranscript}
-              scoreSetter={setScoreState}
-              scoreState={scoreState}
-              decisionSetter={setDecisionMade}
-              selectedSetter={setSelectedListItem}
-            />
-          ) : (
-            <NoCurrentTranscript />
-          )}
-        </div>
-      </section>
-
-      
-      
-      </>)}
-    
-</>
-)}
+              ) : (
+                <NoCurrentTranscript />
+              )}
+              <Tooltip id="extra-case-tooltip" className="custom-tooltip"/>
+            </div>
+          </section>
+        </>
+      )}
+    </>
+  );
+}

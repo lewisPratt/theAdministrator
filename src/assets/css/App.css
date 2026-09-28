@@ -968,6 +968,10 @@ NAV styling
   background-color: black;
   transition: .6s;
   font-size: .8rem;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 

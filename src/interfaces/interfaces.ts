@@ -18,6 +18,7 @@ export interface reviewShape {
   personFlavour: string
   gender: string
   identifier:string
+  bonusCase: boolean
 }
 
 export interface carryableItemsShape {
@@ -47,6 +48,8 @@ export interface VoucherShape {
   name: string;
   cost: number;
   desc: string;
+   perkEffect: string
+    icon: React.ReactElement
 }
 export interface VoucherListShape {
   [key: string]: {

@@ -27,7 +27,7 @@ export default function VoucherShop() {
     const cantAfford = () => playSound('notification/error')
 
 
-  const debug = false;
+  const debug = true;
   const vouchers: VoucherListShape = allVouchers
 
   useEffect(() => {
