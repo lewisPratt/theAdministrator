@@ -1,4 +1,4 @@
-import { BookKey, BriefcaseBusiness, ClockArrowUp, ClockPlus, Cookie, Cpu, FolderTree, Headset, LoaderCircle, MemoryStick, PartyPopper, PhoneIncoming, PhoneOutgoing, Scale, Sun, SunDim, Syringe, UserMinus, UtensilsCrossed } from "lucide-react";
+import { BookKey, BriefcaseBusiness, Cpu, FolderTree, Headset, MemoryStick, PartyPopper, PhoneOutgoing, Scale, Sun,  Syringe, UserMinus, UtensilsCrossed } from "lucide-react";
 import type { VoucherListShape } from "../interfaces/interfaces";
 export const allVouchers: VoucherListShape = {
     ["voucher1"]: {

@@ -6,15 +6,16 @@ import { AdminContext } from "../context_providers/AdminContext";
 import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
 import NotLoggedIn from "./NotLoggedIn";
 import ActivityGraph from "./ActivityGraph";
+import { ErrorContext } from "../context_providers/ErrorContext";
 
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [leaveReq, setLeaveReq] = useState<boolean>(false);
-  const [errorState, setErrorState] = useState<boolean>(false);
 
   const { adminName, setAdminName } = useContext(AdminContext);
   const {setCurrentSlug} = useContext(CurrentSlugContext)
+  const {setErrorState} = useContext(ErrorContext)
   const navigate = useNavigate();
 
   // const currentDate = Date.now()
@@ -50,7 +51,6 @@ export default function CommandCentre() {
         break;
       case "request.leave":
         setLeaveReq(true);
-        setErrorState(false);
         e.currentTarget.reset();
         break;
       case "nav.logout":
@@ -60,8 +60,11 @@ export default function CommandCentre() {
       case "nav.personal":
         navigate("/PersonalRecord")
         break;
+      case "nav.terminal":
+        navigate("/Terminal")
+        break;
       default:
-        setErrorState(true);
+        setErrorState("Command not recognized: "+command);
         setLeaveReq(false);
         e.currentTarget.reset();
         break;
@@ -108,7 +111,7 @@ export default function CommandCentre() {
         
           
           {leaveReq && <LeaveReq />}
-          {errorState && <p>Command Not recognized.</p>}
+        
           
           <div className="commands-container">
             <div id='commands-header'><div><Code /></div> <div id='header-div'><p>Nav Commands:</p></div><div><Braces /></div></div>

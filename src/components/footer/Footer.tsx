@@ -1,4 +1,3 @@
-import type React from "react";
 import "../../assets/css/footer.css";
 import type { JSX } from "react";
 

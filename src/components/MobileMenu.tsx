@@ -1,4 +1,3 @@
-import { Menu } from "lucide-react";
 import "../assets/css/mobileMenu.css";
 import SoundControl from "./SoundControl";
 import ScoreTracker from "./ScoreTracker";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {Routes, Route, HashRouter } from "react-router-dom";
 import TranscriptRev from "./components/TranscriptRev";
 import "./assets/css/App.css";
 
@@ -22,6 +22,7 @@ import {
   type currentSlugShape,
   type adminContextShape,
   type scoreContextShape,
+  type errorStateShape,
 } from "./interfaces/interfaces";
 import { SoundProvider } from "react-sounds";
 import SoundControl from "./components/SoundControl";
@@ -33,6 +34,7 @@ import LoginAbout from "./components/login/LoginAbout";
 import MobileMenu from "./components/MobileMenu";
 import Footer from "./components/footer/Footer";
 import ErrorPage from "./components/error_page/ErrorPage";
+import { ErrorContext } from "./context_providers/ErrorContext";
 
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
@@ -45,6 +47,7 @@ function App() {
   const [instructionsPrompt, setInstructionsPrompt] = useState<boolean>(true);
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
   const [terminalLoaded, setTerminalLoaded] = useState<boolean>(false);
+  const [errorState, setErrorState] = useState<string>("")
 
   const adminContextValue: adminContextShape = { adminName, setAdminName };
   const unlocksContextValue: unlockContextShape = {
@@ -52,6 +55,7 @@ function App() {
     setPlayerUnlocks,
   };
 
+  const errorStateValue : errorStateShape = {errorState, setErrorState};
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
   const currentSlugContextValue: currentSlugShape = {
     currentSlug,
@@ -82,18 +86,19 @@ function App() {
   return (
     <>
       <div id="main-content">
-        <BrowserRouter>
+        <HashRouter>
           {loadingState ? (
             <p>
               <LoaderCircle className="loader" />
             </p>
           ) : (
             <SoundProvider>
+              <ErrorContext  value={errorStateValue}>
               <CurrentSlugContext value={currentSlugContextValue}>
                 <AdminContext value={adminContextValue}>
                   <ScoreContext value={scoreContextValue}>
                     <UnlocksContext value={unlocksContextValue}>
-                      <ErrorPage errorText={""} />
+                      <ErrorPage />
                       <nav>
                         {adminName != "" ? (
                           <>
@@ -150,11 +155,12 @@ function App() {
                   </ScoreContext>
                 </AdminContext>
               </CurrentSlugContext>
+              </ErrorContext>
             </SoundProvider>
           )}
 
           
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </>
   );

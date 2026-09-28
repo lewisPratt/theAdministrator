@@ -148,3 +148,8 @@ export interface summaryProps {
   targetState:boolean
   startNewShift:(reason:string)=> void
 }
+
+export interface errorStateShape {
+  errorState: string;
+  setErrorState: Dispatch<SetStateAction<string>>;
+}

@@ -6,11 +6,12 @@ import AvailableCommandsList from "./AvailableCommandsList";
 import { Tooltip } from "react-tooltip";
 import { playSound } from "react-sounds";
 import type { CommandInputProps } from "../interfaces/interfaces";
+import { ErrorContext } from "../context_providers/ErrorContext";
 
 export default function CommandInput({ adminNameSetter }: CommandInputProps) {
-  const [errorState, setErrorState] = useState<string | null>(null);
   const [showCommands, setShowCommands] = useState<boolean>(false);
   const { setCurrentSlug } = useContext(CurrentSlugContext);
+  const {setErrorState} = useContext(ErrorContext)
 
   const navigate = useNavigate();
 
@@ -50,7 +51,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
         break;
       default:
         resetInput(e);
-        setErrorState("Command not recognized");
+        setErrorState("Command not recognized: "+command);
         break;
     }
   }
@@ -69,7 +70,6 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
 
   function resetInput(e: React.SubmitEvent<HTMLFormElement>) {
     e.currentTarget.reset();
-    setErrorState(null);
   }
   function toggleCommands(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -79,7 +79,6 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   return (
     <div id="command-input-container">
       <form id="nav-form" onSubmit={handleCommand}>
-        {errorState != null && <p className="error-text">{errorState}</p>}
         <input
           type="text"
           placeholder="nav.command"

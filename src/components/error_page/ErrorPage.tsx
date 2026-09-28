@@ -1,22 +1,19 @@
-import { useState, type Dispatch, type SetStateAction } from "react";
+import { useContext} from "react";
 import "../../assets/css/error_page.css";
+import { ErrorContext } from "../../context_providers/ErrorContext";
 
-interface errorProps{
-    errorText: string
-    // errorSetter: Dispatch<SetStateAction<string | null>>
-}
 
-export default function ErrorPage({errorText}: errorProps) {
-  const [error, setError] = useState<string | null>(null);
+export default function ErrorPage() {
+  const {errorState, setErrorState} = useContext(ErrorContext)
 
   return (
     <>
-    {errorText ?
+    {errorState ?
       <div id="error-overlay">
         <div id="error-box">
           <h2>Error</h2>
-            <p>{errorText}</p>
-          <button >Close</button>
+            <p>{errorState}</p>
+          <button autoFocus onClick={()=>{setErrorState("")}}>Close</button>
         </div>
       </div>
       :
