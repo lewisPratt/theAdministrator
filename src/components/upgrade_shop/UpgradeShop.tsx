@@ -27,7 +27,7 @@ export default function UpgradeShop() {
     const cantAfford = () => playSound('notification/error')
 
 
-  const debug = true;
+  const debug = false;
   const upgrades: UpgradeListShape = allUpgrades
 
   useEffect(() => {
