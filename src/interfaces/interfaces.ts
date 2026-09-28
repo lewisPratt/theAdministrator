@@ -44,14 +44,14 @@ export interface nameShape{
     firstName: string
     lastName: string
 }
-export interface VoucherShape {
+export interface UpgradeShape {
   name: string;
   cost: number;
   desc: string;
    perkEffect: string
     icon: React.ReactElement
 }
-export interface VoucherListShape {
+export interface UpgradeListShape {
   [key: string]: {
     name: string;
     type: string

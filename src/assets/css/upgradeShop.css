@@ -1,11 +1,11 @@
-#voucher-shop {
+#upgrade-shop {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#voucher-shop-header {
+#upgrade-shop-header {
   background-color: black;
   width: 100%;
 }
@@ -22,7 +22,7 @@
 
 }
 
-#voucher-items-container {
+#upgrade-items-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,31 +33,31 @@
 
 }
 
-#voucher-items-container ol {
+#upgrade-items-container ol {
   list-style: none;
   padding: 0;
   width: 100%;
 }
 
-#voucher-items-container li {
+#upgrade-items-container li {
   transition: .6s;
 }
 
 
 
-#voucher-items-container li:hover  .voucher-name::after{
+#upgrade-items-container li:hover  .upgrade-name::after{
   content: " <";
   animation: after-tick 1s  infinite steps(2);
   display: inline-block;
 }
-#voucher-items-container li:hover  .voucher-name::before{
+#upgrade-items-container li:hover  .upgrade-name::before{
   content: "> ";
   animation: before-tick 1s  infinite steps(2);
     display: inline-block;
 
 }
 
-.voucher-box {
+.upgrade-box {
   border: 1px solid #a2eaa2;
   height: 50px;
   width: 100%;
@@ -70,8 +70,8 @@
   gap: 20px;
 }
 
-.voucher-box:focus-visible,
-.voucher-box:hover {
+.upgrade-box:focus-visible,
+.upgrade-box:hover {
   background-color: black;
   color: #a2eaa2;
 
@@ -89,11 +89,11 @@
 
 }
 
-.voucher-desc {
+.upgrade-desc {
   margin: 20px 0;
 }
 
-#voucher-error {
+#upgrade-error {
   color: #a2eaa2;
   text-decoration: underline;
   font-size: 1rem;

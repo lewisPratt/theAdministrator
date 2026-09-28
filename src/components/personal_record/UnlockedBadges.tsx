@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { UnlocksContext } from "../../context_providers/unlocksContext";
 import type { unlockContextShape } from "../../interfaces/interfaces";
-import { allVouchers } from "../../generator_modules/vouchers";
+import { allUpgrades } from "../../generator_modules/upgrades";
 import { v4 as uuidv4 } from "uuid";
 import { Badge } from "lucide-react";
 import { CreditIcon } from "../../assets/custom_icons/credits";
@@ -17,7 +17,7 @@ export default function UnlockedBadges() {
       <div id="badge-parent">
        
         {playerUnlocks?.map((unlock) => {
-          const thisVoucher = allVouchers[`${unlock}`];
+          const thisVoucher = allUpgrades[`${unlock}`];
 
           if (thisVoucher.type === "badge") {
          

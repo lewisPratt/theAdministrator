@@ -15,6 +15,11 @@
 }
 .debug-container{
   background-color: #507450;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:5px;
+  flex-direction: column;
 }
 body {
   background: #000000;

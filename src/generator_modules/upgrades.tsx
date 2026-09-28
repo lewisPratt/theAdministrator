@@ -9,14 +9,12 @@ import {
   MemoryStick,
   PartyPopper,
   PhoneOutgoing,
-  Scale,
   Sun,
   Syringe,
   UserMinus,
-  UtensilsCrossed,
 } from "lucide-react";
-import type { VoucherListShape } from "../interfaces/interfaces";
-export const allVouchers: VoucherListShape = {
+import type { UpgradeListShape } from "../interfaces/interfaces";
+export const allUpgrades: UpgradeListShape = {
   ["voucher1"]: {
     name: "Frontal Lobe implant",
     type: "perk",

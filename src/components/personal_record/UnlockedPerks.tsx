@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UnlocksContext } from "../../context_providers/unlocksContext";
 import type { unlockContextShape } from "../../interfaces/interfaces";
-import { allVouchers } from "../../generator_modules/vouchers";
+import { allUpgrades } from "../../generator_modules/upgrades";
 import { v4 as uuidv4 } from "uuid";
 import { Badge } from "lucide-react";
 import { CreditIcon } from "../../assets/custom_icons/credits";
@@ -14,7 +14,7 @@ export default function UnlockedPerks() {
       <h3>Perks</h3>
 <div id="badge-parent">
       {playerUnlocks?.map((unlock)=>{
-        const thisVoucher = allVouchers[`${unlock}`]
+        const thisVoucher = allUpgrades[`${unlock}`]
         if(thisVoucher.type === "perk"){
          return (
               <div key={uuidv4()} className="badge-holder" data-tooltip-id="unlocks-tooltip" data-tooltip-content={thisVoucher.perkEffect}>

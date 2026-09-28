@@ -1,5 +1,5 @@
-import { allVouchers } from "../../generator_modules/vouchers";
-import type { VoucherListShape, VoucherShape } from "../../interfaces/interfaces";
+import { allUpgrades } from "../../generator_modules/upgrades";
+import type { UpgradeShape } from "../../interfaces/interfaces";
 
 /**
  * Capitalizes the first letter of the string passed to it, returning a capitalized string
@@ -13,13 +13,13 @@ export function capitalizeFirstLetter(val: string) {
 
 
 
-export function getUnlockDetails(unlocked : string[] | null) :VoucherShape[]{
+export function getUnlockDetails(unlocked : string[] | null) :UpgradeShape[]{
   
-  let voucherArray :VoucherShape[] =[]
+  let voucherArray :UpgradeShape[] =[]
   if(unlocked){
   unlocked.forEach(unlock => {
-    if(allVouchers[unlock]){
-      voucherArray.push(allVouchers[unlock])
+    if(allUpgrades[unlock]){
+      voucherArray.push(allUpgrades[unlock])
     }
   });
 }

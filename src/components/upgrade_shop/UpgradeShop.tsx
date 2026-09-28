@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { LoaderCircle} from "lucide-react";
 import { ScoreContext } from "../../context_providers/ScoreContext";
 import { UnlocksContext } from "../../context_providers/unlocksContext";
-import type { VoucherShape, VoucherListShape } from "../../interfaces/interfaces";
+import type { UpgradeShape, UpgradeListShape } from "../../interfaces/interfaces";
 import { playSound } from "react-sounds";
-import { allVouchers} from "../../generator_modules/vouchers";
+import { allUpgrades} from "../../generator_modules/upgrades";
 import { Badge } from "lucide-react";
 import { CreditIcon } from "../../assets/custom_icons/credits";
 import { useNavigate } from "react-router-dom";
-import "../../assets/css/voucherShop.css"
+import "../../assets/css/upgradeShop.css"
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 
 export default function UpgradeShop() {
@@ -28,7 +28,7 @@ export default function UpgradeShop() {
 
 
   const debug = true;
-  const vouchers: VoucherListShape = allVouchers
+  const upgrades: UpgradeListShape = allUpgrades
 
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
@@ -37,39 +37,43 @@ export default function UpgradeShop() {
   function giveCredits() {
     setScoreState(scoreState + 1000);
   }
+   function resetCredits() {
+    setScoreState(0);
+  }
+  function resetUpgrades() {
+    setPlayerUnlocks(null);
+  }
   function confirmChoice(e: React.MouseEvent<HTMLButtonElement>) {
       setErrorState(null)
     if (
-      e.currentTarget.dataset.voucherName &&
-      e.currentTarget.dataset.voucherIdent
+      e.currentTarget.dataset.upgradeName &&
+      e.currentTarget.dataset.upgradeIdent
     ) {
-      const chosenVoucherIdent: string = e.currentTarget.dataset.voucherIdent;
-      if(confirming === chosenVoucherIdent){
+      const chosenUpgradeIdent: string = e.currentTarget.dataset.upgradeIdent;
+      if(confirming === chosenUpgradeIdent){
         setConfirming(null)
       }
       else{
-    //   const chosenVoucherName: string = e.currentTarget.dataset.voucherName;
-
-      const chosenVoucher: VoucherShape = vouchers[`${chosenVoucherIdent}`];
+      const chosenUpgrade: UpgradeShape = upgrades[`${chosenUpgradeIdent}`];
   
 
-      if (chosenVoucher != undefined) {
+      if (chosenUpgrade != undefined) {
         
-        setConfirming(chosenVoucherIdent);
+        setConfirming(chosenUpgradeIdent);
       }
     }
     }
   }
 
-  function purchaseVoucher() {
+  function purchaseUpgrade() {
   
     if (confirming != null) {
-      const selectedVoucher = vouchers[`${confirming}`];
-      if (scoreState < selectedVoucher.cost) {
+      const selectedUpgrade = upgrades[`${confirming}`];
+      if (scoreState < selectedUpgrade.cost) {
         setErrorState("You do not have enough credits");
         cantAfford()
       } else {
-        setScoreState(scoreState - selectedVoucher.cost);
+        setScoreState(scoreState - selectedUpgrade.cost);
         let updatedUnlocks: string[] = [];
         if (playerUnlocks != null) {
           updatedUnlocks = [...playerUnlocks];
@@ -88,47 +92,47 @@ export default function UpgradeShop() {
           <LoaderCircle className="loader" />
         </p>
       ) : (
-        <section id="voucher-shop">
-          <div id="voucher-shop-header">
+        <section id="upgrade-shop">
+          <div id="upgrade-shop-header">
             <h2>Upgrade Shop</h2>
-            {debug &&  <div className="debug-container"><h6>Debug- not for production</h6><button onClick={giveCredits}>Give credits</button></div>}
+            {debug &&  <div className="debug-container"><h6>Debug- not for production</h6><button onClick={giveCredits}>Give credits</button><button onClick={resetCredits}>Reset credits</button><button onClick={resetUpgrades}>Reset Upgrades</button></div>}
           </div>
           <div  id="personal-record-button">
           <button onClick={()=>{navigate("/PersonalRecord"); setCurrentSlug("nav.personal")}}>Personal Record</button>
           </div>
-          <section id="voucher-items-container">
+          <section id="upgrade-items-container">
             <ol>
-              {Object.entries(vouchers).map((voucher) => {
+              {Object.entries(upgrades).map((upgrade) => {
                 return (
                   <li>
                     <button
-                      key={voucher[0]}
+                      key={upgrade[0]}
                       className={
-                        "voucher-box " +
-                        (playerUnlocks?.includes(voucher[0])
+                        "upgrade-box " +
+                        (playerUnlocks?.includes(upgrade[0])
                           ? "purchased-unlock-class"
                           : "unpurchased-unlock-class")
                       }
-                      data-voucher-name={voucher[1].name}
-                      data-voucher-ident={voucher[0]}
+                      data-upgrade-name={upgrade[1].name}
+                      data-upgrade-ident={upgrade[0]}
                       
                       onClick={(e) => {
                         confirmChoice(e)
                         hoverClick();
                       }}
                     >
-                        <Badge size={48}>{voucher[1].icon}</Badge><span className="voucher-name">{voucher[1].name}</span> <span>{playerUnlocks?.includes(voucher[0]) && "[Purchased]"  }  <CreditIcon className="custom-icon" />{voucher[1].cost}</span>
+                        <Badge size={48}>{upgrade[1].icon}</Badge><span className="upgrade-name">{upgrade[1].name}</span> <span>{playerUnlocks?.includes(upgrade[0]) && "[Purchased]"  }  <CreditIcon className="custom-icon" />{upgrade[1].cost}</span>
                     </button>
-                    {confirming != null && confirming === voucher[0] && (
+                    {confirming != null && confirming === upgrade[0] && (
                       <div >
-                        <p className="voucher-desc">{voucher[1].desc}</p>
-                        <p>Effect: {voucher[1].perkEffect}</p>
-                                  {errorState != null && <p id='voucher-error'>{errorState}</p>}
+                        <p className="upgrade-desc">{upgrade[1].desc}</p>
+                        <p>Effect: {upgrade[1].perkEffect}</p>
+                                  {errorState != null && <p id='upgrade-error'>{errorState}</p>}
 
-                        {!playerUnlocks?.includes(voucher[0]) && (
+                        {!playerUnlocks?.includes(upgrade[0]) && (
                             
                           <div className='purchase-button-container'>
-                            <button onClick={purchaseVoucher} ><CreditIcon className="custom-icon"/></button>
+                            <button onClick={purchaseUpgrade} ><CreditIcon className="custom-icon"/></button>
                           </div>
                         )}
                       </div>
