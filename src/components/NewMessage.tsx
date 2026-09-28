@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { Mail, X } from "lucide-react";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
@@ -52,7 +52,7 @@ export default function NewMessage({ messageStateSetter }: newMessageProps) {
       </div>
           <h4>New Message</h4>
           <p>Welcome to your new role.</p>
-        <button  onClick={visitInbox}>Read Message</button>
+        <button  onClick={visitInbox}><Mail /></button>
  
     </div>
   );

@@ -6,7 +6,7 @@ import "./assets/css/App.css";
 import ScoreTracker from "./components/ScoreTracker";
 import { LoaderCircle } from "lucide-react";
 import VoucherShop from "./components/VoucherShop";
-import CommandCentre from "./components/CommandCentre";
+import CommandCentre from "./components/Terminal";
 import Login from "./components/login/Login";
 import { ScoreContext } from "./context_providers/ScoreContext";
 import { AdminContext } from "./context_providers/AdminContext";
@@ -133,7 +133,7 @@ function App() {
                           />
                           <Route path="/TheAdministrator" element={<Login />} />
                           <Route
-                            path="/CommandCentre"
+                            path="/Terminal"
                             element={<CommandCentre />}
                           />
                           <Route

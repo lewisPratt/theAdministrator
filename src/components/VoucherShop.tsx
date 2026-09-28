@@ -1,10 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { LoaderCircle} from "lucide-react";
+import { Euro, LoaderCircle} from "lucide-react";
 import { ScoreContext } from "../context_providers/ScoreContext";
 import { UnlocksContext } from "../context_providers/unlocksContext";
 import type { VoucherShape, VoucherListShape } from "../interfaces/interfaces";
 import { playSound } from "react-sounds";
 import { allVouchers} from "../generator_modules/vouchers";
+import { Badge } from "lucide-react";
+import { CreditIcon } from "../assets/custom_icons/credits";
+
+import "../assets/css/voucherShop.css"
+
 export default function VoucherShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
@@ -103,7 +108,7 @@ export default function VoucherShop() {
                         hoverClick();
                       }}
                     >
-                      {voucher[1].icon}<span> {voucher[1].name}</span> <span>{playerUnlocks?.includes(voucher[0]) && "[Purchased]"  }  C{voucher[1].cost}</span>
+                        <Badge size={48}>{voucher[1].icon}</Badge><span> {voucher[1].name}</span> <span>{playerUnlocks?.includes(voucher[0]) && "[Purchased]"  }  <CreditIcon className="custom-icon" />{voucher[1].cost}</span>
                     </button>
                     {confirming != null && confirming === voucher[0] && (
                       <div >
@@ -112,9 +117,9 @@ export default function VoucherShop() {
 
                         {!playerUnlocks?.includes(voucher[0]) && (
                             
-                          <p className='purchase-button'>
-                            <button onClick={purchaseVoucher} >Purchase</button>
-                          </p>
+                          <div className='purchase-button-container'>
+                            <button onClick={purchaseVoucher} ><CreditIcon className="custom-icon"/></button>
+                          </div>
                         )}
                       </div>
                     )}

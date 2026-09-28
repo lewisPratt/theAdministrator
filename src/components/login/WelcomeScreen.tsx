@@ -19,7 +19,7 @@ export default function WelcomeScreen() {
   const navigate = useNavigate();
   const welcomeMessage =welcomeMessages[Math.floor(Math.random()* welcomeMessages.length) ]
   function loginPause() {
-    setTimeout(() => navigate("/CommandCentre"), 5000);
+    setTimeout(() => navigate("/Terminal"), 5000);
   }
   loginPause();
   return (

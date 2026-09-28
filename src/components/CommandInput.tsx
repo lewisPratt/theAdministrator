@@ -37,7 +37,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
         resetInput(e);
         break;
       case "nav.terminal":
-        navigate("/CommandCentre");
+        navigate("/Terminal");
         setCurrentSlug("nav.terminal");
         resetInput(e);
         break;

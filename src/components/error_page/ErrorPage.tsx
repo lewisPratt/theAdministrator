@@ -1,6 +1,7 @@
 import { useContext} from "react";
 import "../../assets/css/error_page.css";
 import { ErrorContext } from "../../context_providers/ErrorContext";
+import { X } from "lucide-react";
 
 
 export default function ErrorPage() {
@@ -13,7 +14,7 @@ export default function ErrorPage() {
         <div id="error-box">
           <h2>Error</h2>
             <p>{errorState}</p>
-          <button autoFocus onClick={()=>{setErrorState("")}}>Close</button>
+          <button autoFocus onClick={()=>{setErrorState("")}}><X /></button>
         </div>
       </div>
       :

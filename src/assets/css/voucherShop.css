@@ -1,0 +1,81 @@
+#voucher-shop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#voucher-shop-header {
+  background-color: black;
+  width: 100%;
+}
+
+
+
+#voucher-items-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 100%;
+
+}
+
+#voucher-items-container ol {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+#voucher-items-container li {
+  transition: .6s;
+}
+
+#voucher-items-container li:hover {
+  margin: 10px 0;
+}
+
+.voucher-box {
+  border: 1px solid #a2eaa2;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  transition: .8s;
+  margin: 3px 0;
+  gap: 20px;
+}
+
+.voucher-box:focus-visible,
+.voucher-box:hover {
+  background-color: black;
+  color: #a2eaa2;
+
+}
+
+.purchase-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px;
+}
+
+.purchased-unlock-class {
+  background-color: #a2eaa2;
+
+}
+
+.voucher-desc {
+  margin: 20px 0;
+}
+
+#voucher-error {
+  color: #a2eaa2;
+  text-decoration: underline;
+  font-size: 1rem;
+  animation: bulge .8s;
+}
