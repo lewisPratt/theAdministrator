@@ -1,6 +1,5 @@
 import type { reviewShape, transcriptListItemProps } from "../../interfaces/interfaces";
 import {FolderTree } from "lucide-react";
-import { Tooltip } from "react-tooltip";
 
 export default function CaseListItem({
   currentTranscript,
