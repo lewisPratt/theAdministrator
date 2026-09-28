@@ -7,22 +7,27 @@ import { playSound } from "react-sounds";
 import { allVouchers} from "../generator_modules/vouchers";
 import { Badge } from "lucide-react";
 import { CreditIcon } from "../assets/custom_icons/credits";
-
+import { useNavigate } from "react-router-dom";
 import "../assets/css/voucherShop.css"
+import { CurrentSlugContext } from "../context_providers/CurrentSlugContext";
 
 export default function VoucherShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
   const { scoreState, setScoreState } = useContext(ScoreContext);
   const { playerUnlocks, setPlayerUnlocks } = useContext(UnlocksContext);
+  const {setCurrentSlug} = useContext(CurrentSlugContext)
+  const navigate = useNavigate()
   console.log(playerUnlocks);
+
 
   const [errorState, setErrorState] = useState<string | null>(null);
     const hoverClick = () => playSound('ui/button_soft')
+    const purchaseSound = () => playSound('ui/success_bling')
     const cantAfford = () => playSound('notification/error')
 
 
-  const debug = true;
+  const debug = false;
   const vouchers: VoucherListShape = allVouchers
 
   useEffect(() => {
@@ -69,6 +74,7 @@ export default function VoucherShop() {
         if (playerUnlocks != null) {
           updatedUnlocks = [...playerUnlocks];
         }
+        purchaseSound()
         updatedUnlocks.push(confirming);
         setPlayerUnlocks(updatedUnlocks);
       }
@@ -85,7 +91,10 @@ export default function VoucherShop() {
         <section id="voucher-shop">
           <div id="voucher-shop-header">
             <h2>Voucher Shop</h2>
-            {debug && <button onClick={giveCredits}>Give credits</button>}
+            {debug &&  <div className="debug-container"><h6>Debug- not for production</h6><button onClick={giveCredits}>Give credits</button></div>}
+          </div>
+          <div  id="personal-record-button">
+          <button onClick={()=>{navigate("/PersonalRecord"); setCurrentSlug("nav.personal")}}>Personal Record</button>
           </div>
           <section id="voucher-items-container">
             <ol>

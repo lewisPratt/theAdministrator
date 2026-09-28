@@ -147,16 +147,17 @@ export default function TranscriptReviewBox({
             {transcript.interviewee.firstName} {transcript.interviewee.lastName}
           </h3>
           <div className="interviewee-details">
-            <p>
+            <div className="details-row"><p>
               <span className='review-box-section-header'>Age:</span> {transcript.age} | <span className='review-box-section-header'>Gender:</span>{" "}
               {transcript.gender.charAt(0).toUpperCase() +
                 transcript.gender.slice(1)}
-            </p>
+                </p>
+            </div>
 
-            <p><span className='review-box-section-header'>Occupation:</span> {transcript.occupation.name} </p>
+            <div className="details-row"><p><span className='review-box-section-header'>Occupation:</span> {transcript.occupation.name}</p> </div>
 
-            <p><span className='review-box-section-header'>Interview Location:</span> {transcript.location.name}</p>
-            <p><span className='review-box-section-header'>Response to interview:</span> {transcript.behaviour}</p>
+            <div className="details-row"><p><span className='review-box-section-header'>Interview Location:</span> {transcript.location.name}</p></div>
+            <div className="details-row"><p><span className='review-box-section-header'>Response to interview:</span> {transcript.behaviour}</p></div>
 
             {debug === 1 && (
               <>

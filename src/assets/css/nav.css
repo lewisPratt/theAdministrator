@@ -1,0 +1,7 @@
+.score-tracker-button{
+    width: fit-content;
+    height: fit-content;
+    background-color: black;
+    color: #a2eaa2;
+    padding: 5px;
+}

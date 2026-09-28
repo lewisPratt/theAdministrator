@@ -4,6 +4,7 @@ import type { unlockContextShape } from "../../interfaces/interfaces";
 import { allVouchers } from "../../generator_modules/vouchers";
 import { v4 as uuidv4 } from "uuid";
 import { Badge } from "lucide-react";
+import { CreditIcon } from "../../assets/custom_icons/credits";
 export default function UnlockedPerks() {
   const { playerUnlocks } = useContext<unlockContextShape>(UnlocksContext);
 
@@ -19,7 +20,7 @@ export default function UnlockedPerks() {
               <div key={uuidv4()} className="badge-holder" data-tooltip-id="unlocks-tooltip" data-tooltip-content={thisVoucher.perkEffect}>
                 <Badge size={96}>{thisVoucher.icon}</Badge>
                 <p >
-                  {thisVoucher.name} <br /> <span className="badge-cost"> C{thisVoucher.cost}</span>
+                  {thisVoucher.name} <br /> <span className="badge-cost"> <CreditIcon size={15} className="custom-icon" />{thisVoucher.cost}</span>
                   
                 </p>
               </div>

@@ -10,7 +10,17 @@
   width: 100%;
 }
 
+#personal-record-button{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width:100%;
+}
+#personal-record-button button{
+    width:fit-content;
+    height: fit-content;
 
+}
 
 #voucher-items-container {
   display: flex;

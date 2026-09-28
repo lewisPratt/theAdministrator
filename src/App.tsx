@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {Routes, Route, HashRouter } from "react-router-dom";
 import TranscriptRev from "./components/TranscriptRev";
 import "./assets/css/App.css";
+import "./assets/css/nav.css"
 
 import ScoreTracker from "./components/ScoreTracker";
 import { LoaderCircle } from "lucide-react";

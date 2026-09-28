@@ -116,11 +116,8 @@ export default function TranscriptRev() {
       )}
       
       <section id="transcript-review">
-        <h2>Transcript Review</h2>
-        <p id="reminder-p">
-          Reminder: You must complete your designated tasks to qualify for
-          'Recreational Time'.
-        </p>
+        <h1>Case Review</h1>
+  
 
         <SearchConsole />
 
@@ -128,7 +125,7 @@ export default function TranscriptRev() {
         <div id="top-container">
           {availableTranscripts && (
             <ol id="transcript-list">
-              <li id="interviews-list-header">Available Interviews</li>
+              <li id="interviews-list-header">Available Cases</li>
               {availableTranscripts.map((listItem) => (
                 <TranscriptListItem
                   key={

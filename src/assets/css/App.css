@@ -13,7 +13,9 @@
   --rt-color-white: #a2eaa2;
   --rt-opacity: 1;
 }
-
+.debug-container{
+  background-color: #507450;
+}
 body {
   background: #000000;
 }
@@ -402,20 +404,20 @@ h5 {
 }
 
 #transcript-list {
-  flex-basis: 300px;
+  flex-basis: 400px;
   margin: 0;
   padding: 0;
 }
 
 .transcript-container {
-  border: 2px solid #c4c4c0;
+  border: 1px solid #a2eaa2;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  flex-basis: 800px;
+  flex-basis: 700px;
   margin: 0 0 10px 10px;
 }
 
@@ -444,9 +446,10 @@ h5 {
   justify-content: flex-start;
   flex-wrap: wrap;
   width: 80%;
+  font-size:.8rem;
 }
 
-.interviewee-details>p {
+.interviewee-details> .details-row {
   border: 1px solid #a2eaa2;
   margin: 2px 0;
   text-align: left;
@@ -543,7 +546,7 @@ h5 {
 #search-console-container {
   display: flex;
   padding: 10px;
-  border: 1px solid #c4c4c0;
+  border: 1px solid #a2eaa2;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
@@ -558,7 +561,7 @@ h5 {
   top: 0;
   left: 0;
   width: 100%;
-  border-bottom: 1px solid #c4c4c0;
+  border-bottom: 1px solid #a2eaa2;
   display: flex;
   justify-content: space-between;
 
@@ -676,8 +679,11 @@ h5 {
   animation: open-transcript .6s 1 forwards;
 }
 
-.current-selected-item {
-  border-right: 3px solid #2c3e50
+.current-selected-item::after  {
+  content:"<";
+}
+.current-selected-item::before{
+  content: ">";
 }
 
 
@@ -795,9 +801,7 @@ REVIEW OVERLAY
 }
 
 
-/*//////////////////////////////
-Voucher shop
-///////////////////////////*/
+
 
 
 /*//////////////////////////////
