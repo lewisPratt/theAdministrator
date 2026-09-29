@@ -24,6 +24,7 @@ import {
   type adminContextShape,
   type scoreContextShape,
   type errorStateShape,
+  type tutorialContextShape,
 } from "./interfaces/interfaces";
 import { SoundProvider } from "react-sounds";
 import SoundControl from "./components/nav/SoundControl";
@@ -31,11 +32,13 @@ import WelcomeScreen from "./components/login/WelcomeScreen";
 import GoodbyeScreen from "./components/login/GoodbyeScreen";
 import HumanResources from "./components/human_resources/HumanResources";
 import PersonalRecord from "./components/personal_record/PersonalRecord";
-import LoginAbout from "./components/login/LoginAbout";
+import HowToPlay from "./components/login/HowToPlay";
 import MobileMenu from "./components/MobileMenu";
 import Footer from "./components/footer/Footer";
 import ErrorPage from "./components/error_page/ErrorPage";
 import { ErrorContext } from "./context_providers/ErrorContext";
+import { TutorialContext } from "./context_providers/TutorialContext";
+import TutorialButton from "./components/nav/TutorialButton";
 
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
@@ -49,6 +52,7 @@ function App() {
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
   const [terminalLoaded, setTerminalLoaded] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<string>("")
+  const [tutorialState, setTutorialState] = useState<boolean>(true);
 
   const adminContextValue: adminContextShape = { adminName, setAdminName };
   const unlocksContextValue: unlockContextShape = {
@@ -58,6 +62,7 @@ function App() {
 
   const errorStateValue : errorStateShape = {errorState, setErrorState};
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
+   const tutorialContextValue: tutorialContextShape = { tutorialState, setTutorialState };
   const currentSlugContextValue: currentSlugShape = {
     currentSlug,
     setCurrentSlug,
@@ -99,12 +104,16 @@ function App() {
                 <AdminContext value={adminContextValue}>
                   <ScoreContext value={scoreContextValue}>
                     <UnlocksContext value={unlocksContextValue}>
+                      <TutorialContext value={tutorialContextValue}>
                       <ErrorPage />
                       <nav>
                         {adminName != "" ? (
                           <>
                             <div id="desktop-nav">
-                              <SoundControl mobile={false}/>
+                              <div id="interactive-nav-el-container">
+                                <SoundControl mobile={false}/>
+                                <TutorialButton />
+                              </div>
 
                               <CommandInput adminNameSetter={setAdminName} />
                               <ScoreTracker scoreState={scoreState} />
@@ -125,14 +134,14 @@ function App() {
                       <div id="content-container">
                         <Routes>
                           <Route path="/Welcome" element={<WelcomeScreen />} />
-                          <Route path="/WhatIsThis" element={<LoginAbout />} />
+                          <Route path="/HowToPlay" element={<HowToPlay />} />
                           <Route path="/Goodbye" element={<GoodbyeScreen />} />
                           <Route path="/HR" element={<HumanResources />} />
                           <Route
                             path="PersonalRecord"
                             element={<PersonalRecord />}
                           />
-                          <Route path="/TheAdministrator" element={<Login />} />
+                          <Route path="/" element={<Login />} />
                           <Route
                             path="/Terminal"
                             element={<CommandCentre />}
@@ -152,6 +161,7 @@ function App() {
                       <Footer >
                           <CurrentSlug pageName={currentSlug} />
                         </Footer>
+                        </TutorialContext>
                     </UnlocksContext>
                   </ScoreContext>
                 </AdminContext>

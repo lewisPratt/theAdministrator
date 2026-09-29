@@ -1,0 +1,15 @@
+#how-to-play-content h1{
+    margin-bottom:50px;
+}
+
+#how-to-play-content p{
+    margin-bottom:20px;
+    text-align:left;
+}
+
+#how-to-play-content{
+    padding:90px;
+}
+#how-to-play-button{
+    margin:20px auto;
+}

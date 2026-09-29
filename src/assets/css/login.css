@@ -44,7 +44,11 @@
 .map-text-right {
     transform: skewY(344deg);
 }
-
+#login-label{
+    text-align:center;
+    width:100%;
+    font-size:.7rem;
+}
 
 /* 
 INTERACTIVE PSEUDO CLASSES 

@@ -61,6 +61,12 @@ button {
   border:1px solid #a2eaa2;
   margin-top:20px;
 }
+.secondary-button:hover{
+  background-color: #a2eaa2;
+  color:black;
+  border:1px solid #a2eaa2;
+  margin-top:20px;
+}
 #main-content .custom-tooltip {
   background-color: #a2eaa2;
   color: black;
@@ -83,7 +89,14 @@ label {
   margin: 0 10px;
 }
 
-
+#tutorial-overlay{
+  position:fixed;
+  background-color: rgba(0, 0, 0, .7);
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
 
 #transcript-rev-command,
 #comsec-command,
@@ -192,6 +205,14 @@ input[type=text] {
 h5 {
   margin: 0;
 }
+.flashing-cursor{
+    border-left:5px solid #a2eaa2;
+    display: inline-block;
+    height:15px;
+    width:2px;
+    animation: flash-cursor 1s   infinite  ;
+}
+
 
 #welcome-message {
   overflow: hidden;
@@ -1271,6 +1292,11 @@ ACTIVITY GRAPH
   }
 }
 
+@keyframes flash-cursor {
+    to{
+        border-left: none;
+    }
+}
 @media (max-width:480px) {
   #desktop-nav{
     justify-content: center;

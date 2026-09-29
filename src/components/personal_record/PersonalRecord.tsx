@@ -1,5 +1,4 @@
-import UnlockedBadges from "./UnlockedBadges";
-import UnlockedPerks from "./UnlockedPerks";
+import UnlockedUpgrades from "./UnlockedUpgrades";
 import "../../assets/css/personalRecord.css";
 import { Tooltip } from "react-tooltip";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +9,7 @@ import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 export default function PersonalRecord() {
   const navigate = useNavigate();
   const [loadingState, setLoadingState] = useState<boolean>(true);
-  const {setCurrentSlug} = useContext(CurrentSlugContext)
+  const { setCurrentSlug } = useContext(CurrentSlugContext);
   //turn off loading indicator after set interval
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
@@ -23,22 +22,19 @@ export default function PersonalRecord() {
         </p>
       ) : (
         <section id="personal-record">
-          <p>View your mediocre personal achievements.</p>
-          <h2>Upgrades</h2>
+          <p>View your mediocre personal achievements & upgrades.</p>
+
+          {/* //upgrades unlocked component */}
+          <UnlockedUpgrades />
           <button
-            id="visit-vouchers"
+            id="visit-upgrades-button"
             onClick={() => {
               navigate("/UpgradeShop");
-                setCurrentSlug("nav.upgrade")
+              setCurrentSlug("nav.upgrade");
             }}
           >
             Upgrade Terminal
           </button>
-          {/* //badges unlocked component */}
-          <UnlockedBadges />
-          {/* //perks unlocked component */}
-          <UnlockedPerks />
-          {/* <UnlockedPerks /> */}
           {/* //total cases reviewed component */}
 
           {/* //pass/fail ratio */}

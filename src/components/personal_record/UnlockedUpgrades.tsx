@@ -7,19 +7,17 @@ import { v4 as uuidv4 } from "uuid";
 import { Badge } from "lucide-react";
 import { CreditIcon } from "../../assets/custom_icons/credits";
 
-export default function UnlockedBadges() {
+export default function UnlockedUpgrades() {
   const { playerUnlocks } = useContext<unlockContextShape>(UnlocksContext);
 
   console.log(playerUnlocks);
   return (
     <section id="badge-unlocks">
-       <h3>Badges</h3>
+       <h3>Upgrades</h3>
       <div id="badge-parent">
        
         {playerUnlocks?.map((unlock) => {
           const thisVoucher = allUpgrades[`${unlock}`];
-
-          if (thisVoucher.type === "badge") {
          
             return (
               <div key={uuidv4()} className="badge-holder" data-tooltip-id="unlocks-tooltip" data-tooltip-content={thisVoucher.perkEffect}>
@@ -29,7 +27,7 @@ export default function UnlockedBadges() {
                 </p>
               </div>
             );
-          }
+          
         })}
       </div>
     </section>

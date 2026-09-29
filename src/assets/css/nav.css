@@ -5,3 +5,15 @@
     color: #a2eaa2;
     padding: 5px;
 }
+#tutorial-toggle-button{
+    width:fit-content;
+    height:fit-content;
+}
+#interactive-nav-el-container{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+#tutorial-toggle-button{
+    z-index:100;
+}

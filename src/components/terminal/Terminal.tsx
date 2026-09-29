@@ -7,20 +7,33 @@ import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import NotLoggedIn from "../nav/NotLoggedIn";
 import ActivityGraph from "./ActivityGraph";
 import { ErrorContext } from "../../context_providers/ErrorContext";
-
+import { TutorialContext } from "../../context_providers/TutorialContext";
+import "../../assets/css/terminal.css";
+import { useRef } from "react";
+import { Tooltip, type TooltipRefProps } from "react-tooltip";
+import TutorialOverlay from "../TutorialOverlay";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [leaveReq, setLeaveReq] = useState<boolean>(false);
 
   const { adminName, setAdminName } = useContext(AdminContext);
-  const {setCurrentSlug} = useContext(CurrentSlugContext)
-  const {setErrorState} = useContext(ErrorContext)
+  const { setCurrentSlug } = useContext(CurrentSlugContext);
+  const { setErrorState } = useContext(ErrorContext);
+  const { tutorialState, setTutorialState } = useContext(TutorialContext);
   const navigate = useNavigate();
 
-  // const currentDate = Date.now()
-  // const leaveDate = new Date(2047,1)
-  // const difference = (leaveDate - currentDate)
+  const tooltipRef1 = useRef<TooltipRefProps>(null);
+  const tooltipRef2 = useRef<TooltipRefProps>(null);
+
+  useEffect(() => {
+    if (tutorialState) {
+      tooltipRef1.current?.open({
+        anchorSelect: "#step-one",
+        content: "Use these Commands to navigate around the system.",
+      });
+    }
+  }, []);
 
   //turn off loading indicator after set interval
   useEffect(() => {
@@ -29,47 +42,47 @@ export default function CommandCentre() {
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    const formValues = new FormData(e.target)
-    const command = formValues.get('command')?.toString()
-    if(command){
-    switch (command.toLowerCase()) {
-      case "nav.upgrade":
-        navigate("/UpgradeShop");
-        setCurrentSlug("nav.voucher")
-        break;
-      case "nav.hr":
-        navigate("/HR");
-        setCurrentSlug("nav.hr")
-        break;
-      case "nav.review":
-        navigate("/CaseReview");
-        setCurrentSlug("nav.review")
-        break;
-      case "nav.inbox":
-        navigate("/Inbox");
-        setCurrentSlug("nav.inbox")
-        break;
-      case "request.leave":
-        setLeaveReq(true);
-        e.currentTarget.reset();
-        break;
-      case "nav.logout":
-        setAdminName("")
-        navigate("/Goodbye");
-        break;
-      case "nav.personal":
-        navigate("/PersonalRecord")
-        break;
-      case "nav.terminal":
-        navigate("/Terminal")
-        break;
-      default:
-        setErrorState("Command not recognized: "+command);
-        setLeaveReq(false);
-        e.currentTarget.reset();
-        break;
+    const formValues = new FormData(e.target);
+    const command = formValues.get("command")?.toString();
+    if (command) {
+      switch (command.toLowerCase()) {
+        case "nav.upgrade":
+          navigate("/UpgradeShop");
+          setCurrentSlug("nav.voucher");
+          break;
+        case "nav.hr":
+          navigate("/HR");
+          setCurrentSlug("nav.hr");
+          break;
+        case "nav.review":
+          navigate("/CaseReview");
+          setCurrentSlug("nav.review");
+          break;
+        case "nav.inbox":
+          navigate("/Inbox");
+          setCurrentSlug("nav.inbox");
+          break;
+        case "request.leave":
+          setLeaveReq(true);
+          e.currentTarget.reset();
+          break;
+        case "nav.logout":
+          setAdminName("");
+          navigate("/Goodbye");
+          break;
+        case "nav.personal":
+          navigate("/PersonalRecord");
+          break;
+        case "nav.terminal":
+          navigate("/Terminal");
+          break;
+        default:
+          setErrorState("Command not recognized: " + command);
+          setLeaveReq(false);
+          e.currentTarget.reset();
+          break;
+      }
     }
-  }
   }
 
   return (
@@ -80,70 +93,89 @@ export default function CommandCentre() {
         </p>
       ) : (
         <>
-        <section id="welcome-section">
-        {adminName ? 
-        <>
-       
-          <h1>Welcome Administrator {adminName}.</h1>
-          <form onSubmit={handleCommand} method="post">
-            <div id="command-typing-container">
-              {/* <label htmlFor="admin-name" id="welcome-message">
+        { tutorialState && <TutorialOverlay />}
+          <section id="welcome-section">
+            {adminName ? (
+              <>
+                <h1>Welcome Administrator {adminName}.</h1>
+                <form onSubmit={handleCommand} method="post">
+                  <div id="command-typing-container">
+                    {/* <label htmlFor="admin-name" id="welcome-message">
                 What would you like to do today?
               </label> */}
-            </div>
-            <div id="command-centre-input-container">
-              <input
-                autoFocus
-                type="text"
-                placeholder="nav.command"
-                id="command-centre-input"
-                name="command"
-                autoComplete="off"
-                // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                //   setTypedCommand(e.currentTarget.value);
-                // }}
-              ></input>
-              <button id="command-centre-submit-button"><ChevronRightCircle size={28}/></button>
-              
-            </div>
             
-          </form>
-        
-          
-          {leaveReq && <LeaveReq />}
-        
-          
-          <div className="commands-container">
-            <div id='commands-header'><div><Code /></div> <div id='header-div'><p>Nav Commands:</p></div><div><Braces /></div></div>
-            <div className="command-container">
-              <p>Review interview transcripts.</p> <p>nav.review</p>
-            </div>
-            <div className="command-container">
-              <p>Voucher Terminal</p> <p>nav.voucher</p>
-            </div>
-            <div className="command-container">
-              <p>Inbox</p> <p>nav.inbox</p>
-            </div>
-            <div className="command-container">
-              <p>Request leave.</p> <p>request.leave</p>
-            </div>
-             <div className="command-container">
-              <p>Human Resources</p> <p>nav.hr</p>
-            </div>
-            <div className="command-container">
-              <p>Logout.</p> <p>nav.logout</p>
-            </div>
-          </div>
-          </>: 
-          <>
-           <NotLoggedIn soundControls={false}/>
-          </>}
-        </section>
-        <section id='city-stats-section'>
-        </section>
-        <section>
-          <ActivityGraph />
-        </section>
+                    
+                  </div>
+                  <div id="command-centre-input-container">
+                    <input
+                      autoFocus
+                      type="text"
+                      placeholder="nav.command"
+                      id="command-centre-input"
+                      name="command"
+                      autoComplete="off"
+                      // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      //   setTypedCommand(e.currentTarget.value);
+                      // }}
+                    ></input>
+                    <button id="command-centre-submit-button">
+                      <ChevronRightCircle size={28} />
+                    </button>
+                    {tutorialState && <p>Tutorial is currently active</p>}
+                  </div>
+                </form>
+
+                {leaveReq && <LeaveReq />}
+
+                <div className="commands-container">
+                  <div id="commands-header">
+                    <div>
+                      <Code />
+                    </div>{" "}
+                    <div id="header-div">
+                      <a id="step-one"></a>
+                      <p>Nav Commands:</p>
+                      
+                    </div>
+                    <div>
+                      <Braces />
+                    </div>
+                  </div>
+                  <div className="command-container">
+                    <p>Review interview transcripts.</p>
+                    <div></div> <p>nav.review</p>
+                  </div>
+                  <div className="command-container">
+                    <p>Voucher Terminal</p> <div>step 2</div> <p>nav.voucher</p>
+                  </div>
+                  <div className="command-container">
+                    <p>Inbox</p> <div>step 3</div> <p>nav.inbox</p>
+                  </div>
+                  <div className="command-container">
+                    <p>Request leave.</p>
+                    <div>step 4</div> <p>request.leave</p>
+                  </div>
+                  <div className="command-container">
+                    <p>Human Resources</p>
+                    <div>step 5</div> <p>nav.hr</p>
+                  </div>
+                  <div className="command-container">
+                    <p>Logout.</p>
+                    <div>step 6</div> <p>nav.logout</p>
+                  </div>
+                </div>
+                <Tooltip className="custom-tooltip" ref={tooltipRef1} />
+              </>
+            ) : (
+              <>
+                <NotLoggedIn soundControls={false} />
+              </>
+            )}
+          </section>
+          <section id="city-stats-section"></section>
+          <section>
+            <ActivityGraph />
+          </section>
         </>
       )}
     </>

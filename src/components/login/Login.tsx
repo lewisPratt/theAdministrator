@@ -48,12 +48,13 @@ export default function Login() {
       <CityMap />
 
       <h1 id='login-header'>Welcome Administrator</h1>
+      <p>Login below to start your mandatory shift.</p>
       <form onSubmit={doLogin}>
-        <div id="login-typing-container">
-          <label htmlFor="admin-name" id="welcome-message">
-            Please enter your name
+        
+          <label id="login-label" htmlFor="admin-name" >
+            Administrator Name:
           </label>
-        </div>
+     
 
         <div id="login-input-container">
           <input
@@ -67,10 +68,11 @@ export default function Login() {
           <button id="command-centre-submit-button">
             <ChevronRightCircle size={28} />
           </button>
-          <button id="command-centre-submit-button" onClick={(e)=>{ e.preventDefault(); navigate("/WhatIsThis")}} data-tooltip-id='login-tooltip' data-tooltip-content='What is this?'>
+          {/* <button id="command-centre-submit-button"  data-tooltip-id='login-tooltip' data-tooltip-content='What is this?'>
             <CircleQuestionMark size={28} />
-          </button>
+          </button> */}
         </div>
+        <button id="how-to-play-button" className="secondary-button" onClick={(e)=>{ e.preventDefault(); navigate("/HowToPlay")}}>How to play</button>
       </form>
       <Tooltip id='login-tooltip' className='custom-tooltip'/>
     </section>

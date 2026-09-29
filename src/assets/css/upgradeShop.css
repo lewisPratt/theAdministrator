@@ -43,7 +43,9 @@
   transition: .6s;
 }
 
-
+#visit-upgrades-button{
+  margin-top:30px;
+}
 
 #upgrade-items-container li:hover  .upgrade-name::after{
   content: " <";
