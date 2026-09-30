@@ -47,6 +47,7 @@ import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
 import TutorialOverlay from "./components/TutorialOverlay";
 import { createPortal } from "react-dom";
+import NavBar from "./components/nav/NavBar";
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
@@ -125,31 +126,8 @@ function App() {
                       <TutorialContext value={tutorialContextValue}>
                         { tutorialState.tutorialActive &&  createPortal(<TutorialOverlay />,document.body)}
                       <ErrorPage />
-                      <nav>
-                        {adminName != "" ? (
-                          <>
-                            <div id="desktop-nav">
-                              <div id="interactive-nav-el-container">
-                                <SoundControl mobile={false}/>
-                                <TutorialButton />
-                              </div>
-
-                              <CommandInput adminNameSetter={setAdminName} />
-                              <ScoreTracker scoreState={scoreState} />
-                            </div>
-                            <MobileMenu />
-                          </>
-                        ) : (
-                          <NotLoggedIn soundControls />
-                        )}
-                        {instructionsPrompt &&
-                          adminName != "" &&
-                          terminalLoaded && (
-                            <NewMessage
-                              messageStateSetter={setInstructionsPrompt}
-                            />
-                          )}
-                      </nav>
+                      <NavBar />
+                    
                       <div id="content-container">
                         <Routes>
                           <Route path="/Welcome" element={<WelcomeScreen />} />

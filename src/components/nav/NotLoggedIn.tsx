@@ -8,20 +8,16 @@ export default function NotLoggedIn({ soundControls }: NotLoggedInShape) {
   const { pathname } = location;
   const navigate = useNavigate();
 
-  {/* check to see if the current route is the login, welcome or goodbye page, if so, disable component */}
-  let componentEnabled : boolean = true
-  if(pathname === "/" || pathname === "/Goodbye" ||  pathname === "/Welcome" || pathname === "/HowToPlay"){
-    componentEnabled= false
-  }
+ 
   
   return (
-    <>
+    
       
-      {componentEnabled && (
+      
         <>
           {soundControls && <SoundControl mobile={false}/>}
           <p>
-            you don't seem to be logged in{" "}
+            You are not logged in{" "}
             <button
               onClick={() => {
                 navigate("/");
@@ -32,7 +28,7 @@ export default function NotLoggedIn({ soundControls }: NotLoggedInShape) {
             </button>
           </p>
         </>
-      )}
-    </>
+  
+    
   );
 }

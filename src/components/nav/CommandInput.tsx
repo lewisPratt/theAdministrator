@@ -12,48 +12,49 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   const [showCommands, setShowCommands] = useState<boolean>(false);
   const { setCurrentSlug } = useContext(CurrentSlugContext);
-  const {setErrorState} = useContext(ErrorContext)
-  const {tutorialState} = useContext(TutorialContext)
+  const { setErrorState } = useContext(ErrorContext);
+  const { tutorialState } = useContext(TutorialContext);
   const navigate = useNavigate();
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
-     e.preventDefault();
-    const formValues = new FormData(e.target)
-    const command = formValues.get('command')?.toString()
-
-    switch (command?.toLowerCase()) {
-      case "nav.upgrade":
-        navigate("/UpgradeShop");
-        setCurrentSlug("nav.voucher");
-        resetInput(e);
-        break;
-      case "nav.review":
-        navigate("/CaseReview");
-        setCurrentSlug("nav.review");
-        resetInput(e);
-        break;
-      case "nav.inbox":
-        navigate("/Inbox");
-        setCurrentSlug("nav.inbox");
-        resetInput(e);
-        break;
-      case "nav.terminal":
-        navigate("/Terminal");
-        setCurrentSlug("nav.terminal");
-        resetInput(e);
-        break;
-      case "nav.logout":
-        adminNameSetter("");
-        navigate("/Goodbye");
-        break;
-      case "nav.personal":
-        navigate("/PersonalRecord");
-        resetInput(e);
-        break;
-      default:
-        resetInput(e);
-        setErrorState("Command not recognized: "+command);
-        break;
+    e.preventDefault();
+    const formValues = new FormData(e.target);
+    const command = formValues.get("command")?.toString();
+    if (command) {
+      switch (command?.toLowerCase()) {
+        case "nav.upgrade":
+          navigate("/UpgradeShop");
+          setCurrentSlug("nav.voucher");
+          resetInput(e);
+          break;
+        case "nav.review":
+          navigate("/CaseReview");
+          setCurrentSlug("nav.review");
+          resetInput(e);
+          break;
+        case "nav.inbox":
+          navigate("/Inbox");
+          setCurrentSlug("nav.inbox");
+          resetInput(e);
+          break;
+        case "nav.terminal":
+          navigate("/Terminal");
+          setCurrentSlug("nav.terminal");
+          resetInput(e);
+          break;
+        case "nav.logout":
+          adminNameSetter("");
+          navigate("/Goodbye");
+          break;
+        case "nav.personal":
+          navigate("/PersonalRecord");
+          resetInput(e);
+          break;
+        default:
+          resetInput(e);
+          setErrorState("Command not recognized: " + command);
+          break;
+      }
     }
   }
 
@@ -79,8 +80,16 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
 
   return (
     <div id="command-input-container">
-      <form id="tutorial-step-5" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 5 ? "tutorial-highlight":"") + " nav-form"} onSubmit={handleCommand}>
-         <a id="tutorial-step-5"></a>
+      <form
+        id="tutorial-step-5"
+        className={
+          (tutorialState.tutorialActive && tutorialState.tutorialStep === 5
+            ? "tutorial-highlight"
+            : "") + " nav-form"
+        }
+        onSubmit={handleCommand}
+      >
+        <a id="tutorial-step-5"></a>
         <input
           type="text"
           placeholder="nav.command"
@@ -91,7 +100,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
             playKeyStroke();
           }}
         ></input>
-       
+
         <button
           id="nav-submit-button"
           type="submit"
@@ -102,7 +111,11 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
         </button>
         <button
           id="tutorial-step-6"
-          className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 6 ? "tutorial-highlight":"") + " available-commands-button"}
+          className={
+            (tutorialState.tutorialActive && tutorialState.tutorialStep === 6
+              ? "tutorial-highlight"
+              : "") + " available-commands-button"
+          }
           onClick={toggleCommands}
           data-tooltip-id="nav-terminal-tooltip"
           data-tooltip-content="Nav Commands"
