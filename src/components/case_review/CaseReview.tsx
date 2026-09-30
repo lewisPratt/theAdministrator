@@ -21,6 +21,14 @@ import {getUnlockDetails } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css"
 
+//TUTORIAL IMPORTS
+import type { TooltipRefProps } from "react-tooltip";
+import { TutorialContext } from "../../context_providers/TutorialContext";
+import { useRef } from "react";
+import TutorialSteps from "../tutorial/TutorialSteps";
+import TutorialOverlay from "../TutorialOverlay";
+
+
 export default function TranscriptRev() {
   const [availableTranscripts, setAvailableTranscripts] = useState<
     reviewShape[] | null
@@ -38,10 +46,11 @@ export default function TranscriptRev() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const { scoreState, setScoreState }: scoreContextShape =
     useContext(ScoreContext);
+   const {tutorialState, setTutorialState} = useContext(TutorialContext)
   const { playerUnlocks } = useContext(UnlocksContext);
   const navigate = useNavigate();
       const voucherDetails = getUnlockDetails(playerUnlocks)
-
+const tooltipRef1 = useRef<TooltipRefProps>(null);
   //////////////////////
   // set debug to 1 to see debug tools
   const debug = 0;
@@ -99,6 +108,21 @@ export default function TranscriptRev() {
     setTimeout(setLoadingState, 2000, false);
   }, [generatePeople]);
 
+    //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
+    useEffect(() => {
+      if (tutorialState.tutorialActive) {
+        
+          tooltipRef1.current?.open({
+            anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
+            content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
+          });      
+      }
+      if(!tutorialState.tutorialActive){
+        tooltipRef1.current?.close()
+      }
+    }, [tutorialState, loadingState]);
+  
+
   function loadNewShift(reason: string) {
     // loadingStateSetter(true);
     if (reason === "new") {
@@ -132,7 +156,7 @@ export default function TranscriptRev() {
             codexState={codexState}
             codexStateSetter={setCodexState}
           />
-
+            { tutorialState.tutorialActive && <TutorialOverlay />}
           {reviewsComplete && (
             <CaseReviewSummary
               efficiency={reviewsComplete.effectivenessRating}
@@ -152,8 +176,10 @@ export default function TranscriptRev() {
             {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
             <div id="top-container">
               {availableTranscripts && (
-                <ol id="transcript-list">
+                <div>
+                <ol id="tutorial-step-7" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 7 ? "tutorial-highlight":"" )+" transcript-list"}>
                   <li id="interviews-list-header">Available Cases</li>
+                  
                   {availableTranscripts.map((listItem) => (
                     
                     <CaseListItem
@@ -167,23 +193,28 @@ export default function TranscriptRev() {
                       selectedSetter={setSelectedListItem}
                     />
                   ))}
-                  <li>
-                    <h6>Active Perks</h6>
+                  </ol>
+                  <div>
+                    <h6 id="tutorial-step-8" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 8 ? "tutorial-highlight":"")}>Active Upgrades</h6>
+
+                    
                     {
                       voucherDetails && voucherDetails.map((unlock)=>{
                         return <Badge size="25" data-tooltip-id="extra-case-tooltip" data-tooltip-content={unlock.perkEffect}>{unlock.icon}</Badge>
                       })
                     }
-                  </li>
-                  <li
-                    id="codex-button"
+                  </div>
+                  <button
+                    id="tutorial-step-9"
+                    className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 9 ? "tutorial-highlight":"")}
                     onClick={() => {
                       setCodexState(true);
                     }}
                   >
-                    Regulatory Codex
-                  </li>
-                </ol>
+                    Rules & Regulations
+                  </button>
+                
+                </div>
               )}
               {currentTranscript ? (
                 <CaseReviewPanel
@@ -198,6 +229,8 @@ export default function TranscriptRev() {
                 <NoCurrentTranscript />
               )}
               <Tooltip id="extra-case-tooltip" className="custom-tooltip"/>
+              <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>
+
             </div>
           </section>
         </>

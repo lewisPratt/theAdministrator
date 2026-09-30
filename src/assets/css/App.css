@@ -426,7 +426,7 @@ h5 {
 
 }
 
-#transcript-list {
+.transcript-list {
   flex-basis: 400px;
   margin: 0;
   padding: 0;

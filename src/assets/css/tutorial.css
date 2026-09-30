@@ -44,3 +44,8 @@
     height: fit-content;
     background-color: none;
 }
+.tutorial-highlight{
+    position:relative;
+    z-index: 110;
+    pointer-events: none;
+}
