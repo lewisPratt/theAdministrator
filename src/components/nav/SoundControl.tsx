@@ -15,7 +15,7 @@ export default function SoundControl({mobile}: soundControlPorps) {
     <>
     <button  id='sound-control-desktop' className={(mobile ? 'mobile-nav-element': 'desktop-nav-element')} data-tooltip-id='sound-tooltip' data-tooltip-content={'Sound is '+soundStatus} 
      onClick={ enabled ? () => setEnabled(!enabled) : () => setEnabled(!enabled)}
-    >
+    ><a id="tutorial-step-4"></a>
 
     {enabled ? <Volume2 /> : <VolumeX /> }
         

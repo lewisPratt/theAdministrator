@@ -79,6 +79,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   return (
     <div id="command-input-container">
       <form id="nav-form" onSubmit={handleCommand}>
+         <a id="tutorial-step-5"></a>
         <input
           type="text"
           placeholder="nav.command"
@@ -89,6 +90,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
             playKeyStroke();
           }}
         ></input>
+       
         <button
           id="nav-submit-button"
           type="submit"
@@ -103,6 +105,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
           data-tooltip-id="nav-terminal-tooltip"
           data-tooltip-content="Nav Commands"
         >
+          <a id="tutorial-step-6"></a>
           <CircleQuestionMark size={20} />
         </button>
         {showCommands && <AvailableCommandsList />}

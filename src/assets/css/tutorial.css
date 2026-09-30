@@ -20,3 +20,27 @@
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px;
 }
+.tutorial-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    margin-top:10px;
+}
+.tutorial-button{
+    width:fit-content;
+    height:fit-content;
+    border:1px solid black;
+
+}
+.x-container{
+    width:100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.tutorial-close-x{
+    translate:-15px -5px;
+    width: fit-content;
+    height: fit-content;
+    background-color: none;
+}

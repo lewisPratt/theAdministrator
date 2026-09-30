@@ -10,13 +10,19 @@ import { CreditIcon } from "../../assets/custom_icons/credits";
 import { useNavigate } from "react-router-dom";
 import "../../assets/css/upgradeShop.css"
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
-
+import { TutorialContext } from "../../context_providers/TutorialContext";
+import TutorialOverlay from "../TutorialOverlay";
+import TutorialSteps from "../tutorial/TutorialSteps";
+import { useRef } from "react";
+import type { TooltipRefProps } from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
   const { scoreState, setScoreState } = useContext(ScoreContext);
   const { playerUnlocks, setPlayerUnlocks } = useContext(UnlocksContext);
   const {setCurrentSlug} = useContext(CurrentSlugContext)
+  const {tutorialState, setTutorialState} = useContext(TutorialContext)
   const navigate = useNavigate()
   console.log(playerUnlocks);
 
@@ -25,6 +31,7 @@ export default function UpgradeShop() {
     const hoverClick = () => playSound('ui/button_soft')
     const purchaseSound = () => playSound('ui/success_bling')
     const cantAfford = () => playSound('notification/error')
+  const tooltipRef1 = useRef<TooltipRefProps>(null);
 
 
   const debug = false;
@@ -33,6 +40,29 @@ export default function UpgradeShop() {
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
   });
+
+  // useEffect(()=>{
+  //   if(!loadingState){
+  //   if(tutorialState.tutorialActive){
+  //     setTutorialState({tutorialActive: true, tutorialStep:tutorialState.tutorialStep+1})
+  //   }
+  // }
+  // },[loadingState])
+   //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
+  useEffect(() => {
+    if (tutorialState.tutorialActive) {
+      
+        tooltipRef1.current?.open({
+          anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
+          content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
+        });      
+    }
+    if(!tutorialState.tutorialActive){
+      tooltipRef1.current?.close()
+    }
+  }, [tutorialState, loadingState]);
+
+
 
   function giveCredits() {
     setScoreState(scoreState + 1000);
@@ -92,9 +122,12 @@ export default function UpgradeShop() {
           <LoaderCircle className="loader" />
         </p>
       ) : (
+        
         <section id="upgrade-shop">
+          { tutorialState.tutorialActive && <TutorialOverlay />}
           <div id="upgrade-shop-header">
             <h2>Upgrade Shop</h2>
+            <a id="tutorial-step-7"></a>
             {debug &&  <div className="debug-container"><h6>Debug- not for production</h6><button onClick={giveCredits}>Give credits</button><button onClick={resetCredits}>Reset credits</button><button onClick={resetUpgrades}>Reset Upgrades</button></div>}
           </div>
           <div  id="personal-record-button">
@@ -142,7 +175,8 @@ export default function UpgradeShop() {
               })}
             </ol>
           </section>
-      
+                              <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>
+
         </section>
       )}
     </>

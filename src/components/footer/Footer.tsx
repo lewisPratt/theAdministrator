@@ -8,6 +8,7 @@ interface FooterProps{
 export default function Footer({children} : FooterProps) {
   return (
     <footer>
+      <a id="tutorial-step-3"></a>
       {children}
     </footer>
   );

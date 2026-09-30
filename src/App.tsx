@@ -41,7 +41,10 @@ import ErrorPage from "./components/error_page/ErrorPage";
 import { ErrorContext } from "./context_providers/ErrorContext";
 import { TutorialContext } from "./context_providers/TutorialContext";
 import TutorialButton from "./components/nav/TutorialButton";
-
+import TutorialSteps from "./components/tutorial/TutorialSteps";
+import type { TooltipRefProps } from "react-tooltip";
+import { useRef } from "react";
+import { Tooltip } from "react-tooltip";
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
@@ -54,7 +57,7 @@ function App() {
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
   const [terminalLoaded, setTerminalLoaded] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<string>("")
-  const [tutorialState, setTutorialState] = useState<tutorialStateShape>({tutorialActive:true,tutorialStep:0});
+  const [tutorialState, setTutorialState] = useState<tutorialStateShape>({tutorialActive:false,tutorialStep:0});
 
   const adminContextValue: adminContextShape = { adminName, setAdminName };
   const unlocksContextValue: unlockContextShape = {
@@ -69,6 +72,7 @@ function App() {
     currentSlug,
     setCurrentSlug,
   };
+  // const tooltipRef1 = useRef<TooltipRefProps>(null);
 
   //if user dismissed the message notification then logged out and logged back in, show the message notification again
   //ensures a consistent approach if user logs out and back in with the same or different username.
@@ -91,6 +95,20 @@ function App() {
     }
   }, [adminName]);
 
+
+  // //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
+  // useEffect(() => {
+  //   if (tutorialState.tutorialActive) {
+      
+  //       tooltipRef1.current?.open({
+  //         anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
+  //         content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
+  //       });      
+  //   }
+  //   if(!tutorialState.tutorialActive){
+  //     tooltipRef1.current?.close()
+  //   }
+  // }, [tutorialState]);
   return (
     <>
       <div id="main-content">
