@@ -6,13 +6,14 @@ import { allUpgrades } from "../../generator_modules/upgrades";
 import { v4 as uuidv4 } from "uuid";
 import { Badge } from "lucide-react";
 import { CreditIcon } from "../../assets/custom_icons/credits";
+import { TutorialContext } from "../../context_providers/TutorialContext";
 
 export default function UnlockedUpgrades() {
   const { playerUnlocks } = useContext<unlockContextShape>(UnlocksContext);
-
+  const {tutorialState} = useContext(TutorialContext)
   console.log(playerUnlocks);
   return (
-    <section id="badge-unlocks">
+    <section id="tutorial-step-15" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 15 ? "tutorial-highlight":"") +" badge-unlocks"}>
        <h3>Upgrades</h3>
       <div id="badge-parent">
        

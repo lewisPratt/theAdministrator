@@ -22,7 +22,7 @@
 
 }
 
-#upgrade-items-container {
+.upgrade-items-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,13 +33,13 @@
 
 }
 
-#upgrade-items-container ol {
+.upgrade-items-container ol {
   list-style: none;
   padding: 0;
   width: 100%;
 }
 
-#upgrade-items-container li {
+.upgrade-items-container li {
   transition: .6s;
 }
 
@@ -47,12 +47,12 @@
   margin-top:30px;
 }
 
-#upgrade-items-container li:hover  .upgrade-name::after{
+.upgrade-items-container li:hover  .upgrade-name::after{
   content: " <";
   animation: after-tick 1s  infinite steps(2);
   display: inline-block;
 }
-#upgrade-items-container li:hover  .upgrade-name::before{
+.upgrade-items-container li:hover  .upgrade-name::before{
   content: "> ";
   animation: before-tick 1s  infinite steps(2);
     display: inline-block;

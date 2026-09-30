@@ -127,13 +127,13 @@ export default function UpgradeShop() {
           { tutorialState.tutorialActive && <TutorialOverlay />}
           <div id="upgrade-shop-header">
             <h2>Upgrade Shop</h2>
-            <a id="tutorial-step-7"></a>
+            
             {debug &&  <div className="debug-container"><h6>Debug- not for production</h6><button onClick={giveCredits}>Give credits</button><button onClick={resetCredits}>Reset credits</button><button onClick={resetUpgrades}>Reset Upgrades</button></div>}
           </div>
           <div  id="personal-record-button">
-          <button onClick={()=>{navigate("/PersonalRecord"); setCurrentSlug("nav.personal")}}>Personal Record</button>
+          <button id="tutorial-step-14" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 14 ? "tutorial-highlight":"")} onClick={()=>{navigate("/PersonalRecord"); setCurrentSlug("nav.personal")}}>Personal Record</button>
           </div>
-          <section id="upgrade-items-container">
+          <section id="tutorial-step-13" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 13 ? "tutorial-highlight":"") + " upgrade-items-container"}>
             <ol>
               {Object.entries(upgrades).map((upgrade) => {
                 return (
@@ -175,7 +175,7 @@ export default function UpgradeShop() {
               })}
             </ol>
           </section>
-                              <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>
+          <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>
 
         </section>
       )}

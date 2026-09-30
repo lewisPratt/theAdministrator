@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { NIL as NIL_UUID } from "uuid";
 import { playSound } from "react-sounds";
 import { UnlocksContext } from "../../context_providers/unlocksContext";
-
+import { TutorialContext } from "../../context_providers/TutorialContext";
 //set to 1 to show debug info on weighting
 const debug: number = 0;
 
@@ -21,7 +21,7 @@ export default function CaseReviewPanel({
   const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<Boolean>(false)
   const {playerUnlocks} = useContext(UnlocksContext)
-  
+  const {tutorialState} = useContext(TutorialContext)
   const successSound = ()=>playSound('ui/success_bling')
   const failSound = ()=>playSound('ui/blocked')
 
@@ -150,10 +150,12 @@ export default function CaseReviewPanel({
   return (
     <>
       {transcript && (
-        <div
+        <>
+        <div id="tutorial-step-10"
           className={
             "transcript-container " +
             (!closing ? "open-transcript-class" : "slide-out-class")
+            + " "+ (tutorialState.tutorialActive && tutorialState.tutorialStep === 10 ? "tutorial-highlight":"")
           }
           onAnimationEnd={handleAnimationEnd}
         >
@@ -256,7 +258,13 @@ export default function CaseReviewPanel({
             </div>
           </div>
 
-          <div className="decision-container">
+      
+          <div id="transcript-close-button" onClick={closeTranscript}>
+            <X />
+          </div>
+          
+        </div>
+             <div id="tutorial-step-11" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 11 ? "tutorial-highlight":"") +" decision-container"}>
             {!transcript.processed ? (
               <>
                 <button data-decision="nfa" onClick={handleDecision}>
@@ -287,11 +295,8 @@ export default function CaseReviewPanel({
               </p>
               </>
             )}
-          </div>
-          <div id="transcript-close-button" onClick={closeTranscript}>
-            <X />
-          </div>
-        </div>
+          </div>       
+        </>
       )}
     </>
   );

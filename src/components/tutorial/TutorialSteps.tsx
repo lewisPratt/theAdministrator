@@ -46,6 +46,23 @@ export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
     case 11:
       textContent = "Decide whether to send for re-education or no further action.";
       break;
+    case 12:
+      textContent = "Earn credits by correctly judging Citizens.";
+      break;
+      //Upgrade shop
+    case 13:
+      textContent = "Purchase upgrades to improve performance.";
+      break;
+    case 14:
+      textContent = "View your personal record to see stats and unlocked upgrades.";
+      break;
+      //Personal Record
+      case 15:
+      textContent = "View unlocked upgrades and their related effects.";
+      break;
+      case 16:
+      textContent = "Review your performance statistics.";
+      break;
     default:
       break;
   }
@@ -59,6 +76,12 @@ export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
         if((tutorialState.tutorialStep - 1)=== 6){
             navigate("/Terminal")
         }
+        else if((tutorialState.tutorialStep - 1)=== 12){
+            navigate("/CaseReview")
+        }
+        else if((tutorialState.tutorialStep - 1)=== 14){
+            navigate("/UpgradeShop")
+        }
       step = tutorialState.tutorialStep - 1;
       setTutorialState({ tutorialActive: true, tutorialStep: step });
     }
@@ -67,6 +90,12 @@ export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
   function nextStep() {
     if (tutorialState.tutorialStep + 1 === 7) {
       navigate("/CaseReview");
+    }
+    else if(tutorialState.tutorialStep + 1 == 13){
+        navigate("/UpgradeShop")
+    }
+    else if(tutorialState.tutorialStep + 1 == 15){
+        navigate("/PersonalRecord")
     }
     setTutorialState({
       tutorialActive: true,

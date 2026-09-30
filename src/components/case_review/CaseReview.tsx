@@ -111,7 +111,9 @@ const tooltipRef1 = useRef<TooltipRefProps>(null);
     //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
     useEffect(() => {
       if (tutorialState.tutorialActive) {
-        
+        if(availableTranscripts){
+          setCurrentTranscript(availableTranscripts[0])
+        }
           tooltipRef1.current?.open({
             anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
             content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
