@@ -3,8 +3,17 @@ import { useContext } from "react"
 
 
 export default function TutorialButton(){
-const {setTutorialState} = useContext(TutorialContext)
+const {tutorialState, setTutorialState} = useContext(TutorialContext)
+
+function toggleTutorialState(){
+    if(tutorialState.tutorialActive){
+        return false
+    }else{
+        return true
+    }
+}
+
     return(
-        <button id="tutorial-toggle-button" onClick={()=>setTutorialState(prev=>!prev)}>Tutorial</button>
+        <button id="tutorial-toggle-button" onClick={()=>setTutorialState({tutorialActive: toggleTutorialState(),tutorialStep: 0})}>Tutorial</button>
     )
 }

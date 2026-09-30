@@ -103,9 +103,13 @@ export interface adminContextShape {
   adminName: string;
   setAdminName: Dispatch<SetStateAction<string>>;
 }
+export interface tutorialStateShape{
+  tutorialActive: boolean
+  tutorialStep: number
+}
 export interface tutorialContextShape{
-    tutorialState : boolean
-    setTutorialState: Dispatch<SetStateAction<boolean>> 
+    tutorialState : tutorialStateShape
+    setTutorialState: Dispatch<SetStateAction<tutorialStateShape>> 
 }
 export interface HotSpotShape {
   ident: string;

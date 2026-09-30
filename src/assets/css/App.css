@@ -89,14 +89,7 @@ label {
   margin: 0 10px;
 }
 
-#tutorial-overlay{
-  position:fixed;
-  background-color: rgba(0, 0, 0, .7);
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-}
+
 
 #transcript-rev-command,
 #comsec-command,

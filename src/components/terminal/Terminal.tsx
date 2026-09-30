@@ -12,6 +12,7 @@ import "../../assets/css/terminal.css";
 import { useRef } from "react";
 import { Tooltip, type TooltipRefProps } from "react-tooltip";
 import TutorialOverlay from "../TutorialOverlay";
+import TutorialSteps from "../tutorial/TutorialSteps";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -27,13 +28,15 @@ export default function CommandCentre() {
   const tooltipRef2 = useRef<TooltipRefProps>(null);
 
   useEffect(() => {
-    if (tutorialState) {
-      tooltipRef1.current?.open({
-        anchorSelect: "#step-one",
-        content: "Use these Commands to navigate around the system.",
-      });
+    if (tutorialState.tutorialActive) {
+      
+        tooltipRef1.current?.open({
+          anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
+          content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
+        });
+      
     }
-  }, []);
+  }, [tutorialState]);
 
   //turn off loading indicator after set interval
   useEffect(() => {
@@ -93,20 +96,17 @@ export default function CommandCentre() {
         </p>
       ) : (
         <>
-        { tutorialState && <TutorialOverlay />}
+        { tutorialState.tutorialActive &&  adminName && <TutorialOverlay />}
           <section id="welcome-section">
             {adminName ? (
               <>
                 <h1>Welcome Administrator {adminName}.</h1>
                 <form onSubmit={handleCommand} method="post">
                   <div id="command-typing-container">
-                    {/* <label htmlFor="admin-name" id="welcome-message">
-                What would you like to do today?
-              </label> */}
-            
                     
                   </div>
                   <div id="command-centre-input-container">
+                    <a id="tutorial-step-2"></a>
                     <input
                       autoFocus
                       type="text"
@@ -121,7 +121,7 @@ export default function CommandCentre() {
                     <button id="command-centre-submit-button">
                       <ChevronRightCircle size={28} />
                     </button>
-                    {tutorialState && <p>Tutorial is currently active</p>}
+                    
                   </div>
                 </form>
 
@@ -133,7 +133,7 @@ export default function CommandCentre() {
                       <Code />
                     </div>{" "}
                     <div id="header-div">
-                      <a id="step-one"></a>
+                      <a id="tutorial-step-1"></a>
                       <p>Nav Commands:</p>
                       
                     </div>
@@ -146,25 +146,25 @@ export default function CommandCentre() {
                     <div></div> <p>nav.review</p>
                   </div>
                   <div className="command-container">
-                    <p>Voucher Terminal</p> <div>step 2</div> <p>nav.voucher</p>
+                    <p>Voucher Terminal</p> <p>nav.voucher</p>
                   </div>
                   <div className="command-container">
-                    <p>Inbox</p> <div>step 3</div> <p>nav.inbox</p>
+                    <p>Inbox</p>  <p>nav.inbox</p>
                   </div>
                   <div className="command-container">
                     <p>Request leave.</p>
-                    <div>step 4</div> <p>request.leave</p>
+                     <p>request.leave</p>
                   </div>
                   <div className="command-container">
                     <p>Human Resources</p>
-                    <div>step 5</div> <p>nav.hr</p>
+                     <p>nav.hr</p>
                   </div>
                   <div className="command-container">
                     <p>Logout.</p>
-                    <div>step 6</div> <p>nav.logout</p>
+                    <p>nav.logout</p>
                   </div>
                 </div>
-                <Tooltip className="custom-tooltip" ref={tooltipRef1} />
+                <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>
               </>
             ) : (
               <>

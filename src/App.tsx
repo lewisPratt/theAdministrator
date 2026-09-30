@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {Routes, Route, HashRouter } from "react-router-dom";
 import TranscriptRev from "./components/case_review/CaseReview";
 import "./assets/css/App.css";
+import "./assets/css/tutorial.css"
 import "./assets/css/nav.css"
 
 import ScoreTracker from "./components/nav/ScoreTracker";
@@ -25,6 +26,7 @@ import {
   type scoreContextShape,
   type errorStateShape,
   type tutorialContextShape,
+  type tutorialStateShape,
 } from "./interfaces/interfaces";
 import { SoundProvider } from "react-sounds";
 import SoundControl from "./components/nav/SoundControl";
@@ -52,7 +54,7 @@ function App() {
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
   const [terminalLoaded, setTerminalLoaded] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<string>("")
-  const [tutorialState, setTutorialState] = useState<boolean>(true);
+  const [tutorialState, setTutorialState] = useState<tutorialStateShape>({tutorialActive:true,tutorialStep:0});
 
   const adminContextValue: adminContextShape = { adminName, setAdminName };
   const unlocksContextValue: unlockContextShape = {
@@ -62,7 +64,7 @@ function App() {
 
   const errorStateValue : errorStateShape = {errorState, setErrorState};
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
-   const tutorialContextValue: tutorialContextShape = { tutorialState, setTutorialState };
+  const tutorialContextValue: tutorialContextShape = { tutorialState, setTutorialState };
   const currentSlugContextValue: currentSlugShape = {
     currentSlug,
     setCurrentSlug,
