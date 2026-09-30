@@ -106,12 +106,12 @@ export default function CommandCentre() {
             {adminName ? (
               <>
                 <h1>Welcome Administrator {adminName}.</h1>
-                <form onSubmit={handleCommand} method="post">
+                <form id="tutorial-step-2"  className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 2 ? "tutorial-highlight":"")} onSubmit={handleCommand} method="post">
                   <div id="command-typing-container">
                     
                   </div>
                   <div id="command-centre-input-container">
-                    <a id="tutorial-step-2"></a>
+                    
                     <input
                       autoFocus
                       type="text"
@@ -132,14 +132,16 @@ export default function CommandCentre() {
 
                 {leaveReq && <LeaveReq />}
 
-                <div className="commands-container">
+                <div id="tutorial-step-1" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 1 ? "tutorial-highlight":"")+ " commands-container"} >
                   <div id="commands-header">
                     <div>
                       <Code />
                     </div>{" "}
-                    <div id="header-div">
-                      <a id="tutorial-step-1"></a>
-                      <p>Nav Commands:</p>
+                    <div id="header-div" >
+                      
+                      <h6  className=" commands-heading">
+                        Nav Commands:
+                        </h6>
                       
                     </div>
                     <div>

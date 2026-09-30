@@ -958,19 +958,7 @@ NAV styling
   line-height: 2.8rem;
 }
 
-#available-commands-button {
-  height: 39px;
-  width: 40px;
-  border: 1px solid #a2eaa2;
-  border-left: none;
-  line-height: 2.8rem;
-}
 
-#nav-form {
-  display: flex;
-  position: relative;
-  align-items: center;
-}
 
 #sound-control-desktop {
   cursor: pointer;

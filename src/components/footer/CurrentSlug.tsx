@@ -1,13 +1,16 @@
 import { useContext } from "react"
 import { AdminContext } from "../../context_providers/AdminContext"
 import type { CurrentSlugProps } from "../../interfaces/interfaces"
+import { TutorialContext } from "../../context_providers/TutorialContext"
 export default function CurrentSlug({pageName}: CurrentSlugProps){
 
+    
+const {tutorialState} = useContext(TutorialContext)
     const {adminName } =useContext(AdminContext)
     return (
         <>
         {adminName &&
-        <div ><p>{pageName}</p></div>
+        <div id="tutorial-step-3" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 3 ? "tutorial-highlight":"")}><p>{pageName}</p></div>
         }
         </>
     )

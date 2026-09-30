@@ -7,12 +7,13 @@ import { Tooltip } from "react-tooltip";
 import { playSound } from "react-sounds";
 import type { CommandInputProps } from "../../interfaces/interfaces";
 import { ErrorContext } from "../../context_providers/ErrorContext";
+import { TutorialContext } from "../../context_providers/TutorialContext";
 
 export default function CommandInput({ adminNameSetter }: CommandInputProps) {
   const [showCommands, setShowCommands] = useState<boolean>(false);
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const {setErrorState} = useContext(ErrorContext)
-
+  const {tutorialState} = useContext(TutorialContext)
   const navigate = useNavigate();
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
@@ -78,7 +79,7 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
 
   return (
     <div id="command-input-container">
-      <form id="nav-form" onSubmit={handleCommand}>
+      <form id="tutorial-step-5" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 5 ? "tutorial-highlight":"") + " nav-form"} onSubmit={handleCommand}>
          <a id="tutorial-step-5"></a>
         <input
           type="text"
@@ -100,7 +101,8 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
           <ChevronRightCircle size={20} />
         </button>
         <button
-          id="available-commands-button"
+          id="tutorial-step-6"
+          className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 6 ? "tutorial-highlight":"") + " available-commands-button"}
           onClick={toggleCommands}
           data-tooltip-id="nav-terminal-tooltip"
           data-tooltip-content="Nav Commands"

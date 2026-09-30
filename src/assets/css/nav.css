@@ -17,3 +17,16 @@
 #tutorial-toggle-button{
     z-index:100;
 }
+.available-commands-button {
+  height: 39px;
+  width: 40px;
+  border: 1px solid #a2eaa2;
+  border-left: none;
+  line-height: 2.8rem;
+}
+
+.nav-form {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
