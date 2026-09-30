@@ -13,6 +13,7 @@ import { useRef } from "react";
 import { Tooltip, type TooltipRefProps } from "react-tooltip";
 import TutorialOverlay from "../TutorialOverlay";
 import TutorialSteps from "../tutorial/TutorialSteps";
+import { createPortal } from "react-dom";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -34,11 +35,22 @@ export default function CommandCentre() {
         tooltipRef1.current?.open({
           anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
           content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
-        });      
+        }); 
+
+       
     }
     if(!tutorialState.tutorialActive){
       tooltipRef1.current?.close()
     }
+    //traps tab focus to tutorial elements when tutorial is active. applies inert attribute to root
+    //tutorial elements (overlay, tooltips) are placed outside of root element with the use of createPortal()
+    //only implemented on terminal page so far.
+     const root = document.getElementById('root');
+     if(root){
+     root.inert = tutorialState.tutorialActive;
+     return () => { root.inert = false };
+     }
+
   }, [tutorialState, loadingState]);
 
 
@@ -101,7 +113,7 @@ export default function CommandCentre() {
         </p>
       ) : (
         <>
-        { tutorialState.tutorialActive && <TutorialOverlay />}
+        { tutorialState.tutorialActive &&  createPortal(<TutorialOverlay />,document.body)}
           <section id="welcome-section">
             {adminName ? (
               <>
@@ -153,7 +165,7 @@ export default function CommandCentre() {
                     <div></div> <p>nav.review</p>
                   </div>
                   <div className="command-container">
-                    <p>Voucher Terminal</p> <p>nav.voucher</p>
+                    <p>Upgrade Terminal</p> <p>nav.upgrade</p>
                   </div>
                   <div className="command-container">
                     <p>Inbox</p>  <p>nav.inbox</p>
@@ -171,7 +183,7 @@ export default function CommandCentre() {
                     <p>nav.logout</p>
                   </div>
                 </div>
-                <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>
+                {createPortal( <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>, document.body)}
               </>
             ) : (
               <>

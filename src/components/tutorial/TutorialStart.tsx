@@ -1,3 +1,4 @@
+import { Check , X} from "lucide-react";
 import { TutorialContext } from "../../context_providers/TutorialContext"
 import { useContext } from "react"
 import { useLocation } from "react-router-dom";
@@ -18,8 +19,8 @@ const {setTutorialState} = useContext(TutorialContext)
     return (
         <div id="tutorial-start-container">
             <p>Would you like to complete a quick tutorial?</p>
-            <button onClick={startTutorial}>Yes</button>
-            <button onClick={()=>setTutorialState({tutorialActive:false,tutorialStep:0})}>No</button>
+            <button autoFocus onClick={startTutorial}><Check /></button>
+            <button onClick={()=>setTutorialState({tutorialActive:false,tutorialStep:0})}><X /></button>
 
         </div>
     )

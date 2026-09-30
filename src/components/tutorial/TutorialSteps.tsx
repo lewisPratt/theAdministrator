@@ -121,7 +121,7 @@ export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
         <button className="tutorial-button" onClick={previousStep}>
           {tutorialState.tutorialStep <= 1 ? "Close" : "Previous"}
         </button>
-        <button className="tutorial-button" onClick={nextStep}>
+        <button className="tutorial-button" autoFocus onClick={nextStep}>
           Next
         </button>
       </p>

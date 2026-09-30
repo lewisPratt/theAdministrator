@@ -45,6 +45,7 @@ import TutorialSteps from "./components/tutorial/TutorialSteps";
 import type { TooltipRefProps } from "react-tooltip";
 import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
+import TutorialOverlay from "./components/TutorialOverlay";
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
@@ -95,22 +96,17 @@ function App() {
     }
   }, [adminName]);
 
+// useEffect(()=>{
+//    const root = document.getElementById('root');
+//         if(root){
+//           root.inert = tutorialState.tutorialActive;
+//           return () => { root.inert = false }; 
+//         }
+// },[tutorialState])
 
-  // //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
-  // useEffect(() => {
-  //   if (tutorialState.tutorialActive) {
-      
-  //       tooltipRef1.current?.open({
-  //         anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
-  //         content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
-  //       });      
-  //   }
-  //   if(!tutorialState.tutorialActive){
-  //     tooltipRef1.current?.close()
-  //   }
-  // }, [tutorialState]);
   return (
     <>
+    
       <div id="main-content">
         <HashRouter>
           {loadingState ? (

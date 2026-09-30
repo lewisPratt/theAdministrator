@@ -126,7 +126,7 @@ export default function UpgradeShop() {
         <section id="upgrade-shop">
           { tutorialState.tutorialActive && <TutorialOverlay />}
           <div id="upgrade-shop-header">
-            <h2>Upgrade Shop</h2>
+            <h2>Upgrade Terminal</h2>
             
             {debug &&  <div className="debug-container"><h6>Debug- not for production</h6><button onClick={giveCredits}>Give credits</button><button onClick={resetCredits}>Reset credits</button><button onClick={resetUpgrades}>Reset Upgrades</button></div>}
           </div>
