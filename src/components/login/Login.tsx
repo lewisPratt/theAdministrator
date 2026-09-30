@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../../context_providers/AdminContext";
 import { ScoreContext } from "../../context_providers/ScoreContext";
-import { ChevronRightCircle, CircleQuestionMark } from "lucide-react";
+import { ChevronRightCircle } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 
 //CSS IMPORTS
