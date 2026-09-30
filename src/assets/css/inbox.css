@@ -1,0 +1,101 @@
+.inbox-parent {
+  min-height: 600px;
+  border: 2px solid #a2eaa2;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+}
+
+.inbox-parent h2 {
+  margin: 0;
+}
+
+#inbox-header {
+  padding: 10px;
+  border-bottom: 1px solid #a2eaa2;
+  overflow: hidden;
+}
+
+#inbox-content {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+#inbox-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 200px;
+  border-right: 2px solid #a2eaa2;
+  overflow-y: scroll;
+}
+
+#inbox-sidebar ul {
+  margin: 0;
+  padding: 0;
+}
+
+#inbox-sidebar li {
+  padding: 20px;
+  margin: 0;
+  list-style: none;
+  display: block;
+  border-bottom: 1px solid #a2eaa2;
+  height: 50px;
+  background-color: black;
+}
+
+#inbox-sidebar .message-check-button {
+  height: fit-content;
+  background-color: #a2eaa2;
+  text-align: center;
+  color: black;
+  margin: 10px;
+  border: 2px solid #a2eaa2;
+}
+
+#inbox-sidebar .message-check-button:hover {
+  background-color: black;
+  color: #a2eaa2;
+}
+
+#inbox-sidebar li:hover {
+  background-color: #a2eaa2;
+  color: black;
+  cursor: pointer;
+}
+
+#inbox-message-viewer {
+  padding: 20px;
+  flex-basis: 700px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#inbox-message-viewer>h3>span {
+  font-weight: 100;
+}
+
+.sender-name {
+  margin-top: 50px;
+  font-weight: bolder;
+  font-size: .8rem;
+
+}
+
+.email-para {
+  margin-top: 30px;
+  font-family: 'Silkscreen', monospace;
+}
+
+.email-body-p {
+  margin-top: 15px;
+  line-height: 1.2rem;
+}
+
+.bold {
+  font-weight: bolder;
+  text-decoration: underline;
+}
+

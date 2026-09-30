@@ -6,9 +6,7 @@ import { useState, useEffect, useContext } from "react";
 import { LoaderCircle } from "lucide-react";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 
-import TutorialOverlay from "../TutorialOverlay";
 import { TutorialContext } from "../../context_providers/TutorialContext";
-import TutorialSteps from "../tutorial/TutorialSteps";
 import type { TooltipRefProps } from "react-tooltip";
 import { useRef } from "react";
 import TutorialLogic from "../tutorial/TutorialLogic";
@@ -50,6 +48,7 @@ export default function PersonalRecord() {
           >
             Upgrade Terminal
           </button>
+          <h2 id="tutorial-step-16" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 16 ? "tutorial-highlight":"")}>Statistics</h2>
           {/* //total cases reviewed component */}
 
           {/* //pass/fail ratio */}

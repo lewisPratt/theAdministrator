@@ -1,8 +1,12 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext, useRef } from "react";
 import spamEmails from "../../generator_modules/emailsGenerator";
 import { LoaderCircle } from "lucide-react";
 import { playSound } from "react-sounds";
 import type { emailShape } from "../../interfaces/interfaces";
+import "../../assets/css/inbox.css"
+import { TutorialContext } from "../../context_providers/TutorialContext";
+import TutorialLogic from "../tutorial/TutorialLogic";
+import type { TooltipRefProps } from "react-tooltip";
 const emails = [
   {
     title: "Welcome to your new role",
@@ -62,6 +66,9 @@ export default function Inbox() {
   const [extraMail, setExtraMail] = useState<emailShape[] | null>(null);
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(true);
+  const {tutorialState} = useContext(TutorialContext)
+    const tooltipRef1 = useRef<TooltipRefProps>(null);
+
     const newEmail = () => playSound('ui/success_chime');
   //turn off loading indicator after set interval
   useEffect(() => {
@@ -95,12 +102,13 @@ export default function Inbox() {
 
   return (
     <>
+    <TutorialLogic loadingState={loadingState} tooltipRef={tooltipRef1} />
       {loadingState ? (
         <p>
           <LoaderCircle className="loader" />
         </p>
       ) : (
-        <section id="inbox-parent">
+        <section id="tutorial-step-17" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 17 ? "tutorial-highlight":"")+" inbox-parent"}>
           <div id="inbox-header" >
             <h2>Administrator inbox</h2>
           </div>
@@ -134,7 +142,7 @@ export default function Inbox() {
                     );
                   })}
                 {refreshing && <LoaderCircle className="loader" />}
-                <li onClick={startRefresh} id="message-check-button">
+                <li id="tutorial-step-18" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 18 ? "tutorial-highlight":"")+" message-check-button"} onClick={startRefresh}>
                   Refresh Inbox
                 </li>
               </ul>

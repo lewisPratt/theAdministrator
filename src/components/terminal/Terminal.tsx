@@ -10,10 +10,8 @@ import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import "../../assets/css/terminal.css";
 import { useRef } from "react";
-import { Tooltip, type TooltipRefProps } from "react-tooltip";
-import TutorialOverlay from "../TutorialOverlay";
-import TutorialSteps from "../tutorial/TutorialSteps";
-import { createPortal } from "react-dom";
+import { type TooltipRefProps } from "react-tooltip";
+
 import TutorialLogic from "../tutorial/TutorialLogic";
 
 export default function CommandCentre() {
@@ -23,7 +21,7 @@ export default function CommandCentre() {
   const { adminName, setAdminName } = useContext(AdminContext);
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { setErrorState } = useContext(ErrorContext);
-  const { tutorialState, setTutorialState } = useContext(TutorialContext);
+  const { tutorialState } = useContext(TutorialContext);
   const navigate = useNavigate();
 
   const tooltipRef1 = useRef<TooltipRefProps>(null);
@@ -83,6 +81,7 @@ export default function CommandCentre() {
     <>
   
      <TutorialLogic loadingState={loadingState} tooltipRef={tooltipRef1}/>
+     
       {loadingState ? (
         <p>
           <LoaderCircle className="loader" />

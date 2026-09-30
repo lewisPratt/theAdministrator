@@ -63,6 +63,12 @@ export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
       case 16:
       textContent = "Review your performance statistics.";
       break;
+      case 17:
+      textContent = "Visit your inbox for an overview of your role.";
+      break;
+      case 18:
+      textContent = "Check for new mail. It's always spam.";
+      break;
     default:
       break;
   }
@@ -82,6 +88,12 @@ export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
         else if((tutorialState.tutorialStep - 1)=== 14){
             navigate("/UpgradeShop")
         }
+        else if((tutorialState.tutorialStep - 1)=== 16){
+            navigate("/PersonalRecord")
+        }
+        else if((tutorialState.tutorialStep - 1)=== 18){
+            navigate("/Inbox")
+        }
       step = tutorialState.tutorialStep - 1;
       setTutorialState({ tutorialActive: true, tutorialStep: step });
     }
@@ -96,6 +108,12 @@ export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
     }
     else if(tutorialState.tutorialStep + 1 == 15){
         navigate("/PersonalRecord")
+    }
+     else if(tutorialState.tutorialStep + 1 == 17){
+        navigate("/Inbox")
+    }
+     else if(tutorialState.tutorialStep + 1 == 19){
+        navigate("/Terminal")
     }
     setTutorialState({
       tutorialActive: true,

@@ -25,8 +25,6 @@ import "../../assets/css/caseReview.css";
 import type { TooltipRefProps } from "react-tooltip";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { useRef } from "react";
-import TutorialSteps from "../tutorial/TutorialSteps";
-import TutorialOverlay from "../TutorialOverlay";
 import TutorialLogic from "../tutorial/TutorialLogic";
 
 export default function TranscriptRev() {
@@ -46,7 +44,7 @@ export default function TranscriptRev() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const { scoreState, setScoreState }: scoreContextShape =
     useContext(ScoreContext);
-  const { tutorialState, setTutorialState } = useContext(TutorialContext);
+  const { tutorialState } = useContext(TutorialContext);
   const { playerUnlocks } = useContext(UnlocksContext);
   const navigate = useNavigate();
   const voucherDetails = getUnlockDetails(playerUnlocks);

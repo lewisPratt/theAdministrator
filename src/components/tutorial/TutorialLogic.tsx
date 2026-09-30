@@ -4,7 +4,6 @@ import TutorialSteps from "./TutorialSteps";
 import { createPortal } from "react-dom";
 import { Tooltip } from "react-tooltip";
 import type { TooltipRefProps } from "react-tooltip";
-import { useRef } from "react";
 
 interface tutorialLogicProps{
   loadingState : boolean
@@ -13,7 +12,7 @@ interface tutorialLogicProps{
 
 export default function TutorialLogic({loadingState ,tooltipRef}:tutorialLogicProps  ){
       const tooltipRef1 = tooltipRef
-    const {tutorialState, setTutorialState} = useContext(TutorialContext)
+    const {tutorialState} = useContext(TutorialContext)
     //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
   //runs on state change and when component has finished it faux load
   //tutorial state change = triggers move to next tutorial step and display tooltip in same component

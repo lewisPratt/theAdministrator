@@ -11,11 +11,9 @@ import { useNavigate } from "react-router-dom";
 import "../../assets/css/upgradeShop.css"
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
-import TutorialOverlay from "../TutorialOverlay";
-import TutorialSteps from "../tutorial/TutorialSteps";
+
 import { useRef } from "react";
 import type { TooltipRefProps } from "react-tooltip";
-import { Tooltip } from "react-tooltip";
 import TutorialLogic from "../tutorial/TutorialLogic";
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -23,7 +21,7 @@ export default function UpgradeShop() {
   const { scoreState, setScoreState } = useContext(ScoreContext);
   const { playerUnlocks, setPlayerUnlocks } = useContext(UnlocksContext);
   const {setCurrentSlug} = useContext(CurrentSlugContext)
-  const {tutorialState, setTutorialState} = useContext(TutorialContext)
+  const {tutorialState} = useContext(TutorialContext)
   const navigate = useNavigate()
   console.log(playerUnlocks);
 

@@ -5,7 +5,6 @@ import "./assets/css/App.css";
 import "./assets/css/tutorial.css"
 import "./assets/css/nav.css"
 
-import ScoreTracker from "./components/nav/ScoreTracker";
 import { LoaderCircle } from "lucide-react";
 import UpgradeShop from "./components/upgrade_shop/UpgradeShop";
 import CommandCentre from "./components/terminal/Terminal";
@@ -13,12 +12,9 @@ import Login from "./components/login/Login";
 import { ScoreContext } from "./context_providers/ScoreContext";
 import { AdminContext } from "./context_providers/AdminContext";
 import Inbox from "./components/inbox/Inbox";
-import CommandInput from "./components/nav/CommandInput";
-import NewMessage from "./components/nav/NewMessage";
 import CurrentSlug from "./components/footer/CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import { UnlocksContext } from "./context_providers/unlocksContext";
-import NotLoggedIn from "./components/nav/NotLoggedIn";
 import {
   type unlockContextShape,
   type currentSlugShape,
@@ -29,23 +25,16 @@ import {
   type tutorialStateShape,
 } from "./interfaces/interfaces";
 import { SoundProvider } from "react-sounds";
-import SoundControl from "./components/nav/SoundControl";
 import WelcomeScreen from "./components/login/WelcomeScreen";
 import GoodbyeScreen from "./components/login/GoodbyeScreen";
 import HumanResources from "./components/human_resources/HumanResources";
 import PersonalRecord from "./components/personal_record/PersonalRecord";
 import HowToPlay from "./components/login/HowToPlay";
-import MobileMenu from "./components/MobileMenu";
 import Footer from "./components/footer/Footer";
 import ErrorPage from "./components/error_page/ErrorPage";
 import { ErrorContext } from "./context_providers/ErrorContext";
 import { TutorialContext } from "./context_providers/TutorialContext";
-import TutorialButton from "./components/nav/TutorialButton";
-import TutorialSteps from "./components/tutorial/TutorialSteps";
-import type { TooltipRefProps } from "react-tooltip";
-import { useRef } from "react";
-import { Tooltip } from "react-tooltip";
-import TutorialOverlay from "./components/TutorialOverlay";
+import TutorialOverlay from "./components/tutorial/TutorialOverlay";
 import { createPortal } from "react-dom";
 import NavBar from "./components/nav/NavBar";
 function App() {
@@ -56,9 +45,9 @@ function App() {
   // const [workDes, setWorkDes] = useState<boolean>(false);
   // const [transcriptRev, setTranscriptRev] = useState<boolean>(false);
   const [scoreState, setScoreState] = useState<number>(0);
-  const [instructionsPrompt, setInstructionsPrompt] = useState<boolean>(true);
+  const [_instructionsPrompt, setInstructionsPrompt] = useState<boolean>(true);
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
-  const [terminalLoaded, setTerminalLoaded] = useState<boolean>(false);
+  const [_terminalLoaded, setTerminalLoaded] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<string>("")
   const [tutorialState, setTutorialState] = useState<tutorialStateShape>({tutorialActive:false,tutorialStep:0});
 

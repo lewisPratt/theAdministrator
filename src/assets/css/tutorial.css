@@ -11,7 +11,7 @@
   z-index:90;
 }
 
-#tutorial-start-container{
+#tutorial-start-container, #tutorial-end-container{
     border: 2px solid;
     display: flex;
     flex-direction: column;
