@@ -17,9 +17,9 @@ import DebugTools from "../DebugTools";
 import CodexSidePanel from "./CodexSidePanel";
 import { ScoreContext } from "../../context_providers/ScoreContext";
 import { UnlocksContext } from "../../context_providers/unlocksContext";
-import {getUnlockDetails } from "../../assets/utils/helpers";
+import { getUnlockDetails } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
-import "../../assets/css/caseReview.css"
+import "../../assets/css/caseReview.css";
 
 //TUTORIAL IMPORTS
 import type { TooltipRefProps } from "react-tooltip";
@@ -27,7 +27,7 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { useRef } from "react";
 import TutorialSteps from "../tutorial/TutorialSteps";
 import TutorialOverlay from "../TutorialOverlay";
-
+import TutorialLogic from "../tutorial/TutorialLogic";
 
 export default function TranscriptRev() {
   const [availableTranscripts, setAvailableTranscripts] = useState<
@@ -46,11 +46,11 @@ export default function TranscriptRev() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const { scoreState, setScoreState }: scoreContextShape =
     useContext(ScoreContext);
-   const {tutorialState, setTutorialState} = useContext(TutorialContext)
+  const { tutorialState, setTutorialState } = useContext(TutorialContext);
   const { playerUnlocks } = useContext(UnlocksContext);
   const navigate = useNavigate();
-      const voucherDetails = getUnlockDetails(playerUnlocks)
-const tooltipRef1 = useRef<TooltipRefProps>(null);
+  const voucherDetails = getUnlockDetails(playerUnlocks);
+  const tooltipRef1 = useRef<TooltipRefProps>(null);
   //////////////////////
   // set debug to 1 to see debug tools
   const debug = 0;
@@ -86,44 +86,49 @@ const tooltipRef1 = useRef<TooltipRefProps>(null);
   useEffect(() => {
     let transcriptsArray: reviewShape[] = [];
     let transcriptCount = Math.floor(Math.random() * 10) + 3;
-    let originalCount = transcriptCount
-    if(playerUnlocks){
-    if (playerUnlocks.includes("voucher4")) {
-      
-      transcriptCount += 3
+    let originalCount = transcriptCount;
+    if (playerUnlocks) {
+      if (playerUnlocks.includes("voucher4")) {
+        transcriptCount += 3;
+      }
+      if (playerUnlocks.includes("voucher5")) {
+        transcriptCount += 2;
+      }
     }
-     if (playerUnlocks.includes("voucher5")) {
-      transcriptCount += 2
-    }
-  }
     for (let index = 0; index < transcriptCount; index++) {
       const newPerson = new person();
-      if(originalCount != transcriptCount && index >= originalCount){
-        newPerson.bonusCase = true
+      if (originalCount != transcriptCount && index >= originalCount) {
+        newPerson.bonusCase = true;
       }
       transcriptsArray.push(newPerson);
     }
-    
+
     setAvailableTranscripts(transcriptsArray);
+
     setTimeout(setLoadingState, 2000, false);
   }, [generatePeople]);
 
-    //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
-    useEffect(() => {
-      if (tutorialState.tutorialActive) {
-        if(availableTranscripts){
-          setCurrentTranscript(availableTranscripts[0])
-        }
-          tooltipRef1.current?.open({
-            anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
-            content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
-          });      
-      }
-      if(!tutorialState.tutorialActive){
-        tooltipRef1.current?.close()
-      }
-    }, [tutorialState, loadingState]);
-  
+  useEffect(() => {
+    if (tutorialState.tutorialActive && availableTranscripts) {
+      setCurrentTranscript(availableTranscripts[0]);
+    }
+  }, [loadingState]);
+
+  // //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
+  // useEffect(() => {
+  //   if (tutorialState.tutorialActive) {
+  //     if(availableTranscripts){
+  //       setCurrentTranscript(availableTranscripts[0])
+  //     }
+  //       tooltipRef1.current?.open({
+  //         anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
+  //         content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
+  //       });
+  //   }
+  //   if(!tutorialState.tutorialActive){
+  //     tooltipRef1.current?.close()
+  //   }
+  // }, [tutorialState, loadingState]);
 
   function loadNewShift(reason: string) {
     // loadingStateSetter(true);
@@ -148,6 +153,7 @@ const tooltipRef1 = useRef<TooltipRefProps>(null);
 
   return (
     <>
+      <TutorialLogic loadingState={loadingState} tooltipRef={tooltipRef1} />
       {loadingState ? (
         <p>
           <LoaderCircle className="loader" />
@@ -158,7 +164,6 @@ const tooltipRef1 = useRef<TooltipRefProps>(null);
             codexState={codexState}
             codexStateSetter={setCodexState}
           />
-            { tutorialState.tutorialActive && <TutorialOverlay />}
           {reviewsComplete && (
             <CaseReviewSummary
               efficiency={reviewsComplete.effectivenessRating}
@@ -169,53 +174,76 @@ const tooltipRef1 = useRef<TooltipRefProps>(null);
           )}
 
           <section id="case-review">
-            
-          {
-            playerUnlocks?.includes("voucher10") && <SearchConsole />
-          }
-            
+            {playerUnlocks?.includes("voucher10") && <SearchConsole />}
 
             {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
             <div id="top-container">
               {availableTranscripts && (
                 <div>
-                <ol id="tutorial-step-7" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 7 ? "tutorial-highlight":"" )+" transcript-list"}>
-                  <li id="interviews-list-header">Available Cases</li>
-                  
-                  {availableTranscripts.map((listItem) => (
-                    
-                    <CaseListItem
-                      key={
-                        listItem.interviewee.firstName +
-                        listItem.authorizedLocations
-                      }
-                      reviewTranscriptSetter={setCurrentTranscript}
-                      currentTranscript={listItem}
-                      identifier={selectedListItem}
-                      selectedSetter={setSelectedListItem}
-                    />
-                  ))}
+                  <ol
+                    id="tutorial-step-7"
+                    className={
+                      (tutorialState.tutorialActive &&
+                      tutorialState.tutorialStep === 7
+                        ? "tutorial-highlight"
+                        : "") + " transcript-list"
+                    }
+                  >
+                    <li id="interviews-list-header">Available Cases</li>
+
+                    {availableTranscripts.map((listItem) => (
+                      <CaseListItem
+                        key={
+                          listItem.interviewee.firstName +
+                          listItem.authorizedLocations
+                        }
+                        reviewTranscriptSetter={setCurrentTranscript}
+                        currentTranscript={listItem}
+                        identifier={selectedListItem}
+                        selectedSetter={setSelectedListItem}
+                      />
+                    ))}
                   </ol>
                   <div>
-                    <h6 id="tutorial-step-8" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 8 ? "tutorial-highlight":"")}>Active Upgrades</h6>
+                    <h6
+                      id="tutorial-step-8"
+                      className={
+                        tutorialState.tutorialActive &&
+                        tutorialState.tutorialStep === 8
+                          ? "tutorial-highlight"
+                          : ""
+                      }
+                    >
+                      Active Upgrades
+                    </h6>
 
-                    
-                    {
-                      voucherDetails && voucherDetails.map((unlock)=>{
-                        return <Badge size="25" data-tooltip-id="extra-case-tooltip" data-tooltip-content={unlock.perkEffect}>{unlock.icon}</Badge>
-                      })
-                    }
+                    {voucherDetails &&
+                      voucherDetails.map((unlock) => {
+                        return (
+                          <Badge
+                            size="25"
+                            data-tooltip-id="extra-case-tooltip"
+                            data-tooltip-content={unlock.perkEffect}
+                          >
+                            {unlock.icon}
+                          </Badge>
+                        );
+                      })}
                   </div>
                   <button
                     id="tutorial-step-9"
-                    className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 9 ? "tutorial-highlight":"")}
+                    className={
+                      tutorialState.tutorialActive &&
+                      tutorialState.tutorialStep === 9
+                        ? "tutorial-highlight"
+                        : ""
+                    }
                     onClick={() => {
                       setCodexState(true);
                     }}
                   >
                     Rules & Regulations
                   </button>
-                
                 </div>
               )}
               {currentTranscript ? (
@@ -230,9 +258,8 @@ const tooltipRef1 = useRef<TooltipRefProps>(null);
               ) : (
                 <NoCurrentTranscript />
               )}
-              <Tooltip id="extra-case-tooltip" className="custom-tooltip"/>
-              <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>
-
+              <Tooltip id="extra-case-tooltip" className="custom-tooltip" />
+              {/* <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/> */}
             </div>
           </section>
         </>

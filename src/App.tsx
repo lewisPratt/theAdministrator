@@ -46,6 +46,7 @@ import type { TooltipRefProps } from "react-tooltip";
 import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
 import TutorialOverlay from "./components/TutorialOverlay";
+import { createPortal } from "react-dom";
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
@@ -109,6 +110,7 @@ function App() {
     
       <div id="main-content">
         <HashRouter>
+           
           {loadingState ? (
             <p>
               <LoaderCircle className="loader" />
@@ -121,6 +123,7 @@ function App() {
                   <ScoreContext value={scoreContextValue}>
                     <UnlocksContext value={unlocksContextValue}>
                       <TutorialContext value={tutorialContextValue}>
+                        { tutorialState.tutorialActive &&  createPortal(<TutorialOverlay />,document.body)}
                       <ErrorPage />
                       <nav>
                         {adminName != "" ? (

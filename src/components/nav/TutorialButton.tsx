@@ -14,6 +14,6 @@ function toggleTutorialState(){
 }
 
     return(
-        <button id="tutorial-toggle-button" onClick={()=>setTutorialState({tutorialActive: toggleTutorialState(),tutorialStep: 0})}>Tutorial</button>
+         <button id="tutorial-toggle-button" onClick={()=>setTutorialState({tutorialActive: toggleTutorialState(),tutorialStep: 0})}>Tutorial</button>
     )
 }

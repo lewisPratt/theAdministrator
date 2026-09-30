@@ -16,6 +16,7 @@ import TutorialSteps from "../tutorial/TutorialSteps";
 import { useRef } from "react";
 import type { TooltipRefProps } from "react-tooltip";
 import { Tooltip } from "react-tooltip";
+import TutorialLogic from "../tutorial/TutorialLogic";
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
@@ -40,29 +41,6 @@ export default function UpgradeShop() {
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
   });
-
-  // useEffect(()=>{
-  //   if(!loadingState){
-  //   if(tutorialState.tutorialActive){
-  //     setTutorialState({tutorialActive: true, tutorialStep:tutorialState.tutorialStep+1})
-  //   }
-  // }
-  // },[loadingState])
-   //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
-  useEffect(() => {
-    if (tutorialState.tutorialActive) {
-      
-        tooltipRef1.current?.open({
-          anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
-          content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
-        });      
-    }
-    if(!tutorialState.tutorialActive){
-      tooltipRef1.current?.close()
-    }
-  }, [tutorialState, loadingState]);
-
-
 
   function giveCredits() {
     setScoreState(scoreState + 1000);
@@ -117,6 +95,8 @@ export default function UpgradeShop() {
 
   return (
     <>
+      <TutorialLogic loadingState={loadingState} tooltipRef={tooltipRef1}/>
+    
       {loadingState ? (
         <p>
           <LoaderCircle className="loader" />
@@ -124,7 +104,6 @@ export default function UpgradeShop() {
       ) : (
         
         <section id="upgrade-shop">
-          { tutorialState.tutorialActive && <TutorialOverlay />}
           <div id="upgrade-shop-header">
             <h2>Upgrade Terminal</h2>
             
@@ -175,7 +154,6 @@ export default function UpgradeShop() {
               })}
             </ol>
           </section>
-          <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>
 
         </section>
       )}

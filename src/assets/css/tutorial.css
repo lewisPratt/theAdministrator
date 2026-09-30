@@ -33,7 +33,7 @@
     height:fit-content;
     border:1px solid black;
 }
-.tutorial-button:focus-visible{
+.tutorial-button:focus-visible, .tutorial-button:focus {
     outline:2px solid;
 }
 .x-container{
