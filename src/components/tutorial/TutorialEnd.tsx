@@ -15,7 +15,7 @@ export default function TutorialEnd() {
     setTutorialState({ tutorialActive: false, tutorialStep: 0 });
     dataToUpdate.player_tutorialComplete = true;
     setPlayerData(dataToUpdate)
-    saveLocalData(playerData)
+    saveLocalData(dataToUpdate)
   }
 
   return (
