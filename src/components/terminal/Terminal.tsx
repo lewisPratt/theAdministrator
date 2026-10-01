@@ -13,6 +13,7 @@ import { useRef } from "react";
 import { type TooltipRefProps } from "react-tooltip";
 
 import TutorialLogic from "../tutorial/TutorialLogic";
+import { PlayerContext } from "../../context_providers/PlayerContext";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -22,6 +23,7 @@ export default function CommandCentre() {
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { setErrorState } = useContext(ErrorContext);
   const { tutorialState } = useContext(TutorialContext);
+  const {playerData} = useContext(PlayerContext)
   const navigate = useNavigate();
 
   const tooltipRef1 = useRef<TooltipRefProps>(null);
@@ -76,6 +78,7 @@ export default function CommandCentre() {
       }
     }
   }
+  console.log(playerData)
 
   return (
     <>
@@ -89,9 +92,9 @@ export default function CommandCentre() {
       ) : (
         <>
           <section id="welcome-section">
-            {adminName ? (
+            {playerData ? (
               <>
-                <h1>Welcome Administrator {adminName}.</h1>
+                <h1>Welcome Administrator {playerData.player_name}.</h1>
                 <form id="tutorial-step-2"  className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 2 ? "tutorial-highlight":"")} onSubmit={handleCommand} method="post">
                   <div id="command-typing-container">
                     

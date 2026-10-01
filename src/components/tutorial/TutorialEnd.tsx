@@ -3,6 +3,7 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { useContext } from "react";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import type { playerDataShape } from "../../interfaces/interfaces";
+import { saveLocalData } from "../../assets/utils/helpers";
 
 export default function TutorialEnd() {
   const { setTutorialState } = useContext(TutorialContext);
@@ -14,6 +15,7 @@ export default function TutorialEnd() {
     setTutorialState({ tutorialActive: false, tutorialStep: 0 });
     dataToUpdate.player_tutorialComplete = true;
     setPlayerData(dataToUpdate)
+    saveLocalData(playerData)
   }
 
   return (

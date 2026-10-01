@@ -1,7 +1,8 @@
 import { Sound } from "react-sounds";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import type { playerDataShape } from "../../interfaces/interfaces";
 
 const welcomeMessages: string[] = [
   "Access granted. Provisionally.",
@@ -19,22 +20,36 @@ const welcomeMessages: string[] = [
 
 export default function WelcomeScreen() {
   const navigate = useNavigate();
-  const {playerData} = useContext(PlayerContext)
-  const welcomeMessage =welcomeMessages[Math.floor(Math.random()* welcomeMessages.length) ]
-  
-  const savedData = localStorage.getItem("The_Administrator_Game")
+  const { playerData, setPlayerData } = useContext(PlayerContext);
+  const welcomeMessage =
+    welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
+    
+  useEffect(() => {
+    const savedData = localStorage.getItem("The_Administrator_Game");
 
-  console.log(playerData)
-  
-  // if(!savedData){
-  //   localStorage.setItem("The_Administrator_Game", JSON.stringify({login_name: adminName}))
-  // }
+    console.log(playerData);
 
+    if (!savedData) {
+      localStorage.setItem(
+        "The_Administrator_Game",
+        JSON.stringify(playerData),
+      );
+    } else {
+      const parsedPlayerData: playerDataShape = JSON.parse(savedData);
+      if (parsedPlayerData.player_name === playerData.player_name) {
+        setPlayerData(JSON.parse(savedData));
+      } else {
+        localStorage.setItem(
+          "The_Administrator_Game",
+          JSON.stringify(playerData),
+        );
+      }
+    }
+  }, []);
 
   function loginPause() {
     setTimeout(() => navigate("/Terminal"), 5000);
   }
-
 
   loginPause();
   return (

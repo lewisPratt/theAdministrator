@@ -7,6 +7,8 @@ import { NIL as NIL_UUID } from "uuid";
 import { playSound } from "react-sounds";
 import { UnlocksContext } from "../../context_providers/unlocksContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
+import { PlayerContext } from "../../context_providers/PlayerContext";
+import { saveLocalData } from "../../assets/utils/helpers";
 //set to 1 to show debug info on weighting
 const debug: number = 0;
 
@@ -22,6 +24,7 @@ export default function CaseReviewPanel({
   const [showEvidence, setShowEvidence] = useState<Boolean>(false)
   const {playerUnlocks} = useContext(UnlocksContext)
   const {tutorialState} = useContext(TutorialContext)
+  const {playerData, setPlayerData} = useContext(PlayerContext)
   const successSound = ()=>playSound('ui/success_bling')
   const failSound = ()=>playSound('ui/blocked')
 
@@ -74,6 +77,13 @@ export default function CaseReviewPanel({
       }
     }
 
+    function updateCreditTotal(newTotal: number){
+      scoreSetter(newTotal)
+      let dataToUpdate = playerData
+      playerData.player_credits = newTotal
+      setPlayerData(dataToUpdate)
+      saveLocalData(dataToUpdate)
+    }
 
       switch (decision) {
         case "nfa":
@@ -86,20 +96,20 @@ export default function CaseReviewPanel({
             decisionOutcome = false;
             failSound()
             if (newScore <= 0) {
-              scoreSetter(0);
+              updateCreditTotal(0);
             } else {
-              scoreSetter(newScore);
+              updateCreditTotal(newScore);
             }
           } else if (personWeighting > 0) {
             //person is good, positive consequences for right decision
-            scoreSetter(scoreState + rightAnswer);
+            updateCreditTotal(scoreState + rightAnswer);
             decisionText =
               "Productive Citizen identified & processed accurately.";
             decisionOutcome = true;
             successSound()
           } else {
             //person is neutral (0) so no negative or positive consequences
-            scoreSetter(scoreState + neutralAnswer);
+            updateCreditTotal(scoreState + neutralAnswer);
             decisionText = "Average Citizen processed.";
             decisionOutcome = true;
             successSound()
@@ -108,7 +118,7 @@ export default function CaseReviewPanel({
         case "reeducate":
           if (personWeighting < 0) {
             //person is bad, positive consequence for right decision.
-            scoreSetter(scoreState + rightAnswer);
+            updateCreditTotal(scoreState + rightAnswer);
             decisionText = "Non-compliant Citizen sent to Re-education";
             decisionOutcome = true;
             successSound()
@@ -120,9 +130,9 @@ export default function CaseReviewPanel({
             decisionOutcome = false;
             failSound()
             if (newScore <= 0) {
-              scoreSetter(0);
+              updateCreditTotal(0);
             } else {
-              scoreSetter(newScore);
+              updateCreditTotal(newScore);
             }
           } else {
             //person is neutral (0) so negative consequence for bad decision
@@ -131,9 +141,9 @@ export default function CaseReviewPanel({
             decisionOutcome = false;
             failSound()
             if (newScore <= 0) {
-              scoreSetter(0);
+              updateCreditTotal(0);
             } else {
-              scoreSetter(newScore);
+              updateCreditTotal(newScore);
             }
           }
           break;

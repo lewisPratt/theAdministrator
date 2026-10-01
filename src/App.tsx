@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import {Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter, useLocation } from "react-router-dom";
 import TranscriptRev from "./components/case_review/CaseReview";
 import "./assets/css/App.css";
-import "./assets/css/tutorial.css"
-import "./assets/css/nav.css"
+import "./assets/css/tutorial.css";
+import "./assets/css/nav.css";
 
 import { LoaderCircle } from "lucide-react";
 import UpgradeShop from "./components/upgrade_shop/UpgradeShop";
@@ -44,17 +44,22 @@ import { newPlayerData } from "./models/newPlayerData";
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
-  const [playerData, setPlayerData] = useState<playerDataShape>(newPlayerData)
+  const [playerData, setPlayerData] = useState<playerDataShape>(newPlayerData);
   const [playerUnlocks, setPlayerUnlocks] = useState<string[] | null>(null);
   const [loadingState, _setLoadingState] = useState<boolean>(false);
   // const [workDes, setWorkDes] = useState<boolean>(false);
   // const [transcriptRev, setTranscriptRev] = useState<boolean>(false);
-  const [scoreState, setScoreState] = useState<number>(0);
+  const [scoreState, setScoreState] = useState<number>(
+    playerData.player_credits,
+  );
   const [_instructionsPrompt, setInstructionsPrompt] = useState<boolean>(true);
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
   const [_terminalLoaded, setTerminalLoaded] = useState<boolean>(false);
-  const [errorState, setErrorState] = useState<string>("")
-  const [tutorialState, setTutorialState] = useState<tutorialStateShape>({tutorialActive:false,tutorialStep:0});
+  const [errorState, setErrorState] = useState<string>("");
+  const [tutorialState, setTutorialState] = useState<tutorialStateShape>({
+    tutorialActive: false,
+    tutorialStep: 0,
+  });
 
   const playerContextValue: playerContextShape = { playerData, setPlayerData };
   const adminContextValue: adminContextShape = { adminName, setAdminName };
@@ -63,23 +68,18 @@ function App() {
     setPlayerUnlocks,
   };
 
-  const errorStateValue : errorStateShape = {errorState, setErrorState};
+  const errorStateValue: errorStateShape = { errorState, setErrorState };
   const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
-  const tutorialContextValue: tutorialContextShape = { tutorialState, setTutorialState };
+  const tutorialContextValue: tutorialContextShape = {
+    tutorialState,
+    setTutorialState,
+  };
   const currentSlugContextValue: currentSlugShape = {
     currentSlug,
     setCurrentSlug,
   };
-  // const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-  //if user dismissed the message notification then logged out and logged back in, show the message notification again
-  //ensures a consistent approach if user logs out and back in with the same or different username.
-  //may adjust when moving to localstorage for game progress (record if its been dismissed locally and conditionally render)
-  useEffect(() => {
-    if (adminName === "") {
-      setInstructionsPrompt(true);
-    }
-  }, [adminName]);
+ 
 
   useEffect(() => {
     if (adminName != "") {
@@ -93,78 +93,78 @@ function App() {
     }
   }, [adminName]);
 
-// useEffect(()=>{
-//    const root = document.getElementById('root');
-//         if(root){
-//           root.inert = tutorialState.tutorialActive;
-//           return () => { root.inert = false }; 
-//         }
-// },[tutorialState])
-
   return (
     <>
-    
       <div id="main-content">
         <HashRouter>
-           
           {loadingState ? (
             <p>
               <LoaderCircle className="loader" />
             </p>
           ) : (
             <SoundProvider>
-              <ErrorContext  value={errorStateValue}>
-              <CurrentSlugContext value={currentSlugContextValue}>
-                <AdminContext value={adminContextValue}>
-                  <PlayerContext value={playerContextValue} >
-                  <ScoreContext value={scoreContextValue}>
-                    <UnlocksContext value={unlocksContextValue}>
-                      <TutorialContext value={tutorialContextValue}>
-                        { tutorialState.tutorialActive &&  createPortal(<TutorialOverlay />,document.body)}
-                      <ErrorPage />
-                      <NavBar />
-                    
-                      <div id="content-container">
-                        <Routes>
-                          <Route path="/Welcome" element={<WelcomeScreen />} />
-                          <Route path="/HowToPlay" element={<HowToPlay />} />
-                          <Route path="/Goodbye" element={<GoodbyeScreen />} />
-                          <Route path="/HR" element={<HumanResources />} />
-                          <Route
-                            path="PersonalRecord"
-                            element={<PersonalRecord />}
-                          />
-                          <Route path="/" element={<Login />} />
-                          <Route
-                            path="/Terminal"
-                            element={<CommandCentre />}
-                          />
-                          <Route
-                            path="/CaseReview"
-                            element={<TranscriptRev />}
-                          />
-                          <Route
-                            path="/UpgradeShop"
-                            element={<UpgradeShop />}
-                          />
-                          <Route path="/Inbox" element={<Inbox />} />
-                        </Routes>
-                        
-                      </div>
-                      <Footer >
-                          <CurrentSlug pageName={currentSlug} />
-                        </Footer>
-                        </TutorialContext>
-                    </UnlocksContext>
-                  </ScoreContext>
-                  </PlayerContext>
-                </AdminContext>
-              </CurrentSlugContext>
+              <ErrorContext value={errorStateValue}>
+                <CurrentSlugContext value={currentSlugContextValue}>
+                  <AdminContext value={adminContextValue}>
+                    <PlayerContext value={playerContextValue}>
+                      <ScoreContext value={scoreContextValue}>
+                        <UnlocksContext value={unlocksContextValue}>
+                          <TutorialContext value={tutorialContextValue}>
+                            {tutorialState.tutorialActive &&
+                              createPortal(<TutorialOverlay />, document.body)}
+                            <ErrorPage />
+                            <NavBar />
+
+                            <div id="content-container">
+                              <Routes>
+                                <Route
+                                  path="/Welcome"
+                                  element={<WelcomeScreen />}
+                                />
+                                <Route
+                                  path="/HowToPlay"
+                                  element={<HowToPlay />}
+                                />
+                                <Route
+                                  path="/Goodbye"
+                                  element={<GoodbyeScreen />}
+                                />
+                                <Route
+                                  path="/HR"
+                                  element={<HumanResources />}
+                                />
+                                <Route
+                                  path="PersonalRecord"
+                                  element={<PersonalRecord />}
+                                />
+                                <Route path="/" element={<Login />} />
+                                <Route
+                                  path="/Terminal"
+                                  element={<CommandCentre />}
+                                />
+                                <Route
+                                  path="/CaseReview"
+                                  element={<TranscriptRev />}
+                                />
+                                <Route
+                                  path="/UpgradeShop"
+                                  element={<UpgradeShop />}
+                                />
+                                <Route path="/Inbox" element={<Inbox />} />
+                              </Routes>
+                            </div>
+                            <Footer>
+                              <CurrentSlug pageName={currentSlug} />
+                            </Footer>
+                          </TutorialContext>
+                        </UnlocksContext>
+                      </ScoreContext>
+                    </PlayerContext>
+                  </AdminContext>
+                </CurrentSlugContext>
               </ErrorContext>
             </SoundProvider>
           )}
-
-          
         </HashRouter>
       </div>
     </>

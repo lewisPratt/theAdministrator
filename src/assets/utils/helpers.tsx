@@ -1,5 +1,5 @@
 import { allUpgrades } from "../../generator_modules/upgrades";
-import type { UpgradeShape } from "../../interfaces/interfaces";
+import type { playerDataShape, UpgradeShape } from "../../interfaces/interfaces";
 
 /**
  * Capitalizes the first letter of the string passed to it, returning a capitalized string
@@ -24,4 +24,11 @@ export function getUnlockDetails(unlocked : string[] | null) :UpgradeShape[]{
   });
 }
 return voucherArray
+}
+
+
+export function saveLocalData(playerData : playerDataShape){
+  console.log("helper function: ",playerData)
+   localStorage.setItem("The_Administrator_Game", JSON.stringify(playerData))
+
 }
