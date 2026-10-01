@@ -11,13 +11,14 @@ import "../../assets/css/login.css";
 
 //IMAGE IMPORTS
 import CityMap from "./CityMap";
+import { PlayerContext } from "../../context_providers/PlayerContext";
 
 
 export default function Login() {
   //CONTEXTS
   const { setAdminName } = useContext(AdminContext);
   const { setScoreState } = useContext(ScoreContext);
-
+  const {playerData, setPlayerData} = useContext(PlayerContext)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,6 +36,9 @@ export default function Login() {
     const enteredName  = formValues.get("admin-name")?.toString();
 
     if (enteredName != "" && enteredName != null) {
+      let playerLoginData = playerData
+      playerLoginData.player_name = enteredName
+      setPlayerData(playerLoginData)
       setAdminName(enteredName);
       navigate("/Welcome");
     } else {
@@ -63,7 +67,7 @@ export default function Login() {
             placeholder="Name"
             id="login-input"
             name="admin-name"
-            autoComplete="off"
+            autoComplete="name"
           ></input>
           <button id="command-centre-submit-button">
             <ChevronRightCircle size={28} />

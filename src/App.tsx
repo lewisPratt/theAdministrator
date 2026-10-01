@@ -23,6 +23,8 @@ import {
   type errorStateShape,
   type tutorialContextShape,
   type tutorialStateShape,
+  type playerDataShape,
+  type playerContextShape,
 } from "./interfaces/interfaces";
 import { SoundProvider } from "react-sounds";
 import WelcomeScreen from "./components/login/WelcomeScreen";
@@ -37,9 +39,12 @@ import { TutorialContext } from "./context_providers/TutorialContext";
 import TutorialOverlay from "./components/tutorial/TutorialOverlay";
 import { createPortal } from "react-dom";
 import NavBar from "./components/nav/NavBar";
+import { PlayerContext } from "./context_providers/PlayerContext";
+import { newPlayerData } from "./models/newPlayerData";
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
+  const [playerData, setPlayerData] = useState<playerDataShape>(newPlayerData)
   const [playerUnlocks, setPlayerUnlocks] = useState<string[] | null>(null);
   const [loadingState, _setLoadingState] = useState<boolean>(false);
   // const [workDes, setWorkDes] = useState<boolean>(false);
@@ -51,6 +56,7 @@ function App() {
   const [errorState, setErrorState] = useState<string>("")
   const [tutorialState, setTutorialState] = useState<tutorialStateShape>({tutorialActive:false,tutorialStep:0});
 
+  const playerContextValue: playerContextShape = { playerData, setPlayerData };
   const adminContextValue: adminContextShape = { adminName, setAdminName };
   const unlocksContextValue: unlockContextShape = {
     playerUnlocks,
@@ -110,6 +116,7 @@ function App() {
               <ErrorContext  value={errorStateValue}>
               <CurrentSlugContext value={currentSlugContextValue}>
                 <AdminContext value={adminContextValue}>
+                  <PlayerContext value={playerContextValue} >
                   <ScoreContext value={scoreContextValue}>
                     <UnlocksContext value={unlocksContextValue}>
                       <TutorialContext value={tutorialContextValue}>
@@ -150,6 +157,7 @@ function App() {
                         </TutorialContext>
                     </UnlocksContext>
                   </ScoreContext>
+                  </PlayerContext>
                 </AdminContext>
               </CurrentSlugContext>
               </ErrorContext>

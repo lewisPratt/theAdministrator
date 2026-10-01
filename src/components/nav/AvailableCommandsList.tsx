@@ -1,8 +1,11 @@
 import { Terminal } from "lucide-react";
+import { useContext } from "react";
+import { PlayerContext } from "../../context_providers/PlayerContext";
 
 
 export default function AvailableCommandsList(){
-
+const {playerData} = useContext(PlayerContext)
+    console.log(playerData)
     return(
         <div id='commands-list-container'>
             <ol>

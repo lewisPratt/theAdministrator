@@ -1,24 +1,27 @@
-import { X} from "lucide-react";
-import { TutorialContext } from "../../context_providers/TutorialContext"
-import { useContext } from "react"
+import { X } from "lucide-react";
+import { TutorialContext } from "../../context_providers/TutorialContext";
+import { useContext } from "react";
+import { PlayerContext } from "../../context_providers/PlayerContext";
+import type { playerDataShape } from "../../interfaces/interfaces";
 
-export default function TutorialEnd(){
+export default function TutorialEnd() {
+  const { setTutorialState } = useContext(TutorialContext);
+  const { playerData, setPlayerData } = useContext(PlayerContext);
 
-const {setTutorialState} = useContext(TutorialContext)
+  let dataToUpdate: playerDataShape = playerData;
 
+  function endTutorial() {
+    setTutorialState({ tutorialActive: false, tutorialStep: 0 });
+    dataToUpdate.player_tutorialComplete = true;
+    setPlayerData(dataToUpdate)
+  }
 
-   
-   return(
-     <div id="tutorial-end-container">
-            <p>You finished the tutorial</p>
-            <button
-              autoFocus
-              onClick={() =>
-                setTutorialState({ tutorialActive: false, tutorialStep: 0 })
-              }
-            >
-              <X />
-            </button>
-          </div>
-   )
+  return (
+    <div id="tutorial-end-container">
+      <p>You finished the tutorial</p>
+      <button autoFocus onClick={endTutorial}>
+        <X />
+      </button>
+    </div>
+  );
 }

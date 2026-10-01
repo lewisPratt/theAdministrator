@@ -163,3 +163,22 @@ export interface errorStateShape {
   errorState: string;
   setErrorState: Dispatch<SetStateAction<string>>;
 }
+export interface playerStatsShape {
+  cases_complete: number;
+  total_credits_earned: number;
+  cases_correct: number;
+  cases_failed: number;
+}
+
+export interface playerDataShape {
+  player_name: string | null;
+  player_tutorialComplete: boolean;
+  player_credits: number;
+  player_unlocks: string[];
+  player_stats: playerStatsShape;
+}
+
+export interface playerContextShape {
+  playerData: playerDataShape;
+  setPlayerData: Dispatch<SetStateAction<playerDataShape>>;
+}
