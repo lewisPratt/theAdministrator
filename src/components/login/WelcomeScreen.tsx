@@ -20,31 +20,31 @@ const welcomeMessages: string[] = [
 
 export default function WelcomeScreen() {
   const navigate = useNavigate();
-  const { playerData, setPlayerData } = useContext(PlayerContext);
+  // const { playerData, setPlayerData } = useContext(PlayerContext);
   const welcomeMessage =
     welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
     
   useEffect(() => {
-    const savedData = localStorage.getItem("The_Administrator_Game");
+    // const savedData = localStorage.getItem("The_Administrator_Game");
 
-    console.log(playerData);
+    // console.log(playerData);
 
-    if (!savedData) {
-      localStorage.setItem(
-        "The_Administrator_Game",
-        JSON.stringify(playerData),
-      );
-    } else {
-      const parsedPlayerData: playerDataShape = JSON.parse(savedData);
-      if (parsedPlayerData.player_name === playerData.player_name) {
-        setPlayerData(JSON.parse(savedData));
-      } else {
-        localStorage.setItem(
-          "The_Administrator_Game",
-          JSON.stringify(playerData),
-        );
-      }
-    }
+    // if (!savedData) {
+    //   localStorage.setItem(
+    //     "The_Administrator_Game",
+    //     JSON.stringify(playerData),
+    //   );
+    // } else {
+    //   const parsedPlayerData: playerDataShape = JSON.parse(savedData);
+    //   if (parsedPlayerData.player_name === playerData.player_name) {
+    //     setPlayerData(JSON.parse(savedData));
+    //   } else {
+    //     localStorage.setItem(
+    //       "The_Administrator_Game",
+    //       JSON.stringify(playerData),
+    //     );
+    //   }
+    // }
   }, []);
 
   function loginPause() {

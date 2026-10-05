@@ -44,13 +44,13 @@ import { newPlayerData } from "./models/newPlayerData";
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
-  const [playerData, setPlayerData] = useState<playerDataShape>(newPlayerData);
+  const [playerData, setPlayerData] = useState<playerDataShape | null>(null);
   const [playerUnlocks, setPlayerUnlocks] = useState<string[] | null>(null);
   const [loadingState, _setLoadingState] = useState<boolean>(false);
   // const [workDes, setWorkDes] = useState<boolean>(false);
   // const [transcriptRev, setTranscriptRev] = useState<boolean>(false);
   const [scoreState, setScoreState] = useState<number>(
-    playerData.player_credits,
+   (playerData ? playerData.player_credits : 0) ,
   );
   const [_instructionsPrompt, setInstructionsPrompt] = useState<boolean>(true);
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");

@@ -9,13 +9,16 @@ export default function TutorialEnd() {
   const { setTutorialState } = useContext(TutorialContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
 
-  let dataToUpdate: playerDataShape = playerData;
+  
 
   function endTutorial() {
+    if(playerData){
+    let dataToUpdate: playerDataShape = playerData;
     setTutorialState({ tutorialActive: false, tutorialStep: 0 });
     dataToUpdate.player_tutorialComplete = true;
     setPlayerData(dataToUpdate)
     saveLocalData(dataToUpdate)
+    }
   }
 
   return (

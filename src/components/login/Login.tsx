@@ -5,6 +5,7 @@ import { AdminContext } from "../../context_providers/AdminContext";
 import { ScoreContext } from "../../context_providers/ScoreContext";
 import { ChevronRightCircle } from "lucide-react";
 import { Tooltip } from "react-tooltip";
+import { newPlayerData } from "../../models/newPlayerData";
 
 //CSS IMPORTS
 import "../../assets/css/login.css";
@@ -12,53 +13,76 @@ import "../../assets/css/login.css";
 //IMAGE IMPORTS
 import CityMap from "./CityMap";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-
+import type { playerDataShape } from "../../interfaces/interfaces";
 
 export default function Login() {
   //CONTEXTS
   const { setAdminName } = useContext(AdminContext);
   const { setScoreState } = useContext(ScoreContext);
-  const {playerData, setPlayerData} = useContext(PlayerContext)
+  const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
+  let loginStart = false
 
   useEffect(() => {
-    setScoreState(0);
-  });
+    if(playerData && !loginStart){
+      setPlayerData(null)
+    }
+  },[]);
 
-
-/** 
-* Sets app to logged in state by assigning adminName and redirects to welcome screen
-* @param {React.SubmitEvent<HTMLFormElement>} e - event object that triggered the function
-*/  
-  function doLogin(e: React.SubmitEvent<HTMLFormElement>) : void {
+  /**
+   * Sets app to logged in state by assigning adminName and redirects to welcome screen
+   * @param {React.SubmitEvent<HTMLFormElement>} e - event object that triggered the function
+   */
+  function doLogin(e: React.SubmitEvent<HTMLFormElement>): void {
     e.preventDefault();
+    loginStart = true
     const formValues = new FormData(e.target);
-    const enteredName  = formValues.get("admin-name")?.toString();
+    const enteredName = formValues.get("admin-name")?.toString();
 
+    // name is not empty string so process login
     if (enteredName != "" && enteredName != null) {
-      let playerLoginData = playerData
-      playerLoginData.player_name = enteredName
-      setPlayerData(playerLoginData)
+      const savedData = localStorage.getItem("The_Administrator_Game");
+      if (!savedData) {
+        newPlayerSetup(enteredName);
+      } else {
+        const parsedPlayerData: playerDataShape = JSON.parse(savedData);
+        if (parsedPlayerData.player_name === enteredName) {
+          setPlayerData(JSON.parse(savedData));
+        } else {
+          //show warning of already having an account saved, only one account at a time. previous accounts will be overwritten. Provide player name and link to login directl to this account
+          // no need for feature allowing multiple logins currently. 
+          
+        }
+      }
+
+      function newPlayerSetup(name: string) {
+        let newPlayer = newPlayerData;
+        newPlayer.player_name = name;
+        localStorage.setItem(
+          "The_Administrator_Game",
+          JSON.stringify(newPlayer),
+        );
+        setPlayerData(newPlayer)
+      }
+
       setAdminName(enteredName);
       navigate("/Welcome");
     } else {
       //no name entered so do nothing or show error
     }
   }
-
+  console.log(playerData)
 
   return (
     <section id="login">
       <CityMap />
 
-      <h1 id='login-header'>Welcome Administrator</h1>
+      <h1 id="login-header">Welcome Administrator</h1>
       <p>Login below to start your mandatory shift.</p>
       <form onSubmit={doLogin}>
-        
-          <label id="login-label" htmlFor="admin-name" >
-            Administrator Name:
-          </label>
-     
+        <label id="login-label" htmlFor="admin-name">
+          Administrator Name:
+        </label>
 
         <div id="login-input-container">
           <input
@@ -76,9 +100,18 @@ export default function Login() {
             <CircleQuestionMark size={28} />
           </button> */}
         </div>
-        <button id="how-to-play-button" className="secondary-button" onClick={(e)=>{ e.preventDefault(); navigate("/HowToPlay")}}>How to play</button>
+        <button
+          id="how-to-play-button"
+          className="secondary-button"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/HowToPlay");
+          }}
+        >
+          How to play
+        </button>
       </form>
-      <Tooltip id='login-tooltip' className='custom-tooltip'/>
+      <Tooltip id="login-tooltip" className="custom-tooltip" />
     </section>
   );
 }

@@ -10,7 +10,7 @@ const {tutorialState} = useContext(TutorialContext)
     const {playerData } =useContext(PlayerContext)
     return (
         <>
-        {playerData &&
+        {playerData != null &&
         <div id="tutorial-step-3" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 3 ? "tutorial-highlight":"")}><p>{pageName}</p></div>
         }
         </>

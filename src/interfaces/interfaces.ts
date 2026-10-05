@@ -179,6 +179,6 @@ export interface playerDataShape {
 }
 
 export interface playerContextShape {
-  playerData: playerDataShape;
-  setPlayerData: Dispatch<SetStateAction<playerDataShape>>;
+  playerData: playerDataShape | null;
+  setPlayerData: Dispatch<SetStateAction<playerDataShape | null>>;
 }

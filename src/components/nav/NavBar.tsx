@@ -25,7 +25,7 @@ const {pathname} = useLocation()
   }
 
    useEffect(() => {
-      if (playerData.player_name === null && componentEnabled) {
+      if (playerData === null && componentEnabled) {
         const savedData = localStorage.getItem("The_Administrator_Game");
         if (savedData) {
           const storedPlayerData : playerDataShape = JSON.parse(savedData)
