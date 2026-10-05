@@ -11,6 +11,7 @@ import type { TooltipRefProps } from "react-tooltip";
 import { useRef } from "react";
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import PlayerStats from "./PlayerStats";
 export default function PersonalRecord() {
   const navigate = useNavigate();
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -41,17 +42,9 @@ export default function PersonalRecord() {
 
           {/* //upgrades unlocked component */}
           <UnlockedUpgrades />
-          <button
-            id="visit-upgrades-button"
-            onClick={() => {
-              navigate("/UpgradeShop");
-              setCurrentSlug("nav.upgrade");
-            }}
-          >
-            Upgrade Terminal
-          </button>
-          <h2 id="tutorial-step-16" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 16 ? "tutorial-highlight":"")}>Statistics</h2>
-          {/* //total cases reviewed component */}
+       
+          
+          <PlayerStats />
 
           {/* //pass/fail ratio */}
 

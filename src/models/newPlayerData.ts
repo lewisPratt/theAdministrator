@@ -8,6 +8,7 @@ export const newPlayerData : playerDataShape = {
   player_stats: {
     cases_complete: 0,
     total_credits_earned: 0,
+    total_credits_lost: 0,
     cases_correct: 0,
     cases_failed: 0,
   },

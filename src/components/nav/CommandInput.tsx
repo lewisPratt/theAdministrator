@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import AvailableCommandsList from "./AvailableCommandsList";
-import { Tooltip } from "react-tooltip";
 import { playSound } from "react-sounds";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
@@ -115,14 +114,13 @@ export default function CommandInput() {
               : "") + " available-commands-button"
           }
           onClick={toggleCommands}
-          data-tooltip-id="nav-terminal-tooltip"
+          data-tooltip-id="nav-bar-tooltip"
           data-tooltip-content="Nav Commands"
         >
           <a id="tutorial-step-6"></a>
           <CircleQuestionMark size={20} />
         </button>
         {showCommands && <AvailableCommandsList />}
-        <Tooltip id="nav-terminal-tooltip" className="custom-tooltip"></Tooltip>
       </form>
     </div>
   );

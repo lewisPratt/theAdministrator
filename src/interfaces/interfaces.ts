@@ -161,6 +161,7 @@ export interface errorStateShape {
 export interface playerStatsShape {
   cases_complete: number;
   total_credits_earned: number;
+  total_credits_lost: number;
   cases_correct: number;
   cases_failed: number;
 }

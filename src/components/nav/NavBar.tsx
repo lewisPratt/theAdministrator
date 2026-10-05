@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import type { playerDataShape } from "../../interfaces/interfaces";
 import { saveLocalData } from "../../assets/utils/helpers";
-
+import { Tooltip } from "react-tooltip";
 export default function NavBar() {
 const {playerData,setPlayerData} = useContext(PlayerContext)
 const {pathname} = useLocation()
@@ -46,15 +46,16 @@ const {pathname} = useLocation()
             </div>
 
             <CommandInput />
-            <ScoreTracker scoreState={playerData.player_credits} />
+            <ScoreTracker />
           </div>
           <MobileMenu />
         </>
       ) : (
         <NotLoggedIn soundControls />
       )}
-    
+    <Tooltip id="nav-bar-tooltip" className="custom-tooltip"></Tooltip>
     </nav>
+    
 }
     </>
   );

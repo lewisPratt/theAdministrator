@@ -39,7 +39,7 @@ export default function LoginChoice({
         </button>
         <p>Save Data already exists for another playthrough.</p>
         <p>Administrator Name: [{loginChoiceData.retrievedSave.player_name}]</p>
-        <p>Would you like to start a new game or continue with saved data?</p>
+        <p>Would you like to continue with saved data or start a new game?</p>
         <button autoFocus onClick={continueGame}>
           Continue
         </button>

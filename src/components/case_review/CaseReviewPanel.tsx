@@ -82,11 +82,14 @@ export default function CaseReviewPanel({
       function updateCreditTotal(creditAdjustment: number, direction: boolean) {
         if (playerData) {
           let newTotal: number = playerData.player_credits;
+          let decisionOutcome : boolean = false
           if (direction) {
             //add credits
             newTotal += creditAdjustment;
+            decisionOutcome = true
           } else {
             //minus credits
+            decisionOutcome = false
             if (newTotal - creditAdjustment <= 0) {
               newTotal = 0;
             } else {
@@ -95,6 +98,15 @@ export default function CaseReviewPanel({
           }
           let dataToUpdate = { ...playerData };
           dataToUpdate.player_credits = newTotal;
+          dataToUpdate.player_stats.cases_complete += 1
+          if(decisionOutcome){
+            dataToUpdate.player_stats.cases_correct += 1 
+            dataToUpdate.player_stats.total_credits_earned += creditAdjustment
+          }else{
+            dataToUpdate.player_stats.cases_failed += 1 
+            if(newTotal - creditAdjustment >= 0){dataToUpdate.player_stats.total_credits_lost += creditAdjustment}
+          }
+          
           setPlayerData(dataToUpdate);
         }
       }
