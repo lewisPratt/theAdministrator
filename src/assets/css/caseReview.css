@@ -86,7 +86,6 @@
   scale: 1.1;
 
 }
-
 #weather-container {
   position: absolute;
   left: 0;
@@ -288,6 +287,148 @@
   
   color: #a2eaa2;
   font-size: 1rem;
+}
+.review-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, .75);
+  z-index: 100;
+  animation: open-transcript 1s 1 forwards;
+}
+
+#summary-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  border: 2px solid #c4c4c0;
+}
+
+#summary-container>p {
+  margin: 20px;
+}
+
+#codex {
+  width: 70%;
+}
+
+#codex-list {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  text-align: left;
+}
+
+#codex-list>li {
+  margin: 20px;
+  border: 1px solid black;
+  text-align: left;
+  padding: 10px;
+}
+
+#codex-list ul>li {
+  margin: 10px 0;
+}
+
+#codex-list ul {
+  list-style: none;
+}
+
+.codex-section-title {
+  font-weight: bolder;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+#side-panel {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 50%;
+  background-color: white;
+  z-index: 99;
+  border-right: 3px solid black;
+  padding-top: 50px;
+  text-align: center;
+  transition: 1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#side-panel.codex-enter {
+  left: 0;
+}
+
+#side-panel.codex-exit {
+  left: -100%;
+}
+
+#codex-button {
+  padding: 10px;
+  border: 1px solid #a2eaa2;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+#codex-button:hover {
+  background-color: #a2eaa2;
+  color: black;
+}
+
+#search-results-header {
+  background-color: #a2eaa2;
+  padding: 10px 0;
+  color: black;
+  border: 1px solid #a2eaa2;
+
+}
+
+.slide-out-class {
+  animation: transcript-slide-out .6s  1 forwards steps(7);
+}
+
+.open-transcript-class {
+  animation: open-transcript .6s 1 forwards steps(4);
+}
+
+.current-selected-item::after  {
+  content:"<";
+}
+.current-selected-item::before{
+  content: ">";
+}
+
+#case-review {
+ flex:1;
+}
+
+#transcript-review>p {
+  margin: 20px;
+}
+
+#reminder-p {
+  font-size: .6rem;
+}
+.search-input {
+  height: 25px;
+  padding: 10px;
+  margin: 10px;
+
+}
+.no-case-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
 }
 @keyframes after-tick {
     to{

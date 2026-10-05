@@ -1,5 +1,6 @@
 import { Sound } from "react-sounds";
 import { useNavigate } from "react-router-dom";
+import "../../assets/css/welcome.css"
 
 const welcomeMessages: string[] = [
   "Access granted. Provisionally.",

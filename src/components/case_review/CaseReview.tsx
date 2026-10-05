@@ -234,7 +234,6 @@ export default function TranscriptRev() {
                 <NoCurrentTranscript />
               )}
               <Tooltip id="extra-case-tooltip" className="custom-tooltip" />
-              {/* <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/> */}
             </div>
           </section>
         </>

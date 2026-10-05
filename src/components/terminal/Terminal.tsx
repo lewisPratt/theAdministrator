@@ -96,9 +96,6 @@ export default function CommandCentre() {
               <>
                 <h1>Welcome Administrator {playerData.player_name}.</h1>
                 <form id="tutorial-step-2"  className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 2 ? "tutorial-highlight":"")} onSubmit={handleCommand} method="post">
-                  <div id="command-typing-container">
-                    
-                  </div>
                   <div id="command-centre-input-container">
                     
                     <input

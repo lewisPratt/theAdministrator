@@ -1,6 +1,6 @@
 import { Sound } from "react-sounds";
 import { useNavigate } from "react-router-dom";
-
+import "../../assets/css/welcome.css"
 const goodbyeMessages: string[] = [
   "Session terminated.",
   "Shift concluded. Record retained.",

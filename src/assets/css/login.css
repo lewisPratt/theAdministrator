@@ -22,9 +22,6 @@
 
 }
 
-.scan-path {
-    stroke: white;
-}
 
 .scanning-text {
     font-family: 'Silkscreen', monospace;
@@ -104,6 +101,41 @@ INTERACTIVE PSEUDO CLASSES
     width: fit-content;
     height: fit-content;
 
+}
+#login {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#login-submit-button {
+  height: 49px;
+  width: 15%;
+  border: 0;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-radius: 0 10px 10px 0;
+  padding: 0;
+  background-color: #a2eaa2;
+  color: white;
+}
+
+#login-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#login-input {
+  height: 40px;
+  border: 1px solid #a2eaa2;
+  width: 80%;
+  padding: 10px;
+  font-size: 1.2rem;
 }
 @media (max-width:480px) {
     #login-header {

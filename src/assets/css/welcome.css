@@ -1,0 +1,30 @@
+#welcome-screen h1 {
+  font-size: 3rem;
+  animation: welcomeHeaderAnimation;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+}
+
+#welcome-screen p {
+  animation: welcomeMessageAnimation;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+
+}
+
+#welcome-screen {
+  /* border:1px solid #C4C4C0; */
+  padding: 25px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 500px;
+  margin: auto;
+  border-radius: 20px;
+
+}
