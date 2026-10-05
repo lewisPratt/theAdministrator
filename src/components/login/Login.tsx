@@ -1,5 +1,5 @@
 //REACT IMPORTS
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../../context_providers/AdminContext";
 import { ScoreContext } from "../../context_providers/ScoreContext";
@@ -14,8 +14,17 @@ import "../../assets/css/login.css";
 import CityMap from "./CityMap";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import type { playerDataShape } from "../../interfaces/interfaces";
+import LoginChoice from "./LoginChoice";
+
+interface loginChoiceShape{
+  enteredName: string
+  retrievedSave: playerDataShape
+}
+
 
 export default function Login() {
+const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
+
   //CONTEXTS
   const { setAdminName } = useContext(AdminContext);
   const { setScoreState } = useContext(ScoreContext);
@@ -44,18 +53,28 @@ export default function Login() {
       const savedData = localStorage.getItem("The_Administrator_Game");
       if (!savedData) {
         newPlayerSetup(enteredName);
+              
+
       } else {
         const parsedPlayerData: playerDataShape = JSON.parse(savedData);
         if (parsedPlayerData.player_name === enteredName) {
           setPlayerData(JSON.parse(savedData));
+                navigate("/Welcome");
+
         } else {
+          const parsedData : playerDataShape= JSON.parse(savedData)
           //show warning of already having an account saved, only one account at a time. previous accounts will be overwritten. Provide player name and link to login directl to this account
           // no need for feature allowing multiple logins currently. 
-          
+         setLoginChoice({enteredName: enteredName, retrievedSave : parsedData })
         }
       }
 
-      function newPlayerSetup(name: string) {
+       
+    } else {
+      //no name entered so do nothing or show error
+    }
+  }
+   function newPlayerSetup(name: string) {
         let newPlayer = newPlayerData;
         newPlayer.player_name = name;
         localStorage.setItem(
@@ -63,15 +82,8 @@ export default function Login() {
           JSON.stringify(newPlayer),
         );
         setPlayerData(newPlayer)
-      }
-
-      setAdminName(enteredName);
-      navigate("/Welcome");
-    } else {
-      //no name entered so do nothing or show error
-    }
-  }
-  console.log(playerData)
+        navigate("/Welcome")
+      }  
 
   return (
     <section id="login">
@@ -111,6 +123,7 @@ export default function Login() {
           How to play
         </button>
       </form>
+      {loginChoice != null && <LoginChoice loginChoiceData={loginChoice} choiceSetter={setLoginChoice} setupNewPlayer={newPlayerSetup}/>}
       <Tooltip id="login-tooltip" className="custom-tooltip" />
     </section>
   );

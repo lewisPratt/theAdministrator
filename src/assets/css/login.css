@@ -71,7 +71,40 @@ INTERACTIVE PSEUDO CLASSES
     cursor: pointer;
     outline: none;
 }
+#login-choice-overlay{
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#login-choice-container{
+   
+    background-color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:10px;
+    border:1px solid #a2eaa2;
+    padding:10px;
+    position: relative;
+}
+#login-choice-small-text{
+    font-size:.6rem;
+}
+#login-choice-close-button{
+    position:absolute;
+    right:5px;
+    top:5px;
+    width: fit-content;
+    height: fit-content;
 
+}
 @media (max-width:480px) {
     #login-header {
         font-size: 1.4rem;
