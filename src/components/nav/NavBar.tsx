@@ -32,8 +32,8 @@ const {pathname} = useLocation()
           setPlayerData(storedPlayerData)
         }
       }
-      else{
-        // saveLocalData(playerData)
+      else if(playerData != null){
+        saveLocalData(playerData)
       }
     }, [playerData]);
 

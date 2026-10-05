@@ -1,116 +1,158 @@
 import { useContext, useEffect, useState } from "react";
-import { LoaderCircle} from "lucide-react";
-import { ScoreContext } from "../../context_providers/ScoreContext";
-import { UnlocksContext } from "../../context_providers/unlocksContext";
-import type { UpgradeShape, UpgradeListShape } from "../../interfaces/interfaces";
+import { LoaderCircle } from "lucide-react";
+import type {
+  UpgradeShape,
+  UpgradeListShape,
+} from "../../interfaces/interfaces";
 import { playSound } from "react-sounds";
-import { allUpgrades} from "../../generator_modules/upgrades";
+import { allUpgrades } from "../../generator_modules/upgrades";
 import { Badge } from "lucide-react";
 import { CreditIcon } from "../../assets/custom_icons/credits";
-import { useNavigate } from "react-router-dom";
-import "../../assets/css/upgradeShop.css"
+import {useNavigate } from "react-router-dom";
+import "../../assets/css/upgradeShop.css";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 
 import { useRef } from "react";
 import type { TooltipRefProps } from "react-tooltip";
 import TutorialLogic from "../tutorial/TutorialLogic";
+import { PlayerContext } from "../../context_providers/PlayerContext";
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
-  const { scoreState, setScoreState } = useContext(ScoreContext);
-  const { playerUnlocks, setPlayerUnlocks } = useContext(UnlocksContext);
-  const {setCurrentSlug} = useContext(CurrentSlugContext)
-  const {tutorialState} = useContext(TutorialContext)
-  const navigate = useNavigate()
-  console.log(playerUnlocks);
-
+  const { setCurrentSlug } = useContext(CurrentSlugContext);
+  const { tutorialState } = useContext(TutorialContext);
+  const { playerData, setPlayerData } = useContext(PlayerContext);
+  const navigate = useNavigate();
 
   const [errorState, setErrorState] = useState<string | null>(null);
-    const hoverClick = () => playSound('ui/button_soft')
-    const purchaseSound = () => playSound('ui/success_bling')
-    const cantAfford = () => playSound('notification/error')
+  const hoverClick = () => playSound("ui/button_soft");
+  const purchaseSound = () => playSound("ui/success_bling");
+  const cantAfford = () => playSound("notification/error");
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-
-  const debug = false;
-  const upgrades: UpgradeListShape = allUpgrades
+  const debug = true;
+  const upgrades: UpgradeListShape = allUpgrades;
 
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
   });
 
   function giveCredits() {
-    setScoreState(scoreState + 1000);
+    if (playerData) {
+      let dataToUpdate = { ...playerData };
+      dataToUpdate.player_credits = dataToUpdate.player_credits + 1000;
+      setPlayerData(dataToUpdate);
+    }
   }
-   function resetCredits() {
-    setScoreState(0);
+  function resetCredits() {
+     if (playerData) {
+      let dataToUpdate = { ...playerData };
+      dataToUpdate.player_credits = 0;
+      setPlayerData(dataToUpdate);
+    }
   }
   function resetUpgrades() {
-    setPlayerUnlocks(null);
+    if (playerData) {
+      let dataToUpdate = { ...playerData };
+      dataToUpdate.player_unlocks = []
+      setPlayerData(dataToUpdate);
+    }
   }
   function confirmChoice(e: React.MouseEvent<HTMLButtonElement>) {
-      setErrorState(null)
+    setErrorState(null);
     if (
       e.currentTarget.dataset.upgradeName &&
       e.currentTarget.dataset.upgradeIdent
     ) {
       const chosenUpgradeIdent: string = e.currentTarget.dataset.upgradeIdent;
-      if(confirming === chosenUpgradeIdent){
-        setConfirming(null)
-      }
-      else{
-      const chosenUpgrade: UpgradeShape = upgrades[`${chosenUpgradeIdent}`];
-  
+      if (confirming === chosenUpgradeIdent) {
+        setConfirming(null);
+      } else {
+        const chosenUpgrade: UpgradeShape = upgrades[`${chosenUpgradeIdent}`];
 
-      if (chosenUpgrade != undefined) {
-        
-        setConfirming(chosenUpgradeIdent);
+        if (chosenUpgrade != undefined) {
+          setConfirming(chosenUpgradeIdent);
+        }
       }
-    }
     }
   }
 
   function purchaseUpgrade() {
-  
     if (confirming != null) {
       const selectedUpgrade = upgrades[`${confirming}`];
-      if (scoreState < selectedUpgrade.cost) {
-        setErrorState("You do not have enough credits");
-        cantAfford()
-      } else {
-        setScoreState(scoreState - selectedUpgrade.cost);
-        let updatedUnlocks: string[] = [];
-        if (playerUnlocks != null) {
-          updatedUnlocks = [...playerUnlocks];
+      if (playerData) {
+        if (playerData.player_credits < selectedUpgrade.cost) {
+          setErrorState("You do not have enough credits");
+          cantAfford();
+        } else {
+          //purchase made, update plyerdata with credit balance and unlocks then set playerdata and store local data
+          let dataToUpdate = { ...playerData };
+          dataToUpdate.player_credits =
+            dataToUpdate.player_credits - selectedUpgrade.cost;
+          let updatedUnlocks: string[] = [];
+          if (dataToUpdate.player_unlocks != null) {
+            updatedUnlocks = [...dataToUpdate.player_unlocks];
+          }
+          purchaseSound();
+          updatedUnlocks.push(confirming);
+          dataToUpdate.player_unlocks = updatedUnlocks
+          setPlayerData(dataToUpdate);
+          // saveLocalData(dataToUpdate);
         }
-        purchaseSound()
-        updatedUnlocks.push(confirming);
-        setPlayerUnlocks(updatedUnlocks);
+      } else {
+        //error: no player data currently set
       }
     }
   }
 
   return (
     <>
-      <TutorialLogic loadingState={loadingState} tooltipRef={tooltipRef1}/>
-    
+      <TutorialLogic loadingState={loadingState} tooltipRef={tooltipRef1} />
+
       {loadingState ? (
         <p>
           <LoaderCircle className="loader" />
         </p>
       ) : (
-        
         <section id="upgrade-shop">
           <div id="upgrade-shop-header">
             <h2>Upgrade Terminal</h2>
-            
-            {debug &&  <div className="debug-container"><h6>Debug- not for production</h6><button onClick={giveCredits}>Give credits</button><button onClick={resetCredits}>Reset credits</button><button onClick={resetUpgrades}>Reset Upgrades</button></div>}
+
+            {debug && (
+              <div className="debug-container">
+                <h6>Debug- not for production</h6>
+                <button onClick={giveCredits}>Give credits</button>
+                <button onClick={resetCredits}>Reset credits</button>
+                <button onClick={resetUpgrades}>Reset Upgrades</button>
+              </div>
+            )}
           </div>
-          <div  id="personal-record-button">
-          <button id="tutorial-step-14" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 14 ? "tutorial-highlight":"")} onClick={()=>{navigate("/PersonalRecord"); setCurrentSlug("nav.personal")}}>Personal Record</button>
+          <div id="personal-record-button">
+            <button
+              id="tutorial-step-14"
+              className={
+                tutorialState.tutorialActive &&
+                tutorialState.tutorialStep === 14
+                  ? "tutorial-highlight"
+                  : ""
+              }
+              onClick={() => {
+                navigate("/PersonalRecord");
+                setCurrentSlug("nav.personal");
+              }}
+            >
+              Personal Record
+            </button>
           </div>
-          <section id="tutorial-step-13" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 13 ? "tutorial-highlight":"") + " upgrade-items-container"}>
+          <section
+            id="tutorial-step-13"
+            className={
+              (tutorialState.tutorialActive && tutorialState.tutorialStep === 13
+                ? "tutorial-highlight"
+                : "") + " upgrade-items-container"
+            }
+          >
             <ol>
               {Object.entries(upgrades).map((upgrade) => {
                 return (
@@ -119,30 +161,41 @@ export default function UpgradeShop() {
                       key={upgrade[0]}
                       className={
                         "upgrade-box " +
-                        (playerUnlocks?.includes(upgrade[0])
+                        (playerData?.player_unlocks.includes(upgrade[0])
                           ? "purchased-unlock-class"
                           : "unpurchased-unlock-class")
                       }
                       data-upgrade-name={upgrade[1].name}
                       data-upgrade-ident={upgrade[0]}
-                      
                       onClick={(e) => {
-                        confirmChoice(e)
+                        confirmChoice(e);
                         hoverClick();
                       }}
                     >
-                        <Badge size={48}>{upgrade[1].icon}</Badge><span className="upgrade-name">{upgrade[1].name}</span> <span>{playerUnlocks?.includes(upgrade[0]) && "[Purchased]"  }  <CreditIcon className="custom-icon" />{upgrade[1].cost}</span>
+                      <Badge size={48}>{upgrade[1].icon}</Badge>
+                      <span className="upgrade-name">
+                        {upgrade[1].name}
+                      </span>{" "}
+                      <span>
+                        {playerData?.player_unlocks.includes(upgrade[0]) &&
+                          "[Purchased]"}{" "}
+                        <CreditIcon className="custom-icon" />
+                        {upgrade[1].cost}
+                      </span>
                     </button>
                     {confirming != null && confirming === upgrade[0] && (
-                      <div >
+                      <div>
                         <p className="upgrade-desc">{upgrade[1].desc}</p>
                         <p>Effect: {upgrade[1].perkEffect}</p>
-                                  {errorState != null && <p id='upgrade-error'>{errorState}</p>}
+                        {errorState != null && (
+                          <p id="upgrade-error">{errorState}</p>
+                        )}
 
-                        {!playerUnlocks?.includes(upgrade[0]) && (
-                            
-                          <div className='purchase-button-container'>
-                            <button onClick={purchaseUpgrade} ><CreditIcon className="custom-icon"/></button>
+                        {!playerData?.player_unlocks.includes(upgrade[0]) && (
+                          <div className="purchase-button-container">
+                            <button onClick={purchaseUpgrade}>
+                              <CreditIcon className="custom-icon" />
+                            </button>
                           </div>
                         )}
                       </div>
@@ -152,7 +205,6 @@ export default function UpgradeShop() {
               })}
             </ol>
           </section>
-
         </section>
       )}
     </>

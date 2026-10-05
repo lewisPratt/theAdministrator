@@ -162,7 +162,7 @@ export default function TranscriptRev() {
             {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
             <div id="top-container">
               {availableTranscripts && (
-                <div>
+                <div id="case-list-container">
                   <ol
                     id="tutorial-step-7"
                     className={

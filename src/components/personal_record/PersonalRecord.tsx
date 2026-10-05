@@ -10,11 +10,12 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import type { TooltipRefProps } from "react-tooltip";
 import { useRef } from "react";
 import TutorialLogic from "../tutorial/TutorialLogic";
+import { PlayerContext } from "../../context_providers/PlayerContext";
 export default function PersonalRecord() {
   const navigate = useNavigate();
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const { setCurrentSlug } = useContext(CurrentSlugContext);
-
+  const {playerData} = useContext(PlayerContext)
   const {tutorialState} = useContext(TutorialContext)
   const tooltipRef1 = useRef<TooltipRefProps>(null);
   
@@ -34,8 +35,9 @@ export default function PersonalRecord() {
         </p>
       ) : (
         <section id="personal-record">
-          
-          <p>View your mediocre personal achievements & upgrades.</p>
+          <p>Administrator</p>
+          <h1>{playerData?.player_name}</h1>
+          <p className="personal-record-tagline">View your mediocre personal achievements & upgrades.</p>
 
           {/* //upgrades unlocked component */}
           <UnlockedUpgrades />

@@ -82,13 +82,23 @@ export default function CaseReviewPanel({
         }
       }
 
-      function updateCreditTotal(newTotal: number) {
-        scoreSetter(newTotal);
+      function updateCreditTotal(creditAdjustment: number, direction: boolean) {
         if (playerData) {
-          let dataToUpdate = playerData;
+          let newTotal: number = playerData.player_credits;
+          if (direction) {
+            //add credits
+            newTotal += creditAdjustment;
+          } else {
+            //minus credits
+            if (newTotal - creditAdjustment <= 0) {
+              newTotal = 0;
+            } else {
+              newTotal -= creditAdjustment;
+            }
+          }
+          let dataToUpdate = { ...playerData };
           dataToUpdate.player_credits = newTotal;
           setPlayerData(dataToUpdate);
-          saveLocalData(dataToUpdate);
         }
       }
 
@@ -97,26 +107,21 @@ export default function CaseReviewPanel({
           if (personWeighting < 0) {
             //person is bad, negative consequence for wrong decision.
 
-            const newScore = scoreState - wrongAnswer;
             decisionText =
               "ERROR: Non-compliant Citizen incorrectly processed.";
             decisionOutcome = false;
             failSound();
-            if (newScore <= 0) {
-              updateCreditTotal(0);
-            } else {
-              updateCreditTotal(newScore);
-            }
+            updateCreditTotal(wrongAnswer, false);
           } else if (personWeighting > 0) {
             //person is good, positive consequences for right decision
-            updateCreditTotal(scoreState + rightAnswer);
+            updateCreditTotal(rightAnswer, true);
             decisionText =
               "Productive Citizen identified & processed accurately.";
             decisionOutcome = true;
             successSound();
           } else {
             //person is neutral (0) so no negative or positive consequences
-            updateCreditTotal(scoreState + neutralAnswer);
+            updateCreditTotal(neutralAnswer, true);
             decisionText = "Average Citizen processed.";
             decisionOutcome = true;
             successSound();
@@ -125,33 +130,25 @@ export default function CaseReviewPanel({
         case "reeducate":
           if (personWeighting < 0) {
             //person is bad, positive consequence for right decision.
-            updateCreditTotal(scoreState + rightAnswer);
+            updateCreditTotal(rightAnswer, true);
             decisionText = "Non-compliant Citizen sent to Re-education";
             decisionOutcome = true;
             successSound();
           } else if (personWeighting > 0) {
             console.log("reeducate good person");
             //person is good, negative consequences for wrong deision
-            const newScore = scoreState - wrongAnswer;
             decisionText = "ERROR: Productive Citizen incorrectly processed.";
             decisionOutcome = false;
             failSound();
-            if (newScore <= 0) {
-              updateCreditTotal(0);
-            } else {
-              updateCreditTotal(newScore);
-            }
+            updateCreditTotal(wrongAnswer, false);
+            
           } else {
             //person is neutral (0) so negative consequence for bad decision
-            const newScore = scoreState - wrongAnswer;
             decisionText = "ERROR: Average Citizen incorrectly processed.";
             decisionOutcome = false;
             failSound();
-            if (newScore <= 0) {
-              updateCreditTotal(0);
-            } else {
-              updateCreditTotal(newScore);
-            }
+            updateCreditTotal(wrongAnswer, false);
+            
           }
           break;
 
@@ -247,10 +244,15 @@ export default function CaseReviewPanel({
             </div>
             <div className="passes-container">
               <div>
-                <DoorOpen />
+                <DoorOpen
+                  tabIndex={0}
+                  data-tooltip-id="item-desc"
+                  data-tooltip-content="A RecPass is needed to visit District 8."
+                />
                 <div className="recreation-pass-container">
                   <div
                     data-tooltip-id="item-desc"
+                    tabIndex={0}
                     data-tooltip-content={recPassDesc}
                     className="recreation-pass badge"
                   >
@@ -267,13 +269,18 @@ export default function CaseReviewPanel({
                 </div>
               </div>
               <div>
-                <MapPinned />
+                <MapPinned
+                  tabIndex={0}
+                  data-tooltip-id="item-desc"
+                  data-tooltip-content="Authorized to visit these Districts (due to occupation/other)"
+                />
                 <div className="location-pass-container ">
                   {transcript.authorizedLocations.map((loc) => {
                     const tooltipText = "District " + loc;
                     return (
                       <div
                         key={loc}
+                        tabIndex={0}
                         className="badge"
                         data-tooltip-id="item-desc"
                         data-tooltip-content={tooltipText}
@@ -285,13 +292,18 @@ export default function CaseReviewPanel({
                 </div>
               </div>
               <div>
-                <Backpack />
+                <Backpack
+                  tabIndex={0}
+                  data-tooltip-id="item-desc"
+                  data-tooltip-content="Items found on interviewee."
+                />
                 <div className="location-pass-container ">
                   {transcript.items.map((item) => {
                     return (
                       <div
                         className="badge"
                         key={uuidv4()}
+                        tabIndex={0}
                         data-tooltip-id="item-desc"
                         data-tooltip-content={item.description}
                       >
@@ -304,9 +316,9 @@ export default function CaseReviewPanel({
               </div>
             </div>
 
-            <div id="transcript-close-button" onClick={closeTranscript}>
+            <button id="transcript-close-button" onClick={closeTranscript}>
               <X />
-            </div>
+            </button>
           </div>
           <div
             id="tutorial-step-11"

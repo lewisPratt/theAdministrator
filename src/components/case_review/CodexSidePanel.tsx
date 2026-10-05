@@ -41,7 +41,7 @@ export default function CodexSidePanel({
             dealt with accordingly.
           </li>
           <li>
-            <span className='codex-section-title'>Section 3 :</span> Citizens observed behaviour during interview will
+            <span className='codex-section-title'>Section 3 :</span> Citizens behaviour during interview will
             factor into Administrators final decision.
           </li>
           <li>
@@ -49,7 +49,6 @@ export default function CodexSidePanel({
             into Administrators final decision.
           </li>
         </ol>
-        <p>Once you have accumulated 1000 Credits you can end your shift and exchange Credits for recreation vouchers.</p>
          <button
         onClick={() => {
           codexStateSetter(false);

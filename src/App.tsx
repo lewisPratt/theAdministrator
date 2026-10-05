@@ -47,11 +47,8 @@ function App() {
   const [playerData, setPlayerData] = useState<playerDataShape | null>(null);
   const [playerUnlocks, setPlayerUnlocks] = useState<string[] | null>(null);
   const [loadingState, _setLoadingState] = useState<boolean>(false);
-  // const [workDes, setWorkDes] = useState<boolean>(false);
-  // const [transcriptRev, setTranscriptRev] = useState<boolean>(false);
-  const [scoreState, setScoreState] = useState<number>(
-   (playerData ? playerData.player_credits : 0) ,
-  );
+
+  const [scoreState, setScoreState] = useState<number>(playerData ? playerData.player_credits :  0);
   const [_instructionsPrompt, setInstructionsPrompt] = useState<boolean>(true);
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
   const [_terminalLoaded, setTerminalLoaded] = useState<boolean>(false);

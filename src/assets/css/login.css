@@ -84,7 +84,7 @@ INTERACTIVE PSEUDO CLASSES
 }
 #login-choice-container{
    
-    background-color:black;
+    background-color:rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;

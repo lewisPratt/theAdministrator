@@ -56,10 +56,12 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
               
 
       } else {
+        //returning player, load saved data
         const parsedPlayerData: playerDataShape = JSON.parse(savedData);
         if (parsedPlayerData.player_name === enteredName) {
           setPlayerData(JSON.parse(savedData));
-                navigate("/Welcome");
+          // setScoreState(parsedPlayerData.player_credits)
+          navigate("/Welcome");
 
         } else {
           const parsedData : playerDataShape= JSON.parse(savedData)

@@ -15,15 +15,15 @@ export default function CaseListItem({
   return (
     <>
     {currentTranscript &&
-    <li
+    <button
       className={(currentTranscript.bonusCase ? "bonus-case ":"")+(identifier === currentTranscript.identifier ? "current-selected-item ": "") + (currentTranscript.processed && !currentTranscript.decisionOutcome ? "negative-processed-item" :"")+" transcript-list-item "+ (currentTranscript.processed && currentTranscript.decisionOutcome ? "positive-processed-item":"" ) }
       key={currentTranscript.interviewee.firstName + currentTranscript.age}
       onClick={() => openTranscript(currentTranscript)}
     >
-      <span>{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</span>
-      <span>{currentTranscript.occupation.name}</span>
+      <span>{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</span>  -  
+      <span>{currentTranscript.occupation.name.slice(0,10)}</span>
       <span>{currentTranscript.bonusCase === true ? <FolderTree data-tooltip-id="extra-case-tooltip" data-tooltip-content="Bonus case from perk." /> : ""}</span>
-    </li>}
+    </button>}
     </>
   );
 }
