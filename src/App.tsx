@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, HashRouter, useLocation } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import TranscriptRev from "./components/case_review/CaseReview";
 import "./assets/css/App.css";
 import "./assets/css/tutorial.css";
@@ -9,17 +9,13 @@ import { LoaderCircle } from "lucide-react";
 import UpgradeShop from "./components/upgrade_shop/UpgradeShop";
 import CommandCentre from "./components/terminal/Terminal";
 import Login from "./components/login/Login";
-import { ScoreContext } from "./context_providers/ScoreContext";
 import { AdminContext } from "./context_providers/AdminContext";
 import Inbox from "./components/inbox/Inbox";
 import CurrentSlug from "./components/footer/CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
-import { UnlocksContext } from "./context_providers/unlocksContext";
 import {
-  type unlockContextShape,
   type currentSlugShape,
   type adminContextShape,
-  type scoreContextShape,
   type errorStateShape,
   type tutorialContextShape,
   type tutorialStateShape,
@@ -40,16 +36,13 @@ import TutorialOverlay from "./components/tutorial/TutorialOverlay";
 import { createPortal } from "react-dom";
 import NavBar from "./components/nav/NavBar";
 import { PlayerContext } from "./context_providers/PlayerContext";
-import { newPlayerData } from "./models/newPlayerData";
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
   const [playerData, setPlayerData] = useState<playerDataShape | null>(null);
-  const [playerUnlocks, setPlayerUnlocks] = useState<string[] | null>(null);
   const [loadingState, _setLoadingState] = useState<boolean>(false);
 
-  const [scoreState, setScoreState] = useState<number>(playerData ? playerData.player_credits :  0);
-  const [_instructionsPrompt, setInstructionsPrompt] = useState<boolean>(true);
+  const [_instructionsPrompt] = useState<boolean>(true);
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
   const [_terminalLoaded, setTerminalLoaded] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<string>("");
@@ -60,13 +53,9 @@ function App() {
 
   const playerContextValue: playerContextShape = { playerData, setPlayerData };
   const adminContextValue: adminContextShape = { adminName, setAdminName };
-  const unlocksContextValue: unlockContextShape = {
-    playerUnlocks,
-    setPlayerUnlocks,
-  };
+
 
   const errorStateValue: errorStateShape = { errorState, setErrorState };
-  const scoreContextValue: scoreContextShape = { scoreState, setScoreState };
   const tutorialContextValue: tutorialContextShape = {
     tutorialState,
     setTutorialState,
@@ -104,8 +93,6 @@ function App() {
                 <CurrentSlugContext value={currentSlugContextValue}>
                   <AdminContext value={adminContextValue}>
                     <PlayerContext value={playerContextValue}>
-                      <ScoreContext value={scoreContextValue}>
-                        <UnlocksContext value={unlocksContextValue}>
                           <TutorialContext value={tutorialContextValue}>
                             {tutorialState.tutorialActive &&
                               createPortal(<TutorialOverlay />, document.body)}
@@ -154,8 +141,6 @@ function App() {
                               <CurrentSlug pageName={currentSlug} />
                             </Footer>
                           </TutorialContext>
-                        </UnlocksContext>
-                      </ScoreContext>
                     </PlayerContext>
                   </AdminContext>
                 </CurrentSlugContext>

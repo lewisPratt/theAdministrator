@@ -5,11 +5,10 @@ import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import AvailableCommandsList from "./AvailableCommandsList";
 import { Tooltip } from "react-tooltip";
 import { playSound } from "react-sounds";
-import type { CommandInputProps } from "../../interfaces/interfaces";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 
-export default function CommandInput({ adminNameSetter }: CommandInputProps) {
+export default function CommandInput() {
   const [showCommands, setShowCommands] = useState<boolean>(false);
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { setErrorState } = useContext(ErrorContext);
@@ -43,7 +42,6 @@ export default function CommandInput({ adminNameSetter }: CommandInputProps) {
           resetInput(e);
           break;
         case "nav.logout":
-          adminNameSetter("");
           navigate("/Goodbye");
           break;
         case "nav.personal":

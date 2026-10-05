@@ -15,14 +15,12 @@ import { playSound } from "react-sounds";
 import { UnlocksContext } from "../../context_providers/unlocksContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { saveLocalData } from "../../assets/utils/helpers";
+
 //set to 1 to show debug info on weighting
 const debug: number = 0;
 
 export default function CaseReviewPanel({
   transcript,
-  scoreSetter,
-  scoreState,
   reviewTranscriptSetter,
   selectedSetter,
   decisionSetter,
@@ -56,7 +54,6 @@ export default function CaseReviewPanel({
   }
   function handleDecision(e: React.MouseEvent<HTMLButtonElement>) {
     if (transcript) {
-      console.log(scoreState);
       const decision = e.currentTarget.dataset.decision;
       const personWeighting: number = transcript.overallWeighting;
       let decisionText = "";

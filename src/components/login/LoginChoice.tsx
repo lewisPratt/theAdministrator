@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 import { useContext, type Dispatch, type SetStateAction } from "react";
 import type { playerDataShape } from "../../interfaces/interfaces";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface loginChoiceProps {
   loginChoiceData: loginChoiceShape;

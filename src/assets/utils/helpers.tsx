@@ -13,11 +13,11 @@ export function capitalizeFirstLetter(val: string) {
 
 
 
-export function getUnlockDetails(unlocked : string[] | null) :UpgradeShape[]{
+export function getUnlockDetails(playerData : playerDataShape | null) :UpgradeShape[]{
   
   let voucherArray :UpgradeShape[] =[]
-  if(unlocked){
-  unlocked.forEach(unlock => {
+  if(playerData){
+  playerData.player_unlocks.forEach(unlock => {
     if(allUpgrades[unlock]){
       voucherArray.push(allUpgrades[unlock])
     }

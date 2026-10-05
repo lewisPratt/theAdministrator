@@ -3,7 +3,6 @@ import type { summaryProps } from "../../interfaces/interfaces";
 export default function CaseReviewSummary({
   efficiency,
   interviewCount,
-  targetState,
   startNewShift,
 }: summaryProps) {
   let efficiencyText: string = "";
@@ -33,8 +32,8 @@ export default function CaseReviewSummary({
           efficiency.
         </p>
         <p>{efficiencyText}</p>
-        <button onClick={()=>{startNewShift('new')}}>Start next shift designation</button>
-        {targetState && <button onClick={()=>{startNewShift('end')}}>Visit recreation voucher shop</button>}
+        <button onClick={()=>{startNewShift('new')}}>Start next shift</button>
+        <button onClick={()=>{startNewShift('end')}}>Visit Upgrade Terminal</button>
       </div>
     </div>
   );

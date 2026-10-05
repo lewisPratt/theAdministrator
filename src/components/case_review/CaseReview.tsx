@@ -7,7 +7,6 @@ import { person } from "../../models/person";
 import type {
   reviewShape,
   reviewsCompleteShape,
-  scoreContextShape,
 } from "../../interfaces/interfaces";
 import { useNavigate } from "react-router-dom";
 import SearchConsole from "./SearchInfo";
@@ -15,8 +14,6 @@ import { Badge, LoaderCircle } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "../DebugTools";
 import CodexSidePanel from "./CodexSidePanel";
-import { ScoreContext } from "../../context_providers/ScoreContext";
-import { UnlocksContext } from "../../context_providers/unlocksContext";
 import { getUnlockDetails } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css";
@@ -26,6 +23,7 @@ import type { TooltipRefProps } from "react-tooltip";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { useRef } from "react";
 import TutorialLogic from "../tutorial/TutorialLogic";
+import { PlayerContext } from "../../context_providers/PlayerContext";
 
 export default function TranscriptRev() {
   const [availableTranscripts, setAvailableTranscripts] = useState<
@@ -40,14 +38,12 @@ export default function TranscriptRev() {
   const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID);
   const [generatePeople, setGeneratePeople] = useState<boolean>(false);
   const [codexState, setCodexState] = useState<boolean>(false);
-  const [targetState, setTargetState] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(true);
-  const { scoreState, setScoreState }: scoreContextShape =
-    useContext(ScoreContext);
+
   const { tutorialState } = useContext(TutorialContext);
-  const { playerUnlocks } = useContext(UnlocksContext);
+  const {playerData} = useContext(PlayerContext)
   const navigate = useNavigate();
-  const voucherDetails = getUnlockDetails(playerUnlocks);
+  const voucherDetails = getUnlockDetails(playerData);
   const tooltipRef1 = useRef<TooltipRefProps>(null);
   //////////////////////
   // set debug to 1 to see debug tools
@@ -70,9 +66,7 @@ export default function TranscriptRev() {
     //all avaialble transcripts have been processed
     if (reviewObj.count === availableTranscripts.length) {
       effectiveness = Math.round((reviewObj.positive / reviewObj.count) * 100);
-      if (scoreState >= 200) {
-        setTargetState(true);
-      }
+     
 
       setReviewsComplete({
         numberComplete: reviewObj.count,
@@ -85,11 +79,11 @@ export default function TranscriptRev() {
     let transcriptsArray: reviewShape[] = [];
     let transcriptCount = Math.floor(Math.random() * 10) + 3;
     let originalCount = transcriptCount;
-    if (playerUnlocks) {
-      if (playerUnlocks.includes("voucher4")) {
+    if (playerData) {
+      if (playerData.player_unlocks.includes("voucher4")) {
         transcriptCount += 3;
       }
-      if (playerUnlocks.includes("voucher5")) {
+      if (playerData.player_unlocks.includes("voucher5")) {
         transcriptCount += 2;
       }
     }
@@ -119,7 +113,7 @@ export default function TranscriptRev() {
       setLoadingState(true);
       setTimeout(startNewShift, 1000);
     } else if (reason === "end") {
-      setTimeout(endShift, 1000);
+      endShift();
     }
   }
   function startNewShift() {
@@ -131,7 +125,7 @@ export default function TranscriptRev() {
   }
   function endShift() {
     //need to workout loop for end of shift
-    navigate("/VoucherShop");
+    navigate("/UpgradeShop");
   }
 
   return (
@@ -152,12 +146,12 @@ export default function TranscriptRev() {
               efficiency={reviewsComplete.effectivenessRating}
               interviewCount={reviewsComplete.numberComplete}
               startNewShift={loadNewShift}
-              targetState={targetState}
+              
             />
           )}
 
           <section id="case-review">
-            {playerUnlocks?.includes("voucher10") && <SearchConsole />}
+            {playerData?.player_unlocks.includes("voucher10") && <SearchConsole />}
 
             {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
             <div id="top-container">
@@ -233,8 +227,6 @@ export default function TranscriptRev() {
                 <CaseReviewPanel
                   reviewTranscriptSetter={setCurrentTranscript}
                   transcript={currentTranscript}
-                  scoreSetter={setScoreState}
-                  scoreState={scoreState}
                   decisionSetter={setDecisionMade}
                   selectedSetter={setSelectedListItem}
                 />

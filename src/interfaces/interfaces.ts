@@ -84,9 +84,7 @@ export interface transcriptReviewBoxProps {
   transcript: reviewShape | null;
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
   decisionSetter: Dispatch<SetStateAction<boolean>>;
-  scoreSetter: Dispatch<SetStateAction<number>>;
   selectedSetter: Dispatch<SetStateAction<string>>;
-  scoreState: number;
 }
 export interface nodeShape {
   intensity: number;
@@ -120,9 +118,7 @@ export interface CodexSidePanelProps {
   codexState: boolean;
   codexStateSetter: Dispatch<SetStateAction<boolean>>;
 }
-export interface CommandInputProps {
-  adminNameSetter: Dispatch<SetStateAction<string>>;
-}
+
 export interface emailShape {
   title: string;
   message: JSX.Element;
@@ -155,7 +151,6 @@ export interface transcriptListItemProps {
 export interface summaryProps {
   efficiency: number;
   interviewCount: number;
-  targetState:boolean
   startNewShift:(reason:string)=> void
 }
 

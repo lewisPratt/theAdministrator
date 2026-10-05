@@ -1,8 +1,6 @@
 //REACT IMPORTS
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "../../context_providers/AdminContext";
-import { ScoreContext } from "../../context_providers/ScoreContext";
 import { ChevronRightCircle } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { newPlayerData } from "../../models/newPlayerData";
@@ -26,8 +24,6 @@ export default function Login() {
 const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
 
   //CONTEXTS
-  const { setAdminName } = useContext(AdminContext);
-  const { setScoreState } = useContext(ScoreContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
   let loginStart = false
