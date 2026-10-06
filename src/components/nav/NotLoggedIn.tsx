@@ -16,6 +16,7 @@ export default function NotLoggedIn({ soundControls }: NotLoggedInShape) {
           <p>
             You are not logged in{" "}
             <button
+            aria-label="Login"
               onClick={() => {
                 navigate("/");
               }}

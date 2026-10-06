@@ -16,7 +16,7 @@ function toggleTutorialState(){
 }
 
     return(
-         <button data-tooltip-id="nav-bar-tooltip" data-tooltip-content="Tutorial" id="tutorial-toggle-button" onClick={()=>setTutorialState({tutorialActive: toggleTutorialState(),tutorialStep: 0})}>{playerData?.player_tutorialComplete ? <CircleQuestionMark /> : "Tutorial"}</button>
+         <button aria-label="Open tutorial" data-tooltip-id="nav-bar-tooltip" data-tooltip-content="Tutorial" id="tutorial-toggle-button" onClick={()=>setTutorialState({tutorialActive: toggleTutorialState(),tutorialStep: 0})}>{playerData?.player_tutorialComplete ? <CircleQuestionMark /> : "Tutorial"}</button>
          
     )
 }

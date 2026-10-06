@@ -24,7 +24,7 @@ export default function TutorialEnd() {
   return (
     <div id="tutorial-end-container">
       <p>You finished the tutorial</p>
-      <button autoFocus onClick={endTutorial}>
+      <button aria-label="End tutorial" autoFocus onClick={endTutorial}>
         <X />
       </button>
     </div>

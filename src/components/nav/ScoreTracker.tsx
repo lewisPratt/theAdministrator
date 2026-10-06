@@ -14,6 +14,7 @@ export default function ScoreTracker() {
   return (
     <>
       <button
+      aria-label="Visit upgrade shop"
         id="tutorial-step-12"
         onClick={() => {
           navigate("/UpgradeShop");

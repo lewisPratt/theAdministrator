@@ -14,7 +14,7 @@ export default function SoundControl({mobile}: soundControlPorps) {
  const soundStatus = enabled ? 'on' : 'off'
   return (
     <div id="tutorial-step-4" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 4 ? "tutorial-highlight":"")}>
-    <button  id='sound-control-desktop' className={(mobile ? 'mobile-nav-element': 'desktop-nav-element')} data-tooltip-id='nav-bar-tooltip' data-tooltip-content={'Sound is '+soundStatus} 
+    <button aria-label="Toggle sound" id='sound-control-desktop' className={(mobile ? 'mobile-nav-element': 'desktop-nav-element')} data-tooltip-id='nav-bar-tooltip' data-tooltip-content={'Sound is '+soundStatus} 
      onClick={ enabled ? () => setEnabled(!enabled) : () => setEnabled(!enabled)}
     ><a id="tutorial-step-4"></a>
 

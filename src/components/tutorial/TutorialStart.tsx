@@ -19,8 +19,8 @@ const {setTutorialState} = useContext(TutorialContext)
     return (
         <div id="tutorial-start-container">
             <p>Would you like to complete a quick tutorial?</p>
-            <button autoFocus onClick={startTutorial}><Check /></button>
-            <button onClick={()=>setTutorialState({tutorialActive:false,tutorialStep:0})}><X /></button>
+            <button aria-label="Start tutorial" autoFocus onClick={startTutorial}><Check /></button>
+            <button aria-label="Cancel tutorial" onClick={()=>setTutorialState({tutorialActive:false,tutorialStep:0})}><X /></button>
 
         </div>
     )

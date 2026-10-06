@@ -325,7 +325,7 @@ export default function CaseReviewPanel({
               </div>
             </div>
 
-            <button id="transcript-close-button" onClick={closeTranscript}>
+            <button aria-label="Close case details" id="transcript-close-button" onClick={closeTranscript}>
               <X />
             </button>
           </div>

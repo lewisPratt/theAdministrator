@@ -143,7 +143,7 @@ export default function Inbox() {
                   })}
                 {refreshing && <LoaderCircle className="loader" />}
                 <li id="tutorial-step-18" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 18 ? "tutorial-highlight":"")+" message-check-button"} onClick={startRefresh}>
-                  Refresh Inbox
+                  Check for mail
                 </li>
               </ul>
             </div>

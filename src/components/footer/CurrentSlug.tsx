@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import { AdminContext } from "../../context_providers/AdminContext"
 import type { CurrentSlugProps } from "../../interfaces/interfaces"
 import { TutorialContext } from "../../context_providers/TutorialContext"
 import { PlayerContext } from "../../context_providers/PlayerContext"

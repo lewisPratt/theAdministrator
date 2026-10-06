@@ -102,6 +102,7 @@ export default function CommandInput() {
         ></input>
 
         <button
+        aria-label="Submit navigation command"
           id="nav-submit-button"
           type="submit"
           data-tooltip-id="nav-terminal-tooltip"
@@ -110,6 +111,7 @@ export default function CommandInput() {
           <ChevronRightCircle size={20} />
         </button>
         <button
+        aria-label="Show available commands"
           id="tutorial-step-6"
           className={
             (tutorialState.tutorialActive && tutorialState.tutorialStep === 6

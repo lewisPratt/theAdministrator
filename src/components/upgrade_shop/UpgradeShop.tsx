@@ -130,6 +130,7 @@ export default function UpgradeShop() {
           </div>
           <div id="personal-record-button">
             <button
+            
               id="tutorial-step-14"
               className={
                 tutorialState.tutorialActive &&
@@ -158,6 +159,7 @@ export default function UpgradeShop() {
                 return (
                   <li>
                     <button
+                    aria-label="Show upgrade details"
                       key={upgrade[0]}
                       className={
                         "upgrade-box " +
@@ -193,7 +195,7 @@ export default function UpgradeShop() {
 
                         {!playerData?.player_unlocks.includes(upgrade[0]) && (
                           <div className="purchase-button-container">
-                            <button onClick={purchaseUpgrade}>
+                            <button aria-label="Buy upgrade" onClick={purchaseUpgrade}>
                               <CreditIcon className="custom-icon" />
                             </button>
                           </div>

@@ -59,7 +59,7 @@ export default function CodexSidePanel({
           codexStateSetter(false);
         }}
       >
-        Acknowledge
+        Close rules
       </button>
       </section>
      
