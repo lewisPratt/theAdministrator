@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../../context_providers/AdminContext";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import NotLoggedIn from "../nav/NotLoggedIn";
-import ActivityGraph from "./ActivityGraph";
+import ActivityGraph from "../statistics/ActivityGraph";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import "../../assets/css/terminal.css";
@@ -23,12 +23,11 @@ export default function CommandCentre() {
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { setErrorState } = useContext(ErrorContext);
   const { tutorialState } = useContext(TutorialContext);
-  const {playerData} = useContext(PlayerContext)
+  const { playerData } = useContext(PlayerContext);
   const navigate = useNavigate();
 
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-  
   //turn off loading indicator after set interval
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
@@ -70,6 +69,9 @@ export default function CommandCentre() {
         case "nav.terminal":
           navigate("/Terminal");
           break;
+        case "nav.stats":
+          navigate("/Stats");
+          break;
         default:
           setErrorState("Command not recognized: " + command);
           setLeaveReq(false);
@@ -78,13 +80,12 @@ export default function CommandCentre() {
       }
     }
   }
-  console.log(playerData)
+  console.log(playerData);
 
   return (
     <>
-  
-     <TutorialLogic loadingState={loadingState} tooltipRef={tooltipRef1}/>
-     
+      <TutorialLogic loadingState={loadingState} tooltipRef={tooltipRef1} />
+
       {loadingState ? (
         <p>
           <LoaderCircle className="loader" />
@@ -94,10 +95,20 @@ export default function CommandCentre() {
           <section id="welcome-section">
             {playerData ? (
               <>
-                <h1>Welcome Administrator {playerData.player_name}.</h1>
-                <form id="tutorial-step-2"  className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 2 ? "tutorial-highlight":"")} onSubmit={handleCommand} method="post">
+                <h1>Welcome Administrator.</h1>
+                <p>Please navigate to your required destination below.</p>
+                <form
+                  id="tutorial-step-2"
+                  className={
+                    tutorialState.tutorialActive &&
+                    tutorialState.tutorialStep === 2
+                      ? "tutorial-highlight"
+                      : ""
+                  }
+                  onSubmit={handleCommand}
+                  method="post"
+                >
                   <div id="command-centre-input-container">
-                    
                     <input
                       autoFocus
                       type="text"
@@ -112,52 +123,52 @@ export default function CommandCentre() {
                     <button id="command-centre-submit-button">
                       <ChevronRightCircle size={28} />
                     </button>
-                    
                   </div>
                 </form>
 
                 {leaveReq && <LeaveReq />}
 
-                <div id="tutorial-step-1" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 1 ? "tutorial-highlight":"")+ " commands-container"} >
+                <div
+                  id="tutorial-step-1"
+                  className={
+                    (tutorialState.tutorialActive &&
+                    tutorialState.tutorialStep === 1
+                      ? "tutorial-highlight"
+                      : "") + " commands-container"
+                  }
+                >
                   <div id="commands-header">
-                    <div>
-                      <Code />
-                    </div>{" "}
-                    <div id="header-div" >
-                      
-                      <h6  className=" commands-heading">
-                        Nav Commands:
-                        </h6>
-                      
-                    </div>
-                    <div>
-                      <Braces />
-                    </div>
+                    <h6 className="commands-heading">Commands</h6>
                   </div>
-                  <div className="command-container">
-                    <p>Review interview transcripts.</p>
-                    <div></div> <p>nav.review</p>
-                  </div>
-                  <div className="command-container">
-                    <p>Upgrade Terminal</p> <p>nav.upgrade</p>
-                  </div>
-                  <div className="command-container">
-                    <p>Inbox</p>  <p>nav.inbox</p>
-                  </div>
-                  <div className="command-container">
-                    <p>Request leave.</p>
-                     <p>request.leave</p>
-                  </div>
-                  <div className="command-container">
-                    <p>Human Resources</p>
-                     <p>nav.hr</p>
-                  </div>
-                  <div className="command-container">
-                    <p>Logout.</p>
-                    <p>nav.logout</p>
-                  </div>
+                  <ol className="commands-list">
+                    <li className="command-row">
+                      <p>Review open cases</p>
+                      <p>nav.review</p>
+                    </li>
+                    <li className="command-row">
+                      <p>Upgrade Terminal</p> <p>nav.upgrade</p>
+                    </li>
+                    <li className="command-row">
+                      <p>Inbox</p> <p>nav.inbox</p>
+                    </li>
+                    <li className="command-row">
+                      <p>Request leave</p>
+                      <p>request.leave</p>
+                    </li>
+                    <li className="command-row">
+                      <p>Human Resources</p>
+                      <p>nav.hr</p>
+                    </li>
+                    <li className="command-row">
+                      <p>Statistics</p>
+                      <p>nav.stats</p>
+                    </li>
+                    <li className="command-row">
+                      <p>Logout</p>
+                      <p>nav.logout</p>
+                    </li>
+                  </ol>
                 </div>
-                
               </>
             ) : (
               <>
@@ -165,10 +176,7 @@ export default function CommandCentre() {
               </>
             )}
           </section>
-          <section id="city-stats-section"></section>
-          <section>
-            <ActivityGraph />
-          </section>
+          
         </>
       )}
     </>

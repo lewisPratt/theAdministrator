@@ -47,6 +47,9 @@ export default function CommandInput() {
           navigate("/PersonalRecord");
           resetInput(e);
           break;
+        case "nav.stats":
+          navigate("/Stats");
+          break;
         default:
           resetInput(e);
           setErrorState("Command not recognized: " + command);

@@ -3,6 +3,7 @@
 }
 .commands-heading{
     color:black;
+  
 }
 #command-centre-input {
   height: 40px;
@@ -27,50 +28,7 @@
   align-items: center;
   margin: 50px 0 10px 0;
 }
-/*
-ACTIVITY GRAPH
-*/
-#activity-graph-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px auto 0 auto;
-  flex-wrap: wrap;
-  width: 80%;
-}
 
-.node {
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  margin: 5px;
-  transition: .6s;
-}
-
-.intensity-1 {
-  background-color: #507450
-}
-
-.intensity-2 {
-  background-color: #a2eaa2;
-}
-
-.intensity-3 {
-  background-color: #494949;
-}
-
-#graph-key {
-  flex: 1;
-  flex-basis: 100%;
-}
-
-#key-element-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .6rem;
-  gap: 10px;
-
-}
 #command-input-container {
   display: flex;
   flex-direction: row;
@@ -78,67 +36,54 @@ ACTIVITY GRAPH
   align-items: center;
 }
 
-
-
-.command-container {
-  border: 1px solid black;
+.command-row {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
-  border-bottom: none;
-  background-color: #a2eaa2;
-  margin-top: 5px;
+  margin: 5px;
   font-size: .8rem;
-
+  width:90%;
 }
 
-.command-container p,
-#commands-header p {
-  color: black;
-}
 
-#commands-header {
-  gap: 10px;
-  height: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: black;
-}
 
 .commands-container {
-  width: 90%;
-  margin-top: 50px;
-}
-
-#commands-header #header-div {
-  flex: 1;
-  font-family: 'Sixtyfour', monospace;
-}
-
-#commands-header #header-div p {
-  font-family: 'Sixtyfour', monospace;
-  text-transform: uppercase;
-  font-size: .8rem;
-  ;
+  width: 50%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #a2eaa2;
+    margin: 20px auto;
 }
 
 
-#commands-header div {
+
+
+#commands-header {
   background-color: #a2eaa2;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 5px;
-
+  width:100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.commands-container:last-child {
-  border-bottom: 1px solid black;
+#commands-header h6{
+    margin-left:10px;
 }
-
 #leave-req-p {
   color: #a2eaa2;
   text-decoration: underline;
+}
+.commands-list{
+    padding:0;
+    margin:0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -36,6 +36,7 @@ import TutorialOverlay from "./components/tutorial/TutorialOverlay";
 import { createPortal } from "react-dom";
 import NavBar from "./components/nav/NavBar";
 import { PlayerContext } from "./context_providers/PlayerContext";
+import Stats from "./components/statistics/Stats";
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
@@ -120,6 +121,10 @@ function App() {
                                 <Route
                                   path="PersonalRecord"
                                   element={<PersonalRecord />}
+                                />
+                                <Route
+                                  path="Stats"
+                                  element={<Stats />}
                                 />
                                 <Route path="/" element={<Login />} />
                                 <Route

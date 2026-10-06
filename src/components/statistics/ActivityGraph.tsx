@@ -12,7 +12,7 @@ export default function ActivityGraph() {
   useEffect(() => {
     for (let index = 0; index < 300; index++) {
       nodes.push({
-        identifier: uuid(),
+        identifier: uuid().slice(0,8),
         intensity: intensities[Math.floor(Math.random() * intensities.length) ],
       });
     }
@@ -43,12 +43,14 @@ export default function ActivityGraph() {
   return (
     <>
       <div id="activity-graph-container">
+            <div className="activity-grid-header"><h2>Administrator Activity Tracker</h2></div>
+
         {graphNodes.map((thisNode) => {
           return (
             <div
               key={thisNode.identifier}
               data-tooltip-id="activity-tooltip"
-              data-tooltip-content={"Administrator #" + thisNode.identifier}
+              data-tooltip-content={"Administrator #" + thisNode.identifier + (thisNode.intensity === 1 ? " Under Scrutiny": "")+ (thisNode.intensity === 2 ? " Reviewing case files" : "")+ (thisNode.intensity === 3 ? " Being Assessed" : "")}
               className={
                 "node " +
                 (thisNode.intensity === 1 ? "intensity-1" : "") +
@@ -59,10 +61,12 @@ export default function ActivityGraph() {
           );
         })}
         <div id="graph-key">
+          <div id="key-header"><h2>Key</h2></div>
           <div id="key-element-container">
-            <p><div className="node intensity-1"></div> Under Scrutiny</p>
-            <p><div className="node intensity-2"></div> Reviewing case files.</p>
-            <p><div className="node intensity-3"></div> In Review</p>
+            
+            <div className="node intensity-1"></div> <p>Under Scrutiny</p>
+            <div className="node intensity-2"></div><p>Reviewing case files.</p>
+            <div className="node intensity-3"></div><p>Being Assessed</p>
           </div>
         </div>
         <Tooltip id="activity-tooltip" className="custom-tooltip" />

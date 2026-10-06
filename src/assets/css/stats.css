@@ -1,0 +1,72 @@
+/*
+ACTIVITY GRAPH
+*/
+.activity-grid-header{
+    background-color:#a2eaa2;
+    flex-basis:100%;
+    margin:0 5px;
+}
+.activity-grid-header h2{
+    color:black;
+    font-size:.8rem;
+}
+#activity-graph-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto 0 auto;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.node {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    transition: .6s;
+}
+
+.intensity-1 {
+    background-color: #507450
+}
+
+.intensity-2 {
+    background-color: #a2eaa2;
+}
+
+.intensity-3 {
+    background-color: #494949;
+}
+
+#graph-key {
+    flex: 1;
+    flex-basis: 100%;
+    padding:0 5px;
+}
+
+#key-element-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .6rem;
+    gap: 10px;
+}
+#key-header{
+    background-color: #a2eaa2;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+#key-header h2{
+    color:black;
+    font-size:.8rem;
+    margin-left:20px;
+}
+@media (min-width:1200px) {
+    .node {
+        width: 50px;
+        height: 50px;
+    }
+    .activity-grid-header h2{
+    font-size:1.5rem;
+}
+}
