@@ -4,10 +4,15 @@ import {FolderTree } from "lucide-react";
 export default function CaseListItem({
   currentTranscript,
   reviewTranscriptSetter,selectedSetter,
-  identifier
+  identifier,
+  codexState,
+  codexStateSetter
 }: transcriptListItemProps) {
     
   function openTranscript(transcript: reviewShape) {
+    if(codexState){
+      codexStateSetter(false)
+    }
     selectedSetter(transcript.identifier)
     reviewTranscriptSetter(transcript);
   }

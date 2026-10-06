@@ -137,10 +137,7 @@ export default function TranscriptRev() {
         </p>
       ) : (
         <>
-          <CodexSidePanel
-            codexState={codexState}
-            codexStateSetter={setCodexState}
-          />
+         
           {reviewsComplete && (
             <CaseReviewSummary
               efficiency={reviewsComplete.effectivenessRating}
@@ -178,6 +175,8 @@ export default function TranscriptRev() {
                         currentTranscript={listItem}
                         identifier={selectedListItem}
                         selectedSetter={setSelectedListItem}
+                        codexState={codexState}
+                        codexStateSetter={setCodexState}
                       />
                     ))}
                   </ol>
@@ -223,6 +222,9 @@ export default function TranscriptRev() {
                   </button>
                 </div>
               )}
+              {codexState && 
+                <CodexSidePanel codexStateSetter={setCodexState} codexState={codexState} currentTranscriptSetter={setCurrentTranscript} selectedSetter={setSelectedListItem}/>
+              }
               {currentTranscript ? (
                 <CaseReviewPanel
                   reviewTranscriptSetter={setCurrentTranscript}
@@ -231,7 +233,9 @@ export default function TranscriptRev() {
                   selectedSetter={setSelectedListItem}
                 />
               ) : (
-                <NoCurrentTranscript />
+                <>
+                 {!codexState && !currentTranscript && <NoCurrentTranscript />}
+                 </>
               )}
               <Tooltip id="extra-case-tooltip" className="custom-tooltip" />
             </div>
