@@ -137,7 +137,7 @@ export default function CommandCentre() {
                   }
                 >
                   <div id="commands-header">
-                    <h6 className="commands-heading">Commands</h6>
+                    <h2 className="commands-heading">Commands</h2>
                   </div>
                   <ol className="commands-list">
                     <li className="command-row">

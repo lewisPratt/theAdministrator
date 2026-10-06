@@ -35,6 +35,7 @@ export class person {
   gender: string;
   identifier: string;
   bonusCase: boolean
+  rewardEarned: number
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -64,6 +65,7 @@ export class person {
     );
     this.identifier = uuidv4();
     this.bonusCase = false
+    this.rewardEarned = 0
   }
 
   private generateGender() {

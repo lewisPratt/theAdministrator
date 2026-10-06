@@ -3,6 +3,8 @@
 }
 .commands-heading{
     color:black;
+    font-size:.8rem;
+     margin-left:10px;
   
 }
 #command-centre-input {
@@ -71,9 +73,7 @@
   align-items: center;
 }
 
-#commands-header h6{
-    margin-left:10px;
-}
+
 #leave-req-p {
   color: #a2eaa2;
   text-decoration: underline;

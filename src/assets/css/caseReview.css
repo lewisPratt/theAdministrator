@@ -6,7 +6,7 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  flex-basis: 700px;
+  flex:1;
   margin: 0 0 10px 10px;
 }
 
@@ -95,7 +95,7 @@
 
 .decision-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
 
@@ -111,16 +111,6 @@
 
 }
 
-.decision-container>div:last-child {
-
-  border-right: 0;
-}
-
-.decision-container>div:hover {
-  cursor: pointer;
-  background-color: #a2eaa2;
-  color: black;
-}
 
 #evidence-box {
   display: flex;
@@ -277,8 +267,13 @@
   overflow: hidden;
   padding-bottom: 50px;
   min-height: 600px;
+  justify-content: center;
 }
-
+.case-container{
+  flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 #interviews-list-header {
   list-style: none;
   padding: 10px 0;

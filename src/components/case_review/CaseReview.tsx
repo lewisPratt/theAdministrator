@@ -231,6 +231,8 @@ export default function TranscriptRev() {
                   transcript={currentTranscript}
                   decisionSetter={setDecisionMade}
                   selectedSetter={setSelectedListItem}
+                  transcriptList={availableTranscripts}
+                  setTranscriptList={setAvailableTranscripts}
                 />
               ) : (
                 <>

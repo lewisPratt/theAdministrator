@@ -98,50 +98,54 @@ function App() {
                             {tutorialState.tutorialActive &&
                               createPortal(<TutorialOverlay />, document.body)}
                             <ErrorPage />
+                            <header>
                             <NavBar />
-
-                            <div id="content-container">
-                              <Routes>
-                                <Route
-                                  path="/Welcome"
-                                  element={<WelcomeScreen />}
-                                />
-                                <Route
-                                  path="/HowToPlay"
-                                  element={<HowToPlay />}
-                                />
-                                <Route
-                                  path="/Goodbye"
-                                  element={<GoodbyeScreen />}
-                                />
-                                <Route
-                                  path="/HR"
-                                  element={<HumanResources />}
-                                />
-                                <Route
-                                  path="PersonalRecord"
-                                  element={<PersonalRecord />}
-                                />
-                                <Route
-                                  path="Stats"
-                                  element={<Stats />}
-                                />
-                                <Route path="/" element={<Login />} />
-                                <Route
-                                  path="/Terminal"
-                                  element={<CommandCentre />}
-                                />
-                                <Route
-                                  path="/CaseReview"
-                                  element={<TranscriptRev />}
-                                />
-                                <Route
-                                  path="/UpgradeShop"
-                                  element={<UpgradeShop />}
-                                />
-                                <Route path="/Inbox" element={<Inbox />} />
-                              </Routes>
-                            </div>
+                            </header>
+                              
+                            <main>
+                              <div id="content-container">
+                                <Routes>
+                                  <Route
+                                    path="/Welcome"
+                                    element={<WelcomeScreen />}
+                                  />
+                                  <Route
+                                    path="/HowToPlay"
+                                    element={<HowToPlay />}
+                                  />
+                                  <Route
+                                    path="/Goodbye"
+                                    element={<GoodbyeScreen />}
+                                  />
+                                  <Route
+                                    path="/HR"
+                                    element={<HumanResources />}
+                                  />
+                                  <Route
+                                    path="PersonalRecord"
+                                    element={<PersonalRecord />}
+                                  />
+                                  <Route
+                                    path="Stats"
+                                    element={<Stats />}
+                                  />
+                                  <Route path="/" element={<Login />} />
+                                  <Route
+                                    path="/Terminal"
+                                    element={<CommandCentre />}
+                                  />
+                                  <Route
+                                    path="/CaseReview"
+                                    element={<TranscriptRev />}
+                                  />
+                                  <Route
+                                    path="/UpgradeShop"
+                                    element={<UpgradeShop />}
+                                  />
+                                  <Route path="/Inbox" element={<Inbox />} />
+                                </Routes>
+                              </div>
+                            </main>
                             <Footer>
                               <CurrentSlug pageName={currentSlug} />
                             </Footer>

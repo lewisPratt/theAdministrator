@@ -19,6 +19,7 @@ export interface reviewShape {
   gender: string
   identifier:string
   bonusCase: boolean
+  rewardEarned: number
 }
 
 export interface carryableItemsShape {
@@ -85,6 +86,9 @@ export interface transcriptReviewBoxProps {
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
   decisionSetter: Dispatch<SetStateAction<boolean>>;
   selectedSetter: Dispatch<SetStateAction<string>>;
+  transcriptList: reviewShape[] | null;
+  setTranscriptList: Dispatch<SetStateAction<reviewShape[] | null>>;
+
 }
 export interface nodeShape {
   intensity: number;

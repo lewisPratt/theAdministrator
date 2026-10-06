@@ -1,5 +1,8 @@
 import React, { useContext, useState } from "react";
-import type { transcriptReviewBoxProps } from "../../interfaces/interfaces";
+import type {
+  reviewShape,
+  transcriptReviewBoxProps,
+} from "../../interfaces/interfaces";
 import {
   DoorOpen,
   Backpack,
@@ -24,6 +27,8 @@ export default function CaseReviewPanel({
   reviewTranscriptSetter,
   selectedSetter,
   decisionSetter,
+  transcriptList,
+  setTranscriptList,
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<Boolean>(false);
@@ -82,31 +87,53 @@ export default function CaseReviewPanel({
       function updateCreditTotal(creditAdjustment: number, direction: boolean) {
         if (playerData) {
           let newTotal: number = playerData.player_credits;
-          let decisionOutcome : boolean = false
+          let decisionOutcome: boolean = false;
           if (direction) {
             //add credits
             newTotal += creditAdjustment;
-            decisionOutcome = true
+            decisionOutcome = true;
+            decisionText = "SUCCESS: Citizen processed accurately.";
           } else {
             //minus credits
-            decisionOutcome = false
+            decisionOutcome = false;
+            decisionText = "ERROR: Citizen incorrectly processed.";
             if (newTotal - creditAdjustment <= 0) {
               newTotal = 0;
             } else {
               newTotal -= creditAdjustment;
             }
           }
+
+          //handle the updating of the transcript with the reward earned and the outcome of the decision.
+          if (transcriptList) {
+            let allTranscripts = [...transcriptList];
+            let foundTranscript = allTranscripts.find(
+              (t) => t.identifier === transcript?.identifier,
+            );
+            if (foundTranscript) {
+              foundTranscript.rewardEarned = creditAdjustment;
+              foundTranscript.processed = true;
+              foundTranscript.decision = decisionText;
+              foundTranscript.decisionOutcome = decisionOutcome;
+              setTranscriptList(allTranscripts);
+              //positive
+            }
+          }
+
+          //update playerdata with increase/decrease in credits.
           let dataToUpdate = { ...playerData };
           dataToUpdate.player_credits = newTotal;
-          dataToUpdate.player_stats.cases_complete += 1
-          if(decisionOutcome){
-            dataToUpdate.player_stats.cases_correct += 1 
-            dataToUpdate.player_stats.total_credits_earned += creditAdjustment
-          }else{
-            dataToUpdate.player_stats.cases_failed += 1 
-            if(newTotal - creditAdjustment >= 0){dataToUpdate.player_stats.total_credits_lost += creditAdjustment}
+          dataToUpdate.player_stats.cases_complete += 1;
+          if (decisionOutcome) {
+            dataToUpdate.player_stats.cases_correct += 1;
+            dataToUpdate.player_stats.total_credits_earned += creditAdjustment;
+          } else {
+            dataToUpdate.player_stats.cases_failed += 1;
+            if (newTotal - creditAdjustment >= 0) {
+              dataToUpdate.player_stats.total_credits_lost += creditAdjustment;
+            }
           }
-          
+
           setPlayerData(dataToUpdate);
         }
       }
@@ -115,65 +142,35 @@ export default function CaseReviewPanel({
         case "nfa":
           if (personWeighting < 0) {
             //person is bad, negative consequence for wrong decision.
-
-            decisionText =
-              "ERROR: Non-compliant Citizen incorrectly processed.";
-            decisionOutcome = false;
             failSound();
             updateCreditTotal(wrongAnswer, false);
-          } else if (personWeighting > 0) {
+          } else if (personWeighting >= 0) {
             //person is good, positive consequences for right decision
+            successSound();
             updateCreditTotal(rightAnswer, true);
-            decisionText =
-              "Productive Citizen identified & processed accurately.";
-            decisionOutcome = true;
-            successSound();
-          } else {
-            //person is neutral (0) so no negative or positive consequences
-            updateCreditTotal(neutralAnswer, true);
-            decisionText = "Average Citizen processed.";
-            decisionOutcome = true;
-            successSound();
           }
           break;
         case "reeducate":
           if (personWeighting < 0) {
             //person is bad, positive consequence for right decision.
-            updateCreditTotal(rightAnswer, true);
-            decisionText = "Non-compliant Citizen sent to Re-education";
-            decisionOutcome = true;
             successSound();
-          } else if (personWeighting > 0) {
-            console.log("reeducate good person");
+            updateCreditTotal(rightAnswer, true);
+          } else if (personWeighting >= 0) {
             //person is good, negative consequences for wrong deision
-            decisionText = "ERROR: Productive Citizen incorrectly processed.";
-            decisionOutcome = false;
             failSound();
             updateCreditTotal(wrongAnswer, false);
-            
-          } else {
-            //person is neutral (0) so negative consequence for bad decision
-            decisionText = "ERROR: Average Citizen incorrectly processed.";
-            decisionOutcome = false;
-            failSound();
-            updateCreditTotal(wrongAnswer, false);
-            
           }
           break;
-
         default:
           break;
       }
-      decisionSetter((prev) => !prev);
-      transcript.processed = true;
-      transcript.decision = decisionText;
-      transcript.decisionOutcome = decisionOutcome;
     }
   }
   return (
     <>
       {transcript && (
         <>
+        <div className="case-container">
           <div
             id="tutorial-step-10"
             className={
@@ -251,6 +248,16 @@ export default function CaseReviewPanel({
             <div className="transcript-text">
               <p>{transcript.personFlavour}</p>
             </div>
+            {/* show reward earned from making decision on this case. conditional on whether the case has been procesed */}
+            {transcript.processed && (
+              <div>
+                <p>{transcript.decision}</p>
+                <p>
+                  Credits:{transcript.decisionOutcome ? "+" : "-"}
+                  {transcript.rewardEarned}
+                </p>
+              </div>
+            )}
             <div className="passes-container">
               <div>
                 <DoorOpen
@@ -325,7 +332,11 @@ export default function CaseReviewPanel({
               </div>
             </div>
 
-            <button aria-label="Close case details" id="transcript-close-button" onClick={closeTranscript}>
+            <button
+              aria-label="Close case details"
+              id="transcript-close-button"
+              onClick={closeTranscript}
+            >
               <X />
             </button>
           </div>
@@ -365,20 +376,11 @@ export default function CaseReviewPanel({
                     </ol>
                   )}
                 </div>
-                <p id="processed-text">
-                  {transcript.decisionOutcome ? (
-                    <span className="positive-text">
-                      {transcript.decision}{" "}
-                    </span>
-                  ) : (
-                    <span className="negative-text">
-                      {transcript.decision}{" "}
-                    </span>
-                  )}
-                </p>
               </>
             )}
           </div>
+          </div>
+          
         </>
       )}
     </>

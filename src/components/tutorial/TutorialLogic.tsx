@@ -11,8 +11,15 @@ interface tutorialLogicProps{
 }
 
 export default function TutorialLogic({loadingState ,tooltipRef}:tutorialLogicProps  ){
-      const tooltipRef1 = tooltipRef
-    const {tutorialState} = useContext(TutorialContext)
+  const tooltipRef1 = tooltipRef
+  const {tutorialState,setTutorialState} = useContext(TutorialContext)
+  
+  document.addEventListener("keydown", (event)=>{
+        if(event.key === "Escape" && tutorialState){
+          setTutorialState({tutorialActive: false, tutorialStep: 0})
+        }
+      })
+  
     //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
   //runs on state change and when component has finished it faux load
   //tutorial state change = triggers move to next tutorial step and display tooltip in same component
