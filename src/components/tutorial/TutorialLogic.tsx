@@ -11,29 +11,29 @@ interface tutorialLogicProps{
 }
 
 export default function TutorialLogic({loadingState ,tooltipRef}:tutorialLogicProps  ){
-  const tooltipRef1 = tooltipRef
   const {tutorialState,setTutorialState} = useContext(TutorialContext)
   
-  document.addEventListener("keydown", (event)=>{
+  //Listen for escape key press to exit tutorial if active
+  document.addEventListener("keyup", (event)=>{
         if(event.key === "Escape" && tutorialState){
           setTutorialState({tutorialActive: false, tutorialStep: 0})
-        }
+        } 
       })
   
-    //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
+  //manage tutorial activation and progression through steps as well as closure when tutorial is deactivated.
   //runs on state change and when component has finished it faux load
   //tutorial state change = triggers move to next tutorial step and display tooltip in same component
   //load state change = triggers when tutorial moves player to next route to continue tutorial.
   useEffect(() => {
     if (tutorialState.tutorialActive) {
-        tooltipRef1.current?.open({
+        tooltipRef.current?.open({
           anchorSelect: "#tutorial-step-"+tutorialState.tutorialStep,
           content: <TutorialSteps stepNumber={tutorialState.tutorialStep} />
         }); 
     }
     //closes open tutorial tooltip when tutorial is turned off. 
     if(!tutorialState.tutorialActive){
-      tooltipRef1.current?.close()
+      tooltipRef.current?.close()
     }
     //traps tab focus to tutorial elements when tutorial is active. applies inert attribute to root
     //tutorial elements (overlay, tooltips) are placed outside of root element with the use of createPortal()
@@ -45,7 +45,7 @@ export default function TutorialLogic({loadingState ,tooltipRef}:tutorialLogicPr
      }
   }, [tutorialState, loadingState]);
 
-
-    return (createPortal( <Tooltip className="custom-tooltip" ref={tooltipRef1} imperativeModeOnly clickable/>, document.body))
+    //return the tooltip JSX using a portal to ensure it escapes the focus trap and is a sibling of root, rather than a child.
+    return (createPortal( <Tooltip className="custom-tooltip" ref={tooltipRef} imperativeModeOnly clickable/>, document.body))
     
 }
