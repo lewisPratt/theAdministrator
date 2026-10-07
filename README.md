@@ -30,6 +30,87 @@ Notable features
 * focus trapping during tutorial (using inert attribute on root and createPortal to move tutorial/tooltip elements outside of root)
 * React routing
 
+
+
+## API integration and error handling - Dice Bear Avatar Generator
+To add additional character and visual interest, an external API was used to provide unique avatars for the citizens encountered in the course of the game. 
+[Dice Bear API](https://www.dicebear.com/) was used to easily generate random avatars to use within the case review section of the site. Each case that is reviwed as part of the gameplay loop, is linked to a fictional Citizen that has been encountered within the city. Adding an avatar to their case notes adds further depth and interest to the experience. 
+
+
+There are a number of ways to integrate the Dice Bear avatar generation into a project, but i chose to utilize the HTTP api method due to its simplicity and ease of implementation, reducing the need to rely on additional packages in the project.
+
+The Dice Bear API does not need authorization and returns a single item, a URL to the generated avatar image.
+
+Relying on an external API however, means that there is a chance for calls to the API endpoint to fail, resulting in no avatar image being displayed. If this eventuality was not guarded against, it would result in unattractive missing image icons as well as alt text being visible within the UI, ruining the sense of immersion. As API endpoints can experience downtime or, in extreme cases, stop working all together, it is important to have contingencies to manage these eventualities if they arise. 
+
+For this reason, there are 3 separate states that the avatar component can present in.
+### No Error
+If the Dice Bear endpoint is working as expected and returning and image that can be loaded within the `<img>` tag, the randomly generated avatar will display as desired. 
+
+### API image not loading
+If, for whatever reason, the image being provided by the Dice Bear endpoint is not loadable, or the endpoint url is incorrect, the `<img>` element `src` attribute will not be valid, producing an error that can be detected via Javascript and handled. 
+Once detected, this error handler will set the image `src` attribute to the url of the default avatar file.
+
+### API image not loading and default avatar not loading
+In the unlikely occurence that both the API is unsuccessful at providing an image, as well as the default avatar image file being un-loadable, the error handler will further ensure that the avatar fails gracefully and set css attributes within the avatar component to maintain an acceptable fallback. 
+
+The error handling that has been implemented in using this API should cover all possible points of failure, ensuring that the UX is not negatively impacted by potential issues encountered when relying on external API endpoints.
+
+        <img
+        className="avatar"
+        src={transcript.avatar} 
+        alt="Anonymized Citizen Avatar"
+        data-default="" 
+        
+        onError={(e) => {
+          if (e.currentTarget.dataset.default != "set") {
+            e.currentTarget.src = "default-avatar.webp";
+            e.currentTarget.dataset.default = "set";
+          } else {
+            if (e.currentTarget.parentElement) {
+              e.currentTarget.parentElement.style.cssText =
+                "background-color: #a2eaa2;";
+            }
+            e.currentTarget.before("Avatar Not Found");
+            e.currentTarget.alt = "";
+          }
+        }}
+      />
+   
+
+Above is the image element for a Citizen Avatar. There are a number of notable characteristics to highlight. 
+1. the image `src` attribute is set to the Dice Bear image url from the current transcript being processed. 
+2. the `data-default` attribute allows the error handler to mark this image as 'having been dealt with' after attempting to set the image `src` to the default avatar url. If this attribute is empty and the initial `src` cannot be loaded, the error handler will attempt to set the `src` to the default avatar url. If `data-default="set"` the error handler will not attempt to set the src again (this loop can occur if both the initial src and the backup, default avatar, are not loadable.)
+3. `onError` triggers when an error occurs whilst this element tries to load the `src` it has been provided. 
+4. The error handler will attempt to set the default avatar if the primary `src` is un-loadable. if both of these are unsuccessful, it will then apply css styling to the parent container of the image element, serving as a further fallback. Removing the `alt` attribute content removes the missing image icon, however the same information is given by the styles applied by the error handler. 
+
+I created a default avatar image that was in line with the style of the avatars provided by Dice Bear. This was exported as a webp file to ensure small file size and good quality. 
+
+ADD IMAGE
+
+## Citizen Avatars
+Each citizens avatar is generated randomly from the Dice Bear API, however, depending on the citizens gender, they access different endpoints. This is in order to generate a realistic representation of each citizen (generating female presenting avatars for females, males presenting avatars for males and either for synths.)
+This is achieved within the person class when each citizens data is generated and their gender is used to conditionally selected which API endpoint their avatar is pulled from. 
+
+    private generateAvatar(gender: string) {
+        let imageUrl = "";
+        const mensUrl = [URL TO ENDPOINT THAT GENERATES MALE STYLE AVATARS] + uuidv4();
+        const womensUrl = [URL TO ENDPOINT THAT GENERATES FEMALE STYLE AVATARS] + uuidv4();
+
+        if (gender === "male") {
+        imageUrl = mensUrl;
+        } else if (gender === "female") {
+        imageUrl = womensUrl;
+        } else {
+        imageUrl = [URL TO ENDPOINT THAT GENERATES MALE & FEMALE STYLE AVATARS] + uuidv4();
+            
+        }
+
+        return imageUrl;
+  }
+
+each endpoint url has a seed value at the end, so appending `uuidv4()` to the url ensures that each avatar that is generated is a unique image. 
+
 * Dynamic content
 Throughout the app, I have used dynamic content to create immersion and ensure that the likelihood of receiving the same content is low on repeated playthroughs. Without the use of a back-end system, this has been achieved through constructing JavaScript objects that hold a large number of individual datasets
  that can then be randomly combined to create unique data sets. 
