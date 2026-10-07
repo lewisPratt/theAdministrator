@@ -1,24 +1,33 @@
 import { v4 as uuid4 } from "uuid";
 import { Tooltip } from "react-tooltip";
 import cityMap from "../../assets//images/cityMap.png";
-import type { HotSpotShape, occupationsShape } from "../../interfaces/interfaces";
+import type { HotSpotShape, locationsShape, occupationsShape } from "../../interfaces/interfaces";
 import MapScanningText from "./MapScanningText";
 import { useState } from "react";
 import { occupations } from "../../generator_modules/OccupationGenerator";
+import { locations } from "../../generator_modules/LocationGenerator";
 import { X } from "lucide-react";
 
 interface cityMapProps{
   giveDetails : boolean
 }
+interface districtDetails{
+  occupations : occupationsShape[]
+  locations : locationsShape[]
+  districtNumber: number
+}
 
 export default function CityMap({giveDetails}:cityMapProps) {
-  const [districtDetails, setDistrictDetails] = useState<occupationsShape[] | null>(null)
+  const [districtDetails, setDistrictDetails] = useState<districtDetails | null>(null)
 
-function getOccupationsForDistrict(district:number){
-  let returnArray : occupationsShape[] = occupations.filter((location)=>{
+function getDetailsForDistrict(district:number){
+  let occupationArray : occupationsShape[] = occupations.filter((location)=>{
       return location.district === district
   })
-  return returnArray
+  let locationArray : locationsShape[] = locations.filter((location)=>{
+      return location.district === district
+  })
+  return {occupations :occupationArray, locations : locationArray, districtNumber:district}
 
 }
 
@@ -27,7 +36,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "Power District",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(3))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(3))}
           className="hotspot"
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D3 - Industrial"
@@ -40,7 +49,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(7))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(7))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D7 - Black Market"
           className="hotspot"
@@ -53,7 +62,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(4))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(4))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D4 - Water Treatment"
           className="hotspot"
@@ -66,7 +75,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(11))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(11))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D11 - Freight/Transport"
           className="hotspot"
@@ -79,7 +88,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(9))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(9))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D9 - Food/Dining"
           className="hotspot"
@@ -92,7 +101,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(13))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(13))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D13 - Slums"
           className="hotspot"
@@ -106,7 +115,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "District Placeholder 2",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(10))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(10))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D10 - Medical"
           className="hotspot"
@@ -119,7 +128,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "District Placeholder 3",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(2))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(2))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D2 - Detention/Security"
           className="hotspot"
@@ -132,7 +141,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "District Placeholder 4",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(6))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(6))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D6 - Trade/Market"
           className="hotspot"
@@ -145,7 +154,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "District Placeholder 5",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(1))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(1))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D1 - Central Administration"
           className="hotspot"
@@ -158,7 +167,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "District Placeholder 6",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(8))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(8))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D8 - Nightlife/Vice"
           className="hotspot"
@@ -171,7 +180,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "District Placeholder 7",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(12))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(12))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D12 - Communications"
           className="hotspot"
@@ -184,7 +193,7 @@ function getOccupationsForDistrict(district:number){
       ident: uuid4(),
       name: "District Placeholder 8",
       hotspot: (
-        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(5))}
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getDetailsForDistrict(5))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D5 - Residential"
           className="hotspot"
@@ -201,8 +210,12 @@ function getOccupationsForDistrict(district:number){
       {districtDetails && districtDetails != null && 
       <div className="map-details-container">
         <button className="close-district-details-button" aria-label="Close District Details" onClick={()=>setDistrictDetails(null)}><X size={9}/></button>
+        <div className="district-details-title">
+          <h1>District Occupations</h1>
+          <h2>District {districtDetails.districtNumber}</h2>
+        </div>
         <ul>
-        {districtDetails.map((occupation)=>{
+        {districtDetails.occupations.map((occupation)=>{
           return <><li>{occupation.name}</li> <hr></hr></>
         })}
         </ul>

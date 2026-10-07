@@ -228,10 +228,17 @@ body .custom-tooltip {
     width: fit-content;
     padding-right:10px;
     overflow-y: scroll;
+    padding-top:50px;
 }
 .map-details-container>ul{
   list-style: none;
   margin-top:30px;
+}
+.map-details-container h1{
+  font-size:1.3rem;
+}
+.map-details-container h2{
+  font-size:.8rem;
 }
 .close-district-details-button{
   position:absolute;
