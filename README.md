@@ -90,26 +90,21 @@ ADD IMAGE
 
 ## Citizen Avatars
 Each citizens avatar is generated randomly from the Dice Bear API, however, depending on the citizens gender, they access different endpoints. This is in order to generate a realistic representation of each citizen (generating female presenting avatars for females, males presenting avatars for males and either for synths.)
-This is achieved within the person class when each citizens data is generated and their gender is used to conditionally selected which API endpoint their avatar is pulled from. 
+This is achieved within the person class when each citizens data is generated and their gender and behaviour are used to conditionally select which API endpoint their avatar is pulled from. 
 
-    private generateAvatar(gender: string) {
-        let imageUrl = "";
-        const mensUrl = [URL TO ENDPOINT THAT GENERATES MALE STYLE AVATARS] + uuidv4();
-        const womensUrl = [URL TO ENDPOINT THAT GENERATES FEMALE STYLE AVATARS] + uuidv4();
-
-        if (gender === "male") {
-        imageUrl = mensUrl;
-        } else if (gender === "female") {
-        imageUrl = womensUrl;
-        } else {
-        imageUrl = [URL TO ENDPOINT THAT GENERATES MALE & FEMALE STYLE AVATARS] + uuidv4();
-            
-        }
-
-        return imageUrl;
-  }
-
+    if (gender === "male") {
+      if (behaviour.toLowerCase() === "compliant") {
+        imageUrl = mensHappyUrl +uuidv4();
+      } else if (behaviour.toLowerCase() === "non-compliant") {
+        imageUrl = mensAngryUrl +uuidv4();
+      } else {
+        imageUrl = mensNeutralUrl +uuidv4();
+      }
+    }
 each endpoint url has a seed value at the end, so appending `uuidv4()` to the url ensures that each avatar that is generated is a unique image. 
+
+Filtering the citizens by gender and behaviour allows very customizable control over the appearance of the avatars generated. For instance, compliant male citizens have avatars that include smiling and overall happy expressions combined with male traits, whereas non-compliant male citizens only have avatars that include expressions of sadness or anger and male body traits. 
+Removing or adding values in the url used to access the Dice Bear API allows the exclusion or addition of different expressions, hairstyles, head shapes etc. By utilizing this, the avatars that are produced are random, but they also contribute to the mechanics of the game as it is easy to now see whether a citizen in happy, sad or indifferent, which impacts on each citizens weighting. 
 
 * Dynamic content
 Throughout the app, I have used dynamic content to create immersion and ensure that the likelihood of receiving the same content is low on repeated playthroughs. Without the use of a back-end system, this has been achieved through constructing JavaScript objects that hold a large number of individual datasets

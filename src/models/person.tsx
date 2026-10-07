@@ -67,7 +67,7 @@ export class person {
     this.identifier = uuidv4();
     this.bonusCase = false;
     this.rewardEarned = 0;
-    this.avatar = this.generateAvatar(this.gender);
+    this.avatar = this.generateAvatar(this.gender, this.behaviour);
   }
 
   private generateGender() {
@@ -152,21 +152,68 @@ export class person {
     this.weightingArray = [...weightingArray];
     return weighting;
   }
-  private generateAvatar(gender: string) {
+  /**
+   *
+   * @param gender [string] gender of the citizen the avatar is being generated for. Determines the gender characteristics included in the call to API endpoint
+   * @param behaviour [string] behaviour of the citizen the avatar is being generated for. Determines the expressions included in the call to API endpoint
+   * @returns [string] URL to the avatar image that has been generated.
+   */
+  private generateAvatar(gender: string, behaviour: string): string {
     let imageUrl = "";
-    const mensUrl =
-      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=angryWithFang,blank,calm,cheeky,contempt,cute,driven,eatingHappy,eyesClosed,old,serious,smile,solemn,suspicious,tired,veryAngry&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&maskVariant=&facialHairProbability=50&headVariant=dreads2,flatTop,flatTopLong,grayShort,hatBeanie,hatHip,mohawk,mohawk2,noHair1,noHair2,noHair3,pomp,shaved2,shaved3,short1,short2,short3,short4,short5,turban,twists,twists2&facialHairVariant=chin,full,full2,full3,full4,goatee1,goatee2,moustache1,moustache2,moustache3,moustache5,moustache6,moustache7,moustache9&seed="+uuidv4();
-    const womensUrl =
-      "https://pi.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=angryWithFang,blank,calm,cheeky,contempt,cute,driven,eatingHappy,eyesClosed,old,serious,smile,solemn,suspicious,tired,veryAngry&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&maskVariant=&facialHairProbability=0&headVariant=afro,bangs,bangs2,bantuKnots,bun,bun2,buns,cornrows,cornrows2,dreads1,grayBun,grayMedium,long,longAfro,longBangs,longCurly,medium1,medium2,medium3,mediumBangs,mediumBangs2,mediumBangs3,mediumStraight,shaved1&facialHairVariant=&seed="+uuidv4();;
+    const mensHappyUrl =
+      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=blank,calm,cheeky,cute,driven,eatingHappy,eyesClosed,old,smile&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&maskVariant=&facialHairProbability=50&headVariant=dreads2,flatTop,flatTopLong,grayShort,hatBeanie,hatHip,mohawk,mohawk2,noHair1,noHair2,noHair3,pomp,shaved2,shaved3,short1,short2,short3,short4,short5,turban,twists,twists2&facialHairVariant=chin,full,full2,full3,full4,goatee1,goatee2,moustache1,moustache2,moustache3,moustache5,moustache6,moustache7,moustache9&seed=" 
+  
+    const mensAngryUrl =
+      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=angryWithFang,serious,solemn,suspicious,tired,veryAngry&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&maskVariant=&facialHairProbability=50&headVariant=dreads2,flatTop,flatTopLong,grayShort,hatBeanie,hatHip,mohawk,mohawk2,noHair1,noHair2,noHair3,pomp,shaved2,shaved3,short1,short2,short3,short4,short5,turban,twists,twists2&facialHairVariant=chin,full,full2,full3,full4,goatee1,goatee2,moustache1,moustache2,moustache3,moustache5,moustache6,moustache7,moustache9&seed=" 
+  
+    const mensNeutralUrl =
+      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=blank,calm,eyesClosed,&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&maskVariant=&facialHairProbability=50&headVariant=dreads2,flatTop,flatTopLong,grayShort,hatBeanie,hatHip,mohawk,mohawk2,noHair1,noHair2,noHair3,pomp,shaved2,shaved3,short1,short2,short3,short4,short5,turban,twists,twists2&facialHairVariant=chin,full,full2,full3,full4,goatee1,goatee2,moustache1,moustache2,moustache3,moustache5,moustache6,moustache7,moustache9&seed=" 
+   
+
+    const femaleHappyUrl =
+      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=blank,calm,cheeky,cute,driven,eatingHappy,eyesClosed,old,smile&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&maskVariant=&facialHairProbability=0&headVariant=afro,bangs,bangs2,bantuKnots,bun,bun2,buns,cornrows,cornrows2,dreads1,grayBun,grayMedium,long,longAfro,longBangs,longCurly,medium1,medium2,medium3,mediumBangs,mediumBangs2,mediumBangs3,mediumStraight,shaved1&facialHairVariant=&seed=" 
+    
+    const femaleAngryUrl =
+      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=angryWithFang,serious,solemn,suspicious,tired,veryAngry&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&maskVariant=&facialHairProbability=0&headVariant=afro,bangs,bangs2,bantuKnots,bun,bun2,buns,cornrows,cornrows2,dreads1,grayBun,grayMedium,long,longAfro,longBangs,longCurly,medium1,medium2,medium3,mediumBangs,mediumBangs2,mediumBangs3,mediumStraight,shaved1&facialHairVariant=&seed=" 
+     
+    const femaleNeutralUrl =
+      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=blank,calm,eyesClosed&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&maskVariant=&facialHairProbability=0&headVariant=afro,bangs,bangs2,bantuKnots,bun,bun2,buns,cornrows,cornrows2,dreads1,grayBun,grayMedium,long,longAfro,longBangs,longCurly,medium1,medium2,medium3,mediumBangs,mediumBangs2,mediumBangs3,mediumStraight,shaved1&facialHairVariant=&seed=" 
+  
+
+    const synthHappyUrl =
+      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=blank,calm,cheeky,cute,driven,eatingHappy,eyesClosed,old,smile&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&seed=" 
+  
+    const synthAngryUrl =
+      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=angryWithFang,serious,solemn,suspicious,tired,veryAngry&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&seed=" 
+   
+    const synthNeutralUrl =
+      "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=blank,calm,eyesClosed&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&seed=" 
+    
 
     if (gender === "male") {
-      imageUrl = mensUrl;
+      if (behaviour.toLowerCase() === "compliant") {
+        imageUrl = mensHappyUrl +uuidv4();
+      } else if (behaviour.toLowerCase() === "non-compliant") {
+        imageUrl = mensAngryUrl +uuidv4();
+      } else {
+        imageUrl = mensNeutralUrl +uuidv4();
+      }
     } else if (gender === "female") {
-      imageUrl = womensUrl;
+      if (behaviour.toLowerCase() === "compliant") {
+        imageUrl = femaleHappyUrl +uuidv4();
+      } else if (behaviour.toLowerCase() === "non-compliant") {
+        imageUrl = femaleAngryUrl +uuidv4();
+      } else {
+        imageUrl = femaleNeutralUrl +uuidv4();
+      }
     } else {
-      imageUrl =
-        "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=angryWithFang,blank,calm,cheeky,contempt,cute,driven,eatingHappy,eyesClosed,old,serious,smile,solemn,suspicious,tired,veryAngry&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&seed=" +
-        uuidv4();
+      if (behaviour.toLowerCase() === "compliant") {
+        imageUrl = synthHappyUrl +uuidv4();
+      } else if (behaviour.toLowerCase() === "non-compliant") {
+        imageUrl = synthAngryUrl +uuidv4();
+      } else {
+        imageUrl = synthNeutralUrl +uuidv4();
+      }
     }
 
     return imageUrl;
