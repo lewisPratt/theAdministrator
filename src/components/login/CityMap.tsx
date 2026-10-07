@@ -1,16 +1,33 @@
 import { v4 as uuid4 } from "uuid";
 import { Tooltip } from "react-tooltip";
 import cityMap from "../../assets//images/cityMap.png";
-import type { HotSpotShape } from "../../interfaces/interfaces";
+import type { HotSpotShape, occupationsShape } from "../../interfaces/interfaces";
 import MapScanningText from "./MapScanningText";
+import { useState } from "react";
+import { occupations } from "../../generator_modules/OccupationGenerator";
+import { X } from "lucide-react";
 
-export default function CityMap() {
+interface cityMapProps{
+  giveDetails : boolean
+}
+
+export default function CityMap({giveDetails}:cityMapProps) {
+  const [districtDetails, setDistrictDetails] = useState<occupationsShape[] | null>(null)
+
+function getOccupationsForDistrict(district:number){
+  let returnArray : occupationsShape[] = occupations.filter((location)=>{
+      return location.district === district
+  })
+  return returnArray
+
+}
+
   const hotspots: HotSpotShape[] = [
     {
       ident: uuid4(),
       name: "Power District",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(3))}
           className="hotspot"
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D3 - Industrial"
@@ -23,7 +40,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(7))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D7 - Black Market"
           className="hotspot"
@@ -36,7 +53,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(4))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D4 - Water Treatment"
           className="hotspot"
@@ -49,7 +66,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(11))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D11 - Freight/Transport"
           className="hotspot"
@@ -62,7 +79,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(9))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D9 - Food/Dining"
           className="hotspot"
@@ -75,7 +92,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(13))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D13 - Slums"
           className="hotspot"
@@ -89,7 +106,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "District Placeholder 2",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(10))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D10 - Medical"
           className="hotspot"
@@ -102,7 +119,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "District Placeholder 3",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(2))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D2 - Detention/Security"
           className="hotspot"
@@ -115,7 +132,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "District Placeholder 4",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(6))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D6 - Trade/Market"
           className="hotspot"
@@ -128,7 +145,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "District Placeholder 5",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(1))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D1 - Central Administration"
           className="hotspot"
@@ -141,7 +158,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "District Placeholder 6",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(8))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D8 - Nightlife/Vice"
           className="hotspot"
@@ -154,7 +171,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "District Placeholder 7",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(12))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D12 - Communications"
           className="hotspot"
@@ -167,7 +184,7 @@ export default function CityMap() {
       ident: uuid4(),
       name: "District Placeholder 8",
       hotspot: (
-        <path
+        <path onClick={()=> giveDetails && setDistrictDetails(()=>getOccupationsForDistrict(5))}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D5 - Residential"
           className="hotspot"
@@ -179,8 +196,17 @@ export default function CityMap() {
   ];
 
   return (
-    <>
+    <div className="map-parent">
       <Tooltip id="city-tooltip" className="custom-tooltip"></Tooltip>
+      {districtDetails && districtDetails != null && 
+      <div className="map-details-container">
+        <button className="close-district-details-button" aria-label="Close District Details" onClick={()=>setDistrictDetails(null)}><X size={9}/></button>
+        <ul>
+        {districtDetails.map((occupation)=>{
+          return <><li>{occupation.name}</li> <hr></hr></>
+        })}
+        </ul>
+        </div>}
 
       <svg id="city-map" viewBox=" 0 0 1800 1000">
         {/* base map image */}
@@ -261,6 +287,6 @@ export default function CityMap() {
           Population 2,700,000
         </text>
       </svg>
-    </>
+    </div>
   );
 }

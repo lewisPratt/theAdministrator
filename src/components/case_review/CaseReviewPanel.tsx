@@ -30,6 +30,8 @@ export default function CaseReviewPanel({
   decisionSetter,
   transcriptList,
   setTranscriptList,
+  cityMapSetter,
+  cityMapState
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<Boolean>(false);
@@ -85,7 +87,7 @@ export default function CaseReviewPanel({
         }
       }
 
-      function updateCreditTotal(creditAdjustment: number, direction: boolean) {
+      function updateCreditTotal(creditAdjustment: number, direction: boolean, category: string) {
         if (playerData) {
           let newTotal: number = playerData.player_credits;
           let decisionOutcome: boolean = false;
@@ -116,6 +118,7 @@ export default function CaseReviewPanel({
               foundTranscript.processed = true;
               foundTranscript.decision = decisionText;
               foundTranscript.decisionOutcome = decisionOutcome;
+              foundTranscript.outcomeCategory = category
               setTranscriptList(allTranscripts);
               //positive
             }
@@ -144,22 +147,22 @@ export default function CaseReviewPanel({
           if (personWeighting < 0) {
             //person is bad, negative consequence for wrong decision.
             failSound();
-            updateCreditTotal(wrongAnswer, false);
+            updateCreditTotal(wrongAnswer, false, "NFA");
           } else if (personWeighting >= 0) {
             //person is good, positive consequences for right decision
             successSound();
-            updateCreditTotal(rightAnswer, true);
+            updateCreditTotal(rightAnswer, true, "NFA");
           }
           break;
         case "reeducate":
           if (personWeighting < 0) {
             //person is bad, positive consequence for right decision.
             successSound();
-            updateCreditTotal(rightAnswer, true);
+            updateCreditTotal(rightAnswer, true, "Re-educate");
           } else if (personWeighting >= 0) {
             //person is good, negative consequences for wrong deision
             failSound();
-            updateCreditTotal(wrongAnswer, false);
+            updateCreditTotal(wrongAnswer, false,"Re-educate");
           }
           break;
         default:
@@ -197,7 +200,7 @@ export default function CaseReviewPanel({
             </h3>
             <div className="interviewee-details">
              
-              <CitizenAvatar key={transcript.identifier} transcript={transcript} />
+              <CitizenAvatar key={transcript.identifier} transcript={transcript} cityMapState={cityMapState} cityMapSetter={cityMapSetter}/>
              
               <div className="interviewee-information">
               <div className="details-row">
@@ -257,6 +260,7 @@ export default function CaseReviewPanel({
             {/* show reward earned from making decision on this case. conditional on whether the case has been procesed */}
             {transcript.processed && (
               <div>
+                <h4>{transcript.outcomeCategory}</h4>
                 <p>{transcript.decision}</p>
                 <p>
                   Credits:{transcript.decisionOutcome ? "+" : "-"}

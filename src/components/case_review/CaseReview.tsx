@@ -24,6 +24,7 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { useRef } from "react";
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import CaseReviewMap from "./CaseReviewMap";
 
 export default function TranscriptRev() {
   const [availableTranscripts, setAvailableTranscripts] = useState<
@@ -39,6 +40,7 @@ export default function TranscriptRev() {
   const [generatePeople, setGeneratePeople] = useState<boolean>(false);
   const [codexState, setCodexState] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(true);
+  const [cityMapeState, setCityMapState] = useState<boolean>(false)
 
   const { tutorialState } = useContext(TutorialContext);
   const {playerData} = useContext(PlayerContext)
@@ -77,7 +79,7 @@ export default function TranscriptRev() {
 
   useEffect(() => {
     let transcriptsArray: reviewShape[] = [];
-    let transcriptCount = Math.floor(Math.random() * 10) + 3;
+    let transcriptCount = 8;
     let originalCount = transcriptCount;
     if (playerData) {
       if (playerData.player_unlocks.includes("voucher4")) {
@@ -233,6 +235,8 @@ export default function TranscriptRev() {
                   selectedSetter={setSelectedListItem}
                   transcriptList={availableTranscripts}
                   setTranscriptList={setAvailableTranscripts}
+                  cityMapState={cityMapeState}
+                  cityMapSetter={setCityMapState}
                 />
               ) : (
                 <>
@@ -241,6 +245,7 @@ export default function TranscriptRev() {
               )}
               <Tooltip id="extra-case-tooltip" className="custom-tooltip" />
             </div>
+            {cityMapeState && <CaseReviewMap cityMapSetter={setCityMapState} cityMapState={cityMapeState}/>}
           </section>
         </>
       )}

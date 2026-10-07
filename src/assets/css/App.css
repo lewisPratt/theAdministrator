@@ -33,7 +33,9 @@ main {
   justify-content: center;
   align-items: center;
 }
-
+hr{
+  border-color: #a2eaa2;
+}
 body,
 p {
   margin: 0;
@@ -211,9 +213,33 @@ body .custom-tooltip {
   flex-direction: column;
 }
 
-
-
-
+/**
+ * MAP
+ */
+.map-parent{
+  position: relative;
+}
+.map-details-container{
+  position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, .7);
+    bottom: 0;
+    width: fit-content;
+    padding-right:10px;
+    overflow-y: scroll;
+}
+.map-details-container>ul{
+  list-style: none;
+  margin-top:30px;
+}
+.close-district-details-button{
+  position:absolute;
+  top:5px;
+  right:5px;
+  width: fit-content;
+  height: fit-content;
+}
 /**
  * ANIMATIONS
  */

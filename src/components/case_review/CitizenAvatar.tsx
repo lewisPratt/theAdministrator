@@ -1,13 +1,21 @@
+import { MapPinned, MapPinSearch } from "lucide-react";
 import type { reviewShape } from "../../interfaces/interfaces";
+import type { Dispatch, SetStateAction } from "react";
 
 interface citizenAvatarProps {
   transcript: reviewShape;
+    cityMapState : boolean
+    cityMapSetter: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function CitizenAvatar({ transcript }: citizenAvatarProps) {
+export default function CitizenAvatar({ transcript, cityMapSetter, cityMapState }: citizenAvatarProps) {
   return (
+    <div className="location-avatar-container">
     <div className="interviewee-avatar">
       <img
+      tabIndex={0}
+      data-tooltip-id="item-desc"
+      data-tooltip-content="Lifelike depiction of Citizen"
         className="avatar"
         src={transcript.avatar}
         alt="Anonymized Citizen Avatar"
@@ -26,6 +34,8 @@ export default function CitizenAvatar({ transcript }: citizenAvatarProps) {
           }
         }}
       />
+    </div>
+        <button onClick={()=>cityMapSetter(true)} aria-label="View city map" data-tooltip-id="item-desc" data-tooltip-content="View City Map" className="case-map-button"><MapPinSearch  size={18}/></button>
     </div>
   );
 }

@@ -15,6 +15,7 @@ export interface reviewShape {
   processed: boolean
   decision: string
   decisionOutcome: boolean |null
+  outcomeCategory: string
   personFlavour: string
   gender: string
   identifier:string
@@ -89,6 +90,8 @@ export interface transcriptReviewBoxProps {
   selectedSetter: Dispatch<SetStateAction<string>>;
   transcriptList: reviewShape[] | null;
   setTranscriptList: Dispatch<SetStateAction<reviewShape[] | null>>;
+  cityMapState : boolean
+  cityMapSetter: Dispatch<SetStateAction<boolean>>;
 
 }
 export interface nodeShape {

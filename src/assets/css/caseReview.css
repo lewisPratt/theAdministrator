@@ -43,19 +43,59 @@
 .interviewee-avatar {
   flex-basis: 150px;
   border: 1px solid #a2eaa2;
-  margin: 10px;
+  margin: 10px 10px 0 10px;
   display: flex;
-  height:150px; 
-  color:black; 
-  font-family:'Silkscreen', monospace; 
-  justify-content:center;
-  align-items:center;
+  height: 150px;
+  color: black;
+  font-family: 'Silkscreen', monospace;
+  justify-content: center;
+  align-items: center;
 
 }
-.avatar{
-  height:150px;
+
+.avatar {
+  height: 150px;
+  transition: .3s;
 }
 
+.location-avatar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.location-avatar-container >button{
+  width:152px;
+  height:fit-content;
+  padding:5px;
+}
+.city-map-overlay{
+  position: fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color: rgba(0, 0, 0, .9);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.case-review-map-container{
+  display: flex;
+  flex-direction: column;
+  width:900px;
+}
+
+.case-review-map-container >button{
+width:100%;
+}
+.case-review-map-container >#city-map{
+  margin: 0;
+}
 .interviewee-information>.details-row {
   border: 1px solid #a2eaa2;
   margin: 2px 0;
@@ -138,7 +178,7 @@
 }
 
 .transcript-list-item {
-  border: 1px solid #c4c4c0;
+  border: 1px solid #a2eaa2;
   display: flex;
   list-style: none;
   padding: 10px;
