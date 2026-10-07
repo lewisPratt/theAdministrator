@@ -98,11 +98,11 @@ export default function CommandCentre() {
                 <p>Please navigate to your required destination below.</p>
                 <form
                   id="tutorial-step-2"
-                  className={
+                  className={ "terminal-form " + (
                     tutorialState.tutorialActive &&
                     tutorialState.tutorialStep === 2
                       ? "tutorial-highlight"
-                      : ""
+                      : "")
                   }
                   onSubmit={handleCommand}
                   method="post"

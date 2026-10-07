@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { Children, useContext, useState } from "react";
 import type {
   reviewShape,
   transcriptReviewBoxProps,
@@ -18,6 +18,7 @@ import { playSound } from "react-sounds";
 import { UnlocksContext } from "../../context_providers/unlocksContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import CitizenAvatar from "./CitizenAvatar";
 
 //set to 1 to show debug info on weighting
 const debug: number = 0;
@@ -195,6 +196,10 @@ export default function CaseReviewPanel({
               {transcript.interviewee.lastName}
             </h3>
             <div className="interviewee-details">
+             
+              <CitizenAvatar key={transcript.identifier} transcript={transcript} />
+             
+              <div className="interviewee-information">
               <div className="details-row">
                 <p>
                   <span className="review-box-section-header">Age:</span>{" "}
@@ -227,6 +232,7 @@ export default function CaseReviewPanel({
                   </span>{" "}
                   {transcript.behaviour}
                 </p>
+              </div>
               </div>
 
               {debug === 1 && (

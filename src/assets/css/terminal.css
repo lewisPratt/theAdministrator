@@ -10,7 +10,7 @@
 #command-centre-input {
   height: 40px;
   border: 1px solid #a2eaa2;
-  width: 80%;
+  width: 100%;
   padding: 10px;
   font-size: 1.2rem;
 }
@@ -86,4 +86,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.terminal-form{
+  width:50%;
+  margin:auto;
 }
