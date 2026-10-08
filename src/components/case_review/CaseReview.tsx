@@ -41,7 +41,7 @@ export default function TranscriptRev() {
   const [codexState, setCodexState] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [cityMapeState, setCityMapState] = useState<boolean>(false)
-
+  const [missingPlayerData, setMissingPlayerData] = useState<boolean>(false)
   const { tutorialState } = useContext(TutorialContext);
   const {playerData} = useContext(PlayerContext)
   const navigate = useNavigate();
@@ -77,11 +77,15 @@ export default function TranscriptRev() {
     }
   }
 
+  //new cases are generated when the loading state changes, effectively loading the page (from the user point of view).
+  //the delay implemented by the loading state allows time for local data to be loaded from localstorage if playerdata becomes null (on refresh of page for instance)
+  // 
   useEffect(() => {
     let transcriptsArray: reviewShape[] = [];
     let transcriptCount = 8;
     let originalCount = transcriptCount;
     if (playerData) {
+      setMissingPlayerData(false)
       console.log("data here")
       if (playerData.player_unlocks.includes("voucher4")) {
         transcriptCount += 3;
@@ -89,6 +93,10 @@ export default function TranscriptRev() {
       if (playerData.player_unlocks.includes("voucher5")) {
         transcriptCount += 2;
       }
+    }
+    else{
+      console.log("no player data yet")
+      setMissingPlayerData(true)
     }
     for (let index = 0; index < transcriptCount; index++) {
       const newPerson = new person();
@@ -101,7 +109,7 @@ export default function TranscriptRev() {
     setAvailableTranscripts(transcriptsArray);
 
     setTimeout(setLoadingState, 2000, false);
-  }, [generatePeople]);
+  }, [loadingState, generatePeople]);
 
   //if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
   useEffect(() => {
@@ -155,6 +163,7 @@ export default function TranscriptRev() {
             {playerData?.player_unlocks.includes("voucher10") && <SearchConsole />}
 
             {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
+            {missingPlayerData && <p>Missing player data on load, reload to apply upgrades <button onClick={()=>{setGeneratePeople(prev=>!prev); setMissingPlayerData(false)}}>reload</button></p>}
             <div id="top-container">
               {availableTranscripts && (
                 <div id="case-list-container">
