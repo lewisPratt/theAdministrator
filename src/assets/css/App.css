@@ -225,32 +225,69 @@ body .custom-tooltip {
     top: 0;
     background-color: rgba(0, 0, 0, .7);
     bottom: 0;
-    width: fit-content;
+    width: 50%;
     padding-right:10px;
     overflow-y: scroll;
-    padding-top:50px;
-}
+  }
 .map-details-container>ul{
   list-style: none;
   margin-top:30px;
 }
 .map-details-container h1{
-  font-size:1.3rem;
+  font-size:1.1rem;
 }
 .map-details-container h2{
   font-size:.8rem;
 }
 .close-district-details-button{
-  position:absolute;
-  top:5px;
-  right:5px;
   width: fit-content;
   height: fit-content;
+}
+.info-swap-buttons{
+  display: flex;
+    margin: 20px 0;
+    gap: 5px;
+    justify-content: center;
+}
+.info-swap-buttons button{
+  width:fit-content;
+  height:fit-content;
+}
+.exit-details-button-container{
+  position: sticky;
+    height: fit-content;
+    top: 0;
+    background-color: #a2eea2;
+    display: flex;
+    justify-content: flex-end;
+}
+.active-details{
+  background-color:black;
+  color:#a2eaa2
+}
+.active-details::before{
+  content: ">";
+  animation: before-tick 1s steps(2)  infinite ;
+
+}
+.active-details::after{
+  content: "<";
+  animation: after-tick 1s steps(2)  infinite ;
 }
 /**
  * ANIMATIONS
  */
+@keyframes after-tick {
+  to {
+    translate: 3px 0;
+  }
+}
 
+@keyframes before-tick {
+  to {
+    translate: -3px 0;
+  }
+}
 @keyframes newMessageFloat {
   50% {
     top: 5px;

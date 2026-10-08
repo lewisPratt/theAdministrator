@@ -1,35 +1,24 @@
 import { v4 as uuid4 } from "uuid";
 import { Tooltip } from "react-tooltip";
 import cityMap from "../../assets//images/cityMap.png";
-import type { HotSpotShape, locationsShape, occupationsShape } from "../../interfaces/interfaces";
+import type { HotSpotShape, locationsShape, occupationsShape, districtDetails } from "../../interfaces/interfaces";
 import MapScanningText from "./MapScanningText";
 import { useState } from "react";
 import { occupations } from "../../generator_modules/OccupationGenerator";
 import { locations } from "../../generator_modules/LocationGenerator";
 import { X } from "lucide-react";
+import DistrictDetails from "../map/DistrictDetails";
+import { getDetailsForDistrict } from "../../assets/utils/helpers";
 
 interface cityMapProps{
   giveDetails : boolean
 }
-interface districtDetails{
-  occupations : occupationsShape[]
-  locations : locationsShape[]
-  districtNumber: number
-}
+
 
 export default function CityMap({giveDetails}:cityMapProps) {
   const [districtDetails, setDistrictDetails] = useState<districtDetails | null>(null)
 
-function getDetailsForDistrict(district:number){
-  let occupationArray : occupationsShape[] = occupations.filter((location)=>{
-      return location.district === district
-  })
-  let locationArray : locationsShape[] = locations.filter((location)=>{
-      return location.district === district
-  })
-  return {occupations :occupationArray, locations : locationArray, districtNumber:district}
 
-}
 
   const hotspots: HotSpotShape[] = [
     {
@@ -207,19 +196,7 @@ function getDetailsForDistrict(district:number){
   return (
     <div className="map-parent">
       <Tooltip id="city-tooltip" className="custom-tooltip"></Tooltip>
-      {districtDetails && districtDetails != null && 
-      <div className="map-details-container">
-        <button className="close-district-details-button" aria-label="Close District Details" onClick={()=>setDistrictDetails(null)}><X size={9}/></button>
-        <div className="district-details-title">
-          <h1>District Occupations</h1>
-          <h2>District {districtDetails.districtNumber}</h2>
-        </div>
-        <ul>
-        {districtDetails.occupations.map((occupation)=>{
-          return <><li>{occupation.name}</li> <hr></hr></>
-        })}
-        </ul>
-        </div>}
+    <DistrictDetails districtDetails={districtDetails} setDistrictDetails={setDistrictDetails} />
 
       <svg id="city-map" viewBox=" 0 0 1800 1000">
         {/* base map image */}

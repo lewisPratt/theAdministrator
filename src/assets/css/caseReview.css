@@ -479,17 +479,7 @@ width:100%;
   flex-direction: column;
 }
 
-@keyframes after-tick {
-  to {
-    translate: 3px 0;
-  }
-}
 
-@keyframes before-tick {
-  to {
-    translate: -3px 0;
-  }
-}
 
 @keyframes toggle-visible {
 

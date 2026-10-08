@@ -190,3 +190,9 @@ export interface playerContextShape {
   playerData: playerDataShape | null;
   setPlayerData: Dispatch<SetStateAction<playerDataShape | null>>;
 }
+export interface districtDetails{
+  occupations : occupationsShape[]
+  locations : locationsShape[]
+  districtNumber: number
+  activeList: string
+}
