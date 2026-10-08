@@ -82,6 +82,7 @@ export default function TranscriptRev() {
     let transcriptCount = 8;
     let originalCount = transcriptCount;
     if (playerData) {
+      console.log("data here")
       if (playerData.player_unlocks.includes("voucher4")) {
         transcriptCount += 3;
       }
@@ -102,6 +103,7 @@ export default function TranscriptRev() {
     setTimeout(setLoadingState, 2000, false);
   }, [generatePeople]);
 
+  //if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
   useEffect(() => {
     if (tutorialState.tutorialActive && availableTranscripts) {
       setCurrentTranscript(availableTranscripts[0]);

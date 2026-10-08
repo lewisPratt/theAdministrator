@@ -17,8 +17,7 @@ export default function DistrictDetails({
   setDistrictDetails,
 }: districtDetailsProps) {
     if(districtDetails){
-    const previousDistrict : number = districtDetails.districtNumber -1 > 0 ? districtDetails.districtNumber -1 : 13
-    const nextDistrict : number = districtDetails.districtNumber +1 <= 13 ? districtDetails.districtNumber +1 : 1
+   
     
   let listToShow: occupationsShape[] | locationsShape[] | null = null;
   if (districtDetails?.activeList === "occupations") {
@@ -35,10 +34,22 @@ export default function DistrictDetails({
     }
   }
 
+  function changeDistrict(currentList : string,direction : string){
+    if(districtDetails){
+     
+    const previousDistrict : number = districtDetails.districtNumber -1 > 0 ? districtDetails.districtNumber -1 : 13
+    const nextDistrict : number = districtDetails.districtNumber +1 <= 13 ? districtDetails.districtNumber +1 : 1
+        
+     let districtData: districtDetails = { ...getDetailsForDistrict(direction === "previous" ? previousDistrict : nextDistrict) };
+      districtData.activeList = currentList;
+      setDistrictDetails(districtData);
+    }
+  }
 
   return (
     <>
       {districtDetails && districtDetails != null && listToShow && (
+        <><p>District {districtDetails.districtNumber}</p>
         <div className="map-details-container">
           <div className="exit-details-button-container">
             <button
@@ -74,8 +85,10 @@ export default function DistrictDetails({
             </div>
             <h1>District {districtDetails.activeList}</h1>
             <h2>District {districtDetails.districtNumber}</h2>
-            <button className="previous-district" onClick={()=>{setDistrictDetails(getDetailsForDistrict(previousDistrict))}}>prev</button>
-            <button className="next-district" onClick={()=>{setDistrictDetails(getDetailsForDistrict(nextDistrict))}}>next</button>
+            <div className="change-district-button-container">
+                <button aria-label="Previous District" className="change-district-button" onClick={()=>{changeDistrict(districtDetails.activeList,"previous")}}>{"<"}</button>
+                <button aria-label="Next District" className="change-district-button" onClick={()=>{changeDistrict(districtDetails.activeList, "next")}}>{">"}</button>
+            </div>
           </div>
           <ul>
             {listToShow.map((occupation) => {
@@ -86,11 +99,11 @@ export default function DistrictDetails({
               );
             })}
           </ul>
-        </div>
+        </div></>
       )}
     </>
   );}
   else{
-    return (<p>No details</p>)
+    return (<p>Select a District for more information</p>)
   }
 }

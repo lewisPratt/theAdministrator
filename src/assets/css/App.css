@@ -274,6 +274,14 @@ body .custom-tooltip {
   content: "<";
   animation: after-tick 1s steps(2)  infinite ;
 }
+.change-district-button{
+  width: fit-content;
+  height: fit-content;
+}
+.change-district-button-container{
+  display:flex;
+  justify-content: center;
+}
 /**
  * ANIMATIONS
  */

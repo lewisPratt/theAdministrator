@@ -479,6 +479,11 @@ width:100%;
   flex-direction: column;
 }
 
+.avatar-scan-line{
+  stroke: #a2eaa2;
+  pointer-events: none;
+
+}
 
 
 @keyframes toggle-visible {
