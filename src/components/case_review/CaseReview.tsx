@@ -192,6 +192,22 @@ export default function TranscriptRev() {
                         codexStateSetter={setCodexState}
                       />
                     ))}
+                    <li>
+                       <button
+                    id="tutorial-step-9"
+                    className={
+                      tutorialState.tutorialActive &&
+                      tutorialState.tutorialStep === 9
+                        ? "tutorial-highlight"
+                        : ""
+                    }
+                    onClick={() => {
+                      setCodexState(true);
+                    }}
+                  >
+                    Rules
+                  </button>
+                    </li>
                   </ol>
                   <div>
                     <h6
@@ -219,20 +235,7 @@ export default function TranscriptRev() {
                         );
                       })}
                   </div>
-                  <button
-                    id="tutorial-step-9"
-                    className={
-                      tutorialState.tutorialActive &&
-                      tutorialState.tutorialStep === 9
-                        ? "tutorial-highlight"
-                        : ""
-                    }
-                    onClick={() => {
-                      setCodexState(true);
-                    }}
-                  >
-                    Rules & Regulations
-                  </button>
+                 
                 </div>
               )}
               {codexState && 
