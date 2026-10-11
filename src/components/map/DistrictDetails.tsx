@@ -104,6 +104,6 @@ export default function DistrictDetails({
     </>
   );}
   else{
-    return (<p>Select a District for more information</p>)
+    // return (<p>Select a District for more information</p>)
   }
 }

@@ -1,11 +1,17 @@
-.command-container div{
-    color:red;
+#welcome-section h1{
+  font-size:1.5rem;
+  line-height:1.7rem;
 }
-.commands-heading{
-    color:black;
-    font-size:.8rem;
-     margin-left:10px;
-  
+.terminal-form {
+  width: 80%;
+  margin: auto;
+}
+#command-centre-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0 10px 0;
 }
 #command-centre-input {
   height: 40px;
@@ -14,7 +20,6 @@
   padding: 10px;
   font-size: 1.2rem;
 }
-
 #command-centre-submit-button {
   height: 62px;
   width: 70px;
@@ -22,72 +27,145 @@
   border-left: none;
   line-height: 4.7rem;
 }
-
-#command-centre-input-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 50px 0 10px 0;
+#leave-req-p {
+  color: #a2eaa2;
+  font-size:.8rem;
 }
-
-#command-input-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.command-row {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px;
-  font-size: .8rem;
-  width:90%;
-}
-
-
-
 .commands-container {
-  width: 50%;
-  display:flex;
+  width: 80%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 1px solid #a2eaa2;
-    margin: 20px auto;
+  margin: 20px auto;
 }
-
-
-
-
 #commands-header {
   background-color: #a2eaa2;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width:100%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-
-
-#leave-req-p {
-  color: #a2eaa2;
-  text-decoration: underline;
+.commands-heading {
+  color: black;
+  font-size: .8rem;
+  margin-left: 10px;
 }
-.commands-list{
-    padding:0;
-    margin:0;
+.command-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  font-size: .8rem;
+  width: 90%;
+}
+.commands-list {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media (min-width:768px) {
+
+  .commands-heading {
+    color: black;
+    font-size: .8rem;
+    margin-left: 10px;
+  }
+
+  #command-centre-input {
+    height: 40px;
+    border: 1px solid #a2eaa2;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+  }
+
+  #command-centre-submit-button {
+    height: 62px;
+    width: 70px;
+    border: 1px solid #C4C4C0;
+    border-left: none;
+    line-height: 4.7rem;
+  }
+
+  #command-centre-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 10px 0;
+  }
+
+  #command-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .command-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    font-size: .8rem;
+    width: 90%;
+  }
+
+
+
+  .commands-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #a2eaa2;
+    margin: 20px auto;
+  }
+
+
+
+
+  #commands-header {
+    background-color: #a2eaa2;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+
+  #leave-req-p {
+    color: #a2eaa2;
+    text-decoration: underline;
+  }
+
+  .commands-list {
+    padding: 0;
+    margin: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.terminal-form{
-  width:50%;
-  margin:auto;
+  }
+
+  .terminal-form {
+    width: 50%;
+    margin: auto;
+  }
 }

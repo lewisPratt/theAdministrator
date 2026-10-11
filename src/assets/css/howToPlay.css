@@ -8,8 +8,19 @@
 }
 
 #how-to-play-content{
-    padding:90px;
+    padding:20px;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 #how-to-play-button{
     margin:20px auto;
+}
+
+@media (min-width:768px) {
+    #how-to-play-content{
+    padding:90px;
+    display: block;
+}
 }

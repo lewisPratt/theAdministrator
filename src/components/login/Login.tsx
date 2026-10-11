@@ -85,7 +85,7 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
 
   return (
     <section id="login">
-      <CityMap />
+      <CityMap giveDetails={false}/>
 
       <h1 id="login-header">Welcome Administrator</h1>
       <p>Login below to start your mandatory shift.</p>
