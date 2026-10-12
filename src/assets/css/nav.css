@@ -17,10 +17,6 @@
   align-items: center;
 }
 
-#tutorial-toggle-button {
-  z-index: 100;
-}
-
 .available-commands-button {
   height: 39px;
   width: 40px;

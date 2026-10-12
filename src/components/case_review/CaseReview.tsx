@@ -193,48 +193,10 @@ export default function TranscriptRev() {
                       />
                     ))}
                     <li className="rules-list-item">
-                       <button
-                    id="tutorial-step-9"
-                    className={
-                      tutorialState.tutorialActive &&
-                      tutorialState.tutorialStep === 9
-                        ? "tutorial-highlight"
-                        : ""
-                    }
-                    onClick={() => {
-                      setCodexState(true);
-                    }}
-                  >
-                    Rules
-                  </button>
+                       
                     </li>
                   </ol>
-                  <div className="active-upgrades-container">
-                    <h6
-                      id="tutorial-step-8"
-                      className={
-                        tutorialState.tutorialActive &&
-                        tutorialState.tutorialStep === 8
-                          ? "tutorial-highlight"
-                          : ""
-                      }
-                    >
-                      Active Upgrades
-                    </h6>
-
-                    {voucherDetails &&
-                      voucherDetails.map((unlock) => {
-                        return (
-                          <Badge
-                            size="25"
-                            data-tooltip-id="extra-case-tooltip"
-                            data-tooltip-content={unlock.perkEffect}
-                          >
-                            {unlock.icon}
-                          </Badge>
-                        );
-                      })}
-                  </div>
+            
                  
                 </div>
               )}
@@ -257,8 +219,50 @@ export default function TranscriptRev() {
                  {!codexState && !currentTranscript && <NoCurrentTranscript />}
                  </>
               )}
+                   
               <Tooltip id="extra-case-tooltip" className="custom-tooltip" />
             </div>
+             <div className="helper-elements">
+               <div className="active-upgrades-container">
+                      <h6
+                        id="tutorial-step-8"
+                        className={
+                          tutorialState.tutorialActive &&
+                          tutorialState.tutorialStep === 8
+                            ? "tutorial-highlight"
+                            : ""
+                        }
+                      >
+                        Active Upgrades
+                      </h6>
+                      {voucherDetails &&
+                        voucherDetails.map((unlock) => {
+                          return (
+                            <Badge
+                              size="25"
+                              data-tooltip-id="extra-case-tooltip"
+                              data-tooltip-content={unlock.perkEffect}
+                            >
+                              {unlock.icon}
+                            </Badge>
+                          );
+                        })}
+                    </div>
+                <button
+                      id="tutorial-step-9"
+                      className={
+                        tutorialState.tutorialActive &&
+                        tutorialState.tutorialStep === 9
+                          ? "tutorial-highlight"
+                          : ""
+                       + " rules-button"}
+                      onClick={() => {
+                        setCodexState(true);
+                      }}
+                    >
+                      Rules
+                    </button>
+             </div>
             {cityMapeState && <CaseReviewMap cityMapSetter={setCityMapState} cityMapState={cityMapeState}/>}
           </section>
         </>

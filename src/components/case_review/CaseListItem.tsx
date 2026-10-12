@@ -1,5 +1,5 @@
 import type { reviewShape, transcriptListItemProps } from "../../interfaces/interfaces";
-import {FolderTree } from "lucide-react";
+import {CircleUser, FileUser, FolderTree, User } from "lucide-react";
 
 export default function CaseListItem({
   currentTranscript,
@@ -26,7 +26,7 @@ export default function CaseListItem({
       key={currentTranscript.interviewee.firstName + currentTranscript.age}
       onClick={() => openTranscript(currentTranscript)}
     >
-      <div className="mobile-case-element"><span>#{currentTranscript.identifier.slice(0,3)}</span></div>
+      <div className="mobile-case-element"><span><User /></span></div>
       <div className="desktop-case-element">
       <span >{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</span>  -  
       <span >{currentTranscript.occupation.name.slice(0,10)}...</span>

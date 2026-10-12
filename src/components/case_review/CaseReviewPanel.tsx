@@ -10,6 +10,8 @@ import {
   CircleX,
   X,
   MapPinned,
+  ChevronRight,
+  ChevronLeft,
 } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
@@ -53,13 +55,59 @@ export default function CaseReviewPanel({
     setClosing(true);
   }
 
-  //reset the state and show the 'no transcript selected' message
+ /**
+  * reset the state and show the 'no transcript selected' message
+  * @param e the event object to detect whether the slide out animation has completed. 
+  */
   function handleAnimationEnd(e: React.AnimationEvent<HTMLDivElement>) {
     if (e.animationName === "transcript-slide-out") {
       reviewTranscriptSetter(null);
       selectedSetter(NIL_UUID);
     }
   }
+  /**
+   * retrieves the index of the currently active case within the transcript list
+   * @returns the index(number) of currently active case
+   */
+  function getCaseIndex() :number {
+    let foundIndex : number = 0
+    if(transcript && transcriptList){
+      foundIndex = transcriptList.findIndex((caseFile)=>{
+             return transcript.identifier === caseFile.identifier   
+      })
+    }
+    if(foundIndex > 0){
+      return foundIndex
+    }else{
+      return 0
+    }
+  }
+
+/**
+ * Changes the active case based on the index of the currently active case. can either go back 1 or forwards 1
+ * @param direction which direction to move in the transcript list, either "next" or "previous"
+ * @returns reviewShape object that holds all the details of the transcript being changed to. 
+ */
+  function changeCase(direction: string){
+    if(transcriptList){
+    let currentCaseIndex = getCaseIndex()
+       
+        if(direction === "next"){
+          currentCaseIndex +=1
+        } else if(direction === "previous"){
+          currentCaseIndex -=1
+        }
+        if(currentCaseIndex >= transcriptList.length ){
+          currentCaseIndex = 0
+        }
+        if(currentCaseIndex < 0){
+          currentCaseIndex = transcriptList.length -1
+        }
+        selectedSetter(transcriptList[currentCaseIndex].identifier)
+        return reviewTranscriptSetter(transcriptList[currentCaseIndex])
+      }
+  }
+
   function handleDecision(e: React.MouseEvent<HTMLButtonElement>) {
     if (transcript) {
       const decision = e.currentTarget.dataset.decision;
@@ -87,6 +135,7 @@ export default function CaseReviewPanel({
         }
       }
 
+      
       function updateCreditTotal(creditAdjustment: number, direction: boolean, category: string) {
         if (playerData) {
           let newTotal: number = playerData.player_credits;
@@ -360,16 +409,19 @@ export default function CaseReviewPanel({
           >
             {!transcript.processed ? (
               <div className="decision-buttons-container"> 
+              <button onClick={()=>{changeCase("previous")}}><ChevronLeft /></button>
                 <button data-decision="nfa" onClick={handleDecision}>
                   No further action
                 </button>
                 <button data-decision="reeducate" onClick={handleDecision}>
                   Send for re-education
                 </button>{" "}
+                <button onClick={()=>{changeCase("next")}}><ChevronRight /></button>
               </div>
             ) : (
               <>
               <div className="processed-buttons-container"> 
+                <button onClick={()=>{changeCase("previous")}}><ChevronLeft /></button>
               <button onClick={()=>reviewTranscriptSetter(null)}>Close Case Notes</button>
                
                   <button
@@ -380,6 +432,7 @@ export default function CaseReviewPanel({
                     {" "}
                     See Evidence{" "}
                   </button>
+                  <button onClick={()=>{changeCase("next")}}><ChevronRight /></button>
                   </div>
                   {showEvidence && (
                      <div id="evidence-box">

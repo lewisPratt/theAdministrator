@@ -66,7 +66,15 @@ color:black;
   height: 150px;
   transition: .3s;
 }
-
+.rules-button{
+  width:fit-content;
+  height:fit-content;
+}
+.helper-elements{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .location-avatar-container {
   display: flex;
   flex-direction: column;
@@ -184,11 +192,18 @@ color:black;
   display:flex;
   justify-content: center;
 }
-.processed-buttons-container, .decision-buttons-container button{
+.processed-buttons-container button, .decision-buttons-container button{
 flex-basis:50%;
+}
+.processed-buttons-container button:first-child,
+.processed-buttons-container button:last-child, 
+.decision-buttons-container button:first-child,
+.decision-buttons-container button:last-child{
+flex-basis:20%;
 }
 .current-selected-item {
  text-decoration: underline;
+ outline: 3px solid #a2eaa2;
 }
 
 #no-case-text {
@@ -199,7 +214,6 @@ flex-basis:50%;
   border: 1px solid #a2eaa2;
   display: flex;
   list-style: none;
-  justify-content: space-between;
   transition: .2s;
   margin-bottom: 2px;
   width: 50px;
@@ -214,8 +228,9 @@ flex-basis:50%;
 }
 
 .transcript-list-item:hover {
-  translate: 5px 0;
+  translate: 0 -5px;
   cursor: pointer;
+  outline: 3px solid #a2eaa2;
 
 }
 
@@ -247,6 +262,7 @@ flex-basis:50%;
 .active-upgrades-container{
   border:1px solid;
   margin: 10px 20px;
+  width:90%;
 }
 .active-upgrades-container h6{
   padding:5px 0;
@@ -360,6 +376,7 @@ flex-basis:50%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  align-items: center;
 }
 
 #interviews-list-header {
@@ -538,6 +555,7 @@ justify-content: center;
 
 .mobile-case-element{
   display:flex;
+  justify-content: center;
 }
 .desktop-case-element{
   display:none
@@ -705,15 +723,17 @@ justify-content: center;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 100%;
-
+    width: 95%;
+    margin-left:10px;
   }
 
   #evidence-box {
     display: flex;
     flex-direction: column;
   }
-
+  .current-selected-item{
+    outline: none;
+  }
   .current-selected-item::after {
     content: "<";
     animation: after-tick 1s infinite steps(2);

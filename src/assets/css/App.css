@@ -226,13 +226,18 @@ body .custom-tooltip {
     top: 0;
     background-color: rgba(0, 0, 0, .7);
     bottom: 0;
-    width: 50%;
+    width: 70%;
     padding-right:10px;
     overflow-y: scroll;
   }
 .map-details-container>ul{
   list-style: none;
-  margin-top:30px;
+  margin:30px 0;
+  padding:0;
+}
+.map-details-container li{
+  margin:0;
+  padding:0;
 }
 .map-details-container h1{
   font-size:1.1rem;
@@ -283,6 +288,37 @@ body .custom-tooltip {
   display:flex;
   justify-content: center;
 }
+
+
+/**
+ * BREAKPOINTS
+ */
+@media (min-width:760px) {
+
+
+/**
+ * MAP
+ */
+
+.map-details-container{
+  position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, .7);
+    bottom: 0;
+    width: 40%;
+    padding-right:10px;
+    overflow-y: scroll;
+  }
+.map-details-container>ul{
+  list-style: none;
+  margin-top:30px;
+}
+
+
+
+}
+
 /**
  * ANIMATIONS
  */
@@ -404,30 +440,4 @@ body .custom-tooltip {
   to {
     border-left: none;
   }
-}
-
-
-/**
- * BREAKPOINTS
- */
-@media (max-width:480px) {
-  #desktop-nav {
-    justify-content: center;
-  }
-
-  .mobile-nav-element {
-    display: flex;
-  }
-
-  .desktop-nav-element {
-    display: none;
-  }
-
-  #mobile-nav {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-
 }
