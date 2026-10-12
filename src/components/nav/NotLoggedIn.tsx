@@ -12,7 +12,7 @@ export default function NotLoggedIn({ soundControls }: NotLoggedInShape) {
       
       
         <>
-          {soundControls && <SoundControl mobile={false}/>}
+          {soundControls && <SoundControl />}
           <p>
             You are not logged in{" "}
             <button

@@ -9,10 +9,11 @@ const {playerData} = useContext(PlayerContext)
     return(
         <div id='commands-list-container'>
             <ol>
-                <li><Terminal size={16}/> nav.terminal</li>
-                <li><Terminal size={16}/> nav.upgrade</li>
-                <li><Terminal size={16}/> nav.inbox</li>
-                <li><Terminal size={16}/> nav.logout</li>
+                <li>{">"} nav.terminal</li>
+                <li>{">"}  nav.review</li>
+                <li>{">"}  nav.upgrade</li>
+                <li>{">"}  nav.personal</li>
+                <li>{">"}  nav.logout</li>
             </ol>
         </div>
     )

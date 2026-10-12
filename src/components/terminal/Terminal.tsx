@@ -109,15 +109,12 @@ export default function CommandCentre() {
                 >
                   <div id="command-centre-input-container">
                     <input
-                      autoFocus
                       type="text"
                       placeholder="nav.command"
                       id="command-centre-input"
                       name="command"
                       autoComplete="off"
-                      // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      //   setTypedCommand(e.currentTarget.value);
-                      // }}
+             
                     ></input>
                     <button aria-label="Submit navigation command" id="command-centre-submit-button">
                       <ChevronRightCircle size={28} />

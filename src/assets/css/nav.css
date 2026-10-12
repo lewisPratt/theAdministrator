@@ -1,22 +1,26 @@
-.score-tracker-button{
-    width: fit-content;
-    height: fit-content;
-    background-color: black;
-    color: #a2eaa2;
-    padding: 5px;
+.score-tracker-button {
+  width: fit-content;
+  height: fit-content;
+  background-color: black;
+  color: #a2eaa2;
+  padding: 5px;
 }
-#tutorial-toggle-button{
-    width:fit-content;
-    height:fit-content;
+
+#tutorial-toggle-button {
+  width: fit-content;
+  height: fit-content;
 }
-#interactive-nav-el-container{
-    display: flex;
-    gap: 10px;
-    align-items: center;
+
+#interactive-nav-el-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
-#tutorial-toggle-button{
-    z-index:100;
+
+#tutorial-toggle-button {
+  z-index: 100;
 }
+
 .available-commands-button {
   height: 39px;
   width: 40px;
@@ -30,6 +34,7 @@
   position: relative;
   align-items: center;
 }
+
 #nav-text-input {
   height: 35px;
   border: 1px solid #a2eaa2;
@@ -51,8 +56,9 @@
   width: fit-content;
   height: fit-content;
 }
-#score-tracker-desktop{
-  display:block;
+
+#score-tracker-desktop {
+  display: block;
 }
 
 #new-message-container {
@@ -67,9 +73,9 @@
   transition: .6s;
   font-size: .8rem;
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -99,13 +105,14 @@
 
 }
 
-#close-notification-button{
+#close-notification-button {
   cursor: pointer;
-  width:fit-content;
+  width: fit-content;
   height: fit-content;
   padding: 0px;
-  margin:0px;
+  margin: 0px;
 }
+
 #notification-text-container {
   cursor: pointer;
   transition: .6s;
@@ -116,15 +123,18 @@
   position: absolute;
   top: 100%;
   right: 0;
-  border: 1px dashed black;
+  background-color: #a2eaa2;
+  color:black;
 }
 
 #commands-list-container li {
   list-style: none;
+  text-align: left;
 }
 
 #commands-list-container ol {
   padding: 10px;
+  margin:0;
 }
 
 nav {
@@ -142,23 +152,42 @@ nav {
   width: fit-content;
 }
 
-#desktop-nav {
+#nav-bar-parent {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  flex-direction:column;
+  padding: 0 10px;
   flex: 1;
 }
 
-#mobile-nav {
-  display: none;
-}
-
-
-.mobile-nav-element {
-  display: none;
+.mobile-nav-elements {
+  display: flex;
+  flex:1;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+  gap: 10px
 }
 
 .desktop-nav-element {
-  display: flex;
+  display: none;
 }
 
+.nav-left-elements{
+  display:flex;
+}
+
+@media (min-width:768px) {
+  .mobile-nav-elements {
+    display: none;
+  }
+
+  .desktop-nav-element {
+    display: flex
+  }
+  #nav-bar-parent{
+    flex-direction: row;
+  }
+
+}
