@@ -223,7 +223,7 @@ export default function CaseReviewPanel({
               <div className="details-row">
                 <p>
                   <span className="review-box-section-header">
-                    Interview Location:
+                    Detained in:
                   </span>{" "}
                   {transcript.location.name}
                 </p>
@@ -231,7 +231,7 @@ export default function CaseReviewPanel({
               <div className="details-row">
                 <p>
                   <span className="review-box-section-header">
-                    Response to interview:
+                    Behaviour:
                   </span>{" "}
                   {transcript.behaviour}
                 </p>
@@ -259,7 +259,7 @@ export default function CaseReviewPanel({
             </div>
             {/* show reward earned from making decision on this case. conditional on whether the case has been procesed */}
             {transcript.processed && (
-              <div>
+              <div className="outcome-display">
                 <h4>{transcript.outcomeCategory}</h4>
                 <p>{transcript.decision}</p>
                 <p>
@@ -359,17 +359,19 @@ export default function CaseReviewPanel({
             }
           >
             {!transcript.processed ? (
-              <>
+              <div className="decision-buttons-container"> 
                 <button data-decision="nfa" onClick={handleDecision}>
                   No further action
                 </button>
                 <button data-decision="reeducate" onClick={handleDecision}>
                   Send for re-education
                 </button>{" "}
-              </>
+              </div>
             ) : (
               <>
-                <div id="evidence-box">
+              <div className="processed-buttons-container"> 
+              <button onClick={()=>reviewTranscriptSetter(null)}>Close Case Notes</button>
+               
                   <button
                     onClick={() => {
                       setShowEvidence((prev) => !prev);
@@ -378,14 +380,17 @@ export default function CaseReviewPanel({
                     {" "}
                     See Evidence{" "}
                   </button>
+                  </div>
                   {showEvidence && (
+                     <div id="evidence-box">
                     <ol>
                       {transcript.weightingArray.map((item) => {
                         return <li key={uuidv4()}> {item} </li>;
                       })}
                     </ol>
+                    </div>
                   )}
-                </div>
+                
               </>
             )}
           </div>

@@ -179,6 +179,7 @@ body .custom-tooltip {
   font-family: 'Silkscreen', monospace;
   font-size: .8rem;
   z-index: 100;
+  width:fit-content;
 }
 
 

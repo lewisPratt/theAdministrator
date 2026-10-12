@@ -172,6 +172,7 @@ Body and paragraph elements utilised
 font-family:'Silkscreen',monospace
 
 ## Colour
+using `<meta name="theme-color" content="#000000">` to set the colour of mobile browser address bar to fit the color scheme of the app. 
 The retro futuristic aesthetic I decided to utilise for this game allowed me the freedom to be  creative with the colour pallete throughout the app. When researching UI examples and references from films I noticed that most computer systems set in a dystopian, authoritative universe, tended towards a simple high contrast colour scheme that didn't distract from the content. Choosing two primary colours and allowing the use of slightly altered brightnesses of these two colours, ensured that there was a cohesive, thematic and consistent feel to the entire application. The colours I chose as my two primary colours enhance the overall theme of the app and contribute to achieving its purpose. 
 My initial concept was to create a simulated computer terminal in a retro futuristic setting. Simulating a system that runs on a low tech computer terminal that only renders two colours (at varying degrees of brightness) helps to further enhance the theming of the app. 
 Contrast however is important, particularly when committing to the use of only two colours. For this reason I used ..... To check the contrast value between my two primary colours and the result showed a pass with high contrast at .....

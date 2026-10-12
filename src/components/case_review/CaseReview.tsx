@@ -13,7 +13,7 @@ import SearchConsole from "./SearchInfo";
 import { Badge, LoaderCircle } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "../DebugTools";
-import CodexSidePanel from "./CodexSidePanel";
+import RulesPanel from "./RulesPanel";
 import { getUnlockDetails } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css";
@@ -192,7 +192,7 @@ export default function TranscriptRev() {
                         codexStateSetter={setCodexState}
                       />
                     ))}
-                    <li>
+                    <li className="rules-list-item">
                        <button
                     id="tutorial-step-9"
                     className={
@@ -209,7 +209,7 @@ export default function TranscriptRev() {
                   </button>
                     </li>
                   </ol>
-                  <div>
+                  <div className="active-upgrades-container">
                     <h6
                       id="tutorial-step-8"
                       className={
@@ -239,7 +239,7 @@ export default function TranscriptRev() {
                 </div>
               )}
               {codexState && 
-                <CodexSidePanel codexStateSetter={setCodexState} codexState={codexState} currentTranscriptSetter={setCurrentTranscript} selectedSetter={setSelectedListItem}/>
+                <RulesPanel codexStateSetter={setCodexState} codexState={codexState} currentTranscriptSetter={setCurrentTranscript} selectedSetter={setSelectedListItem}/>
               }
               {currentTranscript ? (
                 <CaseReviewPanel

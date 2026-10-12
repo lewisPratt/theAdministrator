@@ -1,6 +1,6 @@
 import type{ CodexSidePanelProps } from "../../interfaces/interfaces";
 
-export default function CodexSidePanel({
+export default function RulesPanel({
   codexState,
   codexStateSetter,
   currentTranscriptSetter,
