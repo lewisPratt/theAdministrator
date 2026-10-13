@@ -140,7 +140,7 @@ color:black;
   flex-direction: column;
   transition: .3s;
   font-family: 'Silkscreen', monospace;
-
+  position:relative;
 }
 
 .passes-container {
@@ -559,6 +559,22 @@ justify-content: center;
 }
 .desktop-case-element{
   display:none
+}
+.legal-item-symbol, .illegal-item-symbol{
+  position:absolute;
+  right:1px;
+  bottom:1px;
+  display:none;
+}
+.legal-item>.legal-item-symbol,
+.illegal-item>.illegal-item-symbol{
+  display: block;
+}
+.missing-evidence-upgrade{
+  font-size:.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

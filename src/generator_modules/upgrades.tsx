@@ -18,7 +18,7 @@ export const allUpgrades: UpgradeListShape = {
   ["voucher1"]: {
     name: "Frontal Lobe implant",
     type: "perk",
-    cost: 600,
+    cost: 2000,
     desc: 'By simply inserting this 3" syringe into the centre of your left eyeball and injecting the contents, a barely noticeable permanent implant will be permanently attached to your frontal lobe.',
     perkEffect: "Identifies +1 carried item as a positive or negative factor.",
     icon: <Syringe size={12} x={6} y={6} />,
@@ -26,19 +26,19 @@ export const allUpgrades: UpgradeListShape = {
   ["voucher2"]: {
     name: "Cranial Upgrade Bot",
     type: "perk",
-    cost: 800,
+    cost: 5000,
     desc: "This user friendly cranial implant will helpfully crawl out of it's delivery crate and attach itself to the optimum location on your skull.",
     perkEffect: "Identifies +1 carried item as a positive or negative factor.",
     icon: <Cpu size={12} x={6} y={6} />,
   },
-  ["voucher3"]: {
-    name: "Upgraded Cognition Blocker",
-    type: "perk",
-    cost: 1200,
-    desc: "This technological leap in Administration technology will replace your Standard Issue Cognition Blocker with a Standard-Pro Edition Cognition Blocker (X1.5 free thought cognition allowance!) ",
-    perkEffect: "Identifies +1 carried item as a positive or negative factor.",
-    icon: <MemoryStick size={12} x={6} y={6} />,
-  },
+  // ["voucher3"]: {
+  //   name: "Upgraded Cognition Blocker",
+  //   type: "perk",
+  //   cost: 1200,
+  //   desc: "This technological leap in Administration technology will replace your Standard Issue Cognition Blocker with a Standard-Pro Edition Cognition Blocker (X1.5 free thought cognition allowance!) ",
+  //   perkEffect: "Identifies +1 carried item as a positive or negative factor.",
+  //   icon: <MemoryStick size={12} x={6} y={6} />,
+  // },
   ["voucher4"]: {
     name: "Extra Cases",
     type: "perk",
