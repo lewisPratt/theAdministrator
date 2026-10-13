@@ -1,6 +1,5 @@
-import React, { Children, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import type {
-  reviewShape,
   transcriptReviewBoxProps,
 } from "../../interfaces/interfaces";
 import {
@@ -29,7 +28,6 @@ export default function CaseReviewPanel({
   transcript,
   reviewTranscriptSetter,
   selectedSetter,
-  decisionSetter,
   transcriptList,
   setTranscriptList,
   cityMapSetter,
@@ -113,11 +111,9 @@ export default function CaseReviewPanel({
       const decision = e.currentTarget.dataset.decision;
       const personWeighting: number = transcript.overallWeighting;
       let decisionText = "";
-      let decisionOutcome = null;
 
       const wrongAnswer = 170;
       let rightAnswer = 150;
-      const neutralAnswer = 50;
 
       //work out additional credits to reward based on unlocked perks
       if (playerUnlocks) {

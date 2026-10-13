@@ -1,6 +1,6 @@
-import { MapPinned, MapPinSearch } from "lucide-react";
+import { MapPinSearch } from "lucide-react";
 import type { reviewShape } from "../../interfaces/interfaces";
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { type Dispatch, type SetStateAction } from "react";
 
 interface citizenAvatarProps {
   transcript: reviewShape;
@@ -8,7 +8,7 @@ interface citizenAvatarProps {
     cityMapSetter: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function CitizenAvatar({ transcript, cityMapSetter, cityMapState }: citizenAvatarProps) {
+export default function CitizenAvatar({ transcript, cityMapSetter }: citizenAvatarProps) {
 const scanLineDuration = 10
 
   return (

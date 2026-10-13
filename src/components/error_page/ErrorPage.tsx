@@ -6,11 +6,17 @@ import { X } from "lucide-react";
 
 export default function ErrorPage() {
   const {errorState, setErrorState} = useContext(ErrorContext)
-
+  //close overlay when overlay is clicked.
+  function closeOverlay(e: React.MouseEvent<HTMLDivElement>) {
+    const clickedTarget = e.target as HTMLDivElement;
+    if (clickedTarget.id === "error-overlay") {
+      setErrorState("")
+    }
+  }
   return (
     <>
     {errorState ?
-      <div id="error-overlay">
+      <div id="error-overlay" onClick={(e)=>{closeOverlay(e)}}>
         <div id="error-box">
           <h2>Error</h2>
             <p>{errorState}</p>

@@ -1,12 +1,10 @@
 import { v4 as uuid4 } from "uuid";
 import { Tooltip } from "react-tooltip";
 import cityMap from "../../assets//images/cityMap.png";
-import type { HotSpotShape, locationsShape, occupationsShape, districtDetails } from "../../interfaces/interfaces";
+import type { HotSpotShape, districtDetails } from "../../interfaces/interfaces";
 import MapScanningText from "./MapScanningText";
 import { useState } from "react";
-import { occupations } from "../../generator_modules/OccupationGenerator";
-import { locations } from "../../generator_modules/LocationGenerator";
-import { X } from "lucide-react";
+
 import DistrictDetails from "../map/DistrictDetails";
 import { getDetailsForDistrict } from "../../assets/utils/helpers";
 
@@ -196,7 +194,6 @@ export default function CityMap({giveDetails}:cityMapProps) {
   return (
     <div className="map-parent">
       <Tooltip id="city-tooltip" className="custom-tooltip"></Tooltip>
-    <DistrictDetails districtDetails={districtDetails} setDistrictDetails={setDistrictDetails} />
 
       <svg id="city-map" viewBox=" 0 0 1800 1000">
         {/* base map image */}
@@ -277,6 +274,8 @@ export default function CityMap({giveDetails}:cityMapProps) {
           Population 2,700,000
         </text>
       </svg>
+    <DistrictDetails districtDetails={districtDetails} setDistrictDetails={setDistrictDetails} />
+
     </div>
   );
 }

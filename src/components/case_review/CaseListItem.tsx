@@ -1,5 +1,5 @@
 import type { reviewShape, transcriptListItemProps } from "../../interfaces/interfaces";
-import {CircleUser, FileUser, FolderTree, User } from "lucide-react";
+import {FolderTree, User } from "lucide-react";
 
 export default function CaseListItem({
   currentTranscript,

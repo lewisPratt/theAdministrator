@@ -13,6 +13,7 @@ import { type TooltipRefProps } from "react-tooltip";
 
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import ActivityGraph from "../statistics/ActivityGraph";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
