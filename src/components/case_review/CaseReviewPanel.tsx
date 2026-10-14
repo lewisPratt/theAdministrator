@@ -32,7 +32,9 @@ export default function CaseReviewPanel({
   transcriptList,
   setTranscriptList,
   cityMapSetter,
-  cityMapState
+  cityMapState,
+  nextCase,
+  nextCaseSetter
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<Boolean>(false);
@@ -49,6 +51,11 @@ export default function CaseReviewPanel({
     recPassDesc = "No RecPass";
   }
   
+  useEffect(()=>{
+    if(nextCase != transcript){
+      setClosing(true)
+    }
+  },[nextCase])
   //trigger adding of animation class to animate transcript leaving page.
   function closeTranscript() {
     setClosing(true);
@@ -60,8 +67,13 @@ export default function CaseReviewPanel({
   */
   function handleAnimationEnd(e: React.AnimationEvent<HTMLDivElement>) {
     if (e.animationName === "transcript-slide-out") {
+      if(nextCase != transcript && nextCase != null){
+        reviewTranscriptSetter(nextCase)
+        selectedSetter(nextCase.identifier)
+      }else{
       reviewTranscriptSetter(null);
       selectedSetter(NIL_UUID);
+      }
     }
   }
   /**
@@ -102,8 +114,7 @@ export default function CaseReviewPanel({
         if(currentCaseIndex < 0){
           currentCaseIndex = transcriptList.length -1
         }
-        selectedSetter(transcriptList[currentCaseIndex].identifier)
-        return reviewTranscriptSetter(transcriptList[currentCaseIndex])
+        return nextCaseSetter(transcriptList[currentCaseIndex])
       }
   }
 
@@ -419,7 +430,7 @@ export default function CaseReviewPanel({
               <>
               <div className="processed-buttons-container"> 
                 <button onClick={()=>{changeCase("previous")}}><ChevronLeft /></button>
-              <button onClick={()=>reviewTranscriptSetter(null)}>Close Case Notes</button>
+              <button onClick={()=>nextCaseSetter(null)}>Close Case Notes</button>
                
                {playerData?.player_unlocks.includes("voucher9") ?
                   <button onClick={() => {setShowEvidence((prev) => !prev);}}>

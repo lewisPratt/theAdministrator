@@ -97,6 +97,8 @@ export interface transcriptReviewBoxProps {
   setTranscriptList: Dispatch<SetStateAction<reviewShape[] | null>>;
   cityMapState : boolean
   cityMapSetter: Dispatch<SetStateAction<boolean>>;
+  nextCase: reviewShape | null
+  nextCaseSetter: Dispatch<SetStateAction<reviewShape | null>>
 
 }
 export interface nodeShape {
@@ -164,6 +166,8 @@ export interface transcriptListItemProps {
   codexStateSetter: Dispatch<SetStateAction<boolean>>
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
   selectedSetter: Dispatch<SetStateAction<string>>
+  nextCaseSetter: Dispatch<SetStateAction<reviewShape | null>>
+  currentOpenCase: reviewShape | null;
 }
 export interface summaryProps {
   efficiency: number;

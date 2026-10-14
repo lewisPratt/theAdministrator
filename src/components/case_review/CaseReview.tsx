@@ -46,12 +46,12 @@ export default function TranscriptRev() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [cityMapeState, setCityMapState] = useState<boolean>(false)
   const [missingPlayerData, setMissingPlayerData] = useState<boolean>(false)
+  const [nextCase, setNextCase] = useState<reviewShape | null>(null)
   const { tutorialState } = useContext(TutorialContext);
   const {playerData} = useContext(PlayerContext)
   const navigate = useNavigate();
   const voucherDetails = getUnlockDetails(playerData);
   const tooltipRef1 = useRef<TooltipRefProps>(null);
-   const identifyUpgrades : string[] = ["voucher1", "voucher2"]
   //////////////////////
   // set debug to 1 to see debug tools
   const debug = 0;
@@ -214,6 +214,8 @@ export default function TranscriptRev() {
                           listItem.interviewee.firstName +
                           listItem.authorizedLocations
                         }
+                        currentOpenCase={currentTranscript}
+                        nextCaseSetter={setNextCase}
                         reviewTranscriptSetter={setCurrentTranscript}
                         currentTranscript={listItem}
                         identifier={selectedListItem}
@@ -235,7 +237,9 @@ export default function TranscriptRev() {
               }
               {currentTranscript ? (
                 <CaseReviewPanel
-                  // key={uuidv4()}
+                  key={uuidv4()}
+                  nextCaseSetter={setNextCase}
+                  nextCase={nextCase}
                   reviewTranscriptSetter={setCurrentTranscript}
                   transcript={currentTranscript}
                   decisionSetter={setDecisionMade}

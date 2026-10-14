@@ -6,6 +6,8 @@ export default function CaseListItem({
   reviewTranscriptSetter,selectedSetter,
   identifier,
   codexState,
+  nextCaseSetter,
+  currentOpenCase,
   codexStateSetter
 }: transcriptListItemProps) {
     
@@ -13,8 +15,14 @@ export default function CaseListItem({
     if(codexState){
       codexStateSetter(false)
     }
-    selectedSetter(transcript.identifier)
-    reviewTranscriptSetter(transcript);
+    console.log(currentTranscript)
+    if(currentOpenCase === null){
+      selectedSetter(transcript.identifier)
+      reviewTranscriptSetter(transcript);
+      nextCaseSetter(transcript)
+    }else{
+    nextCaseSetter(transcript)
+    }
   }
  
   return (

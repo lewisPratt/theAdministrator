@@ -179,9 +179,12 @@ color:black;
   align-items: center;
   width: 100%;
   flex-direction: column;
+  z-index:90;
 
 }
-
+.decision-container button{
+  height:100px;
+}
 #evidence-box {
   display: flex;
   flex-direction: column;
@@ -528,6 +531,7 @@ justify-content: center;
 
 .slide-out-class {
   animation: transcript-slide-out .6s 1 forwards steps(7);
+  opacity:.5
 }
 
 .open-transcript-class {
@@ -1037,11 +1041,11 @@ justify-content: center;
   }
 
   .slide-out-class {
-    animation: transcript-slide-out .6s 1 forwards steps(7);
+    animation: transcript-slide-out .6s 1 forwards ;
   }
 
   .open-transcript-class {
-    animation: open-transcript .6s 1 forwards steps(4);
+    animation: open-transcript .6s 1 forwards;
   }
 
   .current-selected-item::after {
