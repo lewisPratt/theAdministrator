@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route,Navigate, HashRouter } from "react-router-dom";
 import TranscriptRev from "./components/case_review/CaseReview";
 import "./assets/css/App.css";
 import "./assets/css/tutorial.css";
@@ -37,6 +37,7 @@ import { createPortal } from "react-dom";
 import NavBar from "./components/nav/NavBar";
 import { PlayerContext } from "./context_providers/PlayerContext";
 import Stats from "./components/statistics/Stats";
+import PageNotFound from "./components/PageNotFound"; 
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
@@ -143,6 +144,8 @@ function App() {
                                     element={<UpgradeShop />}
                                   />
                                   <Route path="/Inbox" element={<Inbox />} />
+                                  <Route path="*" element={<PageNotFound />} />
+
                                 </Routes>
                               </div>
                             </main>

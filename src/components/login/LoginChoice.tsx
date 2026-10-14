@@ -23,6 +23,7 @@ export default function LoginChoice({
 
   function continueGame() {
     setPlayerData(loginChoiceData.retrievedSave);
+    sessionStorage.setItem("admin_game_status", "logged_in");
     navigate("/welcome");
   }
 

@@ -29,9 +29,10 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
   let loginStart = false
 
   useEffect(() => {
-    if(playerData && !loginStart){
-      setPlayerData(null)
-    }
+    // if(playerData && !loginStart){
+    //   setPlayerData(null)
+    // }
+    console.log(playerData)
   },[]);
 
   /**
@@ -56,7 +57,7 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
         const parsedPlayerData: playerDataShape = JSON.parse(savedData);
         if (parsedPlayerData.player_name === enteredName) {
           setPlayerData(JSON.parse(savedData));
-          // setScoreState(parsedPlayerData.player_credits)
+          sessionStorage.setItem("admin_game_status", "logged_in");
           navigate("/Welcome");
 
         } else {
@@ -80,7 +81,9 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
           JSON.stringify(newPlayer),
         );
         setPlayerData(newPlayer)
+        sessionStorage.setItem("admin_game_status", "logged_in");
         navigate("/Welcome")
+
       }  
 
   return (

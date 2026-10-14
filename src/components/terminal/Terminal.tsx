@@ -93,7 +93,7 @@ export default function CommandCentre() {
       ) : (
         <>
           <section id="welcome-section">
-            {playerData ? (
+            {playerData && sessionStorage.getItem("admin_game_status")?  (
               <>
                 <h1>Welcome Administrator.</h1>
                 <p>Please navigate to your required destination below.</p>
@@ -145,9 +145,7 @@ export default function CommandCentre() {
                     <li className="command-row">
                       <p>Upgrade Terminal</p> <p>nav.upgrade</p>
                     </li>
-                    <li className="command-row">
-                      <p>Inbox</p> <p>nav.inbox</p>
-                    </li>
+            
                     <li className="command-row">
                       <p>Request leave</p>
                       <p>request.leave</p>
@@ -156,10 +154,7 @@ export default function CommandCentre() {
                       <p>Human Resources</p>
                       <p>nav.hr</p>
                     </li>
-                    <li className="command-row">
-                      <p>Statistics</p>
-                      <p>nav.stats</p>
-                    </li>
+             
                     <li className="command-row">
                       <p>Logout</p>
                       <p>nav.logout</p>

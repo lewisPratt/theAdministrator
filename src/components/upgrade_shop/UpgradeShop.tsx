@@ -17,6 +17,7 @@ import { useRef } from "react";
 import type { TooltipRefProps } from "react-tooltip";
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import NotLoggedIn from "../nav/NotLoggedIn";
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
@@ -114,100 +115,109 @@ export default function UpgradeShop() {
         <p>
           <LoaderCircle className="loader" />
         </p>
-      ) : (
-        <section id="upgrade-shop">
-          <div id="upgrade-shop-header">
-            <h2>Upgrade Terminal</h2>
+      ) : 
+      (
+        <>
+        {/* check player is logged in */}
+        {playerData && sessionStorage.getItem("admin_game_status")?  (
+        <>
+          <section id="upgrade-shop">
+            <div id="upgrade-shop-header">
+              <h2>Upgrade Terminal</h2>
 
-            {debug && (
-              <div className="debug-container">
-                <h6>Debug- not for production</h6>
-                <button onClick={giveCredits}>Give credits</button>
-                <button onClick={resetCredits}>Reset credits</button>
-                <button onClick={resetUpgrades}>Reset Upgrades</button>
-              </div>
-            )}
-          </div>
-          <div id="personal-record-button">
-            <button
-            
-              id="tutorial-step-14"
+              {debug && (
+                <div className="debug-container">
+                  <h6>Debug- not for production</h6>
+                  <button onClick={giveCredits}>Give credits</button>
+                  <button onClick={resetCredits}>Reset credits</button>
+                  <button onClick={resetUpgrades}>Reset Upgrades</button>
+                </div>
+              )}
+            </div>
+            <div id="personal-record-button">
+              <button
+              
+                id="tutorial-step-14"
+                className={
+                  tutorialState.tutorialActive &&
+                  tutorialState.tutorialStep === 14
+                    ? "tutorial-highlight"
+                    : ""
+                }
+                onClick={() => {
+                  navigate("/PersonalRecord");
+                  setCurrentSlug("nav.personal");
+                }}
+              >
+                Personal Record
+              </button>
+            </div>
+            <section
+              id="tutorial-step-13"
               className={
-                tutorialState.tutorialActive &&
-                tutorialState.tutorialStep === 14
+                (tutorialState.tutorialActive && tutorialState.tutorialStep === 13
                   ? "tutorial-highlight"
-                  : ""
+                  : "") + " upgrade-items-container"
               }
-              onClick={() => {
-                navigate("/PersonalRecord");
-                setCurrentSlug("nav.personal");
-              }}
             >
-              Personal Record
-            </button>
-          </div>
-          <section
-            id="tutorial-step-13"
-            className={
-              (tutorialState.tutorialActive && tutorialState.tutorialStep === 13
-                ? "tutorial-highlight"
-                : "") + " upgrade-items-container"
-            }
-          >
-            <ol>
-              {Object.entries(upgrades).map((upgrade) => {
-                return (
-                  <li>
-                    <button
-                    aria-label="Show upgrade details"
-                      key={upgrade[0]}
-                      className={
-                        "upgrade-box " +
-                        (playerData?.player_unlocks.includes(upgrade[0])
-                          ? "purchased-unlock-class"
-                          : "unpurchased-unlock-class")
-                      }
-                      data-upgrade-name={upgrade[1].name}
-                      data-upgrade-ident={upgrade[0]}
-                      onClick={(e) => {
-                        confirmChoice(e);
-                        hoverClick();
-                      }}
-                    >
-                      <Badge size={48}>{upgrade[1].icon}</Badge>
-                      <span className="upgrade-name">
-                        {upgrade[1].name}
-                      </span>{" "}
-                      <span>
-                        {playerData?.player_unlocks.includes(upgrade[0]) &&
-                          "[Purchased]"}{" "}
-                        <CreditIcon className="custom-icon" />
-                        {upgrade[1].cost}
-                      </span>
-                    </button>
-                    {confirming != null && confirming === upgrade[0] && (
-                      <div>
-                        <p className="upgrade-desc">{upgrade[1].desc}</p>
-                        <p>Effect: {upgrade[1].perkEffect}</p>
-                        {errorState != null && (
-                          <p id="upgrade-error">{errorState}</p>
-                        )}
+              <ol>
+                {Object.entries(upgrades).map((upgrade) => {
+                  return (
+                    <li>
+                      <button
+                      aria-label="Show upgrade details"
+                        key={upgrade[0]}
+                        className={
+                          "upgrade-box " +
+                          (playerData?.player_unlocks.includes(upgrade[0])
+                            ? "purchased-unlock-class"
+                            : "unpurchased-unlock-class")
+                        }
+                        data-upgrade-name={upgrade[1].name}
+                        data-upgrade-ident={upgrade[0]}
+                        onClick={(e) => {
+                          confirmChoice(e);
+                          hoverClick();
+                        }}
+                      >
+                        <Badge size={48}>{upgrade[1].icon}</Badge>
+                        <span className="upgrade-name">
+                          {upgrade[1].name}
+                        </span>{" "}
+                        <span>
+                          {playerData?.player_unlocks.includes(upgrade[0]) &&
+                            "[Purchased]"}{" "}
+                          <CreditIcon className="custom-icon" />
+                          {upgrade[1].cost}
+                        </span>
+                      </button>
+                      {confirming != null && confirming === upgrade[0] && (
+                        <div>
+                          <p className="upgrade-desc">{upgrade[1].desc}</p>
+                          <p>Effect: {upgrade[1].perkEffect}</p>
+                          {errorState != null && (
+                            <p id="upgrade-error">{errorState}</p>
+                          )}
 
-                        {!playerData?.player_unlocks.includes(upgrade[0]) && (
-                          <div className="purchase-button-container">
-                            <button aria-label="Buy upgrade" onClick={purchaseUpgrade}>
-                              <CreditIcon className="custom-icon" />
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </li>
-                );
-              })}
-            </ol>
+                          {!playerData?.player_unlocks.includes(upgrade[0]) && (
+                            <div className="purchase-button-container">
+                              <button aria-label="Buy upgrade" onClick={purchaseUpgrade}>
+                                <CreditIcon className="custom-icon" />
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
           </section>
-        </section>
+        </>
+        ) :
+        <NotLoggedIn soundControls={false} />}
+        </>
       )}
     </>
   );

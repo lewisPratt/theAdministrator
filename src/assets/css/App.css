@@ -223,7 +223,15 @@ body .custom-tooltip {
   gap: 5px;
   flex-direction: column;
 }
-
+#page-not-found-container{
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+#page-not-found-container button{
+  margin-top:20px;
+}
 /**
  * MAP
  */

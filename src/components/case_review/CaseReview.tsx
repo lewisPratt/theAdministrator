@@ -28,6 +28,7 @@ import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CaseReviewMap from "./CaseReviewMap";
 import ActiveUpgrades from "../upgrade_shop/ActiveUpgrades";
+import NotLoggedIn from "../nav/NotLoggedIn";
 
 export default function TranscriptRev() {
   const [availableTranscripts, setAvailableTranscripts] = useState<
@@ -179,7 +180,9 @@ export default function TranscriptRev() {
         </p>
       ) : (
         <>
-         
+        {/* check if logged in */}
+         {playerData && sessionStorage.getItem("admin_game_status")?  (
+          <>
           {reviewsComplete && !reviewDismissed && (
             <CaseReviewSummary
               reviewsCompleteSetter={setReviewDismissed}
@@ -278,6 +281,8 @@ export default function TranscriptRev() {
              </div>
             {cityMapeState && <CaseReviewMap cityMapSetter={setCityMapState} cityMapState={cityMapeState}/>}
           </section>
+          </>) :
+          <NotLoggedIn soundControls={false} />}
         </>
       )}
     </>

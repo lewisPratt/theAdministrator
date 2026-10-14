@@ -9,6 +9,7 @@ import { useRef } from "react";
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import PlayerStats from "./PlayerStats";
+import NotLoggedIn from "../nav/NotLoggedIn";
 export default function PersonalRecord() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const {playerData} = useContext(PlayerContext)
@@ -29,23 +30,30 @@ export default function PersonalRecord() {
           <LoaderCircle className="loader" />
         </p>
       ) : (
-        <section id="personal-record">
-          <p>Administrator</p>
-          <h1>{playerData?.player_name}</h1>
-          <p className="personal-record-tagline">View your mediocre personal achievements & upgrades.</p>
+        <>
+          {/* check player is logged in */}
+          {playerData && sessionStorage.getItem("admin_game_status")?  (
+          <>
+            <section id="personal-record">
+              <p>Administrator</p>
+              <h1>{playerData?.player_name}</h1>
+              <p className="personal-record-tagline">View your mediocre personal achievements & upgrades.</p>
 
-          {/* //upgrades unlocked component */}
-          <UnlockedUpgrades />
-       
+              {/* //upgrades unlocked component */}
+              <UnlockedUpgrades />
           
-          <PlayerStats />
+              
+              <PlayerStats />
 
-          {/* //pass/fail ratio */}
+              {/* //pass/fail ratio */}
 
-          {/* //reset data component */}
-          <Tooltip id="unlocks-tooltip" className="custom-tooltip" />
+              {/* //reset data component */}
+              <Tooltip id="unlocks-tooltip" className="custom-tooltip" />
 
-        </section>
+            </section>
+          </>) :
+            (<NotLoggedIn soundControls={false} />)}
+        </>
       )}
     </>
   );

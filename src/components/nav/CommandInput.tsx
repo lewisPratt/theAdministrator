@@ -6,13 +6,24 @@ import AvailableCommandsList from "./AvailableCommandsList";
 import { playSound } from "react-sounds";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
+import { PlayerContext } from "../../context_providers/PlayerContext";
 
 export default function CommandInput() {
   const [showCommands, setShowCommands] = useState<boolean>(false);
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { setErrorState } = useContext(ErrorContext);
   const { tutorialState } = useContext(TutorialContext);
+  const {playerData, setPlayerData} = useContext(PlayerContext)
   const navigate = useNavigate();
+
+  function doLogout(){
+    if(playerData) {
+      sessionStorage.removeItem("admin_game_status")
+      setPlayerData(null)
+      
+    }
+}
+
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -46,6 +57,7 @@ export default function CommandInput() {
           resetInput(e);
           break;
         case "nav.logout":
+          doLogout()
           navigate("/Goodbye");
           break;
         case "nav.personal":

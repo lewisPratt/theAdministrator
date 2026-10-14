@@ -17,11 +17,12 @@ export default function NavBar() {
     /* check to see if the current route is the login, welcome or goodbye page, if so, disable component */
   }
   let componentEnabled: boolean = true;
-  if (
-    pathname === "/" ||
-    pathname === "/Goodbye" ||
-    pathname === "/Welcome" ||
-    pathname === "/HowToPlay"
+  if ( !sessionStorage.getItem("admin_game_status") 
+    // pathname === "/" ||
+    // pathname === "/Goodbye" ||
+    // pathname === "/Welcome" ||
+    // pathname === "/HowToPlay" ||
+    // pathname === "*"
   ) {
     componentEnabled = false;
   }
