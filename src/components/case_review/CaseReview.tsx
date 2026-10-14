@@ -14,7 +14,7 @@ import { Badge, LoaderCircle } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "../DebugTools";
 import RulesPanel from "./RulesPanel";
-import { getUnlockDetails } from "../../assets/utils/helpers";
+import { checkUpgradeActive, getUnlockDetails } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css";
 
@@ -47,6 +47,7 @@ export default function TranscriptRev() {
   const navigate = useNavigate();
   const voucherDetails = getUnlockDetails(playerData);
   const tooltipRef1 = useRef<TooltipRefProps>(null);
+   const identifyUpgrades : string[] = ["voucher1", "voucher2"]
   //////////////////////
   // set debug to 1 to see debug tools
   const debug = 0;
@@ -86,7 +87,6 @@ export default function TranscriptRev() {
     let originalCount = transcriptCount;
     if (playerData) {
       setMissingPlayerData(false)
-      console.log("data here")
       if (playerData.player_unlocks.includes("voucher4")) {
         transcriptCount += 3;
       }
@@ -95,17 +95,41 @@ export default function TranscriptRev() {
       }
     }
     else{
-      console.log("no player data yet")
+      //missing playerdata
       setMissingPlayerData(true)
     }
-    for (let index = 0; index < transcriptCount; index++) {
-      const newPerson = new person();
-      if (originalCount != transcriptCount && index >= originalCount) {
-        newPerson.bonusCase = true;
+
+/**
+ * creates cases to populate the review component. Sorts through possible upgrades and applies their effects if they are relevant to 
+ * case wide effects. 
+ */
+    function createCases() {
+      for (let index = 0; index < transcriptCount; index++) {
+        const newPerson: reviewShape = new person();
+        const playerUnlocks = playerData?.player_unlocks
+        let chance = 0.10
+
+        if (checkUpgradeActive(playerUnlocks, "voucher1") && checkUpgradeActive(playerUnlocks, "voucher2")) {
+          //if both vouchers present, increase to 20% chance of reveal
+          chance = 0.20
+        }
+        //if player has either upgrade, trigger chance to reveal legality of item
+        if (checkUpgradeActive(playerUnlocks, "voucher1") || checkUpgradeActive(playerUnlocks, "voucher2")) {
+          if (Math.random() < chance) {
+            newPerson.revealItem = true
+          }
+        }
+
+        //mark current case as a bonus case granted by upgrade
+        if (originalCount != transcriptCount && index >= originalCount) {
+          newPerson.bonusCase = true;
+        }
+        transcriptsArray.push(newPerson);
       }
-      transcriptsArray.push(newPerson);
     }
 
+    createCases()
+      
     setAvailableTranscripts(transcriptsArray);
 
     setTimeout(setLoadingState, 2000, false);

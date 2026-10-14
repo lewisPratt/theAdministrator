@@ -20,7 +20,7 @@ export const allUpgrades: UpgradeListShape = {
     type: "perk",
     cost: 2000,
     desc: 'By simply inserting this 3" syringe into the centre of your left eyeball and injecting the contents, a barely noticeable permanent implant will be permanently attached to your frontal lobe.',
-    perkEffect: "Identifies +1 carried item as a positive or negative factor.",
+    perkEffect: "+10% chance of identifying legality of carried items automatically.",
     icon: <Syringe size={12} x={6} y={6} />,
   },
   ["voucher2"]: {
@@ -28,7 +28,7 @@ export const allUpgrades: UpgradeListShape = {
     type: "perk",
     cost: 5000,
     desc: "This user friendly cranial implant will helpfully crawl out of it's delivery crate and attach itself to the optimum location on your skull.",
-    perkEffect: "Identifies +1 carried item as a positive or negative factor.",
+    perkEffect: "+10% chance of identifying legality of carried items automatically.",
     icon: <Cpu size={12} x={6} y={6} />,
   },
   // ["voucher3"]: {

@@ -22,6 +22,7 @@ export interface reviewShape {
   bonusCase: boolean
   rewardEarned: number
   avatar: string
+  revealItem: boolean
 }
 
 export interface carryableItemsShape {

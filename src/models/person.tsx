@@ -38,6 +38,7 @@ export class person {
   bonusCase: boolean;
   rewardEarned: number;
   avatar: string;
+  revealItem: boolean
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -70,6 +71,7 @@ export class person {
     this.bonusCase = false;
     this.rewardEarned = 0;
     this.avatar = this.generateAvatar(this.gender, this.behaviour);
+    this.revealItem = false
   }
 
   private generateGender() {

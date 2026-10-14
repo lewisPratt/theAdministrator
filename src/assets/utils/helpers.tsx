@@ -1,7 +1,7 @@
 import { locations } from "../../generator_modules/LocationGenerator";
 import { occupations } from "../../generator_modules/OccupationGenerator";
 import { allUpgrades } from "../../generator_modules/upgrades";
-import type { locationsShape, occupationsShape, playerDataShape, UpgradeShape } from "../../interfaces/interfaces";
+import type { locationsShape, occupationsShape, playerDataShape, unlockContextShape, UpgradeShape } from "../../interfaces/interfaces";
 
 /**
  * Capitalizes the first letter of the string passed to it, returning a capitalized string
@@ -43,5 +43,14 @@ export function getDetailsForDistrict(district:number){
       return location.district === district
   })
   return {occupations :occupationArray, locations : locationArray, districtNumber:district, activeList:"occupations"}
+
+}
+
+export function checkUpgradeActive(unlocks : string[] | undefined, voucher: string) : boolean{
+
+  if(unlocks)
+    return unlocks.includes(voucher)
+  else 
+    return false
 
 }

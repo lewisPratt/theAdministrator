@@ -21,7 +21,6 @@ import { UnlocksContext } from "../../context_providers/unlocksContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
-import { allUpgrades } from "../../generator_modules/upgrades";
 
 //set to 1 to show debug info on weighting
 const debug: number = 0;
@@ -42,9 +41,7 @@ export default function CaseReviewPanel({
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const successSound = () => playSound("ui/success_bling");
   const failSound = () => playSound("ui/blocked");
-  const identifyUpgrades : string[] = ["voucher1", "voucher2"]
   let itemsToIdentify : number = 0
-  let identifying : boolean = false
 
   let recPassDesc: string = "";
   if (transcript?.recreationPass) {
@@ -53,15 +50,6 @@ export default function CaseReviewPanel({
     recPassDesc = "No RecPass";
   }
 
-  //determines how many items need to be auto identified based on player upgrades. 
-  if(playerData){
-  identifyUpgrades.forEach(upgrade => {
-    if(playerData.player_unlocks.includes(upgrade)){      
-      itemsToIdentify++
-    }
-  });
-
-  }
   //trigger adding of animation class to animate transcript leaving page.
   function closeTranscript() {
     setClosing(true);
@@ -229,6 +217,7 @@ export default function CaseReviewPanel({
       }
     }
   }
+  console.log(transcript?.revealItem)
   return (
     <>
       {transcript && (
@@ -389,11 +378,11 @@ export default function CaseReviewPanel({
                     }
                     return (
                       <div
-                        className={ (itemsToIdentify >= 0 ? (item.legal ? "legal-item " : "illegal-item ") : "")  +" badge"}
+                        className={ (transcript.revealItem ? (item.legal ? "legal-item " : "illegal-item ") : "")  +" badge"}
                         key={uuidv4()}
                         tabIndex={0}
                         data-tooltip-id="item-desc"
-                        data-tooltip-content={item.description + (itemsToIdentify >= 0 ? (item.legal ? " [Legal]" : " [Illegal]") : "")}
+                        data-tooltip-content={item.description + (transcript.revealItem ? (item.legal ? " [Legal]" : " [Illegal]") : "")}
                       >
                         {item.itemComponent}
                         <div className="illegal-item-symbol"><XCircle size={12}/></div>
