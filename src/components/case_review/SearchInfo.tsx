@@ -166,11 +166,7 @@ export default function SearchConsole() {
               placeholder="Location name"
               data-search-type="district"
             ></input>
-            <div id="search-key">
-              {" "}
-              Search Key: <HandCoins size={18} /> = Occuaption{" "}
-              <MapPinned size={18} /> = Location 
-            </div>
+           
           </div>
           <div id="search-result-container">
             {searchLoadState && (
@@ -207,6 +203,14 @@ export default function SearchConsole() {
                 <li>Waiting for input...</li>
               )}
             </ul>
+             <div id="search-key">
+                <h5> Search Key</h5>
+                <ul>
+                  <li><HandCoins size={18} /> = Occuaption </li>
+                  <li><MapPinned size={18} /> = Location </li>
+                </ul> 
+              
+            </div>
           </div>
         </>
       )}

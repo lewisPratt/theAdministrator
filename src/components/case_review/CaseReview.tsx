@@ -142,6 +142,7 @@ export default function TranscriptRev() {
   //if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
   useEffect(() => {
     if (tutorialState.tutorialActive && availableTranscripts) {
+      setNextCase(availableTranscripts[0])
       setCurrentTranscript(availableTranscripts[0]);
     }
   }, [loadingState]);
@@ -211,8 +212,7 @@ export default function TranscriptRev() {
                     {availableTranscripts.map((listItem) => (
                       <CaseListItem
                         key={
-                          listItem.interviewee.firstName +
-                          listItem.authorizedLocations
+                          listItem.identifier
                         }
                         currentOpenCase={currentTranscript}
                         nextCaseSetter={setNextCase}
@@ -237,7 +237,7 @@ export default function TranscriptRev() {
               }
               {currentTranscript ? (
                 <CaseReviewPanel
-                  key={uuidv4()}
+                  key={currentTranscript.identifier}
                   nextCaseSetter={setNextCase}
                   nextCase={nextCase}
                   reviewTranscriptSetter={setCurrentTranscript}
