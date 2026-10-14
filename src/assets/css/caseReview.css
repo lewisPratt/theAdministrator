@@ -185,7 +185,17 @@ color:black;
 #evidence-box {
   display: flex;
   flex-direction: column;
-  flex-basis: 100%;
+  width: 100%;
+  border:1px solid #a2eaa2;
+  margin-top:20px;
+}
+#evidence-box>ol{
+  list-style: none;
+  padding:0;
+  margin:20px
+}
+#evidence-box h6{
+  margin:10px 0 10px 0;
 }
 .processed-buttons-container, .decision-buttons-container{
   width:100%;
@@ -697,7 +707,7 @@ justify-content: center;
     width: 50px;
     height: 50px;
     border: 1px solid #a2eaa2;
-    margin: 5px 5px 0 5px;
+    margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;

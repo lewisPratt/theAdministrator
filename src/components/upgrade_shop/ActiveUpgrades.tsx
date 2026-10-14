@@ -29,6 +29,7 @@ export default function ActiveUpgrades() {
         upgradeDetails.map((unlock) => {
           return (
             <Badge
+            key={unlock.name+unlock.cost}
               size="25"
               data-tooltip-id="extra-case-tooltip"
               data-tooltip-content={unlock.perkEffect}

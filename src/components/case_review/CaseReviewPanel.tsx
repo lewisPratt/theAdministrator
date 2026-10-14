@@ -21,6 +21,7 @@ import { UnlocksContext } from "../../context_providers/unlocksContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
+import EvidenceStack from "./EvidenceStack";
 
 //set to 1 to show debug info on weighting
 const debug: number = 0;
@@ -217,7 +218,6 @@ export default function CaseReviewPanel({
       }
     }
   }
-  console.log(transcript?.revealItem)
   return (
     <>
       {transcript && (
@@ -295,7 +295,7 @@ export default function CaseReviewPanel({
                   </p>
                   <p>
                     {transcript.weightingArray.map((item) => {
-                      return <span key={uuidv4()}> {item} |</span>;
+                      return <span key={uuidv4()}> {item.evidenceText} |</span>;
                     })}
                   </p>
                 </>
@@ -403,9 +403,7 @@ export default function CaseReviewPanel({
               <X />
             </button>
           </div>
-          <div
-            id="tutorial-step-11"
-            className={
+          <div id="tutorial-step-11" className={
               (tutorialState.tutorialActive && tutorialState.tutorialStep === 11
                 ? "tutorial-highlight"
                 : "") + " decision-container"
@@ -429,28 +427,19 @@ export default function CaseReviewPanel({
               <button onClick={()=>reviewTranscriptSetter(null)}>Close Case Notes</button>
                
                {playerData?.player_unlocks.includes("voucher9") ?
-                  <button
-                    onClick={() => {
-                      setShowEvidence((prev) => !prev);
-                    }}
-                  >
-                    {" "}
-                    See Evidence{" "}
+                  <button onClick={() => {setShowEvidence((prev) => !prev);}}>
+                    See Evidence
                   </button>
                   :
-                  <p className="missing-evidence-upgrade" data-tooltip-id="extra-case-tooltip" data-tooltip-content="unlock via upgrade terminal">Evidence Stack Missing </p>
+                  <p className="missing-evidence-upgrade" data-tooltip-id="extra-case-tooltip" data-tooltip-content="unlock via upgrade terminal">
+                    Evidence Stack Missing 
+                  </p>
 
-}
-                  <button onClick={()=>{changeCase("next")}}><ChevronRight /></button>
-                  </div>
+                }
+                <button onClick={()=>{changeCase("next")}}><ChevronRight /></button>
+            </div>
                   {showEvidence && (
-                     <div id="evidence-box">
-                    <ol>
-                      {transcript.weightingArray.map((item) => {
-                        return <li key={uuidv4()}> {item} </li>;
-                      })}
-                    </ol>
-                    </div>
+                     <EvidenceStack caseDetails={transcript}/> 
                   )}
                 
               </>

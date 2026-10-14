@@ -6,6 +6,7 @@ import type {
 } from "../../interfaces/interfaces";
 import { X } from "lucide-react";
 import { getDetailsForDistrict } from "../../assets/utils/helpers";
+import { v4 as uuidv4 } from "uuid";
 
 interface districtDetailsProps {
   districtDetails: districtDetails | null;
@@ -91,11 +92,11 @@ export default function DistrictDetails({
             </div>
           </div>
           <ul>
-            {listToShow.map((occupation) => {
+            {listToShow.map((listItem) => {
               return (
-                <>
-                  <li>{occupation.name}</li> <hr></hr>
-                </>
+                
+                  <li key={uuidv4()}>{listItem.name} <hr></hr></li>
+                
               );
             })}
           </ul>

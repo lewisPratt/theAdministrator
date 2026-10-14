@@ -9,7 +9,7 @@ export interface reviewShape {
   authorizedLocations: number[];
   items: carryableItemsShape[];
   overallWeighting: number;
-  weightingArray: string[]
+  weightingArray: weightingArrayShape[]
   weather: weatherShape
   behaviour: string
   processed: boolean
@@ -24,7 +24,10 @@ export interface reviewShape {
   avatar: string
   revealItem: boolean
 }
-
+export interface weightingArrayShape{
+  evidenceText: string;
+  weighting: boolean;
+}
 export interface carryableItemsShape {
   itemComponent: React.ReactElement;
   legal: boolean;

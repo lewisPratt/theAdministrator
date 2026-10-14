@@ -134,7 +134,17 @@ h5 {
   flex: 1;
   margin-top: 100px;
 }
-
+.window-header{
+  color:black;
+  background-color:#a2eaa2;
+  text-align: left;
+  width:100%;
+  font-size:.8rem;
+}
+.window-header h5{
+  color:black;
+  padding:5px;
+}
 /**
  * LOADING ICON ANIMATION
  */

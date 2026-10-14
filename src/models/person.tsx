@@ -4,6 +4,7 @@ import type {
   carryableItemsShape,
   locationsShape,
   occupationsShape,
+  weightingArrayShape,
 } from "../interfaces/interfaces";
 import { v4 as uuidv4 } from "uuid";
 import { IdCard } from "lucide-react";
@@ -25,7 +26,7 @@ export class person {
   authorizedLocations: number[];
   occupation: occupationsShape;
   overallWeighting: number;
-  weightingArray: string[];
+  weightingArray: weightingArrayShape[];
   weather: weatherShape;
   behaviour: string;
   processed: boolean;
@@ -95,11 +96,11 @@ export class person {
   //Determines the persons overall weighting (good / normal / bad) determined by the factors generated within this class
   private workOutWeighting(): number {
     let weighting = 0;
-    let weightingArray: string[] = [];
+    let weightingArray: weightingArrayShape[] = [];
     this.items.forEach((item) => {
       if (!item.legal) {
         weighting -= 1;
-        weightingArray.push("NEGATIVE ITEM");
+        weightingArray.push({weighting:false, evidenceText:"Possession of illegal item."});
       } else if (item.legal) {
         // weighting += 1;
         // weightingArray.push("POSITIVE ITEM");
@@ -107,7 +108,7 @@ export class person {
     });
     if (this.recreationPass) {
       weighting += 1;
-      weightingArray.push("+ rec pass present");
+      weightingArray.push({weighting:true, evidenceText: "Recpass present."});
     }
     //the person is in a lower district than their job role allows (meaning a street vendor shouldn't be in the communications district)
     if (
@@ -116,7 +117,7 @@ export class person {
       !this.authorizedLocations.includes(this.location.district)
     ) {
       weighting -= 1;
-      weightingArray.push("- Out of district");
+      weightingArray.push({weighting:false, evidenceText:"found in un-authorized district."});
     }
     //if person has no recreation pass and is in the recreation zone (zone 8) they get negative weight
     if (
@@ -126,31 +127,32 @@ export class person {
       !this.authorizedLocations.includes(8)
     ) {
       weighting -= 1;
-      weightingArray.push("- no Rec pass in Rec zone");
+      weightingArray.push({weighting:false, evidenceText:"No Recpass in Rec district."});
     }
     if (this.location.district === this.occupation.district) {
       weighting += 1;
-      weightingArray.push("+ interviewed at work");
+      weightingArray.push({weighting:true , evidenceText:"Interviewed at work."});
     }
     if (this.authorizedLocations.includes(this.location.district)) {
       weighting += 1;
-      weightingArray.push("+ interviewed in auth loc");
+      weightingArray.push({weighting:true, evidenceText: "Interviewed in authorized district."});
     }
     if (this.behaviour == "Non-compliant") {
       weighting -= 1;
-      weightingArray.push("- behaviour");
+      weightingArray.push({weighting:false, evidenceText:"Non-compliant behaviour."});
     } else if (this.behaviour == "Compliant") {
       weighting += 1;
-      weightingArray.push("+ behaviour");
+      weightingArray.push({weighting:true,  evidenceText: "Compliant behaviour"});
     }
 
     //specific items
     const idCard = this.items.find((thisItem) => {
-      return thisItem.itemComponent === <IdCard />;
+      return thisItem.description === "ID card";
     });
     if (idCard) {
+      console.log("id card present")
       weighting += 1;
-      weightingArray.push("Id card present");
+      weightingArray.push({weighting:true,evidenceText:"Id card present"});
     }
 
     this.weightingArray = [...weightingArray];
