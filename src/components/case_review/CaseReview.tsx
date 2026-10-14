@@ -25,6 +25,7 @@ import { useRef } from "react";
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CaseReviewMap from "./CaseReviewMap";
+import ActiveUpgrades from "../upgrade_shop/ActiveUpgrades";
 
 export default function TranscriptRev() {
   const [availableTranscripts, setAvailableTranscripts] = useState<
@@ -247,31 +248,9 @@ export default function TranscriptRev() {
               <Tooltip id="extra-case-tooltip" className="custom-tooltip" />
             </div>
              <div className="helper-elements">
-               <div className="active-upgrades-container">
-                      <h6
-                        id="tutorial-step-8"
-                        className={
-                          tutorialState.tutorialActive &&
-                          tutorialState.tutorialStep === 8
-                            ? "tutorial-highlight"
-                            : ""
-                        }
-                      >
-                        Active Upgrades
-                      </h6>
-                      {voucherDetails &&
-                        voucherDetails.map((unlock) => {
-                          return (
-                            <Badge
-                              size="25"
-                              data-tooltip-id="extra-case-tooltip"
-                              data-tooltip-content={unlock.perkEffect}
-                            >
-                              {unlock.icon}
-                            </Badge>
-                          );
-                        })}
-                    </div>
+
+               <ActiveUpgrades />
+               
                 <button
                       id="tutorial-step-9"
                       className={
