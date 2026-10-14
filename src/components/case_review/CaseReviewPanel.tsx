@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import type {
   transcriptReviewBoxProps,
 } from "../../interfaces/interfaces";
@@ -17,7 +17,6 @@ import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 import { NIL as NIL_UUID } from "uuid";
 import { playSound } from "react-sounds";
-import { UnlocksContext } from "../../context_providers/unlocksContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
@@ -37,7 +36,6 @@ export default function CaseReviewPanel({
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<Boolean>(false);
-  const { playerUnlocks } = useContext(UnlocksContext);
   const { tutorialState } = useContext(TutorialContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const successSound = () => playSound("ui/success_bling");
@@ -50,7 +48,7 @@ export default function CaseReviewPanel({
   } else {
     recPassDesc = "No RecPass";
   }
-
+  
   //trigger adding of animation class to animate transcript leaving page.
   function closeTranscript() {
     setClosing(true);
@@ -119,18 +117,15 @@ export default function CaseReviewPanel({
       let rightAnswer = 150;
 
       //work out additional credits to reward based on unlocked perks
-      if (playerUnlocks) {
-        if (playerUnlocks.includes("voucher6")) {
+      if (playerData?.player_unlocks) {
+        if (playerData?.player_unlocks.includes("voucher6")) {
           rightAnswer += 50;
-          console.log("badge 1 ", rightAnswer);
         }
-        if (playerUnlocks.includes("voucher7")) {
+        if (playerData?.player_unlocks.includes("voucher7")) {
           rightAnswer += 75;
-          console.log("badge 2 ", rightAnswer);
         }
-        if (playerUnlocks.includes("voucher8")) {
+        if (playerData?.player_unlocks.includes("voucher8")) {
           rightAnswer += 100;
-          console.log("badge 3 ", rightAnswer);
         }
       }
 

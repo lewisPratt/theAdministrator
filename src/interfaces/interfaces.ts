@@ -72,6 +72,7 @@ export interface UpgradeListShape {
 export interface reviewsCompleteShape {
   numberComplete: number;
   effectivenessRating: number;
+
 }
 
 export interface scoreContextShape{
@@ -168,6 +169,7 @@ export interface summaryProps {
   efficiency: number;
   interviewCount: number;
   startNewShift:(reason:string)=> void
+  reviewsCompleteSetter: Dispatch<SetStateAction<boolean>>
 }
 
 export interface errorStateShape {

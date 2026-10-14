@@ -10,13 +10,15 @@ import type {
 } from "../../interfaces/interfaces";
 import { useNavigate } from "react-router-dom";
 import SearchConsole from "./SearchInfo";
-import { Badge, LoaderCircle } from "lucide-react";
+import {LoaderCircle } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "../DebugTools";
 import RulesPanel from "./RulesPanel";
 import { checkUpgradeActive, getUnlockDetails } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css";
+import { v4 as uuidv4 } from "uuid";
+
 
 //TUTORIAL IMPORTS
 import type { TooltipRefProps } from "react-tooltip";
@@ -37,6 +39,7 @@ export default function TranscriptRev() {
   const [_decisionMade, setDecisionMade] = useState<boolean>(false);
   const [reviewsComplete, setReviewsComplete] =
     useState<reviewsCompleteShape | null>(null);
+  const [reviewDismissed, setReviewDismissed] = useState<boolean>(false)
   const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID);
   const [generatePeople, setGeneratePeople] = useState<boolean>(false);
   const [codexState, setCodexState] = useState<boolean>(false);
@@ -158,6 +161,7 @@ export default function TranscriptRev() {
     setAvailableTranscripts(null);
     setReviewsComplete(null);
     setCurrentTranscript(null);
+    setReviewDismissed(false)
     setGeneratePeople((prev) => !prev);
   }
   function endShift() {
@@ -175,8 +179,9 @@ export default function TranscriptRev() {
       ) : (
         <>
          
-          {reviewsComplete && (
+          {reviewsComplete && !reviewDismissed && (
             <CaseReviewSummary
+              reviewsCompleteSetter={setReviewDismissed}
               efficiency={reviewsComplete.effectivenessRating}
               interviewCount={reviewsComplete.numberComplete}
               startNewShift={loadNewShift}
@@ -218,7 +223,7 @@ export default function TranscriptRev() {
                       />
                     ))}
                     <li className="rules-list-item">
-                       
+                       {reviewsComplete && <><button onClick={()=>loadNewShift("new")}>start new shift</button><button onClick={()=>setReviewDismissed(false)}>Summary</button> </>}
                     </li>
                   </ol>
             
@@ -230,6 +235,7 @@ export default function TranscriptRev() {
               }
               {currentTranscript ? (
                 <CaseReviewPanel
+                  // key={uuidv4()}
                   reviewTranscriptSetter={setCurrentTranscript}
                   transcript={currentTranscript}
                   decisionSetter={setDecisionMade}
@@ -250,7 +256,7 @@ export default function TranscriptRev() {
              <div className="helper-elements">
 
                <ActiveUpgrades />
-               
+
                 <button
                       id="tutorial-step-9"
                       className={

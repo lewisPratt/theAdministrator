@@ -4,6 +4,7 @@ export default function CaseReviewSummary({
   efficiency,
   interviewCount,
   startNewShift,
+  reviewsCompleteSetter
 }: summaryProps) {
   let efficiencyText: string = "";
   if (efficiency < 20)
@@ -21,10 +22,16 @@ export default function CaseReviewSummary({
       "Congratulations! An Ice Cream Party has been scheduled for " +
       Math.floor(Math.random() * 400) +
       1;
-
+//close overlay when overlay is clicked.
+  function closeOverlay(e: React.MouseEvent<HTMLDivElement>) {
+    const clickedTarget = e.target as HTMLDivElement;
+    if (clickedTarget.id === "review-overlay") {
+      reviewsCompleteSetter(true)
+    }
+  }
 
   return (
-    <div className="review-overlay">
+    <div id="review-overlay" className="review-overlay" onClick={(e)=>closeOverlay(e)}>
       <div id="summary-container">
         <h3>Shift complete.</h3>
         <p>
