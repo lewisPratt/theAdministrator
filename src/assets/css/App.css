@@ -20,6 +20,13 @@
 
 body {
   background: #000000;
+  /* background-image: url(../images/test-bg.webp);
+  background-repeat: no-repeat;
+  background-size: cover; */
+    background-image:
+    linear-gradient(to right, #395439 1px, transparent 1px),
+    linear-gradient(to bottom, #395439 1px, transparent 1px);
+  background-size: 120px 120px;
 }
 
 header {
@@ -178,7 +185,10 @@ button:hover {
   color: #a2eaa2;
 }
 
-
+button:disabled{
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
 /**
  * CUSTOM TOOLTIP STYLING
  */

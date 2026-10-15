@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from "react";
 import {ChevronRightCircle, LoaderCircle } from "lucide-react";
 import LeaveReq from "../LeaveReq";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "../../context_providers/AdminContext";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import NotLoggedIn from "../nav/NotLoggedIn";
 import { ErrorContext } from "../../context_providers/ErrorContext";
@@ -13,17 +12,15 @@ import { type TooltipRefProps } from "react-tooltip";
 
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import ActivityGraph from "../statistics/ActivityGraph";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [leaveReq, setLeaveReq] = useState<boolean>(false);
 
-  const { setAdminName } = useContext(AdminContext);
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { setErrorState } = useContext(ErrorContext);
   const { tutorialState } = useContext(TutorialContext);
-  const { playerData } = useContext(PlayerContext);
+  const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
 
   const tooltipRef1 = useRef<TooltipRefProps>(null);
@@ -32,6 +29,14 @@ export default function CommandCentre() {
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
   }, []);
+
+  
+ function doLogout(){
+    if(playerData) {
+      sessionStorage.removeItem("admin_game_status")
+      setPlayerData(null)
+    }
+}
 
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -60,7 +65,7 @@ export default function CommandCentre() {
           e.currentTarget.reset();
           break;
         case "nav.logout":
-          setAdminName("");
+          doLogout()
           navigate("/Goodbye");
           break;
         case "nav.personal":

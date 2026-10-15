@@ -25,7 +25,7 @@ export const lastNames = [
   "Kade", "Solari", "Nyland", "Farrow", "Corvus", "Halvorsen", "Ibarra", "Weiss", "Dunmore", "Aral",
   "Vesper", "Okafor", "Landry", "Marchetti", "Serrano", "Kovacs", "Rourke", "Adeyemi", "Bracken", "Tanaka",
   "Voskuijlen", "Grier", "Osman", "Callahan", "Dresden", "Vantage", "Halloran", "Nakamura", "Estrada", "Ferro",
-  "Winslow", "Aoki", "Barrow", "Delacroix", "Novak", "Amadi", "Rask", "Thorne", "Ilić", "Cassidy",
+  "Winslow", "Aoki", "Barrow", "Delacroix", "Novak", "Amadi", "Rask", "Thorne", "Ilic", "Cassidy",
   "Marlowe", "Solomon", "Vidal", "Okonkwo", "Hargrove", "Kestner", "Duval", "Ashby", "Rennick", "Osei-Bonsu",
   "Faraday", "Corrin", "Blythe", "Nazari", "Wexler", "Almeida", "Draper", "Kirov", "Yamada", "Halston",
   "Renwick", "Adair", "Voskresenskiy", "Larkspur", "Osborn", "Marsh", "Torrance", "Kalani", "Fenwick", "Baptiste",

@@ -13,6 +13,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    background-color:black;
 }
 #how-to-play-button{
     margin:20px auto;

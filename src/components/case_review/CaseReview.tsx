@@ -17,7 +17,6 @@ import RulesPanel from "./RulesPanel";
 import { checkUpgradeActive, getUnlockDetails } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css";
-import { v4 as uuidv4 } from "uuid";
 
 
 //TUTORIAL IMPORTS
@@ -48,10 +47,12 @@ export default function TranscriptRev() {
   const [cityMapeState, setCityMapState] = useState<boolean>(false)
   const [missingPlayerData, setMissingPlayerData] = useState<boolean>(false)
   const [nextCase, setNextCase] = useState<reviewShape | null>(null)
+  const [juniorCallUsed, setJuniorCallused] = useState<boolean>(false)
+  const [seniorCallUsed, setSeniorCallused] = useState<boolean>(false)
+
   const { tutorialState } = useContext(TutorialContext);
   const {playerData} = useContext(PlayerContext)
   const navigate = useNavigate();
-  const voucherDetails = getUnlockDetails(playerData);
   const tooltipRef1 = useRef<TooltipRefProps>(null);
   //////////////////////
   // set debug to 1 to see debug tools
@@ -251,6 +252,10 @@ export default function TranscriptRev() {
                   setTranscriptList={setAvailableTranscripts}
                   cityMapState={cityMapeState}
                   cityMapSetter={setCityMapState}
+                  juniorCallSetter={setJuniorCallused}
+                  juniorCall={juniorCallUsed}
+                  seniorCallSetter={setSeniorCallused}
+                  seniorCall={seniorCallUsed}
                 />
               ) : (
                 <>

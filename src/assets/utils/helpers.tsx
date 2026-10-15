@@ -1,7 +1,7 @@
 import { locations } from "../../generator_modules/LocationGenerator";
 import { occupations } from "../../generator_modules/OccupationGenerator";
 import { allUpgrades } from "../../generator_modules/upgrades";
-import type { locationsShape, occupationsShape, playerDataShape, unlockContextShape, UpgradeShape } from "../../interfaces/interfaces";
+import type { locationsShape, occupationsShape, playerDataShape, UpgradeShape } from "../../interfaces/interfaces";
 
 /**
  * Capitalizes the first letter of the string passed to it, returning a capitalized string
@@ -30,9 +30,7 @@ return voucherArray
 
 
 export function saveLocalData(playerData : playerDataShape){
-  console.log("helper function: ",playerData)
    localStorage.setItem("The_Administrator_Game", JSON.stringify(playerData))
-
 }
 
 export function getDetailsForDistrict(district:number){

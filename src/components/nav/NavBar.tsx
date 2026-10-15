@@ -14,15 +14,14 @@ export default function NavBar() {
   const { pathname } = useLocation();
 
   {
-    /* check to see if the current route is the login, welcome or goodbye page, if so, disable component */
+    /* check to see if player is logged in or currently on a page where the nav should not be visible */
   }
   let componentEnabled: boolean = true;
-  if ( !sessionStorage.getItem("admin_game_status") 
-    // pathname === "/" ||
-    // pathname === "/Goodbye" ||
-    // pathname === "/Welcome" ||
-    // pathname === "/HowToPlay" ||
-    // pathname === "*"
+  if ( !sessionStorage.getItem("admin_game_status") || 
+    pathname === "/" ||
+    pathname === "/Goodbye" ||
+    pathname === "/Welcome" ||
+    pathname === "/HowToPlay"
   ) {
     componentEnabled = false;
   }

@@ -99,6 +99,10 @@ export interface transcriptReviewBoxProps {
   cityMapSetter: Dispatch<SetStateAction<boolean>>;
   nextCase: reviewShape | null
   nextCaseSetter: Dispatch<SetStateAction<reviewShape | null>>
+  juniorCallSetter: Dispatch<SetStateAction<boolean>>
+  juniorCall: boolean
+  seniorCallSetter: Dispatch<SetStateAction<boolean>>
+  seniorCall: boolean
 
 }
 export interface nodeShape {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef} from "react";
 import type {
   transcriptReviewBoxProps,
 } from "../../interfaces/interfaces";
@@ -12,6 +12,8 @@ import {
   ChevronRight,
   ChevronLeft,
   XCircle,
+  PhoneCall,
+  LoaderCircle,
 } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
@@ -21,6 +23,7 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
 import EvidenceStack from "./EvidenceStack";
+import { checkUpgradeActive } from "../../assets/utils/helpers";
 
 //set to 1 to show debug info on weighting
 const debug: number = 0;
@@ -34,12 +37,20 @@ export default function CaseReviewPanel({
   cityMapSetter,
   cityMapState,
   nextCase,
-  nextCaseSetter
+  nextCaseSetter,
+  juniorCallSetter,
+  juniorCall,
+  seniorCallSetter,
+  seniorCall
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<Boolean>(false);
+  const [inCall, setInCall] = useState<boolean>(false)
+  const [callResult, setCallResult] = useState<string>("")
+  const [callTalking, setCallTalking] = useState<string>("")
   const { tutorialState } = useContext(TutorialContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
+  const juniorCallRef = useRef(0)
   const successSound = () => playSound("ui/success_bling");
   const failSound = () => playSound("ui/blocked");
   let itemsToIdentify : number = 0
@@ -58,6 +69,8 @@ export default function CaseReviewPanel({
   },[nextCase])
   //trigger adding of animation class to animate transcript leaving page.
   function closeTranscript() {
+    const timerId = juniorCallRef.current
+    clearTimeout(timerId)
     setClosing(true);
   }
 
@@ -118,6 +131,53 @@ export default function CaseReviewPanel({
       }
   }
 
+  function callColleague(colleagueLevel: string){
+    if(colleagueLevel === "junior"){
+      if(!juniorCall){
+      juniorCallSetter(true)
+      }
+    } else if(colleagueLevel === "senior")
+        if(!seniorCall){
+        seniorCallSetter(true)
+      }
+       setInCall(true)
+        //logic to simulate a brief call and chance based decision. 
+        const callId = setTimeout(() => {
+          simCall(colleagueLevel)
+        }, 8000);
+        juniorCallRef.current = callId;
+      
+   
+  }
+
+  function simCall(colleagueLevel: string){
+    const callId = juniorCallRef.current;
+    clearInterval(callId)
+    setInCall(false)
+    setCallTalking("")
+    //make decision
+    let chance = 0.60
+    if(colleagueLevel === "senior"){
+      chance = 0.80
+    }
+    if(Math.random() < chance){
+      //correct decision
+      if( transcript && transcript?.overallWeighting >= 0){
+        setCallResult("It's definately an NFA")
+      } else{
+        setCallResult("Re-educate ASAP!")
+      }
+
+    }else{
+      setCallResult("sorry, it's my first day...")
+    }
+  }
+
+  function handleCallSim(e : React.AnimationEvent){
+    if(e.animationName === "call-ring"){
+      setCallTalking("Explaining case details...")
+    }
+  }
   function handleDecision(e: React.MouseEvent<HTMLButtonElement>) {
     if (transcript) {
       const decision = e.currentTarget.dataset.decision;
@@ -408,6 +468,27 @@ export default function CaseReviewPanel({
             >
               <X />
             </button>
+            
+                {inCall && <div onAnimationEnd={(e)=>handleCallSim(e)} className="call-sim">
+                  
+                    {callTalking != "" ? <p>{callTalking} <LoaderCircle className="loader" /></p> : <p>........</p>}
+                    
+                </div>}
+                {callResult != "" && <p className="colleague-call-result">{"\""}{callResult}{"\""}</p>} 
+
+              {checkUpgradeActive(playerData?.player_unlocks, "voucher11") &&
+                <>
+                  {!juniorCall &&
+                    <button onClick={()=>callColleague("junior")}>Call Junior Colleague</button>}
+                </>
+              }
+              {checkUpgradeActive(playerData?.player_unlocks, "voucher12") &&
+                <>
+                  {!seniorCall &&
+                    <button onClick={()=>callColleague("senior")}>Call Senior Colleague</button>}
+                </>
+              }
+
           </div>
           <div id="tutorial-step-11" className={
               (tutorialState.tutorialActive && tutorialState.tutorialStep === 11
@@ -418,13 +499,15 @@ export default function CaseReviewPanel({
             {!transcript.processed ? (
               <div className="decision-buttons-container"> 
               <button onClick={()=>{changeCase("previous")}}><ChevronLeft /></button>
-                <button data-decision="nfa" onClick={handleDecision}>
+                <button id="nfa-button" data-decision="nfa" onClick={handleDecision}>
                   No further action
                 </button>
-                <button data-decision="reeducate" onClick={handleDecision}>
+                <button id="reeducate-button" data-decision="reeducate" onClick={handleDecision}>
                   Send for re-education
                 </button>{" "}
+                
                 <button onClick={()=>{changeCase("next")}}><ChevronRight /></button>
+               
               </div>
             ) : (
               <>
@@ -443,6 +526,7 @@ export default function CaseReviewPanel({
 
                 }
                 <button onClick={()=>{changeCase("next")}}><ChevronRight /></button>
+                
             </div>
                   {showEvidence && (
                      <EvidenceStack caseDetails={transcript}/> 

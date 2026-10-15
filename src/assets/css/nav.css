@@ -182,7 +182,9 @@ nav {
   }
 
   .desktop-nav-element {
-    display: flex
+    display: flex;
+    align-items: center;
+    gap:10px;
   }
   #nav-bar-parent{
     flex-direction: row;
