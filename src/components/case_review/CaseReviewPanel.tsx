@@ -131,22 +131,23 @@ export default function CaseReviewPanel({
   }
 
   function callColleague(colleagueLevel: string){
-    if(colleagueLevel === "junior"){
-      if(!juniorCall){
-      juniorCallSetter(true)
-      }
-    } else if(colleagueLevel === "senior")
-        if(!seniorCall){
-        seniorCallSetter(true)
-      }
-       setInCall(true)
-        //logic to simulate a brief call and chance based decision. 
-        const callId = setTimeout(() => {
-          simCall(colleagueLevel)
-        }, 8000);
-        juniorCallRef.current = callId;
+    if(!inCall){
+      if(colleagueLevel === "junior"){
+        if(!juniorCall){
+        juniorCallSetter(true)
+        }
+      } else if(colleagueLevel === "senior")
+          if(!seniorCall){
+          seniorCallSetter(true)
+        }
+        setInCall(true)
+          //logic to simulate a brief call and chance based decision. 
+          const callId = setTimeout(() => {
+            simCall(colleagueLevel)
+          }, 8000);
+          juniorCallRef.current = callId;
       
-   
+     }
   }
 
   function simCall(colleagueLevel: string){
@@ -474,7 +475,7 @@ export default function CaseReviewPanel({
                     
                 </div>}
                 {callResult != "" && <p className="colleague-call-result">{"\""}{callResult}{"\""}</p>} 
-
+            <div id="colleague-call-container">
               {checkUpgradeActive(playerData?.player_unlocks, "voucher11") &&
                 <>
                   {!juniorCall &&
@@ -487,7 +488,7 @@ export default function CaseReviewPanel({
                     <button onClick={()=>callColleague("senior")}>Call Senior Colleague</button>}
                 </>
               }
-
+            </div>
           </div>
           <div id="tutorial-step-11" className={
               (tutorialState.tutorialActive && tutorialState.tutorialStep === 11

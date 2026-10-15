@@ -271,6 +271,9 @@ flex-basis:20%;
 .colleague-call-result{
   margin:10px
 }
+#colleague-call-container{
+  display:flex;
+}
 #search-console-container {
   display: flex;
   padding: 10px;
