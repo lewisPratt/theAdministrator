@@ -237,6 +237,7 @@ flex-basis:20%;
   color: #a2eaa2;
   font-size:.8rem;
   background-color: black;
+  padding:0;
 }
 
 .transcript-list-item span {
@@ -602,6 +603,9 @@ justify-content: center;
 .mobile-case-element{
   display:flex;
   justify-content: center;
+}
+.mobile-case-element img{
+  width:100%;
 }
 .desktop-case-element{
   display:none

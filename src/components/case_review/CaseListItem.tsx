@@ -34,7 +34,22 @@ export default function CaseListItem({
       key={currentTranscript.interviewee.firstName + currentTranscript.age}
       onClick={() => openTranscript(currentTranscript)}
     >
-      <div className="mobile-case-element"><span><User /></span></div>
+      <div className="mobile-case-element"><span><img src={currentTranscript.avatar} 
+       onError={(e) => {
+          if (e.currentTarget.dataset.default != "set") {
+            e.currentTarget.src = "default-avatar.webp";
+            e.currentTarget.dataset.default = "set";
+          } else {
+            if (e.currentTarget.parentElement) {
+              e.currentTarget.parentElement.style.cssText =
+                "background-color: #a2eaa2;";
+            }
+            e.currentTarget.before("Avatar Not Found");
+           
+          }
+        }}
+      
+      /></span></div>
       <div className="desktop-case-element">
       <span >{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</span>  -  
       <span >{currentTranscript.occupation.name.slice(0,10)}...</span>
