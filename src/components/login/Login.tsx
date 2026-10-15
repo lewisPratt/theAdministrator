@@ -1,5 +1,5 @@
 //REACT IMPORTS
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronRightCircle } from "lucide-react";
 import { Tooltip } from "react-tooltip";
@@ -24,24 +24,16 @@ export default function Login() {
 const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
 
   //CONTEXTS
-  const { playerData, setPlayerData } = useContext(PlayerContext);
+  const { setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
-  let loginStart = false
 
-  useEffect(() => {
-    // if(playerData && !loginStart){
-    //   setPlayerData(null)
-    // }
-    console.log(playerData)
-  },[]);
-
+ 
   /**
    * Sets app to logged in state by assigning adminName and redirects to welcome screen
    * @param {React.SubmitEvent<HTMLFormElement>} e - event object that triggered the function
    */
   function doLogin(e: React.SubmitEvent<HTMLFormElement>): void {
     e.preventDefault();
-    loginStart = true
     const formValues = new FormData(e.target);
     const enteredName = formValues.get("admin-name")?.toString();
 
