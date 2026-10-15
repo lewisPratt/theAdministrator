@@ -12,7 +12,6 @@ import {
   ChevronRight,
   ChevronLeft,
   XCircle,
-  PhoneCall,
   LoaderCircle,
 } from "lucide-react";
 import { Tooltip } from "react-tooltip";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route,Navigate, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import TranscriptRev from "./components/case_review/CaseReview";
 import "./assets/css/App.css";
 import "./assets/css/tutorial.css";

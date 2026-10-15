@@ -14,7 +14,7 @@ import {LoaderCircle } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "../DebugTools";
 import RulesPanel from "./RulesPanel";
-import { checkUpgradeActive, getUnlockDetails } from "../../assets/utils/helpers";
+import { checkUpgradeActive } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css";
 

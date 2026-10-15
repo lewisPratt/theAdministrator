@@ -6,7 +6,6 @@ import {
   FolderSearch,
   FolderTree,
   Headset,
-  MemoryStick,
   PartyPopper,
   PhoneOutgoing,
   Sun,
