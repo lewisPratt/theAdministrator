@@ -11,5 +11,8 @@ export const newPlayerData : playerDataShape = {
     total_credits_lost: 0,
     cases_correct: 0,
     cases_failed: 0,
+    player_promotions : 0
   },
+  player_titles: []
+
 };

@@ -1,0 +1,23 @@
+
+export const promotionPrefixes = [
+  "Senior",
+  "Associate",
+  "Principal",
+  "Lead",
+  "Chief",
+  "Deputy",
+  "Assistant",
+  "Executive",
+  "Regional",
+  "Supervising",
+  "Provisional",
+  "Acting",
+  "Junior Senior",
+  "Assistant to the Regional",
+  "Grade II",
+  "Level 2",
+  "Certified",
+  "Authorised",
+  "Designated",
+  "Interim",
+];

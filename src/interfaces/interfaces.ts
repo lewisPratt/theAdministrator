@@ -190,6 +190,7 @@ export interface playerStatsShape {
   total_credits_lost: number;
   cases_correct: number;
   cases_failed: number;
+  player_promotions: number
 }
 
 export interface playerDataShape {
@@ -198,6 +199,7 @@ export interface playerDataShape {
   player_credits: number;
   player_unlocks: string[];
   player_stats: playerStatsShape;
+  player_titles: string[]
 }
 
 export interface playerContextShape {

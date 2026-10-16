@@ -10,7 +10,7 @@ import type {
 } from "../../interfaces/interfaces";
 import { useNavigate } from "react-router-dom";
 import SearchConsole from "./SearchInfo";
-import {LoaderCircle } from "lucide-react";
+import {LoaderCircle, SquareArrowDown } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import DebugTools from "../DebugTools";
 import RulesPanel from "./RulesPanel";
@@ -211,7 +211,7 @@ export default function TranscriptRev() {
                         : "") + " transcript-list"
                     }
                   >
-                    <li id="interviews-list-header">Available Cases</li>
+                    <li id="interviews-list-header"><SquareArrowDown /> Available Cases <SquareArrowDown /></li>
 
                     {availableTranscripts.map((listItem) => (
                       <CaseListItem

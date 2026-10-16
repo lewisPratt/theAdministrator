@@ -116,11 +116,11 @@ export const allUpgrades: UpgradeListShape = {
   },
 
   ["voucher13"]: {
-    name: "Committed Employee badge",
+    name: "Ascend to a senior role.",
     type: "badge",
-    cost: 10000,
-    desc: "You have done well to show The City that you care deeply about your role and the rule of law. ",
-    perkEffect: "A sign that you have done all that there is to do, and more.",
+    cost: 1000,
+    desc: "You have done well to show The City that you care deeply about the rule of law. You will be rewarded.",
+    perkEffect: "Be promoted to a senior role and enjoy the fruits of your hard work.",
     icon: <BriefcaseBusiness size={12} x={6} y={6} />,
   },
 };

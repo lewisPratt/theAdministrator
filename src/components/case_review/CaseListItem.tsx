@@ -1,5 +1,5 @@
 import type { reviewShape, transcriptListItemProps } from "../../interfaces/interfaces";
-import {FolderTree, User } from "lucide-react";
+import {FolderTree } from "lucide-react";
 
 export default function CaseListItem({
   currentTranscript,
@@ -51,9 +51,21 @@ export default function CaseListItem({
       
       /></span></div>
       <div className="desktop-case-element">
-      <span >{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</span>  -  
-      <span >{currentTranscript.occupation.name.slice(0,10)}...</span>
-      <span >{currentTranscript.bonusCase === true ? <FolderTree data-tooltip-id="extra-case-tooltip" data-tooltip-content="Bonus case from perk." /> : ""}</span>
+      <img src={currentTranscript.avatar} onError={(e) => {
+          if (e.currentTarget.dataset.default != "set") {
+            e.currentTarget.src = "default-avatar.webp";
+            e.currentTarget.dataset.default = "set";
+          } else {
+            if (e.currentTarget.parentElement) {
+              e.currentTarget.parentElement.style.cssText =
+                "background-color: #a2eaa2;";
+            }
+            e.currentTarget.before("Avatar Not Found");
+           
+          }
+        }} />
+      <p>{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</p>  
+      <p>{currentTranscript.bonusCase === true ? <FolderTree data-tooltip-id="extra-case-tooltip" data-tooltip-content="Bonus case from upgrade." /> : ""}</p>
     </div>
     </button>}
     </>

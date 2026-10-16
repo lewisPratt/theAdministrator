@@ -10,6 +10,7 @@ import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import PlayerStats from "./PlayerStats";
 import NotLoggedIn from "../nav/NotLoggedIn";
+import TitleUnlocks from "./TitleUnlocks";
 export default function PersonalRecord() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const {playerData} = useContext(PlayerContext)
@@ -45,7 +46,7 @@ export default function PersonalRecord() {
               
               <PlayerStats />
 
-              {/* //pass/fail ratio */}
+              <TitleUnlocks />
 
               {/* //reset data component */}
               <Tooltip id="unlocks-tooltip" className="custom-tooltip" />

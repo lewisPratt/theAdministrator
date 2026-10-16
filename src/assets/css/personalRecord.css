@@ -48,3 +48,16 @@
     padding: 20px;
     width: 90%;
 }
+.title-unlocks-section {
+    border: 1px solid #a2eaa2;
+    margin-top: 30px;
+    padding: 20px;
+    width: 90%;
+    
+}
+.title-unlocks-section ol{
+    list-style: none;
+}
+.title-unlocks-section li{
+    font-size: 1rem;
+}

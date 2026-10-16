@@ -18,9 +18,11 @@ import type { TooltipRefProps } from "react-tooltip";
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import NotLoggedIn from "../nav/NotLoggedIn";
+import PromotedSim from "./PromotedSim";
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
+  const [promoted, setPromoted] = useState<boolean>(false)
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { tutorialState } = useContext(TutorialContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
@@ -32,7 +34,7 @@ export default function UpgradeShop() {
   const cantAfford = () => playSound("notification/error");
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-  const debug = false;
+  const debug = true;
   const upgrades: UpgradeListShape = allUpgrades;
 
   useEffect(() => {
@@ -87,19 +89,29 @@ export default function UpgradeShop() {
           setErrorState("You do not have enough credits");
           cantAfford();
         } else {
-          //purchase made, update plyerdata with credit balance and unlocks then set playerdata and store local data
+          //purchase made, update playerdata with credit balance and unlocks then set playerdata and store local data
           let dataToUpdate = { ...playerData };
           dataToUpdate.player_credits =
             dataToUpdate.player_credits - selectedUpgrade.cost;
-          let updatedUnlocks: string[] = [];
-          if (dataToUpdate.player_unlocks != null) {
-            updatedUnlocks = [...dataToUpdate.player_unlocks];
-          }
-          purchaseSound();
-          updatedUnlocks.push(confirming);
-          dataToUpdate.player_unlocks = updatedUnlocks
-          setPlayerData(dataToUpdate);
-          // saveLocalData(dataToUpdate);
+            if(confirming != "voucher13"){
+              let updatedUnlocks: string[] = [];
+              if (dataToUpdate.player_unlocks != null) {
+                updatedUnlocks = [...dataToUpdate.player_unlocks];
+              }
+              purchaseSound();
+              updatedUnlocks.push(confirming);
+              dataToUpdate.player_unlocks = updatedUnlocks
+              setPlayerData(dataToUpdate);
+            }
+            else{
+              //player is purchasing the promotion upgrade (effectively completing game content)
+              purchaseSound();
+              dataToUpdate.player_stats.player_promotions = dataToUpdate.player_stats.player_promotions + 1
+              setPlayerData(dataToUpdate)
+              //update state to show promotion sim
+              setPromoted(true)
+            }
+         
         }
       } else {
         //error: no player data currently set
@@ -122,6 +134,7 @@ export default function UpgradeShop() {
         {playerData && sessionStorage.getItem("admin_game_status")?  (
         <>
           <section id="upgrade-shop">
+            {promoted && <PromotedSim promoted={promoted} promotedSetter={setPromoted} /> }
             <div id="upgrade-shop-header">
               <h2>Upgrade Terminal</h2>
 
