@@ -13,6 +13,7 @@ export const newPlayerData : playerDataShape = {
     cases_failed: 0,
     player_promotions : 0
   },
-  player_titles: []
+  player_titles: [],
+  player_title: ""
 
 };

@@ -16,16 +16,16 @@ export default function ActiveUpgrades() {
   return (
     <div className="active-upgrades-container">
       <h6
-        id="tutorial-step-8"
+        id="tutorial-step-10"
         className={
-          tutorialState.tutorialActive && tutorialState.tutorialStep === 8
+          tutorialState.tutorialActive && tutorialState.tutorialStep === 10
             ? "tutorial-highlight"
             : ""
         }
       >
         Active Upgrades
       </h6>
-      {upgradeDetails &&
+      {upgradeDetails && upgradeDetails.length > 0 ?
         upgradeDetails.map((unlock) => {
           return (
             <Badge
@@ -37,7 +37,10 @@ export default function ActiveUpgrades() {
               {unlock.icon}
             </Badge>
           );
-        })}
+        }) :
+        (
+            <p>No Upgrades unlocked</p>
+        )}
     </div>
   );
 }

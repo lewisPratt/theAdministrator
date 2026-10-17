@@ -30,7 +30,7 @@ export default function CommandCentre() {
     setTimeout(setLoadingState, 2000, false);
   }, []);
 
-  
+
  function doLogout(){
     if(playerData) {
       sessionStorage.removeItem("admin_game_status")
@@ -103,10 +103,10 @@ export default function CommandCentre() {
                 <h1>Welcome Administrator.</h1>
                 <p>Please navigate to your required destination below.</p>
                 <form
-                  id="tutorial-step-2"
+                  id="tutorial-step-1"
                   className={ "terminal-form " + (
                     tutorialState.tutorialActive &&
-                    tutorialState.tutorialStep === 2
+                    tutorialState.tutorialStep === 1
                       ? "tutorial-highlight"
                       : "")
                   }
@@ -131,10 +131,10 @@ export default function CommandCentre() {
                 {leaveReq && <LeaveReq />}
 
                 <div
-                  id="tutorial-step-1"
+                  id="tutorial-step-2"
                   className={
                     (tutorialState.tutorialActive &&
-                    tutorialState.tutorialStep === 1
+                    tutorialState.tutorialStep === 2
                       ? "tutorial-highlight"
                       : "") + " commands-container"
                   }

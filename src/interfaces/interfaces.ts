@@ -200,6 +200,7 @@ export interface playerDataShape {
   player_unlocks: string[];
   player_stats: playerStatsShape;
   player_titles: string[]
+  player_title: string
 }
 
 export interface playerContextShape {

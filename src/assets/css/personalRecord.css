@@ -47,6 +47,7 @@
     margin-top: 30px;
     padding: 20px;
     width: 90%;
+    
 }
 .title-unlocks-section {
     border: 1px solid #a2eaa2;
@@ -55,9 +56,26 @@
     width: 90%;
     
 }
+.manage-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+.manage-section button{
+    height:fit-content;
+    width: fit-content;
+}
 .title-unlocks-section ol{
     list-style: none;
 }
 .title-unlocks-section li{
     font-size: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.title-set-button{
+    width:fit-content;
+    height:fit-content;
+
 }

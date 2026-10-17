@@ -330,13 +330,14 @@ body .custom-tooltip {
 
 .map-details-container{
   position: absolute;
-    left: 0;
-    top: 0;
+    left: 1px;
+    top: 1px;
     background-color: rgba(0, 0, 0, .7);
     bottom: 0;
     width: 40%;
     padding-right:10px;
     overflow-y: scroll;
+    max-height:600px;
   }
 .map-details-container>ul{
   list-style: none;

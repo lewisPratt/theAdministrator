@@ -55,7 +55,6 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
         } else {
           const parsedData : playerDataShape= JSON.parse(savedData)
           //show warning of already having an account saved, only one account at a time. previous accounts will be overwritten. Provide player name and link to login directl to this account
-          // no need for feature allowing multiple logins currently. 
          setLoginChoice({enteredName: enteredName, retrievedSave : parsedData })
         }
       }

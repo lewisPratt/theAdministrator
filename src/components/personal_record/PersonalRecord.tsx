@@ -11,6 +11,7 @@ import { PlayerContext } from "../../context_providers/PlayerContext";
 import PlayerStats from "./PlayerStats";
 import NotLoggedIn from "../nav/NotLoggedIn";
 import TitleUnlocks from "./TitleUnlocks";
+import ManageAccount from "./ManageAccount";
 export default function PersonalRecord() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const {playerData} = useContext(PlayerContext)
@@ -36,7 +37,7 @@ export default function PersonalRecord() {
           {playerData && sessionStorage.getItem("admin_game_status")?  (
           <>
             <section id="personal-record">
-              <p>Administrator</p>
+              <p>{playerData.player_title} Administrator</p>
               <h1>{playerData?.player_name}</h1>
               <p className="personal-record-tagline">View your mediocre personal achievements & upgrades.</p>
 
@@ -48,6 +49,7 @@ export default function PersonalRecord() {
 
               <TitleUnlocks />
 
+              <ManageAccount />
               {/* //reset data component */}
               <Tooltip id="unlocks-tooltip" className="custom-tooltip" />
 

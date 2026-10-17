@@ -118,9 +118,9 @@ export const allUpgrades: UpgradeListShape = {
   ["voucher13"]: {
     name: "Ascend to a senior role.",
     type: "badge",
-    cost: 1000,
+    cost: 7000,
     desc: "You have done well to show The City that you care deeply about the rule of law. You will be rewarded.",
-    perkEffect: "Be promoted to a senior role and enjoy the fruits of your hard work.",
+    perkEffect: "Unlock titles to use in your personal record and be promoted to a senior position.",
     icon: <BriefcaseBusiness size={12} x={6} y={6} />,
   },
 };

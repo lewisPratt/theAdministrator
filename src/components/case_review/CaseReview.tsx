@@ -270,10 +270,10 @@ export default function TranscriptRev() {
                <ActiveUpgrades />
 
                 <button
-                      id="tutorial-step-9"
+                      id="tutorial-step-11"
                       className={
                         tutorialState.tutorialActive &&
-                        tutorialState.tutorialStep === 9
+                        tutorialState.tutorialStep === 11
                           ? "tutorial-highlight"
                           : ""
                        + " rules-button"}
