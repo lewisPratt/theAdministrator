@@ -120,6 +120,8 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
 
 React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
 
+This project was created as part of my Web Application Development Diploma (Milestone project 2), which required the inclusion of Javascript to add interactivity to a website. With the use of React, I have been able to create a web app that has Javascript at its core and includes a significant amount of interactivity for users. 
+
 ## Terminology
 
 - As a React web app, the project is essentially a single page website that has it's content loaded via Javascript. For this reason, when referring to a 'component', the developer is referring to what a user would normally perceive of as a page.
@@ -319,7 +321,33 @@ I would like to see the rationale for this project and view the developers other
 
 ## ![Complete User Story 1](src/assets/images/readme/user-story-6.webp "Complete User Story 1")
 
+
+### User Story 7 - Casual browser game player
+
+(Could Have)
+
+I would like to be able to create two player accounts for the game and save their game data separately, ensuring that one players data is not overwritten by the others. 
+
+#### Acceptance Criteria
+
+- [ ] Login page should allow the creation of additional players without the overwriting of previous players data
+- [ ] When the second player logs in, there should be no indication that there is another players data saved in local storage.
+- [ ] Each individual player should be able to delete their own stored data without risk of effecting other players data. 
+
+#### Tasks
+
+- [ ] Implement check at login to determine if player is returning or new. 
+- [ ] If player is new and there is no other data stored, login as usual. 
+- [ ] If player is new and there is previous save data, save data alongside previous players data and login
+- [ ] Save all game data to the currently logged in player, without impacting on other players saved data. 
+
 ## User Story Outcomes
+
+During development, all Must Have user stories were implemented successfully. user story 7 was classed as a 'Could Have' feature due to it not being essential for the overall gameplay loop. 
+I decided during development that the use case for being able to save multiple users data on the same machine is very limited and not likely to become an issue for the majority of users who would access the app. 
+By weighing the cost/benefit of developing this feature, I decided that it was not essential so would not be present in the current project, but could be implemented at a later date. 
+
+Not including this feature in the current release of the project does not impact the core gameplay loop or have an adverse effect on user experience as it is unlikely that two people using the same device would wish to play the game separately. 
 
 ## Wireframes
 
