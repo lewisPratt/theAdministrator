@@ -1,11 +1,10 @@
-
 # The Administrator
 
-
 # Project Summary
-The Administrator is a text based role playing game, developed in React.js. The project demonstrates the use of HTML, CSS, Javascript and most prominently, use of the React Javascript library. 
 
-The Administrator is a browser based logic game in which the user navigates a simulated retro computer system, passing judgement on citizens, earning currency and purchasing upgrades to improve the efficiency and speed of the cycle. The end goal is to unlock all senior Administrator titles, at which point the user is finally considered to have completed the games content. 
+The Administrator is a text based role playing game, developed in React.js. The project demonstrates the use of HTML, CSS, Javascript and most prominently, use of the React Javascript library.
+
+The Administrator is a browser based logic game in which the user navigates a simulated retro computer system, passing judgement on citizens, earning currency and purchasing upgrades to improve the efficiency and speed of the cycle. The end goal is to unlock all senior Administrator titles, at which point the user is finally considered to have completed the games content.
 
 Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdministrator/)
 
@@ -54,103 +53,106 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
   - [Credits](#credits)
   - [Author](#author)
 
-
 ## Deployment
 
-  --
- ## Pages Overview
+--
 
- --
+## Pages Overview
+
+--
+
 ## Technologies Used
 
 --
+
 ## Why React?
+
 React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
 
-## Terminology 
-* As a React web app, the project is essentially a single page website that has it's content loaded via Javascript. For this reason, when referring to a 'component', the developer is referring to what a user would normally perceive of as a page. 
-* When referring to a 'logged in' user, the developer is referring to a user who has entered a name into the login components input and has progressed through the welcome screen to the logged in state of the web app. Once 'logged in' the users data is loaded from local storage and they can access the main content of the app. 
+## Terminology
+
+- As a React web app, the project is essentially a single page website that has it's content loaded via Javascript. For this reason, when referring to a 'component', the developer is referring to what a user would normally perceive of as a page.
+- When referring to a 'logged in' user, the developer is referring to a user who has entered a name into the login components input and has progressed through the welcome screen to the logged in state of the web app. Once 'logged in' the users data is loaded from local storage and they can access the main content of the app.
 
 ## Additional Reading References
+
 [React.js website ](https://www.react.dev)
 
 ## UX Design
 
 ### Project Goals
 
-The primary goal of The Administrator is to provide a visiting user with an visually and intellectually interesting experience, which challenges the players logic skills as well as promoting curiosity and problem solving through the gradual use of upgrades to enhance gameplay. The web app is primarily a means of entertainment rather than utility, therefore relying heavily on the game logic to perform as expected and reliably. 
-The web app also serves as a more complex portfolio piece for the developer, showcasing an understanding of the principles and techniques used within a React based app. 
+The primary goal of The Administrator is to provide a visiting user with an visually and intellectually interesting experience, which challenges the players logic skills as well as promoting curiosity and problem solving through the gradual use of upgrades to enhance gameplay. The web app is primarily a means of entertainment rather than utility, therefore relying heavily on the game logic to perform as expected and reliably.
+The web app also serves as a more complex portfolio piece for the developer, showcasing an understanding of the principles and techniques used within a React based app.
 
+### Key thematic choices
 
-## Key thematic choices
-* The web app has been designed from the beginning with the idea of being able to navigate the entire experience via keyboard alone. For this reason, every interactive element throughout the app has had the `tabindex` attribute assigned to it to ensure that there is seamless access via the keyboard. 
-* The primary method of navigation between pages is via the use of typed commands, rather than the traditional method of clickable links. Clickable links are present within the app, however they are few and only serve as a means of convenience when relying purely on keyboard navigation would prove impractical. Available keyboard commands are visible within every component view and are easily memorized after a short time of playing. Implementing this concept of keyboard navigation aligns with the developers vision of providing a simulated retro-futuristic computer console environment, similar to those depicted in popular media which either use primarily voice or keyboard input for navigation and overall control. 
-* When visiting the apps front page, there is a login screen that new and returning users enter there name to access the rest of the app content. This is effectively a faux login screen, as there is no password or authentication in place. Utilizing this login flow is primarily a method of loading saved player data, or warning the player that they will overwrite saved data if they have entered a new login name. 
+- The web app has been designed from the beginning with the idea of being able to navigate the entire experience via keyboard alone. For this reason, every interactive element throughout the app has had the `tabindex` attribute assigned to it to ensure that there is seamless access via the keyboard.
+- The primary method of navigation between pages is via the use of typed commands, rather than the traditional method of clickable links. Clickable links are present within the app, however they are few and only serve as a means of convenience when relying purely on keyboard navigation would prove impractical. Available keyboard commands are visible within every component view and are easily memorized after a short time of playing. Implementing this concept of keyboard navigation aligns with the developers vision of providing a simulated retro-futuristic computer console environment, similar to those depicted in popular media which either use primarily voice or keyboard input for navigation and overall control.
+- When visiting the apps front page, there is a login screen that new and returning users enter there name to access the rest of the app content. This is effectively a faux login screen, as there is no password or authentication in place. Utilizing this login flow is primarily a method of loading saved player data, or warning the player that they will overwrite saved data if they have entered a new login name.
   It is also part of the theme of the game, as the user is playing the role of an administrator, so it makes thematic sense for them to login to their system when they visit the app.
 
-    
 ### Target Audience
-There are 2 main audiences for the web app:
-* Users who wish to explore a casual thematic browser game that runs on both mobile and desktop. 
-* Prospective employers who wish to view the developers work and gain more insight into the developers ability and other projects. 
 
+There are 2 main audiences for the web app:
+
+- Users who wish to explore a casual thematic browser game that runs on both mobile and desktop.
+- Prospective employers who wish to view the developers work and gain more insight into the developers ability and other projects.
 
 ### Audience Goals
-* Casual players
-  * To know what the web app is when visiting it for the first time and be shown how to play the game when playing it for the first time. 
-  * To view statistics about gameplay and manage stored game data
-  * To know the end goal of the game loop and how to reach it as well as how to purchase upgrades in game and what they do.
-  * To gain an understanding of what makes a Citizen within the game either good or bad. 
-  * To be able to control sound produced by the app. 
 
+- Casual players
+  - To know what the web app is when visiting it for the first time and be shown how to play the game when playing it for the first time.
+  - To view statistics about gameplay and manage stored game data
+  - To know the end goal of the game loop and how to reach it as well as how to purchase upgrades in game and what they do.
+  - To gain an understanding of what makes a Citizen within the game either good or bad.
+  - To be able to control sound produced by the app.
 
-* Prospective employer
-  * To understand what the web apps purpose and use is
-  * To see that form validation is implemented and managed effectively. 
-  * To see that player data loading is implemented logically and guard against unintended viewing of component content when the player has no player data loaded. 
-  * To be able to visit the developers other projects and Git repositories. 
-  ---
+- Prospective employer
+  - To understand what the web apps purpose and use is
+  - To see that form validation is implemented and managed effectively.
+  - To see that player data loading is implemented logically and guard against unintended viewing of component content when the player has no player data loaded.
+  - To be able to visit the developers other projects and Git repositories.
+  ***
 
 ### Developer Goals
 
-* The web app should adhere to a strict aesthetic theme that simulates a retro computer terminal environment, often seen in science fiction movies and literature. 
-* The app should be able to store player progress between play sessions and guard against player early access causing game data loss. 
-* The game should not use any backend systems that require ongoing maintenance or payment in place. All game data should be stored locally on the players machine.
-* Locally stored game data should be encrypted to a basic level, reducing the likelihood of players easily manipulating locally stored game data to progress in the game loop. (Whilst acknowledging that data stored in `localstorage` has its limitations, as discussed later)
-* The web app should demonstrate the developers knowledge of and ability to use the three core languages of web design (HTML/CSS/JS), with code being cross-browser compatible, fully validated, tested and organized in line with industry standard practices.
-* The web App should be able to demonstrate the developers understanding and ability to implement the React.js library, utilizing State, Refs, conditional rendering and other key functions of the React library. 
+- The web app should adhere to a strict aesthetic theme that simulates a retro computer terminal environment, often seen in science fiction movies and literature.
+- The app should be able to store player progress between play sessions and guard against player early access causing game data loss.
+- The game should not use any backend systems that require ongoing maintenance or payment in place. All game data should be stored locally on the players machine.
+- Locally stored game data should be encrypted to a basic level, reducing the likelihood of players easily manipulating locally stored game data to progress in the game loop. (Whilst acknowledging that data stored in `localstorage` has its limitations, as discussed later)
+- The web app should demonstrate the developers knowledge of and ability to use the three core languages of web design (HTML/CSS/JS), with code being cross-browser compatible, fully validated, tested and organized in line with industry standard practices.
+- The web App should be able to demonstrate the developers understanding and ability to implement the React.js library, utilizing State, Refs, conditional rendering and other key functions of the React library.
 
-    
 ### User Stories
 
-The following user stories describe the key ways in which the site may be used, from the perspective of different users.
----
+## The following user stories describe the key ways in which the site may be used, from the perspective of different users.
 
 ### User Story 1 - Casual browser game player
 
 (Must Have)
 
-I am a new user who wants to know what this website is when visiting it for the first time and how to play. 
+I am a new user who wants to know what this website is when visiting it for the first time and how to play.
 
 #### Acceptance Criteria
 
-* [x] The first page that the user sees should have a clear call to action, helping new users access the desired information. 
-* [x] Information should be accessible to access via conventional peripherals or accessability aids.
-* [x] The description content should be short and useful to a new user. 
-* [x] There should be an easy way to return to the front page of the web app. 
-* [x] When logged in there should be an easy to follow explanation of how to play.
+- [x] The first page that the user sees should have a clear call to action, helping new users access the desired information.
+- [x] Information should be accessible to access via conventional peripherals or accessability aids.
+- [x] The description content should be short and useful to a new user.
+- [x] There should be an easy way to return to the front page of the web app.
+- [x] When logged in there should be an easy to follow explanation of how to play.
 
 #### Tasks
 
-* [x] Provide a clear Call to action button, highlighting where to go for information on the app.
-* [x] Ensure that the call to action is accessible via both mouse input and keyboard input. 
-* [x] Provide a concise and accurate explanation of the core concepts of the game loop and purpose of the web app. 
-* [x] Add clear call to action button to return to the front page of the app. 
-* [x] Build a tutorial that walks players through each part of the app and explains key design and gameplay concepts. 
+- [x] Provide a clear Call to action button, highlighting where to go for information on the app.
+- [x] Ensure that the call to action is accessible via both mouse input and keyboard input.
+- [x] Provide a concise and accurate explanation of the core concepts of the game loop and purpose of the web app.
+- [x] Add clear call to action button to return to the front page of the app.
+- [x] Build a tutorial that walks players through each part of the app and explains key design and gameplay concepts.
 
 #### Visual Journey
 
---
+![Complete User Story 1](src/assets/images/readme/user-story-1.webp "Complete User Story 1")
 
 ### User Story 2 - Casual browser game player
 
@@ -160,23 +162,23 @@ I am a returning player and want to see statistics on my actions within the game
 
 #### Acceptance Criteria
 
-* [x] There should be an easily identifiable location for personal statistics information once a players data is loaded. 
-* [x] Player statistics and unlocks should be easily identifiable and clearly defined
-* [x] All player data should be visible in an ordered manner on both mobile an desktop
-* [x] There should be an obvious call to action to delete stored player data. 
-* [x] confirmation should be needed before deleting data to ensure accidental deletion doesn't occur. 
+- [x] There should be an easily identifiable location for personal statistics information once a players data is loaded.
+- [x] Player statistics and unlocks should be easily identifiable and clearly defined
+- [x] All player data should be visible in an ordered manner on both mobile an desktop
+- [x] There should be an obvious call to action to delete stored player data.
+- [x] confirmation should be needed before deleting data to ensure accidental deletion doesn't occur.
 
 #### Tasks
 
-* [x] Build a clear component view for personal statistics and other stored player data.
-* [x] Ensure that how to navigate to a players personal record is clear and easy to do
-* [x] Ensure that the layout for the personal record component view is responsive and clear in determining the different categories of player data. 
-* [x] Provide a call to action button to allow players to delete stored data. 
-* [x] Build a confirmation state to ensure that once pressed, the player needs to confirm their decision to delete the stored data. 
+- [x] Build a clear component view for personal statistics and other stored player data.
+- [x] Ensure that how to navigate to a players personal record is clear and easy to do
+- [x] Ensure that the layout for the personal record component view is responsive and clear in determining the different categories of player data.
+- [x] Provide a call to action button to allow players to delete stored data.
+- [x] Build a confirmation state to ensure that once pressed, the player needs to confirm their decision to delete the stored data.
 
 #### Visual Journey
 
---
+![Complete User Story 1](src/assets/images/readme/user-story-2.webp "Complete User Story 1")
 
 ### User Story 3 - Casual browser game player
 
@@ -186,20 +188,20 @@ I would like to be able to control the use of sound within the app.
 
 #### Acceptance Criteria
 
-* [x] There should be an easily identifiable route to disable/enable sound within the app. 
-* [x] No key gameplay mechanics should rely on the player being able to hear the sounds being made by the app. 
+- [x] There should be an easily identifiable route to disable/enable sound within the app.
+- [x] No key gameplay mechanics should rely on the player being able to hear the sounds being made by the app.
 
 #### Tasks
 
-* [x] Utilize react compatible package to implement the use of sound throughout the app.
-* [x] Ensure that all component views of the app are covered by the sound controls (ensuring that muting sound in one view means it is muted in all views)
-* [x] Add a clear call to action that easily toggles the use of sound within the app.
-* [x] Provide feedback to the user to inform them as to the current state of sound within the app (either on or off) 
-* [x] Ensure that the call to action button is accessible to adaptive technologies. 
+- [x] Utilize react compatible package to implement the use of sound throughout the app.
+- [x] Ensure that all component views of the app are covered by the sound controls (ensuring that muting sound in one view means it is muted in all views)
+- [x] Add a clear call to action that easily toggles the use of sound within the app.
+- [x] Provide feedback to the user to inform them as to the current state of sound within the app (either on or off)
+- [x] Ensure that the call to action button is accessible to adaptive technologies.
 
 #### Visual Journey
 
---
+![Complete User Story 1](src/assets/images/readme/user-story-3.webp "Complete User Story 1")
 
 ### User Story 4 - Prospective Employer
 
@@ -209,19 +211,19 @@ I would like to ensure adequate safeguards are in place to manage navigation inp
 
 #### Acceptance Criteria
 
-* [x] When a text input is submitted, if the content is not recognized or does not have an effect, the user should be informed of this as an error. 
-* [x] Navigating to pages via the use of direct URL manipulation should produce a predictable response. If the user is logged in, gameplay elements should be visible, if the user is not logged in, the user should be re-directed to the login page. 
+- [x] When a text input is submitted, if the content is not recognized or does not have an effect, the user should be informed of this as an error.
+- [x] Navigating to pages via the use of direct URL manipulation should produce a predictable response. If the user is logged in, gameplay elements should be visible, if the user is not logged in, the user should be re-directed to the login page.
 
 #### Tasks
 
-* [x] Implement component switching logic that covers all navigation routes included made abaialble to the user. 
-* [x] Add catch to switching logic that catches any routes that are not recognized (due to not existing or misspelling)
-* [x] Use an error state to conditionally render a warning to the user, informing them that the command they entered was not recognized. 
-* [x] Provide a button to dismiss the warning and reset the error state
+- [x] Implement component switching logic that covers all navigation routes included made abaialble to the user.
+- [x] Add catch to switching logic that catches any routes that are not recognized (due to not existing or misspelling)
+- [x] Use an error state to conditionally render a warning to the user, informing them that the command they entered was not recognized.
+- [x] Provide a button to dismiss the warning and reset the error state
 
 #### Visual Journey
 
---
+![Complete User Story 1](src/assets/images/readme/user-story-4.webp "Complete User Story 1")
 
 ### User Story 5 - Prospective Employer
 
@@ -231,173 +233,200 @@ I would like to ensure adequate safeguards are in place to manage direct URL man
 
 #### Acceptance Criteria
 
-* [x] Game logic and data should not render for a non logged in user when they have navigated to a component view via the URL directly.
-* [x] If a non-logged in user navigates to a component view that requires logged in status, they should be re-directed to log in and load player data. 
+- [x] Game logic and data should not render for a non logged in user when they have navigated to a component view via the URL directly.
+- [x] If a non-logged in user navigates to a component view that requires logged in status, they should be re-directed to log in and load player data.
 
 #### Tasks
 
-* [x] Implement the use of session token data to check whether the user has been logged in. 
-* [x] Set user as logged in using session storage when they successfully login. 
-* [x] Check in each component view to see if use is currently logged in. Conditionally render content dependant on logged in status. 
-* [x] Implement call to action to redirect to login if not logged in. 
-* [x] Manage session cleanup when user logs out, clearing logged in status. 
-
+- [x] Implement the use of session token data to check whether the user has been logged in.
+- [x] Set user as logged in using session storage when they successfully login.
+- [x] Check in each component view to see if use is currently logged in. Conditionally render content dependant on logged in status.
+- [x] Implement call to action to redirect to login if not logged in.
+- [x] Manage session cleanup when user logs out, clearing logged in status.
 
 #### Visual Journey
 
---
+![Complete User Story 1](src/assets/images/readme/user-story-5.webp "Complete User Story 1")
 
 ### User Story 6 - Prospective Employer
 
 (Must Have)
 
-I would like to see the rationale for this project and view the developers other projects. 
+I would like to see the rationale for this project and view the developers other projects.
 
 #### Acceptance Criteria
 
-* [x] Navigation command for this content should be obvious and logical
-* [x] Rationale content should be concise and easy to read. 
-* [x] Link should be provided to developers other projects
+- [x] Navigation command for this content should be obvious and logical
+- [x] Rationale content should be concise and easy to read.
+- [x] Link should be provided to developers other projects
 
 #### Tasks
 
-* [x] Implement navigation command (nav.about) to allow users access to this component view
-* [x] Include a brief description of the project and why it was created
-* [x] Add clear call to action button to link to developers other projects. 
-
+- [x] Implement navigation command (nav.about) to allow users access to this component view
+- [x] Include a brief description of the project and why it was created
+- [x] Add clear call to action button to link to developers other projects.
 
 #### Visual Journey
 
---
----
+## ![Complete User Story 1](src/assets/images/readme/user-story-6.webp "Complete User Story 1")
+
 ## User Story Outcomes
 
 ## Wireframes
+
 ## Design \& Style
+
 --
-### Color Scheme
---
+
+
 ### Styling
---
+
+CSS files were created for each component that represents a 'page' within the app. Only CSS rules that pertain to that component are imported into the component. Some CSS rules are global so have been placed in app.css and imported where necessary.
+
 ### Fonts
+
 --
+
 ### CSS Animations
+
 --
+
 ### Favicon
+
 --
+
 ## Key Features - Design \& content
 
+### Dynamic Content
+
+Throughout the app, I have used dynamic content to create immersion and ensure that the likelihood of receiving the same content is low on repeated play-throughs. Without the use of a back-end system, this has been achieved through constructing JavaScript objects that hold a large number of individual datasets
+that can then be randomly combined to create unique data sets.
+The most significant implementation of this concept is within the person class which constructs each citizen that the user assesses in the case review part of the app.
+Individual objects that hold possible character names,occupations,carried items, interview locations and citizen flavour text (text within their case notes that is generated to give an overall description of the citizen) are combined with a randomization utility function to produce unique citizen interviews on each play-through.
+
+For simple effects and components that are primarily cosmetic, a simple randomization utility function such as the below has been used.
+
+    Function randomChance(threshold :number) : Boolean{
+     If(math.floor(math.random()*10)+1 < threshold){
+          return true
+      } Else {
+          return false
+      }
+    }
+
+This will produce a number between 1-10 and if that number is under the `threshold` variable, will return true.
+
+### Loading screens
+
+At a number of transition points( moving from one route to another) faux loading screens have been implemented to simulate the use of a desktop terminal. These screens aren't necessary for the function of the application, however they do add to the theming, pacing and world building. They have been achieved through the use of state within the relevant pages and `settimeout `to change state after a set period of time (2 seconds). This timer, through repeated play tests, feels reasonable in achieving the goal of the loading screen, but does not feel like it slows the pacing detrimentally.
+
+## Accessibility
+
+Due to the theme of the app I have made, accessibility, for the most part, was being addressed throughout the project mainly due to my idea that the entire experience should be navigable and playable whilst solely using a keyboard. Many of the computers shown in reference images and films that I explored, such as bladerunner, often don't have a mouse or equivalent connected and much if not all of the navigation and interaction is achieved via the keyboard alone.
+This has meant that from the beginning of my project, I have focussed on ensuring all interactive elements are accessible to both mouse and keyboard, providing visual feedback when an interaction occurs.
+
 ### Pages
---
-### Technical Decisions
-  ### Styling
-  --
-  ### Layout
-  --
-  ### JavaScript
-  --
-  ### Accessibility
-  --
- ## Challenges \& Problem Solving
-  ### Page Deployment
-  --
-  ### Image Hotspots
-  --
-  ### Form Validation and Security
-  --
-  ### Form accessibility
-  --
- ## Code Validation
-  ### CSS
-  --
-  ### HTML
-  --
-  ### Javascript
-  --
-## Compatibility
---
-## Testing
---
-## Lighthouse Testing
---
-## Credits
---
-## Author
+
 --
 
+## Technical Decisions
 
+### File structure
 
+Due to the nature of developing a React app (often creating large numbers of small self contained components) it has been important to ensure the file structure throughout development has been manageable. Once the project got to a point of over 30 individual components of varying sizes, I decided to prioritise future legibility of the file structure and divide the components into meaningful sub directories that would support easy access during ongoing development.
 
+### Local storage
 
+Local storage has been used as a means of persisting users game data between sessions. This data stores information on their administrators name, cases reviewed, credits earned and unlocks purchased. As this data is being stored locally, when the user first visits the app, they will be asked if they consent to this process. If they do not, the only effect this will have on the game is data persistence between play sessions (closing or refreshing the tab the game is being played in will reset the game state to being logged out with no saved progress)
+Players are able to delete local storage related to the app easily through the profile route. They can also have multiple data sets stored locally by using a different administrator name when logging in.
+Local storage has been used in place of a full backend system (database) to allow game progress to persist between gaming sessions. This has been implemented with the full knowledge that this data stored locally is easily located and changed by the user, effectively allowing them to cheat the game. For this reason, the app has been developed from the start as a casual gaming experience for players.
+### Styling
 
+#### Fonts
 
+To align with the retro futuristic aesthetic of the game, I chose to utilise a pixelated font for the majority of the body content, combined with a stylised 'scan line effect' font for headings.
 
+Body and paragraph elements utilised
+font-family:'Silkscreen',monospace
 
+#### Images
 
-## Quick Rules
-* there are thirteen districts. You are allowed to go to any district above the district that you work in, but you may not enter a district that is lower than your working district. 
-* All citizens are allowed to be in District 5 : Housing.
-* Citizens need a recreation Pass to spend time in District 8: Nightlife & Vice
-* Carrying illegal items will negatively impact a citizens standing in the City. 
-* minor infractions are dealt with at the administrators discretion. However, Citizens committing multiple infractions must be dealt with accordingly. 
-* |move along|Record Suspicious Activity| Send for re-education|
-## To do
-* suspicious items being carried when the weather does not call for it. 
-* weighting for age depending on where the person is. 
-* personalize persons transcript text
-* determine  location ident numbers and impact on weighting.
-* time of day effects wehther some items are legal to carry (flashlight uring daytime is suspicious)
+All images have relevant and useful alt text in the event they either cannot be rendered or if a user is utilising a screen reader.
+Images have been re-sized to both provide high quality visuals as well as ensure minimal impact on loading. Where image file size savings can be made by converting to webp, this has occurred, however not all images have seen significant file size changes so some remain in their original format (PNG).
 
+## Colour
 
-## Draft readme notes
+using `<meta name="theme-color" content="#000000">` to set the colour of mobile browser address bar to fit the color scheme of the app.
+The retro futuristic aesthetic I decided to utilise for this game allowed me the freedom to be creative with the colour pallete throughout the app. When researching UI examples and references from films I noticed that most computer systems set in a dystopian, authoritative universe, tended towards a simple high contrast colour scheme that didn't distract from the content. Choosing two primary colours and allowing the use of slightly altered brightnesses of these two colours, ensured that there was a cohesive, thematic and consistent feel to the entire application. The colours I chose as my two primary colours enhance the overall theme of the app and contribute to achieving its purpose.
+My initial concept was to create a simulated computer terminal in a retro futuristic setting. Simulating a system that runs on a low tech computer terminal that only renders two colours (at varying degrees of brightness) helps to further enhance the theming of the app.
+Contrast however is important, particularly when committing to the use of only two colours. For this reason I used ..... To check the contrast value between my two primary colours and the result showed a pass with high contrast at .....
+With the use of only two colours, it was also important to ensure that similar/identical elements that appear across different components are styled consistently to ensure that calls to action (CTA) and other important elements are easy to identify and navigate.
 
-User stories
-* I would like to play a browser based game that is set in a futuristic world
-* I would like to learn what this app does and how to play.
-* I would like to learn about why this app was made and see other projects by the author
-* I would like to contact the author of the app 
-* I would like to see my progress in the game.
-* I would like to remove data stored locally by the game
+Applying colour to external library components:
+The React tooltips package was used to integrate tooltips into the app. As standard the default styling of these tooltips was not in line with the styling applied to the rest of the app.
+In order to style tooltips successfully, the documentation advised that tooltips must have a higher level of specificity in order to successfully apply CSS styling rules. For this reason, all tooltips were given a class of 'custom-tooltip' and placed within the 'main-content' element to ensure that they can be targeted with a higher specificity than their default styling rules.
+#main-content .custom-tooltip{
+CSS rules to apply to tooltips.
+}
 
+Lucide icons package
+Icons used from the lucide icons package can easily be styled by applying a custom class to them, effecting their colour, size, fill etc.
+This package was used to provide icons for CTAs, carriable items and faux loading screens.
 
-Notable features
-* Use of React
-* Use of Typescript
-* focus trapping during tutorial (using inert attribute on root and createPortal to move tutorial/tooltip elements outside of root)
-* React routing
+### Layout
+#### Content hierarchy
 
+The use of appropriate headings (H1,H2,H3 etc) helps to direct the flow of page content as well as highlight important information to the user.
+Semantic html has been used to divide each component into appropriate sections and organise elements logically and consistently.
 
+#### Flex box
 
-## API integration and error handling - Dice Bear Avatar Generator
-To add additional character and visual interest, an external API was used to provide unique avatars for the citizens encountered in the course of the game. 
-[Dice Bear API](https://www.dicebear.com/) was used to easily generate random avatars to use within the case review section of the site. Each case that is reviwed as part of the gameplay loop, is linked to a fictional Citizen that has been encountered within the city. Adding an avatar to their case notes adds further depth and interest to the experience. 
+Flex box has been used throughout the app to create a responsive and mobile first layout, ensuring content is adequately spaced and aligned for viewing on mobile and desktop.
 
+### JavaScript
+
+--
+
+### Accessibility
+
+--
+
+## Challenges \& Problem Solving
+
+### API integration and error handling - Dice Bear Avatar Generator
+
+To add additional character and visual interest, an external API was used to provide unique avatars for the citizens encountered in the course of the game.
+[Dice Bear API](https://www.dicebear.com/) was used to easily generate random avatars to use within the case review section of the site. Each case that is reviwed as part of the gameplay loop, is linked to a fictional Citizen that has been encountered within the city. Adding an avatar to their case notes adds further depth and interest to the experience.
 
 There are a number of ways to integrate the Dice Bear avatar generation into a project, but i chose to utilize the HTTP api method due to its simplicity and ease of implementation, reducing the need to rely on additional packages in the project.
 
 The Dice Bear API does not need authorization and returns a single item, a URL to the generated avatar image.
 
-Relying on an external API however, means that there is a chance for calls to the API endpoint to fail, resulting in no avatar image being displayed. If this eventuality was not guarded against, it would result in unattractive missing image icons as well as alt text being visible within the UI, ruining the sense of immersion. As API endpoints can experience downtime or, in extreme cases, stop working all together, it is important to have contingencies to manage these eventualities if they arise. 
+Relying on an external API however, means that there is a chance for calls to the API endpoint to fail, resulting in no avatar image being displayed. If this eventuality was not guarded against, it would result in unattractive missing image icons as well as alt text being visible within the UI, ruining the sense of immersion. As API endpoints can experience downtime or, in extreme cases, stop working all together, it is important to have contingencies to manage these eventualities if they arise.
 
 For this reason, there are 3 separate states that the avatar component can present in.
+
 ### No Error
-If the Dice Bear endpoint is working as expected and returning and image that can be loaded within the `<img>` tag, the randomly generated avatar will display as desired. 
+
+If the Dice Bear endpoint is working as expected and returning and image that can be loaded within the `<img>` tag, the randomly generated avatar will display as desired.
 
 ### API image not loading
-If, for whatever reason, the image being provided by the Dice Bear endpoint is not loadable, or the endpoint url is incorrect, the `<img>` element `src` attribute will not be valid, producing an error that can be detected via Javascript and handled. 
+
+If, for whatever reason, the image being provided by the Dice Bear endpoint is not loadable, or the endpoint url is incorrect, the `<img>` element `src` attribute will not be valid, producing an error that can be detected via Javascript and handled.
 Once detected, this error handler will set the image `src` attribute to the url of the default avatar file.
 
 ### API image not loading and default avatar not loading
-In the unlikely occurence that both the API is unsuccessful at providing an image, as well as the default avatar image file being un-loadable, the error handler will further ensure that the avatar fails gracefully and set css attributes within the avatar component to maintain an acceptable fallback. 
+
+In the unlikely occurence that both the API is unsuccessful at providing an image, as well as the default avatar image file being un-loadable, the error handler will further ensure that the avatar fails gracefully and set css attributes within the avatar component to maintain an acceptable fallback.
 
 The error handling that has been implemented in using this API should cover all possible points of failure, ensuring that the UX is not negatively impacted by potential issues encountered when relying on external API endpoints.
 
         <img
         className="avatar"
-        src={transcript.avatar} 
+        src={transcript.avatar}
         alt="Anonymized Citizen Avatar"
-        data-default="" 
-        
+        data-default=""
+
         onError={(e) => {
           if (e.currentTarget.dataset.default != "set") {
             e.currentTarget.src = "default-avatar.webp";
@@ -412,21 +441,22 @@ The error handling that has been implemented in using this API should cover all 
           }
         }}
       />
-   
 
-Above is the image element for a Citizen Avatar. There are a number of notable characteristics to highlight. 
-1. the image `src` attribute is set to the Dice Bear image url from the current transcript being processed. 
+Above is the image element for a Citizen Avatar. There are a number of notable characteristics to highlight.
+
+1. the image `src` attribute is set to the Dice Bear image url from the current transcript being processed.
 2. the `data-default` attribute allows the error handler to mark this image as 'having been dealt with' after attempting to set the image `src` to the default avatar url. If this attribute is empty and the initial `src` cannot be loaded, the error handler will attempt to set the `src` to the default avatar url. If `data-default="set"` the error handler will not attempt to set the src again (this loop can occur if both the initial src and the backup, default avatar, are not loadable.)
-3. `onError` triggers when an error occurs whilst this element tries to load the `src` it has been provided. 
-4. The error handler will attempt to set the default avatar if the primary `src` is un-loadable. if both of these are unsuccessful, it will then apply css styling to the parent container of the image element, serving as a further fallback. Removing the `alt` attribute content removes the missing image icon, however the same information is given by the styles applied by the error handler. 
+3. `onError` triggers when an error occurs whilst this element tries to load the `src` it has been provided.
+4. The error handler will attempt to set the default avatar if the primary `src` is un-loadable. if both of these are unsuccessful, it will then apply css styling to the parent container of the image element, serving as a further fallback. Removing the `alt` attribute content removes the missing image icon, however the same information is given by the styles applied by the error handler.
 
-I created a default avatar image that was in line with the style of the avatars provided by Dice Bear. This was exported as a webp file to ensure small file size and good quality. 
+I created a default avatar image that was in line with the style of the avatars provided by Dice Bear. This was exported as a webp file to ensure small file size and good quality.
 
-ADD IMAGE
+![Default Avatar image](src/assets/images/default-avatar.webp "Default Avatar image"))
 
-## Citizen Avatars
+### Citizen Avatars
+
 Each citizens avatar is generated randomly from the Dice Bear API, however, depending on the citizens gender, they access different endpoints. This is in order to generate a realistic representation of each citizen (generating female presenting avatars for females, males presenting avatars for males and either for synths.)
-This is achieved within the person class when each citizens data is generated and their gender and behaviour are used to conditionally select which API endpoint their avatar is pulled from. 
+This is achieved within the person class when each citizens data is generated and their gender and behaviour are used to conditionally select which API endpoint their avatar is pulled from.
 
     if (gender === "male") {
       if (behaviour.toLowerCase() === "compliant") {
@@ -437,110 +467,109 @@ This is achieved within the person class when each citizens data is generated an
         imageUrl = mensNeutralUrl +uuidv4();
       }
     }
-each endpoint url has a seed value at the end, so appending `uuidv4()` to the url ensures that each avatar that is generated is a unique image. 
 
-Filtering the citizens by gender and behaviour allows very customizable control over the appearance of the avatars generated. For instance, compliant male citizens have avatars that include smiling and overall happy expressions combined with male traits, whereas non-compliant male citizens only have avatars that include expressions of sadness or anger and male body traits. 
-Removing or adding values in the url used to access the Dice Bear API allows the exclusion or addition of different expressions, hairstyles, head shapes etc. By utilizing this, the avatars that are produced are random, but they also contribute to the mechanics of the game as it is easy to now see whether a citizen in happy, sad or indifferent, which impacts on each citizens weighting. 
+each endpoint url has a seed value at the end, so appending `uuidv4()` to the url ensures that each avatar that is generated is a unique image.
 
-* Dynamic content
-Throughout the app, I have used dynamic content to create immersion and ensure that the likelihood of receiving the same content is low on repeated playthroughs. Without the use of a back-end system, this has been achieved through constructing JavaScript objects that hold a large number of individual datasets
- that can then be randomly combined to create unique data sets. 
-The most significant implementation of this concept is within the person class which constructs each citizen that the user assesses in the transcript review part of the app.
-Individual objects that hold possible character names,occupations,carried items, interview locations and citizen flavour text (text within their transcript review that is generated to give an overall description of the citizen) are combined with a randomisation utility function to produce unique citizen interviews on each playthrough. 
+Filtering the citizens by gender and behaviour allows very customizable control over the appearance of the avatars generated. For instance, compliant male citizens have avatars that include smiling and overall happy expressions combined with male traits, whereas non-compliant male citizens only have avatars that include expressions of sadness or anger and male body traits.
+Removing or adding values in the url used to access the Dice Bear API allows the exclusion or addition of different expressions, hairstyles, head shapes etc. By utilizing this, the avatars that are produced are random, but they also contribute to the mechanics of the game as it is easy to now see whether a citizen in happy, sad or indifferent, which impacts on each citizens weighting.
 
-* Random content generation
-The use of randomisation has been a core concept within the design of the application to ensure that each playthrough feels unique and interesting to the user. 
-For simple effects and components that are primarily cosmetic, a simple randomisation utility function such as the below has been used.
-Function randomChance(threshold :number) : Boolean{
-If(math.floor(math.random()*10)+1 < threshold){
-Return true
-} Else {
-Return false
-}
-}
+### Use of generative ai
 
-## Use of generative ai
-As a means of efficiency, generative ai was used to populate js objects that hold large datasets used in content randomisation.
+As a means of efficiency, generative ai was used to populate js objects that hold large datasets used in content randomization.
 Prompts such as
 "Generate a JavaScript array of 100 first names that would fit the theme of a retro futuristic city"
 This would result in a dataset with 10000 unique combinations of first and last names.
 Similar prompts were used to produce datasets for last names, occupations and locations.
 
-LLMs we're also used as a means of troubleshooting and dissecting new coding concepts that were unfamiliar. 
+LLMs we're also used as a means of troubleshooting and dissecting new coding concepts that were unfamiliar.
 
 No LLM generated code snippets or automated deployment models were utilized in the creation, implementation and completion of this project.
 
-
-## Use of SVG graphics in city map component
-Having had very little experience with svg graphics in the past, I was keen to ensure I expanded my knowledge in this area whilst completing this project. Whilst exploring reference images, I came across a number of UIs that featured a wireframe type city map as a focal point and felt this would be a great fit for my app. 
-I created the initial wireframe city image in Affinity Designer, saving it as a png file, then created an SVG within my city map component, using the png as a backdrop to the subsequent SVG elements. Using transparent overlays (also created in Affinity Designer) I created 'hotspots' on top of the city image using the <path> element. These hotspots were then targeted by CSS:hover rules to interact with the user when they move their mouse over each hotspot on the map. These hotspots were also given a tab index value of 0 to allow keyboard users to acees this interactivity. Using the value of 0 assigns each element a tab index based on it's position within the DOM. 
-Each hotspot was also assigned a tooltip that shows the name of the district it is highlighting. 
-I wanted to make the city map feel active and alive, rather than a static image. To do this I decided to implement a scanning effect which sweeps a 'scan line' across the city and simulates scanning of the entire city. 
-This was achieved by first drawing a path across my city image in Affinity Designer, then using the path coordinates within my svg to draw an invisible line across the centre (diagnonally) of my city image. I then created a clipPath that was applied to a duplicate of the original city image. This duplicate image has it's brightness adjusted via 
-Filter:brightness(2)
-And is offset slightly on the X and Y axis. A rectangle is then attached to the clipPath and using the animateMotion feature of the SVG, the rectangle is moved along the path drawn in Affinity Designer, showing as small slice of the duplicate image as it passes over the city. This simulates the scan line having an effect on the brightness and structure of city map image. 
-I created text elements within the SVG parent and positioned these to align with the city map. The text elements provide further theming and world building character to the login page and, as they are not part of the city map image, their visual presentation is not impacted by the scan line effect. 
-SVGs are self contained and scalable, meaning that the styling of all elements within the SVG are static between the desktop and mobile experience. Without using svg graphics, creating hotspots on top of an image and ensuring it had a consistent presentation both in mobile and desktop viewing, would be overly complicated, inconsistent and essentially ineffective. The combination of ensuring a properly scaled image as well as precisely placed hotspots, would be prohibitively complex and inaccurate due to changing margins and scaling. SVG graphics are the ideal solution for this feature, with the added benefit of providing self contained methods of element animation and styling 
-
-
-## Use of React packages to enhance UX whilst improving maintainability. 
-* lucide icons
-* react tooltips
-  
-## Accessibility
-Due to the theme of the app I have made, accessibility, for the most part, was being addressed throughout the project mainly due to my idea that the entire experience should be navigable and playable whilst solely using a keyboard. Many of the computers shown in reference images and films that I explored, such as bladerunner, often don't have a mouse or equivalent connected and much if not all of the navigation and interaction is achieved via the keyboard alone. 
-This has meant that from the beginning of my project, I have focussed on ensuring all interactive elements are accessible to both mouse and keyboard, providing visual feedback when an interaction occurs.
-
-## Images
-All images have relevant and useful alt text in the event they either cannot be rendered or if a user is utilising a screen reader.
-Images have been re-sized to both provide high quality visuals as well as ensure minimal impact on loading. Where image file size savings can be made by converting to webp, this has occurred, however not all images have seen significant file size changes so some remain in their original format (PNG). 
-
-
-
-## Content hierarchy
-The use of appropriate headings (H1,H2,H3 etc) helps to direct the flow of page content as well as highlight important information to the user. 
-Semantic html has been used to divide each component into appropriate sections and organise elements logically and consistently. 
-
-## Fonts
-To align with the retro futuristic aesthetic of the game, I chose to utilise a pixelated font for the majority of the body content, combined with a stylised 'scan line effect' font for headings.
-
-Body and paragraph elements utilised 
-font-family:'Silkscreen',monospace
-
-## Colour
-using `<meta name="theme-color" content="#000000">` to set the colour of mobile browser address bar to fit the color scheme of the app. 
-The retro futuristic aesthetic I decided to utilise for this game allowed me the freedom to be  creative with the colour pallete throughout the app. When researching UI examples and references from films I noticed that most computer systems set in a dystopian, authoritative universe, tended towards a simple high contrast colour scheme that didn't distract from the content. Choosing two primary colours and allowing the use of slightly altered brightnesses of these two colours, ensured that there was a cohesive, thematic and consistent feel to the entire application. The colours I chose as my two primary colours enhance the overall theme of the app and contribute to achieving its purpose. 
-My initial concept was to create a simulated computer terminal in a retro futuristic setting. Simulating a system that runs on a low tech computer terminal that only renders two colours (at varying degrees of brightness) helps to further enhance the theming of the app. 
-Contrast however is important, particularly when committing to the use of only two colours. For this reason I used ..... To check the contrast value between my two primary colours and the result showed a pass with high contrast at .....
-With the use of only two colours, it was also important to ensure that similar/identical elements that appear across different components are styled consistently to ensure that calls to action (CTA) and other important elements are easy to identify and navigate. 
-
-Applying colour to external library components:
-The React tooltips package was used to integrate tooltips into the app. As standard the default styling of these tooltips was not in line with the styling applied to the rest of the app. 
-In order to style tooltips successfully, the documentation advised that tooltips must have a higher level of specificity in order to successfully apply CSS styling rules. For this reason, all tooltips were given a class of 'custom-tooltip' and placed within the 'main-content' element to ensure that they can be targeted with a higher specificity than their default styling rules. 
-#main-content .custom-tooltip{
- CSS rules to apply to tooltips.
-}
-
-Lucide icons package
-Icons used from the lucide icons package can easily be styled by applying a custom class to them, effecting their colour, size, fill etc.
-This package was used to provide icons for CTAs, carriable items and faux loading screens.
-
-## Loading screens
-At a number of transition points( moving from one route to another) faux loading screens have been implemented to simulate the use of a desktop terminal. These screens aren't necessary for the function of the application, however they do add to the theming, pacing and world building. They have been achieved through the use of state within the relevant pages and settimeout to change state after a set period of time (2 seconds). This timer, through repeated play tests, feels reasonable in achieving the goal of the loading screen, but does not feel like it slows the pacing detrimentallly. 
-
-## CSS
-CSS files were created for each component that represents a 'page' within the app. Only CSS rules that pertain to that component are imported into the component. Some CSS rules are global so have been placed in app.css and imported where necessary. 
+### Page Deployment
 
 ## Vite
-Vite was used to initially scaffold the project as well as build the user facing content once ready for deployment. 
 
-## Flex box 
-Flex box has been used throughout the app to create a responsive and mobile first layout, ensuring content is adequately spaced and aligned for viewing on mobile and desktop. 
+Vite was used to initially scaffold the project as well as build the user facing content once ready for deployment.
 
-## File structure
-Due to the nature of developing a React app (often creating large numbers of small self contained components) it has been important to ensure the file structure throughout development has been manageable. Once the project got to a point of over 30 individual components of varying sizes, I decided to prioritise future legibility of the file structure and divide the components into meaningful sub directories that would support easy access during ongoing development. 
+### Use of SVG graphics in city map component
 
-## Local storage
-Local storage has been used as a means of persisting users game data between sessions. This data stores information on their administrators name, cases reviewed, credits earned and unlocks purchased. As this data is being stored locally, when the user first visits the app, they will be asked if they consent to this process. If they do not, the only effect this will have on the game is data persistence between play sessions (closing or refreshing the tab the game is being played in will reset the game state to being logged out with no saved progress)
-Players are able to delete local storage related to the app easily through the profile route. They can also have multiple data sets stored locally by using a different administrator name when logging in.
-Local storage has been used in place of a full backend system (database) to allow game progress to persist between gaming sessions. This has been implemented with the full knowledge that this data stored locally is easily located and changed by the user, effectively allowing them to cheat the game. For this reason, the app has been developed from the start as a casual gaming experience for players t
+Having had very little experience with svg graphics in the past, I was keen to ensure I expanded my knowledge in this area whilst completing this project. Whilst exploring reference images, I came across a number of UIs that featured a wireframe type city map as a focal point and felt this would be a great fit for my app.
+
+I created the initial wireframe city image in Affinity Designer, saving it as a png file, then created an SVG within my city map component, using the png as a backdrop to the subsequent SVG elements. Using transparent overlays (also created in Affinity Designer) I created 'hotspots' on top of the city image using the <path> element. These hotspots were then targeted by CSS:hover rules to interact with the user when they move their mouse over each hotspot on the map. These hotspots were also given a tab index value of 0 to allow keyboard users to acees this interactivity. Using the value of 0 assigns each element a tab index based on it's position within the DOM.
+Each hotspot was also assigned a tooltip that shows the name of the district it is highlighting.
+I wanted to make the city map feel active and alive, rather than a static image. To do this I decided to implement a scanning effect which sweeps a 'scan line' across the city and simulates scanning of the entire city.
+
+This was achieved by first drawing a path across my city image in Affinity Designer, then using the path coordinates within my svg to draw an invisible line across the centre (diagnonally) of my city image. I then created a clipPath that was applied to a duplicate of the original city image. This duplicate image has it's brightness adjusted via
+Filter:brightness(2)
+
+And is offset slightly on the X and Y axis. A rectangle is then attached to the clipPath and using the animateMotion feature of the SVG, the rectangle is moved along the path drawn in Affinity Designer, showing as small slice of the duplicate image as it passes over the city. This simulates the scan line having an effect on the brightness and structure of city map image.
+
+I created text elements within the SVG parent and positioned these to align with the city map. The text elements provide further theming and world building character to the login page and, as they are not part of the city map image, their visual presentation is not impacted by the scan line effect.
+SVGs are self contained and scalable, meaning that the styling of all elements within the SVG are static between the desktop and mobile experience. Without using svg graphics, creating hotspots on top of an image and ensuring it had a consistent presentation both in mobile and desktop viewing, would be overly complicated, inconsistent and essentially ineffective. The combination of ensuring a properly scaled image as well as precisely placed hotspots, would be prohibitively complex and inaccurate due to changing margins and scaling. SVG graphics are the ideal solution for this feature, with the added benefit of providing self contained methods of element animation and styling
+
+### Form Validation and Security
+
+--
+
+### Form accessibility
+
+--
+
+## Code Validation
+
+### CSS
+
+--
+
+### HTML
+
+--
+
+### Javascript
+
+--
+
+## Compatibility
+
+--
+
+## Testing
+
+--
+
+## Lighthouse Testing
+
+--
+
+## Node Packages used
+
+- lucide icons
+- react tooltips
+
+## Credits
+
+--
+
+## Author
+
+--
+
+Notable features
+
+- Use of React
+- Use of Typescript
+- focus trapping during tutorial (using inert attribute on root and createPortal to move tutorial/tooltip elements outside of root)
+- React routing
+
+
+
+
+
+
+
+
+
+
+
+
+
