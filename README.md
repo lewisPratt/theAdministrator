@@ -1,3 +1,194 @@
+
+# The Administrator
+
+
+# Project Summary
+The Administrator is a text based role playing game, developed in React.js. The project demonstrates the use of HTML, CSS, Javascript and most prominently, use of the React Javascript library. 
+
+The Administrator is a browser based logic game in which the user navigates a simulated retro computer system, passing judgement on citizens, earning currency and purchasing upgrades to improve the efficiency and speed of the cycle. The end goal is to unlock all senior Administrator titles, at which point the user is finally considered to have completed the games content. 
+
+Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdministrator/)
+
+## Table of Contents
+
+- [The Administrator](#the-administrator)
+  - [Table of Contents](#table-of-contents)
+  - [Deployment](#deployment)
+  - [Pages Overview](#pages-overview)
+  - [Technologies Used](#technologies-used)
+  - [Why React](#why-react)
+  - [Additional Reading References](#additional-reading-references)
+  - [UX Design](#ux-design)
+    - [Project Goals](#project-goals)
+    - [Target Audience](#target-audience)
+    - [Audience Goals](#audience-goals)
+    - [Developer Goals](#developer-goals)
+    - [User Stories](#user-stories)
+  - [User Story Outcomes](#user-story-outcomes)
+  - [Wireframes](#wireframes)
+  - [Design \& Style](#design--style)
+    - [Color Scheme](#color-scheme)
+    - [Styling](#styling)
+    - [Fonts](#fonts)
+    - [CSS Animations](#css-animations)
+    - [Favicon](#favicon)
+  - [Key Features - Design \& content](#key-features---design--content)
+    - [Pages](#pages)
+  - [Technical Decisions](#technical-decisions)
+    - [Styling](#styling-1)
+    - [Layout](#layout)
+    - [JavaScript](#javascript)
+    - [Accessibility](#accessibility)
+  - [Challenges \& Problem Solving](#challenges--problem-solving)
+    - [Page Deployment](#page-deployment)
+    - [Image Hotspots](#background-image-vs-image-element)
+    - [Form Validation and Security](#form-validation-and-security)
+    - [Form accessibility](#form-accessibility)
+  - [Code Validation](#code-validation)
+    - [CSS](#css)
+    - [HTML](#html)
+    - [Javascript](#javascript-1)
+  - [Compatibility](#compatibility)
+  - [Testing](#testing)
+  - [Lighthouse Testing](#lighthouse-testing)
+  - [Credits](#credits)
+  - [Author](#author)
+
+
+## Deployment
+
+  --
+ ## Pages Overview
+
+ --
+## Technologies Used
+
+--
+## Why React?
+React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project, 
+
+## Additional Reading References
+[React.js website ](https://www.react.dev)
+
+## UX Design
+
+### Project Goals
+
+The primary goal of The Administrator is to provide a visiting user with an visually and intellectually interesting experience, which challenges the players logic skills as well as promoting curiosity and problem solving through the gradual use of upgrades to enhance gameplay. The web app is primarily a means of entertainment rather than utility, therefore relying heavily on the game logic to perform as expected and reliably. 
+The web app also serves as a more complex portfolio piece for the developer, showcasing an understanding of the principles and techniques used within a React based app. 
+
+    
+### Target Audience
+There are 2 main audiences for the web app:
+* Users who wish to explore a casual themeatic browser game that runs on both mobile and desktop. 
+* Prospective employers who wish to view the developers work and gain more insight into the developers ability and other projects. 
+
+
+### Audience Goals
+* Casual players
+  * To know what the web app is when visiting it for the first time. 
+  * To be shown how to play the game when playing it for the first time. 
+  * To be able to delete stored game data if they wish to
+  * To view statistics about the number of actions they have taken during their time playing the game
+  * To know the end goal of the game loop and how to reach it. 
+  * To gain an understanding of what makes a Citizen within the game either good or bad. 
+  * To know how to purchase upgrades in game and what they do.
+  * To know how to navigate between screens. 
+  * To be able to control sound produced by the app. 
+  * To experience a thematic simulated retro computer terminal environment.
+
+* Prospective employer
+  * To understand what the web apps purpose and use is
+  * To see that error states, form validation and page navigation qwerks are caught and managed effectively. 
+  * To see that player data loading is implemented logically and guard against unintended viewing of component content what the player has no player data loaded. 
+  * To be able to visit the developers other projects and Git repositories. 
+  ---
+
+### Developer Goals
+
+* The web app should adhere to a strict aesthetic theme that simulates a retro computer terminal environment, often seen in science fiction movies and literature. 
+* The app should be able to store player progress between play sessions and guard against player early access causing game data loss. 
+* The game should not use any backend systems that require ongoing maintenance or payment in place. All game data should be stored locally on the players machine.
+* Locally stored game data should be encrypted to a basic level, reducing the likelihood of players easily manipulating locally stored game data to progress in the game loop. (Whilst acknowledging that data stored in `localstorage` has its limitations, as discussed later)
+* The web app should demonstrate the developers knowledge of and ability to use the three core languages of web design (HTML/CSS/JS), with code being cross-browser compatible, fully validated, tested and organized in line with industry standard practices.
+* The web App should be able to demonstrate the developers understanding and ability to implement the React.js library, utilizing State, Refs, conditional rendering and other key functions of the React library. 
+
+    
+### User Stories
+
+The following user stories describe the key ways in which the site may be used, from the perspective of different users.
+---
+* I would like to play a browser based game that is set in a futuristic world
+* I would like to learn what this app does and how to play.
+* I would like to learn about why this app was made and see other projects by the author
+* I would like to contact the author of the app 
+* I would like to see my progress in the game.
+* I would like to remove data stored locally by the game
+---
+## User Story Outcomes
+
+## Wireframes
+## Design \& Style
+--
+### Color Scheme
+--
+### Styling
+--
+### Fonts
+--
+### CSS Animations
+--
+### Favicon
+--
+## Key Features - Design \& content
+
+### Pages
+--
+### Technical Decisions
+  ### Styling
+  --
+  ### Layout
+  --
+  ### JavaScript
+  --
+  ### Accessibility
+  --
+ ## Challenges \& Problem Solving
+  ### Page Deployment
+  --
+  ### Image Hotspots
+  --
+  ### Form Validation and Security
+  --
+  ### Form accessibility
+  --
+ ## Code Validation
+  ### CSS
+  --
+  ### HTML
+  --
+  ### Javascript
+  --
+## Compatibility
+--
+## Testing
+--
+## Lighthouse Testing
+--
+## Credits
+--
+## Author
+--
+
+
+
+
+
+
+
+
+
+
 ## Quick Rules
 * there are thirteen districts. You are allowed to go to any district above the district that you work in, but you may not enter a district that is lower than your working district. 
 * All citizens are allowed to be in District 5 : Housing.

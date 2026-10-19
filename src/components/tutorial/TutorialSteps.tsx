@@ -10,7 +10,7 @@ interface tutorialStepsProps {
 
 export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
   const { tutorialState, setTutorialState } = useContext(TutorialContext);
-  const {currentSlug,setCurrentSlug} = useContext(CurrentSlugContext)
+  const {setCurrentSlug} = useContext(CurrentSlugContext)
   const navigate = useNavigate();
   let textContent: string = "";
   switch (stepNumber) {

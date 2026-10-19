@@ -1,8 +1,7 @@
 import { useContext, useState } from "react"
 import { PlayerContext } from "../../context_providers/PlayerContext"
 import { TutorialContext } from "../../context_providers/TutorialContext"
-import { useNavigate, useNavigation } from "react-router-dom"
-import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext"
+import { useNavigate } from "react-router-dom"
 
 
 
