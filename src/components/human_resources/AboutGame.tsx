@@ -1,4 +1,4 @@
-export default function HumanResources() {
+export default function AboutGame() {
   return (
     <p>
       This React app was made as a learning exercise, to familiarize myself with

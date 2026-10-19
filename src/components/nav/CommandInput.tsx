@@ -41,9 +41,9 @@ export default function CommandInput() {
           setCurrentSlug("nav.review");
           resetInput(e);
           break;
-        case "nav.hr":
-          navigate("/HR");
-          setCurrentSlug("nav.hr");
+        case "nav.about":
+          navigate("/About");
+          setCurrentSlug("nav.about");
           resetInput(e);
           break;
         case "nav.inbox":

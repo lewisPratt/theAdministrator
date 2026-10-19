@@ -48,9 +48,9 @@ export default function CommandCentre() {
           navigate("/UpgradeShop");
           setCurrentSlug("nav.voucher");
           break;
-        case "nav.hr":
-          navigate("/HR");
-          setCurrentSlug("nav.hr");
+        case "nav.about":
+          navigate("/About");
+          setCurrentSlug("nav.about");
           break;
         case "nav.review":
           navigate("/CaseReview");
@@ -156,8 +156,8 @@ export default function CommandCentre() {
                       <p>request.leave</p>
                     </li>
                     <li className="command-row">
-                      <p>Human Resources</p>
-                      <p>nav.hr</p>
+                      <p>About</p>
+                      <p>nav.about</p>
                     </li>
              
                     <li className="command-row">

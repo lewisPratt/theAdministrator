@@ -65,7 +65,11 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
 
 --
 ## Why React?
-React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project, 
+React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
+
+## Terminology 
+* As a React web app, the project is essentially a single page website that has it's content loaded via Javascript. For this reason, when referring to a 'component', the developer is referring to what a user would normally perceive of as a page. 
+* When referring to a 'logged in' user, the developer is referring to a user who has entered a name into the login components input and has progressed through the welcome screen to the logged in state of the web app. Once 'logged in' the users data is loaded from local storage and they can access the main content of the app. 
 
 ## Additional Reading References
 [React.js website ](https://www.react.dev)
@@ -77,30 +81,33 @@ React is ideal for the purposes of a browser based game, as it champions the use
 The primary goal of The Administrator is to provide a visiting user with an visually and intellectually interesting experience, which challenges the players logic skills as well as promoting curiosity and problem solving through the gradual use of upgrades to enhance gameplay. The web app is primarily a means of entertainment rather than utility, therefore relying heavily on the game logic to perform as expected and reliably. 
 The web app also serves as a more complex portfolio piece for the developer, showcasing an understanding of the principles and techniques used within a React based app. 
 
+
+## Key thematic choices
+* The web app has been designed from the beginning with the idea of being able to navigate the entire experience via keyboard alone. For this reason, every interactive element throughout the app has had the `tabindex` attribute assigned to it to ensure that there is seamless access via the keyboard. 
+* The primary method of navigation between pages is via the use of typed commands, rather than the traditional method of clickable links. Clickable links are present within the app, however they are few and only serve as a means of convenience when relying purely on keyboard navigation would prove impractical. Available keyboard commands are visible within every component view and are easily memorized after a short time of playing. Implementing this concept of keyboard navigation aligns with the developers vision of providing a simulated retro-futuristic computer console environment, similar to those depicted in popular media which either use primarily voice or keyboard input for navigation and overall control. 
+* When visiting the apps front page, there is a login screen that new and returning users enter there name to access the rest of the app content. This is effectively a faux login screen, as there is no password or authentication in place. Utilizing this login flow is primarily a method of loading saved player data, or warning the player that they will overwrite saved data if they have entered a new login name. 
+  It is also part of the theme of the game, as the user is playing the role of an administrator, so it makes thematic sense for them to login to their system when they visit the app.
+
     
 ### Target Audience
 There are 2 main audiences for the web app:
-* Users who wish to explore a casual themeatic browser game that runs on both mobile and desktop. 
+* Users who wish to explore a casual thematic browser game that runs on both mobile and desktop. 
 * Prospective employers who wish to view the developers work and gain more insight into the developers ability and other projects. 
 
 
 ### Audience Goals
 * Casual players
-  * To know what the web app is when visiting it for the first time. 
-  * To be shown how to play the game when playing it for the first time. 
-  * To be able to delete stored game data if they wish to
-  * To view statistics about the number of actions they have taken during their time playing the game
-  * To know the end goal of the game loop and how to reach it. 
+  * To know what the web app is when visiting it for the first time and be shown how to play the game when playing it for the first time. 
+  * To view statistics about gameplay and manage stored game data
+  * To know the end goal of the game loop and how to reach it as well as how to purchase upgrades in game and what they do.
   * To gain an understanding of what makes a Citizen within the game either good or bad. 
-  * To know how to purchase upgrades in game and what they do.
-  * To know how to navigate between screens. 
   * To be able to control sound produced by the app. 
-  * To experience a thematic simulated retro computer terminal environment.
+
 
 * Prospective employer
   * To understand what the web apps purpose and use is
-  * To see that error states, form validation and page navigation qwerks are caught and managed effectively. 
-  * To see that player data loading is implemented logically and guard against unintended viewing of component content what the player has no player data loaded. 
+  * To see that form validation is implemented and managed effectively. 
+  * To see that player data loading is implemented logically and guard against unintended viewing of component content when the player has no player data loaded. 
   * To be able to visit the developers other projects and Git repositories. 
   ---
 
@@ -118,12 +125,150 @@ There are 2 main audiences for the web app:
 
 The following user stories describe the key ways in which the site may be used, from the perspective of different users.
 ---
-* I would like to play a browser based game that is set in a futuristic world
-* I would like to learn what this app does and how to play.
-* I would like to learn about why this app was made and see other projects by the author
-* I would like to contact the author of the app 
-* I would like to see my progress in the game.
-* I would like to remove data stored locally by the game
+
+### User Story 1 - Casual browser game player
+
+(Must Have)
+
+I am a new user who wants to know what this website is when visiting it for the first time and how to play. 
+
+#### Acceptance Criteria
+
+* [x] The first page that the user sees should have a clear call to action, helping new users access the desired information. 
+* [x] Information should be accessible to access via conventional peripherals or accessability aids.
+* [x] The description content should be short and useful to a new user. 
+* [x] There should be an easy way to return to the front page of the web app. 
+* [x] When logged in there should be an easy to follow explanation of how to play.
+
+#### Tasks
+
+* [x] Provide a clear Call to action button, highlighting where to go for information on the app.
+* [x] Ensure that the call to action is accessible via both mouse input and keyboard input. 
+* [x] Provide a concise and accurate explanation of the core concepts of the game loop and purpose of the web app. 
+* [x] Add clear call to action button to return to the front page of the app. 
+* [x] Build a tutorial that walks players through each part of the app and explains key design and gameplay concepts. 
+
+#### Visual Journey
+
+--
+
+### User Story 2 - Casual browser game player
+
+(Must Have)
+
+I am a returning player and want to see statistics on my actions within the game as well as delete my stored game data if i wish to
+
+#### Acceptance Criteria
+
+* [x] There should be an easily identifiable location for personal statistics information once a players data is loaded. 
+* [x] Player statistics and unlocks should be easily identifiable and clearly defined
+* [x] All player data should be visible in an ordered manner on both mobile an desktop
+* [x] There should be an obvious call to action to delete stored player data. 
+* [x] confirmation should be needed before deleting data to ensure accidental deletion doesn't occur. 
+
+#### Tasks
+
+* [x] Build a clear component view for personal statistics and other stored player data.
+* [x] Ensure that how to navigate to a players personal record is clear and easy to do
+* [x] Ensure that the layout for the personal record component view is responsive and clear in determining the different categories of player data. 
+* [x] Provide a call to action button to allow players to delete stored data. 
+* [x] Build a confirmation state to ensure that once pressed, the player needs to confirm their decision to delete the stored data. 
+
+#### Visual Journey
+
+--
+
+### User Story 3 - Casual browser game player
+
+(Must Have)
+
+I would like to be able to control the use of sound within the app.
+
+#### Acceptance Criteria
+
+* [x] There should be an easily identifiable route to disable/enable sound within the app. 
+* [x] No key gameplay mechanics should rely on the player being able to hear the sounds being made by the app. 
+
+#### Tasks
+
+* [x] Utilize react compatible package to implement the use of sound throughout the app.
+* [x] Ensure that all component views of the app are covered by the sound controls (ensuring that muting sound in one view means it is muted in all views)
+* [x] Add a clear call to action that easily toggles the use of sound within the app.
+* [x] Provide feedback to the user to inform them as to the current state of sound within the app (either on or off) 
+* [x] Ensure that the call to action button is accessible to adaptive technologies. 
+
+#### Visual Journey
+
+--
+
+### User Story 4 - Prospective Employer
+
+(Must Have)
+
+I would like to ensure adequate safeguards are in place to manage navigation input submissions effectively
+
+#### Acceptance Criteria
+
+* [x] When a text input is submitted, if the content is not recognized or does not have an effect, the user should be informed of this as an error. 
+* [x] Navigating to pages via the use of direct URL manipulation should produce a predictable response. If the user is logged in, gameplay elements should be visible, if the user is not logged in, the user should be re-directed to the login page. 
+
+#### Tasks
+
+* [x] Implement component switching logic that covers all navigation routes included made abaialble to the user. 
+* [x] Add catch to switching logic that catches any routes that are not recognized (due to not existing or misspelling)
+* [x] Use an error state to conditionally render a warning to the user, informing them that the command they entered was not recognized. 
+* [x] Provide a button to dismiss the warning and reset the error state
+
+#### Visual Journey
+
+--
+
+### User Story 5 - Prospective Employer
+
+(Must Have)
+
+I would like to ensure adequate safeguards are in place to manage direct URL manipulation.
+
+#### Acceptance Criteria
+
+* [x] Game logic and data should not render for a non logged in user when they have navigated to a component view via the URL directly.
+* [x] If a non-logged in user navigates to a component view that requires logged in status, they should be re-directed to log in and load player data. 
+
+#### Tasks
+
+* [x] Implement the use of session token data to check whether the user has been logged in. 
+* [x] Set user as logged in using session storage when they successfully login. 
+* [x] Check in each component view to see if use is currently logged in. Conditionally render content dependant on logged in status. 
+* [x] Implement call to action to redirect to login if not logged in. 
+* [x] Manage session cleanup when user logs out, clearing logged in status. 
+
+
+#### Visual Journey
+
+--
+
+### User Story 6 - Prospective Employer
+
+(Must Have)
+
+I would like to see the rationale for this project and view the developers other projects. 
+
+#### Acceptance Criteria
+
+* [x] Navigation command for this content should be obvious and logical
+* [x] Rationale content should be concise and easy to read. 
+* [x] Link should be provided to developers other projects
+
+#### Tasks
+
+* [x] Implement navigation command (nav.about) to allow users access to this component view
+* [x] Include a brief description of the project and why it was created
+* [x] Add clear call to action button to link to developers other projects. 
+
+
+#### Visual Journey
+
+--
 ---
 ## User Story Outcomes
 

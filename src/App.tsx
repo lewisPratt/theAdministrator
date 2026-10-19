@@ -25,7 +25,7 @@ import {
 import { SoundProvider } from "react-sounds";
 import WelcomeScreen from "./components/login/WelcomeScreen";
 import GoodbyeScreen from "./components/login/GoodbyeScreen";
-import HumanResources from "./components/human_resources/HumanResources";
+import AboutGame from "./components/human_resources/AboutGame"; 
 import PersonalRecord from "./components/personal_record/PersonalRecord";
 import HowToPlay from "./components/login/HowToPlay";
 import Footer from "./components/footer/Footer";
@@ -119,8 +119,8 @@ function App() {
                                     element={<GoodbyeScreen />}
                                   />
                                   <Route
-                                    path="/HR"
-                                    element={<HumanResources />}
+                                    path="/About"
+                                    element={<AboutGame />}
                                   />
                                   <Route
                                     path="PersonalRecord"
