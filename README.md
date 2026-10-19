@@ -53,17 +53,22 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
   - [Credits](#credits)
   - [Author](#author)
 
-## Deployment
 
---
 
 ## Pages Overview
 
 --
 
 ## Technologies Used
-
---
+* HTML
+* CSS
+* Javascript (Vanilla)
+* React.js
+* Vite
+* Google Fonts
+* Lucide Icons (Node package)
+* React Tooltips (node Package)
+* React sounds (node package)
 
 ## Why React?
 
@@ -74,9 +79,7 @@ React is ideal for the purposes of a browser based game, as it champions the use
 - As a React web app, the project is essentially a single page website that has it's content loaded via Javascript. For this reason, when referring to a 'component', the developer is referring to what a user would normally perceive of as a page.
 - When referring to a 'logged in' user, the developer is referring to a user who has entered a name into the login components input and has progressed through the welcome screen to the logged in state of the web app. Once 'logged in' the users data is loaded from local storage and they can access the main content of the app.
 
-## Additional Reading References
 
-[React.js website ](https://www.react.dev)
 
 ## UX Design
 
@@ -553,13 +556,22 @@ SVGs are self contained and scalable, meaning that the styling of all elements w
 ## Author
 
 --
+## Deployment
 
-Notable features
+--
+## Additional Reading References
+Whilst developing this site, additional reading was undertaken to primarily around using React.js, as it was a new technology to me at the start of the project. 
 
-- Use of React
-- Use of Typescript
-- focus trapping during tutorial (using inert attribute on root and createPortal to move tutorial/tooltip elements outside of root)
-- React routing
+Javascript / React - https://www.w3schools.com. When searching online for additional details around using the React library and other vanilla Javascript functionality, w3schools was utilized to gain a high level understanding of the code. W3 provides very good, short descriptions and examples of how specific pieces of code can be used, as well as linking to additional reading that may contribute to fully understanding it's use.
+
+The main additional reading resource i accessed during this project was the official [React.dev](https://www.react.dev) website, which has a very user friendly and logical approach to onboarding new users to the library. 
+No structured tutorials or walk-throughs were used during the building of this web app.
+
+Large language models were only used as a means of troubleshooting when i was not able to identify the cause of an error through my additional reading. When using LLMs, prompts were always prefixed with the context of "not providing code snippets to solve the error" as this is not a helpful way to improve my own understanding of the code. Responses received from LLms were questioning and of a problem solving nature, rather than immediately solving the error i was encountering by providing code snippets. 
+
+
+
+
 
 
 
