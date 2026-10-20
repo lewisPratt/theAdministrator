@@ -32,7 +32,9 @@ body {
 header {
   width: 100%;
 }
-
+a {
+  color:#a2eaa2;
+}
 main {
   width: 100%;
   flex: 1;

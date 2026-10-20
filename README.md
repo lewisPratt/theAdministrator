@@ -402,6 +402,11 @@ At a number of transition points( moving from one route to another) faux loading
 Due to the theme of the app I have made, accessibility, for the most part, was being addressed throughout the project mainly due to my idea that the entire experience should be navigable and playable whilst solely using a keyboard. Many of the computers shown in reference images and films that I explored, such as bladerunner, often don't have a mouse or equivalent connected and much if not all of the navigation and interaction is achieved via the keyboard alone.
 This has meant that from the beginning of my project, I have focussed on ensuring all interactive elements are accessible to both mouse and keyboard, providing visual feedback when an interaction occurs.
 
+The intended experience for the user is for navigation to be undertaken via typed commands, keeping in line with the simulated computer system theme. 
+However, it is also important to ensure that users who do not have access to a keyboard, can still move around the app effectively. For this reason, The available commands component, positioned next to the navigation input at the top of the page, provides a list of the commands to move between component views. These commands are buttons that can be used to navigate around the app if the user cannot, or does not wish to use the typed navigation commands. 
+
+
+
 ### Pages
 
 --

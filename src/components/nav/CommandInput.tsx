@@ -142,7 +142,7 @@ export default function CommandInput() {
           <a id="tutorial-step-6"></a>
           <CircleQuestionMark size={20} />
         </button>
-        {showCommands && <AvailableCommandsList />}
+        {showCommands && <AvailableCommandsList  doLogout={doLogout}/>}
       </form>
     </div>
   );

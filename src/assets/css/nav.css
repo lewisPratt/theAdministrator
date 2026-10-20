@@ -132,7 +132,10 @@
   padding: 10px;
   margin:0;
 }
-
+#commands-list-container button{
+  width:fit-content;
+  height:fit-content;
+}
 nav {
   display: flex;
   justify-content: space-between;

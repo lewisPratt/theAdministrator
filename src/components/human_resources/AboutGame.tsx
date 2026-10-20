@@ -11,7 +11,7 @@ export default function AboutGame() {
       dystopian text based game, that utilizes a number of the key features of
       React.js.
       <br /><br />
-      < a href='https://github.com/lewispratt' target='_blank'><button>Check out my other projects here</button></a>
+      < a href='https://github.com/lewispratt' target='_blank'>Check out my other projects here</a>
     </p>
   );
 }
