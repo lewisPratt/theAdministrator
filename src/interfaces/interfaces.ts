@@ -150,6 +150,7 @@ export interface newMessageProps {
 }
 export interface NotLoggedInShape{
     soundControls: boolean
+    dataError: string | null
 }
 export interface searchResultShape {
   resultName: string;

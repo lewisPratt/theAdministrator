@@ -11,8 +11,10 @@ import "../../assets/css/login.css";
 //IMAGE IMPORTS
 import CityMap from "./CityMap";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import type { playerDataShape } from "../../interfaces/interfaces";
+import type { playerDataShape, playerStatsShape } from "../../interfaces/interfaces";
 import LoginChoice from "./LoginChoice";
+import { ErrorContext } from "../../context_providers/ErrorContext";
+import { isPlayer } from "../../assets/utils/helpers";
 
 interface loginChoiceShape{
   enteredName: string
@@ -25,7 +27,26 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
 
   //CONTEXTS
   const { setPlayerData } = useContext(PlayerContext);
+  const {errorState,setErrorState} = useContext(ErrorContext)
   const navigate = useNavigate();
+
+  /**
+   * 
+   * @param storageKey key for the item in local storage
+   * @returns saved data if successful try. Null if no key found that matches or if JSON is malformed
+   */
+  function tryParse(storageKey : string){
+    try {
+          const savedData = localStorage.getItem(storageKey);
+          if(savedData === null){
+            return null
+          }
+          return JSON.parse(savedData);
+
+    } catch (error) {
+      //Couldn't parse JSON. Returns null so just overwrites malformed JSON
+    }
+  }
 
  
   /**
@@ -39,24 +60,31 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
 
     // name is not empty string so process login
     if (enteredName != "" && enteredName != null) {
-      const savedData = localStorage.getItem("The_Administrator_Game");
+
+      //attempt to get saved data safely
+      const savedData :playerDataShape = tryParse("The_Administrator_Game")
+      //if no saved data found
       if (!savedData) {
         newPlayerSetup(enteredName);
-              
-
       } else {
         //returning player, load saved data
-        const parsedPlayerData: playerDataShape = JSON.parse(savedData);
-        if (parsedPlayerData.player_name === enteredName) {
-          setPlayerData(JSON.parse(savedData));
-          sessionStorage.setItem("admin_game_status", "logged_in");
-          navigate("/Welcome");
+        if(isPlayer(savedData)){
+          if (savedData.player_name === enteredName) {
+            setPlayerData(savedData);
+            sessionStorage.setItem("admin_game_status", "logged_in");
+            navigate("/Welcome");
 
-        } else {
-          const parsedData : playerDataShape= JSON.parse(savedData)
-          //show warning of already having an account saved, only one account at a time. previous accounts will be overwritten. Provide player name and link to login directl to this account
-         setLoginChoice({enteredName: enteredName, retrievedSave : parsedData })
+          } else {
+            //show warning of already having an account saved, only one account at a time. previous accounts will be overwritten. Provide player name and link to login directl to this account
+          setLoginChoice({enteredName: enteredName, retrievedSave : savedData })
+          }
         }
+         else{
+          //type guard failed, saved player data does not match expected type
+          //CODE #1
+          setErrorState("There was an issue with your saved game data. Data Reset. Try again. [#1]")
+          localStorage.removeItem("The_Administrator_Game")
+          }
       }
 
        

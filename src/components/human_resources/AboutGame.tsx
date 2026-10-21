@@ -1,4 +1,6 @@
-export default function AboutGame() {
+
+export default function AboutGame() {    
+    
   return (
     <p>
       This React app was made as a learning exercise, to familiarize myself with

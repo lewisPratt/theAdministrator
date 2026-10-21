@@ -138,7 +138,7 @@ TypeScript compiles to plain JavaScript and it offers better protection against 
 
 Although there are benefits to TypeScript, it cannot cover all eventualities as the TypeScript code is only compiled once at build time. The type checking is no longer present (due to it being plain JS code) after build, so if the shape of an object changes (such as an object stored in local storage) errors may occur that were not expected by the developer. 
 This error could arise from an older version of the saved playerdata being loaded or the data stored in localStorage being manipulated by the user directly. 
-For this reason, I have put further checks in place to ensure the shape of the item i am trying to access, matches the type I have defined. 
+For this reason, I have put further checks in place to ensure the shape of the item I am trying to access, matches the type I have defined. (present in the Nav component when loading locally stored user data). Try Catch blocks have also been used when fetching from localstorage and parsing JSON data, to ensure that errors are caught and handled gracefully. Further details in testing section. 
 
 ## Terminology
 
@@ -661,6 +661,43 @@ Due to hosting the project on GH pages and having no backend features at all, it
 --
 
 ## Testing
+
+### Validating saved player data
+
+Persistent player data is stored in localStorage of the users browser. This storage is basic and not secure from user manipulation, however for a casual application this serves the needs of the project. A number of steps have been taken to validate player data when accessing it, to ensure that errors are handled gracefully and failed retrieval does not block the user from progressing further in the app. 
+
+When a user logs in, an attempt to load saved data is made. This also occurs when the user refreshes the page, causing the app to load the saved user data from localStorage. 
+
+* If the key cannot be found in localStorage, a new player is set up and the key is created in localStorage to track user progress. 
+* If the key is found but the JSON is incorrectly formed, unparsable or the parsed data has failed the type guard checks, an error is displayed to the user, notifying that the data has been reset and they should attempt to login again. 
+
+The type guard being used to check the types of the data stored in localStorage is as follows: 
+
+     function isPlayer(value : unknown) : value is playerDataShape{
+      return (
+        typeof value === "object" &&
+        value != null &&
+        typeof (value as playerDataShape).player_credits === "number"&&
+        typeof (value as playerDataShape).player_name === "string"&&
+        typeof (value as playerDataShape).player_title === "string" &&
+        isStats((value as playerDataShape).player_stats) &&
+        Array.isArray((value as playerDataShape).player_titles)  &&
+        typeof (value as playerDataShape).player_tutorialComplete === "boolean" &&
+        Array.isArray((value as playerDataShape).player_unlocks)
+  
+      )
+    }
+
+This helps ensure that the data that is expected, is of the correct type. Any data that can be directly manipulated by the user needs to be checked and validated to ensure it will work without error or causing the app to become unusable.
+
+It is not ideal that data is simply cleared when it fails the checks in place, as this results in user progress being lost without any effort to try and retrieve the data. 
+A future improvement would be to build a robust data retrieval workflow that attempts to salvage any data held in localStorage prior to clearing it. 
+The current strategy ensures that the user does not become blocked from logging in, as well as ensuring they do not have to go into developer tools to manually clear their game data. 
+
+
+
+
+
 
 | Feature | Chrome | Firefox | Safari | Edge | Mobile |
 |---|---|---|---|---|---|

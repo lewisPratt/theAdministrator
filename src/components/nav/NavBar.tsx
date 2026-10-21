@@ -3,14 +3,18 @@ import NotLoggedIn from "./NotLoggedIn";
 import ScoreTracker from "./ScoreTracker";
 import SoundControl from "./SoundControl";
 import TutorialButton from "./TutorialButton";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import type { playerDataShape, playerStatsShape } from "../../interfaces/interfaces";
-import { saveLocalData } from "../../assets/utils/helpers";
+import { isPlayer, saveLocalData } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
+import { ErrorContext } from "../../context_providers/ErrorContext";
 export default function NavBar() {
+  const [dataError, setDataError] = useState<string | null>(null)
   const { playerData, setPlayerData } = useContext(PlayerContext);
+  const { errorState, setErrorState } = useContext(ErrorContext);
+
   const { pathname } = useLocation();
 
   {
@@ -26,52 +30,42 @@ export default function NavBar() {
     componentEnabled = false;
   }
 
-  // Type Guard checks for loading locally stored player data
-  //checks that stored data matches the expected shape we want for player data. 
-  function isPlayer(value : unknown) : value is playerDataShape{
-    return (
-      typeof value === "object" &&
-      value != null &&
-      typeof (value as playerDataShape).player_credits === "number"&&
-      typeof (value as playerDataShape).player_name === "string"&&
-      typeof (value as playerDataShape).player_title === "string" &&
-      isStats((value as playerDataShape).player_stats) &&
-      Array.isArray((value as playerDataShape).player_titles)  &&
-      typeof (value as playerDataShape).player_tutorialComplete === "boolean" &&
-      Array.isArray((value as playerDataShape).player_unlocks)
+  
+  
+  function tryParse(storageKey : string){
+    try {
+          const savedData = localStorage.getItem(storageKey);
+          if(savedData === null){
+            return null
+          }
+          return JSON.parse(savedData);
 
-    )
+    } catch (error) {
+      console.log("couldn't login: "+ error)
+    }
   }
-  function isStats(value : unknown) : value is playerStatsShape {
-    return (
-      typeof value === "object" &&
-      value != null &&
-      typeof (value as playerStatsShape).cases_complete === "number" &&
-      typeof (value as playerStatsShape).cases_correct === "number" &&
-      typeof (value as playerStatsShape).cases_failed === "number" &&
-      typeof (value as playerStatsShape).player_promotions === "number" &&
-      typeof (value as playerStatsShape).total_credits_earned === "number" &&
-      typeof (value as playerStatsShape).total_credits_lost === "number" 
-    )
-  }
+
+
 
   useEffect(() => {
     if (playerData === null && componentEnabled) {
-      try {
-        const savedData = localStorage.getItem("The_Administrator_Game");
+ 
+        const savedData :playerDataShape = tryParse("The_Administrator_Game");
         if (savedData) {
-          const storedPlayerData: playerDataShape = JSON.parse(savedData);
-          if(isPlayer(storedPlayerData)){
-            setPlayerData(storedPlayerData);
+          if(isPlayer(savedData)){
+            setPlayerData(savedData);
           }
           else{
           //type guard failed, saved player data does not match expected type
+          //CODE #1
+          setErrorState("There was an issue with your saved game data. #1")
           }
         }
-      } catch (error) {
-        //failed to parse JSON
-      }
-      
+        else{
+        // No local storage item found with the specified key
+        // CODE #2
+        setErrorState("There was an issue with your saved game data. #2")
+        } 
     } else if (playerData != null) {
       saveLocalData(playerData);
     }
@@ -107,7 +101,7 @@ export default function NavBar() {
               </div>
             </>
           ) : (
-            <NotLoggedIn soundControls />
+            <NotLoggedIn soundControls={false} dataError={dataError} />
           )}
           <Tooltip id="nav-bar-tooltip" className="custom-tooltip"></Tooltip>
         </nav>

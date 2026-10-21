@@ -1,7 +1,7 @@
 import { locations } from "../../generator_modules/LocationGenerator";
 import { occupations } from "../../generator_modules/OccupationGenerator";
 import { allUpgrades } from "../../generator_modules/upgrades";
-import type { locationsShape, occupationsShape, playerDataShape, UpgradeShape } from "../../interfaces/interfaces";
+import type { locationsShape, occupationsShape, playerDataShape, playerStatsShape, UpgradeShape } from "../../interfaces/interfaces";
 
 /**
  * Capitalizes the first letter of the string passed to it, returning a capitalized string
@@ -52,3 +52,32 @@ export function checkUpgradeActive(unlocks : string[] | undefined, voucher: stri
     return false
 
 }
+
+// Type Guard checks for loading locally stored player data
+  //checks that stored data matches the expected shape we want for player data. 
+  export function isPlayer(value : unknown) : value is playerDataShape{
+    return (
+      typeof value === "object" &&
+      value != null &&
+      typeof (value as playerDataShape).player_credits === "number"&&
+      typeof (value as playerDataShape).player_name === "string"&&
+      typeof (value as playerDataShape).player_title === "string" &&
+      isStats((value as playerDataShape).player_stats) &&
+      Array.isArray((value as playerDataShape).player_titles)  &&
+      typeof (value as playerDataShape).player_tutorialComplete === "boolean" &&
+      Array.isArray((value as playerDataShape).player_unlocks)
+
+    )
+  }
+export function isStats(value : unknown) : value is playerStatsShape {
+    return (
+      typeof value === "object" &&
+      value != null &&
+      typeof (value as playerStatsShape).cases_complete === "number" &&
+      typeof (value as playerStatsShape).cases_correct === "number" &&
+      typeof (value as playerStatsShape).cases_failed === "number" &&
+      typeof (value as playerStatsShape).player_promotions === "number" &&
+      typeof (value as playerStatsShape).total_credits_earned === "number" &&
+      typeof (value as playerStatsShape).total_credits_lost === "number" 
+    )
+  }
