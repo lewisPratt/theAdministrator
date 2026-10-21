@@ -319,7 +319,7 @@ I would like to see the rationale for this project and view the developers other
 
 #### Visual Journey
 
-## ![Complete User Story 1](src/assets/images/readme/user-story-6.webp "Complete User Story 1")
+![Complete User Story 1](src/assets/images/readme/user-story-6.webp "Complete User Story 1")
 
 
 ### User Story 7 - Casual browser game player
@@ -350,6 +350,14 @@ By weighing the cost/benefit of developing this feature, I decided that it was n
 Not including this feature in the current release of the project does not impact the core gameplay loop or have an adverse effect on user experience as it is unlikely that two people using the same device would wish to play the game separately. 
 
 ## Wireframes
+### Desktop
+
+![Wireframes](src/assets/images/readme/wireframes-desktop.webp)
+
+## Mobile
+Due to the mobile first and responsive design approach maintained throughout development, the majority of the views in the app render almost identically regardless of viewing platform. The following wireframes identify the changes required within the more complex components, to render a usable view that promotes a positive UX. 
+
+![wireframes-mobile](src/assets/images/readme/wireframes-mobile.webp)
 
 ## Design \& Style
 
@@ -362,11 +370,34 @@ CSS files were created for each component that represents a 'page' within the ap
 
 ### Fonts
 
---
+To align with the retro futuristic aesthetic of the game, I chose to utilise a pixelated font for the majority of the body content, combined with a stylised 'scan line effect' font for headings.
 
-### CSS Animations
+Body and paragraph elements utilised
+font-family:'Silkscreen',monospace
 
---
+#### Images
+
+All images have relevant and useful alt text in the event they either cannot be rendered or if a user is utilising a screen reader.
+Images have been re-sized to both provide high quality visuals as well as ensure minimal impact on loading. Where image file size savings can be made by converting to webp, this has occurred, however not all images have seen significant file size changes so some remain in their original format (PNG).
+
+## Colour
+
+using `<meta name="theme-color" content="#000000">` to set the colour of mobile browser address bar to fit the color scheme of the app.
+The retro futuristic aesthetic I decided to utilise for this game allowed me the freedom to be creative with the colour pallete throughout the app. When researching UI examples and references from films I noticed that most computer systems set in a dystopian, authoritative universe, tended towards a simple high contrast colour scheme that didn't distract from the content. Choosing two primary colours and allowing the use of slightly altered brightnesses of these two colours, ensured that there was a cohesive, thematic and consistent feel to the entire application. The colours I chose as my two primary colours enhance the overall theme of the app and contribute to achieving its purpose.
+My initial concept was to create a simulated computer terminal in a retro futuristic setting. Simulating a system that runs on a low tech computer terminal that only renders two colours (at varying degrees of brightness) helps to further enhance the theming of the app.
+Contrast however is important, particularly when committing to the use of only two colours. For this reason I used ..... To check the contrast value between my two primary colours and the result showed a pass with high contrast at .....
+With the use of only two colours, it was also important to ensure that similar/identical elements that appear across different components are styled consistently to ensure that calls to action (CTA) and other important elements are easy to identify and navigate.
+
+Applying colour to external library components:
+The React tooltips package was used to integrate tooltips into the app. As standard the default styling of these tooltips was not in line with the styling applied to the rest of the app.
+In order to style tooltips successfully, the documentation advised that tooltips must have a higher level of specificity in order to successfully apply CSS styling rules. For this reason, all tooltips were given a class of 'custom-tooltip' and placed within the 'main-content' element to ensure that they can be targeted with a higher specificity than their default styling rules.
+#main-content .custom-tooltip{
+CSS rules to apply to tooltips.
+}
+
+Lucide icons package
+Icons used from the lucide icons package can easily be styled by applying a custom class to them, effecting their colour, size, fill etc.
+This package was used to provide icons for CTAs, carriable items and faux loading screens.
 
 ### Favicon
  
@@ -422,38 +453,7 @@ Due to the nature of developing a React app (often creating large numbers of sma
 Local storage has been used as a means of persisting users game data between sessions. This data stores information on their administrators name, cases reviewed, credits earned and unlocks purchased. As this data is being stored locally, when the user first visits the app, they will be asked if they consent to this process. If they do not, the only effect this will have on the game is data persistence between play sessions (closing or refreshing the tab the game is being played in will reset the game state to being logged out with no saved progress)
 Players are able to delete local storage related to the app easily through the profile route. They can also have multiple data sets stored locally by using a different administrator name when logging in.
 Local storage has been used in place of a full backend system (database) to allow game progress to persist between gaming sessions. This has been implemented with the full knowledge that this data stored locally is easily located and changed by the user, effectively allowing them to cheat the game. For this reason, the app has been developed from the start as a casual gaming experience for players.
-### Styling
 
-#### Fonts
-
-To align with the retro futuristic aesthetic of the game, I chose to utilise a pixelated font for the majority of the body content, combined with a stylised 'scan line effect' font for headings.
-
-Body and paragraph elements utilised
-font-family:'Silkscreen',monospace
-
-#### Images
-
-All images have relevant and useful alt text in the event they either cannot be rendered or if a user is utilising a screen reader.
-Images have been re-sized to both provide high quality visuals as well as ensure minimal impact on loading. Where image file size savings can be made by converting to webp, this has occurred, however not all images have seen significant file size changes so some remain in their original format (PNG).
-
-## Colour
-
-using `<meta name="theme-color" content="#000000">` to set the colour of mobile browser address bar to fit the color scheme of the app.
-The retro futuristic aesthetic I decided to utilise for this game allowed me the freedom to be creative with the colour pallete throughout the app. When researching UI examples and references from films I noticed that most computer systems set in a dystopian, authoritative universe, tended towards a simple high contrast colour scheme that didn't distract from the content. Choosing two primary colours and allowing the use of slightly altered brightnesses of these two colours, ensured that there was a cohesive, thematic and consistent feel to the entire application. The colours I chose as my two primary colours enhance the overall theme of the app and contribute to achieving its purpose.
-My initial concept was to create a simulated computer terminal in a retro futuristic setting. Simulating a system that runs on a low tech computer terminal that only renders two colours (at varying degrees of brightness) helps to further enhance the theming of the app.
-Contrast however is important, particularly when committing to the use of only two colours. For this reason I used ..... To check the contrast value between my two primary colours and the result showed a pass with high contrast at .....
-With the use of only two colours, it was also important to ensure that similar/identical elements that appear across different components are styled consistently to ensure that calls to action (CTA) and other important elements are easy to identify and navigate.
-
-Applying colour to external library components:
-The React tooltips package was used to integrate tooltips into the app. As standard the default styling of these tooltips was not in line with the styling applied to the rest of the app.
-In order to style tooltips successfully, the documentation advised that tooltips must have a higher level of specificity in order to successfully apply CSS styling rules. For this reason, all tooltips were given a class of 'custom-tooltip' and placed within the 'main-content' element to ensure that they can be targeted with a higher specificity than their default styling rules.
-#main-content .custom-tooltip{
-CSS rules to apply to tooltips.
-}
-
-Lucide icons package
-Icons used from the lucide icons package can easily be styled by applying a custom class to them, effecting their colour, size, fill etc.
-This package was used to provide icons for CTAs, carriable items and faux loading screens.
 
 ### Layout
 #### Content hierarchy

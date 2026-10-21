@@ -79,7 +79,7 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
 
   return (
     <section id="login">
-      <CityMap giveDetails={true}/>
+      <CityMap giveDetails={false}/>
 
       <h1 id="login-header">Welcome Administrator</h1>
       <p>Login below to start your mandatory shift.</p>
@@ -100,9 +100,7 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
           <button id="command-centre-submit-button">
             <ChevronRightCircle size={28} />
           </button>
-          {/* <button id="command-centre-submit-button"  data-tooltip-id='login-tooltip' data-tooltip-content='What is this?'>
-            <CircleQuestionMark size={28} />
-          </button> */}
+
         </div>
         <button
           id="how-to-play-button"

@@ -274,7 +274,7 @@ export default function CityMap({giveDetails}:cityMapProps) {
           Population 2,700,000
         </text>
       </svg>
-    <DistrictDetails districtDetails={districtDetails} setDistrictDetails={setDistrictDetails} />
+    {giveDetails && <DistrictDetails districtDetails={districtDetails} setDistrictDetails={setDistrictDetails} />}
 
     </div>
   );
