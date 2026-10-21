@@ -19,16 +19,19 @@ import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import NotLoggedIn from "../nav/NotLoggedIn";
 import PromotedSim from "./PromotedSim";
+import { ErrorContext } from "../../context_providers/ErrorContext";
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
   const [promoted, setPromoted] = useState<boolean>(false)
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { tutorialState } = useContext(TutorialContext);
+  const { errorState } = useContext(ErrorContext);
+
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
 
-  const [errorState, setErrorState] = useState<string | null>(null);
+  const [upgradeErrorState, setUpgradeErrorState] = useState<string | null>(null);
   const hoverClick = () => playSound("ui/button_soft");
   const purchaseSound = () => playSound("ui/success_bling");
   const cantAfford = () => playSound("notification/error");
@@ -63,7 +66,7 @@ export default function UpgradeShop() {
     }
   }
   function confirmChoice(e: React.MouseEvent<HTMLButtonElement>) {
-    setErrorState(null);
+    setUpgradeErrorState(null);
     if (
       e.currentTarget.dataset.upgradeName &&
       e.currentTarget.dataset.upgradeIdent
@@ -86,7 +89,7 @@ export default function UpgradeShop() {
       const selectedUpgrade = upgrades[`${confirming}`];
       if (playerData) {
         if (playerData.player_credits < selectedUpgrade.cost) {
-          setErrorState("You do not have enough credits");
+          setUpgradeErrorState("You do not have enough credits");
           cantAfford();
         } else {
           //purchase made, update playerdata with credit balance and unlocks then set playerdata and store local data
@@ -205,7 +208,7 @@ export default function UpgradeShop() {
                         </span>
                       </button>
                       {confirming != null && confirming === upgrade[0] && (
-                        <div>
+                        <div className="upgrade-details">
                           <p className="upgrade-desc">{upgrade[1].desc}</p>
                           <p>Effect: {upgrade[1].perkEffect}</p>
                           {errorState != null && (
@@ -229,7 +232,7 @@ export default function UpgradeShop() {
           </section>
         </>
         ) :
-        <NotLoggedIn soundControls={false} />}
+        <NotLoggedIn soundControls={false} dataError={errorState} />}
         </>
       )}
     </>

@@ -12,9 +12,11 @@ import PlayerStats from "./PlayerStats";
 import NotLoggedIn from "../nav/NotLoggedIn";
 import TitleUnlocks from "./TitleUnlocks";
 import ManageAccount from "./ManageAccount";
+import { ErrorContext } from "../../context_providers/ErrorContext";
 export default function PersonalRecord() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const {playerData} = useContext(PlayerContext)
+    const {errorState} = useContext(ErrorContext)
   const tooltipRef1 = useRef<TooltipRefProps>(null);
   
   //turn off loading indicator after set interval
@@ -37,25 +39,31 @@ export default function PersonalRecord() {
           {playerData && sessionStorage.getItem("admin_game_status")?  (
           <>
             <section id="personal-record">
-              <p>{playerData.player_title} Administrator</p>
-              <h1>{playerData?.player_name}</h1>
-              <p className="personal-record-tagline">View your mediocre personal achievements & upgrades.</p>
 
-              {/* //upgrades unlocked component */}
-              <UnlockedUpgrades />
-          
-              
-              <PlayerStats />
+              <div>
+                <div >
+                  
+                  <h1>{playerData?.player_name}</h1>
+                  <p>{playerData.player_title} Administrator</p>
+                </div>
+                {/* <p className="personal-record-tagline">View your mediocre personal achievements & upgrades.</p> */}
+                {/* //upgrades unlocked component */}
+                <UnlockedUpgrades />
+                
+                <PlayerStats />
+
+                <ManageAccount />
+              </div>
 
               <TitleUnlocks />
 
-              <ManageAccount />
+              
               {/* //reset data component */}
               <Tooltip id="unlocks-tooltip" className="custom-tooltip" />
 
             </section>
           </>) :
-            (<NotLoggedIn soundControls={false} />)}
+            (<NotLoggedIn soundControls={false} dataError={errorState}/>)}
         </>
       )}
     </>

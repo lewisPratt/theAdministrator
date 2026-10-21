@@ -12,7 +12,11 @@ const {tutorialState} = useContext(TutorialContext)
     function setTitle(title: string){
         if(playerData){
             let dataToUpdate :playerDataShape= {...playerData}
+            if(dataToUpdate.player_title === title){
+                dataToUpdate.player_title = ""
+            }else{
             dataToUpdate.player_title = title
+            }
             setPlayerData(dataToUpdate)
         }
     }

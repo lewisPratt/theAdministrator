@@ -308,12 +308,14 @@
   padding-top: 40px;
   flex-direction: column;
   width: 85%;
+  background-color: black;
 }
 
 .active-upgrades-container {
   border: 1px solid;
   margin: 10px 20px;
   width: 90%;
+  background-color: black;
 }
 
 .active-upgrades-container h6 {
@@ -454,9 +456,10 @@
   flex-basis: 100%;
   color: #a2eaa2;
   font-size: 1rem;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: space-evenly;
+  background-color: black;
 }
 
 .rules-list-item {
@@ -553,9 +556,10 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  width: 90%;
   animation: open-transcript;
   animation-duration: 1s;
+  background-color: black;
+  flex:1;
 }
 
 #side-panel.codex-enter {
@@ -624,6 +628,9 @@
   align-items: center;
   flex: 1;
   flex-direction: column;
+  background-color: black;
+  padding: 20px 10px;
+  margin: 20px;
 }
 
 .avatar-scan-line {

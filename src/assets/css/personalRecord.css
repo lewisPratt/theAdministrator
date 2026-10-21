@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
 .badge-unlocks,
@@ -12,6 +12,7 @@
     padding: 20px;
     width: 90%;
     margin-top: 20px;
+    background-color: black;
 }
 
 #badge-parent {
@@ -25,13 +26,14 @@
 
 .badge-holder {
     border: 1px solid #a2eaa2;
-    width: 150px;
-    height: 150px;
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 10px;
+    font-size:.8rem;
 }
 
 .badge-cost {
@@ -47,13 +49,14 @@
     margin-top: 30px;
     padding: 20px;
     width: 90%;
+    background-color: black;
     
 }
 .title-unlocks-section {
     border: 1px solid #a2eaa2;
     margin-top: 30px;
     padding: 20px;
-    width: 90%;
+    background-color: black;
     
 }
 .manage-section{
@@ -77,5 +80,15 @@
 .title-set-button{
     width:fit-content;
     height:fit-content;
+
+}
+
+
+@media (min-width:768px) {
+
+#personal-record {
+flex-direction: row;
+
+}
 
 }

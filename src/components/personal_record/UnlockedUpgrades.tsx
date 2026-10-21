@@ -24,10 +24,7 @@ export default function UnlockedUpgrades() {
          
             return (
               <div key={uuidv4()} className="badge-holder" data-tooltip-id="unlocks-tooltip" data-tooltip-content={thisVoucher.perkEffect}>
-                <Badge size={96}>{thisVoucher.icon}</Badge>
-                <p >
-                  {thisVoucher.name} <br /> <span className="badge-cost"> <CreditIcon size={15} className="custom-icon" />{thisVoucher.cost}</span>
-                </p>
+                <Badge size={56}>{thisVoucher.icon}</Badge>
               </div>
             );
           
