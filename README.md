@@ -354,7 +354,7 @@ Not including this feature in the current release of the project does not impact
 
 ![Wireframes](src/assets/images/readme/wireframes-desktop.webp)
 
-## Mobile
+### Mobile
 Due to the mobile first and responsive design approach maintained throughout development, the majority of the views in the app render almost identically regardless of viewing platform. The following wireframes identify the changes required within the more complex components, to render a usable view that promotes a positive UX. 
 
 ![wireframes-mobile](src/assets/images/readme/wireframes-mobile.webp)
@@ -382,26 +382,35 @@ Images have been re-sized to both provide high quality visuals as well as ensure
 
 ## Colour
 
-using `<meta name="theme-color" content="#000000">` to set the colour of mobile browser address bar to fit the color scheme of the app.
-The retro futuristic aesthetic I decided to utilise for this game allowed me the freedom to be creative with the colour pallete throughout the app. When researching UI examples and references from films I noticed that most computer systems set in a dystopian, authoritative universe, tended towards a simple high contrast colour scheme that didn't distract from the content. Choosing two primary colours and allowing the use of slightly altered brightnesses of these two colours, ensured that there was a cohesive, thematic and consistent feel to the entire application. The colours I chose as my two primary colours enhance the overall theme of the app and contribute to achieving its purpose.
-My initial concept was to create a simulated computer terminal in a retro futuristic setting. Simulating a system that runs on a low tech computer terminal that only renders two colours (at varying degrees of brightness) helps to further enhance the theming of the app.
+### Theming
+In order to further complete the theming of the app, a meta tag was used to set the colour of the address bar on compatible mobile devices. 
+
+`<meta name="theme-color" content="#000000">` 
+
+The retro futuristic aesthetic I decided to utilise for this game allowed me the freedom to be creative with the colour pallete throughout the app. When researching UI examples and references from films I noticed that most computer systems set in a dystopian, authoritative universe, tended towards a simple high contrast colour scheme that didn't distract from the content. Choosing two primary colours and allowing the use of slightly altered values of these two colours, ensured that there was a cohesive, thematic and consistent feel to the entire application. 
+
+The colours I chose as my two primary colours enhance the overall theme of the app and contribute to achieving its purpose.
+
 Contrast however is important, particularly when committing to the use of only two colours. For this reason I used ..... To check the contrast value between my two primary colours and the result showed a pass with high contrast at .....
 With the use of only two colours, it was also important to ensure that similar/identical elements that appear across different components are styled consistently to ensure that calls to action (CTA) and other important elements are easy to identify and navigate.
 
-Applying colour to external library components:
+### Applying colour to external library components:
 The React tooltips package was used to integrate tooltips into the app. As standard the default styling of these tooltips was not in line with the styling applied to the rest of the app.
 In order to style tooltips successfully, the documentation advised that tooltips must have a higher level of specificity in order to successfully apply CSS styling rules. For this reason, all tooltips were given a class of 'custom-tooltip' and placed within the 'main-content' element to ensure that they can be targeted with a higher specificity than their default styling rules.
-#main-content .custom-tooltip{
-CSS rules to apply to tooltips.
-}
 
-Lucide icons package
-Icons used from the lucide icons package can easily be styled by applying a custom class to them, effecting their colour, size, fill etc.
+     #main-content .custom-tooltip{
+       CSS rules to apply to tooltips.
+     }
+
+### Lucide icons package
+Icons used from the lucide icons package can easily be styled by applying a custom class to them, changing their colour, size, fill etc.
 This package was used to provide icons for CTAs, carriable items and faux loading screens.
 
 ### Favicon
  
-A simple Favicon was created using Affinity Designer and converted into the correct format for use (.ico)
+A simple SVG Favicon was created using Affinity Designer. When researching Favicons, i found that the modern approach generally sues a PNG or SVG file as the majority of modern browsers in use support these formats, rather than relying on a .ico file. 
+
+By using an SVG file, it allows me to reuse the icon elsewhere within the app if needed, rather than creating two separate files (.SVG and .ico). Testing was undertaken to ensure that the favicon is compatible with modern browsers. 
 
 ## Key Features - Design \& content
 
@@ -415,7 +424,7 @@ Individual objects that hold possible character names,occupations,carried items,
 For simple effects and components that are primarily cosmetic, a simple randomization utility function such as the below has been used.
 
     Function randomChance(threshold :number) : Boolean{
-     If(math.floor(math.random()*10)+1 < threshold){
+     if(math.floor(math.random()*10)+1 < threshold){
           return true
       } Else {
           return false
