@@ -120,11 +120,11 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
 
 React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
 
-This project was created as part of my Web Application Development Diploma (Milestone project 2), which required the inclusion of Javascript to add interactivity to a website. With the use of React, I have been able to create a web app that has Javascript at its core and includes a significant amount of interactivity for users. 
+This project was created as part of my Web Application Development Diploma (Milestone project 2), which required the inclusion of Javascript to add interactivity to a website. With the use of React, I have been able to create a web app that has Javascript at its core and includes a significant amount of interactivity for users. React is a very popular library, used by many organizations in the industry, so I was keen to up-skill myself in this area.
 
 ## Terminology
 
-- As a React web app, the project is essentially a single page website that has it's content loaded via Javascript. For this reason, when referring to a 'component', the developer is referring to what a user would normally perceive of as a page.
+- As a React web app, the project is essentially a single page website that has it's content loaded dynamically via Javascript. For this reason, when referring to a 'component' or 'component view', the developer is referring to what a user would normally perceive of as a page.
 - When referring to a 'logged in' user, the developer is referring to a user who has entered a name into the login components input and has progressed through the welcome screen to the logged in state of the web app. Once 'logged in' the users data is loaded from local storage and they can access the main content of the app.
 
 
@@ -177,7 +177,7 @@ There are 2 main audiences for the web app:
 
 ### User Stories
 
-## The following user stories describe the key ways in which the site may be used, from the perspective of different users.
+The following user stories describe the key ways in which the site may be used, from the perspective of different users.
 
 ### User Story 1 - Casual browser game player
 
@@ -369,8 +369,8 @@ CSS files were created for each component that represents a 'page' within the ap
 --
 
 ### Favicon
-
---
+ 
+A simple Favicon was created using Affinity Designer and converted into the correct format for use (.ico)
 
 ## Key Features - Design \& content
 
@@ -616,6 +616,16 @@ SVGs are self contained and scalable, meaning that the styling of all elements w
 --
 
 ## Testing
+
+| Feature | Chrome | Firefox | Safari | Edge | Mobile |
+|---|---|---|---|---|---|
+| Typed Navigation | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Error/confirmation overlays | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Favicon | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Page not found | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Missing session Token | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Missing local storage user data | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 
 
 --
 
