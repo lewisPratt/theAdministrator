@@ -108,7 +108,7 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
 ## Technologies Used
 * HTML
 * CSS
-* Javascript (Vanilla)
+* Typescript 
 * React.js
 * Vite
 * Google Fonts
@@ -121,6 +121,24 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
 React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
 
 This project was created as part of my Web Application Development Diploma (Milestone project 2), which required the inclusion of Javascript to add interactivity to a website. With the use of React, I have been able to create a web app that has Javascript at its core and includes a significant amount of interactivity for users. React is a very popular library, used by many organizations in the industry, so I was keen to up-skill myself in this area.
+
+## Why TypeScript?
+
+I chose to use TypeScript because it is very commonly used in the industry and I was keen to explore its use in this project. Being a typed layer on top of JavaScript at first seemed like a complication that offered little benefit. However, I have seen the benefit of implementing typing as a way to reduce errors and increase comprehension of the code I write. 
+
+By defining an interface for PlayerData, I have been able to easily access properties of this data without having to remember the shape every time it's used.
+    
+    interface PlayerData{
+      playerName : string
+      playerScore: number
+      playerStats: PlayerStatsShape
+    }
+
+TypeScript compiles to plain JavaScript and it offers better protection against runtime errors as the compiler recognizes mis-typed variables before the app is built and deployed.
+
+Although there are benefits to TypeScript, it cannot cover all eventualities as the TypeScript code is only compiled once at build time. The type checking is no longer present (due to it being plain JS code) after build, so if the shape of an object changes (such as an object stored in local storage) errors may occur that were not expected by the developer. 
+This error could arise from an older version of the saved playerdata being loaded or the data stored in localStorage being manipulated by the user directly. 
+For this reason, I have put further checks in place to ensure the shape of the item i am trying to access, matches the type I have defined. 
 
 ## Terminology
 
@@ -576,12 +594,6 @@ LLMs we're also used as a means of troubleshooting and dissecting new coding con
 
 No LLM generated code snippets or automated deployment models were utilized in the creation, implementation and completion of this project.
 
-### Page Deployment
-
-## Vite
-
-Vite was used to initially scaffold the project as well as build the user facing content once ready for deployment.
-
 ### Use of SVG graphics in city map component
 
 Having had very little experience with svg graphics in the past, I was keen to ensure I expanded my knowledge in this area whilst completing this project. Whilst exploring reference images, I came across a number of UIs that featured a wireframe type city map as a focal point and felt this would be a great fit for my app.
@@ -598,11 +610,35 @@ And is offset slightly on the X and Y axis. A rectangle is then attached to the 
 I created text elements within the SVG parent and positioned these to align with the city map. The text elements provide further theming and world building character to the login page and, as they are not part of the city map image, their visual presentation is not impacted by the scan line effect.
 SVGs are self contained and scalable, meaning that the styling of all elements within the SVG are static between the desktop and mobile experience. Without using svg graphics, creating hotspots on top of an image and ensuring it had a consistent presentation both in mobile and desktop viewing, would be overly complicated, inconsistent and essentially ineffective. The combination of ensuring a properly scaled image as well as precisely placed hotspots, would be prohibitively complex and inaccurate due to changing margins and scaling. SVG graphics are the ideal solution for this feature, with the added benefit of providing self contained methods of element animation and styling
 
-### Form Validation and Security
+## Page Deployment
+
+
+### Vite
+
+Developing this project using React presented a number of new challenges. One of which was deploying the app to Github pages in an effective manner.
+
+As React is a Javascript library, it is not possible to simply deploy an Index.html page from the main branch of the repository, as there is a necessary build step required to convert the React code into servable code.
+
+React makes the development of web apps scalable and modular, simplifying complex projects into manageable chunks. However when a React app is deployed, for the most part, the code is standard HTML CSS and Javascript. 
+To convert React code into servable code, a build tool is needed. For this project I utilize Vite to achieve this. 
+
+Vite was used to initially scaffold the project with a basic file structure and layout. As a newcomer to React, this was helpful to start gaining an understanding about how to structure and assemble all the required components for the web app to function. 
+More detailed instructions will follow below, however the workflow during development followed a pattern of:
+
+    Build -> Test locally -> Commit & Push -> Deploy local build
+
+The Github Pages deployment was achieved by deploying the plain HTML/JS/CSS files to a separate branch of the repository (called gh-pages), keeping the deployed project files and the development files separated. 
+
+### Hash Router
+
+Due to hosting the project on GH pages and having no backend features at all, it was required to use the HashRouter
+
+
+## Form Validation and Security
 
 --
 
-### Form accessibility
+## Form accessibility
 
 --
 
