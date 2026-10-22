@@ -201,6 +201,7 @@
   width: 100%;
   border: 1px solid #a2eaa2;
   margin-top: 20px;
+  background-color: black;
 }
 
 #evidence-box>ol {
@@ -233,11 +234,14 @@
 }
 
 .current-selected-item {
-  text-decoration: underline;
+  
   outline: 3px solid #a2eaa2;
   outline-offset: -3px;
-}
 
+}
+.current-selected-item p{
+  text-decoration: underline;
+}
 #no-case-text {
   animation: toggle-visible 2s infinite steps(5);
 }
@@ -265,7 +269,10 @@
   translate: 0 -5px;
   cursor: pointer;
   outline: 3px solid #a2eaa2;
+}
+.transcript-list-item:hover  p{
 
+color: #a2eaa2;
 }
 
 .transcript-list {
@@ -318,12 +325,13 @@
   background-color: black;
 }
 
-.active-upgrades-container h6 {
+.active-upgrades-container h2 {
   padding: 5px 0;
   width: 100%;
   background-color: #a2eaa2;
   color: black;
   margin: 0 0 10px 0;
+  font-size:.6rem;
 }
 
 #search-console-header {
@@ -421,7 +429,10 @@
 
 .positive-processed-item {
   background-color: #a2eaa2;
-  color: black;
+
+}
+.positive-processed-item p{
+    color: black;
 }
 
 .negative-processed-item {
@@ -460,6 +471,9 @@
   align-items: center;
   justify-content: space-evenly;
   background-color: black;
+}
+#interviews-list-header h1{
+font-size: .8rem;
 }
 
 .rules-list-item {

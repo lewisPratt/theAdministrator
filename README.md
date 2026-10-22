@@ -695,7 +695,30 @@ A future improvement would be to build a robust data retrieval workflow that att
 The current strategy ensures that the user does not become blocked from logging in, as well as ensuring they do not have to go into developer tools to manually clear their game data. 
 
 
+### Feature Testing
 
+Throughout development, there were a number of times features needed testing that would alter gameplay for the player. Purchasing upgrades from the upgrade shop would change certain aspects of gameplay and each of the upgrades needed to be tested to ensure they were working as expected. 
+I built a debug tool inside the upgrade shop, utilizing a boolean value that would conditionally render extra controls that would not normally be visible to a player. 
+ 
+    
+    const debug = true
+
+    {debug && (
+      <div className="debug-container">
+        <h6>Debug- not for production</h6>
+        <button onClick={giveCredits}>Give credits</button>
+        <button onClick={resetCredits}>Reset credits</button>
+        <button onClick={resetUpgrades}>Reset Upgrades</button>
+      </div>
+    )}
+
+![Upgrade shop debugger](src/assets/images/readme/upgrade-shop-tool.png)
+
+The additional controls allowed me to quickly manipulate player data and experience purchasing upgrades as a normal player would. This tool proved invaluable to fine tuning of the upgrade system, allowing the quick identification of game breaking bugs. This code was removed from the game prior to final deployment due to it's only purpose being fulfilled in the development process. 
+
+A similar tool was used in the case review component to quickly regenerate the available cases list without having to reload the component view.
+
+![Case review debugger](src/assets/images/readme/case-review-tool.png)
 
 
 

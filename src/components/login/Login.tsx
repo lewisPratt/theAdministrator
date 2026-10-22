@@ -11,7 +11,7 @@ import "../../assets/css/login.css";
 //IMAGE IMPORTS
 import CityMap from "./CityMap";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import type { playerDataShape, playerStatsShape } from "../../interfaces/interfaces";
+import type { playerDataShape } from "../../interfaces/interfaces";
 import LoginChoice from "./LoginChoice";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { isPlayer } from "../../assets/utils/helpers";
@@ -27,7 +27,7 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
 
   //CONTEXTS
   const { setPlayerData } = useContext(PlayerContext);
-  const {errorState,setErrorState} = useContext(ErrorContext)
+  const {setErrorState} = useContext(ErrorContext)
   const navigate = useNavigate();
 
   /**

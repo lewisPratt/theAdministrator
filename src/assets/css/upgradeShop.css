@@ -90,6 +90,11 @@
   background-color: #a2eaa2;
 
 }
+.purchased-span{
+  display:inline-block;
+  background:black;
+  color:#a2eaa2;
+}
 
 .upgrade-desc {
   margin: 20px 0;

@@ -5,7 +5,6 @@ import type { unlockContextShape } from "../../interfaces/interfaces";
 import { allUpgrades } from "../../generator_modules/upgrades";
 import { v4 as uuidv4 } from "uuid";
 import { Badge } from "lucide-react";
-import { CreditIcon } from "../../assets/custom_icons/credits";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 

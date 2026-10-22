@@ -6,14 +6,14 @@ import TutorialButton from "./TutorialButton";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import type { playerDataShape, playerStatsShape } from "../../interfaces/interfaces";
+import type { playerDataShape } from "../../interfaces/interfaces";
 import { isPlayer, saveLocalData } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 export default function NavBar() {
-  const [dataError, setDataError] = useState<string | null>(null)
+  const [dataError] = useState<string | null>(null)
   const { playerData, setPlayerData } = useContext(PlayerContext);
-  const { errorState, setErrorState } = useContext(ErrorContext);
+  const {setErrorState } = useContext(ErrorContext);
 
   const { pathname } = useLocation();
 

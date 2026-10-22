@@ -15,7 +15,7 @@ export default function ActiveUpgrades() {
 
   return (
     <div className="active-upgrades-container">
-      <h6
+      <h2
         id="tutorial-step-10"
         className={
           tutorialState.tutorialActive && tutorialState.tutorialStep === 10
@@ -24,7 +24,7 @@ export default function ActiveUpgrades() {
         }
       >
         Active Upgrades
-      </h6>
+      </h2>
       {upgradeDetails && upgradeDetails.length > 0 ?
         upgradeDetails.map((unlock) => {
           return (

@@ -31,13 +31,13 @@ export default function UpgradeShop() {
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
 
-  const [upgradeErrorState, setUpgradeErrorState] = useState<string | null>(null);
+  const [_upgradeErrorState, setUpgradeErrorState] = useState<string | null>(null);
   const hoverClick = () => playSound("ui/button_soft");
   const purchaseSound = () => playSound("ui/success_bling");
   const cantAfford = () => playSound("notification/error");
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-  const debug = true;
+  const debug = false;
   const upgrades: UpgradeListShape = allUpgrades;
 
   useEffect(() => {
@@ -197,12 +197,16 @@ export default function UpgradeShop() {
                         }}
                       >
                         <Badge size={48}>{upgrade[1].icon}</Badge>
-                        <span className="upgrade-name">
-                          {upgrade[1].name}
-                        </span>{" "}
+                        
+                        <div>
+                          <span className="upgrade-name">
+                            {upgrade[1].name}</span>
+                            {playerData?.player_unlocks.includes(upgrade[0]) &&
+                             <> <br /> <span className="purchased-span"> [Purchased]</span> </>}
+                          
+                        </div>
                         <span>
-                          {playerData?.player_unlocks.includes(upgrade[0]) &&
-                            "[Purchased]"}{" "}
+                          
                           <CreditIcon className="custom-icon" />
                           {upgrade[1].cost}
                         </span>

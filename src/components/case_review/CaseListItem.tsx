@@ -51,7 +51,7 @@ export default function CaseListItem({
       
       /></span></div>
       <div className="desktop-case-element">
-      <img src={currentTranscript.avatar} onError={(e) => {
+      <img  alt="Citizen Avatar" src={currentTranscript.avatar} onError={(e) => {
           if (e.currentTarget.dataset.default != "set") {
             e.currentTarget.src = "default-avatar.webp";
             e.currentTarget.dataset.default = "set";

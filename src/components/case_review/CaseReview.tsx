@@ -28,6 +28,7 @@ import { PlayerContext } from "../../context_providers/PlayerContext";
 import CaseReviewMap from "./CaseReviewMap";
 import ActiveUpgrades from "../upgrade_shop/ActiveUpgrades";
 import NotLoggedIn from "../nav/NotLoggedIn";
+import { ErrorContext } from "../../context_providers/ErrorContext";
 
 export default function TranscriptRev() {
   const [availableTranscripts, setAvailableTranscripts] = useState<
@@ -52,6 +53,7 @@ export default function TranscriptRev() {
 
   const { tutorialState } = useContext(TutorialContext);
   const {playerData} = useContext(PlayerContext)
+    const {errorState} = useContext(ErrorContext)
   const navigate = useNavigate();
   const tooltipRef1 = useRef<TooltipRefProps>(null);
   //////////////////////
@@ -202,7 +204,7 @@ export default function TranscriptRev() {
             <div id="top-container">
               {availableTranscripts && (
                 <div id="case-list-container">
-                  <ol
+                  <div
                     id="tutorial-step-7"
                     className={
                       (tutorialState.tutorialActive &&
@@ -211,8 +213,8 @@ export default function TranscriptRev() {
                         : "") + " transcript-list"
                     }
                   >
-                    <li id="interviews-list-header"><SquareArrowDown /> Available Cases <SquareArrowDown /></li>
-
+                    <div id="interviews-list-header"><SquareArrowDown /> <h1>Available Cases</h1> <SquareArrowDown /></div>
+                    </div>
                     {availableTranscripts.map((listItem) => (
                       <CaseListItem
                         key={
@@ -228,6 +230,7 @@ export default function TranscriptRev() {
                         codexStateSetter={setCodexState}
                       />
                     ))}
+                    <ol>
                     <li className="rules-list-item">
                        {reviewsComplete && <><button onClick={()=>loadNewShift("new")}>start new shift</button><button onClick={()=>setReviewDismissed(false)}>Summary</button> </>}
                     </li>
@@ -287,7 +290,7 @@ export default function TranscriptRev() {
             {cityMapeState && <CaseReviewMap cityMapSetter={setCityMapState} cityMapState={cityMapeState}/>}
           </section>
           </>) :
-          <NotLoggedIn soundControls={false} />}
+          <NotLoggedIn soundControls={false} dataError={errorState}/>}
         </>
       )}
     </>
