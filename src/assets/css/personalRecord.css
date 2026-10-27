@@ -36,8 +36,8 @@
     font-size:.8rem;
 }
 
-.badge-cost {
-    font-size: .7rem;
+#left-column{
+    width:90%;
 }
 
 .personal-record-tagline {

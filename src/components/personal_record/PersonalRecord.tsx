@@ -40,10 +40,10 @@ export default function PersonalRecord() {
           <>
             <section id="personal-record">
 
-              <div>
+              <div id="left-column">
                 <div >
                   
-                  <h1>{playerData?.player_name}</h1>
+                  <h1 >{playerData?.player_name}</h1>
                   <p>{playerData.player_title} Administrator</p>
                 </div>
                 {/* <p className="personal-record-tagline">View your mediocre personal achievements & upgrades.</p> */}

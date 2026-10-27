@@ -18,7 +18,7 @@ export default function CommandCentre() {
   const [leaveReq, setLeaveReq] = useState<boolean>(false);
 
   const { setCurrentSlug } = useContext(CurrentSlugContext);
-  const { setErrorState } = useContext(ErrorContext);
+  const {errorState, setErrorState } = useContext(ErrorContext);
   const { tutorialState } = useContext(TutorialContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
@@ -169,7 +169,7 @@ export default function CommandCentre() {
               </>
             ) : (
               <>
-                <NotLoggedIn soundControls={false} />
+                <NotLoggedIn soundControls={false} dataError={errorState}/>
               </>
             )}
           </section>

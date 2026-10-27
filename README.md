@@ -16,6 +16,7 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
   - [Pages Overview](#pages-overview)
   - [Technologies Used](#technologies-used)
   - [Why React?](#why-react)
+  - [Why TypeScript?](#why-typescript)
   - [Terminology](#terminology)
   - [UX Design](#ux-design)
     - [Project Goals](#project-goals)
@@ -24,39 +25,17 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
     - [Audience Goals](#audience-goals)
     - [Developer Goals](#developer-goals)
     - [User Stories](#user-stories)
-  - [The following user stories describe the key ways in which the site may be used, from the perspective of different users.](#the-following-user-stories-describe-the-key-ways-in-which-the-site-may-be-used-from-the-perspective-of-different-users)
-    - [User Story 1 - Casual browser game player](#user-story-1---casual-browser-game-player)
-      - [Acceptance Criteria](#acceptance-criteria)
-      - [Tasks](#tasks)
-      - [Visual Journey](#visual-journey)
-    - [User Story 2 - Casual browser game player](#user-story-2---casual-browser-game-player)
-      - [Acceptance Criteria](#acceptance-criteria-1)
-      - [Tasks](#tasks-1)
-      - [Visual Journey](#visual-journey-1)
-    - [User Story 3 - Casual browser game player](#user-story-3---casual-browser-game-player)
-      - [Acceptance Criteria](#acceptance-criteria-2)
-      - [Tasks](#tasks-2)
-      - [Visual Journey](#visual-journey-2)
-    - [User Story 4 - Prospective Employer](#user-story-4---prospective-employer)
-      - [Acceptance Criteria](#acceptance-criteria-3)
-      - [Tasks](#tasks-3)
-      - [Visual Journey](#visual-journey-3)
-    - [User Story 5 - Prospective Employer](#user-story-5---prospective-employer)
-      - [Acceptance Criteria](#acceptance-criteria-4)
-      - [Tasks](#tasks-4)
-      - [Visual Journey](#visual-journey-4)
-    - [User Story 6 - Prospective Employer](#user-story-6---prospective-employer)
-      - [Acceptance Criteria](#acceptance-criteria-5)
-      - [Tasks](#tasks-5)
-      - [Visual Journey](#visual-journey-5)
-  - [](#)
   - [User Story Outcomes](#user-story-outcomes)
   - [Wireframes](#wireframes)
   - [Design \& Style](#design--style)
     - [Styling](#styling)
     - [Fonts](#fonts)
-    - [CSS Animations](#css-animations)
-    - [Favicon](#favicon)
+    - [Images](#images)
+  - [Colour](#colour)
+    - [Theming](#theming)
+    - [Applying colour to external library components:](#applying-colour-to-external-library-components)
+    - [Lucide icons package](#lucide-icons-package)
+  - [Favicon](#favicon)
   - [Key Features - Design \& content](#key-features---design--content)
     - [Dynamic Content](#dynamic-content)
     - [Loading screens](#loading-screens)
@@ -65,10 +44,6 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
   - [Technical Decisions](#technical-decisions)
     - [File structure](#file-structure)
     - [Local storage](#local-storage)
-    - [Styling](#styling-1)
-      - [Fonts](#fonts-1)
-      - [Images](#images)
-  - [Colour](#colour)
     - [Layout](#layout)
       - [Content hierarchy](#content-hierarchy)
       - [Flex box](#flex-box)
@@ -81,17 +56,20 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
     - [API image not loading and default avatar not loading](#api-image-not-loading-and-default-avatar-not-loading)
     - [Citizen Avatars](#citizen-avatars)
     - [Use of generative ai](#use-of-generative-ai)
-    - [Page Deployment](#page-deployment)
-  - [Vite](#vite)
     - [Use of SVG graphics in city map component](#use-of-svg-graphics-in-city-map-component)
-    - [Form Validation and Security](#form-validation-and-security)
-    - [Form accessibility](#form-accessibility)
+  - [Page Deployment](#page-deployment)
+    - [Vite](#vite)
+    - [Hash Router](#hash-router)
+  - [Form Validation and Security](#form-validation-and-security)
+  - [Form accessibility](#form-accessibility)
   - [Code Validation](#code-validation)
     - [CSS](#css)
     - [HTML](#html)
     - [Javascript](#javascript-1)
   - [Compatibility](#compatibility)
   - [Testing](#testing)
+    - [Validating saved player data](#validating-saved-player-data)
+    - [Feature Testing](#feature-testing)
   - [Lighthouse Testing](#lighthouse-testing)
   - [Node Packages used](#node-packages-used)
   - [Credits](#credits)
@@ -121,6 +99,22 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
 React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
 
 This project was created as part of my Web Application Development Diploma (Milestone project 2), which required the inclusion of Javascript to add interactivity to a website. With the use of React, I have been able to create a web app that has Javascript at its core and includes a significant amount of interactivity for users. React is a very popular library, used by many organizations in the industry, so I was keen to up-skill myself in this area.
+
+Context : Wrapping UI components in a parent that provides its children with information they may need to render correctly or display relevant data. For example, setting the current user data as context and making any components that utilize the user data, as children of this context component. 
+
+    <PlayerContext value={playerContextValue}>
+      <UserProfile />
+      <UserUpgradesPanel />
+    </PlayerContext>
+
+Now in any child element of PlayerContext, you are able to declare
+
+     const {playerData, setPlayerData} = useContext("PlayerContext")
+
+and use the player data with ease. 
+
+Without utilizing context, it's necessary to 'drill down' from parent to child component and pass the variable needed from one component to the next. This is fine to do if the needed data is only one or two components deep, however it soon becomes impractical when there are multiple nested components and you have to pass the variable as a `prop` of every child component until the desired component is reached. 
+
 
 ## Why TypeScript?
 
@@ -197,7 +191,8 @@ There are 2 main audiences for the web app:
 
 The following user stories describe the key ways in which the site may be used, from the perspective of different users.
 
-### User Story 1 - Casual browser game player
+User Story 1 - Casual browser game player
+---
 
 (Must Have)
 
@@ -223,7 +218,8 @@ I am a new user who wants to know what this website is when visiting it for the 
 
 ![Complete User Story 1](src/assets/images/readme/user-story-1.webp "Complete User Story 1")
 
-### User Story 2 - Casual browser game player
+ User Story 2 - Casual browser game player
+ ---
 
 (Must Have)
 
@@ -249,7 +245,8 @@ I am a returning player and want to see statistics on my actions within the game
 
 ![Complete User Story 1](src/assets/images/readme/user-story-2.webp "Complete User Story 1")
 
-### User Story 3 - Casual browser game player
+ User Story 3 - Casual browser game player
+ ---
 
 (Must Have)
 
@@ -272,7 +269,8 @@ I would like to be able to control the use of sound within the app.
 
 ![Complete User Story 1](src/assets/images/readme/user-story-3.webp "Complete User Story 1")
 
-### User Story 4 - Prospective Employer
+ User Story 4 - Prospective Employer
+ ---
 
 (Must Have)
 
@@ -294,7 +292,8 @@ I would like to ensure adequate safeguards are in place to manage navigation inp
 
 ![Complete User Story 1](src/assets/images/readme/user-story-4.webp "Complete User Story 1")
 
-### User Story 5 - Prospective Employer
+ User Story 5 - Prospective Employer
+ ---
 
 (Must Have)
 
@@ -317,7 +316,8 @@ I would like to ensure adequate safeguards are in place to manage direct URL man
 
 ![Complete User Story 1](src/assets/images/readme/user-story-5.webp "Complete User Story 1")
 
-### User Story 6 - Prospective Employer
+ User Story 6 - Prospective Employer
+ ---
 
 (Must Have)
 
@@ -340,7 +340,8 @@ I would like to see the rationale for this project and view the developers other
 ![Complete User Story 1](src/assets/images/readme/user-story-6.webp "Complete User Story 1")
 
 
-### User Story 7 - Casual browser game player
+ User Story 7 - Casual browser game player
+ ---
 
 (Could Have)
 
@@ -393,7 +394,7 @@ To align with the retro futuristic aesthetic of the game, I chose to utilise a p
 Body and paragraph elements utilised
 font-family:'Silkscreen',monospace
 
-#### Images
+### Images
 
 All images have relevant and useful alt text in the event they either cannot be rendered or if a user is utilising a screen reader.
 Images have been re-sized to both provide high quality visuals as well as ensure minimal impact on loading. Where image file size savings can be made by converting to webp, this has occurred, however not all images have seen significant file size changes so some remain in their original format (PNG).
@@ -424,7 +425,7 @@ In order to style tooltips successfully, the documentation advised that tooltips
 Icons used from the lucide icons package can easily be styled by applying a custom class to them, changing their colour, size, fill etc.
 This package was used to provide icons for CTAs, carriable items and faux loading screens.
 
-### Favicon
+## Favicon
  
 A simple SVG Favicon was created using Affinity Designer. When researching Favicons, i found that the modern approach generally sues a PNG or SVG file as the majority of modern browsers in use support these formats, rather than relying on a .ico file. 
 
@@ -455,16 +456,6 @@ This will produce a number between 1-10 and if that number is under the `thresho
 
 At a number of transition points( moving from one route to another) faux loading screens have been implemented to simulate the use of a desktop terminal. These screens aren't necessary for the function of the application, however they do add to the theming, pacing and world building. They have been achieved through the use of state within the relevant pages and `settimeout `to change state after a set period of time (2 seconds). This timer, through repeated play tests, feels reasonable in achieving the goal of the loading screen, but does not feel like it slows the pacing detrimentally.
 
-## Accessibility
-
-Due to the theme of the app I have made, accessibility, for the most part, was being addressed throughout the project mainly due to my idea that the entire experience should be navigable and playable whilst solely using a keyboard. Many of the computers shown in reference images and films that I explored, such as bladerunner, often don't have a mouse or equivalent connected and much if not all of the navigation and interaction is achieved via the keyboard alone.
-This has meant that from the beginning of my project, I have focussed on ensuring all interactive elements are accessible to both mouse and keyboard, providing visual feedback when an interaction occurs.
-
-The intended experience for the user is for navigation to be undertaken via typed commands, keeping in line with the simulated computer system theme. 
-However, it is also important to ensure that users who do not have access to a keyboard, can still move around the app effectively. For this reason, The available commands component, positioned next to the navigation input at the top of the page, provides a list of the commands to move between component views. These commands are buttons that can be used to navigate around the app if the user cannot, or does not wish to use the typed navigation commands. 
-
-
-
 ### Pages
 
 --
@@ -494,9 +485,22 @@ Flex box has been used throughout the app to create a responsive and mobile firs
 
 ### JavaScript
 
+TypeScript was the primary language used throughout this project. Many of the component files have the TSX extension (or JSX when using plain untyped JavaScript). TSX stands for TypesScript XML and consists of HTML elements wrapped in TypeScript and once deployed, becomes ordinary JavaScript and HTML. 
+
+In this regard, the entire project has been built with the use of JavaScript at its core. The interactivity that Javascript allows has considerably improved the UX of using the app and assisted significantly in maintaining the theme of the game. Being able to show in real-time the impact of player decisions on their playthrough, is the baseline for a game and this has been possible through the use of JavaScript. 
+
+React.js manages to cover most eventualities with its own event triggers and handlers (onClick, onChange etc). This removed the requirement to add my own event listeners to elements that required interactivity within the app. The React documentation also encourages developers to use the React Library to manage any interactivity rather than vanilla JavaScript. Mixing the two methods of introducing interactivity can result in unexpected bugs as vanilla Javascript does not take into account State/Context etc and can cause the app to become bugged or de-synchronized. 
+
+
 --
 
 ### Accessibility
+Due to the theme of the app I have made, accessibility, for the most part, was being addressed throughout the project mainly due to my idea that the entire experience should be navigable and playable whilst solely using a keyboard. Many of the computers shown in reference images and films that I explored, such as bladerunner, often don't have a mouse or equivalent connected and much if not all of the navigation and interaction is achieved via the keyboard alone.
+This has meant that from the beginning of my project, I have focussed on ensuring all interactive elements are accessible to both mouse and keyboard, providing visual feedback when an interaction occurs.
+
+The intended experience for the user is for navigation to be undertaken via typed commands, keeping in line with the simulated computer system theme. 
+However, it is also important to ensure that users who do not have access to a keyboard, can still move around the app effectively. For this reason, The available commands component, positioned next to the navigation input at the top of the page, provides a list of the commands to move between component views. These commands are buttons that can be used to navigate around the app if the user cannot, or does not wish to use the typed navigation commands. 
+
 
 --
 

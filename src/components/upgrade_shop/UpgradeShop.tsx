@@ -37,7 +37,7 @@ export default function UpgradeShop() {
   const cantAfford = () => playSound("notification/error");
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-  const debug = false;
+  const debug = true;
   const upgrades: UpgradeListShape = allUpgrades;
 
   useEffect(() => {
