@@ -8,25 +8,54 @@ The Administrator is a browser based logic game in which the user navigates a si
 
 Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdministrator/)
 
-## Table of Contents
+# Table of Contents
 
 - [The Administrator](#the-administrator)
 - [Project Summary](#project-summary)
-  - [Table of Contents](#table-of-contents)
+- [Table of Contents](#table-of-contents)
   - [Pages Overview](#pages-overview)
   - [Technologies Used](#technologies-used)
-  - [Why React?](#why-react)
-  - [Why TypeScript?](#why-typescript)
-  - [Terminology](#terminology)
   - [UX Design](#ux-design)
     - [Project Goals](#project-goals)
     - [Key thematic choices](#key-thematic-choices)
+    - [Why React?](#why-react)
+    - [Why TypeScript?](#why-typescript)
+    - [Terminology](#terminology)
     - [Target Audience](#target-audience)
     - [Audience Goals](#audience-goals)
     - [Developer Goals](#developer-goals)
     - [User Stories](#user-stories)
-  - [User Story Outcomes](#user-story-outcomes)
+      - [User Story 1 - Casual browser game player](#user-story-1---casual-browser-game-player)
+      - [Acceptance Criteria](#acceptance-criteria)
+      - [Tasks](#tasks)
+      - [Visual Journey](#visual-journey)
+  - [User Story 2 - Casual browser game player](#user-story-2---casual-browser-game-player)
+      - [Acceptance Criteria](#acceptance-criteria-1)
+      - [Tasks](#tasks-1)
+      - [Visual Journey](#visual-journey-1)
+  - [User Story 3 - Casual browser game player](#user-story-3---casual-browser-game-player)
+      - [Acceptance Criteria](#acceptance-criteria-2)
+      - [Tasks](#tasks-2)
+      - [Visual Journey](#visual-journey-2)
+  - [User Story 4 - Prospective Employer](#user-story-4---prospective-employer)
+      - [Acceptance Criteria](#acceptance-criteria-3)
+      - [Tasks](#tasks-3)
+      - [Visual Journey](#visual-journey-3)
+  - [User Story 5 - Prospective Employer](#user-story-5---prospective-employer)
+      - [Acceptance Criteria](#acceptance-criteria-4)
+      - [Tasks](#tasks-4)
+      - [Visual Journey](#visual-journey-4)
+  - [User Story 6 - Prospective Employer](#user-story-6---prospective-employer)
+      - [Acceptance Criteria](#acceptance-criteria-5)
+      - [Tasks](#tasks-5)
+      - [Visual Journey](#visual-journey-5)
+  - [User Story 7 - Casual browser game player](#user-story-7---casual-browser-game-player)
+      - [Acceptance Criteria](#acceptance-criteria-6)
+      - [Tasks](#tasks-6)
+      - [User Story Outcomes](#user-story-outcomes)
   - [Wireframes](#wireframes)
+    - [Desktop](#desktop)
+    - [Mobile](#mobile)
   - [Design \& Style](#design--style)
     - [Styling](#styling)
     - [Fonts](#fonts)
@@ -39,7 +68,6 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
   - [Key Features - Design \& content](#key-features---design--content)
     - [Dynamic Content](#dynamic-content)
     - [Loading screens](#loading-screens)
-  - [Accessibility](#accessibility)
     - [Pages](#pages)
   - [Technical Decisions](#technical-decisions)
     - [File structure](#file-structure)
@@ -48,7 +76,7 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
       - [Content hierarchy](#content-hierarchy)
       - [Flex box](#flex-box)
     - [JavaScript](#javascript)
-    - [Accessibility](#accessibility-1)
+    - [Accessibility](#accessibility)
   - [Challenges \& Problem Solving](#challenges--problem-solving)
     - [API integration and error handling - Dice Bear Avatar Generator](#api-integration-and-error-handling---dice-bear-avatar-generator)
     - [No Error](#no-error)
@@ -108,7 +136,7 @@ The web app also serves as a more complex portfolio piece for the developer, sho
 - When visiting the apps front page, there is a login screen that new and returning users enter there name to access the rest of the app content. This is effectively a faux login screen, as there is no password or authentication in place. Utilizing this login flow is primarily a method of loading saved player data, or warning the player that they will overwrite saved data if they have entered a new login name.
   It is also part of the theme of the game, as the user is playing the role of an administrator, so it makes thematic sense for them to login to their system when they visit the app.
 
-## Why React?
+### Why React?
 
 React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
 
@@ -130,7 +158,7 @@ and use the player data with ease.
 Without utilizing context, it's necessary to 'drill down' from parent to child component and pass the variable needed from one component to the next. This is fine to do if the needed data is only one or two components deep, however it soon becomes impractical when there are multiple nested components and you have to pass the variable as a `prop` of every child component until the desired component is reached. 
 
 
-## Why TypeScript?
+### Why TypeScript?
 
 I chose to use TypeScript because it is very commonly used in the industry and I was keen to explore its use in this project. Being a typed layer on top of JavaScript at first seemed like a complication that offered little benefit. However, I have seen the benefit of implementing typing as a way to reduce errors and increase comprehension of the code I write. 
 
@@ -148,7 +176,7 @@ Although there are benefits to TypeScript, it cannot cover all eventualities as 
 This error could arise from an older version of the saved playerdata being loaded or the data stored in localStorage being manipulated by the user directly. 
 For this reason, I have put further checks in place to ensure the shape of the item I am trying to access, matches the type I have defined. (present in the Nav component when loading locally stored user data). Try Catch blocks have also been used when fetching from localstorage and parsing JSON data, to ensure that errors are caught and handled gracefully. Further details in testing section. 
 
-## Terminology
+### Terminology
 
 - As a React web app, the project is essentially a single page website that has it's content loaded dynamically via Javascript. For this reason, when referring to a 'component' or 'component view', the developer is referring to what a user would normally perceive of as a page.
 - When referring to a 'logged in' user, the developer is referring to a user who has entered a name into the login components input and has progressed through the welcome screen to the logged in state of the web app. Once 'logged in' the users data is loaded from local storage and they can access the main content of the app.
@@ -190,8 +218,8 @@ There are 2 main audiences for the web app:
 
 The following user stories describe the key ways in which the site may be used, from the perspective of different users.
 
-User Story 1 - Casual browser game player
----
+#### User Story 1 - Casual browser game player
+
 
 (Must Have)
 
@@ -359,7 +387,7 @@ I would like to be able to create two player accounts for the game and save thei
 - [ ] If player is new and there is previous save data, save data alongside previous players data and login
 - [ ] Save all game data to the currently logged in player, without impacting on other players saved data. 
 
-## User Story Outcomes
+#### User Story Outcomes
 
 During development, all Must Have user stories were implemented successfully. user story 7 was classed as a 'Could Have' feature due to it not being essential for the overall gameplay loop. 
 I decided during development that the use case for being able to save multiple users data on the same machine is very limited and not likely to become an issue for the majority of users who would access the app. 
