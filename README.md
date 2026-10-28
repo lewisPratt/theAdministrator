@@ -94,6 +94,20 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
 * React Tooltips (node Package)
 * React sounds (node package)
 
+## UX Design
+
+### Project Goals
+
+The primary goal of The Administrator is to provide a visiting user with an visually and intellectually interesting experience, which challenges the players logic skills as well as promoting curiosity and problem solving through the gradual use of upgrades to enhance gameplay. The web app is primarily a means of entertainment rather than utility, therefore relying heavily on the game logic to perform as expected and reliably.
+The web app also serves as a more complex portfolio piece for the developer, showcasing an understanding of the principles and techniques used within a React based app.
+
+### Key thematic choices
+
+- The web app has been designed from the beginning with the idea of being able to navigate the entire experience via keyboard alone. For this reason, every interactive element throughout the app has had the `tabindex` attribute assigned to it to ensure that there is seamless access via the keyboard.
+- The primary method of navigation between pages is via the use of typed commands, rather than the traditional method of clickable links. Clickable links are present within the app, however they are few and only serve as a means of convenience when relying purely on keyboard navigation would prove impractical. Available keyboard commands are visible within every component view and are easily memorized after a short time of playing. Implementing this concept of keyboard navigation aligns with the developers vision of providing a simulated retro-futuristic computer console environment, similar to those depicted in popular media which either use primarily voice or keyboard input for navigation and overall control.
+- When visiting the apps front page, there is a login screen that new and returning users enter there name to access the rest of the app content. This is effectively a faux login screen, as there is no password or authentication in place. Utilizing this login flow is primarily a method of loading saved player data, or warning the player that they will overwrite saved data if they have entered a new login name.
+  It is also part of the theme of the game, as the user is playing the role of an administrator, so it makes thematic sense for them to login to their system when they visit the app.
+
 ## Why React?
 
 React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
@@ -139,21 +153,6 @@ For this reason, I have put further checks in place to ensure the shape of the i
 - As a React web app, the project is essentially a single page website that has it's content loaded dynamically via Javascript. For this reason, when referring to a 'component' or 'component view', the developer is referring to what a user would normally perceive of as a page.
 - When referring to a 'logged in' user, the developer is referring to a user who has entered a name into the login components input and has progressed through the welcome screen to the logged in state of the web app. Once 'logged in' the users data is loaded from local storage and they can access the main content of the app.
 
-
-
-## UX Design
-
-### Project Goals
-
-The primary goal of The Administrator is to provide a visiting user with an visually and intellectually interesting experience, which challenges the players logic skills as well as promoting curiosity and problem solving through the gradual use of upgrades to enhance gameplay. The web app is primarily a means of entertainment rather than utility, therefore relying heavily on the game logic to perform as expected and reliably.
-The web app also serves as a more complex portfolio piece for the developer, showcasing an understanding of the principles and techniques used within a React based app.
-
-### Key thematic choices
-
-- The web app has been designed from the beginning with the idea of being able to navigate the entire experience via keyboard alone. For this reason, every interactive element throughout the app has had the `tabindex` attribute assigned to it to ensure that there is seamless access via the keyboard.
-- The primary method of navigation between pages is via the use of typed commands, rather than the traditional method of clickable links. Clickable links are present within the app, however they are few and only serve as a means of convenience when relying purely on keyboard navigation would prove impractical. Available keyboard commands are visible within every component view and are easily memorized after a short time of playing. Implementing this concept of keyboard navigation aligns with the developers vision of providing a simulated retro-futuristic computer console environment, similar to those depicted in popular media which either use primarily voice or keyboard input for navigation and overall control.
-- When visiting the apps front page, there is a login screen that new and returning users enter there name to access the rest of the app content. This is effectively a faux login screen, as there is no password or authentication in place. Utilizing this login flow is primarily a method of loading saved player data, or warning the player that they will overwrite saved data if they have entered a new login name.
-  It is also part of the theme of the game, as the user is playing the role of an administrator, so it makes thematic sense for them to login to their system when they visit the app.
 
 ### Target Audience
 
