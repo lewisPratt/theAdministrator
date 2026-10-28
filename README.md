@@ -423,6 +423,14 @@ Body and paragraph elements:
 Headings
 `font-family: 'Sixtyfour', monospace;`
 
+To replicate the glowing effect around text sometimes seen in old CRT monitors, i added a slight drop shadow to text and headings, softening their outlines slightly
+
+    h1, p {
+      text-shadow: 
+        0 0 4px rgba(61, 243, 61, 0.6), 
+        0 0 10px rgba(61, 243, 61, 0.4);
+    }
+
 ### Images
 
 All images have relevant and useful alt text in the event they either cannot be rendered or if a user is utilising a screen reader.
@@ -431,7 +439,7 @@ Images have been re-sized to both provide high quality visuals as well as ensure
 ## Colour
 
 ### Theming
-In order to improve theming of the app, a meta tag was used to set the colour of the address bar on compatible mobile devices, to the same as the aps background colour. 
+In order to improve theming of the app, a meta tag was used to set the colour of the address bar on compatible mobile devices, to the same as the applications background color. 
 
 `<meta name="theme-color" content="#000000">` 
 
@@ -469,6 +477,25 @@ On mobile devices, a simple CSS grid was implemented to keep a clean and distrac
 
 <img src="src/assets/images/readme/mobile-bg.png" width=500px>
 
+A scan-line overlay was added to replicate the look of a vintage CRT monitor. This is primarily visible on solid green elements such as buttons or non black backgrounds.
+
+    .crt-scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0.15;
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%, 
+      rgba(0, 0, 0, 0.8) 50%
+    );
+    background-size: 100% 4px;
+  }
+
+<img src="src/assets/images/readme/scanlines.png" width=500px>
 
 ---
 ### Contrast

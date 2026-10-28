@@ -25,7 +25,27 @@ body {
     linear-gradient(to bottom, #395439 1px, transparent 1px);
     background-size: 120px 120px;
 }
+h1, p {
+  text-shadow: 
+    0 0 4px rgba(61, 243, 61, 0.6), 
+    0 0 10px rgba(61, 243, 61, 0.4);
+}
 
+.crt-scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.15;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.8) 50%
+  );
+  background-size: 100% 4px;
+}
 
 header {
   width: 100%;
