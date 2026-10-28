@@ -38,7 +38,10 @@ export default function NavBar() {
           if(savedData === null){
             return null
           }
-          return JSON.parse(savedData);
+          
+          const decodedData = atob(savedData)
+          const parsedData = JSON.parse(decodedData)
+          return parsedData;
 
     } catch (error) {
       console.log("couldn't login: "+ error)
@@ -49,7 +52,7 @@ export default function NavBar() {
 
   useEffect(() => {
     if (playerData === null && componentEnabled) {
- 
+
         const savedData :playerDataShape = tryParse("The_Administrator_Game");
         if (savedData) {
           if(isPlayer(savedData)){

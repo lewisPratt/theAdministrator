@@ -575,6 +575,13 @@ Local storage has been used as a means of persisting users game data between ses
 Players are able to delete local storage related to the app easily through the personal record component view. 
 Local storage has been used in place of a full backend system (database) to allow game progress to persist between gaming sessions. This has been implemented with the full knowledge that data stored locally is easily located and changed by the user, effectively allowing them to cheat the game. For this reason, the app has been developed from the start as a casual gaming experience for players.
 
+### Encryption of user saved data
+Knowing that local storage data can be easily accessed and manipulated, I wanted to ensure that, at least at a casual level, this was more difficult for players to do. There were a number of options available in relation to encrypting user data, however due to the limited timescale of the project I chose to implement a basic method of obfuscation. I utilized Base64 to do this and change locally stored data into strings of characters that, to the casual observer, would not be easily manipulated. 
+
+Using the `btoa("plainString")` and `atob("encodedString")` functions, user data is encoded to Base64 on saving and decoded to a plain string, then parsed with JSON when loaded. 
+This is a very basic level of data concealment and it would not hold up to the efforts of a player who is reasonably familiar with code, however, for the purposes of a single player, casual gaming experience, I feel this is an adequate attempt at obscuring save data. 
+
+Should I work on the project further in the future, I would aim to implement a more robust encryption solution, utilizing a checksum to improve the safety of this data. I should note though that regardless of the efforts put in place to secure locally stored data, I am aware that it will never be 100% secure from attempts to access it. To significantly increase the security and integrity of player data, the application would need a backend system on an external server, removing the players direct access to this data entirely. 
 
 ### Layout
 #### Content hierarchy

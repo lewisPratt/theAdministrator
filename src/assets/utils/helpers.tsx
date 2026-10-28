@@ -30,7 +30,10 @@ return voucherArray
 
 
 export function saveLocalData(playerData : playerDataShape){
-   localStorage.setItem("The_Administrator_Game", JSON.stringify(playerData))
+    const stringyData = JSON.stringify(playerData)
+    const encodedData = btoa(stringyData)
+    console.log(encodedData)
+   localStorage.setItem("The_Administrator_Game", encodedData)
 }
 
 export function getDetailsForDistrict(district:number){

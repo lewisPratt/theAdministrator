@@ -41,7 +41,9 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
           if(savedData === null){
             return null
           }
-          return JSON.parse(savedData);
+          const decodedData = atob(savedData)
+          const parsedData = JSON.parse(decodedData)
+          return parsedData;
 
     } catch (error) {
       //Couldn't parse JSON. Returns null so just overwrites malformed JSON
