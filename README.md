@@ -26,32 +26,12 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
     - [Developer Goals](#developer-goals)
     - [User Stories](#user-stories)
       - [User Story 1 - Casual browser game player](#user-story-1---casual-browser-game-player)
-      - [Acceptance Criteria](#acceptance-criteria)
-      - [Tasks](#tasks)
-      - [Visual Journey](#visual-journey)
-  - [User Story 2 - Casual browser game player](#user-story-2---casual-browser-game-player)
-      - [Acceptance Criteria](#acceptance-criteria-1)
-      - [Tasks](#tasks-1)
-      - [Visual Journey](#visual-journey-1)
-  - [User Story 3 - Casual browser game player](#user-story-3---casual-browser-game-player)
-      - [Acceptance Criteria](#acceptance-criteria-2)
-      - [Tasks](#tasks-2)
-      - [Visual Journey](#visual-journey-2)
-  - [User Story 4 - Prospective Employer](#user-story-4---prospective-employer)
-      - [Acceptance Criteria](#acceptance-criteria-3)
-      - [Tasks](#tasks-3)
-      - [Visual Journey](#visual-journey-3)
-  - [User Story 5 - Prospective Employer](#user-story-5---prospective-employer)
-      - [Acceptance Criteria](#acceptance-criteria-4)
-      - [Tasks](#tasks-4)
-      - [Visual Journey](#visual-journey-4)
-  - [User Story 6 - Prospective Employer](#user-story-6---prospective-employer)
-      - [Acceptance Criteria](#acceptance-criteria-5)
-      - [Tasks](#tasks-5)
-      - [Visual Journey](#visual-journey-5)
-  - [User Story 7 - Casual browser game player](#user-story-7---casual-browser-game-player)
-      - [Acceptance Criteria](#acceptance-criteria-6)
-      - [Tasks](#tasks-6)
+      - [User Story 2 - Casual browser game player](#user-story-2---casual-browser-game-player)
+      - [User Story 3 - Casual browser game player](#user-story-3---casual-browser-game-player)
+      - [User Story 4 - Prospective Employer](#user-story-4---prospective-employer)
+      - [User Story 5 - Prospective Employer](#user-story-5---prospective-employer)
+      - [User Story 6 - Prospective Employer](#user-story-6---prospective-employer)
+      - [User Story 7 - Casual browser game player](#user-story-7---casual-browser-game-player)
       - [User Story Outcomes](#user-story-outcomes)
   - [Wireframes](#wireframes)
     - [Desktop](#desktop)
@@ -245,8 +225,8 @@ I am a new user who wants to know what this website is when visiting it for the 
 
 ![Complete User Story 1](src/assets/images/readme/user-story-1.webp "Complete User Story 1")
 
- User Story 2 - Casual browser game player
- ---
+#### User Story 2 - Casual browser game player
+
 
 (Must Have)
 
@@ -272,8 +252,8 @@ I am a returning player and want to see statistics on my actions within the game
 
 ![Complete User Story 1](src/assets/images/readme/user-story-2.webp "Complete User Story 1")
 
- User Story 3 - Casual browser game player
- ---
+ #### User Story 3 - Casual browser game player
+
 
 (Must Have)
 
@@ -296,8 +276,8 @@ I would like to be able to control the use of sound within the app.
 
 ![Complete User Story 1](src/assets/images/readme/user-story-3.webp "Complete User Story 1")
 
- User Story 4 - Prospective Employer
- ---
+#### User Story 4 - Prospective Employer
+
 
 (Must Have)
 
@@ -319,8 +299,8 @@ I would like to ensure adequate safeguards are in place to manage navigation inp
 
 ![Complete User Story 1](src/assets/images/readme/user-story-4.webp "Complete User Story 1")
 
- User Story 5 - Prospective Employer
- ---
+#### User Story 5 - Prospective Employer
+
 
 (Must Have)
 
@@ -343,8 +323,8 @@ I would like to ensure adequate safeguards are in place to manage direct URL man
 
 ![Complete User Story 1](src/assets/images/readme/user-story-5.webp "Complete User Story 1")
 
- User Story 6 - Prospective Employer
- ---
+#### User Story 6 - Prospective Employer
+
 
 (Must Have)
 
@@ -367,8 +347,8 @@ I would like to see the rationale for this project and view the developers other
 ![Complete User Story 1](src/assets/images/readme/user-story-6.webp "Complete User Story 1")
 
 
- User Story 7 - Casual browser game player
- ---
+#### User Story 7 - Casual browser game player
+
 
 (Could Have)
 
@@ -407,19 +387,41 @@ Due to the mobile first and responsive design approach maintained throughout dev
 
 ## Design \& Style
 
---
+Inspiration for the aesthetic of the app was taken from retro-futuristic concept art and popular media such as films, tv shows and video games. I focussed on my favorite franchises, Alien and Bladerunner. Reference images helped to replicate my own version of the computer terminal aesthetic. 
 
+<img src="src/assets/images/readme/reference-1.webp" alt="Reference image 1 - UI design mockup" width=500px >
+
+[Reference](https://www.reddit.com/r/web_design/comments/1psvnlg/i_made_an_opensource_retrofuturistic_ui_component/)
+
+<img src="src/assets/images/readme/reference-2.jpg" alt="Reference image 2 - Alien computer" width=500px>
+
+[Reference - Alien]
+
+<img src="src/assets/images/readme/reference-3.jpg" alt="Reference image 3 - Bladerunner 2049 computer" width=500px>
+
+[Bladerunner 2049]
+
+<img src="src/assets/images/readme/reference-4.webp" alt="Reference image 5 - Alien computer (video game)" width=500px>
+
+[Alien Isolation: Video game]
+
+<img src="src/assets/images/readme/reference-5.jpg" alt="Reference image 5 - Alien computer" width=500px>
+
+[Reference - Alien Earth (tv show)]
 
 ### Styling
 
-CSS files were created for each component that represents a 'page' within the app. Only CSS rules that pertain to that component are imported into the component. Some CSS rules are global so have been placed in app.css and imported where necessary.
+CSS files were created for each component that represents a 'page' within the app. Only CSS rules that pertain to that component are imported into the component. Css rules that are globally applied are imported directly into index.html so are take effect regardless of the currently component that is being accessed by the user.
 
 ### Fonts
 
-To align with the retro futuristic aesthetic of the game, I chose to utilise a pixelated font for the majority of the body content, combined with a stylised 'scan line effect' font for headings.
+To align with the retro futuristic aesthetic of the game, I chose a pixelated font for the majority of the body content, combined with a stylized 'scan line effect' font for headings.
 
-Body and paragraph elements utilised
-font-family:'Silkscreen',monospace
+Body and paragraph elements:
+`font-family:'Silkscreen',monospace`
+
+Headings
+`font-family: 'Sixtyfour', monospace;`
 
 ### Images
 
@@ -429,13 +431,31 @@ Images have been re-sized to both provide high quality visuals as well as ensure
 ## Colour
 
 ### Theming
-In order to further complete the theming of the app, a meta tag was used to set the colour of the address bar on compatible mobile devices. 
+In order to improve theming of the app, a meta tag was used to set the colour of the address bar on compatible mobile devices, to the same as the aps background colour. 
 
 `<meta name="theme-color" content="#000000">` 
 
-The retro futuristic aesthetic I decided to utilise for this game allowed me the freedom to be creative with the colour pallete throughout the app. When researching UI examples and references from films I noticed that most computer systems set in a dystopian, authoritative universe, tended towards a simple high contrast colour scheme that didn't distract from the content. Choosing two primary colours and allowing the use of slightly altered values of these two colours, ensured that there was a cohesive, thematic and consistent feel to the entire application. 
+When researching UI examples and references, I noticed that most computer systems set in a dystopian, authoritative universe, tended towards a simple high contrast colour scheme that didn't distract from the content. Choosing two primary colours and allowing the use of slightly altered values of these two colours, ensured that there was a cohesive and thematic feel to the entire application. 
 
-The colours I chose as my two primary colours enhance the overall theme of the app and contribute to achieving its purpose.
+Although simple, the colours chosen enhance the overall theme of the app and contribute to achieving its purpose.
+
+* Text, borders, buttons, CTAs and tooltips `#a2eaa2` (bright green)
+
+* Backgrounds `#000000`
+
+I used Affinity designer to create a slightly bevelled grid texture to use as the background and ensured it was centered to the window on desktop and mobile. This further contributed to the retro futuristic theming. 
+    
+    body {
+      background: #000000;
+      background-image: url(../images/grid-bg.webp);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+
+<img src="src/assets/images/grid-bg.webp" width=500px>
+
 
 Contrast however is important, particularly when committing to the use of only two colours. For this reason I used ..... To check the contrast value between my two primary colours and the result showed a pass with high contrast at .....
 With the use of only two colours, it was also important to ensure that similar/identical elements that appear across different components are styled consistently to ensure that calls to action (CTA) and other important elements are easy to identify and navigate.
