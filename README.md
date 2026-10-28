@@ -456,6 +456,20 @@ I used Affinity designer to create a slightly bevelled grid texture to use as th
 
 <img src="src/assets/images/grid-bg.webp" width=500px>
 
+This background image shows on desktop devices (or devices wider than 768px) as on a small screen, the content height changes frequently, causing the background to resize noticeably when elements are shown or hidden. 
+On mobile devices, a simple CSS grid was implemented to keep a clean and distraction free background on the limited screen size.
+  
+    body {
+      background-color: #000000;
+      background-image:
+      linear-gradient(to right, #395439 1px, transparent 1px),
+      linear-gradient(to bottom, #395439 1px, transparent 1px);
+      background-size: 120px 120px;
+    }
+
+<img src="src/assets/images/readme/mobile-bg.png" width=500px>
+
+
 ---
 ### Contrast
 [webaim.org](https://webaim.org/resources/contrastchecker/) was used to check the contrast value between my two primary colours and the result showed a pass with high contrast at 14.82:1
