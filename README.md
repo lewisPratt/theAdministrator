@@ -456,9 +456,24 @@ I used Affinity designer to create a slightly bevelled grid texture to use as th
 
 <img src="src/assets/images/grid-bg.webp" width=500px>
 
+---
+### Contrast
+[webaim.org](https://webaim.org/resources/contrastchecker/) was used to check the contrast value between my two primary colours and the result showed a pass with high contrast at 14.82:1
 
-Contrast however is important, particularly when committing to the use of only two colours. For this reason I used ..... To check the contrast value between my two primary colours and the result showed a pass with high contrast at .....
-With the use of only two colours, it was also important to ensure that similar/identical elements that appear across different components are styled consistently to ensure that calls to action (CTA) and other important elements are easy to identify and navigate.
+![Contrast checker result](src/assets/images/readme/contrast-results.png)
+
+With the use of only two colours, it was also important to ensure that similar/identical elements that appear across different components are styled consistently to ensure that calls to action (CTA) and other important elements are easy to identify.
+Buttons have consistent styling, with hover effects to demonstrate they are interactive elements. 
+
+No hover:
+
+<img src="src/assets/images/readme/button-no-hover.png" width=300>
+
+
+Hover:
+
+<img src="src/assets/images/readme/button-hover.png" width=300>
+
 
 ### Applying colour to external library components:
 The React tooltips package was used to integrate tooltips into the app. As standard the default styling of these tooltips was not in line with the styling applied to the rest of the app.

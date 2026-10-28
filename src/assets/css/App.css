@@ -24,19 +24,22 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  
-    /* background-image:
+
+  /* background-image:
     linear-gradient(to right, #395439 1px, transparent 1px),
     linear-gradient(to bottom, #395439 1px, transparent 1px);
     background-size: 120px 120px; */
 }
 
+
 header {
   width: 100%;
 }
+
 a {
-  color:#a2eaa2;
+  color: #a2eaa2;
 }
+
 main {
   width: 100%;
   flex: 1;
@@ -44,9 +47,11 @@ main {
   justify-content: center;
   align-items: center;
 }
-hr{
+
+hr {
   border-color: #a2eaa2;
 }
+
 body,
 p {
   margin: 0;
@@ -145,17 +150,20 @@ h5 {
   flex: 1;
   margin-top: 50px;
 }
-.window-header{
-  color:black;
-  background-color:#a2eaa2;
+
+.window-header {
+  color: black;
+  background-color: #a2eaa2;
   text-align: left;
-  width:100%;
-  font-size:.8rem;
+  width: 100%;
+  font-size: .8rem;
 }
-.window-header h5{
-  color:black;
-  padding:5px;
+
+.window-header h5 {
+  color: black;
+  padding: 5px;
 }
+
 /**
  * LOADING ICON ANIMATION
  */
@@ -189,10 +197,11 @@ button:hover {
   color: #a2eaa2;
 }
 
-button:disabled{
+button:disabled {
   text-decoration: line-through;
   cursor: not-allowed;
 }
+
 /**
  * CUSTOM TOOLTIP STYLING
  */
@@ -203,7 +212,7 @@ body .custom-tooltip {
   font-family: 'Silkscreen', monospace;
   font-size: .8rem;
   z-index: 100;
-  width:fit-content;
+  width: fit-content;
 }
 
 
@@ -237,87 +246,104 @@ body .custom-tooltip {
   gap: 5px;
   flex-direction: column;
 }
-#page-not-found-container{
-  display:flex;
+
+#page-not-found-container {
+  display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
-#page-not-found-container button{
-  margin-top:20px;
+
+#page-not-found-container button {
+  margin-top: 20px;
 }
+
 /**
  * MAP
  */
-.map-parent{
+.map-parent {
   position: relative;
 }
-.map-details-container{
+
+.map-details-container {
   position: absolute;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, .7);
-    bottom: 0;
-    width: 70%;
-    padding-right:10px;
-    overflow-y: scroll;
-  }
-.map-details-container>ul{
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, .7);
+  bottom: 0;
+  width: 70%;
+  padding-right: 10px;
+  overflow-y: scroll;
+}
+
+.map-details-container>ul {
   list-style: none;
-  margin:30px 0;
-  padding:0;
+  margin: 30px 0;
+  padding: 0;
 }
-.map-details-container li{
-  margin:0;
-  padding:0;
+
+.map-details-container li {
+  margin: 0;
+  padding: 0;
 }
-.map-details-container h1{
-  font-size:1.1rem;
+
+.map-details-container h1 {
+  font-size: 1.1rem;
 }
-.map-details-container h2{
-  font-size:.8rem;
+
+.map-details-container h2 {
+  font-size: .8rem;
 }
-.close-district-details-button{
+
+.close-district-details-button {
   width: fit-content;
   height: fit-content;
 }
-.info-swap-buttons{
+
+.info-swap-buttons {
   display: flex;
-    margin: 20px 0;
-    gap: 5px;
-    justify-content: center;
+  margin: 20px 0;
+  gap: 5px;
+  justify-content: center;
 }
-.info-swap-buttons button{
-  width:fit-content;
-  height:fit-content;
+
+.info-swap-buttons button {
+  width: fit-content;
+  height: fit-content;
 }
-.exit-details-button-container{
+
+.exit-details-button-container {
   position: sticky;
-    height: fit-content;
-    top: 0;
-    background-color: #a2eea2;
-    display: flex;
-    justify-content: flex-end;
+  height: fit-content;
+  top: 0;
+  background-color: #a2eea2;
+  display: flex;
+  justify-content: flex-end;
 }
-.active-details{
-  background-color:black;
-  color:#a2eaa2
+
+.active-details {
+  background-color: black;
+  color: #a2eaa2
 }
-.active-details::before{
+
+.active-details::before {
   content: ">";
-  animation: before-tick 1s steps(2)  infinite ;
+  animation: before-tick 1s steps(2) infinite;
 
 }
-.active-details::after{
+
+.active-details::after {
   content: "<";
-  animation: after-tick 1s steps(2)  infinite ;
+  animation: after-tick 1s steps(2) infinite;
 }
-.change-district-button{
+
+.change-district-button {
   width: fit-content;
   height: fit-content;
 }
-.change-district-button-container{
-  display:flex;
+
+.change-district-button-container {
+  display: flex;
   justify-content: center;
 }
 
@@ -328,25 +354,26 @@ body .custom-tooltip {
 @media (min-width:760px) {
 
 
-/**
+  /**
  * MAP
  */
 
-.map-details-container{
-  position: absolute;
+  .map-details-container {
+    position: absolute;
     left: 1px;
     top: 1px;
     background-color: rgba(0, 0, 0, .7);
     bottom: 0;
     width: 40%;
-    padding-right:10px;
+    padding-right: 10px;
     overflow-y: scroll;
-    max-height:600px;
+    max-height: 600px;
   }
-.map-details-container>ul{
-  list-style: none;
-  margin-top:30px;
-}
+
+  .map-details-container>ul {
+    list-style: none;
+    margin-top: 30px;
+  }
 
 
 
@@ -366,6 +393,7 @@ body .custom-tooltip {
     translate: -3px 0;
   }
 }
+
 @keyframes newMessageFloat {
   50% {
     top: 5px;
