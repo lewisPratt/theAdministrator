@@ -19,16 +19,11 @@
 }
 
 body {
-  background: #000000;
-  background-image: url(../images/grid-bg.webp);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
-  /* background-image:
+  background-color: #000000;
+  background-image:
     linear-gradient(to right, #395439 1px, transparent 1px),
     linear-gradient(to bottom, #395439 1px, transparent 1px);
-    background-size: 120px 120px; */
+    background-size: 120px 120px;
 }
 
 
@@ -500,5 +495,15 @@ body .custom-tooltip {
 @keyframes flash-cursor {
   to {
     border-left: none;
+  }
+}
+
+@media (min-width:768px) {
+  body{
+    background: #000000;
+  background-image: url(../images/grid-bg.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   }
 }
