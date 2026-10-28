@@ -57,6 +57,34 @@ const scanLineDuration = 10
         }}
       /> 
       
+        <line x1="0"  y1="0" x2="0" y2="160" className="avatar-distort" />
+        <line x1="7"  y1="0" x2="7" y2="160" className="avatar-distort" />
+        <line x1="14"  y1="0" x2="14" y2="160" className="avatar-distort" />
+        <line x1="21"  y1="0" x2="21" y2="160" className="avatar-distort" />
+        <line x1="28"  y1="0" x2="28" y2="160" className="avatar-distort" />
+        <line x1="35"  y1="0" x2="35" y2="160" className="avatar-distort" />
+        <line x1="42"  y1="0" x2="42" y2="160" className="avatar-distort" />
+        
+        <line x1="49"  y1="0" x2="49" y2="160" className="avatar-distort" />
+        <line x1="56"  y1="0" x2="56" y2="160" className="avatar-distort" />
+        <line x1="63"  y1="0" x2="63" y2="160" className="avatar-distort" />
+        <line x1="70"  y1="0" x2="70" y2="160" className="avatar-distort" />
+        <line x1="77"  y1="0" x2="77" y2="160" className="avatar-distort" />
+        <line x1="84"  y1="0" x2="84" y2="160" className="avatar-distort" />
+
+        <line x1="91"  y1="0" x2="91" y2="160" className="avatar-distort" />
+        <line x1="98"  y1="0" x2="98" y2="160" className="avatar-distort" />
+        <line x1="105"  y1="0" x2="105" y2="160" className="avatar-distort" />
+        <line x1="112"  y1="0" x2="112" y2="160" className="avatar-distort" />
+        <line x1="119"  y1="0" x2="119" y2="160" className="avatar-distort" />
+        <line x1="126"  y1="0" x2="126" y2="160" className="avatar-distort" />
+        
+        <line x1="133"  y1="0" x2="133" y2="160" className="avatar-distort" />
+        <line x1="140"  y1="0" x2="140" y2="160" className="avatar-distort" />
+        <line x1="147"  y1="0" x2="147" y2="160" className="avatar-distort" />
+        <line x1="152"  y1="0" x2="1152" y2="160" className="avatar-distort" />
+ 
+
         <line x1="0"  y1="-180" x2="160" y2="-180" className="avatar-scan-line">
         <animateMotion
             path="M -5 0 L 0 180"

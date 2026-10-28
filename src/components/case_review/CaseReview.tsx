@@ -214,7 +214,7 @@ export default function TranscriptRev() {
                     }
                   >
                     <div id="interviews-list-header"><SquareArrowDown /> <h1>Available Cases</h1> <SquareArrowDown /></div>
-                    </div>
+                   
                     {availableTranscripts.map((listItem) => (
                       <CaseListItem
                         key={
@@ -230,6 +230,7 @@ export default function TranscriptRev() {
                         codexStateSetter={setCodexState}
                       />
                     ))}
+                    </div>
                     <ol>
                     <li className="rules-list-item">
                        {reviewsComplete && <><button onClick={()=>loadNewShift("new")}>start new shift</button><button onClick={()=>setReviewDismissed(false)}>Summary</button> </>}

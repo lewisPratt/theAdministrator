@@ -192,7 +192,7 @@
 }
 
 .decision-container button {
-  height: 100px;
+  height: 60px;
 }
 
 #evidence-box {
@@ -234,14 +234,16 @@
 }
 
 .current-selected-item {
-  
+
   outline: 3px solid #a2eaa2;
   outline-offset: -3px;
 
 }
-.current-selected-item p{
+
+.current-selected-item p {
   text-decoration: underline;
 }
+
 #no-case-text {
   animation: toggle-visible 2s infinite steps(5);
 }
@@ -270,9 +272,10 @@
   cursor: pointer;
   outline: 3px solid #a2eaa2;
 }
-.transcript-list-item:hover  p{
 
-color: #a2eaa2;
+.transcript-list-item:hover p {
+
+  color: #a2eaa2;
 }
 
 .transcript-list {
@@ -331,7 +334,7 @@ color: #a2eaa2;
   background-color: #a2eaa2;
   color: black;
   margin: 0 0 10px 0;
-  font-size:.6rem;
+  font-size: .6rem;
 }
 
 #search-console-header {
@@ -431,8 +434,9 @@ color: #a2eaa2;
   background-color: #a2eaa2;
 
 }
-.positive-processed-item p{
-    color: black;
+
+.positive-processed-item p {
+  color: black;
 }
 
 .negative-processed-item {
@@ -472,8 +476,9 @@ color: #a2eaa2;
   justify-content: space-evenly;
   background-color: black;
 }
-#interviews-list-header h1{
-font-size: .8rem;
+
+#interviews-list-header h1 {
+  font-size: .8rem;
 }
 
 .rules-list-item {
@@ -573,7 +578,7 @@ font-size: .8rem;
   animation: open-transcript;
   animation-duration: 1s;
   background-color: black;
-  flex:1;
+  flex: 1;
 }
 
 #side-panel.codex-enter {
@@ -652,6 +657,12 @@ font-size: .8rem;
   stroke-width: 8px;
   pointer-events: none;
   mix-blend-mode: multiply;
+}
+
+.avatar-distort {
+  stroke-width: 6px;
+  stroke: #a2eaa2;
+  mix-blend-mode: soft-light;
 }
 
 .mobile-case-element {
