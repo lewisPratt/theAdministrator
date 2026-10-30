@@ -5,6 +5,7 @@ import type {
   locationsShape,
   occupationsShape,
   weightingArrayShape,
+  encryptedDriveShape,
 } from "../interfaces/interfaces";
 import { v4 as uuidv4 } from "uuid";
 import { createName } from "../generator_modules/NameArrays";
@@ -15,6 +16,8 @@ import generateWeather from "../generator_modules/WeatherGenerator";
 import { generateAuthorizedLocations } from "../generator_modules/AuthorizedLocationGenerator";
 import { generateBehaviour } from "../generator_modules/behaviourGenerator";
 import { PersonFlavourGenerator } from "../generator_modules/PersonFlavourGenerator";
+import { positiveLeaningClues, negativeLeaningClues } from "../generator_modules/driveOutcomes";
+import { driveKeys } from "../generator_modules/driveKeys";
 
 export class person {
   interviewee: nameShape;
@@ -38,7 +41,8 @@ export class person {
   bonusCase: boolean;
   rewardEarned: number;
   avatar: string;
-  revealItem: boolean
+  revealItem: boolean;
+  encryptedDrive: encryptedDriveShape;
   constructor() {
     this.interviewee = createName();
     this.items = createItems();
@@ -72,6 +76,21 @@ export class person {
     this.rewardEarned = 0;
     this.avatar = this.generateAvatar(this.gender, this.behaviour);
     this.revealItem = false
+    this.encryptedDrive = this.setDrive()
+  }
+
+  private setDrive() : encryptedDriveShape{
+    const chance = Math.random()
+    console.log(chance)
+    if(chance < .4){
+      const dataSet = this.overallWeighting > 0 ? positiveLeaningClues : negativeLeaningClues
+      const dKey = driveKeys[Math.floor(Math.random() * driveKeys.length)]
+      const driveClue = dataSet[Math.floor(Math.random() * dataSet.length)]
+
+      return {activeDrive: true, contents:driveClue,driveKey:dKey}
+    }else{
+      return {activeDrive: false, contents: "",driveKey: ""}
+    }
   }
 
   private generateGender() {

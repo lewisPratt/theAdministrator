@@ -23,6 +23,13 @@ export interface reviewShape {
   rewardEarned: number
   avatar: string
   revealItem: boolean
+  encryptedDrive: encryptedDriveShape
+}
+
+export interface encryptedDriveShape{
+  activeDrive: boolean
+  contents: string
+  driveKey: string
 }
 export interface weightingArrayShape{
   evidenceText: string;

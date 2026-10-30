@@ -23,6 +23,7 @@ import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
 import EvidenceStack from "./EvidenceStack";
 import { checkUpgradeActive } from "../../assets/utils/helpers";
+import DecryptConsole from "./DecryptConsole";
 
 //set to 1 to show debug info on weighting
 const debug: number = 0;
@@ -47,6 +48,7 @@ export default function CaseReviewPanel({
   const [inCall, setInCall] = useState<boolean>(false)
   const [callResult, setCallResult] = useState<string>("")
   const [callTalking, setCallTalking] = useState<string>("")
+  const [decrypt, setDecrypt] = useState<boolean>(false)
   const { tutorialState } = useContext(TutorialContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const juniorCallRef = useRef(0)
@@ -382,6 +384,24 @@ export default function CaseReviewPanel({
                 </p>
               </div>
             )}
+            {transcript.encryptedDrive.activeDrive && 
+            <>
+              <p><button data-tooltip-content="Break Encryption?" data-tooltip-id="item-desc" onClick={()=>{setDecrypt(true)}}>Encrypted drive found</button></p>
+            
+              <div id="decrypt-container" className={(decrypt ? "decrypt-container-visible" : "decrypt-container-hidden")}>
+                <button id="close-decrypt" onClick={()=>{setDecrypt(false)}}><X /></button>
+
+                <p className="mt-20">Enter the encryption key correctly to access the data.</p>
+
+                <DecryptConsole decryptobj={transcript.encryptedDrive}/>
+                
+
+
+              </div>
+            </>
+            
+            }
+
             <div className="passes-container">
               <div>
                 <DoorOpen
@@ -408,6 +428,7 @@ export default function CaseReviewPanel({
                   </div>
                 </div>
               </div>
+              
               <div>
                 <MapPinned
                   tabIndex={0}

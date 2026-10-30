@@ -23,6 +23,26 @@
   height: fit-content;
 }
 
+#decrypt-container {
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  left: 0;
+  background: black;
+  z-index: 50;
+  border-top: 1px solid;
+  transition: .6s;
+}
+.decrypt-container-hidden{
+  bottom:-100%;
+}
+
+.decrypt-container-visible{
+  bottom:0;
+}
+#close-decrypt{
+  width:100%;
+}
 .outcome-display {
   margin: 10px 0;
   background-color: #a2eaa2;
