@@ -386,17 +386,13 @@ export default function CaseReviewPanel({
             )}
             {transcript.encryptedDrive.activeDrive && 
             <>
-              <p><button data-tooltip-content="Break Encryption?" data-tooltip-id="item-desc" onClick={()=>{setDecrypt(true)}}>Encrypted drive found</button></p>
+              <p><button onClick={()=>{setDecrypt(true)}}>Encrypted drive found</button></p>
             
               <div id="decrypt-container" className={(decrypt ? "decrypt-container-visible" : "decrypt-container-hidden")}>
                 <button id="close-decrypt" onClick={()=>{setDecrypt(false)}}><X /></button>
 
-                <p className="mt-20">Enter the encryption key correctly to access the data.</p>
-
-                <DecryptConsole decryptobj={transcript.encryptedDrive}/>
+                <DecryptConsole decryptobj={transcript.encryptedDrive} transcript={transcript} setTranscriptList={setTranscriptList} transcriptList={transcriptList}/>
                 
-
-
               </div>
             </>
             

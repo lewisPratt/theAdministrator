@@ -87,9 +87,9 @@ export class person {
       const dKey = driveKeys[Math.floor(Math.random() * driveKeys.length)]
       const driveClue = dataSet[Math.floor(Math.random() * dataSet.length)]
 
-      return {activeDrive: true, contents:driveClue,driveKey:dKey}
+      return {activeDrive: true, contents:driveClue,driveKey:dKey, driveLocked: false}
     }else{
-      return {activeDrive: false, contents: "",driveKey: ""}
+      return {activeDrive: false, contents: "",driveKey: "", driveLocked:true}
     }
   }
 

@@ -30,6 +30,7 @@ export interface encryptedDriveShape{
   activeDrive: boolean
   contents: string
   driveKey: string
+  driveLocked: boolean
 }
 export interface weightingArrayShape{
   evidenceText: string;
