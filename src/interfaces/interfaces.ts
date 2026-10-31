@@ -28,10 +28,15 @@ export interface reviewShape {
 
 export interface encryptedDriveShape{
   activeDrive: boolean
-  contents: string
+  contents: deviceContentsShape
   driveKey: string
   driveLocked: boolean
+  driveDecrypted: boolean
 }
+ export interface deviceContentsShape{
+  text: string
+  creditReward: number
+ }
 export interface weightingArrayShape{
   evidenceText: string;
   weighting: boolean;

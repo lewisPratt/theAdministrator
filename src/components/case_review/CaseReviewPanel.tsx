@@ -13,6 +13,7 @@ import {
   ChevronLeft,
   XCircle,
   LoaderCircle,
+  FolderKey,
 } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
@@ -386,7 +387,8 @@ export default function CaseReviewPanel({
             )}
             {transcript.encryptedDrive.activeDrive && 
             <>
-              <p><button onClick={()=>{setDecrypt(true)}}>Encrypted drive found</button></p>
+              <p><button onClick={()=>{setDecrypt(true)}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found 
+                {transcript.encryptedDrive.driveLocked ? "" : ""}</button></p>
             
               <div id="decrypt-container" className={(decrypt ? "decrypt-container-visible" : "decrypt-container-hidden")}>
                 <button id="close-decrypt" onClick={()=>{setDecrypt(false)}}><X /></button>
