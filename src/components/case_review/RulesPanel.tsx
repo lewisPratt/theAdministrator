@@ -47,6 +47,9 @@ export default function RulesPanel({
           <li>
             <span className='codex-section-title'>3 :</span> The possession of illegal/contraband items will negatively impact Citizens standing.
           </li>
+          <li>
+            <span className='codex-section-title'>4 :</span> Encrypted drives can hold valuable clues to a Citizens moral standing in the city.
+          </li>
         </ol>
          <button
         onClick={() => {
