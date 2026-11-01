@@ -30,7 +30,7 @@ useEffect(()=>{
     //set up timer for decrypt attempt
     if(decryptState){
          timer.current = setTimeout(() => {
-            failedReason.current = "You failed to decrypt the device before the self delete function executed."
+            failedReason.current = "Self delete function executed."
             lockDevice()
         }, decryptTimerLength);
         //interval timer to update timer progress bar
@@ -71,6 +71,7 @@ useEffect(()=>{
             );
             if (foundTranscript) {
                 foundTranscript.encryptedDrive.driveLocked = true
+                foundTranscript.encryptedDrive.failedReason = failedReason.current
                 setTranscriptList(allTranscripts);
                 if(decryptState)setDecryptState(false)
             }
@@ -162,7 +163,7 @@ useEffect(()=>{
                 
                     <>
                         <h2>DecryptError</h2> 
-                        <p className="mt-20">{failedReason.current} <br/>Data lost. </p>
+                        <p className="mt-20">{decryptobj.failedReason} <br/>Data lost. </p>
                     </>
                     :
                     <>

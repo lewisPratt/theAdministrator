@@ -87,9 +87,9 @@ export class person {
       const dKey = driveKeys[Math.floor(Math.random() * driveKeys.length)]
       const driveClue = dataSet[Math.floor(Math.random() * dataSet.length)]
 
-      return {activeDrive: true, contents:{text:driveClue,creditReward:(Math.floor(Math.random() * 250) + 1)},driveKey:dKey, driveLocked: false, driveDecrypted:false}
+      return {activeDrive: true, contents:{text:driveClue,creditReward:(Math.floor(Math.random() * 250) + 1)},driveKey:dKey, driveLocked: false, driveDecrypted:false,failedReason:""}
     }else{
-      return {activeDrive: false, contents:{text: "",creditReward:0},driveKey: "", driveLocked:true,driveDecrypted:false}
+      return {activeDrive: false, contents:{text: "",creditReward:0},driveKey: "", driveLocked:true,driveDecrypted:false,failedReason:""}
     }
   }
 

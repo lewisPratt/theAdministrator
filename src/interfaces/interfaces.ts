@@ -32,6 +32,7 @@ export interface encryptedDriveShape{
   driveKey: string
   driveLocked: boolean
   driveDecrypted: boolean
+  failedReason: string
 }
  export interface deviceContentsShape{
   text: string
