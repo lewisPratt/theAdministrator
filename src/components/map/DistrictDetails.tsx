@@ -50,7 +50,8 @@ export default function DistrictDetails({
   return (
     <>
       {districtDetails && districtDetails != null && listToShow && (
-        <><p>District {districtDetails.districtNumber}</p>
+        // <><p>District {districtDetails.districtNumber}</p>
+        <>
         <div className="map-details-container">
           <div className="exit-details-button-container">
             <button
@@ -84,10 +85,11 @@ export default function DistrictDetails({
                 Locations
               </button>
             </div>
-            <h1>District {districtDetails.activeList}</h1>
-            <h2>District {districtDetails.districtNumber}</h2>
+            {/* <h1>District {districtDetails.activeList}</h1> */}
+           
             <div className="change-district-button-container">
                 <button aria-label="Previous District" className="change-district-button" onClick={()=>{changeDistrict(districtDetails.activeList,"previous")}}>{"<"}</button>
+                  <h2>District {districtDetails.districtNumber}</h2> 
                 <button aria-label="Next District" className="change-district-button" onClick={()=>{changeDistrict(districtDetails.activeList, "next")}}>{">"}</button>
             </div>
           </div>

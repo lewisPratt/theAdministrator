@@ -81,7 +81,6 @@ export class person {
 
   private setDrive() : encryptedDriveShape{
     const chance = Math.random()
-    console.log(chance)
     if(chance < .4){
       const dataSet = this.overallWeighting > 0 ? positiveLeaningClues : negativeLeaningClues
       const dKey = driveKeys[Math.floor(Math.random() * driveKeys.length)]
@@ -168,7 +167,6 @@ export class person {
       return thisItem.description === "ID card";
     });
     if (idCard) {
-      console.log("id card present")
       weighting += 1;
       weightingArray.push({weighting:true,evidenceText:"Id card present"});
     }

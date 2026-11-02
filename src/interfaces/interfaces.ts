@@ -150,8 +150,9 @@ export interface HotSpotShape {
 export interface CodexSidePanelProps {
   codexState: boolean;
   codexStateSetter: Dispatch<SetStateAction<boolean>>;
+  currentTranscript: reviewShape | null
   currentTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
-   selectedSetter: Dispatch<SetStateAction<string>>;
+  selectedSetter: Dispatch<SetStateAction<string>>;
 }
 
 export interface emailShape {
@@ -203,6 +204,7 @@ export interface playerStatsShape {
   cases_complete: number;
   total_credits_earned: number;
   total_credits_lost: number;
+  devices_unlocked: number;
   cases_correct: number;
   cases_failed: number;
   player_promotions: number

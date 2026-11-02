@@ -15,7 +15,6 @@ export default function CaseListItem({
     if(codexState){
       codexStateSetter(false)
     }
-    console.log(currentTranscript)
     if(currentOpenCase === null){
       selectedSetter(transcript.identifier)
       reviewTranscriptSetter(transcript);

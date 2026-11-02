@@ -241,7 +241,7 @@ export default function TranscriptRev() {
                 </div>
               )}
               {codexState && 
-                <RulesPanel codexStateSetter={setCodexState} codexState={codexState} currentTranscriptSetter={setCurrentTranscript} selectedSetter={setSelectedListItem}/>
+                <RulesPanel currentTranscript={currentTranscript} codexStateSetter={setCodexState} codexState={codexState} currentTranscriptSetter={setCurrentTranscript} selectedSetter={setSelectedListItem}/>
               }
               {currentTranscript ? (
                 <CaseReviewPanel
@@ -282,13 +282,17 @@ export default function TranscriptRev() {
                           : ""
                        + " rules-button"}
                       onClick={() => {
+                        if(currentTranscript != null){
+                          setCurrentTranscript(null)
+                          setSelectedListItem("0");
+                        }
                         setCodexState(true);
                       }}
                     >
                       Rules
                     </button>
              </div>
-            {cityMapeState && <CaseReviewMap cityMapSetter={setCityMapState} cityMapState={cityMapeState}/>}
+            {/* {cityMapeState && <CaseReviewMap cityMapSetter={setCityMapState} cityMapState={cityMapeState}/>} */}
           </section>
           </>) :
           <NotLoggedIn soundControls={false} dataError={errorState}/>}

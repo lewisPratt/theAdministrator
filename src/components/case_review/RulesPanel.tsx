@@ -3,12 +3,12 @@ import type{ CodexSidePanelProps } from "../../interfaces/interfaces";
 export default function RulesPanel({
   codexState,
   codexStateSetter,
+  currentTranscript,
   currentTranscriptSetter,
   selectedSetter
 }: CodexSidePanelProps) {
 
-  currentTranscriptSetter(null)
-  selectedSetter("0");
+  
   return (
     <div
       id="side-panel"

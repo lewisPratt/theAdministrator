@@ -25,7 +25,8 @@ import CitizenAvatar from "./CitizenAvatar";
 import EvidenceStack from "./EvidenceStack";
 import { checkUpgradeActive } from "../../assets/utils/helpers";
 import DecryptConsole from "./DecryptConsole";
-
+import CityMap from "../login/CityMap";
+import CaseReviewMap from "./CaseReviewMapPanel";
 //set to 1 to show debug info on weighting
 const debug: number = 0;
 
@@ -304,13 +305,13 @@ export default function CaseReviewPanel({
             }
             onAnimationEnd={handleAnimationEnd}
           >
-            <div
-              id="weather-container"
-              data-tooltip-id="item-desc"
-              data-tooltip-content={transcript.weather.weather}
-            >
-              {transcript.weather.icon}
-            </div>
+            
+            <div id="case-map-container" className={(cityMapState ? "map-container-visible" : "map-container-hidden")}>
+                
+                <CaseReviewMap />
+                <button className="close-button" onClick={()=>cityMapSetter(false)}><X/></button>
+                
+              </div>
             <h3>
               {transcript.interviewee.firstName}{" "}
               {transcript.interviewee.lastName}
@@ -387,8 +388,7 @@ export default function CaseReviewPanel({
             )}
             {transcript.encryptedDrive.activeDrive && 
             <>
-              <p><button onClick={()=>{setDecrypt(true)}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found 
-                {transcript.encryptedDrive.driveLocked ? "" : ""}</button></p>
+              <p><button className="drive-found-button" onClick={()=>{setDecrypt(true)}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found </button></p>
             
               <div id="decrypt-container" className={(decrypt ? "decrypt-container-visible" : "decrypt-container-hidden")}>
                 <button id="close-decrypt" onClick={()=>{setDecrypt(false)}}><X /></button>

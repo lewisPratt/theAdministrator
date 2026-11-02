@@ -64,6 +64,49 @@ progress::-webkit-progress-value{
   margin:20px;
   font-size:1.2rem;
 }
+.decrypted-data-find{
+  color:black;
+  background:#a2eaa2;
+  display: inline-block;
+  padding:5px;
+}
+.drive-found-button{
+  margin-bottom:20px;
+}
+progress.decrypt-count-down{
+  height:10px;
+  margin:5px;
+}
+#case-map-container{
+  width: 100%;
+  height: 98%;
+  position: absolute;
+  left: 0;
+  background: black;
+  z-index: 50;
+  border-top: 1px solid;
+  transition: .6s;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+#case-map-container .close-button{
+  width:100%;
+  z-index:50;
+}
+.map-container-visible{
+  top:0;
+}
+.map-container-hidden{
+  top:-101%;
+}
+.map-parent{
+  width:100%;
+  margin:0;
+}
 .outcome-display {
   margin: 10px 0;
   background-color: #a2eaa2;
@@ -741,6 +784,13 @@ progress::-webkit-progress-value{
 
 
 @media (min-width:768px) {
+  #case-map-container{
+    height: 100%;
+  }
+  #case-map-container #city-map{
+      margin:0;
+  }
+
   .transcript-container {
     margin: 0 0 10px 10px;
   }
@@ -791,6 +841,7 @@ progress::-webkit-progress-value{
 
   #case-list-container {
     flex-basis: 300px;
+    margin-left:10px;
   }
 
   #search-console-container {
@@ -812,6 +863,7 @@ progress::-webkit-progress-value{
   .case-container {
     flex: 1;
     height: stretch;
+    margin-right:10px;
   }
 
   #rules-section {
@@ -823,7 +875,6 @@ progress::-webkit-progress-value{
   }
 
   #side-panel {
-    flex-basis: 700px;
     margin: 0 0 10px 10px;
   }
 

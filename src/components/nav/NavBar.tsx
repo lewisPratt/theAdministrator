@@ -44,7 +44,7 @@ export default function NavBar() {
           return parsedData;
 
     } catch (error) {
-      console.log("couldn't login: "+ error)
+      // console.log("couldn't login: "+ error)
     }
   }
 
