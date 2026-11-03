@@ -7,8 +7,6 @@ import type {
   occupationsShape,
 } from "../../interfaces/interfaces";
 import {
-  ChevronDown,
-  ChevronUp,
   LoaderCircle,
   MapPinned,
   HandCoins,
@@ -22,7 +20,6 @@ export default function SearchConsole() {
     null,
   );
   const [searchLoadState, setSearchLoadState] = useState<boolean>(false);
-  const [searchConsoleState, setSearchConsoleState] = useState<boolean>(false);
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   function shuffleResults(a: normalizedResultsShape[]) {
@@ -128,10 +125,7 @@ export default function SearchConsole() {
     setSearchResult(results);
   }
 
-  function toggleSearchConsole() {
-    setSearchResult(null);
-    setSearchConsoleState((prev) => !prev);
-  }
+
 
   return (
     <>

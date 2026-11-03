@@ -7,7 +7,6 @@ import { useState } from "react";
 
 import DistrictDetails from "../map/DistrictDetails";
 import { getDetailsForDistrict } from "../../assets/utils/helpers";
-import { X } from "lucide-react";
 
 
 

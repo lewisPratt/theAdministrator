@@ -195,35 +195,7 @@ progress.decrypt-count-down {
   padding: 5px;
 }
 
-.city-map-overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, .9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 95;
-}
 
-.case-review-map-container {
-  display: flex;
-  flex-direction: column;
-  width: 900px;
-}
-
-.case-review-map-container>button {
-  width: 100%;
-}
-
-.case-review-map-container>#city-map {
-  margin: 0;
-}
 
 .interviewee-information>.details-row {
   border: 1px solid #a2eaa2;
@@ -548,11 +520,6 @@ progress.decrypt-count-down {
 #processed-text {
   margin: 20px;
   font-weight: bolder;
-}
-
-.negative-text {
-  color: #a2eaa2;
-  text-decoration: underline;
 }
 
 .positive-processed-item {
@@ -913,8 +880,6 @@ progress.decrypt-count-down {
     flex-basis: 300px;
     margin-left: 10px;
   }
-
-  #search-console-container {}
 
   #search-input-container {
     width: 50%;

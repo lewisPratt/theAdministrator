@@ -25,7 +25,6 @@ import CitizenAvatar from "./CitizenAvatar";
 import EvidenceStack from "./EvidenceStack";
 import { checkUpgradeActive } from "../../assets/utils/helpers";
 import DecryptConsole from "./DecryptConsole";
-import CityMap from "../login/CityMap";
 import CaseReviewMap from "./CaseReviewMapPanel";
 import SearchConsole from "./SearchInfo";
 //set to 1 to show debug info on weighting

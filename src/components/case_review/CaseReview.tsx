@@ -9,10 +9,8 @@ import type {
   reviewsCompleteShape,
 } from "../../interfaces/interfaces";
 import { useNavigate } from "react-router-dom";
-import SearchConsole from "./SearchInfo";
 import {LoaderCircle, SquareArrowDown } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
-import DebugTools from "../DebugTools";
 import RulesPanel from "./RulesPanel";
 import { checkUpgradeActive } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
@@ -25,7 +23,6 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { useRef } from "react";
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import CaseReviewMap from "./CaseReviewMap";
 import ActiveUpgrades from "../upgrade_shop/ActiveUpgrades";
 import NotLoggedIn from "../nav/NotLoggedIn";
 import { ErrorContext } from "../../context_providers/ErrorContext";
@@ -53,13 +50,10 @@ export default function TranscriptRev() {
 
   const { tutorialState } = useContext(TutorialContext);
   const {playerData} = useContext(PlayerContext)
-    const {errorState} = useContext(ErrorContext)
+  const {errorState} = useContext(ErrorContext)
   const navigate = useNavigate();
   const tooltipRef1 = useRef<TooltipRefProps>(null);
-  //////////////////////
-  // set debug to 1 to see debug tools
-  const debug = 0;
-  ///////////////////////////
+
 
   if (availableTranscripts != null && !reviewsComplete) {
     let effectiveness: number = 0;
@@ -241,7 +235,7 @@ export default function TranscriptRev() {
                 </div>
               )}
               {codexState && 
-                <RulesPanel currentTranscript={currentTranscript} codexStateSetter={setCodexState} codexState={codexState} currentTranscriptSetter={setCurrentTranscript} selectedSetter={setSelectedListItem}/>
+                <RulesPanel  codexStateSetter={setCodexState} codexState={codexState} />
               }
               {currentTranscript ? (
                 <CaseReviewPanel
@@ -290,7 +284,6 @@ export default function TranscriptRev() {
                       Rules
                     </button>
              </div>
-            {/* {cityMapeState && <CaseReviewMap cityMapSetter={setCityMapState} cityMapState={cityMapeState}/>} */}
           </section>
           </>) :
           <NotLoggedIn soundControls={false} dataError={errorState}/>}

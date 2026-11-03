@@ -2,10 +2,7 @@ import type{ CodexSidePanelProps } from "../../interfaces/interfaces";
 
 export default function RulesPanel({
   codexState,
-  codexStateSetter,
-  currentTranscript,
-  currentTranscriptSetter,
-  selectedSetter
+  codexStateSetter
 }: CodexSidePanelProps) {
 
   
