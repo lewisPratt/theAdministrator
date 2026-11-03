@@ -37,7 +37,7 @@ export default function UpgradeShop() {
   const cantAfford = () => playSound("notification/error");
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-  const debug = true;
+  const debug = false;
   const upgrades: UpgradeListShape = allUpgrades;
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export default function UpgradeShop() {
             <div id="upgrade-shop-header">
               <h2>Upgrade Terminal</h2>
 
-              {debug && (
+              {debug || playerData.player_name === "the_assessor".toLowerCase() && (
                 <div className="debug-container">
                   <h6>Debug- not for production</h6>
                   <button onClick={giveCredits}>Give credits</button>
