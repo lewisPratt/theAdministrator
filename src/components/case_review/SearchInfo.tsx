@@ -134,14 +134,8 @@ export default function SearchConsole() {
   }
 
   return (
+    <>
     <div id="search-console-container">
-      <div id="search-console-header">
-        <p>Search Console</p>
-        <div onClick={toggleSearchConsole}>
-          {!searchConsoleState ? <ChevronDown /> : <ChevronUp />}
-        </div>
-      </div>
-      {searchConsoleState && (
         <>
           <div id="search-input-container">
             <label htmlFor="occupation-search">Item Search</label>
@@ -203,7 +197,10 @@ export default function SearchConsole() {
                 <li>Waiting for input...</li>
               )}
             </ul>
-             <div id="search-key">
+            
+          </div>
+        </>
+      <div id="search-key">
                 <h5> Search Key</h5>
                 <ul>
                   <li><HandCoins size={18} /> = Occuaption </li>
@@ -211,9 +208,8 @@ export default function SearchConsole() {
                 </ul> 
               
             </div>
-          </div>
-        </>
-      )}
     </div>
+    
+            </>
   );
 }

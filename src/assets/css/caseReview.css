@@ -32,52 +32,62 @@
   z-index: 50;
   border-top: 1px solid;
   transition: .6s;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
-.decrypt-container-hidden{
-  bottom:-100%;
+
+.decrypt-container-hidden {
+  bottom: -100%;
 }
 
-.decrypt-container-visible{
-  bottom:0;
+.decrypt-container-visible {
+  bottom: 0;
 }
-#close-decrypt{
-  width:100%;
+
+#close-decrypt {
+  width: 100%;
 }
-progress{
-  height:25px;
+
+progress {
+  height: 25px;
   border-radius: 0;
   accent-color: #a2eaa2;
-  
+
 }
-progress::-webkit-progress-value{
+
+progress::-webkit-progress-value {
   background: #a2eaa2;
 }
-.decrypt-input{
-  height:40px;
+
+.decrypt-input {
+  height: 40px;
   margin-top: 20px;
   font-size: 1rem;
 }
-#decrypt-key{
-  margin:20px;
-  font-size:1.2rem;
+
+#decrypt-key {
+  margin: 20px;
+  font-size: 1.2rem;
 }
-.decrypted-data-find{
-  color:black;
-  background:#a2eaa2;
+
+.decrypted-data-find {
+  color: black;
+  background: #a2eaa2;
   display: inline-block;
-  padding:5px;
+  padding: 5px;
 }
-.drive-found-button{
-  margin-bottom:20px;
+
+.drive-found-button {
+  margin-bottom: 20px;
 }
-progress.decrypt-count-down{
-  height:10px;
-  margin:5px;
+
+progress.decrypt-count-down {
+  height: 10px;
+  margin: 5px;
 }
-#case-map-container{
+
+#case-map-container {
   width: 100%;
   height: 98%;
   position: absolute;
@@ -86,27 +96,32 @@ progress.decrypt-count-down{
   z-index: 50;
   border-top: 1px solid;
   transition: .6s;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
-#case-map-container .close-button{
-  width:100%;
-  z-index:50;
+
+#case-map-container .close-button {
+  width: 100%;
+  z-index: 50;
 }
-.map-container-visible{
-  top:0;
+
+.map-container-visible {
+  top: 0;
 }
-.map-container-hidden{
-  top:-101%;
+
+.map-container-hidden {
+  top: -101%;
 }
-.map-parent{
-  width:100%;
-  margin:0;
+
+.map-parent {
+  width: 100%;
+  margin: 0;
 }
+
 .outcome-display {
   margin: 10px 0;
   background-color: #a2eaa2;
@@ -279,13 +294,33 @@ progress.decrypt-count-down{
   height: 60px;
 }
 
+.evidence-visible {
+  bottom: 0
+}
+
+.evidence-hidden {
+  bottom: -100%;
+}
+
+#evidence-container {
+  position: Absolute;
+  transition: .6s;
+  height: 50%;
+  width: 100%;
+  left: 0;
+  background: black;
+  z-index: 50;
+}
+
 #evidence-box {
+
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid #a2eaa2;
-  margin-top: 20px;
+
+  left: 0;
   background-color: black;
+
 }
 
 #evidence-box>ol {
@@ -392,17 +427,15 @@ progress.decrypt-count-down{
 
 #search-console-container {
   display: flex;
-  padding: 10px;
-  border: 1px solid #a2eaa2;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 20px auto;
   position: relative;
   overflow: hidden;
-  padding-top: 40px;
   flex-direction: column;
-  width: 85%;
+  width: 100%;
   background-color: black;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .active-upgrades-container {
@@ -440,6 +473,7 @@ progress.decrypt-count-down{
   width: 90%;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 
 }
 
@@ -448,7 +482,6 @@ progress.decrypt-count-down{
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  height: 150px;
 }
 
 .search-result-item {
@@ -471,7 +504,6 @@ progress.decrypt-count-down{
 #search-key {
   font-size: .6rem;
   text-align: left;
-  border: 1px solid #a2eaa2;
   margin-top: 20px;
 }
 
@@ -482,6 +514,15 @@ progress.decrypt-count-down{
   align-items: center;
   vertical-align: middle;
 
+}
+
+#close-search {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  z-index: 20;
 }
 
 #search-key ul {
@@ -579,11 +620,10 @@ progress.decrypt-count-down{
 .review-overlay {
   position: fixed;
   background-color: rgba(0, 0, 0, .7);
-  position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
   right: 0;
+  bottom: 0px;
   z-index: 200;
   display: flex;
   justify-content: center;
@@ -689,6 +729,34 @@ progress.decrypt-count-down{
   color: black;
 }
 
+#search-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: black;
+  transition: .6s;
+  top: 0;
+  overflow-y: scroll;
+}
+
+.search-visible {
+  right: 0;
+}
+
+.search-hidden {
+  right: -100%;
+}
+
+#search-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: fit-content;
+  width: fit-content;
+  writing-mode: sideways-lr;
+}
+
 #search-results-header {
   background-color: #a2eaa2;
   padding: 10px 0;
@@ -784,15 +852,17 @@ progress.decrypt-count-down{
 
 
 @media (min-width:768px) {
-  #case-map-container{
+  #case-map-container {
     height: 100%;
   }
-  #case-map-container #city-map{
-      margin:0;
+
+  #case-map-container #city-map {
+    margin: 0;
   }
 
   .transcript-container {
     margin: 0 0 10px 10px;
+    width: 98%;
   }
 
   .transcript-text {
@@ -841,12 +911,10 @@ progress.decrypt-count-down{
 
   #case-list-container {
     flex-basis: 300px;
-    margin-left:10px;
+    margin-left: 10px;
   }
 
-  #search-console-container {
-    flex-direction: row;
-  }
+  #search-console-container {}
 
   #search-input-container {
     width: 50%;
@@ -863,7 +931,7 @@ progress.decrypt-count-down{
   .case-container {
     flex: 1;
     height: stretch;
-    margin-right:10px;
+    margin-right: 10px;
   }
 
   #rules-section {

@@ -197,9 +197,8 @@ export default function TranscriptRev() {
           )}
 
           <section id="case-review">
-            {playerData?.player_unlocks.includes("voucher10") && <SearchConsole />}
 
-            {debug ? <DebugTools generatePeople={setGeneratePeople} /> : null}
+            
             {missingPlayerData && <p>Missing player data on load, reload to apply upgrades <button onClick={()=>{setGeneratePeople(prev=>!prev); setMissingPlayerData(false)}}>reload</button></p>}
             <div id="top-container">
               {availableTranscripts && (
@@ -213,6 +212,7 @@ export default function TranscriptRev() {
                         : "") + " transcript-list"
                     }
                   >
+                    <ActiveUpgrades />
                     <div id="interviews-list-header"><SquareArrowDown /> <h1>Available Cases</h1> <SquareArrowDown /></div>
                    
                     {availableTranscripts.map((listItem) => (
@@ -270,8 +270,6 @@ export default function TranscriptRev() {
               <Tooltip id="extra-case-tooltip" className="custom-tooltip" />
             </div>
              <div className="helper-elements">
-
-               <ActiveUpgrades />
 
                 <button
                       id="tutorial-step-11"

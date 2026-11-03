@@ -10,11 +10,10 @@ interface evidenceStackprops{
 export default function EvidenceStack({caseDetails}: evidenceStackprops) {
   return (
     <div id="evidence-box">
-      <div className="window-header">
-        <h5>Evidence Stack</h5>
-      </div>
+      
       <ol>
         <h6>Positive</h6>
+        <hr></hr>
         {caseDetails.weightingArray.map((item) => {
           if (item.weighting) {
             return <li key={uuidv4()}> {item.evidenceText} </li>;
@@ -23,6 +22,7 @@ export default function EvidenceStack({caseDetails}: evidenceStackprops) {
       </ol>
       <ol>
         <h6>Negative</h6>
+        <hr></hr>
         {caseDetails.weightingArray.map((item) => {
           if (!item.weighting) {
             return <li key={uuidv4()}> {item.evidenceText} </li>;

@@ -27,6 +27,7 @@ import { checkUpgradeActive } from "../../assets/utils/helpers";
 import DecryptConsole from "./DecryptConsole";
 import CityMap from "../login/CityMap";
 import CaseReviewMap from "./CaseReviewMapPanel";
+import SearchConsole from "./SearchInfo";
 //set to 1 to show debug info on weighting
 const debug: number = 0;
 
@@ -47,6 +48,7 @@ export default function CaseReviewPanel({
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<Boolean>(false);
+  const [showSearch, setShowSearch] = useState<Boolean>(false);
   const [inCall, setInCall] = useState<boolean>(false)
   const [callResult, setCallResult] = useState<string>("")
   const [callTalking, setCallTalking] = useState<string>("")
@@ -372,20 +374,22 @@ export default function CaseReviewPanel({
               )}
             </div>
 
-            <div className="transcript-text">
-              <p>{transcript.personFlavour}</p>
-            </div>
+            
             {/* show reward earned from making decision on this case. conditional on whether the case has been procesed */}
-            {transcript.processed && (
+            {transcript.processed ? (
               <div className="outcome-display">
-                <h4>{transcript.outcomeCategory}</h4>
+                <p>{transcript.outcomeCategory}</p>
                 <p>{transcript.decision}</p>
                 <p>
                   Credits:{transcript.decisionOutcome ? "+" : "-"}
                   {transcript.rewardEarned}
                 </p>
               </div>
-            )}
+            ) :
+              <div className="transcript-text">
+                <p>{transcript.personFlavour}</p>
+              </div>
+            }
             {transcript.encryptedDrive.activeDrive && 
             <>
               <p><button className="drive-found-button" onClick={()=>{setDecrypt(true)}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found </button></p>
@@ -507,8 +511,22 @@ export default function CaseReviewPanel({
                     <button onClick={()=>callColleague("senior")}>Call Senior Colleague</button>}
                 </>
               }
+                  
+                
             </div>
-          </div>
+            {playerData?.player_unlocks.includes("voucher10") && 
+              <button onClick={()=>{setShowSearch(true)}} id="search-button" >Search Console</button>
+            }
+            <div id="search-container" className={(showSearch ? "search-visible" : "search-hidden" )}>
+               <button id="close-search" onClick={()=>{setShowSearch(false)}}><X /></button>
+              {playerData?.player_unlocks.includes("voucher10") && <SearchConsole />}
+            </div>
+            <div id="evidence-container" className={(showEvidence ? "evidence-visible" : "evidence-hidden" )}>
+              <button id="close-decrypt" onClick={()=>{setShowEvidence(false)}}><X /></button>
+              <EvidenceStack caseDetails={transcript}/> 
+                    
+            </div>
+        </div>
           <div id="tutorial-step-9" className={
               (tutorialState.tutorialActive && tutorialState.tutorialStep === 9
                 ? "tutorial-highlight"
@@ -547,9 +565,7 @@ export default function CaseReviewPanel({
                 <button onClick={()=>{changeCase("next")}}><ChevronRight /></button>
                 
             </div>
-                  {showEvidence && (
-                     <EvidenceStack caseDetails={transcript}/> 
-                  )}
+                
                 
               </>
             )}

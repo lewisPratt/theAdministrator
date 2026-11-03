@@ -184,7 +184,7 @@ useEffect(()=>{
                         {/* if currently decrypting*/}
                             <p id="decrypt-key">{decryptobj.driveKey}</p>
                             
-                            {chances === 1 && <p className="mt-20">DecryptError: You have one attempt remaining.</p>}
+                            {chances === 1 && <p >DecryptError: You have one attempt remaining.</p>}
                             <progress className="mt-20 decrypt-count-down" value={timerProgress} max={100} >Progress</progress>
                             <input onChange={(e)=>{checkInput(e)}} className="decrypt-input" type="text"></input>
                             
