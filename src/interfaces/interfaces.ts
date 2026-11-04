@@ -226,5 +226,10 @@ export interface districtDetails{
   occupations : occupationsShape[]
   locations : locationsShape[]
   districtNumber: number
+  districtName: string
   activeList: string
+}
+export interface districtNameShape{
+    districtNumber: number
+    districtName: string
 }

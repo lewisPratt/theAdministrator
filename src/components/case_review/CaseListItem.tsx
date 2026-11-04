@@ -1,4 +1,4 @@
-import { playButtonPress } from "../../assets/utils/helpers";
+import { playCustomSound } from "../../assets/utils/helpers";
 import type { reviewShape, transcriptListItemProps } from "../../interfaces/interfaces";
 import {FolderTree } from "lucide-react";
 
@@ -32,7 +32,7 @@ export default function CaseListItem({
     aria-label="Open case details"
       className={(currentTranscript.bonusCase ? "bonus-case ":"")+(identifier === currentTranscript.identifier ? "current-selected-item ": "") + (currentTranscript.processed && !currentTranscript.decisionOutcome ? "negative-processed-item" :"")+" transcript-list-item "+ (currentTranscript.processed && currentTranscript.decisionOutcome ? "positive-processed-item":"" ) }
       key={currentTranscript.interviewee.firstName + currentTranscript.age}
-      onClick={() => {openTranscript(currentTranscript),playButtonPress()}}
+      onClick={() => {openTranscript(currentTranscript),playCustomSound("buttonPress")}}
     >
       <div className="mobile-case-element"><span><img src={currentTranscript.avatar} 
        onError={(e) => {

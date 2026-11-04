@@ -38,7 +38,6 @@ import NavBar from "./components/nav/NavBar";
 import { PlayerContext } from "./context_providers/PlayerContext";
 import Stats from "./components/statistics/Stats";
 import PageNotFound from "./components/PageNotFound"; 
-import { playButtonPress } from "./assets/utils/helpers";
 
 function App() {
   // const [typedName, setTypedName] = useState<string>("");

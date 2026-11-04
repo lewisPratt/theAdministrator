@@ -3,10 +3,10 @@ import { Tooltip } from "react-tooltip";
 import cityMap from "../../assets//images/cityMap.png";
 import type { HotSpotShape, districtDetails } from "../../interfaces/interfaces";
 import MapScanningText from "./MapScanningText";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import DistrictDetails from "../map/DistrictDetails";
-import { getDetailsForDistrict } from "../../assets/utils/helpers";
+import { getDetailsForDistrict, playCustomSound } from "../../assets/utils/helpers";
 
 interface cityMapProps{
   giveDetails : boolean
@@ -16,7 +16,7 @@ interface cityMapProps{
 export default function CityMap({giveDetails}:cityMapProps) {
   const [districtDetails, setDistrictDetails] = useState<districtDetails | null>(null)
 
-
+ 
 
   const hotspots: HotSpotShape[] = [
     {

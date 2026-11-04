@@ -15,6 +15,7 @@ import { useRef } from "react";
 import { carryableItems } from "../../generator_modules/CarryableItems";
 
 import type{ searchResultShape, normalizedResultsShape } from "../../interfaces/interfaces";
+import { playKeyStroke } from "../../assets/utils/helpers";
 export default function SearchConsole() {
   const [searchResult, setSearchResult] = useState<searchResultShape[] | null>(
     null,
@@ -30,6 +31,7 @@ export default function SearchConsole() {
   }
 
   function debounceSearch(e: React.ChangeEvent<HTMLInputElement>) {
+   
     if (searchDebounceRef.current) {
       clearTimeout(searchDebounceRef.current);
     }
@@ -137,7 +139,7 @@ export default function SearchConsole() {
               id="occupation-search"
               className="search-input"
               type="text"
-              onChange={debounceSearch}
+              onChange={(e)=>{debounceSearch(e); playKeyStroke()}}
               autoComplete="off"
               placeholder="Item name"
               data-search-type="item"
@@ -149,7 +151,7 @@ export default function SearchConsole() {
               id="location-search"
               className="search-input"
               type="text"
-              onChange={debounceSearch}
+              onChange={(e)=>{debounceSearch(e); playKeyStroke()}}
               autoComplete="off"
               placeholder="Location name"
               data-search-type="district"

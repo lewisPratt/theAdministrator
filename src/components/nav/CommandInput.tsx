@@ -6,7 +6,7 @@ import AvailableCommandsList from "./AvailableCommandsList";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { playButtonPress, playKeyStroke } from "../../assets/utils/helpers";
+import { playCustomSound, playKeyStroke } from "../../assets/utils/helpers";
 
 
 
@@ -73,6 +73,7 @@ export default function CommandInput() {
         default:
           resetInput(e);
           setErrorState("Command not recognized: " + command);
+          playCustomSound("errorSound")
           break;
       }
     }
@@ -117,7 +118,7 @@ export default function CommandInput() {
           type="submit"
           data-tooltip-id="nav-terminal-tooltip"
           data-tooltip-content="Submit Nav Command"
-          onClick={()=>playButtonPress()}
+          onClick={()=>playCustomSound("buttonPress")}
         >
           <ChevronRightCircle size={20} />
         </button>
@@ -129,7 +130,7 @@ export default function CommandInput() {
               ? "tutorial-highlight"
               : "") + " available-commands-button"
           }
-          onClick={(e)=>{toggleCommands(e);playButtonPress()}}
+          onClick={(e)=>{toggleCommands(e);playCustomSound("buttonPress")}}
           data-tooltip-id="nav-bar-tooltip"
           data-tooltip-content="Nav Commands"
         >

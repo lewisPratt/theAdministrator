@@ -1,12 +1,19 @@
 import { locations } from "../../generator_modules/LocationGenerator";
 import { occupations } from "../../generator_modules/OccupationGenerator";
 import { allUpgrades } from "../../generator_modules/upgrades";
-import type { locationsShape, occupationsShape, playerDataShape, playerStatsShape, UpgradeShape } from "../../interfaces/interfaces";
+import type { districtDetails, districtNameShape, locationsShape, occupationsShape, playerDataShape, playerStatsShape, UpgradeShape } from "../../interfaces/interfaces";
 import keystroke_1 from "../../assets/sounds/keystroke_hard.mp3"
 import keystroke_2 from "../../assets/sounds/keystroke_medium.mp3"
 import keystroke_3 from "../../assets/sounds/keystroke_soft.mp3"
 import buttonpress from "../../assets/sounds/button_soft.mp3"
+import call_1 from "../../assets/sounds/call_1.mp3"
+import call_2 from "../../assets/sounds/call_2.mp3"
+import call_3 from "../../assets/sounds/call_3.mp3"
+import call_4 from "../../assets/sounds/call_4.mp3"
+import errorSound from "../../assets/sounds/error.mp3"
+import sucessSound from "../../assets/sounds/success_bling.mp3"
 import { playSound } from "react-sounds";
+import getDistrictName from "../../generator_modules/DistrictNames";
 /**
  * Capitalizes the first letter of the string passed to it, returning a capitalized string
  * @param {string} val - the string that is to be capitalized
@@ -39,14 +46,21 @@ export function saveLocalData(playerData : playerDataShape){
    localStorage.setItem("The_Administrator_Game", encodedData)
 }
 
-export function getDetailsForDistrict(district:number){
+export function getDetailsForDistrict(district:number) :districtDetails{
+
+  let dName = getDistrictName(district)
+  if(dName === null){
+    dName = "missing data"
+  }
+
+  
   let occupationArray : occupationsShape[] = occupations.filter((location)=>{
       return location.district === district
   })
   let locationArray : locationsShape[] = locations.filter((location)=>{
       return location.district === district
   })
-  return {occupations :occupationArray, locations : locationArray, districtNumber:district, activeList:"occupations"}
+  return  {occupations :occupationArray, locations : locationArray, districtNumber:district, districtName: dName, activeList:"occupations"}
 
 }
 
@@ -99,7 +113,27 @@ export function isStats(value : unknown) : value is playerStatsShape {
     return playStroke;
   }
 
-  export function playButtonPress(){
-    const playButtonNoise = playSound(buttonpress, {volume:0.5, loop:false});
-    return playButtonNoise
+  export function playCustomSound(soundName : string){
+    const callContentSounds = [
+      call_1,
+      call_2,
+      call_3,
+      call_4
+    ]
+    const callContent = Math.floor(Math.random() * callContentSounds.length);
+
+    switch (soundName) {
+      case "errorSound":
+        return playSound(errorSound, {volume:0.5, loop:false});
+      case "buttonPress":
+        return playSound(buttonpress, {volume:0.5, loop:false});
+      case "successSound":
+         return playSound(sucessSound, {volume:0.5, loop:false});
+      case "callContent":
+         return playSound(callContentSounds[callContent], {volume:0.5, loop:false});
+
+      default:
+        break;
+    }
+    
   }

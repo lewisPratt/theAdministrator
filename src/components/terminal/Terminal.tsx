@@ -13,7 +13,7 @@ import { type TooltipRefProps } from "react-tooltip";
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import { playKeyStroke } from "../../assets/utils/helpers";
-import { playButtonPress } from "../../assets/utils/helpers";
+import { playCustomSound } from "../../assets/utils/helpers";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -125,7 +125,7 @@ export default function CommandCentre() {
                       autoComplete="off"
              
                     ></input>
-                    <button onClick={()=>playButtonPress()} aria-label="Submit navigation command" id="command-centre-submit-button">
+                    <button onClick={()=>playCustomSound("buttonPress")} aria-label="Submit navigation command" id="command-centre-submit-button">
                       <ChevronRightCircle size={28} />
                     </button>
                   </div>

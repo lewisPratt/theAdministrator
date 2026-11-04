@@ -2,9 +2,9 @@ import { useContext, useEffect, useRef, useState, type ChangeEvent, type Dispatc
 import type { encryptedDriveShape, reviewShape } from "../../interfaces/interfaces"
 import { LoaderCircle } from "lucide-react";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { playButtonPress, playKeyStroke } from "../../assets/utils/helpers";
+import { playCustomSound, playKeyStroke } from "../../assets/utils/helpers";
 import successfulOpen from "../../assets/sounds/unlock.wav"
-import failSound from "../../assets/sounds/blocked.mp3";
+import failSound from "../../assets/sounds/error.mp3";
 
 import { playSound } from "react-sounds";
 
@@ -106,9 +106,9 @@ useEffect(()=>{
     function checkInput(e:ChangeEvent<HTMLInputElement>){
         //check the typed input against the drive key to see if it matches. if a mistake, give one chance then lock drive?
         playKeyStroke()
-        const currentValue = e.currentTarget.value
+        const currentValue = e.currentTarget.value.toLowerCase()
         const driveKeyCharacters = [...decryptobj.driveKey]
-        const currentCharacters = [...e.currentTarget.value]
+        const currentCharacters = [...currentValue]
         if(currentCharacters.length === 0){
             setCompletionPerc(0)
         }
@@ -133,8 +133,6 @@ useEffect(()=>{
         const totalCharacterCount = driveKeyCharacters.length
         const currentCharCount = currentCharacters.length
 
-        const perc = Math.floor(100 / ( totalCharacterCount / currentCharCount))
-        setCompletionPerc(perc)
 
         if(totalCharacterCount === currentCharCount && currentValue === decryptobj.driveKey){
             //successfully entered key
@@ -189,7 +187,7 @@ useEffect(()=>{
                     :
                     <>
                         <p className="mt-20">correctly enter encryption key to access data.</p>
-                        {!decryptState && <button className="mt-20" onClick={()=>{setDecryptState(true);playButtonPress()}}>Start</button>}
+                        {!decryptState && <button className="mt-20" onClick={()=>{setDecryptState(true);playCustomSound("buttonPress")}}>Start</button>}
                         {/* if decrypt attempt hasn't yet started */}
                         {decryptState &&
                         <>
@@ -200,7 +198,7 @@ useEffect(()=>{
                             <progress className="mt-20 decrypt-count-down" value={timerProgress} max={100} >Progress</progress>
                             <input onChange={(e)=>{checkInput(e)}} className="decrypt-input" type="text"></input>
                             
-                            <progress className="mt-20" value={completionPerc} max={100} >Progress</progress>
+                            
                             
                             </>
                         }

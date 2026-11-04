@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { PlayerContext } from "../../context_providers/PlayerContext"
 import { TutorialContext } from "../../context_providers/TutorialContext"
 import { useNavigate } from "react-router-dom"
-import { playButtonPress } from "../../assets/utils/helpers"
+import { playCustomSound } from "../../assets/utils/helpers"
 
 
 
@@ -26,13 +26,13 @@ function deleteData(){
          <section id="tutorial-step-18" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 18 ? "tutorial-highlight":"") +" manage-section"}>
                 <h4>Manage</h4>
                 {playerData &&
-                 <p><button onClick={()=>{setConfirm(prev =>!prev);playButtonPress()}} >Delete account</button></p>
+                 <p><button onClick={()=>{setConfirm(prev =>!prev);playCustomSound("buttonPress")}} >Delete account</button></p>
                 }
                 {confirm && 
                     <>
                         <p>Are your sure you want to delete account saved data?</p>
                         <p>If yes, your game data will be deleted and you will be redirected to login</p>
-                        <button onClick={()=>{deleteData(),playButtonPress()}}>yes</button> <button onClick={()=>{setConfirm(false),playButtonPress()}}>cancel</button>
+                        <button onClick={()=>{deleteData(),playCustomSound("buttonPress")}}>yes</button> <button onClick={()=>{setConfirm(false),playCustomSound("buttonPress")}}>cancel</button>
                     </>
                 }
                 

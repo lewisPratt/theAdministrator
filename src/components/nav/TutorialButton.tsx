@@ -2,7 +2,7 @@ import { CircleQuestionMark } from "lucide-react"
 import { PlayerContext } from "../../context_providers/PlayerContext"
 import { TutorialContext } from "../../context_providers/TutorialContext"
 import { useContext } from "react"
-import { playButtonPress } from "../../assets/utils/helpers"
+import { playCustomSound } from "../../assets/utils/helpers"
 
 export default function TutorialButton(){
 const {tutorialState, setTutorialState} = useContext(TutorialContext)
@@ -16,7 +16,7 @@ function toggleTutorialState(){
 }
 
 function handleClick(){
-    playButtonPress()
+    playCustomSound("buttonPress")
     setTutorialState({tutorialActive: toggleTutorialState(),tutorialStep: 0})
 }
     return(

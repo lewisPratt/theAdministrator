@@ -5,7 +5,7 @@ import type {
   occupationsShape,
 } from "../../interfaces/interfaces";
 import { X } from "lucide-react";
-import { getDetailsForDistrict } from "../../assets/utils/helpers";
+import { getDetailsForDistrict, playCustomSound } from "../../assets/utils/helpers";
 import { v4 as uuidv4 } from "uuid";
 
 interface districtDetailsProps {
@@ -57,7 +57,7 @@ export default function DistrictDetails({
             <button
               className="close-district-details-button"
               aria-label="Close District Details"
-              onClick={() => setDistrictDetails(null)}
+              onClick={() => {setDistrictDetails(null);playCustomSound("buttonPress")}}
             >
               <X size={16} />
             </button>
@@ -65,7 +65,7 @@ export default function DistrictDetails({
           <div className="district-details-title">
             <div className="info-swap-buttons">
               <button
-                onClick={() => setListActive("occupations")}
+                onClick={() => {setListActive("occupations");playCustomSound("buttonPress")}}
                 className={
                   districtDetails.activeList === "occupations"
                     ? "active-details"
@@ -75,7 +75,7 @@ export default function DistrictDetails({
                 Occupations
               </button>
               <button
-                onClick={() => setListActive("locations")}
+                onClick={() => {setListActive("locations");playCustomSound("buttonPress")}}
                 className={
                   districtDetails.activeList === "locations"
                     ? "active-details"
@@ -85,13 +85,15 @@ export default function DistrictDetails({
                 Locations
               </button>
             </div>
-            {/* <h1>District {districtDetails.activeList}</h1> */}
            
             <div className="change-district-button-container">
-                <button aria-label="Previous District" className="change-district-button" onClick={()=>{changeDistrict(districtDetails.activeList,"previous")}}>{"<"}</button>
+                <button aria-label="Previous District" className="change-district-button" onClick={()=>{changeDistrict(districtDetails.activeList,"previous");playCustomSound("buttonPress")}}>{"<"}</button>
                   <h2>District {districtDetails.districtNumber}</h2> 
-                <button aria-label="Next District" className="change-district-button" onClick={()=>{changeDistrict(districtDetails.activeList, "next")}}>{">"}</button>
+                  
+                <button aria-label="Next District" className="change-district-button" onClick={()=>{changeDistrict(districtDetails.activeList, "next");playCustomSound("buttonPress")}}>{">"}</button>
+           
             </div>
+             <h3>{districtDetails.districtName}</h3>
           </div>
           <ul>
             {listToShow.map((listItem) => {
@@ -105,7 +107,8 @@ export default function DistrictDetails({
         </div></>
       )}
     </>
-  );}
+  );
+}
   else{
     return (<p>Select a District for more information</p>)
   }

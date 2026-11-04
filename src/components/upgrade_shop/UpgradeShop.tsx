@@ -4,7 +4,6 @@ import type {
   UpgradeShape,
   UpgradeListShape,
 } from "../../interfaces/interfaces";
-import { playSound } from "react-sounds";
 import { allUpgrades } from "../../generator_modules/upgrades";
 import { Badge } from "lucide-react";
 import { CreditIcon } from "../../assets/custom_icons/credits";
@@ -21,9 +20,7 @@ import NotLoggedIn from "../nav/NotLoggedIn";
 import PromotedSim from "./PromotedSim";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 
-import failSound from "../../assets/sounds/blocked.mp3";
-import successfulSound from "../../assets/sounds/success_bling.mp3";
-import { playButtonPress } from "../../assets/utils/helpers";
+import { playCustomSound } from "../../assets/utils/helpers";
 
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -37,11 +34,9 @@ export default function UpgradeShop() {
   const navigate = useNavigate();
 
   const [_upgradeErrorState, setUpgradeErrorState] = useState<string | null>(null);
-  const purchaseSound = () => playSound(successfulSound, {volume:0.5, loop:false});
-  const cantAfford = () => playSound(failSound, {volume:0.5, loop:false});
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-  const debug = false;
+  const debug :boolean = true;
   const upgrades: UpgradeListShape = allUpgrades;
 
   useEffect(() => {
@@ -94,7 +89,7 @@ export default function UpgradeShop() {
       if (playerData) {
         if (playerData.player_credits < selectedUpgrade.cost) {
           setUpgradeErrorState("You do not have enough credits");
-          cantAfford();
+          playCustomSound("errorSound");
         } else {
           //purchase made, update playerdata with credit balance and unlocks then set playerdata and store local data
           let dataToUpdate = { ...playerData };
@@ -105,14 +100,14 @@ export default function UpgradeShop() {
               if (dataToUpdate.player_unlocks != null) {
                 updatedUnlocks = [...dataToUpdate.player_unlocks];
               }
-              purchaseSound();
+              playCustomSound("successSound");
               updatedUnlocks.push(confirming);
               dataToUpdate.player_unlocks = updatedUnlocks
               setPlayerData(dataToUpdate);
             }
             else{
               //player is purchasing the promotion upgrade (effectively completing game content)
-              purchaseSound();
+              playCustomSound("successSound");
               dataToUpdate.player_stats.player_promotions = dataToUpdate.player_stats.player_promotions + 1
               setPlayerData(dataToUpdate)
               //update state to show promotion sim
@@ -145,7 +140,7 @@ export default function UpgradeShop() {
             <div id="upgrade-shop-header">
               <h2>Upgrade Terminal</h2>
 
-              {debug || playerData.player_name === "the_assessor".toLowerCase() && (
+              {(debug || playerData.player_name === "the_assessor".toLowerCase()) && (
                 <div className="debug-container">
                   <h6>Debug- not for production</h6>
                   <button onClick={giveCredits}>Give credits</button>
@@ -165,7 +160,7 @@ export default function UpgradeShop() {
                     : ""
                 }
                 onClick={() => {
-                  playButtonPress();
+                  playCustomSound("buttonPress");
                   navigate("/PersonalRecord");
                   setCurrentSlug("nav.personal");
                 }}
@@ -184,10 +179,10 @@ export default function UpgradeShop() {
               <ol>
                 {Object.entries(upgrades).map((upgrade) => {
                   return (
-                    <li>
+                    <li  key={upgrade[0]}>
                       <button
                       aria-label="Show upgrade details"
-                        key={upgrade[0]}
+                       
                         className={
                           "upgrade-box " +
                           (playerData?.player_unlocks.includes(upgrade[0])
@@ -198,7 +193,7 @@ export default function UpgradeShop() {
                         data-upgrade-ident={upgrade[0]}
                         onClick={(e) => {
                           confirmChoice(e);
-                          playButtonPress()
+                          playCustomSound("buttonPress")
                         }}
                       >
                         <Badge size={48}>{upgrade[1].icon}</Badge>

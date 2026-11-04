@@ -1,7 +1,7 @@
 import { MapPinSearch } from "lucide-react";
 import type { reviewShape } from "../../interfaces/interfaces";
 import { type Dispatch, type SetStateAction } from "react";
-
+import { playCustomSound } from "../../assets/utils/helpers";
 interface citizenAvatarProps {
   transcript: reviewShape;
     cityMapState : boolean
@@ -179,7 +179,7 @@ const scanLineDuration = 10
         
       </svg>
     </div>
-        <button onClick={()=>cityMapSetter(true)} aria-label="View city map" data-tooltip-id="item-desc" data-tooltip-content="View City Map" className="case-map-button"><MapPinSearch  size={18}/></button>
+        <button onClick={()=>{cityMapSetter(true);playCustomSound("buttonPress")}} aria-label="View city map" data-tooltip-id="item-desc" data-tooltip-content="View City Map" className="case-map-button"><MapPinSearch  size={18}/></button>
     </div>
   );
 }

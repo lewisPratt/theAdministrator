@@ -23,11 +23,11 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
 import EvidenceStack from "./EvidenceStack";
-import { checkUpgradeActive, playButtonPress } from "../../assets/utils/helpers";
+import { checkUpgradeActive, playCustomSound } from "../../assets/utils/helpers";
 import DecryptConsole from "./DecryptConsole";
-import CaseReviewMap from "./CaseReviewMapPanel";
-import SearchConsole from "./SearchInfo";
-import failSound from "../../assets/sounds/blocked.mp3";
+import CaseReviewMap from "./CaseReviewMap";
+import SearchConsole from "./SearchConsole";
+import failSound from "../../assets/sounds/error.mp3";
 import successfulSound from "../../assets/sounds/success_bling.mp3";
 
 export default function CaseReviewPanel({
@@ -36,8 +36,6 @@ export default function CaseReviewPanel({
   selectedSetter,
   transcriptList,
   setTranscriptList,
-  cityMapSetter,
-  cityMapState,
   nextCase,
   nextCaseSetter,
   juniorCallSetter,
@@ -54,6 +52,7 @@ export default function CaseReviewPanel({
   const [decrypt, setDecrypt] = useState<boolean>(false)
   const { tutorialState } = useContext(TutorialContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
+  const [cityMapState, setCityMapState] = useState<boolean>(false)
   const juniorCallRef = useRef(0)
   const successSound = ()=> playSound(successfulSound, {volume:0.5, loop:false});
   const failureSound = ()=> playSound(failSound, {volume:0.5, loop:false});
@@ -78,17 +77,6 @@ export default function CaseReviewPanel({
     setClosing(true);
   }
 
-   useEffect(()=>{
-     //Listen for escape key press to exit tutorial if active
-  document.addEventListener("keyup", (event)=>{
-        if(event.key === "ArrowLeft"){
-          changeCase("previous")
-        } 
-         if(event.key === "ArrowRight"){
-          changeCase("next")
-        } 
-      })
-  },[])
  /**
   * reset the state and show the 'no transcript selected' message
   * @param e the event object to detect whether the slide out animation has completed. 
@@ -157,6 +145,7 @@ export default function CaseReviewPanel({
           seniorCallSetter(true)
         }
         setInCall(true)
+      playCustomSound("callContent")
           //logic to simulate a brief call and chance based decision. 
           const callId = setTimeout(() => {
             simCall(colleagueLevel)
@@ -195,7 +184,7 @@ export default function CaseReviewPanel({
     }
   }
   function handleDecision(e: React.MouseEvent<HTMLButtonElement>) {
-    playButtonPress()
+    playCustomSound("buttonPress")
     if (transcript) {
       const decision = e.currentTarget.dataset.decision;
       const personWeighting: number = transcript.overallWeighting;
@@ -323,7 +312,7 @@ export default function CaseReviewPanel({
             <div id="case-map-container" className={(cityMapState ? "map-container-visible" : "map-container-hidden")}>
                 
                 <CaseReviewMap />
-                <button className="close-button" onClick={()=>{cityMapSetter(false);playButtonPress()}}><X/></button>
+                <button className="close-button" onClick={()=>{setCityMapState(false);playCustomSound("buttonPress")}}><X/></button>
                 
               </div>
             <h3>
@@ -332,7 +321,7 @@ export default function CaseReviewPanel({
             </h3>
             <div className="interviewee-details">
              
-              <CitizenAvatar key={transcript.identifier} transcript={transcript} cityMapState={cityMapState} cityMapSetter={cityMapSetter}/>
+              <CitizenAvatar key={transcript.identifier} transcript={transcript} cityMapState={cityMapState} cityMapSetter={setCityMapState}/>
              
               <div className="interviewee-information">
               <div className="details-row">
@@ -389,10 +378,10 @@ export default function CaseReviewPanel({
             }
             {transcript.encryptedDrive.activeDrive && 
             <>
-              <p><button className="drive-found-button" onClick={()=>{setDecrypt(true);playButtonPress()}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found </button></p>
+              <p><button className="drive-found-button" onClick={()=>{setDecrypt(true);playCustomSound("buttonPress")}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found </button></p>
             
               <div id="decrypt-container" className={(decrypt ? "decrypt-container-visible" : "decrypt-container-hidden")}>
-                <button id="close-decrypt" onClick={()=>{setDecrypt(false);playButtonPress();playButtonPress()}}><X /></button>
+                <button id="close-decrypt" onClick={()=>{setDecrypt(false);playCustomSound("buttonPress")}}><X /></button>
 
                 <DecryptConsole decryptobj={transcript.encryptedDrive} transcript={transcript} setTranscriptList={setTranscriptList} transcriptList={transcriptList}/>
                 
@@ -484,7 +473,7 @@ export default function CaseReviewPanel({
             <button
               aria-label="Close case details"
               id="transcript-close-button"
-              onClick={()=>{closeTranscript(); playButtonPress()}}
+              onClick={()=>{closeTranscript(); playCustomSound("buttonPress")}}
             >
               <X />
             </button>
@@ -512,10 +501,10 @@ export default function CaseReviewPanel({
                 
             </div>
             {playerData?.player_unlocks.includes("voucher10") && 
-              <button onClick={()=>{setShowSearch(true)}} id="search-button" >Search Console</button>
+              <button onClick={()=>{setShowSearch(true); playCustomSound("buttonPress")}} id="search-button" >Search Console</button>
             }
             <div id="search-container" className={(showSearch ? "search-visible" : "search-hidden" )}>
-               <button id="close-search" onClick={()=>{setShowSearch(false)}}><X /></button>
+               <button id="close-search" onClick={()=>{setShowSearch(false);playCustomSound("buttonPress")}}><X /></button>
               {playerData?.player_unlocks.includes("voucher10") && <SearchConsole />}
             </div>
             <div id="evidence-container" className={(showEvidence ? "evidence-visible" : "evidence-hidden" )}>
@@ -532,7 +521,7 @@ export default function CaseReviewPanel({
           >
             {!transcript.processed ? (
               <div className="decision-buttons-container"> 
-              <button onClick={()=>{changeCase("previous"),playButtonPress()}}><ChevronLeft /></button>
+              <button onClick={()=>{changeCase("previous"),playCustomSound("buttonPress")}}><ChevronLeft /></button>
                 <button id="nfa-button" data-decision="nfa" onClick={handleDecision}>
                   No further action
                 </button>
@@ -540,7 +529,7 @@ export default function CaseReviewPanel({
                   Send for re-education
                 </button>{" "}
                 
-                <button onClick={()=>{changeCase("next"),playButtonPress()}}><ChevronRight /></button>
+                <button onClick={()=>{changeCase("next"),playCustomSound("buttonPress")}}><ChevronRight /></button>
                
               </div>
             ) : (

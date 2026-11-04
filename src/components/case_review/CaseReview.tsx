@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import {LoaderCircle, SquareArrowDown } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import RulesPanel from "./RulesPanel";
-import { checkUpgradeActive, playButtonPress } from "../../assets/utils/helpers";
+import { checkUpgradeActive, playCustomSound } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css";
 
@@ -238,7 +238,7 @@ export default function TranscriptRev() {
                           : ""
                        + " rules-button"}
                       onClick={() => {
-                        playButtonPress()
+                        playCustomSound("buttonPress")
                         if(currentTranscript != null){
                           setCurrentTranscript(null)
                           setSelectedListItem("0");
