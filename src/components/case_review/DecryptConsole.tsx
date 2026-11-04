@@ -19,7 +19,6 @@ interface decryptProps{
 export default function DecryptConsole({decryptobj, transcriptList,transcript,setTranscriptList}:decryptProps){
 
     const [chances, setChances] = useState<number>(1)
-    const [completionPerc, setCompletionPerc] = useState<number>(0)
     const [decryptState, setDecryptState] = useState<boolean>(false)
     const [timerProgress, setTimerProgress] = useState<number>(100)
     const [loadData, setLoadData] = useState<boolean>(false)
@@ -109,9 +108,7 @@ useEffect(()=>{
         const currentValue = e.currentTarget.value.toLowerCase()
         const driveKeyCharacters = [...decryptobj.driveKey]
         const currentCharacters = [...currentValue]
-        if(currentCharacters.length === 0){
-            setCompletionPerc(0)
-        }
+   
         for (let index = 0; index < currentCharacters.length; index++) {
             const element = currentCharacters[index];
             if(driveKeyCharacters[index] != element){

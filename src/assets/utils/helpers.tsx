@@ -1,7 +1,7 @@
 import { locations } from "../../generator_modules/LocationGenerator";
 import { occupations } from "../../generator_modules/OccupationGenerator";
 import { allUpgrades } from "../../generator_modules/upgrades";
-import type { districtDetails, districtNameShape, locationsShape, occupationsShape, playerDataShape, playerStatsShape, UpgradeShape } from "../../interfaces/interfaces";
+import type { districtDetails, locationsShape, occupationsShape, playerDataShape, playerStatsShape, UpgradeShape } from "../../interfaces/interfaces";
 import keystroke_1 from "../../assets/sounds/keystroke_hard.mp3"
 import keystroke_2 from "../../assets/sounds/keystroke_medium.mp3"
 import keystroke_3 from "../../assets/sounds/keystroke_soft.mp3"
