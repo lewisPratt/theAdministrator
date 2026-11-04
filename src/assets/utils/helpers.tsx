@@ -5,6 +5,7 @@ import type { locationsShape, occupationsShape, playerDataShape, playerStatsShap
 import keystroke_1 from "../../assets/sounds/keystroke_hard.mp3"
 import keystroke_2 from "../../assets/sounds/keystroke_medium.mp3"
 import keystroke_3 from "../../assets/sounds/keystroke_soft.mp3"
+import buttonpress from "../../assets/sounds/button_soft.mp3"
 import { playSound } from "react-sounds";
 /**
  * Capitalizes the first letter of the string passed to it, returning a capitalized string
@@ -96,4 +97,9 @@ export function isStats(value : unknown) : value is playerStatsShape {
     const strokeSound = Math.floor(Math.random() * keystrokes.length);
     const playStroke = playSound(keystrokes[strokeSound], {volume:0.5, loop:false});
     return playStroke;
+  }
+
+  export function playButtonPress(){
+    const playButtonNoise = playSound(buttonpress, {volume:0.5, loop:false});
+    return playButtonNoise
   }

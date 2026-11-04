@@ -112,11 +112,8 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
       <CityMap giveDetails={false}/>
 
       <h1 id="login-header">Welcome Administrator</h1>
-      <p>Login below to start your mandatory shift.</p>
+      <p>Login and start your mandatory shift.</p>
       <form onSubmit={doLogin}>
-        <label id="login-label" htmlFor="admin-name">
-          Administrator Name:
-        </label>
 
         <div id="login-input-container">
           <input
@@ -126,6 +123,7 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
             id="login-input"
             name="admin-name"
             autoComplete="name"
+            aria-label="Administrator name"
           ></input>
           <button id="command-centre-submit-button">
             <ChevronRightCircle size={28} />

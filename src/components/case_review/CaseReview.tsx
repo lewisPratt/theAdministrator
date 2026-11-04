@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import {LoaderCircle, SquareArrowDown } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import RulesPanel from "./RulesPanel";
-import { checkUpgradeActive } from "../../assets/utils/helpers";
+import { checkUpgradeActive, playButtonPress } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css";
 
@@ -128,7 +128,7 @@ export default function TranscriptRev() {
         transcriptsArray.push(newPerson);
       }
     }
-
+    
     createCases()
       
     setAvailableTranscripts(transcriptsArray);
@@ -238,6 +238,7 @@ export default function TranscriptRev() {
                           : ""
                        + " rules-button"}
                       onClick={() => {
+                        playButtonPress()
                         if(currentTranscript != null){
                           setCurrentTranscript(null)
                           setSelectedListItem("0");

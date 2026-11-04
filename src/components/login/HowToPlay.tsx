@@ -9,9 +9,10 @@ export default function HowToPlay(){
         <section id='how-to-play-content'>
           <h1>How to Play</h1>
           <p>
-            {">"}_This is a text based <u>roleplaying game</u> where you review cases to determine each Citizens positive or
+            {">"}_This is a text based <u>roleplaying game</u> where you review open cases to determine each individuals positive or
             negative impact on The City.
           </p>
+          <p>_For the best experience, use a desktop computer to play.</p>
           <p>
             {">"}_Navigate a <u>simulated retro futuristic computer</u> terminal via <u>typed commands </u>to explore your new role as an Administrator.
           </p>

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import { playButtonPress } from "../../assets/utils/helpers";
 
 export default function ScoreTracker() {
   const { setCurrentSlug } = useContext(CurrentSlugContext);
@@ -20,6 +21,7 @@ export default function ScoreTracker() {
         onClick={() => {
           navigate("/UpgradeShop");
           setCurrentSlug("nav.upgrade");
+          playButtonPress()
         }}
         className={
           (tutorialState.tutorialActive && tutorialState.tutorialStep === 12

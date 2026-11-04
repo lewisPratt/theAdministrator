@@ -1,3 +1,4 @@
+import { playButtonPress } from "../../assets/utils/helpers";
 import type{ CodexSidePanelProps } from "../../interfaces/interfaces";
 
 export default function RulesPanel({
@@ -51,6 +52,7 @@ export default function RulesPanel({
          <button
         onClick={() => {
           codexStateSetter(false);
+          playButtonPress()
         }}
       >
         Close rules

@@ -2,6 +2,11 @@ import { useContext, useEffect, useRef, useState, type ChangeEvent, type Dispatc
 import type { encryptedDriveShape, reviewShape } from "../../interfaces/interfaces"
 import { LoaderCircle } from "lucide-react";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import { playButtonPress, playKeyStroke } from "../../assets/utils/helpers";
+import successfulOpen from "../../assets/sounds/unlock.wav"
+import failSound from "../../assets/sounds/blocked.mp3";
+
+import { playSound } from "react-sounds";
 
 
 interface decryptProps{
@@ -13,7 +18,7 @@ interface decryptProps{
 
 export default function DecryptConsole({decryptobj, transcriptList,transcript,setTranscriptList}:decryptProps){
 
-    const [chances, setChances] = useState<number>(2)
+    const [chances, setChances] = useState<number>(1)
     const [completionPerc, setCompletionPerc] = useState<number>(0)
     const [decryptState, setDecryptState] = useState<boolean>(false)
     const [timerProgress, setTimerProgress] = useState<number>(100)
@@ -26,6 +31,8 @@ export default function DecryptConsole({decryptobj, transcriptList,transcript,se
     let [success,setSuccess] = useState<boolean>(false)
     let failedReason = useRef("")
 
+    const openSound = ()=> playSound(successfulOpen)
+    const failureSound = ()=> playSound(failSound)
     
 useEffect(()=>{
     //set up timer for decrypt attempt
@@ -98,6 +105,7 @@ useEffect(()=>{
 
     function checkInput(e:ChangeEvent<HTMLInputElement>){
         //check the typed input against the drive key to see if it matches. if a mistake, give one chance then lock drive?
+        playKeyStroke()
         const currentValue = e.currentTarget.value
         const driveKeyCharacters = [...decryptobj.driveKey]
         const currentCharacters = [...e.currentTarget.value]
@@ -108,12 +116,15 @@ useEffect(()=>{
             const element = currentCharacters[index];
             if(driveKeyCharacters[index] != element){
                 //first mistake, give warning
-                if(chances>1){
-                    setChances(chances -1)
+                
+                if(chances === 1){
+                    failureSound()
+                    setChances(0)
                 }else{
                     //second mistake, decrypt error, lock device
+                    failureSound()
                     failedReason.current = "You failed to decrypt the device due to a Spelling Error."
-                   lockDevice()
+                    lockDevice()
                 }
             }
         }
@@ -127,6 +138,7 @@ useEffect(()=>{
 
         if(totalCharacterCount === currentCharCount && currentValue === decryptobj.driveKey){
             //successfully entered key
+            openSound()
             
             if(playerData){
                 let dataToUpdate = { ...playerData };
@@ -177,14 +189,14 @@ useEffect(()=>{
                     :
                     <>
                         <p className="mt-20">correctly enter encryption key to access data.</p>
-                        {!decryptState && <button className="mt-20" onClick={()=>setDecryptState(true)}>Start</button>}
+                        {!decryptState && <button className="mt-20" onClick={()=>{setDecryptState(true);playButtonPress()}}>Start</button>}
                         {/* if decrypt attempt hasn't yet started */}
                         {decryptState &&
                         <>
                         {/* if currently decrypting*/}
                             <p id="decrypt-key">{decryptobj.driveKey}</p>
                             
-                            {chances === 1 && <p >DecryptError: You have one attempt remaining.</p>}
+                            {chances === 0 && <p >DecryptError: You have one attempt remaining.</p>}
                             <progress className="mt-20 decrypt-count-down" value={timerProgress} max={100} >Progress</progress>
                             <input onChange={(e)=>{checkInput(e)}} className="decrypt-input" type="text"></input>
                             

@@ -23,7 +23,7 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
 import EvidenceStack from "./EvidenceStack";
-import { checkUpgradeActive } from "../../assets/utils/helpers";
+import { checkUpgradeActive, playButtonPress } from "../../assets/utils/helpers";
 import DecryptConsole from "./DecryptConsole";
 import CaseReviewMap from "./CaseReviewMapPanel";
 import SearchConsole from "./SearchInfo";
@@ -78,6 +78,17 @@ export default function CaseReviewPanel({
     setClosing(true);
   }
 
+   useEffect(()=>{
+     //Listen for escape key press to exit tutorial if active
+  document.addEventListener("keyup", (event)=>{
+        if(event.key === "ArrowLeft"){
+          changeCase("previous")
+        } 
+         if(event.key === "ArrowRight"){
+          changeCase("next")
+        } 
+      })
+  },[])
  /**
   * reset the state and show the 'no transcript selected' message
   * @param e the event object to detect whether the slide out animation has completed. 
@@ -184,6 +195,7 @@ export default function CaseReviewPanel({
     }
   }
   function handleDecision(e: React.MouseEvent<HTMLButtonElement>) {
+    playButtonPress()
     if (transcript) {
       const decision = e.currentTarget.dataset.decision;
       const personWeighting: number = transcript.overallWeighting;
@@ -205,6 +217,7 @@ export default function CaseReviewPanel({
         }
       }
 
+      
       
       function updateCreditTotal(creditAdjustment: number, direction: boolean, category: string) {
         if (playerData) {
@@ -376,10 +389,10 @@ export default function CaseReviewPanel({
             }
             {transcript.encryptedDrive.activeDrive && 
             <>
-              <p><button className="drive-found-button" onClick={()=>{setDecrypt(true)}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found </button></p>
+              <p><button className="drive-found-button" onClick={()=>{setDecrypt(true);playButtonPress()}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found </button></p>
             
               <div id="decrypt-container" className={(decrypt ? "decrypt-container-visible" : "decrypt-container-hidden")}>
-                <button id="close-decrypt" onClick={()=>{setDecrypt(false)}}><X /></button>
+                <button id="close-decrypt" onClick={()=>{setDecrypt(false);playButtonPress()}}><X /></button>
 
                 <DecryptConsole decryptobj={transcript.encryptedDrive} transcript={transcript} setTranscriptList={setTranscriptList} transcriptList={transcriptList}/>
                 
@@ -519,7 +532,7 @@ export default function CaseReviewPanel({
           >
             {!transcript.processed ? (
               <div className="decision-buttons-container"> 
-              <button onClick={()=>{changeCase("previous")}}><ChevronLeft /></button>
+              <button onClick={()=>{changeCase("previous"),playButtonPress()}}><ChevronLeft /></button>
                 <button id="nfa-button" data-decision="nfa" onClick={handleDecision}>
                   No further action
                 </button>
@@ -527,7 +540,7 @@ export default function CaseReviewPanel({
                   Send for re-education
                 </button>{" "}
                 
-                <button onClick={()=>{changeCase("next")}}><ChevronRight /></button>
+                <button onClick={()=>{changeCase("next"),playButtonPress()}}><ChevronRight /></button>
                
               </div>
             ) : (

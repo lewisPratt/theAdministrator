@@ -6,7 +6,7 @@ import AvailableCommandsList from "./AvailableCommandsList";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { playKeyStroke } from "../../assets/utils/helpers";
+import { playButtonPress, playKeyStroke } from "../../assets/utils/helpers";
 
 
 
@@ -117,6 +117,7 @@ export default function CommandInput() {
           type="submit"
           data-tooltip-id="nav-terminal-tooltip"
           data-tooltip-content="Submit Nav Command"
+          onClick={()=>playButtonPress()}
         >
           <ChevronRightCircle size={20} />
         </button>
@@ -128,7 +129,7 @@ export default function CommandInput() {
               ? "tutorial-highlight"
               : "") + " available-commands-button"
           }
-          onClick={toggleCommands}
+          onClick={(e)=>{toggleCommands(e);playButtonPress()}}
           data-tooltip-id="nav-bar-tooltip"
           data-tooltip-content="Nav Commands"
         >

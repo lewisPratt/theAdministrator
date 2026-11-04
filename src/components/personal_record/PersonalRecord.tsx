@@ -46,7 +46,6 @@ export default function PersonalRecord() {
                   <h1 >{playerData?.player_name}</h1>
                   <p>{playerData.player_title} Administrator</p>
                 </div>
-                {/* <p className="personal-record-tagline">View your mediocre personal achievements & upgrades.</p> */}
                 {/* //upgrades unlocked component */}
                 <UnlockedUpgrades />
                 

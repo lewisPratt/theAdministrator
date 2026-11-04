@@ -21,9 +21,9 @@ import NotLoggedIn from "../nav/NotLoggedIn";
 import PromotedSim from "./PromotedSim";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 
-import buttonNoise from "../../assets/sounds/button_soft.mp3"
 import failSound from "../../assets/sounds/blocked.mp3";
 import successfulSound from "../../assets/sounds/success_bling.mp3";
+import { playButtonPress } from "../../assets/utils/helpers";
 
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -37,7 +37,6 @@ export default function UpgradeShop() {
   const navigate = useNavigate();
 
   const [_upgradeErrorState, setUpgradeErrorState] = useState<string | null>(null);
-  const hoverClick = () => playSound(buttonNoise);
   const purchaseSound = () => playSound(successfulSound, {volume:0.5, loop:false});
   const cantAfford = () => playSound(failSound, {volume:0.5, loop:false});
   const tooltipRef1 = useRef<TooltipRefProps>(null);
@@ -166,6 +165,7 @@ export default function UpgradeShop() {
                     : ""
                 }
                 onClick={() => {
+                  playButtonPress();
                   navigate("/PersonalRecord");
                   setCurrentSlug("nav.personal");
                 }}
@@ -198,7 +198,7 @@ export default function UpgradeShop() {
                         data-upgrade-ident={upgrade[0]}
                         onClick={(e) => {
                           confirmChoice(e);
-                          hoverClick();
+                          playButtonPress()
                         }}
                       >
                         <Badge size={48}>{upgrade[1].icon}</Badge>
