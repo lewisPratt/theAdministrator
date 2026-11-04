@@ -16,7 +16,6 @@ import { checkUpgradeActive } from "../../assets/utils/helpers";
 import { Tooltip } from "react-tooltip";
 import "../../assets/css/caseReview.css";
 
-
 //TUTORIAL IMPORTS
 import type { TooltipRefProps } from "react-tooltip";
 import { TutorialContext } from "../../context_providers/TutorialContext";
@@ -230,6 +229,24 @@ export default function TranscriptRev() {
                        {reviewsComplete && <><button onClick={()=>loadNewShift("new")}>start new shift</button><button onClick={()=>setReviewDismissed(false)}>Summary</button> </>}
                     </li>
                   </ol>
+                  <button
+                      id="tutorial-step-11"
+                      className={
+                        tutorialState.tutorialActive &&
+                        tutorialState.tutorialStep === 11
+                          ? "tutorial-highlight"
+                          : ""
+                       + " rules-button"}
+                      onClick={() => {
+                        if(currentTranscript != null){
+                          setCurrentTranscript(null)
+                          setSelectedListItem("0");
+                        }
+                        setCodexState(true);
+                      }}
+                    >
+                      Rules
+                    </button>
             
                  
                 </div>
@@ -265,24 +282,7 @@ export default function TranscriptRev() {
             </div>
              <div className="helper-elements">
 
-                <button
-                      id="tutorial-step-11"
-                      className={
-                        tutorialState.tutorialActive &&
-                        tutorialState.tutorialStep === 11
-                          ? "tutorial-highlight"
-                          : ""
-                       + " rules-button"}
-                      onClick={() => {
-                        if(currentTranscript != null){
-                          setCurrentTranscript(null)
-                          setSelectedListItem("0");
-                        }
-                        setCodexState(true);
-                      }}
-                    >
-                      Rules
-                    </button>
+                
              </div>
           </section>
           </>) :

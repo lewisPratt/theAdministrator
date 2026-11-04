@@ -38,6 +38,7 @@ import NavBar from "./components/nav/NavBar";
 import { PlayerContext } from "./context_providers/PlayerContext";
 import Stats from "./components/statistics/Stats";
 import PageNotFound from "./components/PageNotFound"; 
+
 function App() {
   // const [typedName, setTypedName] = useState<string>("");
   const [adminName, setAdminName] = useState<string>("");
@@ -66,7 +67,6 @@ function App() {
     currentSlug,
     setCurrentSlug,
   };
-
  
 
   useEffect(() => {

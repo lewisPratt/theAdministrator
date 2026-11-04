@@ -27,8 +27,8 @@ import { checkUpgradeActive } from "../../assets/utils/helpers";
 import DecryptConsole from "./DecryptConsole";
 import CaseReviewMap from "./CaseReviewMapPanel";
 import SearchConsole from "./SearchInfo";
-//set to 1 to show debug info on weighting
-const debug: number = 0;
+import failSound from "../../assets/sounds/blocked.mp3";
+import successfulSound from "../../assets/sounds/success_bling.mp3";
 
 export default function CaseReviewPanel({
   transcript,
@@ -55,8 +55,8 @@ export default function CaseReviewPanel({
   const { tutorialState } = useContext(TutorialContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const juniorCallRef = useRef(0)
-  const successSound = () => playSound("ui/success_bling");
-  const failSound = () => playSound("ui/blocked");
+  const successSound = ()=> playSound(successfulSound, {volume:0.5, loop:false});
+  const failureSound = ()=> playSound(failSound, {volume:0.5, loop:false});
   let itemsToIdentify : number = 0
 
   let recPassDesc: string = "";
@@ -265,7 +265,7 @@ export default function CaseReviewPanel({
         case "nfa":
           if (personWeighting < 0) {
             //person is bad, negative consequence for wrong decision.
-            failSound();
+            failureSound();
             updateCreditTotal(wrongAnswer, false, "NFA");
           } else if (personWeighting >= 0) {
             //person is good, positive consequences for right decision
@@ -280,7 +280,7 @@ export default function CaseReviewPanel({
             updateCreditTotal(rightAnswer, true, "Re-educate");
           } else if (personWeighting >= 0) {
             //person is good, negative consequences for wrong deision
-            failSound();
+            failureSound();
             updateCreditTotal(wrongAnswer, false,"Re-educate");
           }
           break;
@@ -356,21 +356,6 @@ export default function CaseReviewPanel({
                 </p>
               </div>
               </div>
-
-              {debug === 1 && (
-                <>
-                  <p>
-                    Interview District: {transcript.location.district} -
-                    Occupation District: {transcript.occupation.district}{" "}
-                    Weighting: {transcript.overallWeighting}
-                  </p>
-                  <p>
-                    {transcript.weightingArray.map((item) => {
-                      return <span key={uuidv4()}> {item.evidenceText} |</span>;
-                    })}
-                  </p>
-                </>
-              )}
             </div>
 
             

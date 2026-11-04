@@ -12,6 +12,7 @@ import { type TooltipRefProps } from "react-tooltip";
 
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import { playKeyStroke } from "../../assets/utils/helpers";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -85,7 +86,7 @@ export default function CommandCentre() {
       }
     }
   }
-  console.log(playerData);
+
 
   return (
     <>
@@ -111,6 +112,7 @@ export default function CommandCentre() {
                       : "")
                   }
                   onSubmit={handleCommand}
+                  onChange={()=>playKeyStroke()}
                   method="post"
                 >
                   <div id="command-centre-input-container">

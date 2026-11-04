@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import AvailableCommandsList from "./AvailableCommandsList";
-import { playSound } from "react-sounds";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
+import { playKeyStroke } from "../../assets/utils/helpers";
+
+
+
 
 export default function CommandInput() {
   const [showCommands, setShowCommands] = useState<boolean>(false);
@@ -75,17 +78,7 @@ export default function CommandInput() {
     }
   }
 
-  function playKeyStroke() {
-    const keystrokes = [
-      "ui/keystroke_soft",
-      "ui/keystroke_medium",
-      "ui/keystroke_hard",
-    ];
-    const strokeSound = Math.floor(Math.random() * keystrokes.length);
-    console.log(strokeSound);
-    const playStroke = playSound(keystrokes[strokeSound]);
-    playStroke;
-  }
+  
 
   function resetInput(e: React.SubmitEvent<HTMLFormElement>) {
     e.currentTarget.reset();

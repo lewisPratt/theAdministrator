@@ -2,7 +2,10 @@ import { locations } from "../../generator_modules/LocationGenerator";
 import { occupations } from "../../generator_modules/OccupationGenerator";
 import { allUpgrades } from "../../generator_modules/upgrades";
 import type { locationsShape, occupationsShape, playerDataShape, playerStatsShape, UpgradeShape } from "../../interfaces/interfaces";
-
+import keystroke_1 from "../../assets/sounds/keystroke_hard.mp3"
+import keystroke_2 from "../../assets/sounds/keystroke_medium.mp3"
+import keystroke_3 from "../../assets/sounds/keystroke_soft.mp3"
+import { playSound } from "react-sounds";
 /**
  * Capitalizes the first letter of the string passed to it, returning a capitalized string
  * @param {string} val - the string that is to be capitalized
@@ -82,4 +85,15 @@ export function isStats(value : unknown) : value is playerStatsShape {
       typeof (value as playerStatsShape).total_credits_earned === "number" &&
       typeof (value as playerStatsShape).total_credits_lost === "number" 
     )
+  }
+
+  export function playKeyStroke() {
+    const keystrokes = [
+      keystroke_1,
+     keystroke_2,
+      keystroke_3,
+    ];
+    const strokeSound = Math.floor(Math.random() * keystrokes.length);
+    const playStroke = playSound(keystrokes[strokeSound], {volume:0.5, loop:false});
+    return playStroke;
   }

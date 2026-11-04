@@ -1,6 +1,8 @@
-import { Sound } from "react-sounds";
 import { useNavigate } from "react-router-dom";
 import "../../assets/css/welcome.css"
+import { playSound } from "react-sounds";
+import boot_up  from '../../assets/sounds/boot_up.mp3'
+import { useEffect } from "react";
 
 const welcomeMessages: string[] = [
   "Access granted. Provisionally.",
@@ -20,7 +22,13 @@ export default function WelcomeScreen() {
   const navigate = useNavigate();
   const welcomeMessage =
     welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
+  const handleCustomSound = () => playSound(boot_up, {volume:0.5, loop:false});
     
+  useEffect(()=>{
+    //trigger login sound from local audio file
+    handleCustomSound()
+  },[])
+
   function loginPause() {
     setTimeout(() => navigate("/Terminal"), 5000);
   }
@@ -30,7 +38,6 @@ export default function WelcomeScreen() {
     <div id="welcome-screen">
       <h1>Welcome</h1>
       <p>{welcomeMessage}</p>
-      <Sound name="system/boot_up" trigger="mount" options={{ loop: false }} />
     </div>
   );
 }

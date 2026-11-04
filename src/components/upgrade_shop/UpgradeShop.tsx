@@ -20,6 +20,11 @@ import { PlayerContext } from "../../context_providers/PlayerContext";
 import NotLoggedIn from "../nav/NotLoggedIn";
 import PromotedSim from "./PromotedSim";
 import { ErrorContext } from "../../context_providers/ErrorContext";
+
+import buttonNoise from "../../assets/sounds/button_soft.mp3"
+import failSound from "../../assets/sounds/blocked.mp3";
+import successfulSound from "../../assets/sounds/success_bling.mp3";
+
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [confirming, setConfirming] = useState<string | null>(null);
@@ -32,9 +37,9 @@ export default function UpgradeShop() {
   const navigate = useNavigate();
 
   const [_upgradeErrorState, setUpgradeErrorState] = useState<string | null>(null);
-  const hoverClick = () => playSound("ui/button_soft");
-  const purchaseSound = () => playSound("ui/success_bling");
-  const cantAfford = () => playSound("notification/error");
+  const hoverClick = () => playSound(buttonNoise);
+  const purchaseSound = () => playSound(successfulSound, {volume:0.5, loop:false});
+  const cantAfford = () => playSound(failSound, {volume:0.5, loop:false});
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
   const debug = false;
