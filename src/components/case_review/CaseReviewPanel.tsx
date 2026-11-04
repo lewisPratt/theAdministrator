@@ -323,7 +323,7 @@ export default function CaseReviewPanel({
             <div id="case-map-container" className={(cityMapState ? "map-container-visible" : "map-container-hidden")}>
                 
                 <CaseReviewMap />
-                <button className="close-button" onClick={()=>cityMapSetter(false)}><X/></button>
+                <button className="close-button" onClick={()=>{cityMapSetter(false);playButtonPress()}}><X/></button>
                 
               </div>
             <h3>
@@ -392,7 +392,7 @@ export default function CaseReviewPanel({
               <p><button className="drive-found-button" onClick={()=>{setDecrypt(true);playButtonPress()}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found </button></p>
             
               <div id="decrypt-container" className={(decrypt ? "decrypt-container-visible" : "decrypt-container-hidden")}>
-                <button id="close-decrypt" onClick={()=>{setDecrypt(false);playButtonPress()}}><X /></button>
+                <button id="close-decrypt" onClick={()=>{setDecrypt(false);playButtonPress();playButtonPress()}}><X /></button>
 
                 <DecryptConsole decryptobj={transcript.encryptedDrive} transcript={transcript} setTranscriptList={setTranscriptList} transcriptList={transcriptList}/>
                 
@@ -484,7 +484,7 @@ export default function CaseReviewPanel({
             <button
               aria-label="Close case details"
               id="transcript-close-button"
-              onClick={closeTranscript}
+              onClick={()=>{closeTranscript(); playButtonPress()}}
             >
               <X />
             </button>
