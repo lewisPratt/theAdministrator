@@ -158,21 +158,6 @@ React is ideal for the purposes of a browser based game, as it uses state and co
 
 This project was created as part of my Web Application Development Diploma (Milestone project 2), which required the inclusion of Javascript to add interactivity to a website. With the use of React, I have been able to create a web app that has Javascript at its core and includes a significant amount of interactivity for users. React is a very popular library, used by many organizations in the industry, so I was keen to up-skill myself in this area.
 
-Context : Wrapping UI components in a parent that provides its children with information they may need to render correctly or display relevant data. For example, setting the current user data as context and making any components that utilize the user data, as children of this context component. 
-
-    <PlayerContext value={playerContextValue}>
-      <UserProfile />
-      <UserUpgradesPanel />
-    </PlayerContext>
-
-Now in any child element of PlayerContext, you are able to declare
-
-     const {playerData, setPlayerData} = useContext("PlayerContext")
-
-and use the player data with ease. 
-
-Without utilizing context, it's necessary to 'drill down' from parent to child component and pass the variable needed from one component to the next. This is fine to do if the needed data is only one or two components deep, however it soon becomes impractical when there are multiple nested components and you have to pass the variable as a `prop` of every child component until the desired component is reached. 
-
 
 ### Why TypeScript?
 
