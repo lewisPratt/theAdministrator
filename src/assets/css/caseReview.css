@@ -69,6 +69,7 @@ progress::-webkit-progress-value {
 #decrypt-key {
   margin: 20px;
   font-size: 1.2rem;
+  user-select: none;
 }
 
 .decrypted-data-find {

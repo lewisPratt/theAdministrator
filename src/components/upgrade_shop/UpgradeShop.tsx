@@ -36,7 +36,7 @@ export default function UpgradeShop() {
   const [_upgradeErrorState, setUpgradeErrorState] = useState<string | null>(null);
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-  const debug :boolean = true;
+  const debug :boolean = false;
   const upgrades: UpgradeListShape = allUpgrades;
 
   useEffect(() => {
