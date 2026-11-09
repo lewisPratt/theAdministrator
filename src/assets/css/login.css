@@ -2,7 +2,9 @@
     padding: 10px;
     background-color: black;
 }
-
+#login-header{
+    line-height:2rem;
+}
 .scan-line-overlay {
     pointer-events: none;
 }

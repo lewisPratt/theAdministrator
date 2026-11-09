@@ -24,7 +24,9 @@ body {
     linear-gradient(to right, #395439 1px, transparent 1px),
     linear-gradient(to bottom, #395439 1px, transparent 1px);
     background-size: 120px 120px;
-
+a {
+  text-decoration: none;
+}
 }
 h1, p {
   text-shadow: 
@@ -81,7 +83,8 @@ p {
   color: #537953
 }
 
-button {
+button,
+.button-link {
   cursor: pointer;
   width: 200px;
   height: 50px;

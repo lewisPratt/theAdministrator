@@ -2,7 +2,7 @@
 
 # Project Summary
 
-The Administrator is a text based role playing game, developed in React.js. The project demonstrates the use of HTML, CSS, Javascript and most prominently, use of the React Javascript library.
+The Administrator is a text based role playing game developed in React.js. The project demonstrates the use of HTML, CSS, Javascript/Typescript and most prominently, use of the React Javascript library.
 
 The Administrator is a browser based logic game in which the user navigates a simulated retro computer system, passing judgement on citizens, earning currency and purchasing upgrades to improve the efficiency and speed of the cycle. The end goal is to unlock all senior Administrator titles, at which point the user is finally considered to have completed the games content.
 
@@ -85,23 +85,44 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
   - [Deployment](#deployment)
   - [Additional Reading References](#additional-reading-references)
 
-
+![Website mockups](/src/assets/images/readme/mockup.png)
 
 ## Pages Overview
 
---
+<img src="src/assets/images/readme/login.png"  alt="login page"  width=500 >
+
+<img src="src/assets/images/readme/how-to-play.png"  alt="how to play page"  width=500 >
+
+<img src="src/assets/images/readme/terminal.png"  alt="front screen terminal page"  width=500 >
+
+<img src="src/assets/images/readme/personal-record.png"  alt="personal record page"  width=500 >
+
+<img src="src/assets/images/readme/upgrade.png"  alt="upgrades page"  width=500 >
+
+<img src="src/assets/images/readme/review.png"  alt="review page"  width=500 >
+
+<img src="src/assets/images/readme/review2.png"  alt="review page with open case"  width=500 >
+
+
+### Pages with significant mobile device adjustments
+
+<img src="src/assets/images/readme/mobile-review.png" alt="mobile review page" width=500 >
+
 
 ## Technologies Used
 * HTML
 * CSS
 * Typescript 
+* Javascript
 * React.js
 * Vite
 * Google Fonts
 * Lucide Icons (Node package)
 * React Tooltips (node Package)
 * React sounds (node package)
-
+* DiceBear API
+* Affinity Designer/Photo
+  
 ## UX Design
 
 ### Project Goals

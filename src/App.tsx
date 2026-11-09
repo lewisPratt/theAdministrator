@@ -25,7 +25,7 @@ import {
 import { SoundProvider } from "react-sounds";
 import WelcomeScreen from "./components/login/WelcomeScreen";
 import GoodbyeScreen from "./components/login/GoodbyeScreen";
-import AboutGame from "./components/human_resources/AboutGame"; 
+import AboutGame from "./components/about/AboutGame"; 
 import PersonalRecord from "./components/personal_record/PersonalRecord";
 import HowToPlay from "./components/login/HowToPlay";
 import Footer from "./components/footer/Footer";
