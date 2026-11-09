@@ -6,6 +6,16 @@ The Administrator is a text based role playing game developed in React.js. The p
 
 The Administrator is a browser based logic game in which the user navigates a simulated retro computer system, passing judgement on citizens, earning currency and purchasing upgrades to improve the efficiency and speed of the cycle. The end goal is to unlock all senior Administrator titles, at which point the user is finally considered to have completed the games content.
 
+This readme contains extensive detail on development of the project in order to inform the assessor of my course work on the process that was undertaken. 
+
+<b><u>Assessors!</u></b>
+---
+In order to evaluate the entirety of this project, when logging into the game, please use the name
+
+"the_assessor"
+
+This will give you access to a debug tool that lets you manually increase your credit score, ensuring that all aspects of the game can be experienced for assessment.
+
 Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdministrator/)
 
 # Table of Contents
@@ -922,7 +932,9 @@ I built a debug tool inside the upgrade shop, utilizing a boolean value that wou
 
 ![Upgrade shop debugger](src/assets/images/readme/upgrade-shop-tool.png)
 
-The additional controls allowed me to quickly manipulate player data and experience purchasing upgrades as a normal player would. This tool proved invaluable to fine tuning of the upgrade system, allowing the quick identification of game breaking bugs. This code was removed from the game prior to final deployment due to it's only purpose being fulfilled in the development process. 
+The additional controls allowed me to quickly manipulate player data and experience purchasing upgrades as a normal player would. This tool proved invaluable to fine tuning of the upgrade system, allowing the quick identification of game breaking bugs. 
+
+This code remains in the game to allow assessors to experience the gameplay loop in a convenient way, without having to earn credits manually. 
 
 A similar tool was used in the case review component to quickly regenerate the available cases list without having to reload the component view.
 
