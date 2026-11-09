@@ -1,6 +1,6 @@
 import { ChevronRightCircle, CircleQuestionMark } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import AvailableCommandsList from "./AvailableCommandsList";
 import { ErrorContext } from "../../context_providers/ErrorContext";
@@ -14,10 +14,17 @@ import { playCustomSound, playKeyStroke } from "../../assets/utils/helpers";
 export default function CommandInput() {
   const [showCommands, setShowCommands] = useState<boolean>(false);
   const { setCurrentSlug } = useContext(CurrentSlugContext);
-  const { setErrorState } = useContext(ErrorContext);
+  const { errorState,setErrorState } = useContext(ErrorContext);
   const { tutorialState } = useContext(TutorialContext);
   const {playerData, setPlayerData} = useContext(PlayerContext)
   const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null)
+
+useEffect(()=>{
+  if(!errorState){
+    inputRef.current?.focus()
+  }
+},[errorState])
 
   function doLogout(){
     if(playerData) {
@@ -107,6 +114,7 @@ export default function CommandInput() {
           id="nav-text-input"
           name="command"
           autoComplete="off"
+          ref={inputRef}
           onChange={() => {
             playKeyStroke();
           }}

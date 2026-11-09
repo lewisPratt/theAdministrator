@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext,} from "react";
 import {ChevronRightCircle, LoaderCircle } from "lucide-react";
 import LeaveReq from "../LeaveReq";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +25,8 @@ export default function CommandCentre() {
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
 
+  const inputRef = useRef<HTMLInputElement>(null)
+
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
   //turn off loading indicator after set interval
@@ -40,6 +42,12 @@ export default function CommandCentre() {
     }
 }
 
+useEffect(()=>{
+  if(!errorState){
+      inputRef.current?.focus()
+
+  }
+},[errorState])
   function handleCommand(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     const formValues = new FormData(e.target);
@@ -81,8 +89,9 @@ export default function CommandCentre() {
           break;
         default:
           setErrorState("Command not recognized: " + command);
-          setLeaveReq(false);
+          playCustomSound("errorSound")
           e.currentTarget.reset();
+          leaveReq && setLeaveReq(false);
           break;
       }
     }
@@ -123,8 +132,10 @@ export default function CommandCentre() {
                       id="command-centre-input"
                       name="command"
                       autoComplete="off"
+                      ref={inputRef}
+                      autoFocus
              
-                    ></input>
+                    />
                     <button onClick={()=>playCustomSound("buttonPress")} aria-label="Submit navigation command" id="command-centre-submit-button">
                       <ChevronRightCircle size={28} />
                     </button>
@@ -149,6 +160,9 @@ export default function CommandCentre() {
                     <li className="command-row">
                       <p>Review open cases</p>
                       <p>nav.review</p>
+                    </li>
+                    <li className="command-row">
+                      <p>Personal Record</p> <p>nav.personal</p>
                     </li>
                     <li className="command-row">
                       <p>Upgrade Terminal</p> <p>nav.upgrade</p>
