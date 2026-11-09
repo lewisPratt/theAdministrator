@@ -30,14 +30,6 @@ export const allUpgrades: UpgradeListShape = {
     perkEffect: "+10% chance of identifying legality of carried items automatically.",
     icon: <Cpu size={12} x={6} y={6} />,
   },
-  // ["voucher3"]: {
-  //   name: "Upgraded Cognition Blocker",
-  //   type: "perk",
-  //   cost: 1200,
-  //   desc: "This technological leap in Administration technology will replace your Standard Issue Cognition Blocker with a Standard-Pro Edition Cognition Blocker (X1.5 free thought cognition allowance!) ",
-  //   perkEffect: "Identifies +1 carried item as a positive or negative factor.",
-  //   icon: <MemoryStick size={12} x={6} y={6} />,
-  // },
   ["voucher4"]: {
     name: "Extra Cases",
     type: "perk",
@@ -82,7 +74,7 @@ export const allUpgrades: UpgradeListShape = {
   ["voucher9"]: {
     name: "Upgraded Access Level: Evidence Stack",
     type: "perk",
-    cost: 1000,
+    cost: 400,
     desc: "Allows access to evidence after judgement is passed. Useful for the mandatory improvement of Administrator performance.",
     perkEffect: "Reveals evidence held against Citizens following judgement.",
     icon: <BookKey size={12} x={6} y={6} />,

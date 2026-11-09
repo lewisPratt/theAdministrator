@@ -149,6 +149,10 @@ useEffect(()=>{
 
         }else{
             //not yet at required character count
+            //check if next character should be a hyphen, if so, add it
+            if(driveKeyCharacters[currentCharCount] === "-"){
+                e.currentTarget.value = currentValue+"-"
+            }
         }
             
 

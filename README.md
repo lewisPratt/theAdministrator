@@ -130,6 +130,11 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
 The primary goal of The Administrator is to provide a visiting user with an visually and intellectually interesting experience, which challenges the players logic skills as well as promoting curiosity and problem solving through the gradual use of upgrades to enhance gameplay. The web app is primarily a means of entertainment rather than utility, therefore relying heavily on the game logic to perform as expected and reliably.
 The web app also serves as a more complex portfolio piece for the developer, showcasing an understanding of the principles and techniques used within a React based app.
 
+### Terminology
+
+- As a React web app, the project is essentially a single page website that has it's content loaded dynamically via Javascript. For this reason, when referring to a 'component' or 'component view', the developer is referring to what a user would normally perceive of as a page.
+- When referring to a 'logged in' user, the developer is referring to a user who has entered a name into the login components input and has progressed through the welcome screen to the logged in state of the web app. Once 'logged in' the users data is loaded from local storage and they can access the main content of the app.
+
 ### Key thematic choices
 
 - The web app has been designed from the beginning with the idea of being able to navigate the entire experience via keyboard alone. For this reason, every interactive element throughout the app has had the `tabindex` attribute assigned to it to ensure that there is seamless access via the keyboard.
@@ -139,7 +144,7 @@ The web app also serves as a more complex portfolio piece for the developer, sho
 
 ### Why React?
 
-React is ideal for the purposes of a browser based game, as it champions the use of state and conditional rendering to display relevant information to the user. It is also component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
+React is ideal for the purposes of a browser based game, as it uses state and conditional rendering to display relevant information to the user. Within the setting of a game, much of what is revealed to a player is conditional so React lends itself well to this project. React is component based, meaning the structure and content of a React website is split into multiple components of varying sizes and complexity. This component based structure allows for the easy re-use of key parts of UI across the project.
 
 This project was created as part of my Web Application Development Diploma (Milestone project 2), which required the inclusion of Javascript to add interactivity to a website. With the use of React, I have been able to create a web app that has Javascript at its core and includes a significant amount of interactivity for users. React is a very popular library, used by many organizations in the industry, so I was keen to up-skill myself in this area.
 
@@ -176,11 +181,6 @@ TypeScript compiles to plain JavaScript and it offers better protection against 
 Although there are benefits to TypeScript, it cannot cover all eventualities as the TypeScript code is only compiled once at build time. The type checking is no longer present (due to it being plain JS code) after build, so if the shape of an object changes (such as an object stored in local storage) errors may occur that were not expected by the developer. 
 This error could arise from an older version of the saved playerdata being loaded or the data stored in localStorage being manipulated by the user directly. 
 For this reason, I have put further checks in place to ensure the shape of the item I am trying to access, matches the type I have defined. (present in the Nav component when loading locally stored user data). Try Catch blocks have also been used when fetching from localstorage and parsing JSON data, to ensure that errors are caught and handled gracefully. Further details in testing section. 
-
-### Terminology
-
-- As a React web app, the project is essentially a single page website that has it's content loaded dynamically via Javascript. For this reason, when referring to a 'component' or 'component view', the developer is referring to what a user would normally perceive of as a page.
-- When referring to a 'logged in' user, the developer is referring to a user who has entered a name into the login components input and has progressed through the welcome screen to the logged in state of the web app. Once 'logged in' the users data is loaded from local storage and they can access the main content of the app.
 
 
 ### Target Audience
@@ -220,13 +220,13 @@ There are 2 main audiences for the web app:
 The following user stories describe the key ways in which the site may be used, from the perspective of different users.
 
 #### User Story 1 - Casual browser game player
-
-
+---
 (Must Have)
+
 
 I am a new user who wants to know what this website is when visiting it for the first time and how to play.
 
-#### Acceptance Criteria
+<!-- #### Acceptance Criteria
 
 - [x] The first page that the user sees should have a clear call to action, helping new users access the desired information.
 - [x] Information should be accessible to access via conventional peripherals or accessability aids.
@@ -240,20 +240,19 @@ I am a new user who wants to know what this website is when visiting it for the 
 - [x] Ensure that the call to action is accessible via both mouse input and keyboard input.
 - [x] Provide a concise and accurate explanation of the core concepts of the game loop and purpose of the web app.
 - [x] Add clear call to action button to return to the front page of the app.
-- [x] Build a tutorial that walks players through each part of the app and explains key design and gameplay concepts.
+- [x] Build a tutorial that walks players through each part of the app and explains key design and gameplay concepts. -->
 
 #### Visual Journey
 
 ![Complete User Story 1](src/assets/images/readme/user-story-1.webp "Complete User Story 1")
 
 #### User Story 2 - Casual browser game player
-
-
+---
 (Must Have)
 
 I am a returning player and want to see statistics on my actions within the game as well as delete my stored game data if i wish to
 
-#### Acceptance Criteria
+<!-- #### Acceptance Criteria
 
 - [x] There should be an easily identifiable location for personal statistics information once a players data is loaded.
 - [x] Player statistics and unlocks should be easily identifiable and clearly defined
@@ -267,20 +266,19 @@ I am a returning player and want to see statistics on my actions within the game
 - [x] Ensure that how to navigate to a players personal record is clear and easy to do
 - [x] Ensure that the layout for the personal record component view is responsive and clear in determining the different categories of player data.
 - [x] Provide a call to action button to allow players to delete stored data.
-- [x] Build a confirmation state to ensure that once pressed, the player needs to confirm their decision to delete the stored data.
+- [x] Build a confirmation state to ensure that once pressed, the player needs to confirm their decision to delete the stored data. -->
 
 #### Visual Journey
 
 ![Complete User Story 1](src/assets/images/readme/user-story-2.webp "Complete User Story 1")
 
  #### User Story 3 - Casual browser game player
-
-
+---
 (Must Have)
 
 I would like to be able to control the use of sound within the app.
 
-#### Acceptance Criteria
+<!-- #### Acceptance Criteria
 
 - [x] There should be an easily identifiable route to disable/enable sound within the app.
 - [x] No key gameplay mechanics should rely on the player being able to hear the sounds being made by the app.
@@ -291,20 +289,19 @@ I would like to be able to control the use of sound within the app.
 - [x] Ensure that all component views of the app are covered by the sound controls (ensuring that muting sound in one view means it is muted in all views)
 - [x] Add a clear call to action that easily toggles the use of sound within the app.
 - [x] Provide feedback to the user to inform them as to the current state of sound within the app (either on or off)
-- [x] Ensure that the call to action button is accessible to adaptive technologies.
+- [x] Ensure that the call to action button is accessible to adaptive technologies. -->
 
 #### Visual Journey
 
 ![Complete User Story 1](src/assets/images/readme/user-story-3.webp "Complete User Story 1")
 
 #### User Story 4 - Prospective Employer
-
-
+---
 (Must Have)
 
 I would like to ensure adequate safeguards are in place to manage navigation input submissions effectively
 
-#### Acceptance Criteria
+<!-- #### Acceptance Criteria
 
 - [x] When a text input is submitted, if the content is not recognized or does not have an effect, the user should be informed of this as an error.
 - [x] Navigating to pages via the use of direct URL manipulation should produce a predictable response. If the user is logged in, gameplay elements should be visible, if the user is not logged in, the user should be re-directed to the login page.
@@ -314,20 +311,19 @@ I would like to ensure adequate safeguards are in place to manage navigation inp
 - [x] Implement component switching logic that covers all navigation routes included made abaialble to the user.
 - [x] Add catch to switching logic that catches any routes that are not recognized (due to not existing or misspelling)
 - [x] Use an error state to conditionally render a warning to the user, informing them that the command they entered was not recognized.
-- [x] Provide a button to dismiss the warning and reset the error state
+- [x] Provide a button to dismiss the warning and reset the error state -->
 
 #### Visual Journey
 
 ![Complete User Story 1](src/assets/images/readme/user-story-4.webp "Complete User Story 1")
 
 #### User Story 5 - Prospective Employer
-
-
+---
 (Must Have)
 
 I would like to ensure adequate safeguards are in place to manage direct URL manipulation.
 
-#### Acceptance Criteria
+<!-- #### Acceptance Criteria
 
 - [x] Game logic and data should not render for a non logged in user when they have navigated to a component view via the URL directly.
 - [x] If a non-logged in user navigates to a component view that requires logged in status, they should be re-directed to log in and load player data.
@@ -338,20 +334,19 @@ I would like to ensure adequate safeguards are in place to manage direct URL man
 - [x] Set user as logged in using session storage when they successfully login.
 - [x] Check in each component view to see if use is currently logged in. Conditionally render content dependant on logged in status.
 - [x] Implement call to action to redirect to login if not logged in.
-- [x] Manage session cleanup when user logs out, clearing logged in status.
+- [x] Manage session cleanup when user logs out, clearing logged in status. -->
 
 #### Visual Journey
 
 ![Complete User Story 1](src/assets/images/readme/user-story-5.webp "Complete User Story 1")
 
 #### User Story 6 - Prospective Employer
-
-
+---
 (Must Have)
 
 I would like to see the rationale for this project and view the developers other projects.
 
-#### Acceptance Criteria
+<!-- #### Acceptance Criteria
 
 - [x] Navigation command for this content should be obvious and logical
 - [x] Rationale content should be concise and easy to read.
@@ -361,7 +356,7 @@ I would like to see the rationale for this project and view the developers other
 
 - [x] Implement navigation command (nav.about) to allow users access to this component view
 - [x] Include a brief description of the project and why it was created
-- [x] Add clear call to action button to link to developers other projects.
+- [x] Add clear call to action button to link to developers other projects. -->
 
 #### Visual Journey
 
@@ -369,13 +364,12 @@ I would like to see the rationale for this project and view the developers other
 
 
 #### User Story 7 - Casual browser game player
-
-
+---
 (Could Have)
 
 I would like to be able to create two player accounts for the game and save their game data separately, ensuring that one players data is not overwritten by the others. 
 
-#### Acceptance Criteria
+<!-- #### Acceptance Criteria
 
 - [ ] Login page should allow the creation of additional players without the overwriting of previous players data
 - [ ] When the second player logs in, there should be no indication that there is another players data saved in local storage.
@@ -386,9 +380,9 @@ I would like to be able to create two player accounts for the game and save thei
 - [ ] Implement check at login to determine if player is returning or new. 
 - [ ] If player is new and there is no other data stored, login as usual. 
 - [ ] If player is new and there is previous save data, save data alongside previous players data and login
-- [ ] Save all game data to the currently logged in player, without impacting on other players saved data. 
+- [ ] Save all game data to the currently logged in player, without impacting on other players saved data.  -->
 
-#### User Story Outcomes
+### User Story Outcomes
 
 During development, all Must Have user stories were implemented successfully. user story 7 was classed as a 'Could Have' feature due to it not being essential for the overall gameplay loop. 
 I decided during development that the use case for being able to save multiple users data on the same machine is very limited and not likely to become an issue for the majority of users who would access the app. 
@@ -796,6 +790,85 @@ Due to hosting the project on GH pages and having no backend features at all, it
 --
 
 ## Testing
+
+### User Testing
+
+During development, I utilized family, friends and fellow students on my Web development course to play test the game and report back with their experiences and any bugs they came across. 
+
+I did a significant amount of play testing myself to ensure that the game was reliably playable and no significant game breaking bugs were present. 
+
+#### Play tester 1
+---
+  
+  When entering the decrypt key to unlock an encrypted device, the play tested attempted to just copy and paste the decrypt key. This immediately solved the decrypt puzzle, within seconds of it starting, highlighting a significant bug that affected gameplay. 
+
+  <img src="src/assets/images/readme/decrypt-bug-1.gif">
+
+  In order to counter this, I chose to implement a CSS rule that ensured the user could no longer highlight and copy the text. This was achieved using `user-select:none`.
+  
+  The time limit on entering the key ensures that further efforts to work around this mechanic are difficult for the majority of users.
+
+#### Play tester 2
+---
+  
+  This play tester mentioned that the background grid texture was somewhat distracting and made it difficult to ascertain what was part of the UI and what was in the background. I tackled this by reducing the opacity of the grid lines in Affinity photo, causing the lines to have a darker shade of green and making the UI stand out from it. 
+
+#### Play tester 3
+---
+  
+  Whilst playing through the gameplay loop, the tester identified after unlocking the "Evidence Stack" upgrade, that this would be a useful upgrade to have early on, as it helped the player to understand the factors influencing a citizens positive or negative standing without having to read a long detailed explanation of this concept. 
+
+  <img src="src/assets/images/readme/evidence-stack.png" width=500>
+
+
+  To address this, I reduced the cost of this upgrade to ensure that it was affordable after only a few correctly judged cases. 
+
+#### Play tester 4
+---
+  
+  The first implementation of the Decrypt key mechanic required the player to enter every character within the key, including the "-" between words. 
+
+  This play tester tried to do so using their phone as well as a desktop computer. Using a mobile device was harder due to the time limit and the need to swap between keyboards (alphabet and punctuation to enter the hyphen character).  Combined with the reduced accuracy of using a touchscreen keyboard quickly, meant that the decrypt key was practically impossible to enter on mobile devices. 
+  
+  To address this, I implemented a fix that removed the need to enter the separating "-" and allowed the user to type only alphabetic characters, without having to swap between virtual keyboard types. 
+
+    if(driveKeyCharacters[currentCharCount] === "-"){
+     e.currentTarget.value = currentValue + "-";
+    }
+  
+#### Play tester 5
+---
+  
+  Whilst completing a case review, the tester wanted to logout to end their play session. When using the clickable links menu, they noticed that the logout option was not visible as it was hidden behind the case review panel. 
+
+  <img src="src/assets/images/readme/commands-list-bug.png" width=500>
+
+
+  To address this, I added a z-index CSS rule to the container of the list, setting it to show above the case review panel:  
+
+    #commands-list{
+      z-index: 90;
+    }
+
+#### Play tester 6
+---
+  
+  When sharing my project with the rest of the students in my cohort, one student suggested that I try to implement a tutorial/walkthrough system that would walk a new player through each feature and step they needed to take in order to explore the full gameplay loop. 
+  I decided to develop this idea and use the "React-tooltip" package to easily identify the key pieces of UI for a new player. 
+
+  <img src="src/assets/images/readme/tutorial-1.png" width=500>
+  <img src="src/assets/images/readme/tutorial-2.png" width=500>
+  <img src="src/assets/images/readme/tutorial-3.png" width=500>
+
+This was achieved through the use of "useState()", using a JS object to set the current state (active or inactive) of the tutorial and what step the tutorial is on. 
+
+I also implemented a JS solution to ensuring that the user was not able to tab through interactive elements of the page, other than the active tutorial elements. This ensured that inputs and buttons could not be selected whilst the tutorial overlay was active. 
+
+To do this, I used JS to render the main content of the app `inert` after applying a tutorial class to the currently focused tutorial element to change it's z-index to appear above the tutorial overlay. I then used Reacts `createPortal()` function to render the tooltip outside of the `inert` container, allowing it to be interacted with during the tutorial. 
+
+I also added an event listener to allow the user to exit the tutorial at any point by pressing the escape key. 
+
+
 
 ### Validating saved player data
 
