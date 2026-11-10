@@ -671,8 +671,8 @@ The current strategy ensures that the user does not become blocked from logging 
 
 | Page | Validation | Comments |
 |--|--|--|
-| Login | <img src="src/assets/images/readme/validation/html/login-html-validation.png" width=200> | Warnings caused by external package injecting style sheet at run time. No way to fix without editing package directly. |
-| Terminal | <img src="src/assets/images/readme/button-hover.png" width=200> |
+| Login | <img src="src/assets/images/readme/validation/html/login-html-validation.png" width=200> | Warnings caused by external package (react tooltip) injecting style sheet at run time. No way to fix without editing package directly. |
+| Terminal | <img src="src/assets/images/readme/validation/html/terminal-html-validation.png" width=200> | As Above
 | Upgrade | <img src="src/assets/images/readme/button-hover.png" width=200> |
 | Personal record | <img src="src/assets/images/readme/button-hover.png" width=200> |
 | Case Review | <img src="src/assets/images/readme/button-hover.png" width=200> |
