@@ -169,7 +169,7 @@ h5 {
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .window-header {

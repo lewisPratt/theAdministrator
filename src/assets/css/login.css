@@ -1,6 +1,7 @@
 #city-map {
     padding: 10px;
     background-color: black;
+    max-height: 400px;
 }
 #login-header{
     line-height:2rem;
@@ -162,6 +163,9 @@ INTERACTIVE PSEUDO CLASSES
     align-items: center;
 }
 
+#login-input{
+    width:300px;
+}
 
 
 }

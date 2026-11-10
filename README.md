@@ -1,5 +1,7 @@
 # The Administrator
 
+![Website mockups](/src/assets/images/readme/mockup.png)
+
 # Project Summary
 
 The Administrator is a text based role playing game developed in React.js. The project demonstrates the use of HTML, CSS, Javascript/Typescript and most prominently, use of the React Javascript library.
@@ -7,16 +9,6 @@ The Administrator is a text based role playing game developed in React.js. The p
 The Administrator is a browser based logic game in which the user navigates a simulated retro computer system, passing judgement on citizens, earning currency and purchasing upgrades to improve the efficiency and speed of the cycle. The end goal is to unlock all senior Administrator titles, at which point the user is finally considered to have completed the games content.
 
 This readme contains extensive detail on development of the project in order to inform the assessor of my course work on the process that was undertaken. 
-
-<b><u>Assessors!</u></b>
----
-In order to evaluate the entirety of this project, when logging into the game, please use the name
-
-"the_assessor"
-
-This will give you access to a debug tool that lets you manually increase your credit score, ensuring that all aspects of the game can be experienced for assessment.
-
-Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdministrator/)
 
 # Table of Contents
 
@@ -95,28 +87,26 @@ Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdmini
   - [Deployment](#deployment)
   - [Additional Reading References](#additional-reading-references)
 
-![Website mockups](/src/assets/images/readme/mockup.png)
+<u>Assessment</u>
+---
+In order to evaluate the entirety of this project, when logging into the game, please use the name
+
+"the_assessor"
+
+This will give you access to a debug tool on the upgrade view that lets you manually increase your credit score, ensuring that all aspects of the game can be experienced for assessment.
+
+Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdministrator/)
 
 ## Pages Overview
 
-<img src="src/assets/images/readme/login.png"  alt="login page"  width=500 >
+<img src="src/assets/images/readme/pages.webp"  alt="login page"  width=500 >
 
-<img src="src/assets/images/readme/how-to-play.png"  alt="how to play page"  width=500 >
 
-<img src="src/assets/images/readme/terminal.png"  alt="front screen terminal page"  width=500 >
-
-<img src="src/assets/images/readme/personal-record.png"  alt="personal record page"  width=500 >
-
-<img src="src/assets/images/readme/upgrade.png"  alt="upgrades page"  width=500 >
-
-<img src="src/assets/images/readme/review.png"  alt="review page"  width=500 >
-
-<img src="src/assets/images/readme/review2.png"  alt="review page with open case"  width=500 >
 
 
 ### Pages with significant mobile device adjustments
 
-<img src="src/assets/images/readme/mobile-review.png" alt="mobile review page" width=500 >
+<img src="src/assets/images/readme/mobile-review.png" alt="mobile review page" width=200 >
 
 
 ## Technologies Used
@@ -221,21 +211,13 @@ The following user stories describe the key ways in which the site may be used, 
 
 I am a new user who wants to know what this website is when visiting it for the first time and how to play.
 
-<!-- #### Acceptance Criteria
+#### Acceptance Criteria
 
 - [x] The first page that the user sees should have a clear call to action, helping new users access the desired information.
 - [x] Information should be accessible to access via conventional peripherals or accessability aids.
 - [x] The description content should be short and useful to a new user.
 - [x] There should be an easy way to return to the front page of the web app.
 - [x] When logged in there should be an easy to follow explanation of how to play.
-
-#### Tasks
-
-- [x] Provide a clear Call to action button, highlighting where to go for information on the app.
-- [x] Ensure that the call to action is accessible via both mouse input and keyboard input.
-- [x] Provide a concise and accurate explanation of the core concepts of the game loop and purpose of the web app.
-- [x] Add clear call to action button to return to the front page of the app.
-- [x] Build a tutorial that walks players through each part of the app and explains key design and gameplay concepts. -->
 
 #### Visual Journey
 
@@ -247,7 +229,7 @@ I am a new user who wants to know what this website is when visiting it for the 
 
 I am a returning player and want to see statistics on my actions within the game as well as delete my stored game data if i wish to
 
-<!-- #### Acceptance Criteria
+#### Acceptance Criteria
 
 - [x] There should be an easily identifiable location for personal statistics information once a players data is loaded.
 - [x] Player statistics and unlocks should be easily identifiable and clearly defined
@@ -255,13 +237,6 @@ I am a returning player and want to see statistics on my actions within the game
 - [x] There should be an obvious call to action to delete stored player data.
 - [x] confirmation should be needed before deleting data to ensure accidental deletion doesn't occur.
 
-#### Tasks
-
-- [x] Build a clear component view for personal statistics and other stored player data.
-- [x] Ensure that how to navigate to a players personal record is clear and easy to do
-- [x] Ensure that the layout for the personal record component view is responsive and clear in determining the different categories of player data.
-- [x] Provide a call to action button to allow players to delete stored data.
-- [x] Build a confirmation state to ensure that once pressed, the player needs to confirm their decision to delete the stored data. -->
 
 #### Visual Journey
 
@@ -273,18 +248,11 @@ I am a returning player and want to see statistics on my actions within the game
 
 I would like to be able to control the use of sound within the app.
 
-<!-- #### Acceptance Criteria
+#### Acceptance Criteria
 
 - [x] There should be an easily identifiable route to disable/enable sound within the app.
 - [x] No key gameplay mechanics should rely on the player being able to hear the sounds being made by the app.
 
-#### Tasks
-
-- [x] Utilize react compatible package to implement the use of sound throughout the app.
-- [x] Ensure that all component views of the app are covered by the sound controls (ensuring that muting sound in one view means it is muted in all views)
-- [x] Add a clear call to action that easily toggles the use of sound within the app.
-- [x] Provide feedback to the user to inform them as to the current state of sound within the app (either on or off)
-- [x] Ensure that the call to action button is accessible to adaptive technologies. -->
 
 #### Visual Journey
 
@@ -296,17 +264,11 @@ I would like to be able to control the use of sound within the app.
 
 I would like to ensure adequate safeguards are in place to manage navigation input submissions effectively
 
-<!-- #### Acceptance Criteria
+#### Acceptance Criteria
 
 - [x] When a text input is submitted, if the content is not recognized or does not have an effect, the user should be informed of this as an error.
 - [x] Navigating to pages via the use of direct URL manipulation should produce a predictable response. If the user is logged in, gameplay elements should be visible, if the user is not logged in, the user should be re-directed to the login page.
 
-#### Tasks
-
-- [x] Implement component switching logic that covers all navigation routes included made abaialble to the user.
-- [x] Add catch to switching logic that catches any routes that are not recognized (due to not existing or misspelling)
-- [x] Use an error state to conditionally render a warning to the user, informing them that the command they entered was not recognized.
-- [x] Provide a button to dismiss the warning and reset the error state -->
 
 #### Visual Journey
 
@@ -318,18 +280,11 @@ I would like to ensure adequate safeguards are in place to manage navigation inp
 
 I would like to ensure adequate safeguards are in place to manage direct URL manipulation.
 
-<!-- #### Acceptance Criteria
+#### Acceptance Criteria
 
 - [x] Game logic and data should not render for a non logged in user when they have navigated to a component view via the URL directly.
 - [x] If a non-logged in user navigates to a component view that requires logged in status, they should be re-directed to log in and load player data.
 
-#### Tasks
-
-- [x] Implement the use of session token data to check whether the user has been logged in.
-- [x] Set user as logged in using session storage when they successfully login.
-- [x] Check in each component view to see if use is currently logged in. Conditionally render content dependant on logged in status.
-- [x] Implement call to action to redirect to login if not logged in.
-- [x] Manage session cleanup when user logs out, clearing logged in status. -->
 
 #### Visual Journey
 
@@ -341,17 +296,12 @@ I would like to ensure adequate safeguards are in place to manage direct URL man
 
 I would like to see the rationale for this project and view the developers other projects.
 
-<!-- #### Acceptance Criteria
+#### Acceptance Criteria
 
 - [x] Navigation command for this content should be obvious and logical
 - [x] Rationale content should be concise and easy to read.
 - [x] Link should be provided to developers other projects
 
-#### Tasks
-
-- [x] Implement navigation command (nav.about) to allow users access to this component view
-- [x] Include a brief description of the project and why it was created
-- [x] Add clear call to action button to link to developers other projects. -->
 
 #### Visual Journey
 
@@ -364,18 +314,12 @@ I would like to see the rationale for this project and view the developers other
 
 I would like to be able to create two player accounts for the game and save their game data separately, ensuring that one players data is not overwritten by the others. 
 
-<!-- #### Acceptance Criteria
+#### Acceptance Criteria
 
 - [ ] Login page should allow the creation of additional players without the overwriting of previous players data
 - [ ] When the second player logs in, there should be no indication that there is another players data saved in local storage.
 - [ ] Each individual player should be able to delete their own stored data without risk of effecting other players data. 
 
-#### Tasks
-
-- [ ] Implement check at login to determine if player is returning or new. 
-- [ ] If player is new and there is no other data stored, login as usual. 
-- [ ] If player is new and there is previous save data, save data alongside previous players data and login
-- [ ] Save all game data to the currently logged in player, without impacting on other players saved data.  -->
 
 ### User Story Outcomes
 
@@ -387,37 +331,25 @@ Not including this feature in the current release of the project does not impact
 
 ## Wireframes
 ### Desktop
-
-![Wireframes](src/assets/images/readme/wireframes-desktop.webp)
+<img src="src/assets/images/readme/wireframes-desktop.webp" alt="wireframes" width=500>
 
 ### Mobile
 Due to the mobile first and responsive design approach maintained throughout development, the majority of the views in the app render almost identically regardless of viewing platform. The following wireframes identify the changes required within the more complex components, to render a usable view that promotes a positive UX. 
 
-![wireframes-mobile](src/assets/images/readme/wireframes-mobile.webp)
+<img src="src/assets/images/readme/wireframes-mobile.webp" alt="wireframes" width=500>
 
 ## Design \& Style
 
 Inspiration for the aesthetic of the app was taken from retro-futuristic concept art and popular media such as films, tv shows and video games. I focussed on my favorite franchises, Alien and Bladerunner. Reference images helped to replicate my own version of the computer terminal aesthetic. 
 
-<img src="src/assets/images/readme/reference-1.webp" alt="Reference image 1 - UI design mockup" width=500px >
+<img src="src/assets/images/readme/reference-images.webp" alt="Reference image 1 - UI design mockup" width=500 >
 
-[Reference](https://www.reddit.com/r/web_design/comments/1psvnlg/i_made_an_opensource_retrofuturistic_ui_component/)
+[Ui Design Reference](https://www.reddit.com/r/web_design/comments/1psvnlg/i_made_an_opensource_retrofuturistic_ui_component/)
+[Bladerunner 2049] [Alien isolation (video game)] [Alien movie and tv show]
 
-<img src="src/assets/images/readme/reference-2.jpg" alt="Reference image 2 - Alien computer" width=500px>
 
-[Reference - Alien]
 
-<img src="src/assets/images/readme/reference-3.jpg" alt="Reference image 3 - Bladerunner 2049 computer" width=500px>
 
-[Bladerunner 2049]
-
-<img src="src/assets/images/readme/reference-4.webp" alt="Reference image 5 - Alien computer (video game)" width=500px>
-
-[Alien Isolation: Video game]
-
-<img src="src/assets/images/readme/reference-5.jpg" alt="Reference image 5 - Alien computer" width=500px>
-
-[Reference - Alien Earth (tv show)]
 
 ### Styling
 
@@ -472,7 +404,7 @@ I used Affinity designer to create a slightly bevelled grid texture to use as th
     }
 
 
-<img src="src/assets/images/grid-bg.webp" width=500px>
+<img src="src/assets/images/grid-bg.webp" width=300px>
 
 This background image shows on desktop devices (or devices wider than 768px) as on a small screen, the content height changes frequently, causing the background to resize noticeably when elements are shown or hidden. 
 On mobile devices, a simple CSS grid was implemented to keep a clean and distraction free background on the limited screen size.
@@ -485,7 +417,7 @@ On mobile devices, a simple CSS grid was implemented to keep a clean and distrac
       background-size: 120px 120px;
     }
 
-<img src="src/assets/images/readme/mobile-bg.png" width=500px>
+<img src="src/assets/images/readme/mobile-bg.png" width=300px>
 
 A scan-line overlay was added to replicate the look of a vintage CRT monitor. This is primarily visible on solid green elements such as buttons or non black backgrounds.
 
@@ -505,13 +437,14 @@ A scan-line overlay was added to replicate the look of a vintage CRT monitor. Th
     background-size: 100% 4px;
   }
 
-<img src="src/assets/images/readme/scanlines.png" width=500px>
+<img src="src/assets/images/readme/scanlines.png" width=300px>
 
 ---
 ### Contrast
 [webaim.org](https://webaim.org/resources/contrastchecker/) was used to check the contrast value between my two primary colours and the result showed a pass with high contrast at 14.82:1
 
-![Contrast checker result](src/assets/images/readme/contrast-results.png)
+
+<img src="src/assets/images/readme/contrast-results.png" alt="contrast results" width=300>
 
 With the use of only two colours, it was also important to ensure that similar/identical elements that appear across different components are styled consistently to ensure that calls to action (CTA) and other important elements are easy to identify.
 Buttons have consistent styling, with hover effects to demonstrate they are interactive elements. 
@@ -720,19 +653,20 @@ No LLM generated code snippets or automated deployment models were utilized in t
 
 ### Use of SVG graphics in city map component
 
-Having had very little experience with svg graphics in the past, I was keen to ensure I expanded my knowledge in this area whilst completing this project. Whilst exploring reference images, I came across a number of UIs that featured a wireframe type city map as a focal point and felt this would be a great fit for my app.
+Having had very little experience with svg graphics in the past, I was keen to ensure I expanded my knowledge in this area whilst completing this project.
 
-I created the initial wireframe city image in Affinity Designer, saving it as a png file, then created an SVG within my city map component, using the png as a backdrop to the subsequent SVG elements. Using transparent overlays (also created in Affinity Designer) I created 'hotspots' on top of the city image using the <path> element. These hotspots were then targeted by CSS:hover rules to interact with the user when they move their mouse over each hotspot on the map. These hotspots were also given a tab index value of 0 to allow keyboard users to acees this interactivity. Using the value of 0 assigns each element a tab index based on it's position within the DOM.
+I created the initial wireframe city image in Affinity Designer, saving it as a png file, then created an SVG within my city map component, using the png as a backdrop. Using svg paths (also created in Affinity Designer) I created 'hotspots' on top of the city image using the <path> element. These hotspots were then targeted by CSS:hover rules to interact with the user when they move their mouse over each hotspot on the map. These hotspots were also given a tab index value of 0 to allow keyboard users to acees this interactivity. Using the value of 0 assigns each element a tab index based on it's position within the DOM.
 Each hotspot was also assigned a tooltip that shows the name of the district it is highlighting.
+
 I wanted to make the city map feel active and alive, rather than a static image. To do this I decided to implement a scanning effect which sweeps a 'scan line' across the city and simulates scanning of the entire city.
 
 This was achieved by first drawing a path across my city image in Affinity Designer, then using the path coordinates within my svg to draw an invisible line across the centre (diagnonally) of my city image. I then created a clipPath that was applied to a duplicate of the original city image. This duplicate image has it's brightness adjusted via
-Filter:brightness(2)
 
-And is offset slightly on the X and Y axis. A rectangle is then attached to the clipPath and using the animateMotion feature of the SVG, the rectangle is moved along the path drawn in Affinity Designer, showing as small slice of the duplicate image as it passes over the city. This simulates the scan line having an effect on the brightness and structure of city map image.
+`Filter:brightness(2)`
 
-I created text elements within the SVG parent and positioned these to align with the city map. The text elements provide further theming and world building character to the login page and, as they are not part of the city map image, their visual presentation is not impacted by the scan line effect.
-SVGs are self contained and scalable, meaning that the styling of all elements within the SVG are static between the desktop and mobile experience. Without using svg graphics, creating hotspots on top of an image and ensuring it had a consistent presentation both in mobile and desktop viewing, would be overly complicated, inconsistent and essentially ineffective. The combination of ensuring a properly scaled image as well as precisely placed hotspots, would be prohibitively complex and inaccurate due to changing margins and scaling. SVG graphics are the ideal solution for this feature, with the added benefit of providing self contained methods of element animation and styling
+And is offset slightly on the X and Y axis. A rectangle is then attached to the clipPath and using the animateMotion feature of the SVG, the rectangle is moved along the path drawn in Affinity Designer, showing a small slice of the duplicate image as it passes over the city.
+
+Without using svg graphics, creating hotspots on top of an image and ensuring it had a consistent presentation both in mobile and desktop viewing, would be overly complicated and inconsistent. The combination of ensuring a properly scaled image as well as precisely placed hotspots, would be prohibitively complex and inaccurate due to changing margins and scaling. SVG graphics are the ideal solution for this feature, with the added benefit of providing self contained methods of element animation and styling
 
 ## Page Deployment
 
