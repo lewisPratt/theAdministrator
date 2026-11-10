@@ -53,7 +53,7 @@ useEffect(()=>{
     const formValues = new FormData(e.target);
     const command = formValues.get("command")?.toString();
     if (command) {
-      switch (command.toLowerCase()) {
+      switch (command.toLowerCase().trim()) {
         case "nav.upgrade":
           navigate("/UpgradeShop");
           setCurrentSlug("nav.voucher");

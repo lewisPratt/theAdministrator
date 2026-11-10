@@ -15,26 +15,41 @@ This readme contains extensive detail on development of the project in order to 
 - [The Administrator](#the-administrator)
 - [Project Summary](#project-summary)
 - [Table of Contents](#table-of-contents)
+  - [Assessment](#assessment)
   - [Pages Overview](#pages-overview)
+    - [Pages with significant mobile device adjustments](#pages-with-significant-mobile-device-adjustments)
   - [Technologies Used](#technologies-used)
   - [UX Design](#ux-design)
     - [Project Goals](#project-goals)
+    - [Terminology](#terminology)
     - [Key thematic choices](#key-thematic-choices)
     - [Why React?](#why-react)
     - [Why TypeScript?](#why-typescript)
-    - [Terminology](#terminology)
     - [Target Audience](#target-audience)
     - [Audience Goals](#audience-goals)
     - [Developer Goals](#developer-goals)
     - [User Stories](#user-stories)
       - [User Story 1 - Casual browser game player](#user-story-1---casual-browser-game-player)
+      - [Acceptance Criteria](#acceptance-criteria)
+      - [Visual Journey](#visual-journey)
       - [User Story 2 - Casual browser game player](#user-story-2---casual-browser-game-player)
+      - [Acceptance Criteria](#acceptance-criteria-1)
+      - [Visual Journey](#visual-journey-1)
       - [User Story 3 - Casual browser game player](#user-story-3---casual-browser-game-player)
+      - [Acceptance Criteria](#acceptance-criteria-2)
+      - [Visual Journey](#visual-journey-2)
       - [User Story 4 - Prospective Employer](#user-story-4---prospective-employer)
+      - [Acceptance Criteria](#acceptance-criteria-3)
+      - [Visual Journey](#visual-journey-3)
       - [User Story 5 - Prospective Employer](#user-story-5---prospective-employer)
+      - [Acceptance Criteria](#acceptance-criteria-4)
+      - [Visual Journey](#visual-journey-4)
       - [User Story 6 - Prospective Employer](#user-story-6---prospective-employer)
+      - [Acceptance Criteria](#acceptance-criteria-5)
+      - [Visual Journey](#visual-journey-5)
       - [User Story 7 - Casual browser game player](#user-story-7---casual-browser-game-player)
-      - [User Story Outcomes](#user-story-outcomes)
+      - [Acceptance Criteria](#acceptance-criteria-6)
+    - [User Story Outcomes](#user-story-outcomes)
   - [Wireframes](#wireframes)
     - [Desktop](#desktop)
     - [Mobile](#mobile)
@@ -44,6 +59,7 @@ This readme contains extensive detail on development of the project in order to 
     - [Images](#images)
   - [Colour](#colour)
     - [Theming](#theming)
+    - [Contrast](#contrast)
     - [Applying colour to external library components:](#applying-colour-to-external-library-components)
     - [Lucide icons package](#lucide-icons-package)
   - [Favicon](#favicon)
@@ -54,6 +70,7 @@ This readme contains extensive detail on development of the project in order to 
   - [Technical Decisions](#technical-decisions)
     - [File structure](#file-structure)
     - [Local storage](#local-storage)
+    - [Encryption of user saved data](#encryption-of-user-saved-data)
     - [Layout](#layout)
       - [Content hierarchy](#content-hierarchy)
       - [Flex box](#flex-box)
@@ -78,6 +95,13 @@ This readme contains extensive detail on development of the project in order to 
     - [Javascript](#javascript-1)
   - [Compatibility](#compatibility)
   - [Testing](#testing)
+    - [User Testing](#user-testing)
+      - [Play tester 1](#play-tester-1)
+      - [Play tester 2](#play-tester-2)
+      - [Play tester 3](#play-tester-3)
+      - [Play tester 4](#play-tester-4)
+      - [Play tester 5](#play-tester-5)
+      - [Play tester 6](#play-tester-6)
     - [Validating saved player data](#validating-saved-player-data)
     - [Feature Testing](#feature-testing)
   - [Lighthouse Testing](#lighthouse-testing)
@@ -555,118 +579,7 @@ The intended experience for the user is for navigation to be undertaken via type
 However, it is also important to ensure that users who do not have access to a keyboard, can still move around the app effectively. For this reason, The available commands component, positioned next to the navigation input at the top of the page, provides a list of the commands to move between component views. These commands are buttons that can be used to navigate around the app if the user cannot, or does not wish to use the typed navigation commands. 
 
 
---
 
-## Challenges \& Problem Solving
-
-### API integration and error handling - Dice Bear Avatar Generator
-
-To add additional character and visual interest, an external API was used to provide unique avatars for the citizens encountered in the course of the game.
-[Dice Bear API](https://www.dicebear.com/) was used to easily generate random avatars to use within the case review section of the site. Each case that is reviwed as part of the gameplay loop, is linked to a fictional Citizen that has been encountered within the city. Adding an avatar to their case notes adds further depth and interest to the experience.
-
-There are a number of ways to integrate the Dice Bear avatar generation into a project, but i chose to utilize the HTTP api method due to its simplicity and ease of implementation, reducing the need to rely on additional packages in the project.
-
-The Dice Bear API does not need authorization and returns a single item, a URL to the generated avatar image.
-
-Relying on an external API however, means that there is a chance for calls to the API endpoint to fail, resulting in no avatar image being displayed. If this eventuality was not guarded against, it would result in unattractive missing image icons as well as alt text being visible within the UI, ruining the sense of immersion. As API endpoints can experience downtime or, in extreme cases, stop working all together, it is important to have contingencies to manage these eventualities if they arise.
-
-For this reason, there are 3 separate states that the avatar component can present in.
-
-### No Error
-
-If the Dice Bear endpoint is working as expected and returning and image that can be loaded within the `<img>` tag, the randomly generated avatar will display as desired.
-
-### API image not loading
-
-If, for whatever reason, the image being provided by the Dice Bear endpoint is not loadable, or the endpoint url is incorrect, the `<img>` element `src` attribute will not be valid, producing an error that can be detected via Javascript and handled.
-Once detected, this error handler will set the image `src` attribute to the url of the default avatar file.
-
-### API image not loading and default avatar not loading
-
-In the unlikely occurence that both the API is unsuccessful at providing an image, as well as the default avatar image file being un-loadable, the error handler will further ensure that the avatar fails gracefully and set css attributes within the avatar component to maintain an acceptable fallback.
-
-The error handling that has been implemented in using this API should cover all possible points of failure, ensuring that the UX is not negatively impacted by potential issues encountered when relying on external API endpoints.
-
-        <img
-        className="avatar"
-        src={transcript.avatar}
-        alt="Anonymized Citizen Avatar"
-        data-default=""
-
-        onError={(e) => {
-          if (e.currentTarget.dataset.default != "set") {
-            e.currentTarget.src = "default-avatar.webp";
-            e.currentTarget.dataset.default = "set";
-          } else {
-            if (e.currentTarget.parentElement) {
-              e.currentTarget.parentElement.style.cssText =
-                "background-color: #a2eaa2;";
-            }
-            e.currentTarget.before("Avatar Not Found");
-            e.currentTarget.alt = "";
-          }
-        }}
-      />
-
-Above is the image element for a Citizen Avatar. There are a number of notable characteristics to highlight.
-
-1. the image `src` attribute is set to the Dice Bear image url from the current transcript being processed.
-2. the `data-default` attribute allows the error handler to mark this image as 'having been dealt with' after attempting to set the image `src` to the default avatar url. If this attribute is empty and the initial `src` cannot be loaded, the error handler will attempt to set the `src` to the default avatar url. If `data-default="set"` the error handler will not attempt to set the src again (this loop can occur if both the initial src and the backup, default avatar, are not loadable.)
-3. `onError` triggers when an error occurs whilst this element tries to load the `src` it has been provided.
-4. The error handler will attempt to set the default avatar if the primary `src` is un-loadable. if both of these are unsuccessful, it will then apply css styling to the parent container of the image element, serving as a further fallback. Removing the `alt` attribute content removes the missing image icon, however the same information is given by the styles applied by the error handler.
-
-I created a default avatar image that was in line with the style of the avatars provided by Dice Bear. This was exported as a webp file to ensure small file size and good quality.
-
-![Default Avatar image](src/assets/images/default-avatar.webp "Default Avatar image"))
-
-### Citizen Avatars
-
-Each citizens avatar is generated randomly from the Dice Bear API, however, depending on the citizens gender, they access different endpoints. This is in order to generate a realistic representation of each citizen (generating female presenting avatars for females, males presenting avatars for males and either for synths.)
-This is achieved within the person class when each citizens data is generated and their gender and behaviour are used to conditionally select which API endpoint their avatar is pulled from.
-
-    if (gender === "male") {
-      if (behaviour.toLowerCase() === "compliant") {
-        imageUrl = mensHappyUrl +uuidv4();
-      } else if (behaviour.toLowerCase() === "non-compliant") {
-        imageUrl = mensAngryUrl +uuidv4();
-      } else {
-        imageUrl = mensNeutralUrl +uuidv4();
-      }
-    }
-
-each endpoint url has a seed value at the end, so appending `uuidv4()` to the url ensures that each avatar that is generated is a unique image.
-
-Filtering the citizens by gender and behaviour allows very customizable control over the appearance of the avatars generated. For instance, compliant male citizens have avatars that include smiling and overall happy expressions combined with male traits, whereas non-compliant male citizens only have avatars that include expressions of sadness or anger and male body traits.
-Removing or adding values in the url used to access the Dice Bear API allows the exclusion or addition of different expressions, hairstyles, head shapes etc. By utilizing this, the avatars that are produced are random, but they also contribute to the mechanics of the game as it is easy to now see whether a citizen in happy, sad or indifferent, which impacts on each citizens weighting.
-
-### Use of generative ai
-
-As a means of efficiency, generative ai was used to populate js objects that hold large datasets used in content randomization.
-Prompts such as
-"Generate a JavaScript array of 100 first names that would fit the theme of a retro futuristic city"
-This would result in a dataset with 10000 unique combinations of first and last names.
-Similar prompts were used to produce datasets for last names, occupations and locations.
-
-LLMs we're also used as a means of troubleshooting and dissecting new coding concepts that were unfamiliar.
-
-No LLM generated code snippets or automated deployment models were utilized in the creation, implementation and completion of this project.
-
-### Use of SVG graphics in city map component
-
-Having had very little experience with svg graphics in the past, I was keen to ensure I expanded my knowledge in this area whilst completing this project.
-
-I created the initial wireframe city image in Affinity Designer, saving it as a png file, then created an SVG within my city map component, using the png as a backdrop. Using svg paths (also created in Affinity Designer) I created 'hotspots' on top of the city image using the <path> element. These hotspots were then targeted by CSS:hover rules to interact with the user when they move their mouse over each hotspot on the map. These hotspots were also given a tab index value of 0 to allow keyboard users to acees this interactivity. Using the value of 0 assigns each element a tab index based on it's position within the DOM.
-Each hotspot was also assigned a tooltip that shows the name of the district it is highlighting.
-
-I wanted to make the city map feel active and alive, rather than a static image. To do this I decided to implement a scanning effect which sweeps a 'scan line' across the city and simulates scanning of the entire city.
-
-This was achieved by first drawing a path across my city image in Affinity Designer, then using the path coordinates within my svg to draw an invisible line across the centre (diagnonally) of my city image. I then created a clipPath that was applied to a duplicate of the original city image. This duplicate image has it's brightness adjusted via
-
-`Filter:brightness(2)`
-
-And is offset slightly on the X and Y axis. A rectangle is then attached to the clipPath and using the animateMotion feature of the SVG, the rectangle is moved along the path drawn in Affinity Designer, showing a small slice of the duplicate image as it passes over the city.
-
-Without using svg graphics, creating hotspots on top of an image and ensuring it had a consistent presentation both in mobile and desktop viewing, would be overly complicated and inconsistent. The combination of ensuring a properly scaled image as well as precisely placed hotspots, would be prohibitively complex and inaccurate due to changing margins and scaling. SVG graphics are the ideal solution for this feature, with the added benefit of providing self contained methods of element animation and styling
 
 ## Page Deployment
 
@@ -694,9 +607,57 @@ Due to hosting the project on GH pages and having no backend features at all, it
 
 ## Form Validation and Security
 
---
+### Validating form input
+
+There are 3 main areas where user input needs to be validated.
+* Entering the player name on the login page
+  * User input is normalised using `toLowerCase()` & `trim()` to ensure that when retrieving saved player data, the comparison is between lowercase strings with no whitespace. The user can enter any name they want here including symbols and punctuation and it will have no effect on the games logic.
+* Navigation via typed commands
+  * Achieved through the use of a `switch` statement comparing the entered string against a pre-defined list of possible commands. If the user entered string does not match any of the cases, an error is displayed informing them that the command was entered incorrectly. 
+  When comparing user input to the command `switch` statement, `toLowerCase()` & `trim()` have been used to normalise the input and ensure that the strings being compared are both lower case letters with no whitespace around them. 
+* Inputting the decrypt key string
+  * On each change of the input, the value is compared to the decrypt key value at that character location. If they do not match and error is shown the first time, then the mini game is lost for a second mistake. If they do match the user is able to continue entering the string. 
+
+None of the text inputs within the app are limited to a specific format (such as email or phone number) allowing the user the freedom to enter anything they like. However only strings that match the pre-defined commands and decrypt keys will result in the user progressing. Anything else entered will result in an error being displayed. 
+
 
 ## Form accessibility
+
+All text inputs are accessible via keyboard and mouse. When a label is not present, `aria-label` has been used to ensure that assistive technologies can identify the purpose of the inputs. 
+
+
+### Validating saved player data
+---
+
+Persistent player data is stored in localStorage of the users browser. This storage is basic and not secure from user manipulation, however for a casual application this serves the needs of the project. A number of steps have been taken to validate player data when accessing it, to ensure that errors are handled gracefully and failed retrieval does not block the user from progressing further in the app. 
+
+When a user logs in, an attempt to load saved data is made. This also occurs when the user refreshes the page, causing the app to load the saved user data from localStorage. 
+
+* If the key cannot be found in localStorage, a new player is set up and the key is created in localStorage to track user progress. 
+* If the key is found but the JSON is incorrectly formed, unparsable or the parsed data has failed the type guard checks, an error is displayed to the user, notifying that the data has been reset and they should attempt to login again. 
+
+The type guard being used to check the types of the data stored in localStorage is as follows: 
+
+     function isPlayer(value : unknown) : value is playerDataShape{
+      return (
+        typeof value === "object" &&
+        value != null &&
+        typeof (value as playerDataShape).player_credits === "number"&&
+        typeof (value as playerDataShape).player_name === "string"&&
+        typeof (value as playerDataShape).player_title === "string" &&
+        isStats((value as playerDataShape).player_stats) &&
+        Array.isArray((value as playerDataShape).player_titles)  &&
+        typeof (value as playerDataShape).player_tutorialComplete === "boolean" &&
+        Array.isArray((value as playerDataShape).player_unlocks)
+  
+      )
+    }
+
+This helps ensure that the data that is expected, is of the correct type. Any data that can be directly manipulated by the user needs to be checked and validated to ensure it will work without error or causing the app to become unusable.
+
+It is not ideal that data is simply cleared when it fails the checks in place, as this results in user progress being lost without any effort to try and retrieve the data. 
+A future improvement would be to build a robust data retrieval workflow that attempts to salvage any data held in localStorage prior to clearing it. 
+The current strategy ensures that the user does not become blocked from logging in, as well as ensuring they do not have to go into developer tools to manually clear their game data. 
 
 --
 
@@ -708,7 +669,16 @@ Due to hosting the project on GH pages and having no backend features at all, it
 
 ### HTML
 
---
+| Page | Validation | Comments |
+|--|--|--|
+| Login | <img src="src/assets/images/readme/validation/html/login-html-validation.png" width=200> | Warnings caused by external package injecting style sheet at run time. No way to fix without editing package directly. |
+| Terminal | <img src="src/assets/images/readme/button-hover.png" width=200> |
+| Upgrade | <img src="src/assets/images/readme/button-hover.png" width=200> |
+| Personal record | <img src="src/assets/images/readme/button-hover.png" width=200> |
+| Case Review | <img src="src/assets/images/readme/button-hover.png" width=200> |
+| About | <img src="src/assets/images/readme/button-hover.png" width=200> |
+
+
 
 ### Javascript
 
@@ -722,14 +692,10 @@ Due to hosting the project on GH pages and having no backend features at all, it
 
 ### User Testing
 
-During development, I utilized family, friends and fellow students on my Web development course to play test the game and report back with their experiences and any bugs they came across. 
-
-I did a significant amount of play testing myself to ensure that the game was reliably playable and no significant game breaking bugs were present. 
-
 #### Play tester 1
 ---
   
-  When entering the decrypt key to unlock an encrypted device, the play tested attempted to just copy and paste the decrypt key. This immediately solved the decrypt puzzle, within seconds of it starting, highlighting a significant bug that affected gameplay. 
+  When entering the decrypt key to unlock an encrypted device, the play tester attempted to just copy and paste the decrypt key. This immediately solved the decrypt puzzle, within seconds of it starting, highlighting a significant bug that affected gameplay. 
 
   <img src="src/assets/images/readme/decrypt-bug-1.gif">
 
@@ -747,7 +713,7 @@ I did a significant amount of play testing myself to ensure that the game was re
   
   Whilst playing through the gameplay loop, the tester identified after unlocking the "Evidence Stack" upgrade, that this would be a useful upgrade to have early on, as it helped the player to understand the factors influencing a citizens positive or negative standing without having to read a long detailed explanation of this concept. 
 
-  <img src="src/assets/images/readme/evidence-stack.png" width=500>
+  <img src="src/assets/images/readme/evidence-stack.png" width=300>
 
 
   To address this, I reduced the cost of this upgrade to ensure that it was affordable after only a few correctly judged cases. 
@@ -785,52 +751,16 @@ I did a significant amount of play testing myself to ensure that the game was re
   When sharing my project with the rest of the students in my cohort, one student suggested that I try to implement a tutorial/walkthrough system that would walk a new player through each feature and step they needed to take in order to explore the full gameplay loop. 
   I decided to develop this idea and use the "React-tooltip" package to easily identify the key pieces of UI for a new player. 
 
-  <img src="src/assets/images/readme/tutorial-1.png" width=500>
-  <img src="src/assets/images/readme/tutorial-2.png" width=500>
-  <img src="src/assets/images/readme/tutorial-3.png" width=500>
+  <img src="src/assets/images/readme/tutorial-images.webp" width=400>
 
-This was achieved through the use of "useState()", using a JS object to set the current state (active or inactive) of the tutorial and what step the tutorial is on. 
+
+This was achieved through the use of State, using a JS object to set the current state (active or inactive) of the tutorial and what step the tutorial is on. 
 
 I also implemented a JS solution to ensuring that the user was not able to tab through interactive elements of the page, other than the active tutorial elements. This ensured that inputs and buttons could not be selected whilst the tutorial overlay was active. 
 
-To do this, I used JS to render the main content of the app `inert` after applying a tutorial class to the currently focused tutorial element to change it's z-index to appear above the tutorial overlay. I then used Reacts `createPortal()` function to render the tooltip outside of the `inert` container, allowing it to be interacted with during the tutorial. 
+To do this, I used JavaScript to render the main content of the app `inert` after applying a tutorial class to the currently focused tutorial element to change it's z-index to appear above the tutorial overlay. I then used Reacts `createPortal()` function to render the tooltip outside of the `inert` container, allowing it to be interacted with during the tutorial. 
 
 I also added an event listener to allow the user to exit the tutorial at any point by pressing the escape key. 
-
-
-
-### Validating saved player data
-
-Persistent player data is stored in localStorage of the users browser. This storage is basic and not secure from user manipulation, however for a casual application this serves the needs of the project. A number of steps have been taken to validate player data when accessing it, to ensure that errors are handled gracefully and failed retrieval does not block the user from progressing further in the app. 
-
-When a user logs in, an attempt to load saved data is made. This also occurs when the user refreshes the page, causing the app to load the saved user data from localStorage. 
-
-* If the key cannot be found in localStorage, a new player is set up and the key is created in localStorage to track user progress. 
-* If the key is found but the JSON is incorrectly formed, unparsable or the parsed data has failed the type guard checks, an error is displayed to the user, notifying that the data has been reset and they should attempt to login again. 
-
-The type guard being used to check the types of the data stored in localStorage is as follows: 
-
-     function isPlayer(value : unknown) : value is playerDataShape{
-      return (
-        typeof value === "object" &&
-        value != null &&
-        typeof (value as playerDataShape).player_credits === "number"&&
-        typeof (value as playerDataShape).player_name === "string"&&
-        typeof (value as playerDataShape).player_title === "string" &&
-        isStats((value as playerDataShape).player_stats) &&
-        Array.isArray((value as playerDataShape).player_titles)  &&
-        typeof (value as playerDataShape).player_tutorialComplete === "boolean" &&
-        Array.isArray((value as playerDataShape).player_unlocks)
-  
-      )
-    }
-
-This helps ensure that the data that is expected, is of the correct type. Any data that can be directly manipulated by the user needs to be checked and validated to ensure it will work without error or causing the app to become unusable.
-
-It is not ideal that data is simply cleared when it fails the checks in place, as this results in user progress being lost without any effort to try and retrieve the data. 
-A future improvement would be to build a robust data retrieval workflow that attempts to salvage any data held in localStorage prior to clearing it. 
-The current strategy ensures that the user does not become blocked from logging in, as well as ensuring they do not have to go into developer tools to manually clear their game data. 
-
 
 ### Feature Testing
 
@@ -876,15 +806,107 @@ A similar tool was used in the case review component to quickly regenerate the a
 ## Lighthouse Testing
 
 --
+## Challenges \& Problem Solving
 
+### API integration and error handling - Dice Bear Avatar Generator
+
+To add additional character and visual interest, an external API was used to provide unique avatars for the citizens encountered in the course of the game.
+[Dice Bear API](https://www.dicebear.com/) was used to easily generate random avatars to use within the case review section of the site.
+
+There are a number of ways to integrate the Dice Bear avatar generation into a project, but i chose to utilize the HTTP api method due to its simplicity and ease of implementation, reducing the need to rely on additional packages in the project.
+
+The Dice Bear API does not need authorization and returns a single item, a URL to the generated avatar image.
+
+Relying on an external API however, means that there is a chance for calls to the API endpoint to fail, resulting in no avatar image being displayed. As API endpoints can experience downtime or, in extreme cases, stop working all together, it is important to have contingencies to manage these eventualities if they arise.
+
+For this reason, there are 3 separate states that the avatar component can present in.
+
+### No Error
+
+If the Dice Bear endpoint is working as expected and returning an image that can be loaded within the `<img>` tag, the randomly generated avatar will be displayed.
+
+### API image not loading
+
+If the image being provided by the Dice Bear endpoint is not loadable, or the endpoint url is incorrect, the `<img>` element `src` attribute will not be valid, producing an error that can be detected via Javascript and handled.
+Once detected, this error handler will set the image `src` attribute to the url of the default avatar file.
+
+### API image not loading and default avatar not loading
+
+If the API is unsuccessful at providing an image, as well as the default avatar image file being un-loadable, the error handler will further ensure that the avatar fails gracefully and set css attributes within the avatar component to maintain an acceptable fallback.
+
+
+        <img
+        className="avatar"
+        src={transcript.avatar}
+        alt="Anonymized Citizen Avatar"
+        data-default=""
+
+        onError={(e) => {
+          if (e.currentTarget.dataset.default != "set") {
+            e.currentTarget.src = "default-avatar.webp";
+            e.currentTarget.dataset.default = "set";
+          } else {
+            if (e.currentTarget.parentElement) {
+              e.currentTarget.parentElement.style.cssText =
+                "background-color: #a2eaa2;";
+            }
+            e.currentTarget.before("Avatar Not Found");
+            e.currentTarget.alt = "";
+          }
+        }}
+      />
+
+Above is the image element for a Citizen Avatar. There are a number of notable characteristics to highlight.
+
+1. the image `src` attribute is set to the Dice Bear image url from the current citizen being processed.
+2. the `data-default` attribute allows the error handler to mark this image as 'having been dealt with' after attempting to set the image `src` to the default avatar url. If this attribute is empty and the initial `src` cannot be loaded, the error handler will attempt to set the `src` to the default avatar url. If `data-default="set"` the error handler will not attempt to set the src again (this loop can occur if both the initial src and the backup, default avatar, are not loadable.)
+3. `onError` triggers when an error occurs whilst this element tries to load the `src`.
+4. The error handler will attempt to set the default avatar if the primary `src` is un-loadable. if both of these are unsuccessful, it will then apply css styling to the parent container of the image element, serving as a further fallback. Removing the `alt` attribute content removes the missing image icon, however the same information is given by the styles applied by the error handler.
+
+I created a default avatar image that was in line with the style of the avatars provided by Dice Bear. This was exported as a webp file to ensure small file size and good quality.
+
+![Default Avatar image](src/assets/images/default-avatar.webp "Default Avatar image"))
+
+### Citizen Avatars
+
+Each citizens avatar is generated randomly from the Dice Bear API, however, depending on the citizens gender, they access different endpoints. 
+This is achieved within the person class when each citizens data is generated and their gender and behaviour are used to conditionally select which API endpoint their avatar is pulled from.
+
+    if (gender === "male") {
+      if (behaviour.toLowerCase() === "compliant") {
+        imageUrl = mensHappyUrl +uuidv4();
+      } else if (behaviour.toLowerCase() === "non-compliant") {
+        imageUrl = mensAngryUrl +uuidv4();
+      } else {
+        imageUrl = mensNeutralUrl +uuidv4();
+      }
+    }
+
+each endpoint url has a seed value at the end, so appending `uuidv4()` to the url ensures that each avatar that is generated is a unique image.
+
+Filtering the citizens by gender and behaviour allows very customizable control over the appearance of the avatars generated. 
+
+### Use of SVG graphics in city map component
+
+Having had very little experience with svg graphics in the past, I was keen to ensure I expanded my knowledge in this area whilst completing this project.
+
+I created the initial wireframe city image in Affinity Designer, saving it as a png file, then created an SVG within my city map component, using the png as a backdrop. Using svg paths (also created in Affinity Designer) I created 'hotspots' on top of the city image using the <path> element. These hotspots were then targeted by CSS:hover rules to interact with the user when they move their mouse over each hotspot on the map. These hotspots were also given a tab index value of 0 to allow keyboard users to acees this interactivity. Using the value of 0 assigns each element a tab index based on it's position within the DOM.
+Each hotspot was also assigned a tooltip that shows the name of the district it is highlighting.
+
+I wanted to make the city map feel active and alive, rather than a static image. To do this I decided to implement a scanning effect which sweeps a 'scan line' across the city and simulates scanning of the entire city.
+
+This was achieved by first drawing a path across my city image in Affinity Designer, then using the path coordinates within my svg to draw an invisible line across the centre (diagnonally) of my city image. I then created a clipPath that was applied to a duplicate of the original city image. This duplicate image has it's brightness adjusted via
+
+`Filter:brightness(2)`
+
+And is offset slightly on the X and Y axis. A rectangle is then attached to the clipPath and using the animateMotion feature of the SVG, the rectangle is moved along the path drawn in Affinity Designer, showing a small slice of the duplicate image as it passes over the city.
+
+Without using svg graphics, creating hotspots on top of an image and ensuring it had a consistent presentation both in mobile and desktop viewing, would be overly complicated and inconsistent. The combination of ensuring a properly scaled image as well as precisely placed hotspots, would be prohibitively complex and inaccurate due to changing margins and scaling. SVG graphics are the ideal solution for this feature, with the added benefit of providing self contained methods of element animation and styling
 ## Node Packages used
 
 - lucide icons
 - react tooltips
 
-## Credits
-
---
 
 ## Author
 
@@ -892,6 +914,20 @@ A similar tool was used in the case review component to quickly regenerate the a
 ## Deployment
 
 --
+### Use of generative ai
+
+As a means of efficiency, generative ai was used to populate js objects that hold large datasets used in content randomization.
+Prompts such as
+"Generate a JavaScript array of 100 first names that would fit the theme of a retro futuristic city"
+
+Similar prompts were used to produce datasets for last names, occupations and locations.
+
+LLMs we're also used as a means of troubleshooting and dissecting new coding concepts that were unfamiliar.
+
+No LLM generated code snippets or automated deployment models were utilized in the completion of this project.
+
+---
+
 ## Additional Reading References
 Whilst developing this site, additional reading was undertaken to primarily around using React.js, as it was a new technology to me at the start of the project. 
 

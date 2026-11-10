@@ -50,6 +50,14 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
     }
   }
 
+  function normaliseInput(userInput : string | undefined) : string{
+    if(userInput != undefined){
+      return userInput.toLowerCase().trim();
+    }
+    else{
+      return "DefaultName"
+    }
+  }
  
   /**
    * Sets app to logged in state by assigning adminName and redirects to welcome screen
@@ -58,7 +66,7 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
   function doLogin(e: React.SubmitEvent<HTMLFormElement>): void {
     e.preventDefault();
     const formValues = new FormData(e.target);
-    const enteredName = formValues.get("admin-name")?.toString();
+    const enteredName = normaliseInput(formValues.get("admin-name")?.toString())
 
     // name is not empty string so process login
     if (enteredName != "" && enteredName != null) {

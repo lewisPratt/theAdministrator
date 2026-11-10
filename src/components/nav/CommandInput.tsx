@@ -40,7 +40,7 @@ useEffect(()=>{
     const formValues = new FormData(e.target);
     const command = formValues.get("command")?.toString();
     if (command) {
-      switch (command?.toLowerCase()) {
+      switch (command?.toLowerCase().trim()) {
         case "nav.upgrade":
           navigate("/UpgradeShop");
           setCurrentSlug("nav.voucher");
@@ -87,6 +87,7 @@ useEffect(()=>{
   }
 
   
+  
 
   function resetInput(e: React.SubmitEvent<HTMLFormElement>) {
     e.currentTarget.reset();
@@ -107,7 +108,7 @@ useEffect(()=>{
         }
         onSubmit={handleCommand}
       >
-        <a id="tutorial-step-5"></a>
+        
         <input
           type="text"
           placeholder="nav.command"
@@ -142,7 +143,6 @@ useEffect(()=>{
           data-tooltip-id="nav-bar-tooltip"
           data-tooltip-content="Nav Commands"
         >
-          <a id="tutorial-step-6"></a>
           <CircleQuestionMark size={20} />
         </button>
         {showCommands && <AvailableCommandsList  doLogout={doLogout}/>}
