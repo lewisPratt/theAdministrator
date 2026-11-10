@@ -3,30 +3,22 @@ import { Volume2, VolumeX } from "lucide-react";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { useContext } from "react";
 
+
+
 export default function SoundControl() {
   const [enabled, setEnabled] = useSoundEnabled();
-  const { tutorialState } = useContext(TutorialContext);
-  const soundStatus = enabled ? "on" : "off";
+  const {tutorialState} = useContext(TutorialContext)
+ const soundStatus = enabled ? 'on' : 'off'
   return (
-    <div
-      id="tutorial-step-4"
-      className={
-        tutorialState.tutorialActive && tutorialState.tutorialStep === 4
-          ? "tutorial-highlight"
-          : ""
-      }
+    <div id="tutorial-step-4" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 4 ? "tutorial-highlight":"")}>
+    <button aria-label="Toggle sound" id='sound-control-desktop' data-tooltip-id='nav-bar-tooltip' data-tooltip-place="right" data-tooltip-content={'Sound is '+soundStatus} 
+     onClick={ enabled ? () => setEnabled(!enabled) : () => setEnabled(!enabled)}
     >
-      <button
-        aria-label="Toggle sound"
-        id="sound-control-desktop"
-        data-tooltip-id="nav-bar-tooltip"
-        data-tooltip-content={"Sound is " + soundStatus}
-        onClick={
-          enabled ? () => setEnabled(!enabled) : () => setEnabled(!enabled)
-        }
-      >
-        {enabled ? <Volume2 /> : <VolumeX />}
-      </button>
-    </div>
+
+    {enabled ? <Volume2 /> : <VolumeX /> }
+        
+   </button>
+   
+   </div>
   );
 }

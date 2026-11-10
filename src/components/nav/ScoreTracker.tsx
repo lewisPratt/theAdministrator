@@ -31,6 +31,7 @@ export default function ScoreTracker() {
         tabIndex={0}
         data-tooltip-id="nav-bar-tooltip"
         data-tooltip-content="Credits can be used in the Upgrade Terminal."
+        data-tooltip-place="left"
       >
         <CreditIcon size={18} className="custom-icon" />{" "}
         {playerData?.player_credits}

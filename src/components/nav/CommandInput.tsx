@@ -141,7 +141,8 @@ useEffect(()=>{
           }
           onClick={(e)=>{toggleCommands(e);playCustomSound("buttonPress")}}
           data-tooltip-id="nav-bar-tooltip"
-          data-tooltip-content="Nav Commands"
+          data-tooltip-content="Help"
+          data-tooltip-place="right"
         >
           <CircleQuestionMark size={20} />
         </button>

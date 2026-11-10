@@ -111,7 +111,7 @@ useEffect(()=>{
           <section id="welcome-section">
             {playerData && sessionStorage.getItem("admin_game_status")?  (
               <>
-                <h1>Welcome Administrator.</h1>
+                <h1>Welcome Administrator</h1>
                 <p>Please navigate to your required destination below.</p>
                 <form
                   id="tutorial-step-1"

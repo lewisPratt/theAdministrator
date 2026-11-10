@@ -4,6 +4,7 @@
   background-color: black;
   color: #a2eaa2;
   padding: 5px;
+  order:3;
 }
 
 #tutorial-toggle-button {
@@ -15,8 +16,13 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  order:2;
 }
-
+#command-input-container{
+  flex-basis:500px;
+  order:1;
+  margin:0 10px;
+}
 .available-commands-button {
   height: 39px;
   width: 25%;
@@ -155,11 +161,13 @@ nav {
 
 #nav-bar-parent {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  flex-direction:column;
-  /* padding: 0 10px; */
+  flex-direction:row;
+  flex-wrap:wrap;
   flex: 1;
+  gap:10px;
+  padding:0 10px;
 }
 
 .mobile-nav-elements {
@@ -182,6 +190,9 @@ nav {
 }
 
 @media (min-width:768px) {
+  #nav-bar-parent{
+    justify-content: space-between;
+  }
   .mobile-nav-elements {
     display: none;
   }
@@ -191,8 +202,12 @@ nav {
     align-items: center;
     gap:10px;
   }
-  #nav-bar-parent{
-    flex-direction: row;
-  }
 
+  #interactive-nav-el-container {
+    order:1;
+  }
+  #command-input-container{
+    order:2;
+
+  }
 }
