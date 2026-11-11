@@ -33,16 +33,14 @@ export default function TranscriptRev() {
   const [currentTranscript, setCurrentTranscript] =
     useState<reviewShape | null>(null);
   //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
-  const [_decisionMade, setDecisionMade] = useState<boolean>(false);
+  const [, setDecisionMade] = useState<boolean>(false);
   const [reviewsComplete, setReviewsComplete] =
     useState<reviewsCompleteShape | null>(null);
   const [reviewDismissed, setReviewDismissed] = useState<boolean>(false)
   const [selectedListItem, setSelectedListItem] = useState<string>(NIL_UUID);
-  const [generatePeople, setGeneratePeople] = useState<boolean>(false);
   const [codexState, setCodexState] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [cityMapeState, setCityMapState] = useState<boolean>(false)
-  const [missingPlayerData, setMissingPlayerData] = useState<boolean>(false)
   const [nextCase, setNextCase] = useState<reviewShape | null>(null)
   const [juniorCallUsed, setJuniorCallused] = useState<boolean>(false)
   const [seniorCallUsed, setSeniorCallused] = useState<boolean>(false)
@@ -55,7 +53,7 @@ export default function TranscriptRev() {
 
 
   if (availableTranscripts != null && !reviewsComplete) {
-    let effectiveness: number = 0;
+    let effectiveness: number 
     const reviewObj = { count: 0, negative: 0, positive: 0 };
     availableTranscripts.forEach((transcript) => {
       if (transcript.processed) {
@@ -87,17 +85,12 @@ export default function TranscriptRev() {
     let transcriptCount = 8;
     const originalCount = transcriptCount;
     if (playerData) {
-      setMissingPlayerData(false)
       if (playerData.player_unlocks.includes("voucher4")) {
         transcriptCount += 3;
       }
       if (playerData.player_unlocks.includes("voucher5")) {
         transcriptCount += 2;
       }
-    }
-    else{
-      //missing playerdata
-      setMissingPlayerData(true)
     }
 
 /**
@@ -134,7 +127,7 @@ export default function TranscriptRev() {
     setAvailableTranscripts(transcriptsArray);
 
     setTimeout(setLoadingState, 2000, false);
-  }, [loadingState, generatePeople]);
+  }, [loadingState]);
 
   //if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
   useEffect(() => {
@@ -160,7 +153,6 @@ export default function TranscriptRev() {
     setReviewsComplete(null);
     setCurrentTranscript(null);
     setReviewDismissed(false)
-    setGeneratePeople((prev) => !prev);
   }
   function endShift() {
     //need to workout loop for end of shift
@@ -191,8 +183,6 @@ export default function TranscriptRev() {
 
           <section id="case-review">
 
-            
-            {missingPlayerData && <p>Missing player data on load, reload to apply upgrades <button onClick={()=>{setGeneratePeople(prev=>!prev); setMissingPlayerData(false)}}>reload</button></p>}
             <div id="top-container">
               {availableTranscripts && (
                 <div id="case-list-container">

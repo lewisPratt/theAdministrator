@@ -52,7 +52,7 @@ useEffect(()=>{
 
         }, 50);
 
-        return () => {clearTimeout(timer.current) ,clearInterval(intervalTimer.current)};
+        return () => {clearTimeout(timer.current) ;clearInterval(intervalTimer.current)};
     }
 
 },[decryptState])

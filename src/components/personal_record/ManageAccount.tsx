@@ -32,7 +32,7 @@ function deleteData(){
                     <>
                         <p>Are your sure you want to delete account saved data?</p>
                         <p>If yes, your game data will be deleted and you will be redirected to login</p>
-                        <button onClick={()=>{deleteData(),playCustomSound("buttonPress")}}>yes</button> <button onClick={()=>{setConfirm(false),playCustomSound("buttonPress")}}>cancel</button>
+                        <button onClick={()=>{deleteData();playCustomSound("buttonPress")}}>yes</button> <button onClick={()=>{setConfirm(false);playCustomSound("buttonPress")}}>cancel</button>
                     </>
                 }
                 

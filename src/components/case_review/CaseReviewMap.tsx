@@ -20,7 +20,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "Power District",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(3)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(3));playCustomSound("buttonPress")}}
           className="hotspot"
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D3 - Industrial"
@@ -33,7 +33,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(7)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(7));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D7 - Black Market"
           className="hotspot"
@@ -46,7 +46,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(4)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(4));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D4 - Water Treatment"
           className="hotspot"
@@ -59,7 +59,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(11)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(11));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D11 - Freight/Transport"
           className="hotspot"
@@ -72,7 +72,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(9)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(9));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D9 - Food/Dining"
           className="hotspot"
@@ -85,7 +85,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "facilities",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(13)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(13));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D13 - Slums"
           className="hotspot"
@@ -99,7 +99,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "District Placeholder 2",
       hotspot: (
-        <path onClick={()=>  {setDistrictDetails(()=>getDetailsForDistrict(10)),playCustomSound("buttonPress")}}
+        <path onClick={()=>  {setDistrictDetails(()=>getDetailsForDistrict(10));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D10 - Medical"
           className="hotspot"
@@ -112,7 +112,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "District Placeholder 3",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(2)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(2));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D2 - Detention/Security"
           className="hotspot"
@@ -125,7 +125,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "District Placeholder 4",
       hotspot: (
-        <path onClick={()=>  {setDistrictDetails(()=>getDetailsForDistrict(6)),playCustomSound("buttonPress")}}
+        <path onClick={()=>  {setDistrictDetails(()=>getDetailsForDistrict(6));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D6 - Trade/Market"
           className="hotspot"
@@ -138,7 +138,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "District Placeholder 5",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(1)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(1));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D1 - Central Administration"
           className="hotspot"
@@ -151,7 +151,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "District Placeholder 6",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(8)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(8));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D8 - Nightlife/Vice"
           className="hotspot"
@@ -164,7 +164,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "District Placeholder 7",
       hotspot: (
-        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(12)),playCustomSound("buttonPress")}}
+        <path onClick={()=> {setDistrictDetails(()=>getDetailsForDistrict(12));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D12 - Communications"
           className="hotspot"
@@ -177,7 +177,7 @@ export default function CaseReviewMap() {
       ident: uuid4(),
       name: "District Placeholder 8",
       hotspot: (
-        <path onClick={()=>  {setDistrictDetails(()=>getDetailsForDistrict(5)),playCustomSound("buttonPress")}}
+        <path onClick={()=>  {setDistrictDetails(()=>getDetailsForDistrict(5));playCustomSound("buttonPress")}}
           data-tooltip-id="city-tooltip"
           data-tooltip-content="D5 - Residential"
           className="hotspot"
