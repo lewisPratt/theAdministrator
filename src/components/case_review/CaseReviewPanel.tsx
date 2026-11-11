@@ -211,7 +211,7 @@ export default function CaseReviewPanel({
       function updateCreditTotal(creditAdjustment: number, direction: boolean, category: string) {
         if (playerData) {
           let newTotal: number = playerData.player_credits;
-          let decisionOutcome: boolean = false;
+          let decisionOutcome: boolean;
           if (direction) {
             //add credits
             newTotal += creditAdjustment;
@@ -521,7 +521,7 @@ export default function CaseReviewPanel({
           >
             {!transcript.processed ? (
               <div className="decision-buttons-container"> 
-              <button onClick={()=>{changeCase("previous"),playCustomSound("buttonPress")}}><ChevronLeft /></button>
+              <button onClick={()=>{changeCase("previous");playCustomSound("buttonPress")}}><ChevronLeft /></button>
                 <button id="nfa-button" data-decision="nfa" onClick={handleDecision}>
                   No further action
                 </button>
@@ -529,7 +529,7 @@ export default function CaseReviewPanel({
                   Send for re-education
                 </button>{" "}
                 
-                <button onClick={()=>{changeCase("next"),playCustomSound("buttonPress")}}><ChevronRight /></button>
+                <button onClick={()=>{changeCase("next");playCustomSound("buttonPress")}}><ChevronRight /></button>
                
               </div>
             ) : (

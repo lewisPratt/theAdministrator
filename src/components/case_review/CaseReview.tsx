@@ -77,57 +77,60 @@ export default function TranscriptRev() {
     }
   }
 
-  //new cases are generated when the loading state changes, effectively loading the page (from the user point of view).
-  //the delay implemented by the loading state allows time for local data to be loaded from localstorage if playerdata becomes null (on refresh of page for instance)
+
+ //new cases are generated when the loading state changes, effectively loading the page (from the user point of view).
   // 
   useEffect(() => {
-    const transcriptsArray: reviewShape[] = [];
-    let transcriptCount = 8;
-    const originalCount = transcriptCount;
-    if (playerData) {
-      if (playerData.player_unlocks.includes("voucher4")) {
-        transcriptCount += 3;
-      }
-      if (playerData.player_unlocks.includes("voucher5")) {
-        transcriptCount += 2;
-      }
-    }
-
-/**
+    /**
  * creates cases to populate the review component. Sorts through possible upgrades and applies their effects if they are relevant to 
  * case wide effects. 
  */
-    function createCases() {
-      for (let index = 0; index < transcriptCount; index++) {
-        const newPerson: reviewShape = new person();
-        const playerUnlocks = playerData?.player_unlocks
-        let chance = 0.10
-
-        if (checkUpgradeActive(playerUnlocks, "voucher1") && checkUpgradeActive(playerUnlocks, "voucher2")) {
-          //if both vouchers present, increase to 20% chance of reveal
-          chance = 0.20
-        }
-        //if player has either upgrade, trigger chance to reveal legality of item
-        if (checkUpgradeActive(playerUnlocks, "voucher1") || checkUpgradeActive(playerUnlocks, "voucher2")) {
-          if (Math.random() < chance) {
-            newPerson.revealItem = true
-          }
-        }
-
-        //mark current case as a bonus case granted by upgrade
-        if (originalCount != transcriptCount && index >= originalCount) {
-          newPerson.bonusCase = true;
-        }
-        transcriptsArray.push(newPerson);
-      }
-    }
-    
-    createCases()
+    function triggerCaseCreation(){
       
-    setAvailableTranscripts(transcriptsArray);
+          const transcriptsArray: reviewShape[] = [];
+          let transcriptCount = 8;
+          const originalCount = transcriptCount;
+          if (playerData?.player_unlocks) {
+            if (playerData.player_unlocks.includes("voucher4")) {
+              transcriptCount += 3;
+            }
+            if (playerData.player_unlocks.includes("voucher5")) {
+              transcriptCount += 2;
+            }
+          }
 
-    setTimeout(setLoadingState, 2000, false);
-  }, [loadingState]);
+          for (let index = 0; index < transcriptCount; index++) {
+            const newPerson: reviewShape = new person();
+            const playerUnlocks = playerData?.player_unlocks
+            let chance = 0.10
+
+            if (checkUpgradeActive(playerUnlocks, "voucher1") && checkUpgradeActive(playerUnlocks, "voucher2")) {
+              //if both vouchers present, increase to 20% chance of reveal
+              chance = 0.20
+            }
+            //if player has either upgrade, trigger chance to reveal legality of item
+            if (checkUpgradeActive(playerUnlocks, "voucher1") || checkUpgradeActive(playerUnlocks, "voucher2")) {
+              if (Math.random() < chance) {
+                newPerson.revealItem = true
+              }
+            }
+
+            //mark current case as a bonus case granted by upgrade
+            if (originalCount != transcriptCount && index >= originalCount) {
+              newPerson.bonusCase = true;
+            }
+            transcriptsArray.push(newPerson);
+          }
+      
+        setAvailableTranscripts(transcriptsArray)
+        setLoadingState(false)
+    }
+
+    if(loadingState){
+      setTimeout(triggerCaseCreation, 2000);
+    }
+  }, [loadingState,playerData?.player_unlocks]);
+
 
   //if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
   useEffect(() => {

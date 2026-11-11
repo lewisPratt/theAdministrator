@@ -19,9 +19,7 @@ export default function CaseReviewSummary({
       "Exemplary performance. You may be eligible for an Ice Cream Party.";
   else if (efficiency === 100)
     efficiencyText =
-      "Congratulations! An Ice Cream Party has been scheduled for " +
-      Math.floor(Math.random() * 400) +
-      1;
+      "Congratulations! An Ice Cream Party has been scheduled for [REDACTED]"
 //close overlay when overlay is clicked.
   function closeOverlay(e: React.MouseEvent<HTMLDivElement>) {
     const clickedTarget = e.target as HTMLDivElement;

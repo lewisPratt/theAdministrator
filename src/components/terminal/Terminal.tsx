@@ -91,7 +91,7 @@ useEffect(()=>{
           setErrorState("Command not recognized: " + command);
           playCustomSound("errorSound")
           e.currentTarget.reset();
-          {leaveReq && setLeaveReq(false)}
+          leaveReq && setLeaveReq(false)
           break;
       }
     }
