@@ -15,7 +15,7 @@ export default function UnlockedUpgrades() {
   console.log(playerUnlocks);
   return (
     <section id="tutorial-step-15" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 15 ? "tutorial-highlight":"") +" badge-unlocks"}>
-       <h3>Upgrades</h3>
+       <h2>Upgrades</h2>
       <div id="badge-parent">
        
         {playerData?.player_unlocks.map((unlock) => {
