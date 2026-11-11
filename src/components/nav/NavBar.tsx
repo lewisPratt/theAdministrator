@@ -76,7 +76,7 @@ useEffect(() => {
         setErrorState("There was an issue with your saved game data. #2")
         } 
     }
-  }, [playerData]);
+  }, [playerData, componentEnabled]);
 
   return (
     <>

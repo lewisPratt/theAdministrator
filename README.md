@@ -686,7 +686,16 @@ Due to React compiling JavaScript and HTML at time of deployment, the HTML was v
 
 ### Javascript
 
---
+To validate my JavaScript/TypeScript I used ESLint. This package validated the code within my project directly inside VSCode, checking it for errors, style inconsistencies and unused code. When I first ran it towards the end of my project, the report that came back listed roughly 100 errors/warnings. A built in tool of ESLint allowed roughly 50% of these to be solved automatically by running `npm run lint -- --fix`. 
+
+The majority of the remaining errors were related to setting state inside of useEffect, which can cause unintended re-renders. This required me to refactor a number of parts of code to negate this effect and clear the error messages. 
+
+The remaining warnings were mostly regarding unused pieces of code and missing dependencies on some useEffects.
+
+All errors were cleared and only 1 warning remains, which was not possible to address within the timescale of the project. A future aim would be to clear this final warning by refactoring the code in this component. Currently, despite the warning, there is no adverse effect on the app or logic of the game. 
+
+<img src="src/assets/images/readme/validation/js/eslint-validation.png" width=800> 
+
 
 ## Compatibility
 
