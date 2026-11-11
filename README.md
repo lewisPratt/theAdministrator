@@ -668,15 +668,16 @@ The current strategy ensures that the user does not become blocked from logging 
 --
 
 ### HTML
+Due to React compiling JavaScript and HTML at time of deployment, the HTML was validated by copying the HTML structure from developer tools whilst inspecting the deployed app. HTML validation via direct input was then used to validate the code. [W3c.org validator](https://validator.w3.org/#validate_by_input)
 
 | Page | Validation | Comments |
 |--|--|--|
-| Login | <img src="src/assets/images/readme/validation/html/login-html-validation.png" width=200> | Warnings caused by external package (react tooltip) injecting style sheet at run time. No way to fix without editing package directly. |
-| Terminal | <img src="src/assets/images/readme/validation/html/terminal-html-validation.png" width=200> | As Above
-| Upgrade | <img src="src/assets/images/readme/button-hover.png" width=200> |
-| Personal record | <img src="src/assets/images/readme/button-hover.png" width=200> |
-| Case Review | <img src="src/assets/images/readme/button-hover.png" width=200> |
-| About | <img src="src/assets/images/readme/button-hover.png" width=200> |
+| Login | <img src="src/assets/images/readme/validation/html/login-html-validation.png" width=200> | Warnings caused by external package (react tooltip) injecting style sheet at run time. No way to fix without editing package directly. Same warning on all HTML files.  |
+| Terminal | <img src="src/assets/images/readme/validation/html/terminal-html-validation.png" width=200> | 
+| Upgrade | <img src="src/assets/images/readme/validation/html/upgrade-shop-html-validation.png" width=200> | 
+| Personal record | <img src="src/assets/images/readme/validation/html/personal-record-html-validation.png" width=200> | 
+| Case Review | <img src="src/assets/images/readme/validation/html/case-review-html-validation.png" width=200> |
+| About | <img src="src/assets/images/readme/validation/html/about-html-validation.png" width=200> |
 
 
 

@@ -48,8 +48,8 @@ export default function CaseListItem({
            
           }
         }} />
-      <p className="desktop-case-element">{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</p>  
-      {currentTranscript.bonusCase === true ? <p className="desktop-case-element"> <FolderTree data-tooltip-id="extra-case-tooltip" data-tooltip-content="Bonus case from upgrade." /></p>  : ""}
+      <span className="desktop-case-element">{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</span>  
+      {currentTranscript.bonusCase === true ? <span className="desktop-case-element"> <FolderTree data-tooltip-id="extra-case-tooltip" data-tooltip-content="Bonus case from upgrade." /></span>  : ""}
     </button>}
     </>
   );
