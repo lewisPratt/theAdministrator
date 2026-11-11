@@ -315,10 +315,10 @@ export default function CaseReviewPanel({
                 <button className="close-button" onClick={()=>{setCityMapState(false);playCustomSound("buttonPress")}}><X/></button>
                 
               </div>
-            <h3>
+            <h2>
               {transcript.interviewee.firstName}{" "}
               {transcript.interviewee.lastName}
-            </h3>
+            </h2>
             <div className="interviewee-details">
              
               <CitizenAvatar key={transcript.identifier} transcript={transcript} cityMapState={cityMapState} cityMapSetter={setCityMapState}/>

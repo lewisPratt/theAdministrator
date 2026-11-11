@@ -34,28 +34,7 @@ export default function CaseListItem({
       key={currentTranscript.interviewee.firstName + currentTranscript.age}
       onClick={() => {openTranscript(currentTranscript),playCustomSound("buttonPress")}}
     >
-      <span className="mobile-case-element">
-        <span className="case-avatar-span">
-          <img alt="" src= {currentTranscript.avatar} 
-            onError={(e) => {
-                if (e.currentTarget.dataset.default != "set") {
-                  e.currentTarget.src = "src/assets/images/default-avatar.wbp";
-                  
-                  e.currentTarget.dataset.default = "set";
-                } else {
-                  if (e.currentTarget.parentElement) {
-                    e.currentTarget.style.cssText =
-                      "background-color: #a2eaa2;";
-                  }
-                  e.currentTarget.before("Avatar Not Found");
-                
-                }
-              }}
-          />
-        </span>
-      </span>
       
-      <span className="desktop-case-element">
       <img  alt="" src={currentTranscript.avatar} onError={(e) => {
           if (e.currentTarget.dataset.default != "set") {
             e.currentTarget.src = "src/assets/images/default-avatar.wep";
@@ -69,9 +48,8 @@ export default function CaseListItem({
            
           }
         }} />
-      <p>{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</p>  
-      <p>{currentTranscript.bonusCase === true ? <FolderTree data-tooltip-id="extra-case-tooltip" data-tooltip-content="Bonus case from upgrade." /> : ""}</p>
-    </span>
+      <p className="desktop-case-element">{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</p>  
+      {currentTranscript.bonusCase === true ? <p className="desktop-case-element"> <FolderTree data-tooltip-id="extra-case-tooltip" data-tooltip-content="Bonus case from upgrade." /></p>  : ""}
     </button>}
     </>
   );
