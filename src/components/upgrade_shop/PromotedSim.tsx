@@ -27,7 +27,7 @@ export default function PromotedSim({promoted, promotedSetter} : PromotedSimProp
     function selectTitle(){
         if(playerData){
             const playerTitles = playerData.player_titles
-            let availableTitles :string[] = []
+            const availableTitles :string[] = []
             if(playerTitles.length > 0){
             promotionPrefixes.forEach(prefix => {
                 let flag = false
@@ -49,7 +49,7 @@ export default function PromotedSim({promoted, promotedSetter} : PromotedSimProp
     function saveNewTitle(){
         if(playerData){
             setPromotionLoading(false)
-            let dataToUpdate = { ...playerData };
+            const dataToUpdate = { ...playerData };
     
             let updatedTitles: string[] = [];
             if (dataToUpdate.player_titles != null) {

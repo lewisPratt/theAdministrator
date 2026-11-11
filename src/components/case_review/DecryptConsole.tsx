@@ -25,10 +25,10 @@ export default function DecryptConsole({decryptobj, transcriptList,transcript,se
     const {playerData, setPlayerData} = useContext(PlayerContext)
     const lastTimestamp = useRef(0)
     const decryptTimerLength = 20000
-    let timer = useRef(0)
-    let intervalTimer = useRef(0)
-    let [success,setSuccess] = useState<boolean>(false)
-    let failedReason = useRef("")
+    const timer = useRef(0)
+    const intervalTimer = useRef(0)
+    const [success,setSuccess] = useState<boolean>(false)
+    const failedReason = useRef("")
 
     const openSound = ()=> playSound(successfulOpen)
     const failureSound = ()=> playSound(failSound)
@@ -72,8 +72,8 @@ useEffect(()=>{
 
     function lockDevice(){
           if(transcriptList && transcript){
-            let allTranscripts = [...transcriptList];
-            let foundTranscript = allTranscripts.find(
+            const allTranscripts = [...transcriptList];
+            const foundTranscript = allTranscripts.find(
             (t) => t.identifier === transcript.identifier,
             );
             if (foundTranscript) {
@@ -87,8 +87,8 @@ useEffect(()=>{
 
     function deviceDecrypted(){
          if(transcriptList && transcript){
-            let allTranscripts = [...transcriptList];
-            let foundTranscript = allTranscripts.find(
+            const allTranscripts = [...transcriptList];
+            const foundTranscript = allTranscripts.find(
             (t) => t.identifier === transcript.identifier,
             );
             if (foundTranscript) {
@@ -136,7 +136,7 @@ useEffect(()=>{
             openSound()
             
             if(playerData){
-                let dataToUpdate = { ...playerData };
+                const dataToUpdate = { ...playerData };
                 dataToUpdate.player_credits += decryptobj.contents.creditReward
                 dataToUpdate.player_stats.total_credits_earned += decryptobj.contents.creditReward
                 dataToUpdate.player_stats.devices_unlocked +=  1

@@ -13,7 +13,7 @@ export default function TutorialEnd() {
 
   function endTutorial() {
     if(playerData){
-    let dataToUpdate: playerDataShape = playerData;
+    const dataToUpdate: playerDataShape = playerData;
     setTutorialState({ tutorialActive: false, tutorialStep: 0 });
     dataToUpdate.player_tutorialComplete = true;
     setPlayerData(dataToUpdate)

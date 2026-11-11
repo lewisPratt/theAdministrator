@@ -45,21 +45,21 @@ export default function UpgradeShop() {
 
   function giveCredits() {
     if (playerData) {
-      let dataToUpdate = { ...playerData };
+      const dataToUpdate = { ...playerData };
       dataToUpdate.player_credits = dataToUpdate.player_credits + 1000;
       setPlayerData(dataToUpdate);
     }
   }
   function resetCredits() {
      if (playerData) {
-      let dataToUpdate = { ...playerData };
+      const dataToUpdate = { ...playerData };
       dataToUpdate.player_credits = 0;
       setPlayerData(dataToUpdate);
     }
   }
   function resetUpgrades() {
     if (playerData) {
-      let dataToUpdate = { ...playerData };
+      const dataToUpdate = { ...playerData };
       dataToUpdate.player_unlocks = []
       setPlayerData(dataToUpdate);
     }
@@ -92,7 +92,7 @@ export default function UpgradeShop() {
           playCustomSound("errorSound");
         } else {
           //purchase made, update playerdata with credit balance and unlocks then set playerdata and store local data
-          let dataToUpdate = { ...playerData };
+          const dataToUpdate = { ...playerData };
           dataToUpdate.player_credits =
             dataToUpdate.player_credits - selectedUpgrade.cost;
             if(confirming != "voucher13"){

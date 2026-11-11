@@ -103,7 +103,7 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
     }
   }
    function newPlayerSetup(name: string) {
-        let newPlayer = newPlayerData;
+        const newPlayer = newPlayerData;
         newPlayer.player_name = name;
         localStorage.setItem(
           "The_Administrator_Game",

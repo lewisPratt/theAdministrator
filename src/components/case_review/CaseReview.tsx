@@ -56,7 +56,7 @@ export default function TranscriptRev() {
 
   if (availableTranscripts != null && !reviewsComplete) {
     let effectiveness: number = 0;
-    let reviewObj = { count: 0, negative: 0, positive: 0 };
+    const reviewObj = { count: 0, negative: 0, positive: 0 };
     availableTranscripts.forEach((transcript) => {
       if (transcript.processed) {
         reviewObj.count += 1;
@@ -83,9 +83,9 @@ export default function TranscriptRev() {
   //the delay implemented by the loading state allows time for local data to be loaded from localstorage if playerdata becomes null (on refresh of page for instance)
   // 
   useEffect(() => {
-    let transcriptsArray: reviewShape[] = [];
+    const transcriptsArray: reviewShape[] = [];
     let transcriptCount = 8;
-    let originalCount = transcriptCount;
+    const originalCount = transcriptCount;
     if (playerData) {
       setMissingPlayerData(false)
       if (playerData.player_unlocks.includes("voucher4")) {

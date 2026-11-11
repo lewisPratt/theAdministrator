@@ -28,7 +28,7 @@ export function capitalizeFirstLetter(val: string) {
 
 export function getUnlockDetails(playerData : playerDataShape | null) :UpgradeShape[]{
   
-  let voucherArray :UpgradeShape[] =[]
+  const voucherArray :UpgradeShape[] =[]
   if(playerData){
   playerData.player_unlocks.forEach(unlock => {
     if(allUpgrades[unlock]){
@@ -54,10 +54,10 @@ export function getDetailsForDistrict(district:number) :districtDetails{
   }
 
   
-  let occupationArray : occupationsShape[] = occupations.filter((location)=>{
+  const occupationArray : occupationsShape[] = occupations.filter((location)=>{
       return location.district === district
   })
-  let locationArray : locationsShape[] = locations.filter((location)=>{
+  const locationArray : locationsShape[] = locations.filter((location)=>{
       return location.district === district
   })
   return  {occupations :occupationArray, locations : locationArray, districtNumber:district, districtName: dName, activeList:"occupations"}

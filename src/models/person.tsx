@@ -113,7 +113,7 @@ export class person {
   //Determines the persons overall weighting (good / normal / bad) determined by the factors generated within this class
   private workOutWeighting(): number {
     let weighting = 0;
-    let weightingArray: weightingArrayShape[] = [];
+    const weightingArray: weightingArrayShape[] = [];
     this.items.forEach((item) => {
       if (!item.legal) {
         weighting -= 1;

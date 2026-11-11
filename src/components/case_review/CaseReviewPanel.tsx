@@ -44,8 +44,8 @@ export default function CaseReviewPanel({
   seniorCall
 }: transcriptReviewBoxProps) {
   const [closing, setClosing] = useState<boolean>(false);
-  const [showEvidence, setShowEvidence] = useState<Boolean>(false);
-  const [showSearch, setShowSearch] = useState<Boolean>(false);
+  const [showEvidence, setShowEvidence] = useState<boolean>(false);
+  const [showSearch, setShowSearch] = useState<boolean>(false);
   const [inCall, setInCall] = useState<boolean>(false)
   const [callResult, setCallResult] = useState<string>("")
   const [callTalking, setCallTalking] = useState<string>("")
@@ -230,8 +230,8 @@ export default function CaseReviewPanel({
 
           //handle the updating of the transcript with the reward earned and the outcome of the decision.
           if (transcriptList) {
-            let allTranscripts = [...transcriptList];
-            let foundTranscript = allTranscripts.find(
+            const allTranscripts = [...transcriptList];
+            const foundTranscript = allTranscripts.find(
               (t) => t.identifier === transcript?.identifier,
             );
             if (foundTranscript) {
@@ -246,7 +246,7 @@ export default function CaseReviewPanel({
           }
 
           //update playerdata with increase/decrease in credits.
-          let dataToUpdate = { ...playerData };
+          const dataToUpdate = { ...playerData };
           dataToUpdate.player_credits = newTotal;
           dataToUpdate.player_stats.cases_complete += 1;
           if (decisionOutcome) {

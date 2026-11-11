@@ -128,7 +128,7 @@ export const carryableItems: carryableItemsShape[] = [
 ];
 export function createItems() {
   const numberOfItems = Math.random() * 4;
-  let itemsArray = [];
+  const itemsArray = [];
   for (let index = 0; index < numberOfItems; index++) {
     shuffleItems(carryableItems);
     itemsArray.push(carryableItems[0]);

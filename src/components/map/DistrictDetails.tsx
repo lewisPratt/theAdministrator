@@ -29,7 +29,7 @@ export default function DistrictDetails({
 
   function setListActive(listToSet: string) {
     if (districtDetails) {
-      let districtData: districtDetails = { ...districtDetails };
+      const districtData: districtDetails = { ...districtDetails };
       districtData.activeList = listToSet;
       setDistrictDetails(districtData);
     }
@@ -41,7 +41,7 @@ export default function DistrictDetails({
     const previousDistrict : number = districtDetails.districtNumber -1 > 0 ? districtDetails.districtNumber -1 : 13
     const nextDistrict : number = districtDetails.districtNumber +1 <= 13 ? districtDetails.districtNumber +1 : 1
         
-     let districtData: districtDetails = { ...getDetailsForDistrict(direction === "previous" ? previousDistrict : nextDistrict) };
+     const districtData: districtDetails = { ...getDetailsForDistrict(direction === "previous" ? previousDistrict : nextDistrict) };
       districtData.activeList = currentList;
       setDistrictDetails(districtData);
     }

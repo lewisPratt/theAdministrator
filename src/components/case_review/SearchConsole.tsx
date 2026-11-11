@@ -56,21 +56,21 @@ export default function SearchConsole() {
 
   function performSearch(searchTerm: string, searchType: string) {
     const lowerSearchTerm = searchTerm.toLowerCase();
-    let results: searchResultShape[] = [];
+    const results: searchResultShape[] = [];
     //search for location
     if (searchType === "district") {
       const locationResult: locationsShape[] = locations.filter((item) => {
-        let re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
+        const re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
         return item.name.match(re);
       });
       const occupationResult: occupationsShape[] = occupations.filter(
         (item) => {
-          let re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
+          const re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
           return item.name.match(re);
         },
       );
-      let locationSearchResults: normalizedResultsShape[] = [];
-      let occupationSearchResults: normalizedResultsShape[] = [];
+      const locationSearchResults: normalizedResultsShape[] = [];
+      const occupationSearchResults: normalizedResultsShape[] = [];
 
       locationResult.forEach((location) => {
         locationSearchResults.push({
@@ -106,7 +106,7 @@ export default function SearchConsole() {
     else if (searchType === "item") {
       const itemResult: carryableItemsShape[] = carryableItems.filter(
         (item) => {
-          let re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
+          const re = new RegExp(String.raw`${lowerSearchTerm}`, "gi");
           return item.description.match(re);
         },
       );

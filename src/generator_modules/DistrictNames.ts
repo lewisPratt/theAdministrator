@@ -18,7 +18,7 @@ const DistrictNames : districtNameShape[]=[
         {districtNumber: 13, districtName: "Slums"}
     ]
 
-    let districtName : districtNameShape  | undefined= DistrictNames.find((dis)=>{
+    const districtName : districtNameShape  | undefined= DistrictNames.find((dis)=>{
           return dis.districtNumber === districtNumber
       })
       if(districtName){

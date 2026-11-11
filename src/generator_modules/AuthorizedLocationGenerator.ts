@@ -1,7 +1,7 @@
 export function generateAuthorizedLocations() {
   const noOfLocations = Math.floor(Math.random() * 3) +1;
   const districts = [1, 2, 3, 4, 6, 7,8, 9, 10, 11, 12, 13];
-  let authorizedLocations: number[] = [];
+  const authorizedLocations: number[] = [];
 
   function shuffleArray(a: number[]) {
     for (let i = a.length - 1; i > 0; i--) {

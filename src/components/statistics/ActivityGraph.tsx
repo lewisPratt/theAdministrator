@@ -5,7 +5,7 @@ import type { nodeShape } from "../../interfaces/interfaces";
 
 
 export default function ActivityGraph() {
-  let nodes: nodeShape[] = [];
+  const nodes: nodeShape[] = [];
   const [graphNodes, setGraphNodes] = useState<nodeShape[]>(nodes);
   const intensities = [1,1,2,2,2,2,2,2,2,2,2,2,2,3,3]
 
@@ -31,7 +31,7 @@ export default function ActivityGraph() {
   function changeIntensity() {
 
     const amount = Math.floor(Math.random() * 100) + 1;
-    let currentNodes = [...graphNodes];
+    const currentNodes = [...graphNodes];
     console.log(currentNodes.length);
     for (let index = 0; index < amount; index++) {
       currentNodes[Math.floor(Math.random() * 300)].intensity =

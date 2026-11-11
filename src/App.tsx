@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import TranscriptRev from "./components/case_review/CaseReview";
 import "./assets/css/App.css";
 import "./assets/css/tutorial.css";
 import "./assets/css/nav.css";
 
-import { LoaderCircle } from "lucide-react";
 import UpgradeShop from "./components/upgrade_shop/UpgradeShop";
 import CommandCentre from "./components/terminal/Terminal";
 import Login from "./components/login/Login";
-import { AdminContext } from "./context_providers/AdminContext";
 import Inbox from "./components/inbox/Inbox";
 import CurrentSlug from "./components/footer/CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import {
   type currentSlugShape,
-  type adminContextShape,
   type errorStateShape,
   type tutorialContextShape,
   type tutorialStateShape,
@@ -25,7 +22,7 @@ import {
 import { SoundProvider } from "react-sounds";
 import WelcomeScreen from "./components/login/WelcomeScreen";
 import GoodbyeScreen from "./components/login/GoodbyeScreen";
-import AboutGame from "./components/about/AboutGame"; 
+import AboutGame from "./components/about/AboutGame";
 import PersonalRecord from "./components/personal_record/PersonalRecord";
 import HowToPlay from "./components/login/HowToPlay";
 import Footer from "./components/footer/Footer";
@@ -37,17 +34,12 @@ import { createPortal } from "react-dom";
 import NavBar from "./components/nav/NavBar";
 import { PlayerContext } from "./context_providers/PlayerContext";
 import Stats from "./components/statistics/Stats";
-import PageNotFound from "./components/PageNotFound"; 
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
-  // const [typedName, setTypedName] = useState<string>("");
-  const [adminName, setAdminName] = useState<string>("");
   const [playerData, setPlayerData] = useState<playerDataShape | null>(null);
-  const [loadingState, _setLoadingState] = useState<boolean>(false);
 
-  const [_instructionsPrompt] = useState<boolean>(true);
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
-  const [_terminalLoaded, setTerminalLoaded] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<string>("");
   const [tutorialState, setTutorialState] = useState<tutorialStateShape>({
     tutorialActive: false,
@@ -55,8 +47,6 @@ function App() {
   });
 
   const playerContextValue: playerContextShape = { playerData, setPlayerData };
-  const adminContextValue: adminContextShape = { adminName, setAdminName };
-
 
   const errorStateValue: errorStateShape = { errorState, setErrorState };
   const tutorialContextValue: tutorialContextShape = {
@@ -67,98 +57,58 @@ function App() {
     currentSlug,
     setCurrentSlug,
   };
-     
-
-  useEffect(() => {
-    if (adminName != "") {
-      const interval = setTimeout(() => {
-        setTerminalLoaded(true);
-      }, 5000);
-      console.log("timeout set");
-      return () => clearInterval(interval);
-    } else if (adminName === "") {
-      setTerminalLoaded(false);
-    }
-  }, [adminName]);
 
   return (
     <>
       <div id="main-content">
         <HashRouter>
-          {loadingState ? (
-            <p>
-              <LoaderCircle className="loader" />
-            </p>
-          ) : (
-            <SoundProvider>
-              <ErrorContext value={errorStateValue}>
-                <CurrentSlugContext value={currentSlugContextValue}>
-                  <AdminContext value={adminContextValue}>
-                    <PlayerContext value={playerContextValue}>
-                          <TutorialContext value={tutorialContextValue}>
-                            {tutorialState.tutorialActive &&
-                              createPortal(<TutorialOverlay />, document.body)}
-                            <ErrorPage />
-                            <header>
-                            <NavBar />
-                            </header>
-                              
-                            <main>
-                              <div id="content-container">
-                                <Routes>
-                                  <Route
-                                    path="/Welcome"
-                                    element={<WelcomeScreen />}
-                                  />
-                                  <Route
-                                    path="/HowToPlay"
-                                    element={<HowToPlay />}
-                                  />
-                                  <Route
-                                    path="/Goodbye"
-                                    element={<GoodbyeScreen />}
-                                  />
-                                  <Route
-                                    path="/About"
-                                    element={<AboutGame />}
-                                  />
-                                  <Route
-                                    path="PersonalRecord"
-                                    element={<PersonalRecord />}
-                                  />
-                                  <Route
-                                    path="Stats"
-                                    element={<Stats />}
-                                  />
-                                  <Route path="/" element={<Login />} />
-                                  <Route
-                                    path="/Terminal"
-                                    element={<CommandCentre />}
-                                  />
-                                  <Route
-                                    path="/CaseReview"
-                                    element={<TranscriptRev />}
-                                  />
-                                  <Route
-                                    path="/UpgradeShop"
-                                    element={<UpgradeShop />}
-                                  />
-                                  <Route path="/Inbox" element={<Inbox />} />
-                                  <Route path="*" element={<PageNotFound />} />
+          <SoundProvider>
+            <ErrorContext value={errorStateValue}>
+              <CurrentSlugContext value={currentSlugContextValue}>
+                <PlayerContext value={playerContextValue}>
+                  <TutorialContext value={tutorialContextValue}>
+                    {tutorialState.tutorialActive &&
+                      createPortal(<TutorialOverlay />, document.body)}
+                    <ErrorPage />
+                    <header>
+                      <NavBar />
+                    </header>
 
-                                </Routes>
-                              </div>
-                            </main>
-                            <Footer>
-                              <CurrentSlug pageName={currentSlug} />
-                            </Footer>
-                          </TutorialContext>
-                    </PlayerContext>
-                  </AdminContext>
-                </CurrentSlugContext>
-              </ErrorContext>
-            </SoundProvider>
-          )}
+                    <main>
+                      <div id="content-container">
+                        <Routes>
+                          <Route path="/Welcome" element={<WelcomeScreen />} />
+                          <Route path="/HowToPlay" element={<HowToPlay />} />
+                          <Route path="/Goodbye" element={<GoodbyeScreen />} />
+                          <Route path="/About" element={<AboutGame />} />
+                          <Route
+                            path="PersonalRecord"
+                            element={<PersonalRecord />}
+                          />
+                          <Route path="Stats" element={<Stats />} />
+                          <Route path="/" element={<Login />} />
+                          <Route path="/Terminal" element={<CommandCentre />} />
+                          <Route
+                            path="/CaseReview"
+                            element={<TranscriptRev />}
+                          />
+                          <Route
+                            path="/UpgradeShop"
+                            element={<UpgradeShop />}
+                          />
+                          <Route path="/Inbox" element={<Inbox />} />
+                          <Route path="*" element={<PageNotFound />} />
+                        </Routes>
+                      </div>
+                    </main>
+                    <Footer>
+                      <CurrentSlug pageName={currentSlug} />
+                    </Footer>
+                  </TutorialContext>
+                </PlayerContext>
+              </CurrentSlugContext>
+            </ErrorContext>
+          </SoundProvider>
         </HashRouter>
       </div>
     </>
