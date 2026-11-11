@@ -43,7 +43,7 @@ export default function TutorialLogic({loadingState ,tooltipRef}:tutorialLogicPr
      root.inert = tutorialState.tutorialActive;
      return () => { root.inert = false };
      }
-  }, [tutorialState, loadingState]);
+  }, [tutorialState, loadingState,tooltipRef]);
 
     //return the tooltip JSX using a portal to ensure it escapes the focus trap and is a sibling of root, rather than a child.
     return (createPortal( <Tooltip className="custom-tooltip" ref={tooltipRef} imperativeModeOnly clickable/>, document.body))

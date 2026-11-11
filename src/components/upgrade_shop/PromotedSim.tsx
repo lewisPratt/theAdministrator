@@ -14,6 +14,8 @@ export default function PromotedSim({promoted, promotedSetter} : PromotedSimProp
     const [promotionLoading, setPromotionLoading] = useState<boolean>(true)
     const [promotionTitle, setPromotionTitle] = useState<string>("")
     const {playerData, setPlayerData} = useContext(PlayerContext)
+    //timer to simulate promotion loading state
+    const promoTimer = setTimeout(selectTitle, 2000);
 
     //close overlay when overlay is clicked.
     function closeOverlay(e: React.MouseEvent<HTMLDivElement>) {
@@ -44,7 +46,6 @@ export default function PromotedSim({promoted, promotedSetter} : PromotedSimProp
             else{
                 newTitle = promotionPrefixes[Math.floor(Math.random() * promotionPrefixes.length) ]
             }
-            console.log("hereeeeeee",newTitle)
             setPromotionLoading(false)
             const dataToUpdate = { ...playerData };
     
@@ -59,12 +60,17 @@ export default function PromotedSim({promoted, promotedSetter} : PromotedSimProp
         }
     }
 
-    //set simulated loading for title generation
+    //clear promotion timer when title has been chosen.
     useEffect(()=>{
-        const promoTimer = setTimeout(selectTitle, 2000);
-        //return value in useeffect runs when component unmounts
+        if(promotionTitle != ""){
+            clearTimeout(promoTimer)
+        }
+    },[promotionTitle,promoTimer])
+
+    //clear timer if component unmounts
+    useEffect(()=>{
         return ()=>clearTimeout(promoTimer)
-    },[])
+    },[promoTimer])
 
 
     return (
