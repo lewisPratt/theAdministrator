@@ -13,7 +13,7 @@ interface PromotedSimProps{
 export default function PromotedSim({promoted, promotedSetter} : PromotedSimProps){
     const [promotionLoading, setPromotionLoading] = useState<boolean>(true)
     const title = promotionPrefixes[Math.floor(Math.random() * promotionPrefixes.length) + 1]
-    const promotionTitle = useRef<string>(title)
+    const [promotionTitle, setPromotionTitle] = useState<string>("")
     const {playerData, setPlayerData} = useContext(PlayerContext)
 
     //close overlay when overlay is clicked.
@@ -25,29 +25,28 @@ export default function PromotedSim({promoted, promotedSetter} : PromotedSimProp
     }
 
     function selectTitle(){
+        
         if(playerData){
             const playerTitles = playerData.player_titles
             const availableTitles :string[] = []
+            let newTitle : string
             if(playerTitles.length > 0){
-            promotionPrefixes.forEach(prefix => {
-                let flag = false
-                playerTitles.forEach(title => {
-                    if(title === prefix) {flag = true}
+                promotionPrefixes.forEach(prefix => {
+                    let flag = false
+                    playerTitles.forEach(title => {
+                        if(title === prefix) {flag = true}
+                    });
+                        if(!flag) availableTitles.push(prefix) 
                 });
-                if(!flag) availableTitles.push(prefix) 
-            });
             }
-        console.log(availableTitles)
-        if(availableTitles.length > 0){
-            promotionTitle.current = availableTitles[Math.floor(Math.random() * availableTitles.length) ]
-        }
-        else{
-            promotionTitle.current = promotionPrefixes[Math.floor(Math.random() * promotionPrefixes.length) ]
-        }
-        }
-    }
-    function saveNewTitle(){
-        if(playerData){
+            if(availableTitles.length > 0){
+                newTitle = availableTitles[Math.floor(Math.random() * availableTitles.length) ]
+            }
+            else{
+                
+                newTitle = promotionPrefixes[Math.floor(Math.random() * promotionPrefixes.length) ]
+            }
+            console.log("hereeeeeee",newTitle)
             setPromotionLoading(false)
             const dataToUpdate = { ...playerData };
     
@@ -55,16 +54,16 @@ export default function PromotedSim({promoted, promotedSetter} : PromotedSimProp
             if (dataToUpdate.player_titles != null) {
                 updatedTitles = [...dataToUpdate.player_titles];
             }
-            updatedTitles.push(promotionTitle.current);
+            updatedTitles.push(newTitle);
             dataToUpdate.player_titles = updatedTitles
             setPlayerData(dataToUpdate);
+            setPromotionTitle(newTitle)
         }
     }
 
     //set simulated loading for title generation
     useEffect(()=>{
-        selectTitle()
-        const promoTimer = setTimeout(saveNewTitle, 2000);
+        const promoTimer = setTimeout(selectTitle, 2000);
         //return value in useeffect runs when component unmounts
         return ()=>clearTimeout(promoTimer)
     },[])
@@ -85,7 +84,7 @@ export default function PromotedSim({promoted, promotedSetter} : PromotedSimProp
             ):
             (
                 //display promotion state
-                <p>{promotionTitle.current} Administrator</p>
+                <p>{promotionTitle} Administrator</p>
             )}
             <button autoFocus onClick={()=>{promotedSetter(false)}}><X /></button>
             </div>

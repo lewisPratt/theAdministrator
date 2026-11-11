@@ -181,7 +181,7 @@ export class person {
    * @returns [string] URL to the avatar image that has been generated.
    */
   private generateAvatar(gender: string, behaviour: string): string {
-    let imageUrl = "";
+    let imageUrl :string ;
     const mensHappyUrl =
       "https://api.dicebear.com/10.x/open-peeps/svg?skinColor=49694a&clothingColor=a2eaa2&headContrastColor=75a975&inkColor=a2eaa2&maskProbability=0&expressionVariant=blank,calm,cheeky,cute,driven,eatingHappy,eyesClosed,old,smile&backgroundColor=000000&accessoriesVariant=eyepatch,glasses,glasses2,glasses3,glasses5,sunglasses,sunglasses2&maskVariant=&facialHairProbability=50&headVariant=dreads2,flatTop,flatTopLong,grayShort,hatBeanie,hatHip,mohawk,mohawk2,noHair1,noHair2,noHair3,pomp,shaved2,shaved3,short1,short2,short3,short4,short5,turban,twists,twists2&facialHairVariant=chin,full,full2,full3,full4,goatee1,goatee2,moustache1,moustache2,moustache3,moustache5,moustache6,moustache7,moustache9&seed=" 
   

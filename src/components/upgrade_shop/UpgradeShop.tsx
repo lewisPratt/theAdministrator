@@ -28,12 +28,11 @@ export default function UpgradeShop() {
   const [promoted, setPromoted] = useState<boolean>(false)
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { tutorialState } = useContext(TutorialContext);
-  const { errorState } = useContext(ErrorContext);
+  const { errorState,setErrorState } = useContext(ErrorContext);
 
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
 
-  const [_upgradeErrorState, setUpgradeErrorState] = useState<string | null>(null);
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
   const debug :boolean = false;
@@ -41,7 +40,7 @@ export default function UpgradeShop() {
 
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
-  });
+  },[]);
 
   function giveCredits() {
     if (playerData) {
@@ -65,7 +64,6 @@ export default function UpgradeShop() {
     }
   }
   function confirmChoice(e: React.MouseEvent<HTMLButtonElement>) {
-    setUpgradeErrorState(null);
     if (
       e.currentTarget.dataset.upgradeName &&
       e.currentTarget.dataset.upgradeIdent
@@ -88,7 +86,7 @@ export default function UpgradeShop() {
       const selectedUpgrade = upgrades[`${confirming}`];
       if (playerData) {
         if (playerData.player_credits < selectedUpgrade.cost) {
-          setUpgradeErrorState("You do not have enough credits");
+          setErrorState("You do not have enough credits");
           playCustomSound("errorSound");
         } else {
           //purchase made, update playerdata with credit balance and unlocks then set playerdata and store local data
