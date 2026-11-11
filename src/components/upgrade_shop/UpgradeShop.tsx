@@ -138,7 +138,7 @@ export default function UpgradeShop() {
           <section id="upgrade-shop">
             {promoted && <PromotedSim promoted={promoted} promotedSetter={setPromoted} /> }
             <div id="upgrade-shop-header">
-              <h2>Upgrade Terminal</h2>
+              <h1>Upgrade Terminal</h1>
 
               {(debug || playerData.player_name === "the_assessor".toLowerCase()) && (
                 <div className="debug-container">
@@ -168,7 +168,7 @@ export default function UpgradeShop() {
                 Personal Record
               </button>
             </div>
-            <section
+            <div
               id="tutorial-step-13"
               className={
                 (tutorialState.tutorialActive && tutorialState.tutorialStep === 13
@@ -176,6 +176,7 @@ export default function UpgradeShop() {
                   : "") + " upgrade-items-container"
               }
             >
+              
               <ol>
                 {Object.entries(upgrades).map((upgrade) => {
                   return (
@@ -198,13 +199,13 @@ export default function UpgradeShop() {
                       >
                         <Badge size={48}>{upgrade[1].icon}</Badge>
                         
-                        <div>
+                       
                           <span className="upgrade-name">
-                            {upgrade[1].name}</span>
+                            {upgrade[1].name}
                             {playerData?.player_unlocks.includes(upgrade[0]) &&
                              <> <br /> <span className="purchased-span"> [Purchased]</span> </>}
-                          
-                        </div>
+                            </span>
+                        
                         <span>
                           
                           <CreditIcon className="custom-icon" />
@@ -232,7 +233,7 @@ export default function UpgradeShop() {
                   );
                 })}
               </ol>
-            </section>
+            </div>
           </section>
         </>
         ) :
