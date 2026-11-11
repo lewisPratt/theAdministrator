@@ -33,7 +33,6 @@ import TutorialOverlay from "./components/tutorial/TutorialOverlay";
 import { createPortal } from "react-dom";
 import NavBar from "./components/nav/NavBar";
 import { PlayerContext } from "./context_providers/PlayerContext";
-import Stats from "./components/statistics/Stats";
 import PageNotFound from "./components/PageNotFound";
 
 function App() {
@@ -85,7 +84,6 @@ function App() {
                             path="PersonalRecord"
                             element={<PersonalRecord />}
                           />
-                          <Route path="Stats" element={<Stats />} />
                           <Route path="/" element={<Login />} />
                           <Route path="/Terminal" element={<CommandCentre />} />
                           <Route
