@@ -45,7 +45,7 @@
     translate:-15px -5px;
     width: fit-content;
     height: fit-content;
-    background-color: none;
+    background-color: unset;
 }
 .tutorial-highlight{
     position:relative;

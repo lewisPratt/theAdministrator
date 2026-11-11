@@ -665,7 +665,10 @@ The current strategy ensures that the user does not become blocked from logging 
 
 ### CSS
 
---
+Due to React utilising numerous components to build its UI, I have separated the majority of CSS rules into separate files associated with each individual component. In order to validate the CSS in a convenient manner, I copied and pasted the contents of all of these separate CSS files into one file, then copied this into the direct input Jigsaw validator provided by W3c.org. [W3c.org validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
+
+<img src="src/assets/images/readme/validation/css/css-validation.png" width=200> 
+
 
 ### HTML
 Due to React compiling JavaScript and HTML at time of deployment, the HTML was validated by copying the HTML structure from developer tools whilst inspecting the deployed app. HTML validation via direct input was then used to validate the code. [W3c.org validator](https://validator.w3.org/#validate_by_input)

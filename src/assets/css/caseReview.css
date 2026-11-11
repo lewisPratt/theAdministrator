@@ -159,7 +159,7 @@ progress.decrypt-count-down {
   margin: 10px 10px 0 10px;
   display: flex;
   height: 150px;
-  color: black;
+  color: #a2eaa2;
   font-family: 'Silkscreen', monospace;
   justify-content: center;
   align-items: center;
