@@ -76,7 +76,7 @@ export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
   }
 
   function previousStep() {
-    let step: number = 0;
+    let step: number ;
     //close tutorial
     if (tutorialState.tutorialStep <= 1) {
       setTutorialState({ tutorialActive: false, tutorialStep: 0 });

@@ -1,5 +1,5 @@
 import { LoaderCircle, X } from "lucide-react";
-import { useContext, useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
+import { useContext, useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { promotionPrefixes } from "../../generator_modules/titles";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import "../../assets/css/promotion_overlay.css"
@@ -12,7 +12,6 @@ interface PromotedSimProps{
 
 export default function PromotedSim({promoted, promotedSetter} : PromotedSimProps){
     const [promotionLoading, setPromotionLoading] = useState<boolean>(true)
-    const title = promotionPrefixes[Math.floor(Math.random() * promotionPrefixes.length) + 1]
     const [promotionTitle, setPromotionTitle] = useState<string>("")
     const {playerData, setPlayerData} = useContext(PlayerContext)
 
@@ -43,7 +42,6 @@ export default function PromotedSim({promoted, promotedSetter} : PromotedSimProp
                 newTitle = availableTitles[Math.floor(Math.random() * availableTitles.length) ]
             }
             else{
-                
                 newTitle = promotionPrefixes[Math.floor(Math.random() * promotionPrefixes.length) ]
             }
             console.log("hereeeeeee",newTitle)

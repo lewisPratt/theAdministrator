@@ -134,9 +134,15 @@ export default function TranscriptRev() {
 
   //if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
   useEffect(() => {
-    if (tutorialState.tutorialActive && availableTranscripts) {
+
+    function showTutorialCase(availableTranscripts : reviewShape[]){
       setNextCase(availableTranscripts[0])
       setCurrentTranscript(availableTranscripts[0]);
+    }
+    if(!loadingState){
+      if (tutorialState.tutorialActive && availableTranscripts) {
+        showTutorialCase(availableTranscripts)
+      }
     }
   }, [loadingState]);
 
