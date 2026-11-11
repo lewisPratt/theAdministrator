@@ -358,7 +358,7 @@ progress.decrypt-count-down {
   font-size: .8rem;
   background-color: black;
   padding: 0;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .transcript-list-item .case-avatar-span {
@@ -378,6 +378,9 @@ progress.decrypt-count-down {
 .transcript-list-item img{
  width:50px;
  height:50px;
+}
+.transcript-list-item span{
+  display: block;
 }
 .transcript-list {
   margin: 0;
@@ -874,7 +877,6 @@ progress.decrypt-count-down {
 
   .transcript-list-item {
     padding: 10px;
-    justify-content: space-between;
     width: 100%;
   }
 
