@@ -34,30 +34,35 @@ export default function CaseListItem({
       key={currentTranscript.interviewee.firstName + currentTranscript.age}
       onClick={() => {openTranscript(currentTranscript),playCustomSound("buttonPress")}}
     >
-      <div className="mobile-case-element"><span><img src={currentTranscript.avatar} 
-       onError={(e) => {
-          if (e.currentTarget.dataset.default != "set") {
-            e.currentTarget.src = "default-avatar.webp";
-            e.currentTarget.dataset.default = "set";
-          } else {
-            if (e.currentTarget.parentElement) {
-              e.currentTarget.parentElement.style.cssText =
-                "background-color: #a2eaa2;";
-            }
-            e.currentTarget.before("Avatar Not Found");
-           
-          }
-        }}
+      <span className="mobile-case-element">
+        <span className="case-avatar-span">
+          <img alt="" src= {currentTranscript.avatar} 
+            onError={(e) => {
+                if (e.currentTarget.dataset.default != "set") {
+                  e.currentTarget.src = "src/assets/images/default-avatar.wbp";
+                  
+                  e.currentTarget.dataset.default = "set";
+                } else {
+                  if (e.currentTarget.parentElement) {
+                    e.currentTarget.style.cssText =
+                      "background-color: #a2eaa2;";
+                  }
+                  e.currentTarget.before("Avatar Not Found");
+                
+                }
+              }}
+          />
+        </span>
+      </span>
       
-      /></span></div>
-      <div className="desktop-case-element">
-      <img  alt="Citizen Avatar" src={currentTranscript.avatar} onError={(e) => {
+      <span className="desktop-case-element">
+      <img  alt="" src={currentTranscript.avatar} onError={(e) => {
           if (e.currentTarget.dataset.default != "set") {
-            e.currentTarget.src = "default-avatar.webp";
+            e.currentTarget.src = "src/assets/images/default-avatar.wep";
             e.currentTarget.dataset.default = "set";
           } else {
             if (e.currentTarget.parentElement) {
-              e.currentTarget.parentElement.style.cssText =
+              e.currentTarget.style.cssText =
                 "background-color: #a2eaa2;";
             }
             e.currentTarget.before("Avatar Not Found");
@@ -66,7 +71,7 @@ export default function CaseListItem({
         }} />
       <p>{currentTranscript.interviewee.firstName[0]}. {currentTranscript.interviewee.lastName}</p>  
       <p>{currentTranscript.bonusCase === true ? <FolderTree data-tooltip-id="extra-case-tooltip" data-tooltip-content="Bonus case from upgrade." /> : ""}</p>
-    </div>
+    </span>
     </button>}
     </>
   );

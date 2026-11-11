@@ -508,7 +508,7 @@ export default function CaseReviewPanel({
               {playerData?.player_unlocks.includes("voucher10") && <SearchConsole />}
             </div>
             <div id="evidence-container" className={(showEvidence ? "evidence-visible" : "evidence-hidden" )}>
-              <button id="close-decrypt" onClick={()=>{setShowEvidence(false)}}><X /></button>
+              <button id="close-evidence" onClick={()=>{setShowEvidence(false)}}><X /></button>
               <EvidenceStack caseDetails={transcript}/> 
                     
             </div>

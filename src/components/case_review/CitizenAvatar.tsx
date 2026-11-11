@@ -19,7 +19,7 @@ const scanLineDuration = 10
 
         <filter id='image-overlay' x='0%' y='0%' width='100%' height='100%'>
             <feTurbulence baseFrequency="0.3" />
-            <feBlend result="mergedImg" in="SourceGraphic" mode="multiply" />
+            <feBlend result="mergedImg" in="SourceGraphic" in2="" mode="multiply" />
         </filter>
         <filter id="uniform-noise">
     
@@ -27,7 +27,7 @@ const scanLineDuration = 10
     
    
     <feColorMatrix type="saturate" values="0" />
-                <feBlend result="mergedImg" in="SourceGraphic" mode="multiply" />
+                <feBlend result="mergedImg" in="SourceGraphic" in2="" mode="multiply" />
 
   </filter>
       
@@ -44,14 +44,15 @@ const scanLineDuration = 10
         data-default=""
         onError={(e) => {
           if (e.currentTarget.dataset.default != "set") {
-            e.currentTarget.setAttribute("href", "default-avatar.webp");
+            e.currentTarget.setAttribute("href", "src/assets/images/default-avatar.wep");
+        
             e.currentTarget.dataset.default = "set";
           } else {
             if (e.currentTarget.parentElement) {
               e.currentTarget.parentElement.style.cssText =
-                "background-color: #a2eaa2;";
+                "background-color: #a2eaa2; "
+               
             }
-            e.currentTarget.before("Avatar Not Found");
            
           }
         }}

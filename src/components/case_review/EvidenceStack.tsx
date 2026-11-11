@@ -11,18 +11,20 @@ export default function EvidenceStack({caseDetails}: evidenceStackprops) {
   return (
     <div id="evidence-box">
       
-      <ol>
-        <h6>Positive</h6>
-        <hr></hr>
+        <hr />
+        <h4>Positive</h4>
+        <hr />
+        <ol>
         {caseDetails.weightingArray.map((item) => {
           if (item.weighting) {
             return <li key={uuidv4()}> {item.evidenceText} </li>;
           }
         })}
       </ol>
-      <ol>
-        <h6>Negative</h6>
-        <hr></hr>
+      <hr />
+        <h4>Negative</h4>
+        <hr />
+        <ol>
         {caseDetails.weightingArray.map((item) => {
           if (!item.weighting) {
             return <li key={uuidv4()}> {item.evidenceText} </li>;

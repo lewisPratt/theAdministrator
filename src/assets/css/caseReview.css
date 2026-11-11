@@ -45,7 +45,7 @@
   bottom: 0;
 }
 
-#close-decrypt {
+#close-decrypt, #close-evidence {
   width: 100%;
 }
 
@@ -290,7 +290,7 @@ progress.decrypt-count-down {
   display: flex;
   flex-direction: column;
   width: 100%;
-
+  padding-top:20px;
   left: 0;
   background-color: black;
 
@@ -299,13 +299,18 @@ progress.decrypt-count-down {
 #evidence-box>ol {
   list-style: none;
   padding: 0;
-  margin: 20px
+  margin: 5px
 }
 
-#evidence-box h6 {
-  margin: 10px 0 10px 0;
+#evidence-box h4 {
+  margin: 5px 10px;
+  font-size:.8rem;
+  text-align: left;
 }
-
+#evidence-box hr{
+  width:100%;
+  margin:0;
+}
 .processed-buttons-container,
 .decision-buttons-container {
   width: 100%;
@@ -355,7 +360,7 @@ progress.decrypt-count-down {
   padding: 0;
 }
 
-.transcript-list-item span {
+.transcript-list-item .case-avatar-span {
   display: block;
 }
 
@@ -787,6 +792,7 @@ progress.decrypt-count-down {
 .mobile-case-element {
   display: flex;
   justify-content: center;
+
 }
 
 .mobile-case-element img {
