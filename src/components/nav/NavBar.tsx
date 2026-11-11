@@ -48,6 +48,12 @@ export default function NavBar() {
     }
   }
 
+  //save playerdata when it changes
+useEffect(() => {
+ if (playerData != null) {
+      saveLocalData(playerData);
+    }
+  }, [playerData]);
 
 
   useEffect(() => {
@@ -69,8 +75,6 @@ export default function NavBar() {
         // CODE #2
         setErrorState("There was an issue with your saved game data. #2")
         } 
-    } else if (playerData != null) {
-      saveLocalData(playerData);
     }
   }, [playerData]);
 

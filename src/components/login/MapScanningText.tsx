@@ -7,7 +7,14 @@ import { useEffect, useState } from "react";
 
 export default function MapScanningText() {
   const [scanned, setScanned] = useState<boolean>(false);
-
+/** 
+* Sets state (randomly) to determine the conditional display of the violation text. 
+*/
+  function performScan() {
+    if (Math.floor(Math.random() * 10) + 1 < 8) {
+      setScanned(true);
+    }
+  }
   useEffect(() => {
     const interval = setInterval(() => {
       performScan();
@@ -24,14 +31,7 @@ export default function MapScanningText() {
     return () => clearInterval(resetInterval);
   }, [scanned]);
 
-/** 
-* Sets state (randomly) to determine the conditional display of the violation text. 
-*/
-  function performScan() {
-    if (Math.floor(Math.random() * 10) + 1 < 8) {
-      setScanned(true);
-    }
-  }
+
 
   return (
     <>

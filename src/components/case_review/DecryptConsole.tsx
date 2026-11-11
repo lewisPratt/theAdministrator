@@ -33,10 +33,9 @@ export default function DecryptConsole({decryptobj, transcriptList,transcript,se
     const openSound = ()=> playSound(successfulOpen)
     const failureSound = ()=> playSound(failSound)
     
-useEffect(()=>{
-    //set up timer for decrypt attempt
-    if(decryptState){
-         timer.current = setTimeout(() => {
+function startDecrypt(){
+    setDecryptState(true)
+    timer.current = setTimeout(() => {
             failedReason.current = "Self delete function executed."
             lockDevice()
         }, decryptTimerLength);
@@ -51,11 +50,14 @@ useEffect(()=>{
             setTimerProgress(newPerc)
 
         }, 50);
-
-        return () => {clearTimeout(timer.current) ;clearInterval(intervalTimer.current)};
-    }
-
-},[decryptState])
+}
+//clear timers on unmount
+useEffect(()=>{
+ return () => {
+        clearTimeout(timer.current) ;
+        clearInterval(intervalTimer.current)
+    };
+},[])
 
 //setup timer for successful decrypt to simulate data loading.
 useEffect(()=>{
@@ -188,7 +190,7 @@ useEffect(()=>{
                     :
                     <>
                         <p className="mt-20">correctly enter encryption key to access data.</p>
-                        {!decryptState && <button className="mt-20" onClick={()=>{setDecryptState(true);playCustomSound("buttonPress")}}>Start</button>}
+                        {!decryptState && <button className="mt-20" onClick={()=>{startDecrypt();playCustomSound("buttonPress")}}>Start</button>}
                         {/* if decrypt attempt hasn't yet started */}
                         {decryptState &&
                         <>

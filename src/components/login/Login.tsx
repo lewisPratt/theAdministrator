@@ -47,6 +47,7 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
 
     } catch (error) {
       //Couldn't parse JSON. Returns null so just overwrites malformed JSON
+      console.log(error)
     }
   }
 

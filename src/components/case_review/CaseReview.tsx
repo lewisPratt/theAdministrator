@@ -42,6 +42,7 @@ export default function TranscriptRev() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
   const [cityMapeState, setCityMapState] = useState<boolean>(false)
   const [nextCase, setNextCase] = useState<reviewShape | null>(null)
+  const [closingState, setClosingState] = useState<boolean>(false)
   const [juniorCallUsed, setJuniorCallused] = useState<boolean>(false)
   const [seniorCallUsed, setSeniorCallused] = useState<boolean>(false)
 
@@ -139,12 +140,12 @@ export default function TranscriptRev() {
       setNextCase(availableTranscripts[0])
       setCurrentTranscript(availableTranscripts[0]);
     }
-    if(!loadingState){
-      if (tutorialState.tutorialActive && availableTranscripts) {
+   
+    if (tutorialState.tutorialActive && availableTranscripts) {
         showTutorialCase(availableTranscripts)
-      }
     }
-  }, [loadingState]);
+    
+  }, [availableTranscripts, tutorialState.tutorialActive]);
 
 
   function loadNewShift(reason: string) {
@@ -220,6 +221,8 @@ export default function TranscriptRev() {
                         selectedSetter={setSelectedListItem}
                         codexState={codexState}
                         codexStateSetter={setCodexState}
+                        closingState={closingState}
+                        closingStateSetter={setClosingState}
                       />
                     ))}
                     </div>
@@ -271,6 +274,8 @@ export default function TranscriptRev() {
                   juniorCall={juniorCallUsed}
                   seniorCallSetter={setSeniorCallused}
                   seniorCall={seniorCallUsed}
+                  closingState={closingState}
+                  closingStateSetter={setClosingState}
                 />
               ) : (
                 <>

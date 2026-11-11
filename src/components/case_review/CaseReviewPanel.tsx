@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef} from "react";
+import React, { useContext, useState, useRef} from "react";
 import type {
   transcriptReviewBoxProps,
 } from "../../interfaces/interfaces";
@@ -41,9 +41,10 @@ export default function CaseReviewPanel({
   juniorCallSetter,
   juniorCall,
   seniorCallSetter,
-  seniorCall
+  seniorCall,
+  closingState,
+  closingStateSetter
 }: transcriptReviewBoxProps) {
-  const [closing, setClosing] = useState<boolean>(false);
   const [showEvidence, setShowEvidence] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [inCall, setInCall] = useState<boolean>(false)
@@ -58,23 +59,19 @@ export default function CaseReviewPanel({
   const failureSound = ()=> playSound(failSound, {volume:0.5, loop:false});
   let itemsToIdentify : number = 0
 
-  let recPassDesc: string = "";
+  let recPassDesc: string ;
   if (transcript?.recreationPass) {
     recPassDesc = "Valid RecPass";
   } else {
     recPassDesc = "No RecPass";
   }
   
-  useEffect(()=>{
-    if(nextCase != transcript){
-      setClosing(true)
-    }
-  },[nextCase])
+  
   //trigger adding of animation class to animate transcript leaving page.
   function closeTranscript() {
     const timerId = juniorCallRef.current
     clearTimeout(timerId)
-    setClosing(true);
+    closingStateSetter(true);
   }
 
  /**
@@ -84,12 +81,16 @@ export default function CaseReviewPanel({
   function handleAnimationEnd(e: React.AnimationEvent<HTMLDivElement>) {
     if (e.animationName === "transcript-slide-out") {
       if(nextCase != transcript && nextCase != null){
+       
         reviewTranscriptSetter(nextCase)
         selectedSetter(nextCase.identifier)
+
       }else{
       reviewTranscriptSetter(null);
       selectedSetter(NIL_UUID);
+
       }
+       closingStateSetter(false)
     }
   }
   /**
@@ -130,6 +131,7 @@ export default function CaseReviewPanel({
         if(currentCaseIndex < 0){
           currentCaseIndex = transcriptList.length -1
         }
+        closingStateSetter(true)
         return nextCaseSetter(transcriptList[currentCaseIndex])
       }
   }
@@ -300,7 +302,7 @@ export default function CaseReviewPanel({
             id="tutorial-step-8"
             className={
               "transcript-container " +
-              (!closing ? "open-transcript-class" : "slide-out-class") +
+              (!closingState ? "open-transcript-class" : "slide-out-class") +
               " " +
               (tutorialState.tutorialActive && tutorialState.tutorialStep === 8
                 ? "tutorial-highlight"

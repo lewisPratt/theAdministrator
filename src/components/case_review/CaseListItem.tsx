@@ -9,19 +9,23 @@ export default function CaseListItem({
   codexState,
   nextCaseSetter,
   currentOpenCase,
-  codexStateSetter
+  codexStateSetter,
+  closingStateSetter
 }: transcriptListItemProps) {
     
   function openTranscript(transcript: reviewShape) {
     if(codexState){
       codexStateSetter(false)
     }
+    
     if(currentOpenCase === null){
       selectedSetter(transcript.identifier)
       reviewTranscriptSetter(transcript);
       nextCaseSetter(transcript)
     }else{
     nextCaseSetter(transcript)
+    closingStateSetter(true)
+    
     }
   }
  

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "../../assets/css/welcome.css"
 import logout from '../../assets/sounds/lock.mp3'
 import { playSound } from "react-sounds";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 const goodbyeMessages: string[] = [
   "Session terminated.",
   "Shift concluded. Record retained.",
@@ -22,7 +22,8 @@ const goodbyeMessages: string[] = [
 
 export default function GoodbyeScreen() {
   const navigate = useNavigate();
-  const goodbyeMessage =goodbyeMessages[Math.floor(Math.random()* goodbyeMessages.length) ]
+  const [message,] = useState<string>(()=>goodbyeMessages[Math.floor(Math.random()* goodbyeMessages.length) ])
+
   const handleCustomSound = () => playSound(logout, {volume:0.5, loop:false})
   useEffect(()=>{
     handleCustomSound()
@@ -36,7 +37,7 @@ export default function GoodbyeScreen() {
   return (
     <div id="welcome-screen">
       <h1>Goodbye</h1>
-      <p>{goodbyeMessage}</p>
+      <p>{message}</p>
     </div>
   );
 }

@@ -117,6 +117,8 @@ export interface transcriptReviewBoxProps {
   juniorCall: boolean
   seniorCallSetter: Dispatch<SetStateAction<boolean>>
   seniorCall: boolean
+  closingStateSetter: Dispatch<SetStateAction<boolean>>
+  closingState: boolean
 
 }
 export interface nodeShape {
@@ -186,6 +188,8 @@ export interface transcriptListItemProps {
   selectedSetter: Dispatch<SetStateAction<string>>
   nextCaseSetter: Dispatch<SetStateAction<reviewShape | null>>
   currentOpenCase: reviewShape | null;
+  closingStateSetter: Dispatch<SetStateAction<boolean>>
+  closingState: boolean
 }
 export interface summaryProps {
   efficiency: number;
