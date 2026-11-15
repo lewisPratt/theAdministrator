@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://lewisPratt.github.io/theAdministrator",
+  
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,6 +12,9 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
   },
   "dependencies": {
     "howler": "^2.2.4",

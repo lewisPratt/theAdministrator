@@ -10,10 +10,22 @@ The Administrator is a browser based logic game in which the user navigates a si
 
 This readme contains extensive detail on development of the project in order to inform the assessor of my course work on the process that was undertaken. 
 
+# Run this project locally
+
+To run this project locally:
+* clone this repository 
+* Ensure you have Node installed and you have at least version 20.19+ or 22.12+ (developed using 24.16.0) (`node -v`)
+* open the project folder in VS-code and run `npm install` to install the packages that the project uses 
+* `npm run dev` to run the local web server on your machine
+* Navigate in your browser to `localhost:5173` ( check your terminal for the address as it may be a different port if 5173 is already in use.)
+
+
+
 # Table of Contents
 
 - [The Administrator](#the-administrator)
 - [Project Summary](#project-summary)
+- [Run this project locally](#run-this-project-locally)
 - [Table of Contents](#table-of-contents)
   - [Assessment](#assessment)
   - [Pages Overview](#pages-overview)
@@ -66,7 +78,6 @@ This readme contains extensive detail on development of the project in order to 
   - [Key Features - Design \& content](#key-features---design--content)
     - [Dynamic Content](#dynamic-content)
     - [Loading screens](#loading-screens)
-    - [Pages](#pages)
   - [Technical Decisions](#technical-decisions)
     - [File structure](#file-structure)
     - [Local storage](#local-storage)
@@ -76,19 +87,13 @@ This readme contains extensive detail on development of the project in order to 
       - [Flex box](#flex-box)
     - [JavaScript](#javascript)
     - [Accessibility](#accessibility)
-  - [Challenges \& Problem Solving](#challenges--problem-solving)
-    - [API integration and error handling - Dice Bear Avatar Generator](#api-integration-and-error-handling---dice-bear-avatar-generator)
-    - [No Error](#no-error)
-    - [API image not loading](#api-image-not-loading)
-    - [API image not loading and default avatar not loading](#api-image-not-loading-and-default-avatar-not-loading)
-    - [Citizen Avatars](#citizen-avatars)
-    - [Use of generative ai](#use-of-generative-ai)
-    - [Use of SVG graphics in city map component](#use-of-svg-graphics-in-city-map-component)
   - [Page Deployment](#page-deployment)
     - [Vite](#vite)
     - [Hash Router](#hash-router)
   - [Form Validation and Security](#form-validation-and-security)
+    - [Validating form input](#validating-form-input)
   - [Form accessibility](#form-accessibility)
+    - [Validating saved player data](#validating-saved-player-data)
   - [Code Validation](#code-validation)
     - [CSS](#css)
     - [HTML](#html)
@@ -102,14 +107,19 @@ This readme contains extensive detail on development of the project in order to 
       - [Play tester 4](#play-tester-4)
       - [Play tester 5](#play-tester-5)
       - [Play tester 6](#play-tester-6)
-    - [Validating saved player data](#validating-saved-player-data)
     - [Feature Testing](#feature-testing)
+  - [Automated Testing](#automated-testing)
   - [Lighthouse Testing](#lighthouse-testing)
-  - [Node Packages used](#node-packages-used)
-  - [Credits](#credits)
-  - [Author](#author)
-  - [Deployment](#deployment)
+  - [Challenges \& Problem Solving](#challenges--problem-solving)
+    - [API integration and error handling - Dice Bear Avatar Generator](#api-integration-and-error-handling---dice-bear-avatar-generator)
+    - [No Error](#no-error)
+    - [API image not loading](#api-image-not-loading)
+    - [API image not loading and default avatar not loading](#api-image-not-loading-and-default-avatar-not-loading)
+    - [Citizen Avatars](#citizen-avatars)
+    - [Use of SVG graphics in city map component](#use-of-svg-graphics-in-city-map-component)
+    - [Use of generative ai](#use-of-generative-ai)
   - [Additional Reading References](#additional-reading-references)
+  - [Node Packages used](#node-packages-used)
 
 <u>Assessment</u>
 ---
@@ -120,6 +130,8 @@ In order to evaluate the entirety of this project, when logging into the game, p
 This will give you access to a debug tool on the upgrade view that lets you manually increase your credit score, ensuring that all aspects of the game can be experienced for assessment.
 
 Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdministrator/)
+
+Deployed Branch: [The Administrator deployed branch](https://github.com/lewisPratt/theAdministrator/tree/gh-pages)
 
 ## Pages Overview
 
@@ -526,9 +538,6 @@ This will produce a number between 1-10 and if that number is under the `thresho
 
 At a number of transition points( moving from one route to another) faux loading screens have been implemented to simulate the use of a desktop terminal. These screens aren't necessary for the function of the application, however they do add to the theming, pacing and world building. They have been achieved through the use of state within the relevant pages and `settimeout `to change state after a set period of time (2 seconds). This timer, through repeated play tests, feels reasonable in achieving the goal of the loading screen, but does not feel like it slows the pacing detrimentally.
 
-### Pages
-
---
 
 ## Technical Decisions
 
@@ -562,17 +571,14 @@ Flex box has been used throughout the app to create a responsive and mobile firs
 
 ### JavaScript
 
-TypeScript was the primary language used throughout this project. Many of the component files have the TSX extension (or JSX when using plain untyped JavaScript). TSX stands for TypesScript XML and consists of HTML elements wrapped in TypeScript and once deployed, becomes ordinary JavaScript and HTML. 
+TypeScript was the primary language used throughout this project. Many of the component files have the TSX extension. TSX stands for TypesScript XML and consists of HTML elements wrapped in TypeScript and once deployed, becomes ordinary JavaScript and HTML. 
 
 In this regard, the entire project has been built with the use of JavaScript at its core. The interactivity that Javascript allows has considerably improved the UX of using the app and assisted significantly in maintaining the theme of the game. Being able to show in real-time the impact of player decisions on their playthrough, is the baseline for a game and this has been possible through the use of JavaScript. 
 
-React.js manages to cover most eventualities with its own event triggers and handlers (onClick, onChange etc). This removed the requirement to add my own event listeners to elements that required interactivity within the app. The React documentation also encourages developers to use the React Library to manage any interactivity rather than vanilla JavaScript. Mixing the two methods of introducing interactivity can result in unexpected bugs as vanilla Javascript does not take into account State/Context etc and can cause the app to become bugged or de-synchronized. 
-
-
---
+React.js manages to cover most eventualities with its own event triggers and handlers (onClick, onChange etc). This removed the requirement to add my own event listeners to elements that required interactivity within the app. The React documentation also encourages developers to use the React library to manage any interactivity rather than vanilla JavaScript. Mixing the two methods can result in unexpected bugs as vanilla Javascript does not take into account State/Context etc and can cause the app to become bugged or de-synchronized. 
 
 ### Accessibility
-Due to the theme of the app I have made, accessibility, for the most part, was being addressed throughout the project mainly due to my idea that the entire experience should be navigable and playable whilst solely using a keyboard. Many of the computers shown in reference images and films that I explored, such as bladerunner, often don't have a mouse or equivalent connected and much if not all of the navigation and interaction is achieved via the keyboard alone.
+Due to the theme of the app I have made, accessibility, for the most part, was being addressed throughout the project mainly due to my idea that the entire experience should be accessible whilst solely using a keyboard. Many of the computers shown in reference images and films that I explored, such as Bladerunner, often don't have a mouse or equivalent connected and much if not all of the navigation and interaction is achieved via the keyboard alone.
 This has meant that from the beginning of my project, I have focussed on ensuring all interactive elements are accessible to both mouse and keyboard, providing visual feedback when an interaction occurs.
 
 The intended experience for the user is for navigation to be undertaken via typed commands, keeping in line with the simulated computer system theme. 
@@ -591,18 +597,18 @@ Developing this project using React presented a number of new challenges. One of
 As React is a Javascript library, it is not possible to simply deploy an Index.html page from the main branch of the repository, as there is a necessary build step required to convert the React code into servable code.
 
 React makes the development of web apps scalable and modular, simplifying complex projects into manageable chunks. However when a React app is deployed, for the most part, the code is standard HTML CSS and Javascript. 
-To convert React code into servable code, a build tool is needed. For this project I utilize Vite to achieve this. 
+To convert React code into servable code, a build tool is needed. For this project I utilise Vite to achieve this. 
 
 Vite was used to initially scaffold the project with a basic file structure and layout. As a newcomer to React, this was helpful to start gaining an understanding about how to structure and assemble all the required components for the web app to function. 
-More detailed instructions will follow below, however the workflow during development followed a pattern of:
+The workflow during development followed a pattern of:
 
     Build -> Test locally -> Commit & Push -> Deploy local build
 
-The Github Pages deployment was achieved by deploying the plain HTML/JS/CSS files to a separate branch of the repository (called gh-pages), keeping the deployed project files and the development files separated. 
+The Github Pages deployment was achieved by deploying the plain HTML/JS/CSS files to a separate branch of the repository [(called gh-pages)](https://github.com/lewisPratt/theAdministrator/tree/gh-pages) keeping the deployed project files and the development files separated. 
 
 ### Hash Router
 
-Due to hosting the project on GH pages and having no backend features at all, it was required to use the HashRouter
+Due to hosting the project on GH pages and having no backend features at all, it was required to use the HashRouter as this ensured effective page navigation through both page links as well as the back and forwards browser buttons. Due to HashRouter being client side, the github hosting server on sees the url up to the # symbol and javascript within the app handles routing between different component views based on anything following the #. 
 
 
 ## Form Validation and Security
@@ -659,13 +665,12 @@ It is not ideal that data is simply cleared when it fails the checks in place, a
 A future improvement would be to build a robust data retrieval workflow that attempts to salvage any data held in localStorage prior to clearing it. 
 The current strategy ensures that the user does not become blocked from logging in, as well as ensuring they do not have to go into developer tools to manually clear their game data. 
 
---
 
 ## Code Validation
 
 ### CSS
 
-Due to React utilising numerous components to build its UI, I have separated the majority of CSS rules into separate files associated with each individual component. In order to validate the CSS in a convenient manner, I copied and pasted the contents of all of these separate CSS files into one file, then copied this into the direct input Jigsaw validator provided by W3c.org. [W3c.org validator](https://jigsaw.w3.org/css-validator/#validate_by_input)
+Due to React utilising numerous components to build its UI, I have separated the majority of CSS rules into separate files associated with each individual component. In order to validate the CSS in a convenient manner, I copied and pasted the contents of all of these separate CSS files into one file, then copied this into the direct input Jigsaw validator provided by W3c.org. [W3c.org validator](https://jigsaw.w3.org/css-validator/#validate_by_input). No errors were found. 
 
 <img src="src/assets/images/readme/validation/css/css-validation.png" width=200> 
 
@@ -686,11 +691,15 @@ Due to React compiling JavaScript and HTML at time of deployment, the HTML was v
 
 ### Javascript
 
-To validate my JavaScript/TypeScript I used ESLint. This package validated the code within my project directly inside VSCode, checking it for errors, style inconsistencies and unused code. When I first ran it towards the end of my project, the report that came back listed roughly 100 errors/warnings. A built in tool of ESLint allowed roughly 50% of these to be solved automatically by running `npm run lint -- --fix`. 
+To validate my TypeScript I used ESLint. This package validated the code within my project directly inside VSCode, checking it for errors, style inconsistencies and unused code. When I first ran it towards the end of my project, the report that came back listed roughly 100 errors/warnings. A built in tool of ESLint allowed roughly 50% of these to be solved automatically by running `npm run lint -- --fix`. 
 
-The majority of the remaining errors were related to setting state inside of useEffect, which can cause unintended re-renders. This required me to refactor a number of parts of code to negate this effect and clear the error messages. 
+The majority of the remaining errors were related to setting state inside of useEffect, which can cause unintended re-renders. There were also some isntances where I had used a comma instead of a semicolon to separate function calls within an onclick event handler.
 
-The remaining warnings were mostly regarding unused pieces of code and missing dependencies on some useEffects.
+<img src="src/assets/images/readme/validation/js/esLint-error.png" alt="EsLint error">
+
+This required me to refactor a number of parts of code to negate this effect and clear the error messages. 
+
+The remaining warnings were mostly regarding unused pieces of code and missing dependencies on some useEffects, which just required me to add the missing variables to the dependency array for that UseEffect.
 
 All errors were cleared and only 1 warning remains, which was not possible to address within the timescale of the project. A future aim would be to clear this final warning by refactoring the code in this component. Currently, despite the warning, there is no adverse effect on the app or logic of the game. 
 
@@ -699,7 +708,20 @@ All errors were cleared and only 1 warning remains, which was not possible to ad
 
 ## Compatibility
 
---
+Despite the concept of this app being aimed at replicating a computer terminal, which would best be experienced on a desktop computer, The responsive nature of the app ensures that its contents can be accessed easily on both mobile and desktop. Key changes have been made to the apps layout and presentaiton of information to ensure that screen real estate on small devices is utilised effectively. 
+
+Tests were carried out manually across a number of browsers to ensure that all features were working as expected.
+
+| Feature | Chrome | Firefox | Safari | Edge | Mobile |
+|---|---|---|---|---|---|
+| Typed Navigation | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Error/confirmation overlays | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Favicon | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Page not found | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Missing session Token | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Missing local storage user data | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 
+
 
 ## Testing
 
@@ -777,8 +799,9 @@ I also added an event listener to allow the user to exit the tutorial at any poi
 
 ### Feature Testing
 
-Throughout development, there were a number of times features needed testing that would alter gameplay for the player. Purchasing upgrades from the upgrade shop would change certain aspects of gameplay and each of the upgrades needed to be tested to ensure they were working as expected. 
-I built a debug tool inside the upgrade shop, utilizing a boolean value that would conditionally render extra controls that would not normally be visible to a player. 
+Throughout development, there were a number of times features needed testing that would alter gameplay for the player. 
+
+I built a debug tool, utilising a boolean value that would conditionally render extra controls that would not normally be visible to a player. 
  
     
     const debug = true
@@ -802,23 +825,28 @@ A similar tool was used in the case review component to quickly regenerate the a
 
 ![Case review debugger](src/assets/images/readme/case-review-tool.png)
 
+## Automated Testing
 
+I implemented three minor automated testing functions to check the user login status and the state of locally stored data. 
 
-| Feature | Chrome | Firefox | Safari | Edge | Mobile |
-|---|---|---|---|---|---|
-| Typed Navigation | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Error/confirmation overlays | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Favicon | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Page not found | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Missing session Token | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Missing local storage user data | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 
+I created a temporary file called `testing.ts` and made my test function accessible in the developer console using 
 
---
+`(window as any).runTests = runTests;`
+
+In this file I built some simple functions to check if there was a session token for the game currently, whether there was a local save and to return that save data in Base64, as well as returning that same data decoded. 
+For the sake of brevity, I have included an image of two of these tests. 
+
+  <img src="src/assets/images/readme/auto-tests.png" width=200>
+
+In the future, I would like to implement more useful automated testing strategies to ensure that my code is robust and consistent.
+
 
 ## Lighthouse Testing
 
---
+During Lighthouse testing, there were minimal issues identified. The performance scores were primarily impacted by external library dependencies, particularly the API used to load the citizen avatars (Dice Bear API). However none of these performance scores significantly impacted on the UX of using the app for its intended purpose. 
+
+  <img src="src/assets/images/readme/validation/lighthouse-testing.webp" width=400>
+
 ## Challenges \& Problem Solving
 
 ### API integration and error handling - Dice Bear Avatar Generator
@@ -915,18 +943,8 @@ This was achieved by first drawing a path across my city image in Affinity Desig
 And is offset slightly on the X and Y axis. A rectangle is then attached to the clipPath and using the animateMotion feature of the SVG, the rectangle is moved along the path drawn in Affinity Designer, showing a small slice of the duplicate image as it passes over the city.
 
 Without using svg graphics, creating hotspots on top of an image and ensuring it had a consistent presentation both in mobile and desktop viewing, would be overly complicated and inconsistent. The combination of ensuring a properly scaled image as well as precisely placed hotspots, would be prohibitively complex and inaccurate due to changing margins and scaling. SVG graphics are the ideal solution for this feature, with the added benefit of providing self contained methods of element animation and styling
-## Node Packages used
-
-- lucide icons
-- react tooltips
 
 
-## Author
-
---
-## Deployment
-
---
 ### Use of generative ai
 
 As a means of efficiency, generative ai was used to populate js objects that hold large datasets used in content randomization.
@@ -942,16 +960,19 @@ No LLM generated code snippets or automated deployment models were utilized in t
 ---
 
 ## Additional Reading References
-Whilst developing this site, additional reading was undertaken to primarily around using React.js, as it was a new technology to me at the start of the project. 
 
-Javascript / React - https://www.w3schools.com. When searching online for additional details around using the React library and other vanilla Javascript functionality, w3schools was utilized to gain a high level understanding of the code. W3 provides very good, short descriptions and examples of how specific pieces of code can be used, as well as linking to additional reading that may contribute to fully understanding it's use.
+Javascript / React - https://www.w3schools.com. -  Details using the React library and other vanilla Javascript functionality.
 
-The main additional reading resource i accessed during this project was the official [React.dev](https://www.react.dev) website, which has a very user friendly and logical approach to onboarding new users to the library. 
-No structured tutorials or walk-throughs were used during the building of this web app.
+The main additional reading resource I accessed was the official [React.dev](https://www.react.dev) website, which has a user friendly and logical approach to onboarding new users to the library. 
+No structured tutorials or walk-throughs were used during the building of the app.
 
-Large language models were only used as a means of troubleshooting when i was not able to identify the cause of an error through my additional reading. When using LLMs, prompts were always prefixed with the context of "not providing code snippets to solve the error" as this is not a helpful way to improve my own understanding of the code. Responses received from LLms were questioning and of a problem solving nature, rather than immediately solving the error i was encountering by providing code snippets. 
+## Node Packages used
 
-
+- lucide-icons
+- react-tooltips
+- react-sounds
+- uuid
+- react-router
 
 
 

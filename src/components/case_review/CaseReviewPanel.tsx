@@ -538,7 +538,7 @@ export default function CaseReviewPanel({
               <>
               <div className="processed-buttons-container"> 
                 <button onClick={()=>{changeCase("previous")}}><ChevronLeft /></button>
-              <button onClick={()=>nextCaseSetter(null)}>Close Case Notes</button>
+              <button onClick={()=>closeTranscript()}>Close Case Notes</button>
                
                {playerData?.player_unlocks.includes("voucher9") ?
                   <button onClick={() => {setShowEvidence((prev) => !prev);}}>

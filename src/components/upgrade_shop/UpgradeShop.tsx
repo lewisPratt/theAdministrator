@@ -29,7 +29,6 @@ export default function UpgradeShop() {
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const { tutorialState } = useContext(TutorialContext);
   const { errorState,setErrorState } = useContext(ErrorContext);
-
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
 
@@ -42,6 +41,9 @@ export default function UpgradeShop() {
     setTimeout(setLoadingState, 2000, false);
   },[]);
 
+
+
+  
   function giveCredits() {
     if (playerData) {
       const dataToUpdate = { ...playerData };
@@ -81,9 +83,9 @@ export default function UpgradeShop() {
     }
   }
 
-  function purchaseUpgrade() {
-    if (confirming != null) {
-      const selectedUpgrade = upgrades[`${confirming}`];
+  function purchaseUpgrade(upgradeIdent : string) {
+    if (upgradeIdent != null && upgradeIdent != undefined) {
+      const selectedUpgrade = upgrades[`${upgradeIdent}`];
       if (playerData) {
         if (playerData.player_credits < selectedUpgrade.cost) {
           setErrorState("You do not have enough credits");
@@ -93,13 +95,13 @@ export default function UpgradeShop() {
           const dataToUpdate = { ...playerData };
           dataToUpdate.player_credits =
             dataToUpdate.player_credits - selectedUpgrade.cost;
-            if(confirming != "voucher13"){
+            if(upgradeIdent != "voucher13"){
               let updatedUnlocks: string[] = [];
               if (dataToUpdate.player_unlocks != null) {
                 updatedUnlocks = [...dataToUpdate.player_unlocks];
               }
               playCustomSound("successSound");
-              updatedUnlocks.push(confirming);
+              updatedUnlocks.push(upgradeIdent);
               dataToUpdate.player_unlocks = updatedUnlocks
               setPlayerData(dataToUpdate);
             }
@@ -113,11 +115,14 @@ export default function UpgradeShop() {
             }
          
         }
-      } else {
-        //error: no player data currently set
-      }
+      } 
+    }
+    else{
+      setErrorState("No upgrade selected");
     }
   }
+
+ 
 
   return (
     <>
@@ -220,7 +225,7 @@ export default function UpgradeShop() {
 
                           {!playerData?.player_unlocks.includes(upgrade[0]) && (
                             <div className="purchase-button-container">
-                              <button aria-label="Buy upgrade" onClick={purchaseUpgrade}>
+                              <button aria-label="Buy upgrade" onClick={()=>purchaseUpgrade(confirming)}>
                                 <CreditIcon className="custom-icon" />
                               </button>
                             </div>
