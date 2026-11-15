@@ -149,7 +149,6 @@ export default function TranscriptRev() {
 
 
   function loadNewShift(reason: string) {
-    // loadingStateSetter(true);
     if (reason === "new") {
       setLoadingState(true);
       setTimeout(startNewShift, 1000);
