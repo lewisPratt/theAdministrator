@@ -543,7 +543,52 @@ At a number of transition points( moving from one route to another) faux loading
 
 ### File structure
 
-Due to the nature of developing a React app (often creating large numbers of small self contained components) it has been important to ensure the file structure throughout development has been manageable. Once the project got to a point of over 30 individual components of varying sizes, I decided to prioritise future legibility of the file structure and divide the components into meaningful sub directories that would support easy access during ongoing development.
+Due to the nature of developing a React app (often creating large numbers of small self contained components) it has been important to ensure the file structure throughout development has been manageable. 
+
+Once the project got to a point of over 30 individual components of varying sizes, I decided to prioritise future legibility of the file structure and divide the components into meaningful sub directories that would support easy access during ongoing development.
+
+    .
+    ├── public/
+    │   └── favicon.svg
+    ├── src/
+    │   ├── assets/
+    │   │   ├── css
+    │   │   ├── images/
+    │   │   │   └── readme
+    │   │   ├── customIcons
+    │   │   └── sounds
+    │   ├── components/
+    │   │   ├── login/
+    │   │   │   ├── Login.tsx
+    │   │   │   └── WelcomeScreen.tsx
+    │   │   ├── personalRecord/
+    │   │   │   ├── PersonalRecord.tsx
+    │   │   │   ├── PlayerStats.tsx
+    │   │   │   └── TitleUnlocks.tsx
+    │   │   └── ...
+    │   ├── context_providers
+    │   ├── content_generators
+    │   ├── interfaces/
+    │   │   └── interfaces.ts
+    │   ├── models/
+    │   │   └── newPlayerData.ts
+    │   ├── utilities/
+    │   │   └── helperFunctions.tsx
+    │   ├── App.tsx
+    │   └── main.tsx
+    ├── .gitignore
+    ├── package.json
+    └── README.md
+
+
+### React.js conventions
+
+The React library has its own recommended file naming conventions and structure and this has been followed as closely as possible to ensure code legibility.
+
+* Individual component files are named the same as the contained component function, utilising PascalCase. 
+* Each main component (login, upgrade shop etc) has been separated into its own folder, grouping together smaller components that are associated with larger 'view' components.
+* non component .tsx files are named using camelCase
+* Variables and normal functions are named using camelCase
 
 ### Local storage
 
