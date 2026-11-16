@@ -92,7 +92,6 @@ export default function TranscriptRev() {
   }, []);
 
   useEffect(() => {
-    console.log("a change");
     moreCasesBox = document.querySelector("#more-cases-box");
   }, [loadingState, currentTranscript,playerData]);
 
