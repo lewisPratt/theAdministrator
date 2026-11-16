@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { PlayerContext } from "../../context_providers/PlayerContext"
 import { TutorialContext } from "../../context_providers/TutorialContext"
 import { useNavigate } from "react-router-dom"
-import { playCustomSound } from "../../assets/utils/helpers"
+import { playCustomSound } from "../../utilities/helperFunctions"
 
 
 

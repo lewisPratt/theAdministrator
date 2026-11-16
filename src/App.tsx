@@ -8,7 +8,6 @@ import "./assets/css/nav.css";
 import UpgradeShop from "./components/upgrade_shop/UpgradeShop";
 import CommandCentre from "./components/terminal/Terminal";
 import Login from "./components/login/Login";
-import Inbox from "./components/inbox/Inbox";
 import CurrentSlug from "./components/footer/CurrentSlug";
 import { CurrentSlugContext } from "./context_providers/CurrentSlugContext";
 import {
@@ -34,12 +33,14 @@ import { createPortal } from "react-dom";
 import NavBar from "./components/nav/NavBar";
 import { PlayerContext } from "./context_providers/PlayerContext";
 import PageNotFound from "./components/PageNotFound";
+import { isPlayer } from "./utilities/helperFunctions";
 
 function App() {
-  const [playerData, setPlayerData] = useState<playerDataShape | null>(null);
+  const [errorState, setErrorState] = useState<string>("");
+  const errorStateValue: errorStateShape = { errorState, setErrorState };
+  const [playerData, setPlayerData] = useState<playerDataShape | null>(assignPlayerData());
 
   const [currentSlug, setCurrentSlug] = useState<string>("nav.terminal");
-  const [errorState, setErrorState] = useState<string>("");
   const [tutorialState, setTutorialState] = useState<tutorialStateShape>({
     tutorialActive: false,
     tutorialStep: 0,
@@ -47,7 +48,7 @@ function App() {
 
   const playerContextValue: playerContextShape = { playerData, setPlayerData };
 
-  const errorStateValue: errorStateShape = { errorState, setErrorState };
+
   const tutorialContextValue: tutorialContextShape = {
     tutorialState,
     setTutorialState,
@@ -56,6 +57,52 @@ function App() {
     currentSlug,
     setCurrentSlug,
   };
+
+
+function tryParse(storageKey : string){
+    try {
+          const savedData = localStorage.getItem(storageKey);
+          if(savedData === null){
+            return null
+          }
+          
+          const decodedData = atob(savedData)
+          const parsedData = JSON.parse(decodedData)
+          return parsedData;
+
+    } catch (error) {
+      // console.log("couldn't login: "+ error)
+      
+      setErrorState("Parsing Error: There was an issue with your saved game data. It has been cleared. ")
+      localStorage.removeItem("The_Administrator_Game")
+      sessionStorage.removeItem("admin_game_status")
+    }
+  }
+
+   function assignPlayerData(){
+    if(errorState === "" && sessionStorage.getItem("admin_game_status") === "logged_in"){
+          const savedData :playerDataShape = tryParse("The_Administrator_Game");
+          if (savedData) {
+            if(isPlayer(savedData)){
+              return savedData;
+            }
+            else{
+              //type guard failed, saved player data does not match expected type
+              //CODE #1
+              setErrorState("There was an issue with your saved game data. #1")
+              return null
+            }
+          }
+          else{
+            // No local storage item found with the specified key
+            return null
+          } 
+    }
+        else {
+          return null
+        }
+    }
+    
 
   return (
     <>
@@ -94,7 +141,6 @@ function App() {
                             path="/UpgradeShop"
                             element={<UpgradeShop />}
                           />
-                          <Route path="/Inbox" element={<Inbox />} />
                           <Route path="*" element={<PageNotFound />} />
                         </Routes>
                       </div>

@@ -45,7 +45,8 @@
   bottom: 0;
 }
 
-#close-decrypt, #close-evidence {
+#close-decrypt,
+#close-evidence {
   width: 100%;
 }
 
@@ -173,7 +174,7 @@ progress.decrypt-count-down {
 
 .rules-button {
   width: 100%;
-  
+
 }
 
 .helper-elements {
@@ -290,7 +291,7 @@ progress.decrypt-count-down {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top:20px;
+  padding-top: 20px;
   left: 0;
   background-color: black;
 
@@ -304,13 +305,15 @@ progress.decrypt-count-down {
 
 #evidence-box h4 {
   margin: 5px 10px;
-  font-size:.8rem;
+  font-size: .8rem;
   text-align: left;
 }
-#evidence-box hr{
-  width:100%;
-  margin:0;
+
+#evidence-box hr {
+  width: 100%;
+  margin: 0;
 }
+
 .processed-buttons-container,
 .decision-buttons-container {
   width: 100%;
@@ -364,9 +367,11 @@ progress.decrypt-count-down {
 .transcript-list-item .case-avatar-span {
   display: block;
 }
-
+#more-cases-box{
+  display: none;
+}
 .transcript-list-item:hover {
-  translate: 0 -5px;
+  scale: .95;
   cursor: pointer;
   outline: 3px solid #a2eaa2;
 }
@@ -375,13 +380,16 @@ progress.decrypt-count-down {
 
   color: #a2eaa2;
 }
-.transcript-list-item img{
- width:50px;
- height:50px;
+
+.transcript-list-item img {
+  width: 50px;
+  height: 50px;
 }
-.transcript-list-item span{
+
+.transcript-list-item span {
   display: block;
 }
+
 .transcript-list {
   margin: 0;
   padding: 0;
@@ -393,6 +401,7 @@ progress.decrypt-count-down {
 
 #case-list-container {
   width: 90%;
+  position: relative;
 }
 
 .call-sim {
@@ -891,6 +900,35 @@ progress.decrypt-count-down {
   #case-list-container {
     flex-basis: 300px;
     margin-left: 10px;
+    max-height: 700px;
+    overflow-y: scroll;
+  }
+
+  #more-cases-box {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    background-color: #a2eaa2;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: .6s;
+    pointer-events: none;
+  }
+
+  #more-cases-box p {
+    color: black;
+  }
+
+  .faded-box {
+    opacity: 0;
+  }
+
+  .visible-box {
+    opacity: .9;
   }
 
   #search-input-container {

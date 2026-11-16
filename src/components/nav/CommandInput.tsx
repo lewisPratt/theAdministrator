@@ -6,7 +6,7 @@ import AvailableCommandsList from "./AvailableCommandsList";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { playCustomSound, playKeyStroke } from "../../assets/utils/helpers";
+import { playCustomSound, playKeyStroke } from "../../utilities/helperFunctions";
 
 
 

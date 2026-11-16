@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState, type ChangeEvent, type Dispatc
 import type { encryptedDriveShape, reviewShape } from "../../interfaces/interfaces"
 import { LoaderCircle } from "lucide-react";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { playCustomSound, playKeyStroke } from "../../assets/utils/helpers";
+import { playCustomSound, playKeyStroke } from "../../utilities/helperFunctions";
 import successfulOpen from "../../assets/sounds/unlock.wav"
 import failSound from "../../assets/sounds/error.mp3";
 

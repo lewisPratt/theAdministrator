@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext"
-import { playCustomSound } from "../../assets/utils/helpers"
+import { playCustomSound } from "../../utilities/helperFunctions"
 import { TutorialContext } from "../../context_providers/TutorialContext"
 
 interface commandsListProps{

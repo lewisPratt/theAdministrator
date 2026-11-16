@@ -6,7 +6,7 @@ import { Tooltip } from "react-tooltip";
 import { newPlayerData } from "../../models/newPlayerData";
 
 //CSS IMPORTS
-import "../../assets/css/login.css";
+import "../../assets/css/Login.css";
 
 //IMAGE IMPORTS
 import CityMap from "./CityMap";
@@ -14,7 +14,7 @@ import { PlayerContext } from "../../context_providers/PlayerContext";
 import type { playerDataShape } from "../../interfaces/interfaces";
 import LoginChoice from "./LoginChoice";
 import { ErrorContext } from "../../context_providers/ErrorContext";
-import { isPlayer } from "../../assets/utils/helpers";
+import { isPlayer } from "../../utilities/helperFunctions";
 
 interface loginChoiceShape{
   enteredName: string
@@ -106,9 +106,11 @@ const [loginChoice, setLoginChoice] = useState<loginChoiceShape | null>(null)
    function newPlayerSetup(name: string) {
         const newPlayer = newPlayerData;
         newPlayer.player_name = name;
+        const stringyData = JSON.stringify(newPlayer)
+        const encodedData = btoa(stringyData)
         localStorage.setItem(
           "The_Administrator_Game",
-          JSON.stringify(newPlayer),
+          encodedData
         );
         setPlayerData(newPlayer)
         sessionStorage.setItem("admin_game_status", "logged_in");

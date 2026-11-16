@@ -1,4 +1,4 @@
-import "../../assets/css/footer.css";
+import "../../assets/css/Footer.css";
 import type { JSX } from "react";
 
 interface FooterProps{

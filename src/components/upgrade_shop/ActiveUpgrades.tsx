@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { TutorialContext } from "../../context_providers/TutorialContext";
-import { getUnlockDetails } from "../../assets/utils/helpers";
+import { getUnlockDetails } from "../../utilities/helperFunctions";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import { Badge } from "lucide-react";
 

@@ -5,7 +5,7 @@ import type {
   occupationsShape,
 } from "../../interfaces/interfaces";
 import { X } from "lucide-react";
-import { getDetailsForDistrict, playCustomSound } from "../../assets/utils/helpers";
+import { getDetailsForDistrict, playCustomSound } from "../../utilities/helperFunctions";
 import { v4 as uuidv4 } from "uuid";
 
 interface districtDetailsProps {

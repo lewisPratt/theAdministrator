@@ -8,16 +8,16 @@ import type {
   encryptedDriveShape,
 } from "../interfaces/interfaces";
 import { v4 as uuidv4 } from "uuid";
-import { createName } from "../generator_modules/NameArrays";
-import { createItems } from "../generator_modules/CarryableItems";
-import { CreateOccupation } from "../generator_modules/OccupationGenerator";
-import createLocation from "../generator_modules/LocationGenerator";
-import generateWeather from "../generator_modules/WeatherGenerator";
-import { generateAuthorizedLocations } from "../generator_modules/AuthorizedLocationGenerator";
-import { generateBehaviour } from "../generator_modules/behaviourGenerator";
-import { PersonFlavourGenerator } from "../generator_modules/PersonFlavourGenerator";
-import { positiveLeaningClues, negativeLeaningClues } from "../generator_modules/driveOutcomes";
-import { driveKeys } from "../generator_modules/driveKeys";
+import { createName } from "../content_generators/NameArrays";
+import { createItems } from "../content_generators/CarryableItems";
+import { CreateOccupation } from "../content_generators/OccupationGenerator";
+import createLocation from "../content_generators/LocationGenerator";
+import generateWeather from "../content_generators/WeatherGenerator";
+import { generateAuthorizedLocations } from "../content_generators/AuthorizedLocationGenerator";
+import { generateBehaviour } from "../content_generators/behaviourGenerator";
+import { PersonFlavourGenerator } from "../content_generators/PersonFlavourGenerator";
+import { positiveLeaningClues, negativeLeaningClues } from "../content_generators/driveOutcomes";
+import { driveKeys } from "../content_generators/driveKeys";
 
 export class person {
   interviewee: nameShape;

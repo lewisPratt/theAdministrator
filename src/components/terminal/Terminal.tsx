@@ -1,23 +1,20 @@
 import { useEffect, useState, useContext,} from "react";
 import {ChevronRightCircle, LoaderCircle } from "lucide-react";
-import LeaveReq from "../LeaveReq";
 import { useNavigate } from "react-router-dom";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import NotLoggedIn from "../nav/NotLoggedIn";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
-import "../../assets/css/terminal.css";
+import "../../assets/css/Terminal.css";
 import { useRef } from "react";
 import { type TooltipRefProps } from "react-tooltip";
 
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { playKeyStroke } from "../../assets/utils/helpers";
-import { playCustomSound } from "../../assets/utils/helpers";
+import { playKeyStroke, playCustomSound  } from "../../utilities/helperFunctions";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
-  const [leaveReq, setLeaveReq] = useState<boolean>(false);
 
   const { setCurrentSlug } = useContext(CurrentSlugContext);
   const {errorState, setErrorState } = useContext(ErrorContext);
@@ -71,8 +68,8 @@ useEffect(()=>{
           setCurrentSlug("nav.inbox");
           break;
         case "request.leave":
-          setLeaveReq(true);
-          e.currentTarget.reset();
+          setErrorState("Due to ongoing union disputes, leave requests have been paused until: 21/09/2047");
+          playCustomSound("errorSound")
           break;
         case "nav.logout":
           doLogout()
@@ -91,7 +88,6 @@ useEffect(()=>{
           setErrorState("Command not recognized: " + command);
           playCustomSound("errorSound")
           e.currentTarget.reset();
-          if(leaveReq){ setLeaveReq(false)}
           break;
       }
     }
@@ -142,7 +138,6 @@ useEffect(()=>{
                   </div>
                 </form>
 
-                {leaveReq && <LeaveReq />}
 
                 <div
                   id="tutorial-step-2"

@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { PlayerContext } from "../../context_providers/PlayerContext"
 import { TutorialContext } from "../../context_providers/TutorialContext"
-import { promotionPrefixes } from "../../generator_modules/titles"
+import { promotionPrefixes } from "../../content_generators/titles"
 import type { playerDataShape } from "../../interfaces/interfaces"
 
 export default function TitleUnlocks(){

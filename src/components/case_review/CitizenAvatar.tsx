@@ -1,7 +1,7 @@
 import { MapPinSearch } from "lucide-react";
 import type { reviewShape } from "../../interfaces/interfaces";
 import { type Dispatch, type SetStateAction } from "react";
-import { playCustomSound } from "../../assets/utils/helpers";
+import { playCustomSound } from "../../utilities/helperFunctions";
 interface citizenAvatarProps {
   transcript: reviewShape;
     cityMapState : boolean

@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { UnlocksContext } from "../../context_providers/unlocksContext";
 import type { unlockContextShape } from "../../interfaces/interfaces";
-import { allUpgrades } from "../../generator_modules/upgrades";
+import { allUpgrades } from "../../content_generators/upgrades";
 import { v4 as uuidv4 } from "uuid";
 import { Badge } from "lucide-react";
 import { TutorialContext } from "../../context_providers/TutorialContext";

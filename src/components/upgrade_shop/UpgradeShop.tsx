@@ -4,11 +4,11 @@ import type {
   UpgradeShape,
   UpgradeListShape,
 } from "../../interfaces/interfaces";
-import { allUpgrades } from "../../generator_modules/upgrades";
+import { allUpgrades } from "../../content_generators/upgrades";
 import { Badge } from "lucide-react";
 import { CreditIcon } from "../../assets/custom_icons/credits";
 import {useNavigate } from "react-router-dom";
-import "../../assets/css/upgradeShop.css";
+import "../../assets/css/UpgradeShop.css";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 
@@ -20,7 +20,7 @@ import NotLoggedIn from "../nav/NotLoggedIn";
 import PromotedSim from "./PromotedSim";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 
-import { playCustomSound } from "../../assets/utils/helpers";
+import { playCustomSound } from "../../utilities/helperFunctions";
 
 export default function UpgradeShop() {
   const [loadingState, setLoadingState] = useState<boolean>(true);

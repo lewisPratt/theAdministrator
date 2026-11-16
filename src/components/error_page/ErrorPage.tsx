@@ -1,5 +1,5 @@
 import { useContext} from "react";
-import "../../assets/css/error_page.css";
+import "../../assets/css/ErrorPage.css";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { X } from "lucide-react";
 

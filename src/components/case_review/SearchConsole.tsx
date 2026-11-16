@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { locations } from "../../generator_modules/LocationGenerator";
-import { occupations } from "../../generator_modules/OccupationGenerator";
+import { locations } from "../../content_generators/LocationGenerator";
+import { occupations } from "../../content_generators/OccupationGenerator";
 import type {
   carryableItemsShape,
   locationsShape,
@@ -12,10 +12,10 @@ import {
   HandCoins,
 } from "lucide-react";
 import { useRef } from "react";
-import { carryableItems } from "../../generator_modules/CarryableItems";
+import { carryableItems } from "../../content_generators/CarryableItems";
 
 import type{ searchResultShape, normalizedResultsShape } from "../../interfaces/interfaces";
-import { playKeyStroke } from "../../assets/utils/helpers";
+import { playKeyStroke } from "../../utilities/helperFunctions";
 export default function SearchConsole() {
   const [searchResult, setSearchResult] = useState<searchResultShape[] | null>(
     null,

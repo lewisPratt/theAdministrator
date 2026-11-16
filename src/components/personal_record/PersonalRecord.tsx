@@ -1,5 +1,5 @@
 import UnlockedUpgrades from "./UnlockedUpgrades";
-import "../../assets/css/personalRecord.css";
+import "../../assets/css/PersonalRecord.css";
 import { Tooltip } from "react-tooltip";
 import { useState, useEffect, useContext } from "react";
 import { LoaderCircle } from "lucide-react";

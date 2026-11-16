@@ -1,4 +1,4 @@
-import { playCustomSound } from "../../assets/utils/helpers";
+import { playCustomSound } from "../../utilities/helperFunctions";
 import type{ CodexSidePanelProps } from "../../interfaces/interfaces";
 
 export default function RulesPanel({

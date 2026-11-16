@@ -6,7 +6,7 @@ import MapScanningText from "./MapScanningText";
 import { useState } from "react";
 
 import DistrictDetails from "../map/DistrictDetails";
-import { getDetailsForDistrict } from "../../assets/utils/helpers";
+import { getDetailsForDistrict } from "../../utilities/helperFunctions";
 
 interface cityMapProps{
   giveDetails : boolean

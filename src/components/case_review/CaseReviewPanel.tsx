@@ -23,7 +23,7 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
 import EvidenceStack from "./EvidenceStack";
-import { checkUpgradeActive, playCustomSound } from "../../assets/utils/helpers";
+import { checkUpgradeActive, playCustomSound } from "../../utilities/helperFunctions";
 import DecryptConsole from "./DecryptConsole";
 import CaseReviewMap from "./CaseReviewMap";
 import SearchConsole from "./SearchConsole";

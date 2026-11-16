@@ -1,19 +1,19 @@
-import { locations } from "../../generator_modules/LocationGenerator";
-import { occupations } from "../../generator_modules/OccupationGenerator";
-import { allUpgrades } from "../../generator_modules/upgrades";
-import type { districtDetails, locationsShape, occupationsShape, playerDataShape, playerStatsShape, UpgradeShape } from "../../interfaces/interfaces";
-import keystroke_1 from "../../assets/sounds/keystroke_hard.mp3"
-import keystroke_2 from "../../assets/sounds/keystroke_medium.mp3"
-import keystroke_3 from "../../assets/sounds/keystroke_soft.mp3"
-import buttonpress from "../../assets/sounds/button_soft.mp3"
-import call_1 from "../../assets/sounds/call_1.mp3"
-import call_2 from "../../assets/sounds/call_2.mp3"
-import call_3 from "../../assets/sounds/call_3.mp3"
-import call_4 from "../../assets/sounds/call_4.mp3"
-import errorSound from "../../assets/sounds/error.mp3"
-import sucessSound from "../../assets/sounds/success_bling.mp3"
+import { locations } from "../content_generators/LocationGenerator";
+import { occupations } from "../content_generators/OccupationGenerator";
+import { allUpgrades } from "../content_generators/upgrades";
+import type { districtDetails, locationsShape, occupationsShape, playerDataShape, playerStatsShape, UpgradeShape } from "../interfaces/interfaces";
+import keystroke_1 from "../assets/sounds/keystroke_hard.mp3"
+import keystroke_2 from "../assets/sounds/keystroke_medium.mp3"
+import keystroke_3 from "../assets/sounds/keystroke_soft.mp3"
+import buttonpress from "../assets/sounds/button_soft.mp3"
+import call_1 from "../assets/sounds/call_1.mp3"
+import call_2 from "../assets/sounds/call_2.mp3"
+import call_3 from "../assets/sounds/call_3.mp3"
+import call_4 from "../assets/sounds/call_4.mp3"
+import errorSound from "../assets/sounds/error.mp3"
+import sucessSound from "../assets/sounds/success_bling.mp3"
 import { playSound } from "react-sounds";
-import getDistrictName from "../../generator_modules/DistrictNames";
+import getDistrictName from "../content_generators/DistrictNames";
 /**
  * Capitalizes the first letter of the string passed to it, returning a capitalized string
  * @param {string} val - the string that is to be capitalized

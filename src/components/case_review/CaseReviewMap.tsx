@@ -6,7 +6,7 @@ import MapScanningText from "../login/MapScanningText";
 import { useState } from "react";
 
 import DistrictDetails from "../map/DistrictDetails";
-import { getDetailsForDistrict, playCustomSound } from "../../assets/utils/helpers";
+import { getDetailsForDistrict, playCustomSound } from "../../utilities/helperFunctions";
 
 
 

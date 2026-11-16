@@ -1,4 +1,4 @@
-import "../../assets/css/about.css";
+import "../../assets/css/About.css";
 
 export default function AboutGame() {
   return (

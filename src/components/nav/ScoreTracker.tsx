@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { playCustomSound } from "../../assets/utils/helpers";
+import { playCustomSound } from "../../utilities/helperFunctions";
 
 export default function ScoreTracker() {
   const { setCurrentSlug } = useContext(CurrentSlugContext);

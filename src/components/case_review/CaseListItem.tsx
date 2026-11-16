@@ -1,4 +1,4 @@
-import { playCustomSound } from "../../assets/utils/helpers";
+import { playCustomSound } from "../../utilities/helperFunctions";
 import type { reviewShape, transcriptListItemProps } from "../../interfaces/interfaces";
 import {FolderTree } from "lucide-react";
 

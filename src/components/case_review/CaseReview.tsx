@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, type ReactEventHandler } from "react";
 import CaseReviewPanel from "./CaseReviewPanel";
 import CaseListItem from "./CaseListItem";
 import CaseReviewSummary from "./CaseReviewSummary";
@@ -9,12 +9,12 @@ import type {
   reviewsCompleteShape,
 } from "../../interfaces/interfaces";
 import { useNavigate } from "react-router-dom";
-import {LoaderCircle, SquareArrowDown } from "lucide-react";
+import {ArrowDown, LoaderCircle, SquareArrowDown } from "lucide-react";
 import NoCurrentTranscript from "./NoCurrentTranscript";
 import RulesPanel from "./RulesPanel";
-import { checkUpgradeActive, playCustomSound } from "../../assets/utils/helpers";
+import { checkUpgradeActive, playCustomSound } from "../../utilities/helperFunctions";
 import { Tooltip } from "react-tooltip";
-import "../../assets/css/caseReview.css";
+import "../../assets/css/CaseReview.css";
 
 //TUTORIAL IMPORTS
 import type { TooltipRefProps } from "react-tooltip";
@@ -27,9 +27,12 @@ import NotLoggedIn from "../nav/NotLoggedIn";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 
 export default function TranscriptRev() {
+    const { tutorialState } = useContext(TutorialContext);
+  const {playerData} = useContext(PlayerContext)
+  const {errorState} = useContext(ErrorContext)
   const [availableTranscripts, setAvailableTranscripts] = useState<
     reviewShape[] | null
-  >(null);
+  >(triggerCaseCreation());
   const [currentTranscript, setCurrentTranscript] =
     useState<reviewShape | null>(null);
   //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
@@ -45,10 +48,10 @@ export default function TranscriptRev() {
   const [closingState, setClosingState] = useState<boolean>(false)
   const [juniorCallUsed, setJuniorCallused] = useState<boolean>(false)
   const [seniorCallUsed, setSeniorCallused] = useState<boolean>(false)
+  const [isMoreCases, setIsMoreCases] = useState<boolean | null>(checkMoreCasesOverflow())
 
-  const { tutorialState } = useContext(TutorialContext);
-  const {playerData} = useContext(PlayerContext)
-  const {errorState} = useContext(ErrorContext)
+  let moreCasesBox : HTMLDivElement | null
+
   const navigate = useNavigate();
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
@@ -78,16 +81,24 @@ export default function TranscriptRev() {
     }
   }
 
+  //turn off loading state after component mount
+  useEffect(()=>{
+    if(loadingState){
+      setTimeout(setLoadingState, 2000, false);
+    }
+  },[])
 
- //new cases are generated when the loading state changes, effectively loading the page (from the user point of view).
-  // 
-  useEffect(() => {
-    /**
+  useEffect(()=>{
+      moreCasesBox = document.querySelector("#more-cases-box");
+  },[loadingState,currentTranscript])
+
+  /**
  * creates cases to populate the review component. Sorts through possible upgrades and applies their effects if they are relevant to 
  * case wide effects. 
  */
     function triggerCaseCreation(){
       
+      if(playerData){
           const transcriptsArray: reviewShape[] = [];
           let transcriptCount = 8;
           const originalCount = transcriptCount;
@@ -123,16 +134,15 @@ export default function TranscriptRev() {
             transcriptsArray.push(newPerson);
           }
       
-        setAvailableTranscripts(transcriptsArray)
-        setLoadingState(false)
+        return transcriptsArray
+      }
+      else{
+        return null
+      }
     }
 
-    if(loadingState){
-      setTimeout(triggerCaseCreation, 2000);
-    }
-  }, [loadingState,playerData?.player_unlocks]);
-
-
+    
+  
   //if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
   useEffect(() => {
 
@@ -158,14 +168,41 @@ export default function TranscriptRev() {
   }
   function startNewShift() {
     setLoadingState(false);
-    setAvailableTranscripts(null);
+    setAvailableTranscripts(triggerCaseCreation());
     setReviewsComplete(null);
     setCurrentTranscript(null);
     setReviewDismissed(false)
   }
   function endShift() {
-    //need to workout loop for end of shift
     navigate("/UpgradeShop");
+  }
+
+  //check if there are more than the base number of cases. 
+  function checkMoreCasesOverflow(){
+    if(availableTranscripts){
+      if(availableTranscripts?.length > 8){
+        return true
+      }else{
+        return false
+      }
+    }
+    else{
+      return null
+    }
+  }
+
+  //set visibility of the more cases box based on scroll position
+  function handleMoreCasesBox(e : React.UIEvent<HTMLDivElement>){
+
+    if(e.currentTarget.scrollTop > 100){
+      moreCasesBox?.classList.add("faded-box")
+      moreCasesBox?.classList.remove("visible-box")
+    }
+    else{
+      moreCasesBox?.classList.remove("faded-box")
+      moreCasesBox?.classList.add("visible-box")
+    }
+
   }
 
   return (
@@ -194,7 +231,8 @@ export default function TranscriptRev() {
 
             <div id="top-container">
               {availableTranscripts && (
-                <div id="case-list-container">
+                <div id="case-list-container" onScroll={(e)=>handleMoreCasesBox(e)}>
+                  { isMoreCases && <div id="more-cases-box"><p>More cases <ArrowDown /></p></div>}
                   <div
                     id="tutorial-step-7"
                     className={
@@ -205,7 +243,6 @@ export default function TranscriptRev() {
                     }
                   >
                     <ActiveUpgrades />
-                    <div id="interviews-list-header"><SquareArrowDown /> <h1>Available Cases</h1> <SquareArrowDown /></div>
                    
                     {availableTranscripts.map((listItem) => (
                       <CaseListItem

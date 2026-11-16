@@ -1,8 +1,8 @@
 import { LoaderCircle, X } from "lucide-react";
 import { useContext, useEffect, useState, type Dispatch, type SetStateAction } from "react";
-import { promotionPrefixes } from "../../generator_modules/titles";
+import { promotionPrefixes } from "../../content_generators/titles";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import "../../assets/css/promotion_overlay.css"
+import "../../assets/css/PromotionOverlay.css"
 
 interface PromotedSimProps{
     promotedSetter: Dispatch<SetStateAction<boolean>>

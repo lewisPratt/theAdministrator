@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import type { playerDataShape } from "../../interfaces/interfaces";
-import { isPlayer, saveLocalData } from "../../assets/utils/helpers";
+import { isPlayer, saveLocalData } from "../../utilities/helperFunctions";
 import { Tooltip } from "react-tooltip";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 export default function NavBar() {
@@ -31,22 +31,7 @@ export default function NavBar() {
 
   
   
-  function tryParse(storageKey : string){
-    try {
-          const savedData = localStorage.getItem(storageKey);
-          if(savedData === null){
-            return null
-          }
-          
-          const decodedData = atob(savedData)
-          const parsedData = JSON.parse(decodedData)
-          return parsedData;
-
-    } catch (error) {
-      // console.log("couldn't login: "+ error)
-      console.log(error)
-    }
-  }
+  
 
   //save playerdata when it changes
 useEffect(() => {
@@ -56,27 +41,7 @@ useEffect(() => {
   }, [playerData]);
 
 
-  useEffect(() => {
-    if (playerData === null && componentEnabled) {
-
-        const savedData :playerDataShape = tryParse("The_Administrator_Game");
-        if (savedData) {
-          if(isPlayer(savedData)){
-            setPlayerData(savedData);
-          }
-          else{
-          //type guard failed, saved player data does not match expected type
-          //CODE #1
-          setErrorState("There was an issue with your saved game data. #1")
-          }
-        }
-        else{
-        // No local storage item found with the specified key
-        // CODE #2
-        setErrorState("There was an issue with your saved game data. #2")
-        } 
-    }
-  }, [playerData, componentEnabled]);
+ 
 
   return (
     <>

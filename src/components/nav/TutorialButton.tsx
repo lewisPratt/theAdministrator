@@ -2,7 +2,7 @@ import { CircleQuestionMark } from "lucide-react"
 import { PlayerContext } from "../../context_providers/PlayerContext"
 import { TutorialContext } from "../../context_providers/TutorialContext"
 import { useContext } from "react"
-import { playCustomSound } from "../../assets/utils/helpers"
+import { playCustomSound } from "../../utilities/helperFunctions"
 
 export default function TutorialButton(){
 const {tutorialState, setTutorialState} = useContext(TutorialContext)
