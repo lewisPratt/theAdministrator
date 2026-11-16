@@ -137,3 +137,12 @@ export function isStats(value : unknown) : value is playerStatsShape {
     }
     
   }
+
+  //limits the length of a string and returns a string cut to a certain number of characters 
+  export function limitLength(enterredString : string){
+    let returnString : string = enterredString
+          if(enterredString.length > 20){
+             returnString = enterredString.substring(0,11)+".."
+          }
+          return returnString
+  }
