@@ -367,9 +367,11 @@ progress.decrypt-count-down {
 .transcript-list-item .case-avatar-span {
   display: block;
 }
-#more-cases-box{
+
+#more-cases-box {
   display: none;
 }
+
 .transcript-list-item:hover {
   scale: .95;
   cursor: pointer;
@@ -546,10 +548,6 @@ progress.decrypt-count-down {
 
 .positive-processed-item {
   background-color: #a2eaa2;
-
-}
-
-.positive-processed-item p {
   color: black;
 }
 
