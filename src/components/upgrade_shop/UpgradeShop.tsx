@@ -32,11 +32,12 @@ export default function UpgradeShop() {
   const { playerData, setPlayerData } = useContext(PlayerContext);
   const navigate = useNavigate();
 
+
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
   const debug :boolean = false;
   const upgrades: UpgradeListShape = allUpgrades;
-
+  
   useEffect(() => {
     setTimeout(setLoadingState, 2000, false);
   },[]);
