@@ -6,7 +6,7 @@ import AvailableCommandsList from "./AvailableCommandsList";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { playCustomSound, playKeyStroke } from "../../utilities/helperFunctions";
+import { limitLength, playCustomSound, playKeyStroke } from "../../utilities/helperFunctions";
 
 
 
@@ -29,6 +29,7 @@ useEffect(()=>{
   function doLogout(){
     if(playerData) {
       sessionStorage.removeItem("admin_game_status")
+      setCurrentSlug("nav.terminal")
       setPlayerData(null)
       
     }
@@ -43,7 +44,7 @@ useEffect(()=>{
       switch (command?.toLowerCase().trim()) {
         case "nav.upgrade":
           navigate("/UpgradeShop");
-          setCurrentSlug("nav.voucher");
+          setCurrentSlug("nav.upgrade");
           resetInput(e);
           break;
         case "nav.review":
@@ -54,11 +55,6 @@ useEffect(()=>{
         case "nav.about":
           navigate("/About");
           setCurrentSlug("nav.about");
-          resetInput(e);
-          break;
-        case "nav.inbox":
-          navigate("/Inbox");
-          setCurrentSlug("nav.inbox");
           resetInput(e);
           break;
         case "nav.terminal":
@@ -72,14 +68,12 @@ useEffect(()=>{
           break;
         case "nav.personal":
           navigate("/PersonalRecord");
+          setCurrentSlug("nav.personal")
           resetInput(e);
-          break;
-        case "nav.stats":
-          navigate("/Stats");
           break;
         default:
           resetInput(e);
-          setErrorState("Command not recognized: " + command);
+          setErrorState("Command not recognized: " + limitLength(command));
           playCustomSound("errorSound")
           break;
       }

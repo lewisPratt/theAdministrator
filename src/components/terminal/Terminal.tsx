@@ -11,7 +11,7 @@ import { type TooltipRefProps } from "react-tooltip";
 
 import TutorialLogic from "../tutorial/TutorialLogic";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import { playKeyStroke, playCustomSound  } from "../../utilities/helperFunctions";
+import { playKeyStroke, playCustomSound, limitLength  } from "../../utilities/helperFunctions";
 
 export default function CommandCentre() {
   const [loadingState, setLoadingState] = useState<boolean>(true);
@@ -53,7 +53,7 @@ useEffect(()=>{
       switch (command.toLowerCase().trim()) {
         case "nav.upgrade":
           navigate("/UpgradeShop");
-          setCurrentSlug("nav.voucher");
+          setCurrentSlug("nav.upgrade");
           break;
         case "nav.about":
           navigate("/About");
@@ -62,10 +62,6 @@ useEffect(()=>{
         case "nav.review":
           navigate("/CaseReview");
           setCurrentSlug("nav.review");
-          break;
-        case "nav.inbox":
-          navigate("/Inbox");
-          setCurrentSlug("nav.inbox");
           break;
         case "request.leave":
           setErrorState("Due to ongoing union disputes, leave requests have been paused until: 21/09/2047");
@@ -77,15 +73,13 @@ useEffect(()=>{
           break;
         case "nav.personal":
           navigate("/PersonalRecord");
+          setCurrentSlug("nav.personal");
           break;
         case "nav.terminal":
           navigate("/Terminal");
           break;
-        case "nav.stats":
-          navigate("/Stats");
-          break;
         default:
-          setErrorState("Command not recognized: " + command);
+          setErrorState("Command not recognized: " + limitLength(command));
           playCustomSound("errorSound")
           e.currentTarget.reset();
           break;
