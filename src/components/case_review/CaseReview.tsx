@@ -194,7 +194,7 @@ export default function TranscriptRev() {
 
   //set visibility of the more cases box based on scroll position
   function handleMoreCasesBox(e: React.UIEvent<HTMLDivElement>) {
-    if (e.currentTarget.scrollTop > 100) {
+    if (e.currentTarget.scrollTop > 20) {
       moreCasesBox?.classList.add("faded-box");
       moreCasesBox?.classList.remove("visible-box");
     } else {
@@ -237,7 +237,9 @@ export default function TranscriptRev() {
                             More cases <ArrowDown />
                           </p>
                         </div>
+                        
                       )}
+                      
                       <div
                         id="tutorial-step-7"
                         className={
@@ -248,25 +250,7 @@ export default function TranscriptRev() {
                         }
                       >
                         <ActiveUpgrades />
-
-                        {availableTranscripts.map((listItem) => (
-                          <CaseListItem
-                            key={listItem.identifier}
-                            currentOpenCase={currentTranscript}
-                            nextCaseSetter={setNextCase}
-                            reviewTranscriptSetter={setCurrentTranscript}
-                            currentTranscript={listItem}
-                            identifier={selectedListItem}
-                            selectedSetter={setSelectedListItem}
-                            codexState={codexState}
-                            codexStateSetter={setCodexState}
-                            closingState={closingState}
-                            closingStateSetter={setClosingState}
-                          />
-                        ))}
-                      </div>
-                      <ol>
-                        <li className="rules-list-item">
+                       
                           {reviewsComplete && (
                             <>
                               <button onClick={() => loadNewShift("new")}>
@@ -277,8 +261,7 @@ export default function TranscriptRev() {
                               </button>{" "}
                             </>
                           )}
-                        </li>
-                      </ol>
+                        
                       <button
                         id="tutorial-step-11"
                         className={
@@ -298,6 +281,23 @@ export default function TranscriptRev() {
                       >
                         Rules
                       </button>
+                        {availableTranscripts.map((listItem) => (
+                          <CaseListItem
+                            key={listItem.identifier}
+                            currentOpenCase={currentTranscript}
+                            nextCaseSetter={setNextCase}
+                            reviewTranscriptSetter={setCurrentTranscript}
+                            currentTranscript={listItem}
+                            identifier={selectedListItem}
+                            selectedSetter={setSelectedListItem}
+                            codexState={codexState}
+                            codexStateSetter={setCodexState}
+                            closingState={closingState}
+                            closingStateSetter={setClosingState}
+                          />
+                        ))}
+                      </div>
+                      
                     </div>
                   )}
                   {codexState && (

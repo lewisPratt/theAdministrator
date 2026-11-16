@@ -299,12 +299,12 @@ export default function CaseReviewPanel({
         <>
         <div className="case-container">
           <div
-            id="tutorial-step-8"
+            id="tutorial-step-9"
             className={
               "transcript-container " +
               (!closingState ? "open-transcript-class" : "slide-out-class") +
               " " +
-              (tutorialState.tutorialActive && tutorialState.tutorialStep === 8
+              (tutorialState.tutorialActive && tutorialState.tutorialStep === 9
                 ? "tutorial-highlight"
                 : "")
             }
@@ -515,8 +515,8 @@ export default function CaseReviewPanel({
                     
             </div>
         </div>
-          <div id="tutorial-step-9" className={
-              (tutorialState.tutorialActive && tutorialState.tutorialStep === 9
+          <div id="tutorial-step-10" className={
+              (tutorialState.tutorialActive && tutorialState.tutorialStep === 10
                 ? "tutorial-highlight"
                 : "") + " decision-container"
             }

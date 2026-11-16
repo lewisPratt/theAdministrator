@@ -16,9 +16,9 @@ export default function ActiveUpgrades() {
   return (
     <div className="active-upgrades-container">
       <h2
-        id="tutorial-step-10"
+        id="tutorial-step-8"
         className={
-          tutorialState.tutorialActive && tutorialState.tutorialStep === 10
+          tutorialState.tutorialActive && tutorialState.tutorialStep === 8
             ? "tutorial-highlight"
             : ""
         }

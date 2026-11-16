@@ -37,13 +37,13 @@ export default function TutorialSteps({ stepNumber }: tutorialStepsProps) {
       textContent = "Select a case to review the details.";
       break;
     case 8:
-      textContent = "Review case information collected on Citizens.";
+      textContent = "Upgrades you have unlocked will show here.";
       break;
     case 9:
-      textContent = "Decide whether to send for re-education or no further action.";
+      textContent = "Review case information collected on Citizens.";
       break;
     case 10:
-      textContent = "Upgrades you have unlocked will show here.";
+      textContent = "Decide whether to send for re-education or no further action.";
       break;
     case 11:
       textContent = "Check the rules to remind you what to look for.";
