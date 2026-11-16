@@ -583,11 +583,12 @@ Once the project got to a point of over 30 individual components of varying size
 
 ### React.js conventions
 
-The React library has its own recommended file naming conventions and structure and this has been followed as closely as possible to ensure code legibility.
+The React library has its own recommended file naming conventions and structure and this has been followed as closely as possible to ensure code legibility. 
 
 * Individual component files are named the same as the contained component function, utilising PascalCase. 
+* CSS files have been named using PascalCase, watching the name of the component they are associated with. 
 * Each main component (login, upgrade shop etc) has been separated into its own folder, grouping together smaller components that are associated with larger 'view' components.
-* non component .tsx files are named using camelCase
+* Non component .tsx files are named using camelCase
 * Variables and normal functions are named using camelCase
 
 ### Local storage
