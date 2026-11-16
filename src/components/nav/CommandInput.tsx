@@ -140,7 +140,7 @@ useEffect(()=>{
         >
           <CircleQuestionMark size={20} />
         </button>
-        {showCommands && <AvailableCommandsList  doLogout={doLogout}/>}
+        {showCommands && <AvailableCommandsList availableCommandsSetter={setShowCommands} doLogout={doLogout}/>}
       </form>
     </div>
   );

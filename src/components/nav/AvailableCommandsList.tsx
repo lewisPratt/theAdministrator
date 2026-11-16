@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, type Dispatch, type SetStateAction } from "react"
 import { useNavigate } from "react-router-dom"
 import { CurrentSlugContext } from "../../context_providers/CurrentSlugContext"
 import { playCustomSound } from "../../utilities/helperFunctions"
@@ -6,17 +6,20 @@ import { TutorialContext } from "../../context_providers/TutorialContext"
 
 interface commandsListProps{
     doLogout : () => void
+    availableCommandsSetter : Dispatch<SetStateAction<boolean>>
 }
 
-export default function AvailableCommandsList({doLogout}: commandsListProps){
+export default function AvailableCommandsList({doLogout, availableCommandsSetter}: commandsListProps){
     
     const navigate = useNavigate()
     const {setCurrentSlug} = useContext(CurrentSlugContext)
     const {tutorialState,setTutorialState} = useContext(TutorialContext)
 
+     
 
     function navigateTo(where: string){
         navigate("/"+where)
+        availableCommandsSetter(prev=>!prev)
         switch (where) {
             case "Terminal":
                 setCurrentSlug("nav.terminal")
@@ -43,6 +46,7 @@ export default function AvailableCommandsList({doLogout}: commandsListProps){
         doLogout()
     }
     function toggleTutorialState(){
+        availableCommandsSetter(prev=>!prev)
         if(tutorialState.tutorialActive){
             return false
         }else{
@@ -53,6 +57,8 @@ export default function AvailableCommandsList({doLogout}: commandsListProps){
         playCustomSound("buttonPress")
         setTutorialState({tutorialActive: toggleTutorialState(),tutorialStep: 0})
     }
+
+
     
     return(
         <div id='commands-list-container'>
