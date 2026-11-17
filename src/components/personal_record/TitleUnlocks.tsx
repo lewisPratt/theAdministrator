@@ -27,9 +27,9 @@ const {tutorialState} = useContext(TutorialContext)
             <ol>
             {promotionPrefixes.map((title)=>{
                 if(playerData?.player_titles.includes(title)){
-                return <li><button className="title-set-button" onClick={()=>setTitle(title)} >{title}</button></li>}
+                return <li key={title}><button className="title-set-button" onClick={()=>setTitle(title)} >{title}</button></li>}
                 else{
-                   return  <li> ?????? </li>
+                   return  <li key={btoa(title)}> ?????? </li>
                 }
             })}
             </ol>

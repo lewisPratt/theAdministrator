@@ -13,7 +13,7 @@ const {tutorialState} = useContext(TutorialContext)
         <h3>Statistics</h3>
         {playerData &&
          Object.entries(playerData?.player_stats).map((stat)=>{
-            return <p>{stat[0]} : {stat[0] == "total_credits_earned" && <CreditIcon size={12}/>}{stat[1]}</p>
+            return <p key={stat[0]}>{stat[0]} : {stat[0] == "total_credits_earned" && <CreditIcon size={12}/>}{stat[1]}</p>
         })}
         <p>success/fail_ratio: {playerData && !isNaN(playerData?.player_stats.cases_correct / playerData?.player_stats.cases_failed) ?
            (playerData?.player_stats.cases_correct / playerData?.player_stats.cases_failed).toFixed(2) : "No data" }</p>

@@ -1,7 +1,5 @@
 import { useContext } from "react";
 
-import { UnlocksContext } from "../../context_providers/unlocksContext";
-import type { unlockContextShape } from "../../interfaces/interfaces";
 import { allUpgrades } from "../../content_generators/upgrades";
 import { v4 as uuidv4 } from "uuid";
 import { Badge } from "lucide-react";
@@ -9,10 +7,8 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 
 export default function UnlockedUpgrades() {
-  const { playerUnlocks } = useContext<unlockContextShape>(UnlocksContext);
   const {tutorialState} = useContext(TutorialContext)
   const {playerData} = useContext(PlayerContext)
-  console.log(playerUnlocks);
   return (
     <section id="tutorial-step-15" className={(tutorialState.tutorialActive && tutorialState.tutorialStep === 15 ? "tutorial-highlight":"") +" badge-unlocks"}>
        <h2>Upgrades</h2>
