@@ -974,6 +974,7 @@ each endpoint url has a seed value at the end, so appending `uuidv4()` to the ur
 Filtering the citizens by gender and behaviour allows very customizable control over the appearance of the avatars generated. 
 
 ### Use of SVG graphics in city map component
+---
 
 Having had very little experience with svg graphics in the past, I was keen to ensure I expanded my knowledge in this area whilst completing this project.
 
@@ -991,7 +992,26 @@ And is offset slightly on the X and Y axis. A rectangle is then attached to the 
 Without using svg graphics, creating hotspots on top of an image and ensuring it had a consistent presentation both in mobile and desktop viewing, would be overly complicated and inconsistent. The combination of ensuring a properly scaled image as well as precisely placed hotspots, would be prohibitively complex and inaccurate due to changing margins and scaling. SVG graphics are the ideal solution for this feature, with the added benefit of providing self contained methods of element animation and styling
 
 
+### Project reflection
+---
+This project has been a very enjoyable one to work on, pushing my learning and exposing me to an entirely new way of presenting information to the user and managing game logic. Gaining hands on experience using React has been very valuable and I will continue to utilise the library in my personal projects to improve my knowledge. 
+
+Towards the end of the project I found myself returning to the code on numerous occassions to add extra finishing touches that were not necessary. "Scope Creep" is a common occurrence in software development and it's important to recognise it early, particularly when a deadline is approaching. One such occassion started with making a small change to the code that then had a knock on effect, causing me to alter code elsewhere and before I realised, I had spent 2 hours working on a feature that wasn't actually a must have for the project outcome. 
+
+In this instance, I took some time away from the code and returned fresh, solving the problem within 30 minutes and managing to keep the changes I had implemented. However there have been occassions when I have had to roll back the code to a previous version of the project, highlighting the usefulness of utilising a version management system like GitHub. 
+
+There are a number of additional features and improvements I would like to implement in the future, if I should ever return to continue working on this project.
+
+ * Improved save game data handling.
+ * Extra mini-game additions (like the decrypt device feature) that add additional depth to gameplay.
+ * Allow multiple user saved game data on the same browser.
+ * Improved visual theming to further the retro futuristic computer terminal aesthetic. 
+ * Addition of charts and data driven UI elements (statistics graphs/administrator activity graph)
+ * Addition of a backend system to allow for persistent player data storage and more extensive, pre-defined data sets to be used to improve the unique interactions wth each citizen.
+ * Refactoring of code to continue efforts to conform to React.js conventions. 
+
 ### Use of generative ai
+---
 
 As a means of efficiency, generative ai was used to populate js objects that hold large datasets used in content randomization.
 Prompts such as
@@ -1002,8 +1022,6 @@ Similar prompts were used to produce datasets for last names, occupations and lo
 LLMs we're also used as a means of troubleshooting and dissecting new coding concepts that were unfamiliar.
 
 No LLM generated code snippets or automated deployment models were utilized in the completion of this project.
-
----
 
 ## Additional Reading References
 
