@@ -102,7 +102,7 @@ export default function TranscriptRev() {
       setCurrentTranscript(availableTranscripts[0]);
     }
 
-    if (tutorialState.tutorialActive && availableTranscripts) {
+    if (tutorialState.tutorialActive && availableTranscripts && tutorialState.tutorialStep != 0) {
       showTutorialCase(availableTranscripts);
     }
   }, [availableTranscripts, tutorialState.tutorialActive]);
@@ -264,11 +264,11 @@ export default function TranscriptRev() {
                         
                       <button
                         id="tutorial-step-11"
-                        className={
-                          tutorialState.tutorialActive &&
+                        className={ "rules-button "+
+                          (tutorialState.tutorialActive &&
                           tutorialState.tutorialStep === 11
                             ? "tutorial-highlight"
-                            : "" + " rules-button"
+                            : "" )
                         }
                         onClick={() => {
                           playCustomSound("buttonPress");
