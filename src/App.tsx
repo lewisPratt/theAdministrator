@@ -72,6 +72,7 @@ function tryParse(storageKey : string){
 
     } catch (error) {
       // console.log("couldn't login: "+ error)
+      return error
       
       setErrorState("Parsing Error: There was an issue with your saved game data. It has been cleared. ")
       localStorage.removeItem("The_Administrator_Game")

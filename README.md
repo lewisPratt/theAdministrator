@@ -747,9 +747,9 @@ This required me to refactor a number of parts of code to negate this effect and
 
 The remaining warnings were mostly regarding unused pieces of code and missing dependencies on some useEffects, which just required me to add the missing variables to the dependency array for that UseEffect.
 
-All errors were cleared and only 1 warning remains, which was not possible to address within the timescale of the project. A future aim would be to clear this final warning by refactoring the code in this component. Currently, despite the warning, there is no adverse effect on the app or logic of the game. 
+All errors  and warnings were cleared after refactoring parts of the code to meet the requirements.
 
-<img src="src/assets/images/readme/validation/js/eslint-validation.png" width=800> 
+<img src="src/assets/images/readme/validation/js/esLint-no-errors.png" width=400> 
 
 
 ## Compatibility

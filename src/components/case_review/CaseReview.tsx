@@ -55,7 +55,6 @@ export default function TranscriptRev() {
     checkMoreCasesOverflow(),
   );
 
-  let moreCasesBox: HTMLDivElement | null;
 
   const navigate = useNavigate();
   const tooltipRef1 = useRef<TooltipRefProps>(null);
@@ -89,11 +88,9 @@ export default function TranscriptRev() {
     if (loadingState) {
       setTimeout(setLoadingState, 2000, false);
     }
-  }, []);
+  }, [loadingState]);
 
-  useEffect(() => {
-    moreCasesBox = document.querySelector("#more-cases-box");
-  }, [loadingState, currentTranscript,playerData]);
+ 
 
   //if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
   useEffect(() => {
@@ -105,7 +102,7 @@ export default function TranscriptRev() {
     if (tutorialState.tutorialActive && availableTranscripts && tutorialState.tutorialStep != 0) {
       showTutorialCase(availableTranscripts);
     }
-  }, [availableTranscripts, tutorialState.tutorialActive]);
+  }, [availableTranscripts, tutorialState.tutorialActive, tutorialState.tutorialStep]);
 
   /**
    * creates cases to populate the review component. Sorts through possible upgrades and applies their effects if they are relevant to
@@ -195,9 +192,13 @@ export default function TranscriptRev() {
   //set visibility of the more cases box based on scroll position
   function handleMoreCasesBox(e: React.UIEvent<HTMLDivElement>) {
     if (e.currentTarget.scrollTop > 20) {
-      moreCasesBox?.classList.add("faded-box");
-      moreCasesBox?.classList.remove("visible-box");
+       const moreCasesBox = document.querySelector("#more-cases-box");
+      if(moreCasesBox && !moreCasesBox.classList.contains("faded-box")){
+        moreCasesBox?.classList.add("faded-box");
+        moreCasesBox?.classList.remove("visible-box");
+      }
     } else {
+      const moreCasesBox = document.querySelector("#more-cases-box");
       moreCasesBox?.classList.remove("faded-box");
       moreCasesBox?.classList.add("visible-box");
     }
