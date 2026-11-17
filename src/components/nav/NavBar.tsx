@@ -5,14 +5,11 @@ import SoundControl from "./SoundControl";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { PlayerContext } from "../../context_providers/PlayerContext";
-import type { playerDataShape } from "../../interfaces/interfaces";
-import { isPlayer, saveLocalData } from "../../utilities/helperFunctions";
+import { saveLocalData } from "../../utilities/helperFunctions";
 import { Tooltip } from "react-tooltip";
-import { ErrorContext } from "../../context_providers/ErrorContext";
 export default function NavBar() {
-  const [dataError] = useState<string | null>(null)
-  const { playerData, setPlayerData } = useContext(PlayerContext);
-  const {setErrorState } = useContext(ErrorContext);
+  const [dataError] = useState<string | null>(null);
+  const { playerData } = useContext(PlayerContext);
 
   const { pathname } = useLocation();
 
@@ -20,7 +17,8 @@ export default function NavBar() {
     /* check to see if player is logged in or currently on a page where the nav should not be visible */
   }
   let componentEnabled: boolean = true;
-  if ( !sessionStorage.getItem("admin_game_status") || 
+  if (
+    !sessionStorage.getItem("admin_game_status") ||
     pathname === "/" ||
     pathname === "/Goodbye" ||
     pathname === "/Welcome" ||
@@ -29,19 +27,12 @@ export default function NavBar() {
     componentEnabled = false;
   }
 
-  
-  
-  
-
   //save playerdata when it changes
-useEffect(() => {
- if (playerData != null) {
+  useEffect(() => {
+    if (playerData != null) {
       saveLocalData(playerData);
     }
   }, [playerData]);
-
-
- 
 
   return (
     <>
@@ -53,14 +44,11 @@ useEffect(() => {
                 <div
                   id="interactive-nav-el-container"
                   className="desktop-nav-element"
-                >                    
-                    <SoundControl />
-                    {/* <TutorialButton /> */}
-                  
+                >
+                  <SoundControl />
                 </div>
                 <CommandInput />
-                  <ScoreTracker />
-                
+                <ScoreTracker />
               </div>
             </>
           ) : (

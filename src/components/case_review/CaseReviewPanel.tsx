@@ -1,7 +1,5 @@
-import React, { useContext, useState, useRef} from "react";
-import type {
-  transcriptReviewBoxProps,
-} from "../../interfaces/interfaces";
+import React, { useContext, useState, useRef } from "react";
+import type { transcriptReviewBoxProps } from "../../interfaces/interfaces";
 import {
   DoorOpen,
   Backpack,
@@ -23,7 +21,10 @@ import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
 import EvidenceStack from "./EvidenceStack";
-import { checkUpgradeActive, playCustomSound } from "../../utilities/helperFunctions";
+import {
+  checkUpgradeActive,
+  playCustomSound,
+} from "../../utilities/helperFunctions";
 import DecryptConsole from "./DecryptConsole";
 import CaseReviewMap from "./CaseReviewMap";
 import SearchConsole from "./SearchConsole";
@@ -43,150 +44,145 @@ export default function CaseReviewPanel({
   seniorCallSetter,
   seniorCall,
   closingState,
-  closingStateSetter
+  closingStateSetter,
 }: transcriptReviewBoxProps) {
   const [showEvidence, setShowEvidence] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
-  const [inCall, setInCall] = useState<boolean>(false)
-  const [callResult, setCallResult] = useState<string>("")
-  const [callTalking, setCallTalking] = useState<string>("")
-  const [decrypt, setDecrypt] = useState<boolean>(false)
+  const [inCall, setInCall] = useState<boolean>(false);
+  const [callResult, setCallResult] = useState<string>("");
+  const [callTalking, setCallTalking] = useState<string>("");
+  const [decrypt, setDecrypt] = useState<boolean>(false);
   const { tutorialState } = useContext(TutorialContext);
   const { playerData, setPlayerData } = useContext(PlayerContext);
-  const [cityMapState, setCityMapState] = useState<boolean>(false)
-  const juniorCallRef = useRef(0)
-  const successSound = ()=> playSound(successfulSound, {volume:0.5, loop:false});
-  const failureSound = ()=> playSound(failSound, {volume:0.5, loop:false});
-  let itemsToIdentify : number = 0
+  const [cityMapState, setCityMapState] = useState<boolean>(false);
+  const juniorCallRef = useRef(0);
+  const successSound = () =>
+    playSound(successfulSound, { volume: 0.5, loop: false });
+  const failureSound = () => playSound(failSound, { volume: 0.5, loop: false });
+  let itemsToIdentify: number = 0;
 
-  let recPassDesc: string ;
+  let recPassDesc: string;
   if (transcript?.recreationPass) {
     recPassDesc = "Valid RecPass";
   } else {
     recPassDesc = "No RecPass";
   }
-  
-  
+
   //trigger adding of animation class to animate transcript leaving page.
   function closeTranscript() {
-    const timerId = juniorCallRef.current
-    clearTimeout(timerId)
+    const timerId = juniorCallRef.current;
+    clearTimeout(timerId);
     closingStateSetter(true);
   }
 
- /**
-  * reset the state and show the 'no transcript selected' message
-  * @param e the event object to detect whether the slide out animation has completed. 
-  */
+  /**
+   * reset the state and show the 'no transcript selected' message
+   * @param e the event object to detect whether the slide out animation has completed.
+   */
   function handleAnimationEnd(e: React.AnimationEvent<HTMLDivElement>) {
     if (e.animationName === "transcript-slide-out") {
-      if(nextCase != transcript && nextCase != null){
-       
-        reviewTranscriptSetter(nextCase)
-        selectedSetter(nextCase.identifier)
-
-      }else{
-      reviewTranscriptSetter(null);
-      selectedSetter(NIL_UUID);
-
+      if (nextCase != transcript && nextCase != null) {
+        reviewTranscriptSetter(nextCase);
+        selectedSetter(nextCase.identifier);
+      } else {
+        reviewTranscriptSetter(null);
+        selectedSetter(NIL_UUID);
       }
-       closingStateSetter(false)
+      closingStateSetter(false);
     }
   }
   /**
    * retrieves the index of the currently active case within the transcript list
    * @returns the index(number) of currently active case
    */
-  function getCaseIndex() :number {
-    let foundIndex : number = 0
-    if(transcript && transcriptList){
-      foundIndex = transcriptList.findIndex((caseFile)=>{
-             return transcript.identifier === caseFile.identifier   
-      })
+  function getCaseIndex(): number {
+    let foundIndex: number = 0;
+    if (transcript && transcriptList) {
+      foundIndex = transcriptList.findIndex((caseFile) => {
+        return transcript.identifier === caseFile.identifier;
+      });
     }
-    if(foundIndex > 0){
-      return foundIndex
-    }else{
-      return 0
+    if (foundIndex > 0) {
+      return foundIndex;
+    } else {
+      return 0;
     }
   }
 
-/**
- * Changes the active case based on the index of the currently active case. can either go back 1 or forwards 1
- * @param direction which direction to move in the transcript list, either "next" or "previous"
- * @returns reviewShape object that holds all the details of the transcript being changed to. 
- */
-  function changeCase(direction: string){
-    if(transcriptList){
-    let currentCaseIndex = getCaseIndex()
-       
-        if(direction === "next"){
-          currentCaseIndex +=1
-        } else if(direction === "previous"){
-          currentCaseIndex -=1
-        }
-        if(currentCaseIndex >= transcriptList.length ){
-          currentCaseIndex = 0
-        }
-        if(currentCaseIndex < 0){
-          currentCaseIndex = transcriptList.length -1
-        }
-        closingStateSetter(true)
-        return nextCaseSetter(transcriptList[currentCaseIndex])
+  /**
+   * Changes the active case based on the index of the currently active case. can either go back 1 or forwards 1
+   * @param direction which direction to move in the transcript list, either "next" or "previous"
+   * @returns reviewShape object that holds all the details of the transcript being changed to.
+   */
+  function changeCase(direction: string) {
+    if (transcriptList) {
+      let currentCaseIndex = getCaseIndex();
+
+      if (direction === "next") {
+        currentCaseIndex += 1;
+      } else if (direction === "previous") {
+        currentCaseIndex -= 1;
       }
+      if (currentCaseIndex >= transcriptList.length) {
+        currentCaseIndex = 0;
+      }
+      if (currentCaseIndex < 0) {
+        currentCaseIndex = transcriptList.length - 1;
+      }
+      closingStateSetter(true);
+      return nextCaseSetter(transcriptList[currentCaseIndex]);
+    }
   }
 
-  function callColleague(colleagueLevel: string){
-    if(!inCall){
-      if(colleagueLevel === "junior"){
-        if(!juniorCall){
-        juniorCallSetter(true)
+  function callColleague(colleagueLevel: string) {
+    if (!inCall) {
+      if (colleagueLevel === "junior") {
+        if (!juniorCall) {
+          juniorCallSetter(true);
         }
-      } else if(colleagueLevel === "senior")
-          if(!seniorCall){
-          seniorCallSetter(true)
+      } else if (colleagueLevel === "senior")
+        if (!seniorCall) {
+          seniorCallSetter(true);
         }
-        setInCall(true)
-      playCustomSound("callContent")
-          //logic to simulate a brief call and chance based decision. 
-          const callId = setTimeout(() => {
-            simCall(colleagueLevel)
-          }, 8000);
-          juniorCallRef.current = callId;
-      
-     }
+      setInCall(true);
+      playCustomSound("callContent");
+      //logic to simulate a brief call and chance based decision.
+      const callId = setTimeout(() => {
+        simCall(colleagueLevel);
+      }, 8000);
+      juniorCallRef.current = callId;
+    }
   }
 
-  function simCall(colleagueLevel: string){
+  function simCall(colleagueLevel: string) {
     const callId = juniorCallRef.current;
-    clearInterval(callId)
-    setInCall(false)
-    setCallTalking("")
+    clearInterval(callId);
+    setInCall(false);
+    setCallTalking("");
     //make decision
-    let chance = 0.60
-    if(colleagueLevel === "senior"){
-      chance = 0.80
+    let chance = 0.6;
+    if (colleagueLevel === "senior") {
+      chance = 0.8;
     }
-    if(Math.random() < chance){
+    if (Math.random() < chance) {
       //correct decision
-      if( transcript && transcript?.overallWeighting >= 0){
-        setCallResult("It's definately an NFA")
-      } else{
-        setCallResult("Re-educate ASAP!")
+      if (transcript && transcript?.overallWeighting >= 0) {
+        setCallResult("It's definately an NFA");
+      } else {
+        setCallResult("Re-educate ASAP!");
       }
-
-    }else{
-      setCallResult("sorry, it's my first day...")
+    } else {
+      setCallResult("sorry, it's my first day...");
     }
   }
 
-  function handleCallSim(e : React.AnimationEvent){
-    if(e.animationName === "call-ring"){
-      setCallTalking("Explaining case details...")
+  function handleCallSim(e: React.AnimationEvent) {
+    if (e.animationName === "call-ring") {
+      setCallTalking("Explaining case details...");
     }
   }
   function handleDecision(e: React.MouseEvent<HTMLButtonElement>) {
-    playCustomSound("buttonPress")
+    playCustomSound("buttonPress");
     if (transcript) {
       const decision = e.currentTarget.dataset.decision;
       const personWeighting: number = transcript.overallWeighting;
@@ -208,9 +204,11 @@ export default function CaseReviewPanel({
         }
       }
 
-      
-      
-      function updateCreditTotal(creditAdjustment: number, direction: boolean, category: string) {
+      function updateCreditTotal(
+        creditAdjustment: number,
+        direction: boolean,
+        category: string,
+      ) {
         if (playerData) {
           let newTotal: number = playerData.player_credits;
           let decisionOutcome: boolean;
@@ -241,7 +239,7 @@ export default function CaseReviewPanel({
               foundTranscript.processed = true;
               foundTranscript.decision = decisionText;
               foundTranscript.decisionOutcome = decisionOutcome;
-              foundTranscript.outcomeCategory = category
+              foundTranscript.outcomeCategory = category;
               setTranscriptList(allTranscripts);
               //positive
             }
@@ -285,7 +283,7 @@ export default function CaseReviewPanel({
           } else if (personWeighting >= 0) {
             //person is good, negative consequences for wrong deision
             failureSound();
-            updateCreditTotal(wrongAnswer, false,"Re-educate");
+            updateCreditTotal(wrongAnswer, false, "Re-educate");
           }
           break;
         default:
@@ -297,269 +295,439 @@ export default function CaseReviewPanel({
     <>
       {transcript && (
         <>
-        <div className="case-container">
-          <div
-            id="tutorial-step-9"
-            className={
-              "transcript-container " +
-              (!closingState ? "open-transcript-class" : "slide-out-class") +
-              " " +
-              (tutorialState.tutorialActive && tutorialState.tutorialStep === 9
-                ? "tutorial-highlight"
-                : "")
-            }
-            onAnimationEnd={handleAnimationEnd}
-          >
-            
-            <div id="case-map-container" className={(cityMapState ? "map-container-visible" : "map-container-hidden")}>
-                
+          <div className="case-container">
+            <div
+              id="tutorial-step-9"
+              className={
+                "transcript-container " +
+                (!closingState ? "open-transcript-class" : "slide-out-class") +
+                " " +
+                (tutorialState.tutorialActive &&
+                tutorialState.tutorialStep === 9
+                  ? "tutorial-highlight"
+                  : "")
+              }
+              onAnimationEnd={handleAnimationEnd}
+            >
+              <div
+                id="case-map-container"
+                className={
+                  cityMapState
+                    ? "map-container-visible"
+                    : "map-container-hidden"
+                }
+              >
                 <CaseReviewMap />
-                <button className="close-button" onClick={()=>{setCityMapState(false);playCustomSound("buttonPress")}}><X/></button>
-                
+                <button
+                  className="close-button"
+                  onClick={() => {
+                    setCityMapState(false);
+                    playCustomSound("buttonPress");
+                  }}
+                >
+                  <X />
+                </button>
               </div>
-            <h2>
-              {transcript.interviewee.firstName}{" "}
-              {transcript.interviewee.lastName}
-            </h2>
-            <div className="interviewee-details">
-             
-              <CitizenAvatar key={transcript.identifier} transcript={transcript} cityMapState={cityMapState} cityMapSetter={setCityMapState}/>
-             
-              <div className="interviewee-information">
-              <div className="details-row">
-                <p>
-                  <span className="review-box-section-header">Age:</span>{" "}
-                  {transcript.age} |{" "}
-                  <span className="review-box-section-header">Gender:</span>{" "}
-                  {transcript.gender.charAt(0).toUpperCase() +
-                    transcript.gender.slice(1)}
-                </p>
-              </div>
-
-              <div className="details-row">
-                <p>
-                  <span className="review-box-section-header">Occupation:</span>{" "}
-                  {transcript.occupation.name}
-                </p>{" "}
-              </div>
-
-              <div className="details-row">
-                <p>
-                  <span className="review-box-section-header">
-                    Detained in:
-                  </span>{" "}
-                  {transcript.location.name}
-                </p>
-              </div>
-              <div className="details-row">
-                <p>
-                  <span className="review-box-section-header">
-                    Behaviour:
-                  </span>{" "}
-                  {transcript.behaviour}
-                </p>
-              </div>
-              </div>
-            </div>
-
-            
-            {/* show reward earned from making decision on this case. conditional on whether the case has been procesed */}
-            {transcript.processed ? (
-              <div className="outcome-display">
-                <p>{transcript.outcomeCategory}</p>
-                <p>{transcript.decision}</p>
-                <p>
-                  Credits:{transcript.decisionOutcome ? "+" : "-"}
-                  {transcript.rewardEarned}
-                </p>
-              </div>
-            ) :
-              <div className="transcript-text">
-                <p>{transcript.personFlavour}</p>
-              </div>
-            }
-            {transcript.encryptedDrive.activeDrive && 
-            <>
-              <p><button className="drive-found-button" onClick={()=>{setDecrypt(true);playCustomSound("buttonPress")}}>{transcript.encryptedDrive.driveLocked ? <FolderKey ><X /></FolderKey> : <FolderKey />} Encrypted drive found </button></p>
-            
-              <div id="decrypt-container" className={(decrypt ? "decrypt-container-visible" : "decrypt-container-hidden")}>
-                <button id="close-decrypt" onClick={()=>{setDecrypt(false);playCustomSound("buttonPress")}}><X /></button>
-
-                <DecryptConsole decryptobj={transcript.encryptedDrive} transcript={transcript} setTranscriptList={setTranscriptList} transcriptList={transcriptList}/>
-                
-              </div>
-            </>
-            
-            }
-
-            <div className="passes-container">
-              <div>
-                <DoorOpen
-                  tabIndex={0}
-                  data-tooltip-id="item-desc"
-                  data-tooltip-content="A RecPass is needed to visit District 8."
+              <h2>
+                {transcript.interviewee.firstName}{" "}
+                {transcript.interviewee.lastName}
+              </h2>
+              <div className="interviewee-details">
+                <CitizenAvatar
+                  key={transcript.identifier}
+                  transcript={transcript}
+                  cityMapState={cityMapState}
+                  cityMapSetter={setCityMapState}
                 />
-                <div className="recreation-pass-container">
-                  <div
-                    data-tooltip-id="item-desc"
-                    tabIndex={0}
-                    data-tooltip-content={recPassDesc}
-                    className="recreation-pass badge"
-                  >
-                    {transcript.recreationPass ? (
-                      <p>
-                        <CircleCheck />
-                      </p>
-                    ) : (
-                      <p>
-                        <CircleX />
-                      </p>
-                    )}
+
+                <div className="interviewee-information">
+                  <div className="details-row">
+                    <p>
+                      <span className="review-box-section-header">Age:</span>{" "}
+                      {transcript.age} |{" "}
+                      <span className="review-box-section-header">Gender:</span>{" "}
+                      {transcript.gender.charAt(0).toUpperCase() +
+                        transcript.gender.slice(1)}
+                    </p>
+                  </div>
+
+                  <div className="details-row">
+                    <p>
+                      <span className="review-box-section-header">
+                        Occupation:
+                      </span>{" "}
+                      {transcript.occupation.name}
+                    </p>{" "}
+                  </div>
+
+                  <div className="details-row">
+                    <p>
+                      <span className="review-box-section-header">
+                        Detained in:
+                      </span>{" "}
+                      {transcript.location.name}
+                    </p>
+                  </div>
+                  <div className="details-row">
+                    <p>
+                      <span className="review-box-section-header">
+                        Behaviour:
+                      </span>{" "}
+                      {transcript.behaviour}
+                    </p>
                   </div>
                 </div>
               </div>
-              
-              <div>
-                <MapPinned
-                  tabIndex={0}
-                  data-tooltip-id="item-desc"
-                  data-tooltip-content="Authorized to visit these Districts (due to occupation/other)"
-                />
-                <div className="location-pass-container ">
-                  {transcript.authorizedLocations.map((loc) => {
-                    const tooltipText = "District " + loc;
-                    return (
-                      <div
-                        key={loc}
-                        tabIndex={0}
-                        className="badge"
-                        data-tooltip-id="item-desc"
-                        data-tooltip-content={tooltipText}
-                      >
-                        {loc}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <div>
-                <Backpack
-                  tabIndex={0}
-                  data-tooltip-id="item-desc"
-                  data-tooltip-content="Items found on interviewee."
-                />
-                <div className="location-pass-container ">
-                  {transcript.items.map((item) => {
-                    if(itemsToIdentify >= 0){
-                      --itemsToIdentify
-                    }
-                    return (
-                      <div
-                        className={ (transcript.revealItem ? (item.legal ? "legal-item " : "illegal-item ") : "")  +" badge"}
-                        key={uuidv4()}
-                        tabIndex={0}
-                        data-tooltip-id="item-desc"
-                        data-tooltip-content={item.description + (transcript.revealItem ? (item.legal ? " [Legal]" : " [Illegal]") : "")}
-                      >
-                        {item.itemComponent}
-                        <div className="illegal-item-symbol"><XCircle size={12}/></div>
-                        <div className="legal-item-symbol"><CircleCheck size={12}/></div>
-                      </div>
-                    );
-                  })}
-                </div>
-                <Tooltip id="item-desc" className="custom-tooltip"></Tooltip>
-              </div>
-            </div>
 
-            <button
-              aria-label="Close case details"
-              id="transcript-close-button"
-              onClick={()=>{closeTranscript(); playCustomSound("buttonPress")}}
-            >
-              <X />
-            </button>
-            
-                {inCall && <div onAnimationEnd={(e)=>handleCallSim(e)} className="call-sim">
-                  
-                    {callTalking != "" ? <p>{callTalking} <LoaderCircle className="loader" /></p> : <p>........</p>}
-                    
-                </div>}
-                {callResult != "" && <p className="colleague-call-result">{"\""}{callResult}{"\""}</p>} 
-            <div id="colleague-call-container">
-              {checkUpgradeActive(playerData?.player_unlocks, "voucher11") &&
+              {/* show reward earned from making decision on this case. conditional on whether the case has been procesed */}
+              {transcript.processed ? (
+                <div className="outcome-display">
+                  <p>{transcript.outcomeCategory}</p>
+                  <p>{transcript.decision}</p>
+                  <p>
+                    Credits:{transcript.decisionOutcome ? "+" : "-"}
+                    {transcript.rewardEarned}
+                  </p>
+                </div>
+              ) : (
+                <div className="transcript-text">
+                  <p>{transcript.personFlavour}</p>
+                </div>
+              )}
+              {transcript.encryptedDrive.activeDrive && (
                 <>
-                  {!juniorCall &&
-                    <button onClick={()=>callColleague("junior")}>Call Junior Colleague</button>}
-                </>
-              }
-              {checkUpgradeActive(playerData?.player_unlocks, "voucher12") &&
-                <>
-                  {!seniorCall &&
-                    <button onClick={()=>callColleague("senior")}>Call Senior Colleague</button>}
-                </>
-              }
-                  
-                
-            </div>
-            {playerData?.player_unlocks.includes("voucher10") && 
-              <button onClick={()=>{setShowSearch(true); playCustomSound("buttonPress")}} id="search-button" >Search Console</button>
-            }
-            <div id="search-container" className={(showSearch ? "search-visible" : "search-hidden" )}>
-               <button id="close-search" onClick={()=>{setShowSearch(false);playCustomSound("buttonPress")}}><X /></button>
-              {playerData?.player_unlocks.includes("voucher10") && <SearchConsole />}
-            </div>
-            <div id="evidence-container" className={(showEvidence ? "evidence-visible" : "evidence-hidden" )}>
-              <button id="close-evidence" onClick={()=>{setShowEvidence(false)}}><X /></button>
-              <EvidenceStack caseDetails={transcript}/> 
-                    
-            </div>
-        </div>
-          <div id="tutorial-step-10" className={
-              (tutorialState.tutorialActive && tutorialState.tutorialStep === 10
-                ? "tutorial-highlight"
-                : "") + " decision-container"
-            }
-          >
-            {!transcript.processed ? (
-              <div className="decision-buttons-container"> 
-              <button onClick={()=>{changeCase("previous");playCustomSound("buttonPress")}}><ChevronLeft /></button>
-                <button id="nfa-button" data-decision="nfa" onClick={handleDecision}>
-                  No further action
-                </button>
-                <button id="reeducate-button" data-decision="reeducate" onClick={handleDecision}>
-                  Send for re-education
-                </button>{" "}
-                
-                <button onClick={()=>{changeCase("next");playCustomSound("buttonPress")}}><ChevronRight /></button>
-               
-              </div>
-            ) : (
-              <>
-              <div className="processed-buttons-container"> 
-                <button onClick={()=>{changeCase("previous")}}><ChevronLeft /></button>
-              <button onClick={()=>closeTranscript()}>Close Case Notes</button>
-               
-               {playerData?.player_unlocks.includes("voucher9") ?
-                  <button onClick={() => {setShowEvidence((prev) => !prev);}}>
-                    See Evidence
-                  </button>
-                  :
-                  <p className="missing-evidence-upgrade" data-tooltip-id="extra-case-tooltip" data-tooltip-content="unlock via upgrade terminal">
-                    Evidence Stack Missing 
+                  <p>
+                    <button
+                      className="drive-found-button"
+                      onClick={() => {
+                        setDecrypt(true);
+                        playCustomSound("buttonPress");
+                      }}
+                    >
+                      {transcript.encryptedDrive.driveLocked ? (
+                        <FolderKey>
+                          <X />
+                        </FolderKey>
+                      ) : (
+                        <FolderKey />
+                      )}{" "}
+                      Encrypted drive found{" "}
+                    </button>
                   </p>
 
+                  <div
+                    id="decrypt-container"
+                    className={
+                      decrypt
+                        ? "decrypt-container-visible"
+                        : "decrypt-container-hidden"
+                    }
+                  >
+                    <button
+                      id="close-decrypt"
+                      onClick={() => {
+                        setDecrypt(false);
+                        playCustomSound("buttonPress");
+                      }}
+                    >
+                      <X />
+                    </button>
+
+                    <DecryptConsole
+                      decryptobj={transcript.encryptedDrive}
+                      transcript={transcript}
+                      setTranscriptList={setTranscriptList}
+                      transcriptList={transcriptList}
+                    />
+                  </div>
+                </>
+              )}
+
+              <div className="passes-container">
+                <div>
+                  <DoorOpen
+                    tabIndex={0}
+                    data-tooltip-id="item-desc"
+                    data-tooltip-content="A RecPass is needed to visit District 8."
+                  />
+                  <div className="recreation-pass-container">
+                    <div
+                      data-tooltip-id="item-desc"
+                      tabIndex={0}
+                      data-tooltip-content={recPassDesc}
+                      className="recreation-pass badge"
+                    >
+                      {transcript.recreationPass ? (
+                        <p>
+                          <CircleCheck />
+                        </p>
+                      ) : (
+                        <p>
+                          <CircleX />
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <MapPinned
+                    tabIndex={0}
+                    data-tooltip-id="item-desc"
+                    data-tooltip-content="Authorized to visit these Districts"
+                  />
+                  <div className="location-pass-container ">
+                    {transcript.authorizedLocations.map((loc) => {
+                      const tooltipText = "District " + loc;
+                      return (
+                        <div
+                          key={loc}
+                          tabIndex={0}
+                          className="badge"
+                          data-tooltip-id="item-desc"
+                          data-tooltip-content={tooltipText}
+                        >
+                          {loc}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div>
+                  <Backpack
+                    tabIndex={0}
+                    data-tooltip-id="item-desc"
+                    data-tooltip-content="Items found on interviewee."
+                  />
+                  <div className="location-pass-container ">
+                    {transcript.items.map((item) => {
+                      if (itemsToIdentify >= 0) {
+                        --itemsToIdentify;
+                      }
+                      return (
+                        <div
+                          className={
+                            (transcript.revealItem
+                              ? item.legal
+                                ? "legal-item "
+                                : "illegal-item "
+                              : "") + " badge"
+                          }
+                          key={uuidv4()}
+                          tabIndex={0}
+                          data-tooltip-id="item-desc"
+                          data-tooltip-content={
+                            item.description +
+                            (transcript.revealItem
+                              ? item.legal
+                                ? " [Legal]"
+                                : " [Illegal]"
+                              : "")
+                          }
+                        >
+                          {item.itemComponent}
+                          <div className="illegal-item-symbol">
+                            <XCircle size={12} />
+                          </div>
+                          <div className="legal-item-symbol">
+                            <CircleCheck size={12} />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <Tooltip id="item-desc" className="custom-tooltip"></Tooltip>
+                </div>
+              </div>
+
+              <button
+                aria-label="Close case details"
+                id="transcript-close-button"
+                onClick={() => {
+                  closeTranscript();
+                  playCustomSound("buttonPress");
+                }}
+              >
+                <X />
+              </button>
+
+              {inCall && (
+                <div
+                  onAnimationEnd={(e) => handleCallSim(e)}
+                  className="call-sim"
+                >
+                  {callTalking != "" ? (
+                    <p>
+                      {callTalking} <LoaderCircle className="loader" />
+                    </p>
+                  ) : (
+                    <p>........</p>
+                  )}
+                </div>
+              )}
+              {callResult != "" && (
+                <p className="colleague-call-result">
+                  {'"'}
+                  {callResult}
+                  {'"'}
+                </p>
+              )}
+              <div id="colleague-call-container">
+                {checkUpgradeActive(
+                  playerData?.player_unlocks,
+                  "voucher11",
+                ) && (
+                  <>
+                    {!juniorCall && (
+                      <button onClick={() => callColleague("junior")}>
+                        Call Junior Colleague
+                      </button>
+                    )}
+                  </>
+                )}
+                {checkUpgradeActive(
+                  playerData?.player_unlocks,
+                  "voucher12",
+                ) && (
+                  <>
+                    {!seniorCall && (
+                      <button onClick={() => callColleague("senior")}>
+                        Call Senior Colleague
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
+              {playerData?.player_unlocks.includes("voucher10") && (
+                <button
+                  onClick={() => {
+                    setShowSearch(true);
+                    playCustomSound("buttonPress");
+                  }}
+                  id="search-button"
+                >
+                  Search Console
+                </button>
+              )}
+              <div
+                id="search-container"
+                className={showSearch ? "search-visible" : "search-hidden"}
+              >
+                <button
+                  id="close-search"
+                  onClick={() => {
+                    setShowSearch(false);
+                    playCustomSound("buttonPress");
+                  }}
+                >
+                  <X />
+                </button>
+                {playerData?.player_unlocks.includes("voucher10") && (
+                  <SearchConsole />
+                )}
+              </div>
+              <div
+                id="evidence-container"
+                className={
+                  showEvidence ? "evidence-visible" : "evidence-hidden"
                 }
-                <button onClick={()=>{changeCase("next")}}><ChevronRight /></button>
-                
+              >
+                <button
+                  id="close-evidence"
+                  onClick={() => {
+                    setShowEvidence(false);
+                  }}
+                >
+                  <X />
+                </button>
+                <EvidenceStack caseDetails={transcript} />
+              </div>
             </div>
-                
-                
-              </>
-            )}
+            <div
+              id="tutorial-step-10"
+              className={
+                (tutorialState.tutorialActive &&
+                tutorialState.tutorialStep === 10
+                  ? "tutorial-highlight"
+                  : "") + " decision-container"
+              }
+            >
+              {!transcript.processed ? (
+                <div className="decision-buttons-container">
+                  <button
+                    onClick={() => {
+                      changeCase("previous");
+                      playCustomSound("buttonPress");
+                    }}
+                  >
+                    <ChevronLeft />
+                  </button>
+                  <button
+                    id="nfa-button"
+                    data-decision="nfa"
+                    onClick={handleDecision}
+                  >
+                    No further action
+                  </button>
+                  <button
+                    id="reeducate-button"
+                    data-decision="reeducate"
+                    onClick={handleDecision}
+                  >
+                    Send for re-education
+                  </button>{" "}
+                  <button
+                    onClick={() => {
+                      changeCase("next");
+                      playCustomSound("buttonPress");
+                    }}
+                  >
+                    <ChevronRight />
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="processed-buttons-container">
+                    <button
+                      onClick={() => {
+                        changeCase("previous");
+                      }}
+                    >
+                      <ChevronLeft />
+                    </button>
+                    <button onClick={() => closeTranscript()}>
+                      Close Case Notes
+                    </button>
+
+                    {playerData?.player_unlocks.includes("voucher9") ? (
+                      <button
+                        onClick={() => {
+                          setShowEvidence((prev) => !prev);
+                        }}
+                      >
+                        See Evidence
+                      </button>
+                    ) : (
+                      <p
+                        className="missing-evidence-upgrade"
+                        data-tooltip-id="extra-case-tooltip"
+                        data-tooltip-content="unlock via upgrade terminal"
+                      >
+                        Evidence Stack Missing
+                      </p>
+                    )}
+                    <button
+                      onClick={() => {
+                        changeCase("next");
+                      }}
+                    >
+                      <ChevronRight />
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
-          </div>
-          
         </>
       )}
     </>
