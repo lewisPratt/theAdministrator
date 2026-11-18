@@ -1,5 +1,8 @@
 import "../../assets/css/About.css";
 
+/**
+ * @returns HTML structured content for the about component.
+ */
 export default function AboutGame() {
   return (
     <div id="about-content">

@@ -286,16 +286,16 @@ export default function TranscriptRev() {
                         {availableTranscripts.map((listItem) => (
                           <CaseListItem
                             key={listItem.identifier}
-                            currentOpenCase={currentTranscript}
-                            nextCaseSetter={setNextCase}
-                            reviewTranscriptSetter={setCurrentTranscript}
-                            currentTranscript={listItem}
-                            identifier={selectedListItem}
-                            selectedSetter={setSelectedListItem}
-                            codexState={codexState}
-                            codexStateSetter={setCodexState}
+                            CurrentOpenCase={currentTranscript}
+                            NextCaseSetter={setNextCase}
+                            ReviewTranscriptSetter={setCurrentTranscript}
+                            CurrentTranscript={listItem}
+                            CurrentCaseIdentifier={selectedListItem}
+                            CurrentSelectedSetter={setSelectedListItem}
+                            RulesPanelState={codexState}
+                            RulesPanelStateSetter={setCodexState}
                             closingState={closingState}
-                            closingStateSetter={setClosingState}
+                            CaseClosingStateSetter={setClosingState}
                           />
                         ))}
                       </div>

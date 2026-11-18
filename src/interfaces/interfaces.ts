@@ -180,15 +180,15 @@ export interface normalizedResultsShape {
   category: string;
 }
 export interface transcriptListItemProps {
-  currentTranscript: reviewShape | null;
-  identifier: string
-  codexState: boolean
-  codexStateSetter: Dispatch<SetStateAction<boolean>>
-  reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
-  selectedSetter: Dispatch<SetStateAction<string>>
-  nextCaseSetter: Dispatch<SetStateAction<reviewShape | null>>
-  currentOpenCase: reviewShape | null;
-  closingStateSetter: Dispatch<SetStateAction<boolean>>
+  CurrentTranscript: reviewShape | null;
+  CurrentCaseIdentifier: string
+  RulesPanelState: boolean
+  RulesPanelStateSetter: Dispatch<SetStateAction<boolean>>
+  ReviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
+  CurrentSelectedSetter: Dispatch<SetStateAction<string>>
+  NextCaseSetter: Dispatch<SetStateAction<reviewShape | null>>
+  CurrentOpenCase: reviewShape | null;
+  CaseClosingStateSetter: Dispatch<SetStateAction<boolean>>
   closingState: boolean
 }
 export interface summaryProps {
