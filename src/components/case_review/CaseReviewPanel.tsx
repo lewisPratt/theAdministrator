@@ -184,6 +184,7 @@ export default function CaseReviewPanel({
   function handleDecision(e: React.MouseEvent<HTMLButtonElement>) {
     playCustomSound("buttonPress");
     if (transcript) {
+      if(decrypt) {setDecrypt(false)}
       const decision = e.currentTarget.dataset.decision;
       const personWeighting: number = transcript.overallWeighting;
       let decisionText = "";
@@ -309,6 +310,16 @@ export default function CaseReviewPanel({
               }
               onAnimationEnd={handleAnimationEnd}
             >
+              <button
+                aria-label="Close case details"
+                id="transcript-close-button"
+                onClick={() => {
+                  closeTranscript();
+                  playCustomSound("buttonPress");
+                }}
+              >
+                <X />
+              </button>
               <div
                 id="case-map-container"
                 className={
@@ -317,8 +328,11 @@ export default function CaseReviewPanel({
                     : "map-container-hidden"
                 }
               >
-                <CaseReviewMap />
+                {cityMapState &&
+                  <CaseReviewMap />
+                }
                 <button
+                tabIndex={(cityMapState ? 0 : -1)}
                   className="close-button"
                   onClick={() => {
                     setCityMapState(false);
@@ -415,7 +429,10 @@ export default function CaseReviewPanel({
                     </button>
                   </p>
 
-                  <div
+                  
+                </>
+              )}
+               <div
                     id="decrypt-container"
                     className={
                       decrypt
@@ -424,6 +441,7 @@ export default function CaseReviewPanel({
                     }
                   >
                     <button
+                      tabIndex={(decrypt ? 0: -1)}
                       id="close-decrypt"
                       onClick={() => {
                         setDecrypt(false);
@@ -432,24 +450,24 @@ export default function CaseReviewPanel({
                     >
                       <X />
                     </button>
-
-                    <DecryptConsole
-                      decryptobj={transcript.encryptedDrive}
-                      transcript={transcript}
-                      setTranscriptList={setTranscriptList}
-                      transcriptList={transcriptList}
-                    />
+                      {decrypt && 
+                        <DecryptConsole
+                          decryptobj={transcript.encryptedDrive}
+                          transcript={transcript}
+                          setTranscriptList={setTranscriptList}
+                          transcriptList={transcriptList}
+                          decryptConsoleOpen={decrypt}
+                        />
+                      }
                   </div>
-                </>
-              )}
-
               <div className="passes-container">
-                <div>
-                  <DoorOpen
-                    tabIndex={0}
+                <div >
+                  <div tabIndex={0}
                     data-tooltip-id="item-desc"
-                    data-tooltip-content="A RecPass is needed to visit District 8."
+                    data-tooltip-content="A RecPass is needed to visit District 8.">
+                  <DoorOpen
                   />
+                  </div>
                   <div className="recreation-pass-container">
                     <div
                       data-tooltip-id="item-desc"
@@ -471,11 +489,9 @@ export default function CaseReviewPanel({
                 </div>
 
                 <div>
-                  <MapPinned
-                    tabIndex={0}
+                  <div tabIndex={0}
                     data-tooltip-id="item-desc"
-                    data-tooltip-content="Authorized to visit these Districts"
-                  />
+                    data-tooltip-content="Authorized to visit these Districts"><MapPinned/></div>
                   <div className="location-pass-container ">
                     {transcript.authorizedLocations.map((loc) => {
                       const tooltipText = "District " + loc;
@@ -494,11 +510,9 @@ export default function CaseReviewPanel({
                   </div>
                 </div>
                 <div>
-                  <Backpack
-                    tabIndex={0}
+                  <div tabIndex={0}
                     data-tooltip-id="item-desc"
-                    data-tooltip-content="Items found on interviewee."
-                  />
+                    data-tooltip-content="Items found on interviewee."><Backpack/></div>
                   <div className="location-pass-container ">
                     {transcript.items.map((item) => {
                       if (itemsToIdentify >= 0) {
@@ -535,21 +549,14 @@ export default function CaseReviewPanel({
                         </div>
                       );
                     })}
+                 
                   </div>
+                    
                   <Tooltip id="item-desc" className="custom-tooltip"></Tooltip>
                 </div>
               </div>
 
-              <button
-                aria-label="Close case details"
-                id="transcript-close-button"
-                onClick={() => {
-                  closeTranscript();
-                  playCustomSound("buttonPress");
-                }}
-              >
-                <X />
-              </button>
+              
 
               {inCall && (
                 <div
@@ -614,6 +621,7 @@ export default function CaseReviewPanel({
                 className={showSearch ? "search-visible" : "search-hidden"}
               >
                 <button
+                tabIndex={(showSearch ? 0:-1)}
                   id="close-search"
                   onClick={() => {
                     setShowSearch(false);
@@ -622,7 +630,7 @@ export default function CaseReviewPanel({
                 >
                   <X />
                 </button>
-                {playerData?.player_unlocks.includes("voucher10") && (
+                {playerData?.player_unlocks.includes("voucher10") && showSearch &&  (
                   <SearchConsole />
                 )}
               </div>
@@ -633,6 +641,7 @@ export default function CaseReviewPanel({
                 }
               >
                 <button
+                tabIndex={(showEvidence ? 0:-1)}
                   id="close-evidence"
                   onClick={() => {
                     setShowEvidence(false);

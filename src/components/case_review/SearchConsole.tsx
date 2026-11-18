@@ -16,7 +16,9 @@ import { carryableItems } from "../../content_generators/CarryableItems";
 
 import type{ searchResultShape, normalizedResultsShape } from "../../interfaces/interfaces";
 import { playKeyStroke } from "../../utilities/helperFunctions";
-export default function SearchConsole() {
+
+
+export default function SearchConsole({}) {
   const [searchResult, setSearchResult] = useState<searchResultShape[] | null>(
     null,
   );
@@ -110,7 +112,6 @@ export default function SearchConsole() {
           return item.description.match(re);
         },
       );
-      console.log(itemResult);
       if (itemResult) {
         itemResult.forEach((item) => {
           results.push({

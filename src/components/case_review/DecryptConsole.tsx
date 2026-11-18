@@ -27,6 +27,7 @@ interface decryptProps {
   transcript: reviewShape;
   setTranscriptList: Dispatch<SetStateAction<reviewShape[] | null>>;
   transcriptList: reviewShape[] | null;
+  decryptConsoleOpen : boolean;
 }
 
 export default function DecryptConsole({
@@ -34,6 +35,7 @@ export default function DecryptConsole({
   transcriptList,
   transcript,
   setTranscriptList,
+  decryptConsoleOpen
 }: decryptProps) {
   const [chances, setChances] = useState<number>(1);
   const [decryptState, setDecryptState] = useState<boolean>(false);
@@ -227,6 +229,8 @@ export default function DecryptConsole({
               </p>
               {!decryptState && (
                 <button
+                tabIndex={(decryptConsoleOpen ? 0: -1)}
+                 
                   className="mt-20"
                   onClick={() => {
                     startDecrypt();
@@ -258,6 +262,7 @@ export default function DecryptConsole({
                     }}
                     className="decrypt-input"
                     type="text"
+                    autoFocus
                   ></input>
                 </>
               )}

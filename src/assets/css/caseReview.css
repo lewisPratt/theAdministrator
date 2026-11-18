@@ -572,6 +572,7 @@ progress.decrypt-count-down {
   flex-direction: column;
   overflow: hidden;
   align-items: center;
+  
 }
 
 #interviews-list-header {

@@ -42,15 +42,15 @@
 .badge-holder>svg {
     transition: 3s;
     transform: rotateY(0deg) ;
-
 }
 
-.badge-holder:hover>svg {
+.badge-holder:hover>svg,
+.badge-holder:focus-visible>svg {
     transition: 3s;
     transform: rotateY(360deg);
-
 }
-.badge-holder:hover{
+.badge-holder:hover,
+.badge-holder:focus-visible{
     background:#a2eaa2;
     color:black;
     transition:2s

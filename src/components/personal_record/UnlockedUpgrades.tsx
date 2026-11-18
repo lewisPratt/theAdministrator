@@ -18,7 +18,7 @@ export default function UnlockedUpgrades() {
           const thisVoucher = allUpgrades[`${unlock}`];
          
             return (
-              <div key={uuidv4()} className="badge-holder" data-tooltip-id="unlocks-tooltip" data-tooltip-content={thisVoucher.perkEffect}>
+              <div tabIndex={0} key={uuidv4()} className="badge-holder" data-tooltip-id="unlocks-tooltip" data-tooltip-content={thisVoucher.perkEffect}>
                 <Badge size={56}>{thisVoucher.icon}</Badge>
               </div>
             );
