@@ -341,9 +341,9 @@ export default function TranscriptRev() {
                       key={currentTranscript.identifier}
                       nextCaseSetter={setNextCase}
                       nextCase={nextCase}
-                      reviewTranscriptSetter={setCurrentTranscript}
-                      transcript={currentTranscript}
-                      selectedSetter={setSelectedListItem}
+                      CurrentCaseSetter={setCurrentTranscript}
+                      CurrentCase={currentTranscript}
+                      CurrentSelectedSetter={setSelectedListItem}
                       transcriptList={availableTranscripts}
                       setTranscriptList={setAvailableTranscripts}
                       cityMapState={cityMapeState}

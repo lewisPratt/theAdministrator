@@ -4,17 +4,19 @@ import cityMap from "../../assets//images/cityMap.png";
 import type { HotSpotShape, districtDetails } from "../../interfaces/interfaces";
 import MapScanningText from "../login/MapScanningText";
 import { useState } from "react";
-
 import DistrictDetails from "../map/DistrictDetails";
 import { getDetailsForDistrict, playCustomSound } from "../../utilities/helperFunctions";
 
 
-
-
+/**
+ * Component that returns the city map for use in cae review component. 
+ */
 export default function CaseReviewMap() {
   const [districtDetails, setDistrictDetails] = useState<districtDetails | null>(null)
 
-
+  /**
+   * defines the locations of the svg "hotspot" areas that the player can mouse over to interact with the map
+   */
   const hotspots: HotSpotShape[] = [
     {
       ident: uuid4(),

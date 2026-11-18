@@ -103,9 +103,9 @@ export interface unlockContextShape {
 }
 
 export interface transcriptReviewBoxProps {
-  transcript: reviewShape | null;
-  reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
-  selectedSetter: Dispatch<SetStateAction<string>>;
+  CurrentCase: reviewShape | null;
+  CurrentCaseSetter: Dispatch<SetStateAction<reviewShape | null>>;
+  CurrentSelectedSetter: Dispatch<SetStateAction<string>>;
   transcriptList: reviewShape[] | null;
   setTranscriptList: Dispatch<SetStateAction<reviewShape[] | null>>;
   cityMapState : boolean

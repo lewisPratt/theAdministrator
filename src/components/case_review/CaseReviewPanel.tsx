@@ -31,10 +31,16 @@ import SearchConsole from "./SearchConsole";
 import failSound from "../../assets/sounds/error.mp3";
 import successfulSound from "../../assets/sounds/success_bling.mp3";
 
+
+/**
+ * 
+ * @param param0 
+ * @returns Individual case information for the player to review and make a judgement on. 
+ */
 export default function CaseReviewPanel({
-  transcript,
-  reviewTranscriptSetter,
-  selectedSetter,
+  CurrentCase,
+  CurrentCaseSetter,
+  CurrentSelectedSetter,
   transcriptList,
   setTranscriptList,
   nextCase,
@@ -65,13 +71,15 @@ export default function CaseReviewPanel({
   let itemsToIdentify: number = 0;
 
   let recPassDesc: string;
-  if (transcript?.recreationPass) {
+  if (CurrentCase?.recreationPass) {
     recPassDesc = "Valid RecPass";
   } else {
     recPassDesc = "No RecPass";
   }
 
-  //trigger adding of animation class to animate transcript leaving page.
+  /**
+   * Trigger adding of animation class to open case to animate case leaving page.
+   */
   function closeTranscript() {
     const timerId = juniorCallRef.current;
     clearTimeout(timerId);
@@ -80,17 +88,16 @@ export default function CaseReviewPanel({
   }
 
   /**
-   * reset the state and show the 'no transcript selected' message
-   * @param e the event object to detect whether the slide out animation has completed.
+   * listens for the end of the case close animation and shows the next case or sets the no open case view.
    */
   function handleAnimationEnd(e: React.AnimationEvent<HTMLDivElement>) {
     if (e.animationName === "transcript-slide-out") {
-      if (nextCase != transcript && nextCase != null) {
-        reviewTranscriptSetter(nextCase);
-        selectedSetter(nextCase.identifier);
+      if (nextCase != CurrentCase && nextCase != null) {
+        CurrentCaseSetter(nextCase);
+        CurrentSelectedSetter(nextCase.identifier);
       } else {
-        reviewTranscriptSetter(null);
-        selectedSetter(NIL_UUID);
+        CurrentCaseSetter(null);
+        CurrentSelectedSetter(NIL_UUID);
       }
       closingStateSetter(false);
     }
@@ -101,9 +108,9 @@ export default function CaseReviewPanel({
    */
   function getCaseIndex(): number {
     let foundIndex: number = 0;
-    if (transcript && transcriptList) {
+    if (CurrentCase && transcriptList) {
       foundIndex = transcriptList.findIndex((caseFile) => {
-        return transcript.identifier === caseFile.identifier;
+        return CurrentCase.identifier === caseFile.identifier;
       });
     }
     if (foundIndex > 0) {
@@ -170,7 +177,7 @@ export default function CaseReviewPanel({
     }
     if (Math.random() < chance) {
       //correct decision
-      if (transcript && transcript?.overallWeighting >= 0) {
+      if (CurrentCase && CurrentCase?.overallWeighting >= 0) {
         setCallResult("It's definately an NFA");
       } else {
         setCallResult("Re-educate ASAP!");
@@ -187,10 +194,10 @@ export default function CaseReviewPanel({
   }
   function handleDecision(e: React.MouseEvent<HTMLButtonElement>) {
     playCustomSound("buttonPress");
-    if (transcript) {
+    if (CurrentCase) {
       if(decrypt) {setDecrypt(false)}
       const decision = e.currentTarget.dataset.decision;
-      const personWeighting: number = transcript.overallWeighting;
+      const personWeighting: number = CurrentCase.overallWeighting;
       let decisionText = "";
 
       const wrongAnswer = 170;
@@ -237,7 +244,7 @@ export default function CaseReviewPanel({
           if (transcriptList) {
             const allTranscripts = [...transcriptList];
             const foundTranscript = allTranscripts.find(
-              (t) => t.identifier === transcript?.identifier,
+              (t) => t.identifier === CurrentCase?.identifier,
             );
             if (foundTranscript) {
               foundTranscript.rewardEarned = creditAdjustment;
@@ -299,7 +306,7 @@ export default function CaseReviewPanel({
   }
   return (
     <>
-      {transcript && (
+      {CurrentCase && (
         <>
           <div className="case-container">
             <div
@@ -348,13 +355,13 @@ export default function CaseReviewPanel({
                 </button>
               </div>
               <h2>
-                {transcript.interviewee.firstName}{" "}
-                {transcript.interviewee.lastName}
+                {CurrentCase.interviewee.firstName}{" "}
+                {CurrentCase.interviewee.lastName}
               </h2>
               <div className="interviewee-details">
                 <CitizenAvatar
-                  key={transcript.identifier}
-                  transcript={transcript}
+                  key={CurrentCase.identifier}
+                  transcript={CurrentCase}
                   cityMapState={cityMapState}
                   cityMapSetter={setCityMapState}
                 />
@@ -363,10 +370,10 @@ export default function CaseReviewPanel({
                   <div className="details-row">
                     <p>
                       <span className="review-box-section-header">Age:</span>{" "}
-                      {transcript.age} |{" "}
+                      {CurrentCase.age} |{" "}
                       <span className="review-box-section-header">Gender:</span>{" "}
-                      {transcript.gender.charAt(0).toUpperCase() +
-                        transcript.gender.slice(1)}
+                      {CurrentCase.gender.charAt(0).toUpperCase() +
+                        CurrentCase.gender.slice(1)}
                     </p>
                   </div>
 
@@ -375,7 +382,7 @@ export default function CaseReviewPanel({
                       <span className="review-box-section-header">
                         Occupation:
                       </span>{" "}
-                      {transcript.occupation.name}
+                      {CurrentCase.occupation.name}
                     </p>{" "}
                   </div>
 
@@ -384,7 +391,7 @@ export default function CaseReviewPanel({
                       <span className="review-box-section-header">
                         Detained in:
                       </span>{" "}
-                      {transcript.location.name}
+                      {CurrentCase.location.name}
                     </p>
                   </div>
                   <div className="details-row">
@@ -392,28 +399,28 @@ export default function CaseReviewPanel({
                       <span className="review-box-section-header">
                         Behaviour:
                       </span>{" "}
-                      {transcript.behaviour}
+                      {CurrentCase.behaviour}
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* show reward earned from making decision on this case. conditional on whether the case has been procesed */}
-              {transcript.processed ? (
+              {CurrentCase.processed ? (
                 <div className="outcome-display">
-                  <p>{transcript.outcomeCategory}</p>
-                  <p>{transcript.decision}</p>
+                  <p>{CurrentCase.outcomeCategory}</p>
+                  <p>{CurrentCase.decision}</p>
                   <p>
-                    Credits:{transcript.decisionOutcome ? "+" : "-"}
-                    {transcript.rewardEarned}
+                    Credits:{CurrentCase.decisionOutcome ? "+" : "-"}
+                    {CurrentCase.rewardEarned}
                   </p>
                 </div>
               ) : (
                 <div className="transcript-text">
-                  <p>{transcript.personFlavour}</p>
+                  <p>{CurrentCase.personFlavour}</p>
                 </div>
               )}
-              {transcript.encryptedDrive.activeDrive && (
+              {CurrentCase.encryptedDrive.activeDrive && (
                 <>
                   <p>
                     <button
@@ -423,7 +430,7 @@ export default function CaseReviewPanel({
                         playCustomSound("buttonPress");
                       }}
                     >
-                      {transcript.encryptedDrive.driveLocked ? (
+                      {CurrentCase.encryptedDrive.driveLocked ? (
                         <FolderKey>
                           <X />
                         </FolderKey>
@@ -457,8 +464,8 @@ export default function CaseReviewPanel({
                     </button>
                       {decrypt && 
                         <DecryptConsole
-                          decryptobj={transcript.encryptedDrive}
-                          transcript={transcript}
+                          decryptobj={CurrentCase.encryptedDrive}
+                          transcript={CurrentCase}
                           setTranscriptList={setTranscriptList}
                           transcriptList={transcriptList}
                           decryptConsoleOpen={decrypt}
@@ -480,7 +487,7 @@ export default function CaseReviewPanel({
                       data-tooltip-content={recPassDesc}
                       className="recreation-pass badge"
                     >
-                      {transcript.recreationPass ? (
+                      {CurrentCase.recreationPass ? (
                         <p>
                           <CircleCheck />
                         </p>
@@ -498,7 +505,7 @@ export default function CaseReviewPanel({
                     data-tooltip-id="item-desc"
                     data-tooltip-content="Authorized to visit these Districts"><MapPinned/></div>
                   <div className="location-pass-container ">
-                    {transcript.authorizedLocations.map((loc) => {
+                    {CurrentCase.authorizedLocations.map((loc) => {
                       const tooltipText = "District " + loc;
                       return (
                         <div
@@ -519,14 +526,14 @@ export default function CaseReviewPanel({
                     data-tooltip-id="item-desc"
                     data-tooltip-content="Items found on interviewee."><Backpack/></div>
                   <div className="location-pass-container ">
-                    {transcript.items.map((item) => {
+                    {CurrentCase.items.map((item) => {
                       if (itemsToIdentify >= 0) {
                         --itemsToIdentify;
                       }
                       return (
                         <div
                           className={
-                            (transcript.revealItem
+                            (CurrentCase.revealItem
                               ? item.legal
                                 ? "legal-item "
                                 : "illegal-item "
@@ -537,7 +544,7 @@ export default function CaseReviewPanel({
                           data-tooltip-id="item-desc"
                           data-tooltip-content={
                             item.description +
-                            (transcript.revealItem
+                            (CurrentCase.revealItem
                               ? item.legal
                                 ? " [Legal]"
                                 : " [Illegal]"
@@ -654,7 +661,7 @@ export default function CaseReviewPanel({
                 >
                   <X />
                 </button>
-                <EvidenceStack caseDetails={transcript} />
+                <EvidenceStack caseDetails={CurrentCase} />
               </div>
             </div>
             <div
@@ -666,7 +673,7 @@ export default function CaseReviewPanel({
                   : "") + " decision-container"
               }
             >
-              {!transcript.processed ? (
+              {!CurrentCase.processed ? (
                 <div className="decision-buttons-container">
                   <button
                     onClick={() => {
