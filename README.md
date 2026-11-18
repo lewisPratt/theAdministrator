@@ -10,6 +10,10 @@ The Administrator is a browser based logic game in which the user navigates a si
 
 This readme contains extensive detail on development of the project in order to inform the assessor of my course work on the process that was undertaken. 
 
+Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdministrator/)
+
+Deployed Branch: [The Administrator deployed branch](https://github.com/lewisPratt/theAdministrator/tree/gh-pages)
+
 # Run this project locally
 
 To run this project locally:
@@ -19,6 +23,7 @@ To run this project locally:
 * `npm run dev` to run the local web server on your machine
 * Navigate in your browser to `localhost:5173` ( check your terminal for the address as it may be a different port if 5173 is already in use.)
 
+Details to deploy this project to Github Pages are included at the end of this readme. 
 
 
 # Table of Contents
@@ -80,6 +85,7 @@ To run this project locally:
     - [Loading screens](#loading-screens)
   - [Technical Decisions](#technical-decisions)
     - [File structure](#file-structure)
+    - [React.js conventions](#reactjs-conventions)
     - [Local storage](#local-storage)
     - [Encryption of user saved data](#encryption-of-user-saved-data)
     - [Layout](#layout)
@@ -100,6 +106,8 @@ To run this project locally:
     - [Javascript](#javascript-1)
   - [Compatibility](#compatibility)
   - [Testing](#testing)
+    - [Manual Testing](#manual-testing)
+    - [Test Cases](#test-cases)
     - [User Testing](#user-testing)
       - [Play tester 1](#play-tester-1)
       - [Play tester 2](#play-tester-2)
@@ -117,6 +125,7 @@ To run this project locally:
     - [API image not loading and default avatar not loading](#api-image-not-loading-and-default-avatar-not-loading)
     - [Citizen Avatars](#citizen-avatars)
     - [Use of SVG graphics in city map component](#use-of-svg-graphics-in-city-map-component)
+    - [Project reflection](#project-reflection)
     - [Use of generative ai](#use-of-generative-ai)
   - [Additional Reading References](#additional-reading-references)
   - [Node Packages used](#node-packages-used)
@@ -129,9 +138,7 @@ In order to evaluate the entirety of this project, when logging into the game, p
 
 This will give you access to a debug tool on the upgrade view that lets you manually increase your credit score, ensuring that all aspects of the game can be experienced for assessment.
 
-Live Site: [The Administrator Login Page](https://lewispratt.github.io/theAdministrator/)
 
-Deployed Branch: [The Administrator deployed branch](https://github.com/lewisPratt/theAdministrator/tree/gh-pages)
 
 ## Pages Overview
 
@@ -779,6 +786,33 @@ The majority of my testing was undertaken manually by myself or test users. Movi
 Automated testing is better suited to processes that will be repeated regularly, as well as to identify issues that may not directly impact on the rendered output of the app. (such as testing underlying game logic that may fail silently).
 Automated testing is more appropriate when there is a test case that exceeds the ability of humans to manually test, such as excessively repeating a task, generating significantly large amounts of data etc. It is also useful for testing authentication/data storage as well as processes that would otherwise be unseen by the user, but have an impact on the functionality of the app.  
 
+
+### Manual Testing
+
+Throughout development, I regularly tested the responsiveness of the app to ensure any layout changes were compatable with both mobile and desktop environments. this involved
+
+`open local development version on testing platform (mobile/desktop) > resize the page via developer tools > visually check layout and conditionally rendered content > note any issues > move to next component view & repeat`
+
+This process was also repeated by play testers on different screen sizes. 
+
+### Test Cases
+
+| Case | Expected result 
+|---|---|
+| Attempt to login a second time with a different name| User presented with dialogue providing options to overwrite previous game data or continue with previous game data. |
+| Refresh the app at any point | No visible change for the user and user data (name/credits etc) should remain accurate and loaded | 
+| Press the browser back button | The previous page will load with no errors or effect on gameplay loop | 
+| Attempt to purchase an upgrade you can't afford | An error displays, stating you cannot afford this upgrade. | 
+| Type an incorrect navigation command into the navigation input | An error displays, stating the command was not recognised. | 
+| Start the tutorial on any page| The user is redirected to the terminal page and the tutorial starts.  | 
+| Use the sound toggle button to toggle game sounds| In-game sounds will be toggled on and off  | 
+| Logout of the app | The user is returned to the login page  | 
+| Change the text after "#/" in the URL bar to navigate to a non existent page (e.g. #/anewpage")| an error is displayed stating that the page does not exist.  | 
+| Before logging in change the text after "#/" in the URL bar to navigate to an existing page(e.g. #/Terminal")| An error is displayed stating that the user iss not logged in.  | 
+| Use the Tab key to navigate around the app, using only the keyboard | Each interactive part of the app should be accessible by using only the keyboard.  | 
+
+This test case matrix was used by myself and a small number of play testers to ensure that there were no game breaking bugs associated with the core elements of the app. Any deviation from the expected result was confirmed by myself, classed as a bug and corrected. 
+
 ### User Testing
 
 #### Play tester 1
@@ -1033,6 +1067,18 @@ Similar prompts were used to produce datasets for last names, occupations and lo
 LLMs we're also used as a means of troubleshooting and dissecting new coding concepts that were unfamiliar.
 
 No LLM generated code snippets or automated deployment models were utilized in the completion of this project.
+
+
+## Deploy this project to Github Pages
+
+This project uses the gh-pages package to publish deployed code to Github.
+Source code is developed on the main repo branch. 
+
+Running `npm run deploy` first builds the project (the predeploy script in package.json runs `npm run build`, outputting the newest version of the code to the dist folder), then the gh-pages package publishes the dist folder to the gh-pages branch. 
+
+Two things to note with gh=page deployment:
+* The `base` variable in `vite.config.ts` needs tp be set to your repos name
+* Within your repo > settings > pages > set the pages source to the gh-pages branch
 
 ## Additional Reading References
 
