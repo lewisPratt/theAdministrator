@@ -12,7 +12,7 @@ export default function HowToPlay(){
             {">"}_This is a text based <u>roleplaying game</u> where you review open cases to determine each individuals positive or
             negative impact on The City.
           </p>
-          <p>_For the best experience, use a desktop computer to play.</p>
+          <p>{">"}_For the best experience, use a desktop computer to play.</p>
           <p>
             {">"}_Navigate a <u>simulated retro futuristic computer</u> terminal via <u>typed commands </u>to explore your new role as an Administrator.
           </p>
@@ -24,7 +24,7 @@ export default function HowToPlay(){
             {">"}_<u>Buy upgrades</u> to maximize productivity and efficiency.
           </p>
           <p>
-            {">"}_Earn enough credits to <u>buy your freedom</u>. <div className="flashing-cursor"></div>
+            {">"}_Earn enough credits to <u>climb the ranks of the administration</u>. <div className="flashing-cursor"></div>
           </p>
          
         <button
