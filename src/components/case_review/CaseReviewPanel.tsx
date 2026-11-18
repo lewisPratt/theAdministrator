@@ -45,6 +45,7 @@ export default function CaseReviewPanel({
   seniorCall,
   closingState,
   closingStateSetter,
+  CheckComplete
 }: transcriptReviewBoxProps) {
   const [showEvidence, setShowEvidence] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
@@ -294,6 +295,7 @@ export default function CaseReviewPanel({
           break;
       }
     }
+    CheckComplete()
   }
   return (
     <>

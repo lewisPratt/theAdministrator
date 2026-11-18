@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import CaseReviewPanel from "./CaseReviewPanel";
 import CaseListItem from "./CaseListItem";
 import CaseReviewSummary from "./CaseReviewSummary";
@@ -24,11 +24,15 @@ import type { TooltipRefProps } from "react-tooltip";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { useRef } from "react";
 import TutorialLogic from "../tutorial/TutorialLogic";
+
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import ActiveUpgrades from "../upgrade_shop/ActiveUpgrades";
 import NotLoggedIn from "../nav/NotLoggedIn";
 import { ErrorContext } from "../../context_providers/ErrorContext";
 
+/**
+ * Component view that shows the case review screen, allowing selection of cases, judging and main gameplay loop.
+ */
 export default function TranscriptRev() {
   const { tutorialState } = useContext(TutorialContext);
   const { playerData } = useContext(PlayerContext);
@@ -38,8 +42,6 @@ export default function TranscriptRev() {
   >(triggerCaseCreation());
   const [currentTranscript, setCurrentTranscript] =
     useState<reviewShape | null>(null);
-  //triggers re-render even when score is 0 and score updates to 0 (which doesn't rerender)
-  const [, setDecisionMade] = useState<boolean>(false);
   const [reviewsComplete, setReviewsComplete] =
     useState<reviewsCompleteShape | null>(null);
   const [reviewDismissed, setReviewDismissed] = useState<boolean>(false);
@@ -51,57 +53,76 @@ export default function TranscriptRev() {
   const [closingState, setClosingState] = useState<boolean>(false);
   const [juniorCallUsed, setJuniorCallused] = useState<boolean>(false);
   const [seniorCallUsed, setSeniorCallused] = useState<boolean>(false);
-  const [isMoreCases] = useState<boolean | null>(
-    checkMoreCasesOverflow(),
-  );
+  const [isMoreCases] = useState<boolean | null>(checkMoreCasesOverflow());
 
   const navigate = useNavigate();
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
-  if (availableTranscripts != null && !reviewsComplete) {
-    let effectiveness: number;
-    const reviewObj = { count: 0, negative: 0, positive: 0 };
-    availableTranscripts.forEach((transcript) => {
-      if (transcript.processed) {
-        reviewObj.count += 1;
-        if (transcript.decisionOutcome) {
-          reviewObj.positive += 1;
-        } else {
-          reviewObj.negative += 1;
-        }
-      }
-    });
-    //all avaialble transcripts have been processed
-    if (reviewObj.count === availableTranscripts.length) {
-      effectiveness = Math.round((reviewObj.positive / reviewObj.count) * 100);
-
-      setReviewsComplete({
-        numberComplete: reviewObj.count,
-        effectivenessRating: effectiveness,
-      });
-    }
-  }
-
-  //turn off loading state after component mount
+  /**
+   * Turn off loading state after component mount
+   */
   useEffect(() => {
     if (loadingState) {
       setTimeout(setLoadingState, 2000, false);
     }
   }, [loadingState]);
 
- 
 
-  //if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
+  /**
+   * if the tutorial is active, automatically open the first case in the list to show tooltips within the case details panel
+   */
   useEffect(() => {
     function showTutorialCase(availableTranscripts: reviewShape[]) {
       setNextCase(availableTranscripts[0]);
       setCurrentTranscript(availableTranscripts[0]);
     }
 
-    if (tutorialState.tutorialActive && availableTranscripts && tutorialState.tutorialStep != 0) {
+    if (
+      tutorialState.tutorialActive &&
+      availableTranscripts &&
+      tutorialState.tutorialStep != 0
+    ) {
       showTutorialCase(availableTranscripts);
     }
-  }, [availableTranscripts, tutorialState.tutorialActive, tutorialState.tutorialStep]);
+  }, [
+    availableTranscripts,
+    tutorialState.tutorialActive,
+    tutorialState.tutorialStep,
+  ]);
+
+
+  /**
+   * Checks to see if all cases have had a judgement made on them and triggers end of shift overlay when complete.
+   */
+  function checkComplete() {
+    if (availableTranscripts != null && !reviewsComplete) {
+      let effectiveness: number;
+      const reviewObj = { count: 0, negative: 0, positive: 0 };
+      availableTranscripts.forEach((transcript) => {
+        if (transcript.processed) {
+          reviewObj.count += 1;
+          if (transcript.decisionOutcome) {
+            reviewObj.positive += 1;
+          } else {
+            reviewObj.negative += 1;
+          }
+        }
+      });
+      //all avaialble transcripts have been processed
+      if (reviewObj.count === availableTranscripts.length) {
+        effectiveness = Math.round(
+          (reviewObj.positive / reviewObj.count) * 100,
+        );
+
+        setReviewsComplete({
+          numberComplete: reviewObj.count,
+          effectivenessRating: effectiveness,
+        });
+      }
+    }
+  }
+
+  
 
   /**
    * creates cases to populate the review component. Sorts through possible upgrades and applies their effects if they are relevant to
@@ -156,14 +177,22 @@ export default function TranscriptRev() {
     }
   }
 
+  /**
+   * Used after making a decision on all cases, either restarts the gameplay loop or moves the player to the upgrade store.
+   * @param reason string declaring why the new shift has been triggered to determine next actions
+   */
   function loadNewShift(reason: string) {
     if (reason === "new") {
       setLoadingState(true);
       setTimeout(startNewShift, 1000);
     } else if (reason === "end") {
-      endShift();
+      navigate("/UpgradeShop");
     }
   }
+
+  /**
+   * Resets gameplay loop and triggers creation of new set of cases to judge
+   */
   function startNewShift() {
     setLoadingState(false);
     setAvailableTranscripts(triggerCaseCreation());
@@ -171,11 +200,11 @@ export default function TranscriptRev() {
     setCurrentTranscript(null);
     setReviewDismissed(false);
   }
-  function endShift() {
-    navigate("/UpgradeShop");
-  }
 
-  //check if there are more than the base number of cases.
+  /**
+   * Checks to see if there are more than the base number of cases to show in the case list (due to upgrades)
+   * @returns boolean to inform whether or not to display the more cases box
+   */
   function checkMoreCasesOverflow() {
     if (availableTranscripts) {
       if (availableTranscripts?.length > 8) {
@@ -188,11 +217,13 @@ export default function TranscriptRev() {
     }
   }
 
-  //set visibility of the more cases box based on scroll position
+  /**
+   * Sets the visibility of the more cases box dependant on scroll position
+   */
   function handleMoreCasesBox(e: React.UIEvent<HTMLDivElement>) {
     if (e.currentTarget.scrollTop > 20) {
-       const moreCasesBox = document.querySelector("#more-cases-box");
-      if(moreCasesBox && !moreCasesBox.classList.contains("faded-box")){
+      const moreCasesBox = document.querySelector("#more-cases-box");
+      if (moreCasesBox && !moreCasesBox.classList.contains("faded-box")) {
         moreCasesBox?.classList.add("faded-box");
         moreCasesBox?.classList.remove("visible-box");
       }
@@ -202,8 +233,6 @@ export default function TranscriptRev() {
       moreCasesBox?.classList.add("visible-box");
     }
   }
-
-
 
   return (
     <>
@@ -239,9 +268,8 @@ export default function TranscriptRev() {
                             More cases <ArrowDown />
                           </p>
                         </div>
-                        
                       )}
-                      
+
                       <div
                         id="tutorial-step-7"
                         className={
@@ -252,37 +280,38 @@ export default function TranscriptRev() {
                         }
                       >
                         <ActiveUpgrades />
-                       
-                          {reviewsComplete && (
-                            <>
-                              <button onClick={() => loadNewShift("new")}>
-                                start new shift
-                              </button>
-                              <button onClick={() => setReviewDismissed(false)}>
-                                Summary
-                              </button>{" "}
-                            </>
-                          )}
-                        
-                      <button
-                        id="tutorial-step-11"
-                        className={ "rules-button "+
-                          (tutorialState.tutorialActive &&
-                          tutorialState.tutorialStep === 11
-                            ? "tutorial-highlight"
-                            : "" )
-                        }
-                        onClick={() => {
-                          playCustomSound("buttonPress");
-                          if (currentTranscript != null) {
-                            setCurrentTranscript(null);
-                            setSelectedListItem("0");
+
+                        {reviewsComplete && (
+                          <>
+                            <button onClick={() => loadNewShift("new")}>
+                              start new shift
+                            </button>
+                            <button onClick={() => setReviewDismissed(false)}>
+                              Summary
+                            </button>{" "}
+                          </>
+                        )}
+
+                        <button
+                          id="tutorial-step-11"
+                          className={
+                            "rules-button " +
+                            (tutorialState.tutorialActive &&
+                            tutorialState.tutorialStep === 11
+                              ? "tutorial-highlight"
+                              : "")
                           }
-                          setCodexState(true);
-                        }}
-                      >
-                        Rules
-                      </button>
+                          onClick={() => {
+                            playCustomSound("buttonPress");
+                            if (currentTranscript != null) {
+                              setCurrentTranscript(null);
+                              setSelectedListItem("0");
+                            }
+                            setCodexState(true);
+                          }}
+                        >
+                          Rules
+                        </button>
                         {availableTranscripts.map((listItem) => (
                           <CaseListItem
                             key={listItem.identifier}
@@ -299,7 +328,6 @@ export default function TranscriptRev() {
                           />
                         ))}
                       </div>
-                      
                     </div>
                   )}
                   {codexState && (
@@ -315,7 +343,6 @@ export default function TranscriptRev() {
                       nextCase={nextCase}
                       reviewTranscriptSetter={setCurrentTranscript}
                       transcript={currentTranscript}
-                      decisionSetter={setDecisionMade}
                       selectedSetter={setSelectedListItem}
                       transcriptList={availableTranscripts}
                       setTranscriptList={setAvailableTranscripts}
@@ -327,6 +354,7 @@ export default function TranscriptRev() {
                       seniorCall={seniorCallUsed}
                       closingState={closingState}
                       closingStateSetter={setClosingState}
+                      CheckComplete={checkComplete}
                     />
                   ) : (
                     <>

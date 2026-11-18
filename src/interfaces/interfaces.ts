@@ -105,7 +105,6 @@ export interface unlockContextShape {
 export interface transcriptReviewBoxProps {
   transcript: reviewShape | null;
   reviewTranscriptSetter: Dispatch<SetStateAction<reviewShape | null>>;
-  decisionSetter: Dispatch<SetStateAction<boolean>>;
   selectedSetter: Dispatch<SetStateAction<string>>;
   transcriptList: reviewShape[] | null;
   setTranscriptList: Dispatch<SetStateAction<reviewShape[] | null>>;
@@ -119,6 +118,7 @@ export interface transcriptReviewBoxProps {
   seniorCall: boolean
   closingStateSetter: Dispatch<SetStateAction<boolean>>
   closingState: boolean
+  CheckComplete: ()=> void
 
 }
 export interface nodeShape {
