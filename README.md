@@ -591,6 +591,8 @@ The React library has its own recommended file naming conventions and structure 
 * Non component .tsx files are named using camelCase
 * Variables and normal functions are named using camelCase
 
+Files deployed to the GitHub pages branch of the project follow standard naming conventions with lowercase spelling and no spaces. 
+
 ### Local storage
 
 Local storage has been used as a means of persisting users game data between sessions. This data stores information on their administrators name, cases reviewed, credits earned and unlocks purchased. 
@@ -771,6 +773,12 @@ Tests were carried out manually across a number of browsers to ensure that all f
 
 ## Testing
 
+The majority of my testing was undertaken manually by myself or test users. Moving through each user story and observing the results as well as testing each new feature to identify any bugs that may arise through conditional logic. Much of the functionality in the app has visual feedback so can be easily tested manually, with unexpected results being easily observable. 
+
+
+Automated testing is better suited to processes that will be repeated regularly, as well as to identify issues that may not directly impact on the rendered output of the app. (such as testing underlying game logic that may fail silently).
+Automated testing is more appropriate when there is a test case that exceeds the ability of humans to manually test, such as excessively repeating a task, generating significantly large amounts of data etc. It is also useful for testing authentication/data storage as well as processes that would otherwise be unseen by the user, but have an impact on the functionality of the app.  
+
 ### User Testing
 
 #### Play tester 1
@@ -884,7 +892,10 @@ For the sake of brevity, I have included an image of two of these tests.
 
   <img src="src/assets/images/readme/auto-tests.png" width=200>
 
-In the future, I would like to implement more useful automated testing strategies to ensure that my code is robust and consistent.
+  <img src="src/assets/images/readme/auto-test-results.png" width=500>
+
+
+In the future, I would like to implement more useful automated testing strategies to ensure that my code is robust and consistent. 
 
 
 ## Lighthouse Testing

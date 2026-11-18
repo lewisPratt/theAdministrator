@@ -55,7 +55,6 @@ export default function TranscriptRev() {
     checkMoreCasesOverflow(),
   );
 
-
   const navigate = useNavigate();
   const tooltipRef1 = useRef<TooltipRefProps>(null);
 
@@ -203,6 +202,8 @@ export default function TranscriptRev() {
       moreCasesBox?.classList.add("visible-box");
     }
   }
+
+
 
   return (
     <>

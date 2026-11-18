@@ -4,7 +4,6 @@ import TranscriptRev from "./components/case_review/CaseReview";
 import "./assets/css/App.css";
 import "./assets/css/tutorial.css";
 import "./assets/css/nav.css";
-
 import UpgradeShop from "./components/upgrade_shop/UpgradeShop";
 import CommandCentre from "./components/terminal/Terminal";
 import Login from "./components/login/Login";
