@@ -1,6 +1,6 @@
 # The Administrator
 
-![Website mockups](/src/assets/images/readme/mockup.png)
+![Website mock-ups](/src/assets/images/readme/mockup.png)
 
 # Project Summary
 
@@ -257,7 +257,7 @@ I am a new user who wants to know what this website is when visiting it for the 
 #### Acceptance Criteria
 
 - [x] The first page that the user sees should have a clear call to action, helping new users access the desired information.
-- [x] Information should be accessible to access via conventional peripherals or accessability aids.
+- [x] Information should be accessible to access via conventional peripherals or accessibility aids.
 - [x] The description content should be short and useful to a new user.
 - [x] There should be an easy way to return to the front page of the web app.
 - [x] When logged in there should be an easy to follow explanation of how to play.
@@ -383,12 +383,12 @@ Due to the mobile first and responsive design approach maintained throughout dev
 
 ## Design \& Style
 
-Inspiration for the aesthetic of the app was taken from retro-futuristic concept art and popular media such as films, tv shows and video games. I focussed on my favorite franchises, Alien and Bladerunner. Reference images helped to replicate my own version of the computer terminal aesthetic. 
+Inspiration for the aesthetic of the app was taken from retro-futuristic concept art and popular media such as films, tv shows and video games. I focussed on my favourite franchises, Alien and BladeRunner. Reference images helped to replicate my own version of the computer terminal aesthetic. 
 
-<img src="src/assets/images/readme/reference-images.webp" alt="Reference image 1 - UI design mockup" width=500 >
+<img src="src/assets/images/readme/reference-images.webp" alt="Reference image 1 - UI design mock-up" width=500 >
 
 [Ui Design Reference](https://www.reddit.com/r/web_design/comments/1psvnlg/i_made_an_opensource_retrofuturistic_ui_component/)
-[Bladerunner 2049] [Alien isolation (video game)] [Alien movie and tv show]
+[BladeRunner 2049] [Alien isolation (video game)] [Alien movie and tv show]
 
 
 
@@ -436,7 +436,7 @@ Although simple, the colours chosen enhance the overall theme of the app and con
 
 * Backgrounds `#000000`
 
-I used Affinity designer to create a slightly bevelled grid texture to use as the background and ensured it was centered to the window on desktop and mobile. This further contributed to the retro futuristic theming. 
+I used Affinity designer to create a slightly bevelled grid texture to use as the background and ensured it was centred to the window on desktop and mobile. This further contributed to the retro futuristic theming. 
     
     body {
       background: #000000;
@@ -524,7 +524,7 @@ By using an SVG file, it allows me to reuse the icon elsewhere within the app if
 
 ### Dynamic Content
 
-Throughout the app, I have used dynamic content to create immersion and ensure that the likelihood of receiving the same content is low on repeated play-throughs. Without the use of a back-end system, this has been achieved through constructing JavaScript objects that hold a large number of individual datasets
+Throughout the app, I have used dynamic content to create immersion and ensure that the likelihood of receiving the same content is low on repeated playthroughs. Without the use of a back-end system, this has been achieved through constructing JavaScript objects that hold a large number of individual datasets
 that can then be randomly combined to create unique data sets.
 The most significant implementation of this concept is within the person class which constructs each citizen that the user assesses in the case review part of the app.
 Individual objects that hold possible character names,occupations,carried items, interview locations and citizen flavour text (text within their case notes that is generated to give an overall description of the citizen) are combined with a randomization utility function to produce unique citizen interviews on each play-through.
@@ -633,7 +633,7 @@ In this regard, the entire project has been built with the use of JavaScript at 
 React.js manages to cover most eventualities with its own event triggers and handlers (onClick, onChange etc). This removed the requirement to add my own event listeners to elements that required interactivity within the app. The React documentation also encourages developers to use the React library to manage any interactivity rather than vanilla JavaScript. Mixing the two methods can result in unexpected bugs as vanilla Javascript does not take into account State/Context etc and can cause the app to become bugged or de-synchronized. 
 
 ### Accessibility
-Due to the theme of the app I have made, accessibility, for the most part, was being addressed throughout the project mainly due to my idea that the entire experience should be accessible whilst solely using a keyboard. Many of the computers shown in reference images and films that I explored, such as Bladerunner, often don't have a mouse or equivalent connected and much if not all of the navigation and interaction is achieved via the keyboard alone.
+Due to the theme of the app I have made, accessibility, for the most part, was being addressed throughout the project mainly due to my idea that the entire experience should be accessible whilst solely using a keyboard. Many of the computers shown in reference images and films that I explored, such as Blade Runner, often don't have a mouse or equivalent connected and much if not all of the navigation and interaction is achieved via the keyboard alone.
 This has meant that from the beginning of my project, I have focussed on ensuring all interactive elements are accessible to both mouse and keyboard, providing visual feedback when an interaction occurs.
 
 The intended experience for the user is for navigation to be undertaken via typed commands, keeping in line with the simulated computer system theme. 
@@ -695,7 +695,7 @@ Persistent player data is stored in localStorage of the users browser. This stor
 When a user logs in, an attempt to load saved data is made. This also occurs when the user refreshes the page, causing the app to load the saved user data from localStorage. 
 
 * If the key cannot be found in localStorage, a new player is set up and the key is created in localStorage to track user progress. 
-* If the key is found but the JSON is incorrectly formed, unparsable or the parsed data has failed the type guard checks, an error is displayed to the user, notifying that the data has been reset and they should attempt to login again. 
+* If the key is found but the JSON is incorrectly formed, cannot be parsed or the parsed data has failed the type guard checks, an error is displayed to the user, notifying that the data has been reset and they should attempt to login again. 
 
 The type guard being used to check the types of the data stored in localStorage is as follows: 
 
@@ -748,7 +748,7 @@ Due to React compiling JavaScript and HTML at time of deployment, the HTML was v
 
 To validate my TypeScript I used ESLint. This package validated the code within my project directly inside VSCode, checking it for errors, style inconsistencies and unused code. When I first ran it towards the end of my project, the report that came back listed roughly 100 errors/warnings. A built in tool of ESLint allowed roughly 50% of these to be solved automatically by running `npm run lint -- --fix`. 
 
-The majority of the remaining errors were related to setting state inside of useEffect, which can cause unintended re-renders. There were also some isntances where I had used a comma instead of a semicolon to separate function calls within an onclick event handler.
+The majority of the remaining errors were related to setting state inside of useEffect, which can cause unintended re-renders. There were also some instances where I had used a comma instead of a semicolon to separate function calls within an onclick event handler.
 
 <img src="src/assets/images/readme/validation/js/esLint-error.png" alt="EsLint error">
 
@@ -763,7 +763,7 @@ All errors  and warnings were cleared after refactoring parts of the code to mee
 
 ## Compatibility
 
-Despite the concept of this app being aimed at replicating a computer terminal, which would best be experienced on a desktop computer, The responsive nature of the app ensures that its contents can be accessed easily on both mobile and desktop. Key changes have been made to the apps layout and presentaiton of information to ensure that screen real estate on small devices is utilised effectively. 
+Despite the concept of this app being aimed at replicating a computer terminal, which would best be experienced on a desktop computer, The responsive nature of the app ensures that its contents can be accessed easily on both mobile and desktop. Key changes have been made to the apps layout and presentation of information to ensure that screen real estate on small devices is utilised effectively. 
 
 Tests were carried out manually across a number of browsers to ensure that all features were working as expected.
 
@@ -789,7 +789,7 @@ Automated testing is more appropriate when there is a test case that exceeds the
 
 ### Manual Testing
 
-Throughout development, I regularly tested the responsiveness of the app to ensure any layout changes were compatable with both mobile and desktop environments. this involved
+Throughout development, I regularly tested the responsiveness of the app to ensure any layout changes were compatible with both mobile and desktop environments. this involved
 
 `open local development version on testing platform (mobile/desktop) > resize the page via developer tools > visually check layout and conditionally rendered content > note any issues > move to next component view & repeat`
 
@@ -1023,12 +1023,12 @@ Filtering the citizens by gender and behaviour allows very customizable control 
 
 Having had very little experience with svg graphics in the past, I was keen to ensure I expanded my knowledge in this area whilst completing this project.
 
-I created the initial wireframe city image in Affinity Designer, saving it as a png file, then created an SVG within my city map component, using the png as a backdrop. Using svg paths (also created in Affinity Designer) I created 'hotspots' on top of the city image using the <path> element. These hotspots were then targeted by CSS:hover rules to interact with the user when they move their mouse over each hotspot on the map. These hotspots were also given a tab index value of 0 to allow keyboard users to acees this interactivity. Using the value of 0 assigns each element a tab index based on it's position within the DOM.
+I created the initial wireframe city image in Affinity Designer, saving it as a png file, then created an SVG within my city map component, using the png as a backdrop. Using svg paths (also created in Affinity Designer) I created 'hotspots' on top of the city image using the <path> element. These hotspots were then targeted by CSS:hover rules to interact with the user when they move their mouse over each hotspot on the map. These hotspots were also given a tab index value of 0 to allow keyboard users to access this interactivity. Using the value of 0 assigns each element a tab index based on it's position within the DOM.
 Each hotspot was also assigned a tooltip that shows the name of the district it is highlighting.
 
 I wanted to make the city map feel active and alive, rather than a static image. To do this I decided to implement a scanning effect which sweeps a 'scan line' across the city and simulates scanning of the entire city.
 
-This was achieved by first drawing a path across my city image in Affinity Designer, then using the path coordinates within my svg to draw an invisible line across the centre (diagnonally) of my city image. I then created a clipPath that was applied to a duplicate of the original city image. This duplicate image has it's brightness adjusted via
+This was achieved by first drawing a path across my city image in Affinity Designer, then using the path coordinates within my svg to draw an invisible line across the centre (diagonally) of my city image. I then created a clipPath that was applied to a duplicate of the original city image. This duplicate image has it's brightness adjusted via
 
 `Filter:brightness(2)`
 
@@ -1041,9 +1041,9 @@ Without using svg graphics, creating hotspots on top of an image and ensuring it
 ---
 This project has been a very enjoyable one to work on, pushing my learning and exposing me to an entirely new way of presenting information to the user and managing game logic. Gaining hands on experience using React has been very valuable and I will continue to utilise the library in my personal projects to improve my knowledge. 
 
-Towards the end of the project I found myself returning to the code on numerous occassions to add extra finishing touches that were not necessary. "Scope Creep" is a common occurrence in software development and it's important to recognise it early, particularly when a deadline is approaching. One such occassion started with making a small change to the code that then had a knock on effect, causing me to alter code elsewhere and before I realised, I had spent 2 hours working on a feature that wasn't actually a must have for the project outcome. 
+Towards the end of the project I found myself returning to the code on numerous occasions to add extra finishing touches that were not necessary. "Scope Creep" is a common occurrence in software development and it's important to recognise it early, particularly when a deadline is approaching. One such occasion started with making a small change to the code that then had a knock on effect, causing me to alter code elsewhere and before I realised, I had spent 2 hours working on a feature that wasn't actually a must have for the project outcome. 
 
-In this instance, I took some time away from the code and returned fresh, solving the problem within 30 minutes and managing to keep the changes I had implemented. However there have been occassions when I have had to roll back the code to a previous version of the project, highlighting the usefulness of utilising a version management system like GitHub. 
+In this instance, I took some time away from the code and returned fresh, solving the problem within 30 minutes and managing to keep the changes I had implemented. However there have been occasions when I have had to roll back the code to a previous version of the project, highlighting the usefulness of utilising a version management system like GitHub. 
 
 There are a number of additional features and improvements I would like to implement in the future, if I should ever return to continue working on this project.
 
