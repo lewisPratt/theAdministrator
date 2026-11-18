@@ -1,17 +1,18 @@
-#tutorial-overlay{
-  position:fixed;
-  background-color: rgba(0, 0, 0, .7);
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index:90;
+#tutorial-overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .7);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
 }
 
-#tutorial-start-container, #tutorial-end-container{
+#tutorial-start-container,
+#tutorial-end-container {
     border: 2px solid;
     display: flex;
     flex-direction: column;
@@ -21,34 +22,41 @@
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px;
 }
-.tutorial-button-container{
+
+.tutorial-button-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:10px;
-    margin-top:10px;
+    gap: 10px;
+    margin-top: 10px;
 }
-.tutorial-button{
-    width:fit-content;
-    height:fit-content;
-    border:1px solid black;
+
+.tutorial-button {
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid black;
 }
-.tutorial-button:focus-visible, .tutorial-button:focus {
-    outline:2px solid;
+
+.tutorial-button:focus-visible,
+.tutorial-button:focus {
+    outline: 2px solid;
 }
-.x-container{
-    width:100%;
+
+.x-container {
+    width: 100%;
     display: flex;
     justify-content: flex-start;
 }
-.tutorial-close-x{
-    translate:-15px -5px;
+
+.tutorial-close-x {
+    translate: -15px -5px;
     width: fit-content;
     height: fit-content;
     background-color: unset;
 }
-.tutorial-highlight{
-    position:relative;
+
+.tutorial-highlight {
+    position: relative;
     z-index: 110;
     pointer-events: none;
 }

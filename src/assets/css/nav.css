@@ -4,7 +4,7 @@
   background-color: black;
   color: #a2eaa2;
   padding: 5px;
-  order:3;
+  order: 3;
 }
 
 #tutorial-toggle-button {
@@ -16,13 +16,15 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  order:2;
+  order: 2;
 }
-#command-input-container{
-  flex-basis:500px;
-  order:1;
-  margin:0 10px;
+
+#command-input-container {
+  flex-basis: 500px;
+  order: 1;
+  margin: 0 10px;
 }
+
 .available-commands-button {
   height: 39px;
   width: 25%;
@@ -39,7 +41,7 @@
 
 #nav-text-input {
   height: 35px;
-  width:50%;
+  width: 50%;
   border: 1px solid #a2eaa2;
   padding: 1px 10px;
 }
@@ -127,7 +129,7 @@
   top: 100%;
   right: 0;
   background-color: #a2eaa2;
-  color:black;
+  color: black;
   z-index: 90;
 }
 
@@ -138,12 +140,14 @@
 
 #commands-list-container ol {
   padding: 10px;
-  margin:0;
+  margin: 0;
 }
-#commands-list-container button{
-  width:fit-content;
-  height:fit-content;
+
+#commands-list-container button {
+  width: fit-content;
+  height: fit-content;
 }
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -151,7 +155,6 @@ nav {
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
-
 }
 
 #nav-login-button {
@@ -163,51 +166,34 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction:row;
-  flex-wrap:wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   flex: 1;
-  gap:10px;
-  padding:0 10px;
-}
-
-.mobile-nav-elements {
-  display: flex;
-  flex:1;
-  justify-content: center;
-  margin-top: 20px;
-  align-items: center;
-  gap: 10px
+  gap: 10px;
+  padding: 0 10px;
 }
 
 .desktop-nav-element {
   display: none;
 }
 
-.nav-left-elements{
-  display:flex;
-  align-items: center;
-  gap:10px;
-}
 
 @media (min-width:768px) {
-  #nav-bar-parent{
+  #nav-bar-parent {
     justify-content: space-between;
-  }
-  .mobile-nav-elements {
-    display: none;
   }
 
   .desktop-nav-element {
     display: flex;
     align-items: center;
-    gap:10px;
+    gap: 10px;
   }
 
   #interactive-nav-el-container {
-    order:1;
+    order: 1;
   }
-  #command-input-container{
-    order:2;
 
+  #command-input-container {
+    order: 2;
   }
 }

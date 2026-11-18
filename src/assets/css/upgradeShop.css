@@ -10,16 +10,16 @@
   width: 100%;
 }
 
-#personal-record-button{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width:100%;
+#personal-record-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
-#personal-record-button button{
-    width:fit-content;
-    height: fit-content;
 
+#personal-record-button button {
+  width: fit-content;
+  height: fit-content;
 }
 
 .upgrade-items-container {
@@ -28,9 +28,7 @@
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-
   width: 100%;
-
 }
 
 .upgrade-items-container ol {
@@ -43,20 +41,20 @@
   transition: .6s;
 }
 
-#visit-upgrades-button{
-  margin-top:30px;
+#visit-upgrades-button {
+  margin-top: 30px;
 }
 
-.upgrade-items-container li:hover  .upgrade-name::after{
+.upgrade-items-container li:hover .upgrade-name::after {
   content: " <";
-  animation: after-tick 1s  infinite steps(2);
+  animation: after-tick 1s infinite steps(2);
   display: inline-block;
 }
-.upgrade-items-container li:hover  .upgrade-name::before{
-  content: "> ";
-  animation: before-tick 1s  infinite steps(2);
-    display: inline-block;
 
+.upgrade-items-container li:hover .upgrade-name::before {
+  content: "> ";
+  animation: before-tick 1s infinite steps(2);
+  display: inline-block;
 }
 
 .upgrade-box {
@@ -69,14 +67,13 @@
   align-items: center;
   transition: .8s;
   gap: 20px;
-  border:1px solid black;
+  border: 1px solid black;
 }
 
 .upgrade-box:focus-visible,
 .upgrade-box:hover {
   background-color: black;
   color: #a2eaa2;
-
 }
 
 .purchase-button-container {
@@ -88,12 +85,12 @@
 
 .purchased-unlock-class {
   background-color: #a2eaa2;
-
 }
-.purchased-span{
-  display:inline-block;
-  background:black;
-  color:#a2eaa2;
+
+.purchased-span {
+  display: inline-block;
+  background: black;
+  color: #a2eaa2;
 }
 
 .upgrade-desc {
@@ -106,18 +103,20 @@
   font-size: 1rem;
   animation: bulge .8s;
 }
-.upgrade-details{
+
+.upgrade-details {
   background-color: black;
   padding: 20px 0;
 }
 
 @keyframes after-tick {
-    to{
-        translate:10px 0;
-    }
+  to {
+    translate: 10px 0;
+  }
 }
+
 @keyframes before-tick {
-    to{
-        translate:-10px 0;
-    }
+  to {
+    translate: -10px 0;
+  }
 }

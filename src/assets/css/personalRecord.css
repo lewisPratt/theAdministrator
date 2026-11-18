@@ -34,14 +34,14 @@
     flex-direction: column;
     padding: 10px;
     font-size: .8rem;
-    background:black;
-    color:#a2eaa2;
+    background: black;
+    color: #a2eaa2;
     transition: 2s;
 }
 
 .badge-holder>svg {
     transition: 3s;
-    transform: rotateY(0deg) ;
+    transform: rotateY(0deg);
 }
 
 .badge-holder:hover>svg,
@@ -49,20 +49,17 @@
     transition: 3s;
     transform: rotateY(360deg);
 }
+
 .badge-holder:hover,
-.badge-holder:focus-visible{
-    background:#a2eaa2;
-    color:black;
-    transition:2s
+.badge-holder:focus-visible {
+    background: #a2eaa2;
+    color: black;
+    transition: 2s
 }
 
 
 #left-column {
     width: 90%;
-}
-
-.personal-record-tagline {
-    margin-top: 20px;
 }
 
 .stats-section {
@@ -109,7 +106,6 @@
     height: fit-content;
 
 }
-
 
 @media (min-width:768px) {
 

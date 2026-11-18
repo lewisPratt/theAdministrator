@@ -23,14 +23,17 @@ body {
   background-image:
     linear-gradient(to right, #395439 1px, transparent 1px),
     linear-gradient(to bottom, #395439 1px, transparent 1px);
-    background-size: 120px 120px;
+  background-size: 120px 120px;
+}
+
 a {
   text-decoration: none;
 }
-}
-h1, p {
-  text-shadow: 
-    0 0 4px rgba(61, 243, 61, 0.6), 
+
+h1,
+p {
+  text-shadow:
+    0 0 4px rgba(61, 243, 61, 0.6),
     0 0 10px rgba(61, 243, 61, 0.4);
 }
 
@@ -43,19 +46,19 @@ h1, p {
   z-index: 9998;
   pointer-events: none;
   opacity: 0.15;
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.8) 50%
-  );
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.8) 50%);
   background-size: 100% 4px;
 }
 
 header {
   width: 100%;
 }
-.mt-20{
-  margin-top:20px;
+
+.mt-20 {
+  margin-top: 20px;
 }
+
 a {
   color: #a2eaa2;
 }
@@ -66,7 +69,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top:30px;
+  margin-top: 30px;
 }
 
 hr {
@@ -287,17 +290,17 @@ body .custom-tooltip {
   position: relative;
 }
 
- .map-details-container {
-    /* position: absolute; */
-    left: 0;
-    bottom: 25px;
-    top: unset;
-    background-color: rgba(0, 0, 0, 1);
-    width: 100%;
-    overflow-y: scroll;
-    height: 100%;
-    z-index:15;
-  }
+.map-details-container {
+  /* position: absolute; */
+  left: 0;
+  bottom: 25px;
+  top: unset;
+  background-color: rgba(0, 0, 0, 1);
+  width: 100%;
+  overflow-y: scroll;
+  height: 100%;
+  z-index: 15;
+}
 
 .map-details-container>ul {
   list-style: none;
@@ -360,7 +363,7 @@ body .custom-tooltip {
 
 .change-district-button {
   width: 40px;
-  height:40px;
+  height: 40px;
   margin: 0 10px;
 }
 
@@ -390,7 +393,7 @@ body .custom-tooltip {
     width: 100%;
     overflow-y: scroll;
     max-height: 90%;
-    z-index:20;
+    z-index: 20;
   }
 
   .map-details-container>ul {
@@ -527,11 +530,11 @@ body .custom-tooltip {
 }
 
 @media (min-width:768px) {
-  body{
+  body {
     background: #000000;
-  background-image: url(../images/grid-bg.webp);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+    background-image: url(../images/grid-bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   }
 }

@@ -1,11 +1,13 @@
-#welcome-section h1{
-  font-size:1.3rem;
-  line-height:1.7rem;
+#welcome-section h1 {
+  font-size: 1.3rem;
+  line-height: 1.7rem;
 }
+
 .terminal-form {
   width: 80%;
   margin: auto;
 }
+
 #command-centre-input-container {
   display: flex;
   flex-direction: row;
@@ -13,6 +15,7 @@
   align-items: center;
   margin: 50px 0 10px 0;
 }
+
 #command-centre-input {
   height: 40px;
   border: 1px solid #a2eaa2;
@@ -20,6 +23,7 @@
   padding: 10px;
   font-size: 1.2rem;
 }
+
 #command-centre-submit-button {
   height: 62px;
   width: 70px;
@@ -27,10 +31,12 @@
   border-left: none;
   line-height: 4.7rem;
 }
+
 #leave-req-p {
   color: #a2eaa2;
-  font-size:.8rem;
+  font-size: .8rem;
 }
+
 .commands-container {
   width: 80%;
   display: flex;
@@ -41,6 +47,7 @@
   margin: 20px auto;
   background-color: black;
 }
+
 #commands-header {
   background-color: #a2eaa2;
   height: 30px;
@@ -52,11 +59,13 @@
   justify-content: flex-start;
   align-items: center;
 }
+
 .commands-heading {
   color: black;
   font-size: .8rem;
   margin-left: 10px;
 }
+
 .command-row {
   display: flex;
   justify-content: space-between;
@@ -64,6 +73,7 @@
   font-size: .8rem;
   width: 90%;
 }
+
 .commands-list {
   padding: 0;
   margin: 0;
@@ -76,9 +86,10 @@
 
 
 @media (min-width:768px) {
-#welcome-section h1{
-font-size: 1.5rem;
-}
+  #welcome-section h1 {
+    font-size: 1.5rem;
+  }
+
   .commands-heading {
     color: black;
     font-size: .8rem;
@@ -124,8 +135,6 @@ font-size: 1.5rem;
     width: 90%;
   }
 
-
-
   .commands-container {
     width: 50%;
     display: flex;
@@ -135,9 +144,6 @@ font-size: 1.5rem;
     border: 1px solid #a2eaa2;
     margin: 20px auto;
   }
-
-
-
 
   #commands-header {
     background-color: #a2eaa2;
@@ -150,7 +156,6 @@ font-size: 1.5rem;
     justify-content: flex-start;
     align-items: center;
   }
-
 
   #leave-req-p {
     color: #a2eaa2;

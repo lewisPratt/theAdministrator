@@ -3,9 +3,11 @@
     background-color: black;
     max-height: 400px;
 }
-#login-header{
-    line-height:2rem;
+
+#login-header {
+    line-height: 2rem;
 }
+
 .scan-line-overlay {
     pointer-events: none;
 }
@@ -94,7 +96,7 @@ INTERACTIVE PSEUDO CLASSES
     border: 1px solid #a2eaa2;
     padding: 20px;
     position: relative;
-    width:300px;
+    width: 300px;
 }
 
 #login-choice-small-text {
@@ -107,7 +109,6 @@ INTERACTIVE PSEUDO CLASSES
     top: 5px;
     width: fit-content;
     height: fit-content;
-
 }
 
 #login {
@@ -136,7 +137,6 @@ INTERACTIVE PSEUDO CLASSES
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
 }
 
 #login-input {
@@ -148,24 +148,22 @@ INTERACTIVE PSEUDO CLASSES
 }
 
 @media (min-width:768px) {
-  
 
+    #login-choice-overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, .5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-#login-choice-overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, .5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#login-input{
-    width:300px;
-}
+    #login-input {
+        width: 300px;
+    }
 
 
 }

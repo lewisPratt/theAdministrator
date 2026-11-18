@@ -1,27 +1,28 @@
-#how-to-play-content h1{
-    margin-bottom:50px;
+#how-to-play-content h1 {
+    margin-bottom: 50px;
 }
 
-#how-to-play-content p{
-    margin-bottom:20px;
-    text-align:left;
+#how-to-play-content p {
+    margin-bottom: 20px;
+    text-align: left;
 }
 
-#how-to-play-content{
-    padding:20px;
-    display:flex;
+#how-to-play-content {
+    padding: 20px;
+    display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color:black;
+    background-color: black;
 }
-#how-to-play-button{
-    margin:20px auto;
+
+#how-to-play-button {
+    margin: 20px auto;
 }
 
 @media (min-width:768px) {
-    #how-to-play-content{
-    padding:90px;
-    display: block;
-}
+    #how-to-play-content {
+        padding: 90px;
+        display: block;
+    }
 }

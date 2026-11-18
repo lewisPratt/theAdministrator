@@ -16,7 +16,7 @@ import {
 import { Tooltip } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 import { NIL as NIL_UUID } from "uuid";
-import { playSound } from "react-sounds";
+import { playSound, } from "react-sounds";
 import { TutorialContext } from "../../context_providers/TutorialContext";
 import { PlayerContext } from "../../context_providers/PlayerContext";
 import CitizenAvatar from "./CitizenAvatar";
@@ -59,6 +59,8 @@ export default function CaseReviewPanel({
   const successSound = () =>
     playSound(successfulSound, { volume: 0.5, loop: false });
   const failureSound = () => playSound(failSound, { volume: 0.5, loop: false });
+
+  
   let itemsToIdentify: number = 0;
 
   let recPassDesc: string;
@@ -72,6 +74,7 @@ export default function CaseReviewPanel({
   function closeTranscript() {
     const timerId = juniorCallRef.current;
     clearTimeout(timerId);
+
     closingStateSetter(true);
   }
 
